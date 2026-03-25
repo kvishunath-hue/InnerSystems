@@ -51,7 +51,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1
 .si{font-size:12px;color:var(--text3);margin-bottom:10px;line-height:1.5}
 .chkrow{display:flex;align-items:flex-start;gap:10px;font-size:13px;line-height:1.5;cursor:pointer;padding:7px 0;border-bottom:1px solid var(--bdr);-webkit-tap-highlight-color:transparent;user-select:none;color:var(--text)}
 .chkrow:last-of-type{border-bottom:none}
-.chkrow input[type=checkbox]{margin-top:2px;flex-shrink:0;width:16px;height:16px;accent-color:var(--text);pointer-events:none}
+.chkrow input[type=checkbox]{margin-top:2px;flex-shrink:0;width:16px;height:16px;pointer-events:none;appearance:none;-webkit-appearance:none;border:2px solid var(--bdr2);border-radius:3px;background:var(--bg);position:relative}
+.chkrow input[type=checkbox]:checked{background:var(--text);border-color:var(--text)}
+.chkrow input[type=checkbox]:checked::after{content:'';position:absolute;left:3px;top:0px;width:5px;height:9px;border:2px solid var(--bg);border-top:none;border-left:none;transform:rotate(45deg)}
 .chkrow span{flex:1}
 .chks{display:flex;flex-direction:column;margin-bottom:12px}
 .sdiv{font-size:11px;font-weight:600;color:var(--text3);letter-spacing:.4px;text-transform:uppercase;margin:12px 0 6px}
@@ -86,7 +88,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1
 .gtitle{font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.4px;margin-bottom:6px}
 .aff{display:flex;flex-direction:column;gap:6px;margin-top:8px}
 .afi{display:flex;align-items:flex-start;gap:10px;padding:9px 11px;border-radius:var(--r);border:1px solid var(--bdr);font-size:13px;line-height:1.5;cursor:pointer;-webkit-tap-highlight-color:transparent;user-select:none;color:var(--text)}
-.afi input[type=checkbox]{margin-top:1px;flex-shrink:0;pointer-events:none;accent-color:var(--text)}
+.afi input[type=checkbox]{margin-top:1px;flex-shrink:0;pointer-events:none;appearance:none;-webkit-appearance:none;width:16px;height:16px;border:2px solid var(--bdr2);border-radius:3px;background:var(--bg);position:relative;flex-shrink:0}
+.afi input[type=checkbox]:checked{background:var(--text);border-color:var(--text)}
+.afi input[type=checkbox]:checked::after{content:'';position:absolute;left:3px;top:0px;width:5px;height:9px;border:2px solid var(--bg);border-top:none;border-left:none;transform:rotate(45deg)}
 .afi.done{background:var(--sb);border-color:var(--sbo)}
 .afs{font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.4px;margin:10px 0 5px}
 .mnt{text-align:center;font-size:15px;color:var(--it);padding:1.2rem 0;font-style:italic;display:none}
@@ -133,7 +137,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1
 .ritm{display:flex;align-items:flex-start;gap:10px;padding:9px 10px;border-radius:var(--r);border:1px solid var(--bdr);cursor:pointer;font-size:13px;line-height:1.5;-webkit-tap-highlight-color:transparent;user-select:none;color:var(--text)}
 .ritm.sel{background:var(--bg2);border-color:var(--bdr2)}
 .ritm.prod{border-color:var(--dbo)}
-.ritm input{margin-top:2px;flex-shrink:0;width:16px;height:16px;accent-color:var(--text);pointer-events:none}
+.ritm input{margin-top:2px;flex-shrink:0;width:16px;height:16px;pointer-events:none;appearance:none;-webkit-appearance:none;border:2px solid var(--bdr2);border-radius:3px;background:var(--bg);position:relative}
+.ritm input:checked{background:var(--text);border-color:var(--text)}
+.ritm input:checked::after{content:'';position:absolute;left:3px;top:0px;width:5px;height:9px;border:2px solid var(--bg);border-top:none;border-left:none;transform:rotate(45deg)}
 .bpill{display:inline-block;font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600;margin-bottom:6px}
 .bpw{background:var(--ib);color:var(--it)}
 .bpe{background:var(--sb);color:var(--st)}
@@ -166,7 +172,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1
 .gchk{display:flex;gap:5px;flex-shrink:0}
 .gbtn{padding:5px 14px;border-radius:var(--r);border:1px solid var(--bdr2);background:transparent;font-size:12px;cursor:pointer;color:var(--text2);-webkit-tap-highlight-color:transparent;font-family:inherit}
 .gbtn.gy{background:var(--sb);color:var(--st);border-color:var(--sbo)}
-.gbtn.gn{background:var(--bg2);color:var(--text3)}
+.gbtn.gn{background:var(--db);color:var(--dt);border-color:var(--dbo)}
 .drg{display:flex;flex-direction:column;gap:4px}
 .drr{display:flex;gap:8px;font-size:12px;padding:5px 0;border-bottom:1px solid var(--bdr);line-height:1.4;color:var(--text)}
 .drr:last-child{border-bottom:none}
@@ -174,13 +180,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1
 .drt{color:var(--text2)}
 .drr.today .drd{color:var(--it)}
 .drr.today{font-weight:600}
-.tpf{display:flex;flex-direction:column;gap:10px;margin-bottom:14px}
-.tpf label{font-size:13px;color:var(--text2);margin-bottom:5px;display:block}
-.tpf select{width:100%;padding:10px;border-radius:var(--r);border:1px solid var(--bdr2);background:var(--bg2);color:var(--text);font-size:13px;font-family:inherit}
 .tpts{display:flex;flex-direction:column;margin-bottom:14px}
 .tptr{display:flex;align-items:flex-start;gap:10px;padding:9px 0;border-bottom:1px solid var(--bdr);font-size:13px;line-height:1.5;cursor:pointer;-webkit-tap-highlight-color:transparent;user-select:none;color:var(--text)}
 .tptr:last-child{border-bottom:none}
-.tptr input{margin-top:2px;flex-shrink:0;width:16px;height:16px;accent-color:var(--text);pointer-events:none}
+.tptr input{margin-top:2px;flex-shrink:0;width:16px;height:16px;pointer-events:none;appearance:none;-webkit-appearance:none;border:2px solid var(--bdr2);border-radius:3px;background:var(--bg);position:relative}
+.tptr input:checked{background:var(--text);border-color:var(--text)}
+.tptr input:checked::after{content:'';position:absolute;left:3px;top:0px;width:5px;height:9px;border:2px solid var(--bg);border-top:none;border-left:none;transform:rotate(45deg)}
 .tptr span{flex:1}
 .tpst{padding:14px;border-radius:var(--rl);text-align:center;font-size:15px;font-weight:600;margin-top:6px;display:none;line-height:1.5}
 .tpg{background:var(--sb);color:var(--st)}
@@ -199,12 +204,18 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1
 .hist-day{padding:8px 11px;border-radius:var(--r);border:1px solid var(--bdr);font-size:13px;cursor:pointer;color:var(--text2);-webkit-tap-highlight-color:transparent;display:flex;justify-content:space-between;align-items:center}
 .hist-day:hover{background:var(--bg2)}
 .hist-day.active{background:var(--ib);color:var(--it);border-color:var(--ibo)}
-.hist-day .hd-date{font-weight:600}
+.hist-day .hd-date{font-weight:600;color:var(--text)}
 .hist-day .hd-status{font-size:11px;color:var(--text3)}
-.hist-view{background:var(--bg2);border-radius:var(--r);padding:12px;font-size:13px;line-height:1.6;color:var(--text);display:none}
+.hist-view{background:var(--bg2);border-radius:var(--r);padding:12px;font-size:13px;line-height:1.6;color:var(--text);display:none;margin-top:8px}
 .hist-view.show{display:block}
-.hist-view h4{font-size:12px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.4px;margin:10px 0 4px}
+.hist-view h4{font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.4px;margin:10px 0 4px}
 .hist-view h4:first-child{margin-top:0}
+.hist-view .hv-label{font-size:11px;color:var(--text3);margin-bottom:2px}
+.hist-view .hv-val{font-size:13px;color:var(--text);margin-bottom:6px;font-style:italic}
+.hist-view .hv-yn{font-size:12px;padding:3px 8px;border-radius:4px;display:inline-block;margin:2px 2px 2px 0}
+.hist-view .hv-yes{background:var(--sb);color:var(--st)}
+.hist-view .hv-no{background:var(--db);color:var(--dt)}
+.hist-view .hv-chk{font-size:12px;color:var(--text2);margin:1px 0;padding-left:4px}
 </style>
 </head>
 <body>
@@ -234,6 +245,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1
   </div>
 </div>
 
+<!-- DAILY CARE -->
 <div class="tpane on" id="tab-care">
   <div class="hdr"><h1>Daily care</h1><div class="tag">Structure is the bridge back.</div></div>
   <div class="dcd" id="dc-date"></div>
@@ -242,10 +254,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1
   <div class="prayer-card">
     <div class="prayer-text">
       <strong>Prakrti</strong>
-      Intelligence beyond my awareness.<br>
-      I acknowledge what I do not control and do not know.<br>
-      I act where choice is mine, and release what belongs to process.<br>
-      May balance reassert itself. Om Shanti.
+      Intelligence beyond my awareness — I acknowledge what I do not control and do not know. I act where choice is mine, and release what belongs to process. May balance reassert itself. Om Shanti.
     </div>
   </div>
   <div class="card">
@@ -270,13 +279,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1
     <div class="gsec"><div class="gtitle">Prodrome awareness</div>
       <div class="ynr"><span class="ynt">No unusual sense of meaning, pattern, or significance in ordinary events</span><div class="ynb"><button class="ynbtn" id="p1a" onclick="yn('p1a','p1b')">Yes</button><button class="ynbtn" id="p1b" onclick="yn('p1b','p1a')">No</button></div></div>
       <div class="ynr"><span class="ynt">No urgency to communicate something important to others</span><div class="ynb"><button class="ynbtn" id="p2a" onclick="yn('p2a','p2b')">Yes</button><button class="ynbtn" id="p2b" onclick="yn('p2b','p2a')">No</button></div></div>
-      <div class="ynr"><span class="ynt">I notice no escalation or urgency in my thinking or communication</span><div class="ynb"><button class="ynbtn" id="p3a" onclick="yn('p3a','p3b')">Yes</button><button class="ynbtn" id="p3b" onclick="yn('p3b','p3a')">No</button></div></div>
-      <div class="ynr"><span class="ynt">I acknowledge that insight can feel intact while being compromised &#8212; I am checking facts, not feelings</span><div class="ynb"><button class="ynbtn" id="p4a" onclick="yn('p4a','p4b')">Yes</button><button class="ynbtn" id="p4b" onclick="yn('p4b','p4a')">No</button></div></div>
+      <div class="ynr"><span class="ynt">I acknowledge that insight can feel intact while being compromised &#8212; I am checking facts, not feelings</span><div class="ynb"><button class="ynbtn" id="p3a" onclick="yn('p3a','p3b')">Yes</button><button class="ynbtn" id="p3b" onclick="yn('p3b','p3a')">No</button></div></div>
     </div>
     <div class="gsec"><div class="gtitle">Structure</div>
       <div class="ynr"><span class="ynt">Following routines today even if motivation is low</span><div class="ynb"><button class="ynbtn" id="t1a" onclick="yn('t1a','t1b')">Yes</button><button class="ynbtn" id="t1b" onclick="yn('t1b','t1a')">No</button></div></div>
       <div class="ynr"><span class="ynt">I choose stability over insight or pleasure today</span><div class="ynb"><button class="ynbtn" id="t2a" onclick="yn('t2a','t2b')">Yes</button><button class="ynbtn" id="t2b" onclick="yn('t2b','t2a')">No</button></div></div>
-      <div class="ynr"><span class="ynt">Corrected a drift today without self-punishment</span><div class="ynb"><button class="ynbtn" id="t3a" onclick="yn('t3a','t3b')">Yes</button><button class="ynbtn" id="t3b" onclick="yn('t3b','t3a')">No</button></div></div>
+      <div class="ynr"><span class="ynt">I notice no escalation or urgency in my thinking or communication</span><div class="ynb"><button class="ynbtn" id="t3a" onclick="yn('t3a','t3b')">Yes</button><button class="ynbtn" id="t3b" onclick="yn('t3b','t3a')">No</button></div></div>
+      <div class="ynr"><span class="ynt">Corrected a drift today without self-punishment</span><div class="ynb"><button class="ynbtn" id="t4a" onclick="yn('t4a','t4b')">Yes</button><button class="ynbtn" id="t4b" onclick="yn('t4b','t4a')">No</button></div></div>
     </div>
     <div class="res" id="r-guard"></div>
   </div>
@@ -294,6 +303,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1
   </div>
 </div>
 
+<!-- REVIEW -->
 <div class="tpane" id="tab-review">
   <div class="hdr">
     <h1>Inner systems review</h1>
@@ -472,28 +482,25 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1
   </div>
 </div>
 
+<!-- TAPER -->
 <div class="tpane" id="tab-taper">
   <div class="hdr"><h1>Taper check</h1><div class="tag">The body leads. The system follows.</div></div>
   <div class="ctxb" id="taper-prodrome-banner">Prodrome signals were flagged today. Cross-check urgency and meaning-making below carefully.</div>
   <div class="card">
-    <div class="tpf">
-      <div><label>Thought speed</label><select id="tc-thoughts" onchange="persist('tc-thoughts',this.value)"><option>Slow</option><option selected>Normal</option><option>Fast</option></select></div>
-      <div><label>Energy</label><select id="tc-energy" onchange="persist('tc-energy',this.value)"><option>Low</option><option selected>Normal</option><option>High</option></select></div>
-      <div><label>Mood</label><select id="tc-mood" onchange="persist('tc-mood',this.value)"><option>Flat</option><option selected>Stable</option><option>Elevated</option></select></div>
-    </div>
+    <p class="si" style="margin-bottom:12px">Check everything that is true right now. Four or five = stable. Two or three = hold. Fewer than two = fall back.</p>
     <div class="tpts">
-      <div class="tptr" onclick="togTptr(this,'tc-s1')"><input type="checkbox" id="tc-s1"><span>Sleep stable &#8212; consistent timing</span></div>
-      <div class="tptr" onclick="togTptr(this,'tc-s2')"><input type="checkbox" id="tc-s2"><span>Sleep restorative &#8212; felt rested</span></div>
-      <div class="tptr" onclick="togTptr(this,'tc-ins')"><input type="checkbox" id="tc-ins"><span>Insight intact</span></div>
-      <div class="tptr" onclick="togTptr(this,'tc-urg')"><input type="checkbox" id="tc-urg"><span>No urgency or unusual meaning-making</span></div>
+      <div class="tptr" onclick="togTptr(this,'tc-s1')"><input type="checkbox" id="tc-s1"><span>My sleep has been stable and consistent in timing</span></div>
+      <div class="tptr" onclick="togTptr(this,'tc-s2')"><input type="checkbox" id="tc-s2"><span>Sleep felt restorative &#8212; I felt rested on waking</span></div>
+      <div class="tptr" onclick="togTptr(this,'tc-ins')"><input type="checkbox" id="tc-ins"><span>My thinking feels clear and insight feels intact</span></div>
+      <div class="tptr" onclick="togTptr(this,'tc-urg')"><input type="checkbox" id="tc-urg"><span>No unusual urgency, meaning-making, or heightened significance</span></div>
       <div class="tptr" onclick="togTptr(this,'tc-sub')"><input type="checkbox" id="tc-sub"><span>No increase in use of prohibited substances</span></div>
     </div>
     <button class="btn" onclick="runTaper()">Check status</button>
     <div class="tpst" id="tc-status"></div>
     <div class="tpl">
-      <div><strong>Green</strong> &#8212; stable, continue current phase</div>
-      <div><strong>Yellow</strong> &#8212; mild activation, hold, do not reduce</div>
-      <div><strong>Red</strong> &#8212; risk signals present, fall back to previous stable dose</div>
+      <div><strong>4&#8211;5 checked</strong> &#8212; stable, continue current phase</div>
+      <div><strong>2&#8211;3 checked</strong> &#8212; mild activation, hold, do not reduce</div>
+      <div><strong>0&#8211;1 checked</strong> &#8212; risk signals present, fall back to previous stable dose</div>
     </div>
   </div>
   <div class="card">
@@ -523,149 +530,210 @@ function showSetup(){
   var w=document.createElement('div');
   w.style.cssText='min-height:100vh;display:flex;align-items:center;justify-content:center;padding:2rem;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;background:#f0f0ec';
   w.innerHTML='<div style="background:#fff;border-radius:12px;padding:1.5rem;max-width:400px;width:100%;border:1px solid rgba(0,0,0,0.12)">'
-    +'<div style="font-size:16px;font-weight:600;color:#1a1a1a;margin-bottom:6px">Inner Systems \u2014 setup</div>'
-    +'<div style="font-size:13px;color:#555;line-height:1.6;margin-bottom:14px">Paste your GitHub Personal Access Token (Gist scope only). Stored in Safari on this device \u2014 never in the file.</div>'
-    +'<input id="tok-input" type="password" placeholder="ghp_..." style="width:100%;padding:10px 11px;border-radius:8px;border:1px solid rgba(0,0,0,0.25);background:#f7f7f5;color:#1a1a1a;font-size:13px;font-family:inherit;margin-bottom:10px;box-sizing:border-box">'
-    +'<button id="tok-save" style="width:100%;padding:11px;border-radius:8px;border:1px solid rgba(0,0,0,0.25);background:transparent;font-size:13px;cursor:pointer;font-family:inherit;color:#555;margin-bottom:8px">Save and open app</button>'
-    +'<div style="font-size:11px;color:#999;text-align:center;line-height:1.5">Stays on this device only.<br>To update: Settings \u203a Safari \u203a Advanced \u203a Website Data \u203a clear this site.</div>'
+    +'<div style="font-size:16px;font-weight:600;color:#1a1a1a;margin-bottom:6px">Inner Systems</div>'
+    +'<div style="font-size:13px;color:#555;line-height:1.6;margin-bottom:14px">Paste your GitHub Personal Access Token to enable history saving across devices. Or use without a token \u2014 the app works fully, but nothing is saved and history cannot be accessed.</div>'
+    +'<input id="tok-input" type="password" placeholder="ghp_..." style="width:100%;padding:10px 11px;border-radius:8px;border:1px solid rgba(0,0,0,0.25);background:#f7f7f5;color:#1a1a1a;font-size:13px;font-family:inherit;margin-bottom:8px;box-sizing:border-box">'
+    +'<button id="tok-save" style="width:100%;padding:11px;border-radius:8px;border:1px solid rgba(0,0,0,0.25);background:#1a1a1a;font-size:13px;cursor:pointer;font-family:inherit;color:#fff;margin-bottom:8px">Save token and open app</button>'
+    +'<button id="tok-skip" style="width:100%;padding:11px;border-radius:8px;border:1px solid rgba(0,0,0,0.18);background:transparent;font-size:13px;cursor:pointer;font-family:inherit;color:#555;margin-bottom:8px">Use without saving</button>'
+    +'<div style="font-size:11px;color:#999;text-align:center;line-height:1.5">Token stored in Safari on this device only \u2014 never in the file.<br>To update: Settings \u203a Safari \u203a Advanced \u203a Website Data.</div>'
     +'</div>';
   document.body.appendChild(w);
   document.getElementById('tok-save').onclick=function(){
     var v=document.getElementById('tok-input').value.trim();
-    if(!v){alert('Please paste your GitHub token.');return;}
+    if(!v){alert('Please paste your GitHub token, or tap "Use without saving".');return;}
     setToken(v);location.reload();
+  };
+  document.getElementById('tok-skip').onclick=function(){
+    localStorage.setItem('vk_no_token','1');location.reload();
   };
   document.getElementById('tok-input').addEventListener('keydown',function(e){if(e.key==='Enter')document.getElementById('tok-save').click();});
 }
 
-if(!getToken()){showSetup();}
+var NO_TOKEN=localStorage.getItem('vk_no_token')==='1';
+if(!getToken()&&!NO_TOKEN){showSetup();}
 
 const TODAY=new Date().toLocaleDateString('en-CA',{timeZone:'Asia/Kolkata'});
 const SK='vk_'+TODAY+'_';
 
 function persist(k,v){try{localStorage.setItem(SK+k,typeof v==='boolean'?String(v):v);}catch(e){}}
 function recall(k,df){try{const v=localStorage.getItem(SK+k);if(v===null)return df;if(v==='true')return true;if(v==='false')return false;return v;}catch(e){return df;}}
-try{Object.keys(localStorage).filter(k=>k.startsWith('vk_')&&!k.startsWith(SK)&&k!=='vk_hist_index'&&!k.startsWith('vk_day_')&&k!=='vk_gist_token').forEach(k=>localStorage.removeItem(k));}catch(e){}
+try{Object.keys(localStorage).filter(k=>k.startsWith('vk_')&&!k.startsWith(SK)&&k!=='vk_hist_index'&&!k.startsWith('vk_day_')&&k!=='vk_gist_token'&&k!=='vk_no_token').forEach(k=>localStorage.removeItem(k));}catch(e){}
 
 function saveLocalDay(date,data){try{localStorage.setItem('vk_day_'+date,JSON.stringify(data));}catch(e){}}
 function loadLocalDay(date){try{const raw=localStorage.getItem('vk_day_'+date);return raw?JSON.parse(raw):null;}catch(e){return null;}}
 
+function buildSaveData(){
+  var data={
+    date:TODAY,
+    intentions:{main:recall('intent-main',''),value:recall('intent-value',''),protect:recall('intent-protect','')},
+    reflection:{what:recall('reflect-what',''),good:recall('reflect-good',''),next:recall('reflect-next','')},
+    goals:{},guardrails:{},
+    taper:{s1:recall('tc-s1',false),s2:recall('tc-s2',false),ins:recall('tc-ins',false),urg:recall('tc-urg',false),sub:recall('tc-sub',false)}
+  };
+  ['regulation','fitness','admin','novisits','land','tribe','partner','family'].forEach(function(g){data.goals[g]=recall('goal-'+g,'');});
+  ['s1a','s1b','s2a','s2b','s3a','s3b','p1a','p1b','p2a','p2b','p3a','p3b','t1a','t1b','t2a','t2b','t3a','t3b','t4a','t4b'].forEach(function(y){data.guardrails[y]=recall(y,'');});
+  return data;
+}
+
 async function saveToGist(){
+  if(NO_TOKEN)return;
   try{
-    const data={
-      date:TODAY,
-      intentions:{main:recall('intent-main',''),value:recall('intent-value',''),protect:recall('intent-protect','')},
-      reflection:{what:recall('reflect-what',''),good:recall('reflect-good',''),next:recall('reflect-next','')},
-      goals:{},guardrails:{},
-      taper:{thoughts:recall('tc-thoughts','Normal'),energy:recall('tc-energy','Normal'),mood:recall('tc-mood','Stable'),s1:recall('tc-s1',false),s2:recall('tc-s2',false),ins:recall('tc-ins',false),urg:recall('tc-urg',false),sub:recall('tc-sub',false)}
-    };
-    ['regulation','fitness','admin','novisits','land','tribe','partner','family'].forEach(g=>{data.goals[g]=recall('goal-'+g,'');});
-    ['s1a','s1b','s2a','s2b','s3a','s3b','p1a','p1b','p2a','p2b','p3a','p3b','p4a','p4b','t1a','t1b','t2a','t2b','t3a','t3b'].forEach(y=>{data.guardrails[y]=recall(y,'');});
+    var data=buildSaveData();
     saveLocalDay(TODAY,data);
     updateHistIndex(TODAY);
-    const tok=getToken();
+    var tok=getToken();
     if(!GIST_ID||!tok)return;
-    const files={};files[TODAY+'.json']={content:JSON.stringify(data,null,2)};
-    await fetch('https://api.github.com/gists/'+GIST_ID,{method:'PATCH',headers:{'Authorization':'token '+tok,'Content-Type':'application/json'},body:JSON.stringify({files})});
+    var files={};files[TODAY+'.json']={content:JSON.stringify(data,null,2)};
+    await fetch('https://api.github.com/gists/'+GIST_ID,{method:'PATCH',headers:{'Authorization':'token '+tok,'Content-Type':'application/json'},body:JSON.stringify({files:files})});
   }catch(e){console.log('Gist save error',e);}
 }
 
 function updateHistIndex(date){
-  try{let idx=JSON.parse(localStorage.getItem('vk_hist_index')||'[]');if(!idx.includes(date))idx.unshift(date);idx=idx.slice(0,30);localStorage.setItem('vk_hist_index',JSON.stringify(idx));}catch(e){}
+  try{var idx=JSON.parse(localStorage.getItem('vk_hist_index')||'[]');if(!idx.includes(date))idx.unshift(date);idx=idx.slice(0,30);localStorage.setItem('vk_hist_index',JSON.stringify(idx));}catch(e){}
 }
 
 async function loadFromGist(date){
-  const local=loadLocalDay(date);if(local)return local;
-  const tok=getToken();if(!GIST_ID||!tok)return null;
+  var local=loadLocalDay(date);if(local)return local;
+  var tok=getToken();if(!GIST_ID||!tok)return null;
   try{
-    const r=await fetch('https://api.github.com/gists/'+GIST_ID,{headers:{'Authorization':'token '+tok}});
-    const g=await r.json();const fname=date+'.json';
+    var r=await fetch('https://api.github.com/gists/'+GIST_ID,{headers:{'Authorization':'token '+tok}});
+    var g=await r.json();var fname=date+'.json';
     if(g.files&&g.files[fname])return JSON.parse(g.files[fname].content);
   }catch(e){}
   return null;
 }
 
+document.addEventListener('visibilitychange',function(){if(document.visibilityState==='hidden')saveToGist();});
+window.addEventListener('beforeunload',function(){saveToGist();});
+
+// ── HISTORY ──
 function toggleHist(bodyId,btn){
-  const body=document.getElementById(bodyId);body.classList.toggle('open');
+  var body=document.getElementById(bodyId);body.classList.toggle('open');
   if(body.classList.contains('open'))renderHistDays(bodyId);
 }
 function renderHistDays(bodyId){
-  const prefix=bodyId.replace('-body','');const daysEl=document.getElementById(prefix+'-days');
-  let idx=[];try{idx=JSON.parse(localStorage.getItem('vk_hist_index')||'[]');}catch(e){}
+  var prefix=bodyId.replace('-body','');var daysEl=document.getElementById(prefix+'-days');
+  if(NO_TOKEN){daysEl.innerHTML='<div style="font-size:13px;color:var(--text3);padding:8px 0">History requires a GitHub token. Tap the app title area to set one up.</div>';return;}
+  var idx=[];try{idx=JSON.parse(localStorage.getItem('vk_hist_index')||'[]');}catch(e){}
   if(!idx.length){daysEl.innerHTML='<div style="font-size:13px;color:var(--text3);padding:8px 0">No history yet. Data saves automatically each day.</div>';return;}
   daysEl.innerHTML='';
-  idx.forEach(date=>{const d=document.createElement('div');d.className='hist-day';d.innerHTML='<span class="hd-date">'+date+'</span><span class="hd-status">tap to view</span>';d.onclick=()=>loadHistDay(date,prefix+'-view',daysEl,d);daysEl.appendChild(d);});
+  idx.forEach(function(date){
+    var d=document.createElement('div');d.className='hist-day';
+    d.innerHTML='<span class="hd-date">'+date+'</span><span class="hd-status">tap to view</span>';
+    d.onclick=function(){loadHistDay(date,prefix+'-view',daysEl,d);};
+    daysEl.appendChild(d);
+  });
 }
+
 async function loadHistDay(date,viewId,daysEl,dayEl){
-  daysEl.querySelectorAll('.hist-day').forEach(d=>d.classList.remove('active'));dayEl.classList.add('active');
-  const viewEl=document.getElementById(viewId);viewEl.innerHTML='<div style="font-size:13px;color:var(--text3);padding:8px 0">Loading...</div>';viewEl.classList.add('show');
-  const data=await loadFromGist(date);
+  daysEl.querySelectorAll('.hist-day').forEach(function(d){d.classList.remove('active');});dayEl.classList.add('active');
+  var viewEl=document.getElementById(viewId);
+  viewEl.innerHTML='<div style="font-size:13px;color:var(--text3);padding:8px 0">Loading...</div>';viewEl.classList.add('show');
+  var data=await loadFromGist(date);
   if(!data){viewEl.innerHTML='<div style="font-size:13px;color:var(--text3);padding:8px 0">No data found for this date.</div>';return;}
-  let h='';
-  if(data.intentions){h+='<h4>Morning intention</h4>';if(data.intentions.main)h+='<div style="margin-bottom:4px"><em>'+escH(data.intentions.main)+'</em></div>';if(data.intentions.value)h+='<div style="margin-bottom:4px"><em>'+escH(data.intentions.value)+'</em></div>';if(data.intentions.protect)h+='<div style="margin-bottom:4px"><em>'+escH(data.intentions.protect)+'</em></div>';}
-  if(data.reflection){h+='<h4>Evening reflection</h4>';if(data.reflection.what)h+='<div style="margin-bottom:4px">'+escH(data.reflection.what)+'</div>';if(data.reflection.good)h+='<div style="margin-bottom:4px">'+escH(data.reflection.good)+'</div>';if(data.reflection.next)h+='<div style="margin-bottom:4px">'+escH(data.reflection.next)+'</div>';}
-  if(data.goals){const labels={regulation:'Regulation',fitness:'Physical fitness',admin:'Admin',novisits:'NoVisits',land:'Land',tribe:'Finding my tribe',partner:'Finding a partner',family:'Family'};const active=Object.entries(data.goals).filter(([k,v])=>v==='y').map(([k])=>labels[k]||k);if(active.length)h+='<h4>Goals</h4><div>'+active.join(', ')+'</div>';}
-  if(data.taper)h+='<h4>Taper</h4><div>Thoughts: '+escH(data.taper.thoughts)+' &middot; Energy: '+escH(data.taper.energy)+' &middot; Mood: '+escH(data.taper.mood)+'</div>';
+  var h='<div style="font-size:11px;color:var(--text3);font-weight:600;margin-bottom:8px;text-transform:uppercase;letter-spacing:.4px">'+date+' \u2014 read only</div>';
+
+  if(data.intentions){
+    h+='<h4>Morning intention</h4>';
+    if(data.intentions.main)h+='<div class="hv-val">'+escH(data.intentions.main)+'</div>';
+    if(data.intentions.value)h+='<div class="hv-val">'+escH(data.intentions.value)+'</div>';
+    if(data.intentions.protect)h+='<div class="hv-val">'+escH(data.intentions.protect)+'</div>';
+  }
+  if(data.goals){
+    h+='<h4>Goals</h4>';
+    var glabels={regulation:'Regulation',fitness:'Physical fitness',admin:'Admin',novisits:'NoVisits',land:'Land',tribe:'Finding my tribe',partner:'Finding a partner',family:'Family'};
+    Object.entries(data.goals).forEach(function(e){
+      if(e[1]==='y')h+='<span class="hv-yn hv-yes">'+glabels[e[0]]+'</span>';
+      else if(e[1]==='n')h+='<span class="hv-yn hv-no">'+glabels[e[0]]+'</span>';
+    });
+  }
+  if(data.guardrails){
+    h+='<h4>Guardrails</h4>';
+    var glabels2={s1a:'No intoxicants',s2a:'No caffeine',s3a:'No nicotine',p1a:'No unusual meaning',p2a:'No urgency to communicate',p3a:'Insight check',t1a:'Following routines',t2a:'Stability over insight',t3a:'No escalation',t4a:'Corrected drift'};
+    Object.entries(glabels2).forEach(function(e){
+      var yes=data.guardrails[e[0]];
+      if(yes==='yo')h+='<span class="hv-yn hv-yes">'+e[1]+'</span>';
+      else if(data.guardrails[e[0].replace('a','b')]==='no')h+='<span class="hv-yn hv-no">'+e[1]+'</span>';
+    });
+  }
+  if(data.reflection){
+    h+='<h4>Evening reflection</h4>';
+    if(data.reflection.what)h+='<div class="hv-val">'+escH(data.reflection.what)+'</div>';
+    if(data.reflection.good)h+='<div class="hv-val">'+escH(data.reflection.good)+'</div>';
+    if(data.reflection.next)h+='<div class="hv-val">'+escH(data.reflection.next)+'</div>';
+  }
+  if(data.taper){
+    h+='<h4>Taper</h4>';
+    var tlabels={s1:'Sleep stable',s2:'Sleep restorative',ins:'Insight intact',urg:'No urgency',sub:'No substances'};
+    Object.entries(tlabels).forEach(function(e){
+      h+='<div class="hv-chk">'+(data.taper[e[0]]?'&#10003;':'&#9675;')+' '+e[1]+'</div>';
+    });
+  }
   viewEl.innerHTML=h||'<div style="font-size:13px;color:var(--text3)">No entries recorded for this date.</div>';
 }
 function escH(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
 
-document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden')saveToGist();});
-window.addEventListener('beforeunload',()=>saveToGist());
+// ── TABS ──
+function switchTab(id,btn){
+  document.querySelectorAll('.tpane').forEach(function(p){p.classList.remove('on');});
+  document.querySelectorAll('.tbtn').forEach(function(b){b.classList.remove('on');});
+  document.getElementById('tab-'+id).classList.add('on');btn.classList.add('on');
+  if(id==='care')updReflCtx();
+}
+function show(id,html){var el=document.getElementById(id);el.innerHTML=html;el.classList.add('show');}
+function togRow(el){var cb=el.querySelector('input[type=checkbox]');if(cb)cb.checked=!cb.checked;}
+function togTptr(el,id){var cb=document.getElementById(id);if(!cb)return;cb.checked=!cb.checked;persist(id,cb.checked);}
+function togAff(el){var cb=el.querySelector('input');cb.checked=!cb.checked;el.classList.toggle('done',cb.checked);}
 
-function switchTab(id,btn){document.querySelectorAll('.tpane').forEach(p=>p.classList.remove('on'));document.querySelectorAll('.tbtn').forEach(b=>b.classList.remove('on'));document.getElementById('tab-'+id).classList.add('on');btn.classList.add('on');if(id==='care')updReflCtx();}
-function show(id,html){const el=document.getElementById(id);el.innerHTML=html;el.classList.add('show');}
-function togRow(el){const cb=el.querySelector('input[type=checkbox]');if(cb)cb.checked=!cb.checked;}
-function togTptr(el,id){const cb=document.getElementById(id);if(!cb)return;cb.checked=!cb.checked;persist(id,cb.checked);}
-function togAff(el){const cb=el.querySelector('input');cb.checked=!cb.checked;el.classList.toggle('done',cb.checked);}
-
+// ── YN ──
 function yn(onId,offId){
-  const on=document.getElementById(onId);const off=document.getElementById(offId);
-  const isY=onId.endsWith('a');const cls=isY?'yo':'no';const offCls=isY?'no':'yo';
+  var on=document.getElementById(onId);var off=document.getElementById(offId);
+  var isY=onId.endsWith('a');var cls=isY?'yo':'no';var offCls=isY?'no':'yo';
   if(on.classList.contains(cls)){on.classList.remove(cls);persist(onId,'');}
   else{on.classList.add(cls);off.classList.remove(offCls);persist(onId,cls);persist(offId,'');}
   if([...document.querySelectorAll('.ynbtn.yo,.ynbtn.no')].length>0)doGuardrails();
 }
 
 function doGuardrails(){
-  const checks=[
+  var checks=[
     {yes:'s1a',no:'s1b',sec:'Intoxicants',tx:'No intoxicants today',adv:'This is a non-negotiable boundary. One use restarts the cycle. Name this moment. Use the hand brake now. Tell your confidant today.'},
     {yes:'s2a',no:'s2b',sec:'Intoxicants',tx:'No caffeine today',adv:'Caffeine adds load on a high-gain nervous system. Note it. Reduce tomorrow.'},
     {yes:'s3a',no:'s3b',sec:'Intoxicants',tx:'No nicotine today',adv:'Nicotine is an entry point on a high-gain system. Note it. Reduce tomorrow.'},
     {yes:'p1a',no:'p1b',sec:'Prodrome',tx:'No unusual meaning or significance',adv:'Name this signal. Write it down. Do not act on any impulse connected to it for 24 hours. Reduce stimulation, hydrate, use the hand brake, tell your confidant.'},
     {yes:'p2a',no:'p2b',sec:'Prodrome',tx:'No urgency to communicate',adv:'This urgency is a signal, not a truth. Write down what you want to say. Read it again tomorrow. Use the hand brake.'},
-    {yes:'p3a',no:'p3b',sec:'Prodrome',tx:'No escalation or urgency in thinking',adv:'Escalation is an early signal. Slow everything down. No new communications or decisions today. Use the hand brake.'},
-    {yes:'p4a',no:'p4b',sec:'Prodrome',tx:'Insight check acknowledged',adv:'If something feels different, trust that. Slow down. Do not make decisions today.'},
+    {yes:'p3a',no:'p3b',sec:'Prodrome',tx:'Insight check acknowledged',adv:'If something feels different, trust that. Slow down. Do not make decisions today.'},
     {yes:'t1a',no:'t1b',sec:'Structure',tx:'Following routines today',adv:'Pick the smallest possible routine item and do just that. One item. Structure rebuilds from the smallest unit.'},
     {yes:'t2a',no:'t2b',sec:'Structure',tx:'Choosing stability over insight or pleasure',adv:'The pull toward insight or pleasure is real and it is also a pattern. Stability today is the more important choice. Return to routine.'},
-    {yes:'t3a',no:'t3b',sec:'Structure',tx:'Corrected a drift today',adv:'Name the drift specifically. What was it? Name what you will do differently in the next hour, not tomorrow.'},
+    {yes:'t3a',no:'t3b',sec:'Structure',tx:'No escalation or urgency in thinking',adv:'Escalation is an early signal. Slow everything down. No new communications or decisions today. Use the hand brake.'},
+    {yes:'t4a',no:'t4b',sec:'Structure',tx:'Corrected a drift today',adv:'Name the drift specifically. What was it? Name what you will do differently in the next hour, not tomorrow.'},
   ];
-  const nos=checks.filter(c=>document.getElementById(c.no)&&document.getElementById(c.no).classList.contains('no'));
-  const anyAns=checks.some(c=>(document.getElementById(c.yes)&&document.getElementById(c.yes).classList.contains('yo'))||(document.getElementById(c.no)&&document.getElementById(c.no).classList.contains('no')));
+  var nos=checks.filter(function(c){return document.getElementById(c.no)&&document.getElementById(c.no).classList.contains('no');});
+  var anyAns=checks.some(function(c){return(document.getElementById(c.yes)&&document.getElementById(c.yes).classList.contains('yo'))||(document.getElementById(c.no)&&document.getElementById(c.no).classList.contains('no'));});
   if(!anyAns){document.getElementById('r-guard').classList.remove('show');return;}
-  if(nos.some(c=>c.yes==='s1a')){show('r-guard','<div class="al ald"><strong>Intoxicant use reported.</strong> This is a high-risk moment. Name it. Do not minimise it. Use the hand brake now. Tell your confidant today. Every previous episode started with this or returned to it.</div>');return;}
-  const pn=nos.filter(c=>['p1a','p2a','p3a','p4a'].includes(c.yes));
+  if(nos.some(function(c){return c.yes==='s1a';})){show('r-guard','<div class="al ald"><strong>Intoxicant use reported.</strong> This is a high-risk moment. Name it. Do not minimise it. Use the hand brake now. Tell your confidant today. Every previous episode started with this or returned to it.</div>');return;}
+  var pn=nos.filter(function(c){return['p1a','p2a','p3a'].includes(c.yes);});
   persist('prodrome-flagged',String(pn.length>0));updTaperBadge();
   if(nos.length===0){show('r-guard','<div class="al alok">All guardrails holding today.</div>');return;}
-  let h='';
+  var h='';
   if(pn.length>=2)h+='<div class="al ald"><strong>Multiple prodrome signals today.</strong> Reduce stimulation. Hydrate. Use the hand brake. Tell your confidant. No decisions today.</div>';
   else if(pn.length===1)h+='<div class="al alw"><strong>One prodrome signal present.</strong> Name it. Write it down. Do not act on it for 24 hours.</div>';
-  nos.forEach(c=>{h+='<div class="ri"><div class="rin">'+c.sec+' \u2014 '+c.tx+'</div><div class="rit">'+c.adv+'</div></div>';});
+  nos.forEach(function(c){h+='<div class="ri"><div class="rin">'+c.sec+' \u2014 '+c.tx+'</div><div class="rit">'+c.adv+'</div></div>';});
   show('r-guard',h);
 }
 
+// ── TAPER ──
 function runTaper(){
-  const d={s1:document.getElementById('tc-s1').checked,s2:document.getElementById('tc-s2').checked,ins:document.getElementById('tc-ins').checked,urg:document.getElementById('tc-urg').checked,sub:document.getElementById('tc-sub').checked,th:document.getElementById('tc-thoughts').value,en:document.getElementById('tc-energy').value,mo:document.getElementById('tc-mood').value};
-  const red=[!d.s1,!d.s2,!d.ins,!d.urg,!d.sub].filter(Boolean).length;
-  let cls='tpg',msg='Stable. Continue current phase.';
-  if(red>=2){cls='tpr';msg='Risk signals present. Fall back to previous stable dose. Reduce stimulation, hydrate, use the hand brake, tell your confidant.';}
-  else if(red>=1){cls='tpy';msg='Mild activation. Hold current dose. Do not reduce.';}
-  else if(d.th==='Fast'&&d.en==='High'){cls='tpy';msg='Fast thoughts + high energy. Activation, not inspiration. Hold.';}
-  else if(d.en==='High'&&d.mo==='Elevated'){cls='tpy';msg='Elevated mood + high energy. Hold current dose.';}
-  const el=document.getElementById('tc-status');el.style.display='block';el.className='tpst '+cls;el.textContent=msg;
+  var checks=['tc-s1','tc-s2','tc-ins','tc-urg','tc-sub'];
+  var count=checks.filter(function(id){return document.getElementById(id).checked;}).length;
+  var cls,msg;
+  if(count>=4){cls='tpg';msg='Stable. Continue current phase.';}
+  else if(count>=2){cls='tpy';msg='Mild activation present. Hold current dose. Do not reduce.';}
+  else{cls='tpr';msg='Risk signals present. Fall back to previous stable dose. Reduce stimulation, hydrate, use the hand brake, tell your confidant.';}
+  var el=document.getElementById('tc-status');el.style.display='block';el.className='tpst '+cls;el.textContent=msg;
 }
 
-const BY_DAY={
+// ── DAILY CARE ──
+var BY_DAY={
   0:{f:'Recovery + rest + Organising',s:'Space and systems reset',i:'No performance today. Rest is the work. Reset your physical and digital environment.',goals:['regulation','admin']},
   1:{f:'NoVisits',s:'Deep work',i:'One focused session on NoVisits. Protect long blocks. No context switching.',goals:['novisits','regulation']},
   2:{f:'Physical fitness + NoVisits',s:'Movement then depth',i:'Body first, then work. Do not skip either.',goals:['fitness','novisits','regulation']},
@@ -674,8 +742,8 @@ const BY_DAY={
   5:{f:'Land + Family responsibilities',s:'Practical and relational',i:'Land situation and family obligations. Concrete, grounded, done.',goals:['land','family','regulation']},
   6:{f:'Physical fitness + Connection',s:'Body and presence',i:'Fitness then genuine connection. Tribe or partner. Regulate before reaching out.',goals:['fitness','tribe','partner','regulation']}
 };
-const DAYS=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-const GOALS=[
+var DAYS=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+var GOALS=[
   {id:'regulation',ico:'&#9889;',nm:'Regulation + recovery',sb:'Daily baseline \u2014 routines, review, taper check'},
   {id:'fitness',ico:'&#128170;',nm:'Physical fitness',sb:'Movement, exercise, body care'},
   {id:'admin',ico:'&#128194;',nm:'Admin',sb:'Digital and environmental organisation'},
@@ -687,30 +755,32 @@ const GOALS=[
 ];
 
 function initCare(){
-  const d=new Date();
+  var d=new Date();
   document.getElementById('dc-date').textContent=d.toLocaleDateString(undefined,{weekday:'long',year:'numeric',month:'long',day:'numeric'});
-  const s=BY_DAY[d.getDay()];
+  var s=BY_DAY[d.getDay()];
   document.getElementById('dc-day-block').innerHTML='<div class="dcdk">Today</div><div class="dcdv">'+s.f+'</div><div class="dcds">'+s.s+'</div><div class="dcdi">'+s.i+'</div>';
   document.getElementById('goal-intro').textContent="Based on today's schedule, these goals are suggested. Adjust as needed.";
-  const grid=document.getElementById('goal-grid');grid.innerHTML='';
+  var grid=document.getElementById('goal-grid');grid.innerHTML='';
   GOALS.forEach(function(g){
-    const isAuto=s.goals.includes(g.id);const saved=recall('goal-'+g.id,null);const active=saved||(isAuto?'y':null);
-    const row=document.createElement('div');row.className='gitem';
+    var isAuto=s.goals.includes(g.id);var saved=recall('goal-'+g.id,null);var active=saved||(isAuto?'y':null);
+    var row=document.createElement('div');row.className='gitem';
     row.innerHTML='<div class="gico">'+g.ico+'</div><div class="ginf"><div class="gnm">'+g.nm+'</div><div class="gsb">'+g.sb+'</div></div><div class="gchk"><button class="gbtn" id="gb-'+g.id+'-y">Yes</button><button class="gbtn" id="gb-'+g.id+'-n">No</button></div>';
     row.querySelector('#gb-'+g.id+'-y').addEventListener('click',function(){setGoal(g.id,'y');});
     row.querySelector('#gb-'+g.id+'-n').addEventListener('click',function(){setGoal(g.id,'n');});
     grid.appendChild(row);if(active)applyGoalBtn(g.id,active);
   });
   ['intent-main','intent-value','intent-protect','reflect-what','reflect-good','reflect-next'].forEach(function(id){var el=document.getElementById(id);if(el)el.value=recall(id,'');});
-  const rhythm=document.getElementById('dc-rhythm');rhythm.innerHTML='';
-  const today=d.getDay();
+  var rhythm=document.getElementById('dc-rhythm');rhythm.innerHTML='';
+  var today=d.getDay();
   Object.entries(BY_DAY).forEach(function(e){var dn=e[0];var v=e[1];var it=Number(dn)===today;var row=document.createElement('div');row.className='drr'+(it?' today':'');row.innerHTML='<div class="drd">'+DAYS[Number(dn)]+'</div><div class="drt">'+v.f+'</div>';rhythm.appendChild(row);});
-  ['s1a','s1b','s2a','s2b','s3a','s3b','p1a','p1b','p2a','p2b','p3a','p3b','p4a','p4b','t1a','t1b','t2a','t2b','t3a','t3b'].forEach(function(id){var v=recall(id,'');var btn=document.getElementById(id);if(!btn)return;if(v==='yo')btn.classList.add('yo');else if(v==='no')btn.classList.add('no');});
+  ['s1a','s1b','s2a','s2b','s3a','s3b','p1a','p1b','p2a','p2b','p3a','p3b','t1a','t1b','t2a','t2b','t3a','t3b','t4a','t4b'].forEach(function(id){var v=recall(id,'');var btn=document.getElementById(id);if(!btn)return;if(v==='yo')btn.classList.add('yo');else if(v==='no')btn.classList.add('no');});
   ['tc-s1','tc-s2','tc-ins','tc-urg','tc-sub'].forEach(function(id){var el=document.getElementById(id);if(el)el.checked=recall(id,false);});
-  ['tc-thoughts','tc-energy','tc-mood'].forEach(function(id){var el=document.getElementById(id);var v=recall(id,'');if(el&&v)el.value=v;});
   updCareRegBanner();updReflCtx();updTaperBadge();
   if([...document.querySelectorAll('.ynbtn.yo,.ynbtn.no')].length>0)doGuardrails();
-  updateHistIndex(TODAY);
+  if(!NO_TOKEN){updateHistIndex(TODAY);initHistDays();}
+}
+
+function initHistDays(){
   ['hist-care','hist-review','hist-taper'].forEach(function(id){
     var el=document.getElementById(id+'-days');if(!el)return;
     var idx=[];try{idx=JSON.parse(localStorage.getItem('vk_hist_index')||'[]');}catch(ex){}
@@ -724,16 +794,18 @@ function updCareRegBanner(){document.getElementById('care-reg-banner').classList
 function updTaperBadge(){var f=recall('prodrome-flagged','false')==='true';document.getElementById('taper-badge').classList.toggle('show',f);document.getElementById('taper-prodrome-banner').classList.toggle('show',f);}
 function updReflCtx(){var m=document.getElementById('intent-main').value||'';var b=document.getElementById('reflect-ctx-block');if(m.trim()){b.style.display='block';document.getElementById('reflect-ctx-text').textContent=m;}else b.style.display='none';}
 
-const BREATHS=[
+// ── BREATHING ──
+var BREATHS=[
   {nm:'4-7-8',sb:'deepest calm',ph:['Inhale','Hold','Exhale'],ti:[4,7,8],col:'#1D9E75',wh:"Spiralling, flooded, or can't slow your thoughts.",de:'Long hold and extended exhale force the body to override anxiety. Most powerful reset.'},
   {nm:'Extended exhale',sb:'everyday calm',ph:['Inhale','Exhale'],ti:[4,8],col:'#378ADD',wh:'Tense or stressed but not flooded.',de:'Exhale twice as long as inhale. Stimulates vagus nerve, slows heart rate.'},
   {nm:'Box',sb:'clear focus',ph:['Inhale','Hold','Exhale','Hold'],ti:[4,4,4,4],col:'#7F77DD',wh:'Before a hard conversation, decision, or task needing clarity.',de:'Equal sides create a symmetrical rhythm. Gets you into a focused state.'},
   {nm:'Physiological sigh',sb:'instant reset',ph:['Inhale','Inhale+','Exhale'],ti:[2,1,6],col:'#D4537E',wh:'Something just triggered a sharp spike, seconds before you react.',de:'Double inhale then long exhale. 9 seconds. Fastest physiological brake available.'}
 ];
-const BCX=120,BCY=120,BR=108,RMIN=46,RMAX=72,TK=10;
+var BCX=120,BCY=120,BR=108,RMIN=46,RMAX=72,TK=10;
 var bI=0,bR=false,bC=0,bPh=0,bPS=null,bRaf=null,bCI=null,bIR=RMIN;
 function bFr(b){var t=b.ti.reduce(function(a,v){return a+v;},0);var f=[0];var a=0;b.ti.forEach(function(v){a+=v;f.push(a/t);});return f;}
 function bIsI(p){return p.toLowerCase().startsWith('inhale');}
+function bIsI2(p){return p==='Inhale+';}
 function bIsH(p){return p.toLowerCase().startsWith('hold');}
 function initB(){var tabs=document.getElementById('btabs');tabs.innerHTML='';BREATHS.forEach(function(b,i){var btn=document.createElement('button');btn.className='btb'+(i===bI?' on':'');btn.innerHTML='<span class="bn">'+b.nm+'</span><span class="bs">'+b.sb+'</span>';btn.onclick=function(){selB(i);};tabs.appendChild(btn);});rBCh();updBD();bSetI();bDr(null,null);}
 function selB(i){bStop();bI=i;document.querySelectorAll('.btb').forEach(function(b,j){b.classList.toggle('on',j===i);});rBCh();updBD();bSetI();bDr(null,null);}
@@ -741,20 +813,79 @@ function updBD(){var b=BREATHS[bI];document.getElementById('bwhen').textContent=
 function rBCh(){var b=BREATHS[bI];var row=document.getElementById('phases-row');row.innerHTML='';b.ph.forEach(function(ph,i){var d=document.createElement('div');d.className='pchip';d.id='phchip-'+i;d.innerHTML='<span class="pn">'+ph+'</span><span class="ps">'+b.ti[i]+'s</span>';row.appendChild(d);});}
 function bSetI(){bIR=RMIN;bApB(RMIN);document.getElementById('cp-phase').textContent='Tap to start';document.getElementById('cp-count').textContent='';}
 function bApB(r){var sz=Math.round(r*2);var btn=document.getElementById('center-btn');var col=BREATHS[bI].col;btn.style.cssText='width:'+sz+'px;height:'+sz+'px;background:'+col+';border-radius:50%;border:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)';}
-function bDr(df,innerR){var cv=document.getElementById('bcanvas');if(!cv)return;var ctx=cv.getContext('2d');var b=BREATHS[bI];var col=b.col;var fr=bFr(b);ctx.clearRect(0,0,240,240);ctx.globalAlpha=bR?1:0.3;ctx.beginPath();ctx.arc(BCX,BCY,BR,0,Math.PI*2);ctx.strokeStyle=col;ctx.lineWidth=2.5;ctx.stroke();fr.forEach(function(f){var a=f*Math.PI*2-Math.PI/2;var ox=BCX+Math.cos(a)*(BR-TK),oy=BCY+Math.sin(a)*(BR-TK);var ix=BCX+Math.cos(a)*(BR+TK),iy=BCY+Math.sin(a)*(BR+TK);ctx.beginPath();ctx.moveTo(ox,oy);ctx.lineTo(ix,iy);ctx.strokeStyle=col;ctx.lineWidth=3.5;ctx.lineCap='round';ctx.stroke();ctx.beginPath();ctx.moveTo(ox,oy);ctx.lineTo(ix,iy);ctx.strokeStyle='rgba(0,0,0,0.5)';ctx.lineWidth=1.5;ctx.lineCap='round';ctx.stroke();});if(innerR!==null){ctx.globalAlpha=bR?0.25:0.1;ctx.beginPath();ctx.arc(BCX,BCY,innerR,0,Math.PI*2);ctx.fillStyle=col;ctx.fill();}ctx.globalAlpha=1;if(df===null)return;var a=df*Math.PI*2-Math.PI/2;var dx=BCX+Math.cos(a)*BR,dy=BCY+Math.sin(a)*BR;ctx.beginPath();ctx.arc(dx,dy,9,0,Math.PI*2);ctx.fillStyle='#ffffff';ctx.fill();ctx.beginPath();ctx.arc(dx,dy,7,0,Math.PI*2);ctx.fillStyle=col;ctx.fill();ctx.beginPath();ctx.arc(dx,dy,3,0,Math.PI*2);ctx.fillStyle='rgba(255,255,255,0.8)';ctx.fill();}
+function bDr(df,innerR){
+  var cv=document.getElementById('bcanvas');if(!cv)return;
+  var ctx=cv.getContext('2d');var b=BREATHS[bI];var col=b.col;var fr=bFr(b);
+  ctx.clearRect(0,0,240,240);
+  ctx.globalAlpha=bR?1:0.3;
+  ctx.beginPath();ctx.arc(BCX,BCY,BR,0,Math.PI*2);ctx.strokeStyle=col;ctx.lineWidth=2.5;ctx.stroke();
+  fr.forEach(function(f){
+    var a=f*Math.PI*2-Math.PI/2;
+    var ox=BCX+Math.cos(a)*(BR-TK),oy=BCY+Math.sin(a)*(BR-TK);
+    var ix=BCX+Math.cos(a)*(BR+TK),iy=BCY+Math.sin(a)*(BR+TK);
+    ctx.beginPath();ctx.moveTo(ox,oy);ctx.lineTo(ix,iy);ctx.strokeStyle=col;ctx.lineWidth=3.5;ctx.lineCap='round';ctx.stroke();
+    ctx.beginPath();ctx.moveTo(ox,oy);ctx.lineTo(ix,iy);ctx.strokeStyle='rgba(0,0,0,0.55)';ctx.lineWidth=1.5;ctx.lineCap='round';ctx.stroke();
+  });
+  if(innerR!==null){ctx.globalAlpha=bR?0.25:0.1;ctx.beginPath();ctx.arc(BCX,BCY,innerR,0,Math.PI*2);ctx.fillStyle=col;ctx.fill();}
+  ctx.globalAlpha=1;
+  if(df===null)return;
+  var a=df*Math.PI*2-Math.PI/2;
+  var dx=BCX+Math.cos(a)*BR,dy=BCY+Math.sin(a)*BR;
+  ctx.beginPath();ctx.arc(dx,dy,9,0,Math.PI*2);ctx.fillStyle='#ffffff';ctx.fill();
+  ctx.beginPath();ctx.arc(dx,dy,7,0,Math.PI*2);ctx.fillStyle=col;ctx.fill();
+  ctx.beginPath();ctx.arc(dx,dy,3,0,Math.PI*2);ctx.fillStyle='rgba(255,255,255,0.8)';ctx.fill();
+}
 function toggleRun(){if(bR)bStop();else bStart();}
 function bStart(){bR=true;bC=0;bPh=0;bIR=RMIN;bRunP();}
 function bStop(){bR=false;if(bRaf)cancelAnimationFrame(bRaf);if(bCI)clearInterval(bCI);bRaf=null;bCI=null;document.querySelectorAll('.pchip').forEach(function(c){c.classList.remove('cur');});document.getElementById('bcycles').textContent='';bSetI();bDr(null,null);}
-function bRunP(){if(!bR)return;var b=BREATHS[bI];var ph=b.ph[bPh];var dur=b.ti[bPh];var fr=bFr(b);document.querySelectorAll('.pchip').forEach(function(c,i){c.classList.toggle('cur',i===bPh);});document.getElementById('cp-phase').textContent=ph;document.getElementById('bcycles').textContent='Cycle '+(bC+1);var isInhale=bIsI(ph);var isHold=bIsH(ph);var sR=bIR;var eR=isHold?bIR:isInhale?RMAX:RMIN;var sInnerR=bIR;var eInnerR=eR;var cv=dur;document.getElementById('cp-count').textContent=cv;if(bCI)clearInterval(bCI);bCI=setInterval(function(){cv--;document.getElementById('cp-count').textContent=cv>0?cv:'';if(cv<=0)clearInterval(bCI);},1000);var dMs=dur*1000;bPS=performance.now();function frame(now){if(!bR)return;var el=Math.min(now-bPS,dMs);var frac=el/dMs;var ease=isHold?1:(0.5-0.5*Math.cos(Math.PI*frac));var r=sR+(eR-sR)*ease;bIR=r;bApB(r);var innerR=sInnerR+(eInnerR-sInnerR)*ease;var dotF=fr[bPh]+(fr[bPh+1]-fr[bPh])*frac;bDr(dotF,innerR);if(el<dMs){bRaf=requestAnimationFrame(frame);}else{bIR=eR;bPh++;if(bPh>=b.ph.length){bPh=0;bC++;}requestAnimationFrame(function(){if(bR)bRunP();});}}bRaf=requestAnimationFrame(frame);}
+function bRunP(){
+  if(!bR)return;
+  var b=BREATHS[bI];var ph=b.ph[bPh];var dur=b.ti[bPh];var fr=bFr(b);
+  document.querySelectorAll('.pchip').forEach(function(c,i){c.classList.toggle('cur',i===bPh);});
+  document.getElementById('cp-phase').textContent=ph;
+  document.getElementById('bcycles').textContent='Cycle '+(bC+1);
+  var isInhale=bIsI(ph);var isInhale2=bIsI2(ph);var isHold=bIsH(ph);
+  var sR=bIR;
+  var eR=isHold?bIR:(isInhale?RMAX:RMIN);
+  var sInnerR=bIR;var eInnerR=eR;
+  var cv2=dur;
+  document.getElementById('cp-count').textContent=cv2;
+  if(bCI)clearInterval(bCI);
+  bCI=setInterval(function(){cv2--;document.getElementById('cp-count').textContent=cv2>0?cv2:'';if(cv2<=0)clearInterval(bCI);},1000);
+  var dMs=dur*1000;bPS=performance.now();
+  function frame(now){
+    if(!bR)return;
+    var el=Math.min(now-bPS,dMs);var frac=el/dMs;
+    var ease;
+    if(isHold){
+      ease=1;
+    } else if(isInhale2){
+      // Inhale+: faster expansion — accelerating ease (ease-in curve)
+      ease=frac*frac;
+    } else {
+      // Normal inhale and exhale: smooth cosine
+      ease=0.5-0.5*Math.cos(Math.PI*frac);
+    }
+    var r=sR+(eR-sR)*ease;
+    bIR=r;bApB(r);
+    var innerR=sInnerR+(eInnerR-sInnerR)*ease;
+    var dotF=fr[bPh]+(fr[bPh+1]-fr[bPh])*frac;
+    bDr(dotF,innerR);
+    if(el<dMs){bRaf=requestAnimationFrame(frame);}
+    else{bIR=eR;bPh++;if(bPh>=b.ph.length){bPh=0;bC++;}requestAnimationFrame(function(){if(bR)bRunP();});}
+  }
+  bRaf=requestAnimationFrame(frame);
+}
 function openBreath(){document.getElementById('boverlay').classList.add('open');initB();}
 function closeBreath(){bStop();document.getElementById('boverlay').classList.remove('open');}
 function stopBreath(){bStop();}
 
-const REGI=[{id:'stillness',tx:'My mind feels quiet and spacious \u2014 no urgency present',votes:{1:3,2:2,3:1,4:1},prod:false},{id:'meta',tx:'I can notice my thoughts as thoughts \u2014 I am aware that I am thinking',votes:{2:3,3:2,4:1},prod:false},{id:'observer',tx:'My emotions feel slightly separate from me \u2014 I can watch them without becoming them',votes:{3:3,4:2,5:1},prod:false},{id:'choice',tx:'I can choose where to direct my attention \u2014 it feels free, not pulled',votes:{4:3,5:2,3:1},prod:false},{id:'grounded',tx:'I can act from here \u2014 calm, clear, no urgency driving me',votes:{5:3,4:2},prod:false},{id:'emotion_me',tx:'I feel like I am the emotion \u2014 it has become my identity right now',votes:{6:3,7:1},prod:false},{id:'story',tx:'My mind is building and rebuilding a story \u2014 assigning meaning, blame, or cause',votes:{7:3,6:1,8:1},prod:false},{id:'spiritual',tx:'Things feel unusually charged or significant \u2014 ordinary events seem to carry special meaning',votes:{7:3,8:2,10:1},prod:true},{id:'urgency',tx:'I feel I must act, decide, or communicate something important right now \u2014 it cannot wait',votes:{7:2,8:2,10:1},prod:true},{id:'body',tx:'My body is pulling my attention \u2014 exhaustion, hunger, physical discomfort, or dehydration',votes:{8:3,6:1},prod:false},{id:'compulsion',tx:'I am seeking reassurance or repeating the same thought loop \u2014 checking, scrolling, returning',votes:{8:2,9:3,7:1},prod:false},{id:'panic',tx:'I feel completely overwhelmed \u2014 body shaking, mind blanking, or feeling unreal',votes:{10:3,9:1,8:1},prod:false}];
-const RLB={1:'Silent awareness',2:'Meta-awareness',3:'Observing ego',4:'Integrated presence',5:'Engaged self',6:'Emotional identity',7:'Narrative ego',8:'Sensory immersion',9:'Flow / trance',10:'Raw survival'};
-const RST={1:{a:'Very free / diffuse',b:'Very high',s:'Minimal',m:'Re-engage gently \u2014 small action, food, a simple task.'},2:{a:'Light / meta-aware',b:'High',s:'Low',m:'Stay simple \u2014 breathe, short walk, one concrete next step.'},3:{a:'Available / flexible',b:'Strong',s:'Low\u2013moderate',m:'Choose one practical focus and move into it.'},4:{a:'Free but directed',b:'Optimal',s:'Context-appropriate',m:'Protect this state \u2014 low novelty, steady rhythm, no unnecessary decisions.'},5:{a:'Chosen / task-focused',b:'Stable',s:'Task-aligned',m:'Do one small completion, then return to 4.'},6:{a:'Pulled by emotion',b:'Declining',s:'Emotion-amplified',m:"Allow the emotion to be present \u2014 feel it without letting it define you. Name it, don't become it."},7:{a:'Sticky / story-driven',b:'Low',s:'Narrative-amplified',m:'Name the story your mind is building. Step away from the screen. No decisions for at least 2 hours. Water and movement first.'},8:{a:'Body-captured',b:'Depleted',s:'Physiology-dominant',m:'Body first \u2014 ORS, bland food, physical rest. No cognitive demands. Avoid all decisions.'},9:{a:'Locked / trance',b:'Very low',s:'Loop-amplified',m:'Interrupt the loop gently \u2014 stand up, change rooms, walk outside if possible.'},10:{a:'Threat-fused',b:'Collapsed',s:'Threat-maximised',m:'Remove yourself from triggers now. Hydrate. Use the hand brake. Tell your confidant. Do not make any decisions.'}};
-const RBD=function(l){return l<=3?'w':l<=5?'e':l<=7?'i':l<=9?'c':'s';};
-const RBDL={w:'Witness band',e:'Equilibrium band',i:'Identity band',c:'Capture band',s:'Survival'};
+// ── REGULATION ──
+var REGI=[{id:'stillness',tx:'My mind feels quiet and spacious \u2014 no urgency present',votes:{1:3,2:2,3:1,4:1},prod:false},{id:'meta',tx:'I can notice my thoughts as thoughts \u2014 I am aware that I am thinking',votes:{2:3,3:2,4:1},prod:false},{id:'observer',tx:'My emotions feel slightly separate from me \u2014 I can watch them without becoming them',votes:{3:3,4:2,5:1},prod:false},{id:'choice',tx:'I can choose where to direct my attention \u2014 it feels free, not pulled',votes:{4:3,5:2,3:1},prod:false},{id:'grounded',tx:'I can act from here \u2014 calm, clear, no urgency driving me',votes:{5:3,4:2},prod:false},{id:'emotion_me',tx:'I feel like I am the emotion \u2014 it has become my identity right now',votes:{6:3,7:1},prod:false},{id:'story',tx:'My mind is building and rebuilding a story \u2014 assigning meaning, blame, or cause',votes:{7:3,6:1,8:1},prod:false},{id:'spiritual',tx:'Things feel unusually charged or significant \u2014 ordinary events seem to carry special meaning',votes:{7:3,8:2,10:1},prod:true},{id:'urgency',tx:'I feel I must act, decide, or communicate something important right now \u2014 it cannot wait',votes:{7:2,8:2,10:1},prod:true},{id:'body',tx:'My body is pulling my attention \u2014 exhaustion, hunger, physical discomfort, or dehydration',votes:{8:3,6:1},prod:false},{id:'compulsion',tx:'I am seeking reassurance or repeating the same thought loop \u2014 checking, scrolling, returning',votes:{8:2,9:3,7:1},prod:false},{id:'panic',tx:'I feel completely overwhelmed \u2014 body shaking, mind blanking, or feeling unreal',votes:{10:3,9:1,8:1},prod:false}];
+var RLB={1:'Silent awareness',2:'Meta-awareness',3:'Observing ego',4:'Integrated presence',5:'Engaged self',6:'Emotional identity',7:'Narrative ego',8:'Sensory immersion',9:'Flow / trance',10:'Raw survival'};
+var RST={1:{a:'Very free / diffuse',b:'Very high',s:'Minimal',m:'Re-engage gently \u2014 small action, food, a simple task.'},2:{a:'Light / meta-aware',b:'High',s:'Low',m:'Stay simple \u2014 breathe, short walk, one concrete next step.'},3:{a:'Available / flexible',b:'Strong',s:'Low\u2013moderate',m:'Choose one practical focus and move into it.'},4:{a:'Free but directed',b:'Optimal',s:'Context-appropriate',m:'Protect this state \u2014 low novelty, steady rhythm, no unnecessary decisions.'},5:{a:'Chosen / task-focused',b:'Stable',s:'Task-aligned',m:'Do one small completion, then return to 4.'},6:{a:'Pulled by emotion',b:'Declining',s:'Emotion-amplified',m:"Allow the emotion to be present \u2014 feel it without letting it define you. Name it, don't become it."},7:{a:'Sticky / story-driven',b:'Low',s:'Narrative-amplified',m:'Name the story your mind is building. Step away from the screen. No decisions for at least 2 hours. Water and movement first.'},8:{a:'Body-captured',b:'Depleted',s:'Physiology-dominant',m:'Body first \u2014 ORS, bland food, physical rest. No cognitive demands. Avoid all decisions.'},9:{a:'Locked / trance',b:'Very low',s:'Loop-amplified',m:'Interrupt the loop gently \u2014 stand up, change rooms, walk outside if possible.'},10:{a:'Threat-fused',b:'Collapsed',s:'Threat-maximised',m:'Remove yourself from triggers now. Hydrate. Use the hand brake. Tell your confidant. Do not make any decisions.'}};
+var RBD=function(l){return l<=3?'w':l<=5?'e':l<=7?'i':l<=9?'c':'s';};
+var RBDL={w:'Witness band',e:'Equilibrium band',i:'Identity band',c:'Capture band',s:'Survival'};
 
 function buildReg(){var wrap=document.getElementById('reg-items');wrap.innerHTML='';REGI.forEach(function(it){var d=document.createElement('div');d.className='ritm'+(it.prod?' prod':'');d.innerHTML='<input type="checkbox" id="rc-'+it.id+'"><span>'+it.tx+(it.prod?' <span style="font-size:11px;color:var(--dbo)">(prodrome)</span>':'')+'</span>';d.onclick=function(){var cb=d.querySelector('input');cb.checked=!cb.checked;d.classList.toggle('sel',cb.checked);};d.querySelector('input').onclick=function(e){e.stopPropagation();};wrap.appendChild(d);});}
 
