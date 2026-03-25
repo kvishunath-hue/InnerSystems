@@ -214,8 +214,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1
 .hv-yn{font-size:11px;padding:3px 8px;border-radius:4px;display:inline-block;margin:2px 2px 2px 0;font-weight:600}
 .hv-yes{background:var(--sb);color:var(--st)}
 .hv-no{background:var(--db);color:var(--dt)}
-.hv-item{font-size:12px;color:var(--text2);padding:2px 0;padding-left:2px}
-.hv-status{display:inline-block;font-size:12px;font-weight:600;padding:4px 12px;border-radius:20px;margin-top:4px}
+.hv-item{font-size:12px;color:var(--text2);padding:2px 0}
+.hv-status{display:inline-block;font-size:12px;font-weight:600;padding:4px 12px;border-radius:20px;margin-top:6px}
 </style>
 </head>
 <body>
@@ -317,15 +317,15 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1
     <div class="ch"><span class="sn">01</span><span class="st">Body signals</span></div>
     <p class="si">SP blind &#8212; you will systematically miss these until they are loud. Check deliberately before deciding your state is fine.</p>
     <div class="chks" id="b-list">
-      <div class="chkrow" onclick="togRow(this)"><input type="checkbox" data-b="sleep"><span>My sleep felt fragmented or shifted last night</span></div>
-      <div class="chkrow" onclick="togRow(this)"><input type="checkbox" data-b="rest"><span>My body feels physically restless &#8212; unable to settle</span></div>
-      <div class="chkrow" onclick="togRow(this)"><input type="checkbox" data-b="fat"><span>My energy has dropped sharply or I feel heavily fatigued</span></div>
-      <div class="chkrow" onclick="togRow(this)"><input type="checkbox" data-b="dehy"><span>I have not had enough water today &#8212; I may not have noticed the thirst</span></div>
-      <div class="chkrow" onclick="togRow(this)"><input type="checkbox" data-b="app"><span>My appetite has noticeably shifted &#8212; eating more, less, or skipping</span></div>
-      <div class="chkrow" onclick="togRow(this)"><input type="checkbox" data-b="jaw"><span>My jaw is clenched or I am holding tension in my neck and shoulders</span></div>
-      <div class="chkrow" onclick="togRow(this)"><input type="checkbox" data-b="chest"><span>My chest feels tight or my breathing is shallow</span></div>
-      <div class="chkrow" onclick="togRow(this)"><input type="checkbox" data-b="gut"><span>My stomach is tight, unsettled, or there is low-grade nausea</span></div>
-      <div class="chkrow" onclick="togRow(this)"><input type="checkbox" data-b="head"><span>I have head pressure or a tension headache building</span></div>
+      <div class="chkrow" onclick="togChk(this,'rb-sleep')"><input type="checkbox" id="rb-sleep" data-b="sleep"><span>My sleep felt fragmented or shifted last night</span></div>
+      <div class="chkrow" onclick="togChk(this,'rb-rest')"><input type="checkbox" id="rb-rest" data-b="rest"><span>My body feels physically restless &#8212; unable to settle</span></div>
+      <div class="chkrow" onclick="togChk(this,'rb-fat')"><input type="checkbox" id="rb-fat" data-b="fat"><span>My energy has dropped sharply or I feel heavily fatigued</span></div>
+      <div class="chkrow" onclick="togChk(this,'rb-dehy')"><input type="checkbox" id="rb-dehy" data-b="dehy"><span>I have not had enough water today &#8212; I may not have noticed the thirst</span></div>
+      <div class="chkrow" onclick="togChk(this,'rb-app')"><input type="checkbox" id="rb-app" data-b="app"><span>My appetite has noticeably shifted &#8212; eating more, less, or skipping</span></div>
+      <div class="chkrow" onclick="togChk(this,'rb-jaw')"><input type="checkbox" id="rb-jaw" data-b="jaw"><span>My jaw is clenched or I am holding tension in my neck and shoulders</span></div>
+      <div class="chkrow" onclick="togChk(this,'rb-chest')"><input type="checkbox" id="rb-chest" data-b="chest"><span>My chest feels tight or my breathing is shallow</span></div>
+      <div class="chkrow" onclick="togChk(this,'rb-gut')"><input type="checkbox" id="rb-gut" data-b="gut"><span>My stomach is tight, unsettled, or there is low-grade nausea</span></div>
+      <div class="chkrow" onclick="togChk(this,'rb-head')"><input type="checkbox" id="rb-head" data-b="head"><span>I have head pressure or a tension headache building</span></div>
     </div>
     <button class="btn" onclick="doBody()">Notice</button>
     <div class="res" id="r-body"></div>
@@ -341,13 +341,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1
     <div class="ch"><span class="sn">03</span><span class="st">Noise contamination check</span></div>
     <p class="si">When someone questions your judgement, vision, or competence &#8212; check this before analysing anything else.</p>
     <div class="chks" id="noise-list">
-      <div class="chkrow" onclick="togRow(this)"><input type="checkbox" data-n="ctx"><span>The person who said this does not have full context and has consistently misread me</span></div>
-      <div class="chkrow" onclick="togRow(this)"><input type="checkbox" data-n="old"><span>What they said triggered something older than this situation</span></div>
-      <div class="chkrow" onclick="togRow(this)"><input type="checkbox" data-n="benefit"><span>I am being asked to doubt my own perception by someone who benefits from my self-doubt</span></div>
-      <div class="chkrow" onclick="togRow(this)"><input type="checkbox" data-n="noev"><span>My competence or vision is being questioned but no specific evidence was given</span></div>
-      <div class="chkrow" onclick="togRow(this)"><input type="checkbox" data-n="defend"><span>I feel the urge to explain, defend, or prove myself</span></div>
-      <div class="chkrow" onclick="togRow(this)"><input type="checkbox" data-n="seen"><span>I feel unseen &#8212; they are responding to who they think I am, not who I actually am</span></div>
-      <div class="chkrow" onclick="togRow(this)"><input type="checkbox" data-n="rumi"><span>My mind is replaying what they said and building a case</span></div>
+      <div class="chkrow" onclick="togChk(this,'rn-ctx')"><input type="checkbox" id="rn-ctx" data-n="ctx"><span>The person who said this does not have full context and has consistently misread me</span></div>
+      <div class="chkrow" onclick="togChk(this,'rn-old')"><input type="checkbox" id="rn-old" data-n="old"><span>What they said triggered something older than this situation</span></div>
+      <div class="chkrow" onclick="togChk(this,'rn-benefit')"><input type="checkbox" id="rn-benefit" data-n="benefit"><span>I am being asked to doubt my own perception by someone who benefits from my self-doubt</span></div>
+      <div class="chkrow" onclick="togChk(this,'rn-noev')"><input type="checkbox" id="rn-noev" data-n="noev"><span>My competence or vision is being questioned but no specific evidence was given</span></div>
+      <div class="chkrow" onclick="togChk(this,'rn-defend')"><input type="checkbox" id="rn-defend" data-n="defend"><span>I feel the urge to explain, defend, or prove myself</span></div>
+      <div class="chkrow" onclick="togChk(this,'rn-seen')"><input type="checkbox" id="rn-seen" data-n="seen"><span>I feel unseen &#8212; they are responding to who they think I am, not who I actually am</span></div>
+      <div class="chkrow" onclick="togChk(this,'rn-rumi')"><input type="checkbox" id="rn-rumi" data-n="rumi"><span>My mind is replaying what they said and building a case</span></div>
     </div>
     <button class="btn" onclick="doNoise()">Notice</button>
     <div class="res" id="r-noise"></div>
@@ -357,26 +357,26 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1
     <p class="si">Check what is active in your thinking right now.</p>
     <div class="sdiv" style="margin-top:4px">Catastrophising</div>
     <div class="chks" id="c-list">
-      <div class="chkrow" onclick="togRow(this)"><input type="checkbox" data-c="cat1"><span>I am treating a possible outcome as if it is already certain</span></div>
-      <div class="chkrow" onclick="togRow(this)"><input type="checkbox" data-c="cat2"><span>I feel like I have already failed before anything has resolved</span></div>
-      <div class="chkrow" onclick="togRow(this)"><input type="checkbox" data-c="cat3"><span>Guilt arrived immediately after I set a boundary or expressed a need</span></div>
-      <div class="chkrow" onclick="togRow(this)"><input type="checkbox" data-c="cat4"><span>I am predicting how others will permanently judge or treat me</span></div>
-      <div class="chkrow" onclick="togRow(this)"><input type="checkbox" data-c="cat5"><span>I am treating a temporary situation as if it is permanent</span></div>
-      <div class="chkrow" onclick="togRow(this)"><input type="checkbox" data-c="cat6"><span>I am reading someone else&#39;s emotional state as confirmation of my fear</span></div>
-      <div class="chkrow" onclick="togRow(this)"><input type="checkbox" data-c="cat7"><span>I am telling myself something needs to happen right now when it probably does not</span></div>
+      <div class="chkrow" onclick="togChk(this,'rc-cat1')"><input type="checkbox" id="rc-cat1" data-c="cat1"><span>I am treating a possible outcome as if it is already certain</span></div>
+      <div class="chkrow" onclick="togChk(this,'rc-cat2')"><input type="checkbox" id="rc-cat2" data-c="cat2"><span>I feel like I have already failed before anything has resolved</span></div>
+      <div class="chkrow" onclick="togChk(this,'rc-cat3')"><input type="checkbox" id="rc-cat3" data-c="cat3"><span>Guilt arrived immediately after I set a boundary or expressed a need</span></div>
+      <div class="chkrow" onclick="togChk(this,'rc-cat4')"><input type="checkbox" id="rc-cat4" data-c="cat4"><span>I am predicting how others will permanently judge or treat me</span></div>
+      <div class="chkrow" onclick="togChk(this,'rc-cat5')"><input type="checkbox" id="rc-cat5" data-c="cat5"><span>I am treating a temporary situation as if it is permanent</span></div>
+      <div class="chkrow" onclick="togChk(this,'rc-cat6')"><input type="checkbox" id="rc-cat6" data-c="cat6"><span>I am reading someone else&#39;s emotional state as confirmation of my fear</span></div>
+      <div class="chkrow" onclick="togChk(this,'rc-cat7')"><input type="checkbox" id="rc-cat7" data-c="cat7"><span>I am telling myself something needs to happen right now when it probably does not</span></div>
     </div>
     <div class="sdiv">Cognitive filters</div>
     <div class="chks" id="dist-list">
-      <div class="chkrow" onclick="togRow(this)"><input type="checkbox" data-d="all"><span>I am seeing this as all-or-nothing &#8212; no middle ground is visible</span></div>
-      <div class="chkrow" onclick="togRow(this)"><input type="checkbox" data-d="emo"><span>I am treating my feelings as evidence of what is factually true</span></div>
-      <div class="chkrow" onclick="togRow(this)"><input type="checkbox" data-d="mind"><span>I am filling in what others are thinking without actually checking</span></div>
-      <div class="chkrow" onclick="togRow(this)"><input type="checkbox" data-d="should"><span>Rigid shoulds or musts are running the narrative</span></div>
-      <div class="chkrow" onclick="togRow(this)"><input type="checkbox" data-d="pers"><span>I am carrying responsibility for something that is not mine</span></div>
-      <div class="chkrow" onclick="togRow(this)"><input type="checkbox" data-d="mini"><span>I am minimising my own needs or dismissing my own contribution</span></div>
-      <div class="chkrow" onclick="togRow(this)"><input type="checkbox" data-d="ref"><span>I am reframing too quickly &#8212; moving to meaning before the discomfort has landed</span></div>
-      <div class="chkrow" onclick="togRow(this)"><input type="checkbox" data-d="spot"><span>I am assuming my internal state is visible to others or that others are closely monitoring my behaviour</span></div>
-      <div class="chkrow" onclick="togRow(this)"><input type="checkbox" data-d="burden"><span>I am telling myself that expressing a need or asking for help will be unwelcome or burdensome</span></div>
-      <div class="chkrow" onclick="togRow(this)"><input type="checkbox" data-d="conn"><span>I am adjusting or suppressing who I am in order to maintain connection</span></div>
+      <div class="chkrow" onclick="togChk(this,'rd-all')"><input type="checkbox" id="rd-all" data-d="all"><span>I am seeing this as all-or-nothing &#8212; no middle ground is visible</span></div>
+      <div class="chkrow" onclick="togChk(this,'rd-emo')"><input type="checkbox" id="rd-emo" data-d="emo"><span>I am treating my feelings as evidence of what is factually true</span></div>
+      <div class="chkrow" onclick="togChk(this,'rd-mind')"><input type="checkbox" id="rd-mind" data-d="mind"><span>I am filling in what others are thinking without actually checking</span></div>
+      <div class="chkrow" onclick="togChk(this,'rd-should')"><input type="checkbox" id="rd-should" data-d="should"><span>Rigid shoulds or musts are running the narrative</span></div>
+      <div class="chkrow" onclick="togChk(this,'rd-pers')"><input type="checkbox" id="rd-pers" data-d="pers"><span>I am carrying responsibility for something that is not mine</span></div>
+      <div class="chkrow" onclick="togChk(this,'rd-mini')"><input type="checkbox" id="rd-mini" data-d="mini"><span>I am minimising my own needs or dismissing my own contribution</span></div>
+      <div class="chkrow" onclick="togChk(this,'rd-ref')"><input type="checkbox" id="rd-ref" data-d="ref"><span>I am reframing too quickly &#8212; moving to meaning before the discomfort has landed</span></div>
+      <div class="chkrow" onclick="togChk(this,'rd-spot')"><input type="checkbox" id="rd-spot" data-d="spot"><span>I am assuming my internal state is visible to others or that others are closely monitoring my behaviour</span></div>
+      <div class="chkrow" onclick="togChk(this,'rd-burden')"><input type="checkbox" id="rd-burden" data-d="burden"><span>I am telling myself that expressing a need or asking for help will be unwelcome or burdensome</span></div>
+      <div class="chkrow" onclick="togChk(this,'rd-conn')"><input type="checkbox" id="rd-conn" data-d="conn"><span>I am adjusting or suppressing who I am in order to maintain connection</span></div>
     </div>
     <button class="btn" onclick="doDistort()">Notice</button>
     <div class="res" id="r-distort"></div>
@@ -386,26 +386,26 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1
     <p class="si">Check what is present in a recent or ongoing interaction.</p>
     <div class="sdiv" style="margin-top:4px">Boundary pressure</div>
     <div class="chks" id="bnd-list">
-      <div class="chkrow" onclick="togRow(this)"><input type="checkbox" data-bv="time"><span>My time or energy is being assumed without asking</span></div>
-      <div class="chkrow" onclick="togRow(this)"><input type="checkbox" data-bv="no"><span>My &#8220;no&#8221; is being negotiated, ignored, or pressured past</span></div>
-      <div class="chkrow" onclick="togRow(this)"><input type="checkbox" data-bv="priv"><span>My privacy or inner life is being probed</span></div>
-      <div class="chkrow" onclick="togRow(this)"><input type="checkbox" data-bv="dis"><span>My emotional state is being dismissed or told it is wrong</span></div>
-      <div class="chkrow" onclick="togRow(this)"><input type="checkbox" data-bv="shift"><span>Responsibility for their situation is being moved onto me</span></div>
-      <div class="chkrow" onclick="togRow(this)"><input type="checkbox" data-bv="guilt"><span>Guilt or obligation is being used to shape my response</span></div>
-      <div class="chkrow" onclick="togRow(this)"><input type="checkbox" data-bv="rush"><span>A decision is being rushed before I have had time to think</span></div>
-      <div class="chkrow" onclick="togRow(this)"><input type="checkbox" data-bv="comp"><span>My competence or judgement is being undermined without basis</span></div>
-      <div class="chkrow" onclick="togRow(this)"><input type="checkbox" data-bv="drain"><span>I feel emptied after this interaction &#8212; more than the situation warrants</span></div>
+      <div class="chkrow" onclick="togChk(this,'rv-time')"><input type="checkbox" id="rv-time" data-bv="time"><span>My time or energy is being assumed without asking</span></div>
+      <div class="chkrow" onclick="togChk(this,'rv-no')"><input type="checkbox" id="rv-no" data-bv="no"><span>My &#8220;no&#8221; is being negotiated, ignored, or pressured past</span></div>
+      <div class="chkrow" onclick="togChk(this,'rv-priv')"><input type="checkbox" id="rv-priv" data-bv="priv"><span>My privacy or inner life is being probed</span></div>
+      <div class="chkrow" onclick="togChk(this,'rv-dis')"><input type="checkbox" id="rv-dis" data-bv="dis"><span>My emotional state is being dismissed or told it is wrong</span></div>
+      <div class="chkrow" onclick="togChk(this,'rv-shift')"><input type="checkbox" id="rv-shift" data-bv="shift"><span>Responsibility for their situation is being moved onto me</span></div>
+      <div class="chkrow" onclick="togChk(this,'rv-guilt')"><input type="checkbox" id="rv-guilt" data-bv="guilt"><span>Guilt or obligation is being used to shape my response</span></div>
+      <div class="chkrow" onclick="togChk(this,'rv-rush')"><input type="checkbox" id="rv-rush" data-bv="rush"><span>A decision is being rushed before I have had time to think</span></div>
+      <div class="chkrow" onclick="togChk(this,'rv-comp')"><input type="checkbox" id="rv-comp" data-bv="comp"><span>My competence or judgement is being undermined without basis</span></div>
+      <div class="chkrow" onclick="togChk(this,'rv-drain')"><input type="checkbox" id="rv-drain" data-bv="drain"><span>I feel emptied after this interaction &#8212; more than the situation warrants</span></div>
     </div>
     <div class="sdiv">Behavioural drift</div>
     <div class="chks" id="soc-list">
-      <div class="chkrow" onclick="togRow(this)"><input type="checkbox" data-s="wd"><span>I am withdrawing further than the situation calls for</span></div>
-      <div class="chkrow" onclick="togRow(this)"><input type="checkbox" data-s="oe"><span>I am over-explaining or justifying when a simple answer would do</span></div>
-      <div class="chkrow" onclick="togRow(this)"><input type="checkbox" data-s="fawn"><span>I am agreeing with something I actually disagree with to avoid friction</span></div>
-      <div class="chkrow" onclick="togRow(this)"><input type="checkbox" data-s="give"><span>I am over-giving &#8212; doing more than is mine to do, to create connection or approval</span></div>
-      <div class="chkrow" onclick="togRow(this)"><input type="checkbox" data-s="resent"><span>I am feeling resentment after giving more than I had to give</span></div>
-      <div class="chkrow" onclick="togRow(this)"><input type="checkbox" data-s="snap"><span>I am responding with more force than the situation actually requires</span></div>
-      <div class="chkrow" onclick="togRow(this)"><input type="checkbox" data-s="numb"><span>I am feeling less &#8212; flatness, disconnection, reduced presence</span></div>
-      <div class="chkrow" onclick="togRow(this)"><input type="checkbox" data-s="scan"><span>I am tracking how they are reading me instead of attending to what I actually feel</span></div>
+      <div class="chkrow" onclick="togChk(this,'rs-wd')"><input type="checkbox" id="rs-wd" data-s="wd"><span>I am withdrawing further than the situation calls for</span></div>
+      <div class="chkrow" onclick="togChk(this,'rs-oe')"><input type="checkbox" id="rs-oe" data-s="oe"><span>I am over-explaining or justifying when a simple answer would do</span></div>
+      <div class="chkrow" onclick="togChk(this,'rs-fawn')"><input type="checkbox" id="rs-fawn" data-s="fawn"><span>I am agreeing with something I actually disagree with to avoid friction</span></div>
+      <div class="chkrow" onclick="togChk(this,'rs-give')"><input type="checkbox" id="rs-give" data-s="give"><span>I am over-giving &#8212; doing more than is mine to do, to create connection or approval</span></div>
+      <div class="chkrow" onclick="togChk(this,'rs-resent')"><input type="checkbox" id="rs-resent" data-s="resent"><span>I am feeling resentment after giving more than I had to give</span></div>
+      <div class="chkrow" onclick="togChk(this,'rs-snap')"><input type="checkbox" id="rs-snap" data-s="snap"><span>I am responding with more force than the situation actually requires</span></div>
+      <div class="chkrow" onclick="togChk(this,'rs-numb')"><input type="checkbox" id="rs-numb" data-s="numb"><span>I am feeling less &#8212; flatness, disconnection, reduced presence</span></div>
+      <div class="chkrow" onclick="togChk(this,'rs-scan')"><input type="checkbox" id="rs-scan" data-s="scan"><span>I am tracking how they are reading me instead of attending to what I actually feel</span></div>
     </div>
     <button class="btn" onclick="doScan()">Notice</button>
     <div class="res" id="r-scan"></div>
@@ -415,17 +415,17 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1
     <p class="si">Check what is active today. These are not failures &#8212; they are your system&#39;s default configuration under load.</p>
     <div class="sdiv" style="margin-top:4px">Effort patterns</div>
     <div class="chks" id="ep-list">
-      <div class="chkrow" onclick="togRow(this)"><input type="checkbox" data-e="burst"><span>I am working in bursts &#8212; high intensity followed by crash rather than sustained steady output</span></div>
-      <div class="chkrow" onclick="togRow(this)"><input type="checkbox" data-e="phil"><span>I am spending more time framing and meaning-making than doing the next concrete action</span></div>
-      <div class="chkrow" onclick="togRow(this)"><input type="checkbox" data-e="spblind"><span>I have pushed past tiredness, hunger, or thirst without noticing &#8212; the crash is arriving now</span></div>
-      <div class="chkrow" onclick="togRow(this)"><input type="checkbox" data-e="switch"><span>I am switching between tasks to avoid the friction of staying with the one that matters</span></div>
+      <div class="chkrow" onclick="togChk(this,'re-burst')"><input type="checkbox" id="re-burst" data-e="burst"><span>I am working in bursts &#8212; high intensity followed by crash rather than sustained steady output</span></div>
+      <div class="chkrow" onclick="togChk(this,'re-phil')"><input type="checkbox" id="re-phil" data-e="phil"><span>I am spending more time framing and meaning-making than doing the next concrete action</span></div>
+      <div class="chkrow" onclick="togChk(this,'re-spblind')"><input type="checkbox" id="re-spblind" data-e="spblind"><span>I have pushed past tiredness, hunger, or thirst without noticing &#8212; the crash is arriving now</span></div>
+      <div class="chkrow" onclick="togChk(this,'re-switch')"><input type="checkbox" id="re-switch" data-e="switch"><span>I am switching between tasks to avoid the friction of staying with the one that matters</span></div>
     </div>
     <div class="sdiv">Structural bias</div>
     <div class="chks" id="sb-list">
-      <div class="chkrow" onclick="togRow(this)"><input type="checkbox" data-s2="depth"><span>I know a great deal about the problem but have not yet taken the first concrete step</span></div>
-      <div class="chkrow" onclick="togRow(this)"><input type="checkbox" data-s2="abstr"><span>I am moving into abstraction or concept-level thinking to avoid the concrete work in front of me</span></div>
-      <div class="chkrow" onclick="togRow(this)"><input type="checkbox" data-s2="iso"><span>I am withdrawing from contact that would actually regulate me</span></div>
-      <div class="chkrow" onclick="togRow(this)"><input type="checkbox" data-s2="sov"><span>I am framing avoidance of support or collaboration as independence</span></div>
+      <div class="chkrow" onclick="togChk(this,'rs2-depth')"><input type="checkbox" id="rs2-depth" data-s2="depth"><span>I know a great deal about the problem but have not yet taken the first concrete step</span></div>
+      <div class="chkrow" onclick="togChk(this,'rs2-abstr')"><input type="checkbox" id="rs2-abstr" data-s2="abstr"><span>I am moving into abstraction or concept-level thinking to avoid the concrete work in front of me</span></div>
+      <div class="chkrow" onclick="togChk(this,'rs2-iso')"><input type="checkbox" id="rs2-iso" data-s2="iso"><span>I am withdrawing from contact that would actually regulate me</span></div>
+      <div class="chkrow" onclick="togChk(this,'rs2-sov')"><input type="checkbox" id="rs2-sov" data-s2="sov"><span>I am framing avoidance of support or collaboration as independence</span></div>
     </div>
     <button class="btn" onclick="doEffort()">Notice</button>
     <div class="res" id="r-effort"></div>
@@ -558,8 +558,27 @@ try{Object.keys(localStorage).filter(function(k){return k.startsWith('vk_')&&!k.
 function saveLocalDay(date,data){try{localStorage.setItem('vk_day_'+date,JSON.stringify(data));}catch(e){}}
 function loadLocalDay(date){try{var raw=localStorage.getItem('vk_day_'+date);return raw?JSON.parse(raw):null;}catch(e){return null;}}
 
-// ── REVIEW STATE (saved on Notice) ──
+// ── REVIEW STATE ──
 var reviewState={body:[],reg:{level:0,band:'',items:[]},noise:[],distort:[],scan:[],effort:[]};
+
+// Review checkbox IDs for persistence
+var REVIEW_CHK_IDS=[
+  'rb-sleep','rb-rest','rb-fat','rb-dehy','rb-app','rb-jaw','rb-chest','rb-gut','rb-head',
+  'rn-ctx','rn-old','rn-benefit','rn-noev','rn-defend','rn-seen','rn-rumi',
+  'rc-cat1','rc-cat2','rc-cat3','rc-cat4','rc-cat5','rc-cat6','rc-cat7',
+  'rd-all','rd-emo','rd-mind','rd-should','rd-pers','rd-mini','rd-ref','rd-spot','rd-burden','rd-conn',
+  'rv-time','rv-no','rv-priv','rv-dis','rv-shift','rv-guilt','rv-rush','rv-comp','rv-drain',
+  'rs-wd','rs-oe','rs-fawn','rs-give','rs-resent','rs-snap','rs-numb','rs-scan',
+  're-burst','re-phil','re-spblind','re-switch',
+  'rs2-depth','rs2-abstr','rs2-iso','rs2-sov'
+];
+
+function togChk(row,id){
+  var cb=document.getElementById(id);
+  if(!cb)return;
+  cb.checked=!cb.checked;
+  persist('chk-'+id,cb.checked);
+}
 
 function buildSaveData(){
   var data={
@@ -675,7 +694,7 @@ async function loadHistDay(date,prefix,daysEl,dayEl){
     var rv=data.review||{};
     var bodyLabels={sleep:'Fragmented sleep',rest:'Physical restlessness',fat:'Fatigue / energy drop',dehy:'Dehydration',app:'Appetite shift',jaw:'Jaw / neck tension',chest:'Chest tight / shallow breathing',gut:'Gut tension / nausea',head:'Head pressure / headache'};
     if(rv.body&&rv.body.length){h+='<div class="hv-head">Body signals</div>';rv.body.forEach(function(k){if(bodyLabels[k])h+='<div class="hv-item">\u2022 '+bodyLabels[k]+'</div>';});}
-    if(rv.reg&&rv.reg.level){h+='<div class="hv-head">Regulation</div><div class="hv-item">Level '+rv.reg.level+' \u2014 '+escH(rv.reg.band)+'</div>';if(rv.reg.items&&rv.reg.items.length)rv.reg.items.forEach(function(t){h+='<div class="hv-item">\u2022 '+escH(t)+'</div>';});}
+    if(rv.reg&&rv.reg.level){h+='<div class="hv-head">Regulation</div><div class="hv-item">Level '+rv.reg.level+' \u2014 '+escH(rv.reg.band)+'</div>';}
     var noiseLabels={ctx:'Missing context',old:'Old wound triggered',benefit:'Benefit from self-doubt',noev:'No evidence given',defend:'Urge to defend',seen:'Feeling unseen',rumi:'Rumination loop'};
     if(rv.noise&&rv.noise.length){h+='<div class="hv-head">Noise check</div>';rv.noise.forEach(function(k){if(noiseLabels[k])h+='<div class="hv-item">\u2022 '+noiseLabels[k]+'</div>';});}
     var distortLabels={cat1:'Treating possible as certain',cat2:'Already failed feeling',cat3:'Guilt after boundary',cat4:'Predicting permanent judgement',cat5:'Temporary as permanent',cat6:'Reading others state as confirmation',cat7:'Urgency illusion',all:'All-or-nothing',emo:'Feelings as evidence',mind:"Filling in others' thoughts",should:'Rigid shoulds',pers:"Carrying what isn't mine",mini:'Minimising needs',ref:'Reframing too quickly',spot:'Spotlight effect',burden:'Needs as burden',conn:'Connection requires self-adjustment'};
@@ -700,7 +719,6 @@ async function loadHistDay(date,prefix,daysEl,dayEl){
 
   viewEl.innerHTML=h||'<div style="font-size:13px;color:var(--text3)">No data recorded for this date.</div>';
 }
-
 function escH(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
 
 // ── TABS ──
@@ -711,7 +729,6 @@ function switchTab(id,btn){
   if(id==='care')updReflCtx();
 }
 function show(id,html){var el=document.getElementById(id);el.innerHTML=html;el.classList.add('show');}
-function togRow(el){var cb=el.querySelector('input[type=checkbox]');if(cb)cb.checked=!cb.checked;}
 function togTptr(el,id){var cb=document.getElementById(id);if(!cb)return;cb.checked=!cb.checked;persist(id,cb.checked);}
 function togAff(el){var cb=el.querySelector('input');cb.checked=!cb.checked;el.classList.toggle('done',cb.checked);}
 
@@ -806,6 +823,18 @@ function initCare(){
   Object.entries(BY_DAY).forEach(function(e){var dn=e[0];var v=e[1];var it=Number(dn)===today;var row=document.createElement('div');row.className='drr'+(it?' today':'');row.innerHTML='<div class="drd">'+DAYS[Number(dn)]+'</div><div class="drt">'+v.f+'</div>';rhythm.appendChild(row);});
   ['s1a','s1b','s2a','s2b','s3a','s3b','p1a','p1b','p2a','p2b','p3a','p3b','t1a','t1b','t2a','t2b','t3a','t3b','t4a','t4b'].forEach(function(id){var v=recall(id,'');var btn=document.getElementById(id);if(!btn)return;if(v==='yo')btn.classList.add('yo');else if(v==='no')btn.classList.add('no');});
   ['tc-s1','tc-s2','tc-ins','tc-urg','tc-sub'].forEach(function(id){var el=document.getElementById(id);if(el)el.checked=recall(id,false);});
+  // Restore review checkboxes
+  REVIEW_CHK_IDS.forEach(function(id){
+    var el=document.getElementById(id);
+    if(el)el.checked=recall('chk-'+id,false);
+  });
+  // Restore taper status display
+  var savedStatus=recall('tc-status-val','');
+  if(savedStatus){
+    var cls=savedStatus==='green'?'tpg':savedStatus==='yellow'?'tpy':'tpr';
+    var msg=savedStatus==='green'?'Green \u2014 stable, continue current phase.':savedStatus==='yellow'?'Yellow \u2014 hold current dose, do not reduce.':'Red \u2014 fall back to previous stable dose. Reduce stimulation, hydrate, use the hand brake, tell your confidant.';
+    var stEl=document.getElementById('tc-status');stEl.style.display='block';stEl.className='tpst '+cls;stEl.textContent=msg;
+  }
   updCareRegBanner();updReflCtx();updTaperBadge();
   if([...document.querySelectorAll('.ynbtn.yo,.ynbtn.no')].length>0)doGuardrails();
   if(!NO_TOKEN){updateHistIndex(TODAY);initHistDays();}
@@ -836,7 +865,6 @@ var BCX=120,BCY=120,BR=108,RMIN=46,RMAX=72,TK=10;
 var bI=0,bR=false,bC=0,bPh=0,bPS=null,bRaf=null,bCI=null,bIR=RMIN;
 function bFr(b){var t=b.ti.reduce(function(a,v){return a+v;},0);var f=[0];var a=0;b.ti.forEach(function(v){a+=v;f.push(a/t);});return f;}
 function bIsI(p){return p.toLowerCase().startsWith('inhale');}
-function bIsI2(p){return p==='Inhale+';}
 function bIsH(p){return p.toLowerCase().startsWith('hold');}
 function initB(){var tabs=document.getElementById('btabs');tabs.innerHTML='';BREATHS.forEach(function(b,i){var btn=document.createElement('button');btn.className='btb'+(i===bI?' on':'');btn.innerHTML='<span class="bn">'+b.nm+'</span><span class="bs">'+b.sb+'</span>';btn.onclick=function(){selB(i);};tabs.appendChild(btn);});rBCh();updBD();bSetI();bDr(null,null);}
 function selB(i){bStop();bI=i;document.querySelectorAll('.btb').forEach(function(b,j){b.classList.toggle('on',j===i);});rBCh();updBD();bSetI();bDr(null,null);}
@@ -875,7 +903,7 @@ function bRunP(){
   document.querySelectorAll('.pchip').forEach(function(c,i){c.classList.toggle('cur',i===bPh);});
   document.getElementById('cp-phase').textContent=ph;
   document.getElementById('bcycles').textContent='Cycle '+(bC+1);
-  var isInhale=bIsI(ph);var isInhale2=bIsI2(ph);var isHold=bIsH(ph);
+  var isInhale=bIsI(ph);var isHold=bIsH(ph);
   var sR=bIR;var eR=isHold?bIR:(isInhale?RMAX:RMIN);
   var sInnerR=bIR;var eInnerR=eR;
   var cv2=dur;
@@ -886,10 +914,8 @@ function bRunP(){
   function frame(now){
     if(!bR)return;
     var el=Math.min(now-bPS,dMs);var frac=el/dMs;
-    var ease;
-    if(isHold){ease=1;}
-    else if(isInhale2){ease=frac*frac;}
-    else{ease=0.5-0.5*Math.cos(Math.PI*frac);}
+    // All phases use smooth cosine — inhale, inhale+, exhale, hold
+    var ease=isHold?1:(0.5-0.5*Math.cos(Math.PI*frac));
     var r=sR+(eR-sR)*ease;bIR=r;bApB(r);
     var innerR=sInnerR+(eInnerR-sInnerR)*ease;
     var dotF=fr[bPh]+(fr[bPh+1]-fr[bPh])*frac;
@@ -910,10 +936,25 @@ var RST={1:{a:'Very free / diffuse',b:'Very high',s:'Minimal',m:'Re-engage gentl
 var RBD=function(l){return l<=3?'w':l<=5?'e':l<=7?'i':l<=9?'c':'s';};
 var RBDL={w:'Witness band',e:'Equilibrium band',i:'Identity band',c:'Capture band',s:'Survival'};
 
-function buildReg(){var wrap=document.getElementById('reg-items');wrap.innerHTML='';REGI.forEach(function(it){var d=document.createElement('div');d.className='ritm'+(it.prod?' prod':'');d.innerHTML='<input type="checkbox" id="rc-'+it.id+'"><span>'+it.tx+(it.prod?' <span style="font-size:11px;color:var(--dbo)">(prodrome)</span>':'')+'</span>';d.onclick=function(){var cb=d.querySelector('input');cb.checked=!cb.checked;d.classList.toggle('sel',cb.checked);};d.querySelector('input').onclick=function(e){e.stopPropagation();};wrap.appendChild(d);});}
+function buildReg(){
+  var wrap=document.getElementById('reg-items');wrap.innerHTML='';
+  REGI.forEach(function(it){
+    var d=document.createElement('div');d.className='ritm'+(it.prod?' prod':'');
+    d.innerHTML='<input type="checkbox" id="rr-'+it.id+'"><span>'+it.tx+(it.prod?' <span style="font-size:11px;color:var(--dbo)">(prodrome)</span>':'')+'</span>';
+    d.onclick=function(){
+      var cb=d.querySelector('input');cb.checked=!cb.checked;d.classList.toggle('sel',cb.checked);
+      persist('chk-rr-'+it.id,cb.checked);
+    };
+    d.querySelector('input').onclick=function(e){e.stopPropagation();};
+    wrap.appendChild(d);
+    // Restore
+    var saved=recall('chk-rr-'+it.id,false);
+    if(saved){d.querySelector('input').checked=true;d.classList.add('sel');}
+  });
+}
 
 function doReg(){
-  var sel=new Set([...document.querySelectorAll('#reg-items input:checked')].map(function(c){return c.id.replace('rc-','');}));
+  var sel=new Set([...document.querySelectorAll('#reg-items input:checked')].map(function(c){return c.id.replace('rr-','');}));
   if(!sel.size){show('r-reg','<span class="ok">No signals selected.</span>');return;}
   var scores={};for(var i=1;i<=10;i++)scores[i]=0;scores[4]+=0.5;scores[5]+=0.5;
   REGI.forEach(function(it){if(!sel.has(it.id))return;Object.entries(it.votes).forEach(function(e){scores[Number(e[0])]+=e[1];});});
@@ -936,7 +977,7 @@ function doBody(){
   var checked=[...document.querySelectorAll('#b-list .chkrow')].filter(function(r){return r.querySelector('input').checked;});
   if(!checked.length){show('r-body','<span class="ok">No body signals present right now.</span>');return;}
   reviewState.body=checked.map(function(r){return r.querySelector('input').dataset.b;});
-  var tips={sleep:{n:'Fragmented sleep',t:'Keep your wake-up time fixed even if last night was rough. Irregular timing adds to the load whether or not you feel it.',w:'sleep disruption is one of the earliest and most reliable destabilisation signals \u2014 it compounds everything else'},rest:{n:'Physical restlessness',t:'Slow rhythmic movement \u2014 a walk, gentle stretching \u2014 settles restlessness faster than staying still.',w:'stillness amplifies agitation in a high-gain system; movement gives the activation somewhere to go'},fat:{n:'Fatigue / energy drop',t:'Eat something simple now and lower your output expectations for the rest of the session.',w:'SP blind means energy crashes are missed until they are acute'},dehy:{n:'Dehydration',t:'Drink water now, not after the next task.',w:'even mild dehydration degrades cognitive clarity and amplifies emotional reactivity'},app:{n:'Appetite shift',t:'Normalise your next meal \u2014 familiar foods, no pressure.',w:'digestive instability adds to nervous system noise'},jaw:{n:'Jaw / neck tension',t:'Drop your jaw deliberately. Release your neck and shoulders.',w:'chronic muscular tension is stored effort \u2014 the body carrying what the mind has not yet processed'},chest:{n:'Chest tight / shallow breathing',t:'Extend your exhales deliberately.',w:'shallow breathing maintains sympathetic activation'},gut:{n:'Gut tension / nausea',t:'Warm fluids. Reduce information intake.',w:'visceral sensitivity often leads cognitive awareness'},head:{n:'Head pressure / headache',t:'Hydrate. Screen break.',w:'tension headache is one of the clearest signals of sustained cognitive overload'}};
+  var tips={sleep:{n:'Fragmented sleep',t:'Keep your wake-up time fixed even if last night was rough. Irregular timing adds to the load whether or not you feel it.',w:'sleep disruption is one of the earliest and most reliable destabilisation signals \u2014 it compounds everything else'},rest:{n:'Physical restlessness',t:'Slow rhythmic movement \u2014 a walk, gentle stretching \u2014 settles restlessness faster than staying still.',w:'stillness amplifies agitation in a high-gain system; movement gives the activation somewhere to go'},fat:{n:'Fatigue / energy drop',t:'Eat something simple now and lower your output expectations for the rest of the session. This is not a motivation problem.',w:'SP blind means energy crashes are missed until they are acute'},dehy:{n:'Dehydration',t:'Drink water now, not after the next task. SP blindness means thirst does not register until it is already affecting your thinking.',w:'even mild dehydration degrades cognitive clarity and amplifies emotional reactivity'},app:{n:'Appetite shift',t:'Normalise your next meal \u2014 familiar foods, no pressure.',w:'digestive instability adds to nervous system noise'},jaw:{n:'Jaw / neck tension',t:'Drop your jaw deliberately. Release your neck and shoulders.',w:'chronic muscular tension is stored effort \u2014 the body carrying what the mind has not yet processed'},chest:{n:'Chest tight / shallow breathing',t:'Extend your exhales deliberately.',w:'shallow breathing maintains sympathetic activation'},gut:{n:'Gut tension / nausea',t:'Warm fluids. Reduce information intake.',w:'visceral sensitivity often leads cognitive awareness'},head:{n:'Head pressure / headache',t:'Hydrate. Screen break.',w:'tension headache is one of the clearest signals of sustained cognitive overload'}};
   var h='';checked.forEach(function(r){var k=r.querySelector('input').dataset.b;if(tips[k])h+='<div class="ri"><div class="rin">'+tips[k].n+'</div><div class="rit">'+tips[k].t+'</div><div class="riw">'+tips[k].w+'</div></div>';});
   show('r-body',h);
 }
@@ -978,7 +1019,7 @@ function doScan(){
   if(!bb.length&&!sb.length){show('r-scan','<span class="ok">No boundary pressure or behavioural drift present right now.</span>');return;}
   reviewState.scan=bb.map(function(r){return r.querySelector('input').dataset.bv;}).concat(sb.map(function(r){return r.querySelector('input').dataset.s;}));
   var bm={time:{n:'Time / energy assumed',t:"I'm not available for that.",w:'stating unavailability without justifying removes the surface to negotiate against'},no:{n:'"No" being pushed past',t:'My answer is still no.',w:'adding explanation signals a better argument might change it'},priv:{n:'Privacy being probed',t:'I prefer not to discuss that.',w:'a preference does not require justification'},dis:{n:'State being dismissed',t:'I see it differently.',w:'naming the difference without debating preserves your perception'},shift:{n:'Responsibility shifted',t:"That's yours to handle.",w:"returning ownership cleanly prevents gradual accumulation"},guilt:{n:'Guilt used as leverage',t:'I understand, and my answer is no.',w:'acknowledging their feeling without yielding separates empathy from compliance'},rush:{n:'Decision being rushed',t:"I'll respond after I've had time to think.",w:'slowing down protects your clarity'},comp:{n:'Competence undermined',t:"That's the decision. Stop. Do not defend it.",w:'defending invites further challenge'},drain:{n:'Emptied after contact',t:'Reduce duration and frequency.',w:'the drain is accurate information \u2014 this cost more than it gave'}};
-  var sm={wd:{n:'Excess withdrawal',t:'One small act of re-engagement. Not the full thing.',w:'over-withdrawal removes co-regulation that would actually help'},oe:{n:'Over-explaining',t:'Stop at the first complete sentence. Everything after is fawn.',w:'over-explaining signals your position needs more justification than it does'},fawn:{n:'False agreement',t:'Say nothing rather than agree with something false.',w:'false agreement corrodes self-perception over time'},give:{n:'Over-giving',t:'Name what is yours to give. Give that. Stop there.',w:'giving past capacity is the 4\u21922 disintegration path'},resent:{n:'Resentment after giving',t:'The resentment is the signal. Adjust the boundary, not the resentment.',w:'resentment confirms disintegration is active'},snap:{n:'Disproportionate force',t:'One breath before you respond.',w:'excess force in low-stakes situations costs credibility'},numb:{n:'Emotional flattening',t:'Name one emotion internally.',w:'flatness signals the system has exceeded processing capacity'},scan:{n:'Tracking their read of me',t:'Return attention to what you actually feel.',w:'attending to their perception amplifies anxiety and disconnects you'}};
+  var sm={wd:{n:'Excess withdrawal',t:'One small act of re-engagement. Not the full thing.',w:'over-withdrawal removes co-regulation that would actually help'},oe:{n:'Over-explaining',t:'Stop at the first complete sentence.',w:'over-explaining signals your position needs more justification than it does'},fawn:{n:'False agreement',t:'Say nothing rather than agree with something false.',w:'false agreement corrodes self-perception over time'},give:{n:'Over-giving',t:'Name what is yours to give. Give that. Stop there.',w:'giving past capacity is the 4\u21922 disintegration path'},resent:{n:'Resentment after giving',t:'The resentment is the signal. Adjust the boundary, not the resentment.',w:'resentment confirms disintegration is active'},snap:{n:'Disproportionate force',t:'One breath before you respond.',w:'excess force in low-stakes situations costs credibility'},numb:{n:'Emotional flattening',t:'Name one emotion internally.',w:'flatness signals the system has exceeded processing capacity'},scan:{n:'Tracking their read of me',t:'Return attention to what you actually feel.',w:'attending to their perception amplifies anxiety and disconnects you'}};
   var h='';
   if(bb.length>=4)h+='<div class="al alw" style="margin-bottom:8px"><strong>High boundary pressure.</strong> Use the physiological sigh before responding. 9 seconds.</div>';
   if(bb.length){h+='<div class="sdiv" style="margin-top:0">Boundary pressure</div>';bb.forEach(function(r){var k=r.querySelector('input').dataset.bv;if(bm[k])h+='<div class="ri"><div class="rin">'+bm[k].n+'</div><div class="rit">'+bm[k].t+'</div><div class="riw">'+bm[k].w+'</div></div>';});}
