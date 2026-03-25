@@ -195,6 +195,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1
 .prayer-card{background:var(--bg);border:1px solid var(--bdr);border-radius:var(--rl);padding:1.1rem;margin-bottom:10px;text-align:center}
 .prayer-text{font-size:13px;line-height:2;color:var(--text2);font-style:italic;margin-bottom:0}
 .prayer-text strong{font-style:normal;font-weight:600;color:var(--text);display:block;margin-bottom:6px;font-size:14px}
+.prayer-line1{display:block;margin-bottom:4px}
 .hist-section{margin-top:10px;border-top:1px solid var(--bdr);padding-top:12px}
 .hist-toggle{width:100%;padding:10px;border-radius:var(--r);border:1px solid var(--bdr2);background:transparent;color:var(--text2);font-size:13px;cursor:pointer;font-family:inherit;text-align:left;display:flex;justify-content:space-between;align-items:center}
 .hist-toggle:active{opacity:.7}
@@ -254,10 +255,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1
   <div class="prayer-card">
     <div class="prayer-text">
       <strong>Prakrti</strong>
-      Intelligence beyond my awareness.<br>
-      I acknowledge what I do not control and do not know.<br>
-      I act where choice is mine, and release what belongs to process.<br>
-      May balance reassert itself. Om Shanti.
+      <span class="prayer-line1">Intelligence beyond my awareness.</span>
+      I acknowledge what I do not control and do not know. I act where choice is mine, and release what belongs to process. May balance reassert itself. Om Shanti.
     </div>
   </div>
   <div class="card">
@@ -426,6 +425,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1
       <div class="chkrow" onclick="togChk(this,'rs2-abstr')"><input type="checkbox" id="rs2-abstr" data-s2="abstr"><span>I am moving into abstraction or concept-level thinking to avoid the concrete work in front of me</span></div>
       <div class="chkrow" onclick="togChk(this,'rs2-iso')"><input type="checkbox" id="rs2-iso" data-s2="iso"><span>I am withdrawing from contact that would actually regulate me</span></div>
       <div class="chkrow" onclick="togChk(this,'rs2-sov')"><input type="checkbox" id="rs2-sov" data-s2="sov"><span>I am framing avoidance of support or collaboration as independence</span></div>
+      <div class="chkrow" onclick="togChk(this,'rs2-perf')"><input type="checkbox" id="rs2-perf" data-s2="perf"><span>I am optimising or refining what already works well enough &#8212; adding detail or complexity without proportional benefit</span></div>
     </div>
     <button class="btn" onclick="doEffort()">Notice</button>
     <div class="res" id="r-effort"></div>
@@ -558,10 +558,8 @@ try{Object.keys(localStorage).filter(function(k){return k.startsWith('vk_')&&!k.
 function saveLocalDay(date,data){try{localStorage.setItem('vk_day_'+date,JSON.stringify(data));}catch(e){}}
 function loadLocalDay(date){try{var raw=localStorage.getItem('vk_day_'+date);return raw?JSON.parse(raw):null;}catch(e){return null;}}
 
-// ── REVIEW STATE ──
 var reviewState={body:[],reg:{level:0,band:'',items:[]},noise:[],distort:[],scan:[],effort:[]};
 
-// Review checkbox IDs for persistence
 var REVIEW_CHK_IDS=[
   'rb-sleep','rb-rest','rb-fat','rb-dehy','rb-app','rb-jaw','rb-chest','rb-gut','rb-head',
   'rn-ctx','rn-old','rn-benefit','rn-noev','rn-defend','rn-seen','rn-rumi',
@@ -570,12 +568,11 @@ var REVIEW_CHK_IDS=[
   'rv-time','rv-no','rv-priv','rv-dis','rv-shift','rv-guilt','rv-rush','rv-comp','rv-drain',
   'rs-wd','rs-oe','rs-fawn','rs-give','rs-resent','rs-snap','rs-numb','rs-scan',
   're-burst','re-phil','re-spblind','re-switch',
-  'rs2-depth','rs2-abstr','rs2-iso','rs2-sov'
+  'rs2-depth','rs2-abstr','rs2-iso','rs2-sov','rs2-perf'
 ];
 
 function togChk(row,id){
-  var cb=document.getElementById(id);
-  if(!cb)return;
+  var cb=document.getElementById(id);if(!cb)return;
   cb.checked=!cb.checked;
   persist('chk-'+id,cb.checked);
 }
@@ -596,8 +593,13 @@ function buildSaveData(){
       status:recall('tc-status-val','')
     }
   };
-  ['regulation','fitness','admin','novisits','land','tribe','partner','family'].forEach(function(g){data.care.goals[g]=recall('goal-'+g,'');});
-  ['s1a','s1b','s2a','s2b','s3a','s3b','p1a','p1b','p2a','p2b','p3a','p3b','t1a','t1b','t2a','t2b','t3a','t3b','t4a','t4b'].forEach(function(y){data.care.guardrails[y]=recall(y,'');});
+  // Goals — read from localStorage so auto-selections are included
+  ['regulation','fitness','admin','novisits','land','tribe','partner','family'].forEach(function(g){
+    data.care.goals[g]=recall('goal-'+g,'');
+  });
+  ['s1a','s1b','s2a','s2b','s3a','s3b','p1a','p1b','p2a','p2b','p3a','p3b','t1a','t1b','t2a','t2b','t3a','t3b','t4a','t4b'].forEach(function(y){
+    data.care.guardrails[y]=recall(y,'');
+  });
   return data;
 }
 
@@ -670,7 +672,12 @@ async function loadHistDay(date,prefix,daysEl,dayEl){
     if(c.goals){
       h+='<div class="hv-head">Goals</div>';
       var glabels={regulation:'Regulation',fitness:'Physical fitness',admin:'Admin',novisits:'NoVisits',land:'Land',tribe:'Finding my tribe',partner:'Finding a partner',family:'Family'};
-      Object.entries(c.goals).forEach(function(e){if(e[1]==='y')h+='<span class="hv-yn hv-yes">'+glabels[e[0]]+'</span>';else if(e[1]==='n')h+='<span class="hv-yn hv-no">'+glabels[e[0]]+'</span>';});
+      var hasGoal=false;
+      Object.entries(c.goals).forEach(function(e){
+        if(e[1]==='y'){h+='<span class="hv-yn hv-yes">'+glabels[e[0]]+'</span>';hasGoal=true;}
+        else if(e[1]==='n'){h+='<span class="hv-yn hv-no">'+glabels[e[0]]+'</span>';hasGoal=true;}
+      });
+      if(!hasGoal)h+='<div style="font-size:12px;color:var(--text3)">No goals recorded.</div>';
     }
     if(c.guardrails){
       h+='<div class="hv-head" style="margin-top:8px">Guardrails</div>';
@@ -701,7 +708,7 @@ async function loadHistDay(date,prefix,daysEl,dayEl){
     if(rv.distort&&rv.distort.length){h+='<div class="hv-head">Distortion</div>';rv.distort.forEach(function(k){if(distortLabels[k])h+='<div class="hv-item">\u2022 '+distortLabels[k]+'</div>';});}
     var scanLabels={time:'Time / energy assumed',no:'"No" pushed past',priv:'Privacy probed',dis:'State dismissed',shift:'Responsibility shifted',guilt:'Guilt as leverage',rush:'Decision rushed',comp:'Competence undermined',drain:'Emptied after contact',wd:'Excess withdrawal',oe:'Over-explaining',fawn:'False agreement',give:'Over-giving',resent:'Resentment after giving',snap:'Disproportionate force',numb:'Emotional flattening',scan:'Tracking their read'};
     if(rv.scan&&rv.scan.length){h+='<div class="hv-head">Interaction scan</div>';rv.scan.forEach(function(k){if(scanLabels[k])h+='<div class="hv-item">\u2022 '+scanLabels[k]+'</div>';});}
-    var effortLabels={burst:'Intensity burst',phil:'Philosophical drift',spblind:'SP blind effort distortion',switch:'Task switching',depth:'Depth without movement',abstr:'Abstraction as avoidance',iso:'Isolation under pressure',sov:'Sovereignty as avoidance'};
+    var effortLabels={burst:'Intensity burst',phil:'Philosophical drift',spblind:'SP blind effort distortion',switch:'Task switching',depth:'Depth without movement',abstr:'Abstraction as avoidance',iso:'Isolation under pressure',sov:'Sovereignty as avoidance',perf:'Over-optimisation / perfection bias'};
     if(rv.effort&&rv.effort.length){h+='<div class="hv-head">Effort patterns</div>';rv.effort.forEach(function(k){if(effortLabels[k])h+='<div class="hv-item">\u2022 '+effortLabels[k]+'</div>';});}
     if(!rv.body&&!rv.reg&&!rv.noise&&!rv.distort&&!rv.scan&&!rv.effort)h+='<div style="font-size:13px;color:var(--text3)">No review data recorded for this date.</div>';
   }
@@ -810,12 +817,17 @@ function initCare(){
   document.getElementById('goal-intro').textContent="Based on today's schedule, these goals are suggested. Adjust as needed.";
   var grid=document.getElementById('goal-grid');grid.innerHTML='';
   GOALS.forEach(function(g){
-    var isAuto=s.goals.includes(g.id);var saved=recall('goal-'+g.id,null);var active=saved||(isAuto?'y':null);
+    var isAuto=s.goals.includes(g.id);
+    var saved=recall('goal-'+g.id,null);
+    // Fix: if no saved value exists yet and it's an auto goal, persist 'y' now so it appears in history
+    if(saved===null&&isAuto){persist('goal-'+g.id,'y');saved='y';}
+    var active=saved||null;
     var row=document.createElement('div');row.className='gitem';
     row.innerHTML='<div class="gico">'+g.ico+'</div><div class="ginf"><div class="gnm">'+g.nm+'</div><div class="gsb">'+g.sb+'</div></div><div class="gchk"><button class="gbtn" id="gb-'+g.id+'-y">Yes</button><button class="gbtn" id="gb-'+g.id+'-n">No</button></div>';
     row.querySelector('#gb-'+g.id+'-y').addEventListener('click',function(){setGoal(g.id,'y');});
     row.querySelector('#gb-'+g.id+'-n').addEventListener('click',function(){setGoal(g.id,'n');});
-    grid.appendChild(row);if(active)applyGoalBtn(g.id,active);
+    grid.appendChild(row);
+    if(active)applyGoalBtn(g.id,active);
   });
   ['intent-main','intent-value','intent-protect','reflect-what','reflect-good','reflect-next'].forEach(function(id){var el=document.getElementById(id);if(el)el.value=recall(id,'');});
   var rhythm=document.getElementById('dc-rhythm');rhythm.innerHTML='';
@@ -824,16 +836,13 @@ function initCare(){
   ['s1a','s1b','s2a','s2b','s3a','s3b','p1a','p1b','p2a','p2b','p3a','p3b','t1a','t1b','t2a','t2b','t3a','t3b','t4a','t4b'].forEach(function(id){var v=recall(id,'');var btn=document.getElementById(id);if(!btn)return;if(v==='yo')btn.classList.add('yo');else if(v==='no')btn.classList.add('no');});
   ['tc-s1','tc-s2','tc-ins','tc-urg','tc-sub'].forEach(function(id){var el=document.getElementById(id);if(el)el.checked=recall(id,false);});
   // Restore review checkboxes
-  REVIEW_CHK_IDS.forEach(function(id){
-    var el=document.getElementById(id);
-    if(el)el.checked=recall('chk-'+id,false);
-  });
-  // Restore taper status display
+  REVIEW_CHK_IDS.forEach(function(id){var el=document.getElementById(id);if(el)el.checked=recall('chk-'+id,false);});
+  // Restore taper status
   var savedStatus=recall('tc-status-val','');
   if(savedStatus){
-    var cls=savedStatus==='green'?'tpg':savedStatus==='yellow'?'tpy':'tpr';
-    var msg=savedStatus==='green'?'Green \u2014 stable, continue current phase.':savedStatus==='yellow'?'Yellow \u2014 hold current dose, do not reduce.':'Red \u2014 fall back to previous stable dose. Reduce stimulation, hydrate, use the hand brake, tell your confidant.';
-    var stEl=document.getElementById('tc-status');stEl.style.display='block';stEl.className='tpst '+cls;stEl.textContent=msg;
+    var sc=savedStatus==='green'?'tpg':savedStatus==='yellow'?'tpy':'tpr';
+    var sm=savedStatus==='green'?'Green \u2014 stable, continue current phase.':savedStatus==='yellow'?'Yellow \u2014 hold current dose, do not reduce.':'Red \u2014 fall back to previous stable dose. Reduce stimulation, hydrate, use the hand brake, tell your confidant.';
+    var stEl=document.getElementById('tc-status');stEl.style.display='block';stEl.className='tpst '+sc;stEl.textContent=sm;
   }
   updCareRegBanner();updReflCtx();updTaperBadge();
   if([...document.querySelectorAll('.ynbtn.yo,.ynbtn.no')].length>0)doGuardrails();
@@ -849,7 +858,11 @@ function initHistDays(){
 }
 
 function applyGoalBtn(id,val){['y','n'].forEach(function(v){var b=document.getElementById('gb-'+id+'-'+v);if(b)b.classList.remove('gy','gn');});var b=document.getElementById('gb-'+id+'-'+val);if(b){if(val==='y')b.classList.add('gy');else b.classList.add('gn');}}
-function setGoal(id,val){var prev=recall('goal-'+id,null);if(prev===val){persist('goal-'+id,'');applyGoalBtn(id,'');['y','n'].forEach(function(v){var b=document.getElementById('gb-'+id+'-'+v);if(b)b.classList.remove('gy','gn');});return;}persist('goal-'+id,val);applyGoalBtn(id,val);}
+function setGoal(id,val){
+  var prev=recall('goal-'+id,null);
+  if(prev===val){persist('goal-'+id,'');applyGoalBtn(id,'');['y','n'].forEach(function(v){var b=document.getElementById('gb-'+id+'-'+v);if(b)b.classList.remove('gy','gn');});return;}
+  persist('goal-'+id,val);applyGoalBtn(id,val);
+}
 function updCareRegBanner(){document.getElementById('care-reg-banner').classList.toggle('show',Number(recall('reg-level',0))>=7);}
 function updTaperBadge(){var f=recall('prodrome-flagged','false')==='true';document.getElementById('taper-badge').classList.toggle('show',f);document.getElementById('taper-prodrome-banner').classList.toggle('show',f);}
 function updReflCtx(){var m=document.getElementById('intent-main').value||'';var b=document.getElementById('reflect-ctx-block');if(m.trim()){b.style.display='block';document.getElementById('reflect-ctx-text').textContent=m;}else b.style.display='none';}
@@ -914,7 +927,6 @@ function bRunP(){
   function frame(now){
     if(!bR)return;
     var el=Math.min(now-bPS,dMs);var frac=el/dMs;
-    // All phases use smooth cosine — inhale, inhale+, exhale, hold
     var ease=isHold?1:(0.5-0.5*Math.cos(Math.PI*frac));
     var r=sR+(eR-sR)*ease;bIR=r;bApB(r);
     var innerR=sInnerR+(eInnerR-sInnerR)*ease;
@@ -941,13 +953,9 @@ function buildReg(){
   REGI.forEach(function(it){
     var d=document.createElement('div');d.className='ritm'+(it.prod?' prod':'');
     d.innerHTML='<input type="checkbox" id="rr-'+it.id+'"><span>'+it.tx+(it.prod?' <span style="font-size:11px;color:var(--dbo)">(prodrome)</span>':'')+'</span>';
-    d.onclick=function(){
-      var cb=d.querySelector('input');cb.checked=!cb.checked;d.classList.toggle('sel',cb.checked);
-      persist('chk-rr-'+it.id,cb.checked);
-    };
+    d.onclick=function(){var cb=d.querySelector('input');cb.checked=!cb.checked;d.classList.toggle('sel',cb.checked);persist('chk-rr-'+it.id,cb.checked);};
     d.querySelector('input').onclick=function(e){e.stopPropagation();};
     wrap.appendChild(d);
-    // Restore
     var saved=recall('chk-rr-'+it.id,false);
     if(saved){d.querySelector('input').checked=true;d.classList.add('sel');}
   });
@@ -1033,7 +1041,7 @@ function doEffort(){
   if(!ep.length&&!sb.length){show('r-effort','<span class="ok">No patterns flagged right now.</span>');return;}
   reviewState.effort=ep.map(function(r){return r.querySelector('input').dataset.e;}).concat(sb.map(function(r){return r.querySelector('input').dataset.s2;}));
   var em={burst:{n:'Intensity burst active',t:'Build the stop into the next work block before you start it. One hour focused then complete break.',w:"burst-then-crash is your system's default \u2014 it needs structural containment"},phil:{n:'Philosophical drift',t:'Name the next physical action before continuing thinking. What will you do in the next 10 minutes specifically?',w:'meaning-making under pressure feels like progress but functions as avoidance'},spblind:{n:'SP blind effort distortion',t:'Check body signals now. If working 90+ minutes without break, stop.',w:"SP blindness means capacity feels fine until it isn't"},switch:{n:'Task switching to avoid friction',t:'Return to the task you left. Name what made you leave. That friction marks the real work.',w:'task switching produces activity without progress'}};
-  var sm2={depth:{n:'Depth without movement',t:'One concrete thing done imperfectly moves work forward more than extended analysis.',w:'depth is your greatest strength and most available avoidance'},abstr:{n:'Abstraction as avoidance',t:'Name the specific concrete task you are avoiding. Do that first.',w:'abstraction maintains distance from the work'},iso:{n:'Isolation under pressure',t:"Co-regulation is how you get back to steady. One brief contact today.",w:'isolation removes the co-regulation that would actually help'},sov:{n:'Sovereignty as avoidance',t:'Asking for help does not compromise independence.',w:'sovereignty means self-determination, not self-sufficiency'}};
+  var sm2={depth:{n:'Depth without movement',t:'One concrete thing done imperfectly moves work forward more than extended analysis.',w:'depth is your greatest strength and most available avoidance'},abstr:{n:'Abstraction as avoidance',t:'Name the specific concrete task you are avoiding. Do that first.',w:'abstraction maintains distance from the work'},iso:{n:'Isolation under pressure',t:"Co-regulation is how you get back to steady. One brief contact today.",w:'isolation removes the co-regulation that would actually help'},sov:{n:'Sovereignty as avoidance',t:'Asking for help does not compromise independence.',w:'sovereignty means self-determination, not self-sufficiency'},perf:{n:'Over-optimisation / perfection bias',t:'Name what already works well enough. Ship or move on. The next improvement has diminishing returns and you know it.',w:'perfection bias is avoidance in disguise \u2014 it feels like quality but functions as a reason not to finish or release'}};
   var h='';
   ep.forEach(function(r){var k=r.querySelector('input').dataset.e;if(em[k])h+='<div class="ri"><div class="rin">'+em[k].n+'</div><div class="rit">'+em[k].t+'</div><div class="riw">'+em[k].w+'</div></div>';});
   sb.forEach(function(r){var k=r.querySelector('input').dataset.s2;if(sm2[k])h+='<div class="ri"><div class="rin">'+sm2[k].n+'</div><div class="rit">'+sm2[k].t+'</div><div class="riw">'+sm2[k].w+'</div></div>';});
@@ -1043,6 +1051,7 @@ function doEffort(){
 
 function doIntegration(){document.getElementById('mantra').style.display='block';try{var ctx=new(window.AudioContext||window.webkitAudioContext)();var t=ctx.currentTime;for(var i=0;i<3;i++){var o=ctx.createOscillator();var g=ctx.createGain();o.type='sine';o.frequency.setValueAtTime(660,t);g.gain.setValueAtTime(0.0001,t);g.gain.exponentialRampToValueAtTime(0.18,t+0.01);g.gain.exponentialRampToValueAtTime(0.0001,t+1.2);o.connect(g);g.connect(ctx.destination);o.start(t);o.stop(t+1.3);t+=1.1;}}catch(e){}}
 
+if(!NO_TOKEN){setInterval(function(){saveToGist();},3*60*1000);}
 buildReg();initCare();
 </script>
 </body>
