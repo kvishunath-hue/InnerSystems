@@ -104,24 +104,23 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1
 .vln{font-size:13px;font-weight:600;color:var(--text)}
 .vlis{font-size:11px;color:var(--text2);margin-top:3px;line-height:1.4}
 .vlnot{font-size:11px;color:var(--text3);margin-top:4px;line-height:1.4;font-style:italic}
-.vlnotp{font-size:12px;color:var(--text2);line-height:1.7;margin-top:10px;padding:10px 12px;border-radius:var(--r);border:1px solid var(--bdr);background:var(--bg2)}
 .inp{margin-top:10px;padding:10px 12px;border-radius:var(--r);border-left:3px solid var(--ibo);background:var(--ib);font-size:13px;line-height:1.6;color:var(--it)}
 .dsp{margin-top:8px;padding:10px 12px;border-radius:var(--r);border-left:3px solid var(--wbo);background:var(--wb);font-size:13px;line-height:1.6;color:var(--wt)}
-/* Hand brake */
+/* Ground button */
 .hbf{position:fixed;bottom:24px;right:16px;z-index:100;width:54px;height:54px;border-radius:50%;background:var(--text);color:var(--bg);border:none;cursor:pointer;font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.3;-webkit-tap-highlight-color:transparent;box-shadow:0 2px 12px rgba(0,0,0,0.25);font-family:inherit}
 .hbf:active{transform:scale(0.94)}
-.bov{display:none;position:fixed;top:0;left:0;right:0;bottom:0;z-index:200;background:var(--bg);overflow-y:auto;padding:1rem}
-.bov.open{display:block}
+/* Ground overlay */
+.bov{display:none;position:fixed;top:0;left:0;right:0;bottom:0;z-index:200;background:rgba(0,0,0,0.4);overflow-y:auto}
+.bov.open{display:flex;justify-content:center}
+.bov-inner{background:var(--bg);width:100%;max-width:560px;min-height:100vh;padding:1rem;position:relative}
 .bovh{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;padding-top:0.5rem}
 .bovt{font-size:17px;font-weight:600;color:var(--text)}
 .bovc{background:none;border:none;font-size:26px;cursor:pointer;color:var(--text3);line-height:1;padding:0;-webkit-tap-highlight-color:transparent}
-/* Breath/grounding tab switcher */
 .bov-tabs{display:flex;gap:6px;margin-bottom:1rem}
 .bov-tab{flex:1;padding:9px 8px;border-radius:var(--r);border:1px solid var(--bdr2);background:transparent;color:var(--text2);font-size:13px;cursor:pointer;font-family:inherit;-webkit-tap-highlight-color:transparent}
 .bov-tab.on{background:var(--text);color:var(--bg);border-color:var(--text)}
 .bov-pane{display:none}
 .bov-pane.on{display:block}
-/* Breath types */
 .btbs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1rem}
 .btb{flex:1;min-width:110px;padding:9px 8px;border-radius:var(--r);border:1px solid var(--bdr2);background:transparent;color:var(--text2);font-size:12px;cursor:pointer;text-align:center;line-height:1.4;-webkit-tap-highlight-color:transparent;font-family:inherit}
 .btb.on{background:var(--bg2);color:var(--text);font-weight:600}
@@ -145,7 +144,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1
 .bcy{font-size:12px;color:var(--text3);margin-bottom:.7rem;min-height:18px}
 .bcr{display:flex;gap:8px}
 .bct{padding:10px 24px;border-radius:var(--r);border:1px solid var(--bdr2);background:transparent;color:var(--text);font-size:13px;cursor:pointer;-webkit-tap-highlight-color:transparent;font-family:inherit}
-/* Grounding tab */
 .grnd-techs{display:flex;flex-direction:column;gap:8px}
 .grnd-card{background:var(--bg2);border:1px solid var(--bdr);border-radius:var(--rl);padding:1rem}
 .grnd-title{font-size:14px;font-weight:600;color:var(--text);margin-bottom:4px}
@@ -167,9 +165,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1
 .grnd-done-btn{flex:1;padding:11px;border-radius:var(--r);font-size:13px;cursor:pointer;font-family:inherit;border:1px solid var(--bdr2);background:transparent;color:var(--text2);-webkit-tap-highlight-color:transparent}
 .grnd-done-btn.settled{background:var(--sb);color:var(--st);border-color:var(--sbo)}
 .grnd-done-btn.still{background:var(--wb);color:var(--wt);border-color:var(--wbo)}
-.grnd-still-msg{font-size:13px;color:var(--text2);line-height:1.6;padding:10px 12px;border-radius:var(--r);border-left:3px solid var(--wbo);background:var(--wb);color:var(--wt);margin-top:8px;display:none}
+.grnd-still-msg{font-size:13px;line-height:1.6;padding:10px 12px;border-radius:var(--r);border-left:3px solid var(--wbo);background:var(--wb);color:var(--wt);margin-top:8px;display:none}
 .grnd-still-msg.show{display:block}
-/* Other cards */
 .ritms{display:flex;flex-direction:column;gap:4px;margin-bottom:12px}
 .ritm{display:flex;align-items:flex-start;gap:10px;padding:9px 10px;border-radius:var(--r);border:1px solid var(--bdr);cursor:pointer;font-size:13px;line-height:1.5;-webkit-tap-highlight-color:transparent;user-select:none;color:var(--text)}
 .ritm.sel{background:var(--bg2);border-color:var(--bdr2)}
@@ -253,7 +250,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1
 .hv-no{background:var(--db);color:var(--dt)}
 .hv-item{font-size:12px;color:var(--text2);padding:2px 0}
 .hv-status{display:inline-block;font-size:12px;font-weight:600;padding:4px 12px;border-radius:20px;margin-top:6px}
-/* Game check result blocks */
 .game-block{margin-top:10px;padding:10px 12px;border-radius:var(--r);background:var(--bg2);border:1px solid var(--bdr)}
 .game-block+.game-block{margin-top:8px}
 .game-name{font-size:13px;font-weight:600;color:var(--text);margin-bottom:6px}
@@ -270,35 +266,35 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1
   <button class="tbtn" onclick="switchTab('taper',this)">Taper<span class="tbadge" id="taper-badge"></span></button>
 </div>
 
-<button class="hbf" onclick="openBreath()">Hand<br>brake</button>
+<button class="hbf" onclick="openBreath()">Ground</button>
 
-<!-- HAND BRAKE OVERLAY -->
+<!-- GROUND OVERLAY -->
 <div class="bov" id="boverlay">
-  <div class="bovh"><span class="bovt">Hand brake</span><button class="bovc" onclick="closeBreath()">&#215;</button></div>
-  <div class="bov-tabs">
-    <button class="bov-tab on" onclick="switchBovTab('breath',this)">Breathing</button>
-    <button class="bov-tab" onclick="switchBovTab('ground',this)">If breathing isn&#39;t working</button>
-  </div>
-  <!-- Breathing pane -->
-  <div class="bov-pane on" id="bov-breath">
-    <div class="btbs" id="btabs"></div>
-    <div class="arena">
-      <div class="breath-timer" id="breath-timer">00:00</div>
-      <div class="rw"><canvas id="bcanvas" width="240" height="240"></canvas>
-        <button class="cbtn" id="center-btn" onclick="toggleRun()">
-          <span class="cph" id="cp-phase">Tap to start</span>
-          <span class="cpc" id="cp-count"></span>
-        </button>
-      </div>
-      <div class="prow" id="phases-row"></div>
-      <div class="bdw"><div class="bwh" id="bwhen"></div><div class="bde" id="bdesc"></div></div>
-      <div class="bcy" id="bcycles"></div>
-      <div class="bcr"><button class="bct" onclick="stopBreath()">Stop</button></div>
+  <div class="bov-inner">
+    <div class="bovh"><span class="bovt">Ground</span><button class="bovc" onclick="closeBreath()">&#215;</button></div>
+    <div class="bov-tabs">
+      <button class="bov-tab on" onclick="switchBovTab('breath',this)">Breathing</button>
+      <button class="bov-tab" onclick="switchBovTab('ground',this)">If breathing isn&#39;t working</button>
     </div>
-  </div>
-  <!-- Grounding pane -->
-  <div class="bov-pane" id="bov-ground">
-    <div class="grnd-techs" id="grnd-techs"></div>
+    <div class="bov-pane on" id="bov-breath">
+      <div class="btbs" id="btabs"></div>
+      <div class="arena">
+        <div class="breath-timer" id="breath-timer">00:00</div>
+        <div class="rw"><canvas id="bcanvas" width="240" height="240"></canvas>
+          <button class="cbtn" id="center-btn" onclick="toggleRun()">
+            <span class="cph" id="cp-phase">Tap to start</span>
+            <span class="cpc" id="cp-count"></span>
+          </button>
+        </div>
+        <div class="prow" id="phases-row"></div>
+        <div class="bdw"><div class="bwh" id="bwhen"></div><div class="bde" id="bdesc"></div></div>
+        <div class="bcy" id="bcycles"></div>
+        <div class="bcr"><button class="bct" onclick="stopBreath()">Stop</button></div>
+      </div>
+    </div>
+    <div class="bov-pane" id="bov-ground">
+      <div class="grnd-techs" id="grnd-techs"></div>
+    </div>
   </div>
 </div>
 
@@ -307,7 +303,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1
   <div class="hdr"><h1>Daily care</h1><div class="tag">Structure is the bridge back.</div></div>
   <div class="dcd" id="dc-date"></div>
   <div class="dcdb" id="dc-day-block"></div>
-  <div class="ctxb" id="care-reg-banner">Regulation level is high today. Use the hand brake before goal work.</div>
+  <div class="ctxb" id="care-reg-banner">Regulation level is high today. Use Ground before goal work.</div>
   <div class="prayer-card">
     <div class="prayer-text">
       <strong>Prakrti</strong>
@@ -366,10 +362,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1
   <div class="hdr">
     <h1>Inner systems review</h1>
     <div class="tag">Purpose, not performance.</div>
-    <div class="ter"><span class="tp n">4w5</span><span class="tp n">SX / SO</span><span class="tp n">SP blind</span><span class="tp">INFJ</span><span class="tp">integrates &#8594; 1</span><span class="tp">disintegrates &#8594; 2</span></div>
+    <div class="ter"><span class="tp n">5w4</span><span class="tp n">SX / SO</span><span class="tp n">SP blind</span><span class="tp">INTJ</span><span class="tp">integrates &#8594; 8</span><span class="tp">disintegrates &#8594; 7</span></div>
   </div>
 
-  <!-- 01 Body signals -->
   <div class="card">
     <div class="ch"><span class="sn">01</span><span class="st">Body signals</span></div>
     <p class="si">SP blind &#8212; you will systematically miss these until they are loud. Check deliberately before deciding your state is fine.</p>
@@ -388,7 +383,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1
     <div class="res" id="r-body"></div>
   </div>
 
-  <!-- 02 Regulation -->
   <div class="card">
     <div class="ch"><span class="sn">02</span><span class="st">Regulation level</span></div>
     <p class="si">Select everything that is present right now. More than one is normal. This tells you how much to trust your own analysis today.</p>
@@ -397,7 +391,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1
     <div class="res" id="r-reg"></div>
   </div>
 
-  <!-- 03 Noise -->
   <div class="card">
     <div class="ch"><span class="sn">03</span><span class="st">Noise contamination check</span></div>
     <p class="si">When someone questions your judgement, vision, or competence &#8212; check this before analysing anything else.</p>
@@ -410,13 +403,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1
       <div class="chkrow" onclick="togChk(this,'rn-seen')"><input type="checkbox" id="rn-seen" data-n="seen"><span>I feel unseen &#8212; they are responding to who they think I am, not who I actually am</span></div>
       <div class="chkrow" onclick="togChk(this,'rn-rumi')"><input type="checkbox" id="rn-rumi" data-n="rumi"><span>My mind is replaying what they said and building a case</span></div>
       <div class="chkrow" onclick="togChk(this,'rn-truth')"><input type="checkbox" id="rn-truth" data-n="truth"><span>What actually happened is being denied or reframed by someone who was present for it</span></div>
-      <div class="chkrow" onclick="togChk(this,'rn-attrib')"><input type="checkbox" id="rn-attrib" data-n="attrib"><span>I notice I am reading this person's behaviour as a reflection of their character rather than their situation</span></div>
+      <div class="chkrow" onclick="togChk(this,'rn-attrib')"><input type="checkbox" id="rn-attrib" data-n="attrib"><span>I notice I am reading this person&#39;s behaviour as a reflection of their character rather than their situation</span></div>
     </div>
     <button class="btn" onclick="doNoise()">Notice</button>
     <div class="res" id="r-noise"></div>
   </div>
 
-  <!-- 04 Distortion -->
   <div class="card">
     <div class="ch"><span class="sn">04</span><span class="st">Distortion check</span></div>
     <p class="si">Check what is active in your thinking right now.</p>
@@ -450,7 +442,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1
     <div class="res" id="r-distort"></div>
   </div>
 
-  <!-- 05 Interaction scan -->
   <div class="card">
     <div class="ch"><span class="sn">05</span><span class="st">Interaction scan</span></div>
     <p class="si">Check what is present in a recent or ongoing interaction.</p>
@@ -482,7 +473,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1
     <div class="res" id="r-scan"></div>
   </div>
 
-  <!-- 06 Game check -->
   <div class="card">
     <div class="ch"><span class="sn">06</span><span class="st">Game check</span></div>
     <p class="si">Check whether a game pattern is active in this interaction. These are unconscious repetitive sequences &#8212; not malice, but structure.</p>
@@ -498,7 +488,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1
     <div class="res" id="r-game"></div>
   </div>
 
-  <!-- 07 Effort patterns -->
   <div class="card">
     <div class="ch"><span class="sn">07</span><span class="st">Effort patterns + structural bias</span></div>
     <p class="si">Check what is active today. These are not failures &#8212; they are your system&#39;s default configuration under load.</p>
@@ -526,41 +515,40 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1
     <div class="res" id="r-effort"></div>
   </div>
 
-  <!-- 08 Integration -->
   <div class="card">
-    <div class="ch"><span class="sn">08</span><span class="st">Integration &#8212; moving toward 1</span></div>
-    <div class="inp">Moving toward 1: principled action regardless of feeling. Discipline as self-respect. Doing what is right without needing it to feel right first.</div>
-    <div class="dsp">Watch for disintegration toward 2: over-giving to create connection, sudden helpfulness that wasn&#39;t asked for &#8212; followed by resentment when it isn&#39;t returned. Also watch for movement toward 1&#39;s shadow: a tendency to correct, judge, or moralise others &#8212; turning discernment into a standard others must meet.</div>
-    <div class="afs">Discipline</div>
+    <div class="ch"><span class="sn">08</span><span class="st">Integration &#8212; moving toward 8</span></div>
+    <div class="inp">Moving toward 8: stepping out of the observer position into direct, embodied engagement. Using depth and analysis as a foundation for action rather than a reason to keep watching. Presence without withdrawal.</div>
+    <div class="dsp">Watch for disintegration toward 7: scattered attention, jumping between ideas or projects, seeking novelty or stimulation to avoid the discomfort of staying with what is hard. Also watch for the 4 wing under load: over-giving to create connection, followed by resentment when it is not returned &#8212; this is the wing speaking, not the core.</div>
+    <div class="afs">Execution</div>
     <div class="aff">
-      <div class="afi" onclick="togAff(this)"><input type="checkbox"><span>I act on my values today regardless of how I feel.</span></div>
-      <div class="afi" onclick="togAff(this)"><input type="checkbox"><span>I do not wait for the right emotional state to begin.</span></div>
-      <div class="afi" onclick="togAff(this)"><input type="checkbox"><span>Structure is not a cage &#8212; it is how I protect what matters.</span></div>
+      <div class="afi" onclick="togAff(this)"><input type="checkbox"><span>I act from what I know. I do not wait until I know more.</span></div>
+      <div class="afi" onclick="togAff(this)"><input type="checkbox"><span>Analysis is the preparation. This is the moment of contact.</span></div>
+      <div class="afi" onclick="togAff(this)"><input type="checkbox"><span>I do not use depth as a reason to stay on the sideline.</span></div>
       <div class="afi" onclick="togAff(this)"><input type="checkbox"><span>There is room to contribute in ways that respect my regulation.</span></div>
       <div class="afi" onclick="togAff(this)"><input type="checkbox"><span>There is room to notice effort without measuring worth.</span></div>
     </div>
     <div class="afs">Groundedness</div>
     <div class="aff">
-      <div class="afi" onclick="togAff(this)"><input type="checkbox"><span>I return to facts when feeling pulls me into story.</span></div>
-      <div class="afi" onclick="togAff(this)"><input type="checkbox"><span>I do not need to be seen to do what is right.</span></div>
-      <div class="afi" onclick="togAff(this)"><input type="checkbox"><span>My work speaks without my explanation.</span></div>
+      <div class="afi" onclick="togAff(this)"><input type="checkbox"><span>What is in front of me is real. I engage with that first.</span></div>
+      <div class="afi" onclick="togAff(this)"><input type="checkbox"><span>My capacity is sufficient for the next step. Not all steps &#8212; the next one.</span></div>
+      <div class="afi" onclick="togAff(this)"><input type="checkbox"><span>I do not need certainty. I need direction. I have direction.</span></div>
       <div class="afi" onclick="togAff(this)"><input type="checkbox"><span>There is room to allow not knowing without forcing clarity.</span></div>
       <div class="afi" onclick="togAff(this)"><input type="checkbox"><span>There is room to accept the limits of time, energy, or understanding.</span></div>
     </div>
     <div class="afs">Integrity</div>
     <div class="aff">
-      <div class="afi" onclick="togAff(this)"><input type="checkbox"><span>I say what I mean and mean what I say &#8212; once, clearly.</span></div>
-      <div class="afi" onclick="togAff(this)"><input type="checkbox"><span>I do not over-give to create connection. I give what is mine to give.</span></div>
+      <div class="afi" onclick="togAff(this)"><input type="checkbox"><span>I say what I mean. Once. Clearly. Then I stop.</span></div>
       <div class="afi" onclick="togAff(this)"><input type="checkbox"><span>I correct without drama and without self-punishment.</span></div>
+      <div class="afi" onclick="togAff(this)"><input type="checkbox"><span>What I build is real whether or not it is witnessed.</span></div>
       <div class="afi" onclick="togAff(this)"><input type="checkbox"><span>There is room to loosen the need to be right or complete.</span></div>
       <div class="afi" onclick="togAff(this)"><input type="checkbox"><span>There is room to let others be imperfect without fixing them.</span></div>
       <div class="afi" onclick="togAff(this)"><input type="checkbox"><span>There is room to offer help without expectation of return.</span></div>
     </div>
     <div class="afs">Purpose over recognition</div>
     <div class="aff">
-      <div class="afi" onclick="togAff(this)"><input type="checkbox"><span>I build this for the contribution, not the applause.</span></div>
-      <div class="afi" onclick="togAff(this)"><input type="checkbox"><span>Being accurately witnessed matters &#8212; but it is not the prerequisite for action.</span></div>
+      <div class="afi" onclick="togAff(this)"><input type="checkbox"><span>I build for the contribution. The applause is irrelevant.</span></div>
       <div class="afi" onclick="togAff(this)"><input type="checkbox"><span>My vision does not require their validation to be real.</span></div>
+      <div class="afi" onclick="togAff(this)"><input type="checkbox"><span>Being accurately witnessed matters. It is not the prerequisite for action.</span></div>
       <div class="afi" onclick="togAff(this)"><input type="checkbox"><span>There is room for presence or attention to be enough.</span></div>
     </div>
     <div class="afs">Openness</div>
@@ -572,14 +560,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1
     <div class="mnt" id="mantra">&#8220;Awareness is the greatest agent for change&#8221;</div>
   </div>
 
-  <!-- Identity reference -->
   <div class="card">
     <div class="ch"><span class="sn"></span><span class="st">Identity reference</span></div>
     <div class="idg">
-      <div class="idc"><div class="idk">Type</div><div class="idv">4w5 &#183; INFJ</div></div>
+      <div class="idc"><div class="idk">Type</div><div class="idv">5w4 &#183; INTJ</div></div>
       <div class="idc"><div class="idk">Stacking</div><div class="idv">SX / SO &#183; SP blind</div></div>
-      <div class="idc"><div class="idk">Integration</div><div class="idv">toward 1 &#8212; discipline</div></div>
-      <div class="idc"><div class="idk">Disintegration</div><div class="idv">toward 2 &#8212; over-giving</div></div>
+      <div class="idc"><div class="idk">Integration</div><div class="idv">toward 8 &#8212; decisive engagement</div></div>
+      <div class="idc"><div class="idk">Disintegration</div><div class="idv">toward 7 &#8212; scattered / stimulation</div></div>
       <div class="idc"><div class="idk">Core wound</div><div class="idv">Betrayal, manipulation, truth denied</div></div>
       <div class="idc"><div class="idk">Risk pattern</div><div class="idv">Noise &#8594; wound &#8594; spiral</div></div>
     </div>
@@ -605,9 +592,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1
         <div class="vlis">Genuine care that includes truth and discernment</div>
         <div class="vlnot">Not self-sacrifice, rescuing, emotional merging, or carrying others&#39; regulation</div>
       </div>
-    </div>
-    <div class="vlnotp">
-      What these values are not: Clarity is not over-analysis, certainty seeking, or eliminating ambiguity at all costs. Freedom is not lack of structure, avoidance of responsibility, or infinite optionality. Authenticity is not emotional dumping, impulsive expression, or performing inner states outwardly. Compassion is not self-sacrifice, rescuing, emotional merging, or carrying others&#39; regulation.
     </div>
   </div>
 
@@ -639,7 +623,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1
       <div>Insight feeling intact is not the same as insight being intact.</div>
       <div>Every previous episode was preceded by medication reduction + philosophical focus + increase in prohibited substances.</div>
       <div>Fast thoughts + elevated mood = yellow or red, not inspiration.</div>
-      <div>If red: fall back to previous stable dose. Reduce stimulation, hydrate, use the hand brake, tell your confidant.</div>
+      <div>If red: fall back to previous stable dose. Reduce stimulation, hydrate, use Ground, tell your confidant.</div>
     </div>
   </div>
   <div class="hist-section">
@@ -710,10 +694,19 @@ function togChk(row,id){
 
 // ── GIST SYNC ──
 function buildSaveData(){
-  var data={date:TODAY,care:{intentions:{main:recall('intent-main',''),value:recall('intent-value',''),protect:recall('intent-protect','')},goals:{},guardrails:{},reflection:{what:recall('reflect-what',''),good:recall('reflect-good',''),next:recall('reflect-next','')}},review:reviewState,taper:{s1:recall('tc-s1',false),s2:recall('tc-s2',false),ins:recall('tc-ins',false),urg:recall('tc-urg',false),sub:recall('tc-sub',false),status:recall('tc-status-val','')}};
+  var data={
+    date:TODAY,
+    savedAt:Date.now(),
+    care:{
+      intentions:{main:recall('intent-main',''),value:recall('intent-value',''),protect:recall('intent-protect','')},
+      goals:{},guardrails:{},
+      reflection:{what:recall('reflect-what',''),good:recall('reflect-good',''),next:recall('reflect-next','')}
+    },
+    review:reviewState,
+    taper:{s1:recall('tc-s1',false),s2:recall('tc-s2',false),ins:recall('tc-ins',false),urg:recall('tc-urg',false),sub:recall('tc-sub',false),status:recall('tc-status-val','')}
+  };
   ['regulation','fitness','admin','novisits','land','tribe','partner','family'].forEach(function(g){data.care.goals[g]=recall('goal-'+g,'');});
   ['s1a','s1b','s2a','s2b','s3a','s3b','p1a','p1b','p2a','p2b','p3a','p3b','t1a','t1b','t2a','t2b','t3a','t3b','t4a','t4b'].forEach(function(y){data.care.guardrails[y]=recall(y,'');});
-  // Save all review checkbox states
   var chks={};
   REVIEW_CHK_IDS.forEach(function(id){chks[id]=recall('chk-'+id,false);});
   data.chks=chks;
@@ -733,10 +726,7 @@ async function saveToGist(){
 }
 
 async function loadTodayFromGist(){
-  // Try localStorage first — if found, use it (session already started on this device)
-  var local=loadLocalDay(TODAY);
-  if(local){restoreFromData(local);return;}
-  // Otherwise fetch from Gist
+  if(NO_TOKEN)return;
   var tok=getToken();if(!GIST_ID||!tok)return;
   try{
     var r=await fetch('https://api.github.com/gists/'+GIST_ID,{headers:{'Authorization':'token '+tok}});
@@ -744,16 +734,21 @@ async function loadTodayFromGist(){
     var fname=TODAY+'.json';
     if(g.files&&g.files[fname]){
       var data=JSON.parse(g.files[fname].content);
-      saveLocalDay(TODAY,data);
-      restoreFromData(data);
+      var local=loadLocalDay(TODAY);
+      // Gist wins unless local is explicitly newer
+      if(!local||!local.savedAt||!data.savedAt||data.savedAt>=local.savedAt){
+        saveLocalDay(TODAY,data);
+        restoreFromData(data);
+      }
     }
-    // Rebuild history index from all files in Gist
+    // Rebuild history index from Gist file list
     if(g.files){
       var idx=[];
-      Object.keys(g.files).forEach(function(fn){if(fn.endsWith('.json')){var d=fn.replace('.json','');if(/^\d{4}-\d{2}-\d{2}$/.test(d))idx.push(d);}});
+      Object.keys(g.files).forEach(function(fn){
+        if(fn.endsWith('.json')){var d=fn.replace('.json','');if(/^\d{4}-\d{2}-\d{2}$/.test(d))idx.push(d);}
+      });
       idx.sort(function(a,b){return b.localeCompare(a);});
-      idx=idx.slice(0,30);
-      localStorage.setItem('vk_hist_index',JSON.stringify(idx));
+      localStorage.setItem('vk_hist_index',JSON.stringify(idx.slice(0,30)));
     }
   }catch(e){console.log('Gist load error',e);}
 }
@@ -762,16 +757,43 @@ function restoreFromData(data){
   if(!data)return;
   var c=data.care||{};
   var i=c.intentions||{};
-  ['main','value','protect'].forEach(function(k){var el=document.getElementById('intent-'+k);if(el&&i[k])el.value=i[k];persist('intent-'+k,i[k]||'');});
+  ['main','value','protect'].forEach(function(k){
+    var el=document.getElementById('intent-'+k);
+    if(el&&i[k]!==undefined){el.value=i[k];persist('intent-'+k,i[k]);}
+  });
   var rf=c.reflection||{};
-  ['what','good','next'].forEach(function(k){var el=document.getElementById('reflect-'+k);if(el&&rf[k])el.value=rf[k];persist('reflect-'+k,rf[k]||'');});
-  if(c.goals){Object.entries(c.goals).forEach(function(e){persist('goal-'+e[0],e[1]);});}
-  if(c.guardrails){Object.entries(c.guardrails).forEach(function(e){persist(e[0],e[1]);});}
+  ['what','good','next'].forEach(function(k){
+    var el=document.getElementById('reflect-'+k);
+    if(el&&rf[k]!==undefined){el.value=rf[k];persist('reflect-'+k,rf[k]);}
+  });
+  if(c.goals){Object.entries(c.goals).forEach(function(e){persist('goal-'+e[0],e[1]);applyGoalBtn(e[0],e[1]);});}
+  if(c.guardrails){
+    Object.entries(c.guardrails).forEach(function(e){
+      persist(e[0],e[1]);
+      var btn=document.getElementById(e[0]);
+      if(btn){btn.classList.remove('yo','no');if(e[1]==='yo')btn.classList.add('yo');else if(e[1]==='no')btn.classList.add('no');}
+    });
+  }
   var t=data.taper||{};
-  ['s1','s2','ins','urg','sub'].forEach(function(k){persist('tc-'+k,t[k]||false);});
-  if(t.status)persist('tc-status-val',t.status);
-  if(data.chks){Object.entries(data.chks).forEach(function(e){persist('chk-'+e[0],e[1]);});}
+  ['s1','s2','ins','urg','sub'].forEach(function(k){
+    persist('tc-'+k,t[k]||false);
+    var el=document.getElementById('tc-'+k);if(el)el.checked=t[k]||false;
+  });
+  if(t.status){
+    persist('tc-status-val',t.status);
+    var sc=t.status==='green'?'tpg':t.status==='yellow'?'tpy':'tpr';
+    var sm=t.status==='green'?'Green \u2014 stable, continue current phase.':t.status==='yellow'?'Yellow \u2014 hold current dose, do not reduce.':'Red \u2014 fall back to previous stable dose.';
+    var stEl=document.getElementById('tc-status');if(stEl){stEl.style.display='block';stEl.className='tpst '+sc;stEl.textContent=sm;}
+  }
+  if(data.chks){
+    Object.entries(data.chks).forEach(function(e){
+      persist('chk-'+e[0],e[1]);
+      var el=document.getElementById(e[0]);if(el)el.checked=e[1];
+    });
+  }
   if(data.review)reviewState=data.review;
+  updCareRegBanner();updReflCtx();updTaperBadge();
+  if([...document.querySelectorAll('.ynbtn.yo,.ynbtn.no')].length>0)doGuardrails();
 }
 
 function updateHistIndex(date){
@@ -821,9 +843,20 @@ async function loadHistDay(date,prefix,daysEl,dayEl){
   if(prefix==='hist-care'){
     var c=data.care||{};var i=c.intentions||{};
     if(i.main||i.value||i.protect){h+='<div class="hv-head">Morning intention</div>';if(i.main)h+='<div class="hv-val">'+escH(i.main)+'</div>';if(i.value)h+='<div class="hv-val">'+escH(i.value)+'</div>';if(i.protect)h+='<div class="hv-val">'+escH(i.protect)+'</div>';}
-    if(c.goals){h+='<div class="hv-head">Goals</div>';var glabels={regulation:'Regulation',fitness:'Physical fitness',admin:'Admin',novisits:'NoVisits',land:'Land',tribe:'Finding my tribe',partner:'Finding a partner',family:'Family'};var hasGoal=false;Object.entries(c.goals).forEach(function(e){if(e[1]==='y'){h+='<span class="hv-yn hv-yes">'+glabels[e[0]]+'</span>';hasGoal=true;}else if(e[1]==='n'){h+='<span class="hv-yn hv-no">'+glabels[e[0]]+'</span>';hasGoal=true;}});if(!hasGoal)h+='<div style="font-size:12px;color:var(--text3)">No goals recorded.</div>';}
-    if(c.guardrails){h+='<div class="hv-head" style="margin-top:8px">Guardrails</div>';var gmap={s1a:'No intoxicants',s2a:'No caffeine',s3a:'No nicotine',p1a:'No unusual meaning',p2a:'No urgency to communicate',p3a:'Insight check',t1a:'Following routines',t2a:'Stability over insight',t3a:'No escalation',t4a:'Corrected drift'};Object.entries(gmap).forEach(function(e){var yv=c.guardrails[e[0]];var nv=c.guardrails[e[0].replace('a','b')];if(yv==='yo')h+='<span class="hv-yn hv-yes">'+e[1]+'</span>';else if(nv==='no')h+='<span class="hv-yn hv-no">'+e[1]+'</span>';});}
-    var rf=c.reflection||{};if(rf.what||rf.good||rf.next){h+='<div class="hv-head">Evening reflection</div>';if(rf.what)h+='<div class="hv-val">'+escH(rf.what)+'</div>';if(rf.good)h+='<div class="hv-val">'+escH(rf.good)+'</div>';if(rf.next)h+='<div class="hv-val">'+escH(rf.next)+'</div>';}
+    if(c.goals){
+      h+='<div class="hv-head">Goals</div>';
+      var glabels={regulation:'Regulation',fitness:'Physical fitness',admin:'Admin',novisits:'NoVisits',land:'Land',tribe:'Finding my tribe',partner:'Finding a partner',family:'Family'};
+      var hasGoal=false;
+      Object.entries(c.goals).forEach(function(e){if(e[1]==='y'){h+='<span class="hv-yn hv-yes">'+glabels[e[0]]+'</span>';hasGoal=true;}else if(e[1]==='n'){h+='<span class="hv-yn hv-no">'+glabels[e[0]]+'</span>';hasGoal=true;}});
+      if(!hasGoal)h+='<div style="font-size:12px;color:var(--text3)">No goals recorded.</div>';
+    }
+    if(c.guardrails){
+      h+='<div class="hv-head" style="margin-top:8px">Guardrails</div>';
+      var gmap={s1a:'No intoxicants',s2a:'No caffeine',s3a:'No nicotine',p1a:'No unusual meaning',p2a:'No urgency to communicate',p3a:'Insight check',t1a:'Following routines',t2a:'Stability over insight',t3a:'No escalation',t4a:'Corrected drift'};
+      Object.entries(gmap).forEach(function(e){var yv=c.guardrails[e[0]];var nv=c.guardrails[e[0].replace('a','b')];if(yv==='yo')h+='<span class="hv-yn hv-yes">'+e[1]+'</span>';else if(nv==='no')h+='<span class="hv-yn hv-no">'+e[1]+'</span>';});
+    }
+    var rf=c.reflection||{};
+    if(rf.what||rf.good||rf.next){h+='<div class="hv-head">Evening reflection</div>';if(rf.what)h+='<div class="hv-val">'+escH(rf.what)+'</div>';if(rf.good)h+='<div class="hv-val">'+escH(rf.good)+'</div>';if(rf.next)h+='<div class="hv-val">'+escH(rf.next)+'</div>';}
   }
   else if(prefix==='hist-review'){
     var rv=data.review||{};
@@ -875,26 +908,26 @@ function yn(onId,offId){
 
 function doGuardrails(){
   var checks=[
-    {yes:'s1a',no:'s1b',sec:'Intoxicants',tx:'No intoxicants today',adv:'This is a non-negotiable boundary. One use restarts the cycle. Name this moment. Use the hand brake now. Tell your confidant today.'},
+    {yes:'s1a',no:'s1b',sec:'Intoxicants',tx:'No intoxicants today',adv:'This is a non-negotiable boundary. One use restarts the cycle. Name this moment. Use Ground now. Tell your confidant today.'},
     {yes:'s2a',no:'s2b',sec:'Intoxicants',tx:'No caffeine today',adv:'Caffeine adds load on a high-gain nervous system. Note it. Reduce tomorrow.'},
     {yes:'s3a',no:'s3b',sec:'Intoxicants',tx:'No nicotine today',adv:'Nicotine is load in itself and a step toward cannabis in your pattern. Note it. Do not take the next step. Reduce tomorrow.'},
-    {yes:'p1a',no:'p1b',sec:'Prodrome',tx:'No unusual meaning or significance',adv:'Name this signal. Write it down. Do not act on any impulse connected to it for 24 hours. Reduce stimulation, hydrate, use the hand brake, tell your confidant.'},
-    {yes:'p2a',no:'p2b',sec:'Prodrome',tx:'No urgency to communicate',adv:'This urgency is a signal, not a truth. Write down what you want to say. Read it again tomorrow. Use the hand brake.'},
+    {yes:'p1a',no:'p1b',sec:'Prodrome',tx:'No unusual meaning or significance',adv:'Name this signal. Write it down. Do not act on any impulse connected to it for 24 hours. Reduce stimulation, hydrate, use Ground, tell your confidant.'},
+    {yes:'p2a',no:'p2b',sec:'Prodrome',tx:'No urgency to communicate',adv:'This urgency is a signal, not a truth. Write down what you want to say. Read it again tomorrow. Use Ground.'},
     {yes:'p3a',no:'p3b',sec:'Prodrome',tx:'Insight check acknowledged',adv:'If something feels different, trust that. Slow down. Do not make decisions today.'},
     {yes:'t1a',no:'t1b',sec:'Structure',tx:'Following routines today',adv:'Pick the smallest possible routine item and do just that. One item. Structure rebuilds from the smallest unit.'},
     {yes:'t2a',no:'t2b',sec:'Structure',tx:'Choosing stability over insight or pleasure',adv:'The pull toward insight or pleasure is real and it is also a pattern. Stability today is the more important choice.'},
-    {yes:'t3a',no:'t3b',sec:'Structure',tx:'No escalation or urgency in thinking',adv:'Escalation is an early signal. Slow everything down. No new communications or decisions today. Use the hand brake.'},
+    {yes:'t3a',no:'t3b',sec:'Structure',tx:'No escalation or urgency in thinking',adv:'Escalation is an early signal. Slow everything down. No new communications or decisions today. Use Ground.'},
     {yes:'t4a',no:'t4b',sec:'Structure',tx:'Corrected a drift today',adv:'Name the drift specifically. What was it? Name what you will do differently in the next hour, not tomorrow.'},
   ];
   var nos=checks.filter(function(c){return document.getElementById(c.no)&&document.getElementById(c.no).classList.contains('no');});
   var anyAns=checks.some(function(c){return(document.getElementById(c.yes)&&document.getElementById(c.yes).classList.contains('yo'))||(document.getElementById(c.no)&&document.getElementById(c.no).classList.contains('no'));});
   if(!anyAns){document.getElementById('r-guard').classList.remove('show');return;}
-  if(nos.some(function(c){return c.yes==='s1a';})){show('r-guard','<div class="al ald"><strong>Intoxicant use reported.</strong> This is a high-risk moment. Name it. Do not minimise it. Use the hand brake now. Tell your confidant today.</div>');return;}
+  if(nos.some(function(c){return c.yes==='s1a';})){show('r-guard','<div class="al ald"><strong>Intoxicant use reported.</strong> This is a high-risk moment. Name it. Do not minimise it. Use Ground now. Tell your confidant today.</div>');return;}
   var pn=nos.filter(function(c){return['p1a','p2a','p3a'].includes(c.yes);});
   persist('prodrome-flagged',String(pn.length>0));updTaperBadge();
   if(nos.length===0){show('r-guard','<div class="al alok">All guardrails holding today.</div>');return;}
   var h='';
-  if(pn.length>=2)h+='<div class="al ald"><strong>Multiple prodrome signals today.</strong> Reduce stimulation. Hydrate. Use the hand brake. Tell your confidant. No decisions today.</div>';
+  if(pn.length>=2)h+='<div class="al ald"><strong>Multiple prodrome signals today.</strong> Reduce stimulation. Hydrate. Use Ground. Tell your confidant. No decisions today.</div>';
   else if(pn.length===1)h+='<div class="al alw"><strong>One prodrome signal present.</strong> Name it. Write it down. Do not act on it for 24 hours.</div>';
   nos.forEach(function(c){h+='<div class="ri"><div class="rin">'+c.sec+' \u2014 '+c.tx+'</div><div class="rit">'+c.adv+'</div></div>';});
   show('r-guard',h);
@@ -907,7 +940,7 @@ function runTaper(){
   var cls,msg,val;
   if(count>=4){cls='tpg';msg='Green \u2014 stable, continue current phase.';val='green';}
   else if(count>=2){cls='tpy';msg='Yellow \u2014 hold current dose, do not reduce.';val='yellow';}
-  else{cls='tpr';msg='Red \u2014 fall back to previous stable dose. Reduce stimulation, hydrate, use the hand brake, tell your confidant.';val='red';}
+  else{cls='tpr';msg='Red \u2014 fall back to previous stable dose. Reduce stimulation, hydrate, use Ground, tell your confidant.';val='red';}
   var el=document.getElementById('tc-status');el.style.display='block';el.className='tpst '+cls;el.textContent=msg;
   persist('tc-status-val',val);
 }
@@ -959,8 +992,21 @@ function initCare(){
   ['s1a','s1b','s2a','s2b','s3a','s3b','p1a','p1b','p2a','p2b','p3a','p3b','t1a','t1b','t2a','t2b','t3a','t3b','t4a','t4b'].forEach(function(id){var v=recall(id,'');var btn=document.getElementById(id);if(!btn)return;if(v==='yo')btn.classList.add('yo');else if(v==='no')btn.classList.add('no');});
   ['tc-s1','tc-s2','tc-ins','tc-urg','tc-sub'].forEach(function(id){var el=document.getElementById(id);if(el)el.checked=recall(id,false);});
   REVIEW_CHK_IDS.forEach(function(id){var el=document.getElementById(id);if(el)el.checked=recall('chk-'+id,false);});
+  // Also restore reg items
+  REGI.forEach(function(it){
+    var el=document.getElementById('rr-'+it.id);
+    if(el){
+      var saved=recall('chk-rr-'+it.id,false);
+      el.checked=saved;
+      var row=el.closest('.ritm');if(row)row.classList.toggle('sel',saved);
+    }
+  });
   var savedStatus=recall('tc-status-val','');
-  if(savedStatus){var sc=savedStatus==='green'?'tpg':savedStatus==='yellow'?'tpy':'tpr';var sm=savedStatus==='green'?'Green \u2014 stable, continue current phase.':savedStatus==='yellow'?'Yellow \u2014 hold current dose, do not reduce.':'Red \u2014 fall back to previous stable dose.';var stEl=document.getElementById('tc-status');stEl.style.display='block';stEl.className='tpst '+sc;stEl.textContent=sm;}
+  if(savedStatus){
+    var sc=savedStatus==='green'?'tpg':savedStatus==='yellow'?'tpy':'tpr';
+    var sm=savedStatus==='green'?'Green \u2014 stable, continue current phase.':savedStatus==='yellow'?'Yellow \u2014 hold current dose, do not reduce.':'Red \u2014 fall back to previous stable dose.';
+    var stEl=document.getElementById('tc-status');stEl.style.display='block';stEl.className='tpst '+sc;stEl.textContent=sm;
+  }
   updCareRegBanner();updReflCtx();updTaperBadge();
   if([...document.querySelectorAll('.ynbtn.yo,.ynbtn.no')].length>0)doGuardrails();
   if(!NO_TOKEN){updateHistIndex(TODAY);initHistDays();}
@@ -1012,26 +1058,43 @@ function bIsH(p){return p.toLowerCase().startsWith('hold');}
 
 function initB(){
   var tabs=document.getElementById('btabs');tabs.innerHTML='';
-  BREATHS.forEach(function(b,i){var btn=document.createElement('button');btn.className='btb'+(i===bI?' on':'');btn.innerHTML='<span class="bn">'+b.nm+'</span><span class="bs">'+b.sb+'</span>';btn.onclick=function(){selB(i);};tabs.appendChild(btn);});
+  BREATHS.forEach(function(b,i){
+    var btn=document.createElement('button');btn.className='btb'+(i===bI?' on':'');
+    btn.innerHTML='<span class="bn">'+b.nm+'</span><span class="bs">'+b.sb+'</span>';
+    btn.onclick=function(){selB(i);};tabs.appendChild(btn);
+  });
   rBCh();updBD();bSetI();bDr(null,null);
   document.getElementById('breath-timer').textContent='00:00';
 }
 function selB(i){bStop();bI=i;document.querySelectorAll('.btb').forEach(function(b,j){b.classList.toggle('on',j===i);});rBCh();updBD();bSetI();bDr(null,null);}
 function updBD(){var b=BREATHS[bI];document.getElementById('bwhen').textContent=b.wh;document.getElementById('bdesc').textContent=b.de;}
-function rBCh(){var b=BREATHS[bI];var row=document.getElementById('phases-row');row.innerHTML='';b.ph.forEach(function(ph,i){var d=document.createElement('div');d.className='pchip';d.id='phchip-'+i;d.innerHTML='<span class="pn">'+ph+'</span><span class="ps">'+b.ti[i]+'s</span>';row.appendChild(d);});}
+function rBCh(){
+  var b=BREATHS[bI];var row=document.getElementById('phases-row');row.innerHTML='';
+  b.ph.forEach(function(ph,i){var d=document.createElement('div');d.className='pchip';d.id='phchip-'+i;d.innerHTML='<span class="pn">'+ph+'</span><span class="ps">'+b.ti[i]+'s</span>';row.appendChild(d);});
+}
 function bSetI(){bIR=RMIN;bApB(RMIN);document.getElementById('cp-phase').textContent='Tap to start';document.getElementById('cp-count').textContent='';}
-function bApB(r){var sz=Math.round(r*2);var btn=document.getElementById('center-btn');var col=BREATHS[bI].col;btn.style.cssText='width:'+sz+'px;height:'+sz+'px;background:'+col+';border-radius:50%;border:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)';}
+function bApB(r){
+  var sz=Math.round(r*2);var btn=document.getElementById('center-btn');var col=BREATHS[bI].col;
+  btn.style.cssText='width:'+sz+'px;height:'+sz+'px;background:'+col+';border-radius:50%;border:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)';
+}
 function bDr(df,innerR){
   var cv=document.getElementById('bcanvas');if(!cv)return;
   var ctx=cv.getContext('2d');var b=BREATHS[bI];var col=b.col;var fr=bFr(b);
   ctx.clearRect(0,0,240,240);
   ctx.globalAlpha=bR?1:0.3;
   ctx.beginPath();ctx.arc(BCX,BCY,BR,0,Math.PI*2);ctx.strokeStyle=col;ctx.lineWidth=2.5;ctx.stroke();
-  fr.forEach(function(f){var a=f*Math.PI*2-Math.PI/2;var ox=BCX+Math.cos(a)*(BR-TK),oy=BCY+Math.sin(a)*(BR-TK);var ix=BCX+Math.cos(a)*(BR+TK),iy=BCY+Math.sin(a)*(BR+TK);ctx.beginPath();ctx.moveTo(ox,oy);ctx.lineTo(ix,iy);ctx.strokeStyle=col;ctx.lineWidth=3.5;ctx.lineCap='round';ctx.stroke();ctx.beginPath();ctx.moveTo(ox,oy);ctx.lineTo(ix,iy);ctx.strokeStyle='rgba(0,0,0,0.55)';ctx.lineWidth=1.5;ctx.lineCap='round';ctx.stroke();});
+  fr.forEach(function(f){
+    var a=f*Math.PI*2-Math.PI/2;
+    var ox=BCX+Math.cos(a)*(BR-TK),oy=BCY+Math.sin(a)*(BR-TK);
+    var ix=BCX+Math.cos(a)*(BR+TK),iy=BCY+Math.sin(a)*(BR+TK);
+    ctx.beginPath();ctx.moveTo(ox,oy);ctx.lineTo(ix,iy);ctx.strokeStyle=col;ctx.lineWidth=3.5;ctx.lineCap='round';ctx.stroke();
+    ctx.beginPath();ctx.moveTo(ox,oy);ctx.lineTo(ix,iy);ctx.strokeStyle='rgba(0,0,0,0.55)';ctx.lineWidth=1.5;ctx.lineCap='round';ctx.stroke();
+  });
   if(innerR!==null){ctx.globalAlpha=bR?0.25:0.1;ctx.beginPath();ctx.arc(BCX,BCY,innerR,0,Math.PI*2);ctx.fillStyle=col;ctx.fill();}
   ctx.globalAlpha=1;
   if(df===null)return;
-  var a=df*Math.PI*2-Math.PI/2;var dx=BCX+Math.cos(a)*BR,dy=BCY+Math.sin(a)*BR;
+  var a=df*Math.PI*2-Math.PI/2;
+  var dx=BCX+Math.cos(a)*BR,dy=BCY+Math.sin(a)*BR;
   ctx.beginPath();ctx.arc(dx,dy,9,0,Math.PI*2);ctx.fillStyle='#ffffff';ctx.fill();
   ctx.beginPath();ctx.arc(dx,dy,7,0,Math.PI*2);ctx.fillStyle=col;ctx.fill();
   ctx.beginPath();ctx.arc(dx,dy,3,0,Math.PI*2);ctx.fillStyle='rgba(255,255,255,0.8)';ctx.fill();
@@ -1049,16 +1112,19 @@ function tickTimer(){
 function toggleRun(){if(bR)bStop();else bStart();}
 function bStart(){bR=true;bC=0;bPh=0;bIR=RMIN;bTimerStart=performance.now();bTimerRaf=requestAnimationFrame(tickTimer);bRunP();}
 function bStop(){
-  bR=false;if(bRaf)cancelAnimationFrame(bRaf);if(bCI)clearInterval(bCI);if(bTimerRaf)cancelAnimationFrame(bTimerRaf);
+  bR=false;
+  if(bRaf)cancelAnimationFrame(bRaf);
+  if(bCI)clearInterval(bCI);
+  if(bTimerRaf)cancelAnimationFrame(bTimerRaf);
   bRaf=null;bCI=null;bTimerRaf=null;
   document.querySelectorAll('.pchip').forEach(function(c){c.classList.remove('cur');});
-  document.getElementById('bcycles').textContent='';bSetI();bDr(null,null);
+  document.getElementById('bcycles').textContent='';
+  bSetI();bDr(null,null);
   document.getElementById('breath-timer').textContent='00:00';
 }
 function bRunP(){
   if(!bR)return;
   var b=BREATHS[bI];var ph=b.ph[bPh];var dur=b.ti[bPh];var fr=bFr(b);
-  // Beep and vibrate at phase start
   beep();vibrate(80);
   document.querySelectorAll('.pchip').forEach(function(c,i){c.classList.toggle('cur',i===bPh);});
   document.getElementById('cp-phase').textContent=ph;
@@ -1088,11 +1154,10 @@ function openBreath(){document.getElementById('boverlay').classList.add('open');
 function closeBreath(){bStop();document.getElementById('boverlay').classList.remove('open');}
 function stopBreath(){bStop();}
 
-// ── GROUNDING TECHNIQUES ──
+// ── GROUNDING ──
 var GRND_TECHS=[
   {
-    id:'g54321',
-    title:'5-4-3-2-1 Grounding',
+    id:'g54321',title:'5-4-3-2-1 Grounding',
     desc:'Name things through each sense. Pulls attention from the narrative into the actual environment.',
     senses:[
       {label:'5 things you can see',count:5,prompt:'Look around. Name one thing you can see right now.'},
@@ -1102,15 +1167,9 @@ var GRND_TECHS=[
       {label:'1 thing you can taste',count:1,prompt:'What taste is present in your mouth right now?'}
     ]
   },
+  {id:'gcold',title:'Cold water',desc:'Splash cold water on your face or hold it on your wrists. Activates the dive reflex \u2014 heart rate drops involuntarily. No technique required.',simple:true},
   {
-    id:'gcold',
-    title:'Cold water',
-    desc:'Splash cold water on your face or hold it on your wrists. Activates the dive reflex \u2014 heart rate drops involuntarily. No technique required.',
-    simple:true
-  },
-  {
-    id:'gmove',
-    title:'Movement',
+    id:'gmove',title:'Movement',
     desc:'Discharge activation through the body. Works best when you are in a fight or flight state.',
     moves:[
       {label:'Stamp your feet',dur:10},
@@ -1120,8 +1179,7 @@ var GRND_TECHS=[
     ]
   },
   {
-    id:'gorient',
-    title:'Orienting',
+    id:'gorient',title:'Orienting',
     desc:'Slow deliberate look around the room. Resets threat detection by providing accurate environmental data.',
     questions:[
       'What is one object in this room that is stable and not moving?',
@@ -1131,23 +1189,15 @@ var GRND_TECHS=[
       'What is one sound in this environment that is ordinary and non-threatening?'
     ]
   },
-  {
-    id:'gcontact',
-    title:'Self-contact',
-    desc:'Place one hand on your chest. Physical self-contact activates the social engagement system without requiring another person.',
-    dur:30
-  }
+  {id:'gcontact',title:'Self-contact',desc:'Place one hand on your chest. Physical self-contact activates the social engagement system without requiring another person.',dur:30}
 ];
-
-var grndState={};
 
 function initGrounding(){
   var wrap=document.getElementById('grnd-techs');wrap.innerHTML='';
   GRND_TECHS.forEach(function(tech){
     var card=document.createElement('div');card.className='grnd-card';card.id='grnd-'+tech.id;
     card.innerHTML='<div class="grnd-title">'+tech.title+'</div><div class="grnd-desc">'+tech.desc+'</div><div class="grnd-body" id="body-'+tech.id+'"></div>';
-    var startBtn=document.createElement('button');
-    startBtn.className='grnd-btn primary';startBtn.textContent='Start';
+    var startBtn=document.createElement('button');startBtn.className='grnd-btn primary';startBtn.textContent='Start';
     startBtn.onclick=function(){startGrounding(tech);};
     card.appendChild(startBtn);
     wrap.appendChild(card);
@@ -1156,17 +1206,14 @@ function initGrounding(){
 
 function startGrounding(tech){
   var body=document.getElementById('body-'+tech.id);
-  body.classList.add('open');
-  body.innerHTML='';
-  grndState[tech.id]={step:0,done:false};
+  body.classList.add('open');body.innerHTML='';
   var card=document.getElementById('grnd-'+tech.id);
   card.querySelector('.grnd-btn.primary').style.display='none';
-
-  if(tech.id==='g54321'){run54321(tech,body,0,0);}
-  else if(tech.id==='gcold'){runSimple(tech,body);}
-  else if(tech.id==='gmove'){runMove(tech,body,0);}
-  else if(tech.id==='gorient'){runOrient(tech,body,0);}
-  else if(tech.id==='gcontact'){runContact(tech,body);}
+  if(tech.id==='g54321')run54321(tech,body,0,0);
+  else if(tech.id==='gcold')runSimple(tech,body);
+  else if(tech.id==='gmove')runMove(tech,body,0);
+  else if(tech.id==='gorient')runOrient(tech,body,0);
+  else if(tech.id==='gcontact')runContact(tech,body);
 }
 
 function run54321(tech,body,senseIdx,tapped){
@@ -1176,14 +1223,9 @@ function run54321(tech,body,senseIdx,tapped){
     +'<div class="grnd-counter">'+(sense.count-tapped)+'</div>'
     +'<button class="grnd-btn primary" id="tap-btn">Tap each time you notice one</button>';
   document.getElementById('tap-btn').onclick=function(){
-    beep();vibrate(60);
-    tapped++;
-    if(tapped>=sense.count){
-      if(senseIdx+1<tech.senses.length){run54321(tech,body,senseIdx+1,0);}
-      else{showDone(tech,body);}
-    } else {
-      document.querySelector('#body-'+tech.id+' .grnd-counter').textContent=(sense.count-tapped);
-    }
+    beep();vibrate(60);tapped++;
+    if(tapped>=sense.count){if(senseIdx+1<tech.senses.length)run54321(tech,body,senseIdx+1,0);else showDone(tech,body);}
+    else document.querySelector('#body-'+tech.id+' .grnd-counter').textContent=(sense.count-tapped);
   };
 }
 
@@ -1195,23 +1237,31 @@ function runSimple(tech,body){
 
 function runMove(tech,body,idx){
   var move=tech.moves[idx];
+  // Show prompt with Start button — user controls when to begin
   body.innerHTML='<div class="grnd-prompt">'+move.label+'</div>'
-    +'<div class="grnd-counter" id="move-count">'+move.dur+'</div>'
-    +'<div class="grnd-timer-bar"><div class="grnd-timer-fill" id="move-fill" style="width:100%"></div></div>';
-  beep();vibrate(100);
-  var rem=move.dur;var total=move.dur;
-  var iv=setInterval(function(){
-    rem--;
-    var el=document.getElementById('move-count');var fill=document.getElementById('move-fill');
-    if(el)el.textContent=rem;
-    if(fill)fill.style.width=Math.round(rem/total*100)+'%';
-    if(rem<=0){
-      clearInterval(iv);
-      vibrate(150);
-      if(idx+1<tech.moves.length){runMove(tech,body,idx+1);}
-      else{showDone(tech,body);}
-    }
-  },1000);
+    +'<div class="grnd-sense" style="margin-top:.5rem">'+(idx+1)+' of '+tech.moves.length+'</div>'
+    +'<div class="grnd-counter" id="move-count" style="color:var(--text3)">'+move.dur+'s</div>'
+    +'<div class="grnd-timer-bar"><div class="grnd-timer-fill" id="move-fill" style="width:100%"></div></div>'
+    +'<button class="grnd-btn primary" id="move-start-btn">Start</button>';
+  document.getElementById('move-start-btn').onclick=function(){
+    this.style.display='none';
+    beep();vibrate(100);
+    var rem=move.dur;var total=move.dur;
+    var iv=setInterval(function(){
+      rem--;
+      var el=document.getElementById('move-count');var fill=document.getElementById('move-fill');
+      if(el)el.textContent=rem+'s';
+      if(fill)fill.style.width=Math.round(rem/total*100)+'%';
+      if(rem<=0){
+        clearInterval(iv);vibrate(150);
+        // Show Next or Done button
+        var nextLabel=idx+1<tech.moves.length?'Next':'Done';
+        var nb=document.createElement('button');nb.className='grnd-btn primary';nb.textContent=nextLabel;nb.style.marginTop='8px';
+        nb.onclick=function(){if(idx+1<tech.moves.length)runMove(tech,body,idx+1);else showDone(tech,body);};
+        body.appendChild(nb);
+      }
+    },1000);
+  };
 }
 
 function runOrient(tech,body,idx){
@@ -1221,8 +1271,7 @@ function runOrient(tech,body,idx){
     +'<button class="grnd-btn primary" style="margin-top:12px" id="orient-next">'+(idx+1<tech.questions.length?'Next':'Done')+'</button>';
   document.getElementById('orient-next').onclick=function(){
     beep();vibrate(60);
-    if(idx+1<tech.questions.length){runOrient(tech,body,idx+1);}
-    else{showDone(tech,body);}
+    if(idx+1<tech.questions.length)runOrient(tech,body,idx+1);else showDone(tech,body);
   };
 }
 
@@ -1232,10 +1281,7 @@ function runContact(tech,body){
     +'<div class="grnd-counter" id="contact-count">'+tech.dur+'</div>';
   var rem=tech.dur;var pulse=false;
   var piv=setInterval(function(){pulse=!pulse;var el=document.getElementById('contact-pulse');if(el)el.classList.toggle('expand',pulse);},1500);
-  var iv=setInterval(function(){
-    rem--;var el=document.getElementById('contact-count');if(el)el.textContent=rem;
-    if(rem<=0){clearInterval(iv);clearInterval(piv);vibrate(200);showDone(tech,body);}
-  },1000);
+  var iv=setInterval(function(){rem--;var el=document.getElementById('contact-count');if(el)el.textContent=rem;if(rem<=0){clearInterval(iv);clearInterval(piv);vibrate(200);showDone(tech,body);}},1000);
 }
 
 function showDone(tech,body){
@@ -1246,16 +1292,14 @@ function showDone(tech,body){
     +'</div>'
     +'<div class="grnd-still-msg" id="still-'+tech.id+'"></div>';
 }
-
 function grndSettled(id){
   var body=document.getElementById('body-'+id);
   body.innerHTML='<div class="grnd-prompt" style="font-size:14px;padding:.5rem 0">\u2713 Good. Stay here for a moment before returning.</div>';
 }
-
 function grndStill(id){
-  var remaining=GRND_TECHS.filter(function(t){return t.id!==id;}).map(function(t){return '<strong>'+t.title+'</strong>';}).join(', ');
+  var remaining=GRND_TECHS.filter(function(t){return t.id!==id;}).map(function(t){return t.title;}).join(', ');
   var el=document.getElementById('still-'+id);
-  el.textContent='Try another technique: '+remaining.replace(/<[^>]+>/g,'');
+  el.textContent='Try another technique: '+remaining;
   el.classList.add('show');
 }
 
@@ -1285,7 +1329,7 @@ var RST={
   7:{a:'Sticky / story-driven',b:'Low',s:'Narrative-amplified',m:'Name the story your mind is building. Step away from the screen. No decisions for at least 2 hours. Water and movement first.'},
   8:{a:'Body-captured',b:'Depleted',s:'Physiology-dominant',m:'Body first \u2014 ORS, bland food, physical rest. No cognitive demands. Avoid all decisions.'},
   9:{a:'Locked / trance',b:'Very low',s:'Loop-amplified',m:'Interrupt the loop gently \u2014 stand up, change rooms, walk outside if possible.'},
-  10:{a:'Threat-fused',b:'Collapsed',s:'Threat-maximised',m:'Remove yourself from triggers now. Hydrate. Use the hand brake. Tell your confidant. Do not make any decisions.'}
+  10:{a:'Threat-fused',b:'Collapsed',s:'Threat-maximised',m:'Remove yourself from triggers now. Hydrate. Use Ground. Tell your confidant. Do not make any decisions.'}
 };
 var RBD=function(l){return l<=3?'w':l<=5?'e':l<=7?'i':l<=9?'c':'s';};
 var RBDL={w:'Witness band',e:'Equilibrium band',i:'Identity band',c:'Capture band',s:'Survival'};
@@ -1318,8 +1362,8 @@ function doReg(){
   var h='<span class="bpill bp'+bd+'">'+RBDL[bd]+'</span><br><strong>'+lvl+' \u2014 '+RLB[lvl]+'</strong><br><br>';
   h+='<div class="rgg"><div class="rgc"><div class="rgck">Attention</div><div class="rgcv">'+st.a+'</div></div><div class="rgc"><div class="rgck">Brakes</div><div class="rgcv">'+st.b+'</div></div><div class="rgc"><div class="rgck">Salience</div><div class="rgcv">'+st.s+'</div></div></div>';
   h+='<div class="rgm"><div class="rgmk">What to do now</div>'+st.m+'</div>';
-  if(pf)h+='<div class="al ald" style="margin-top:8px"><strong>Prodrome signals present.</strong> Name the signal. Write it down. Do not act on any impulse connected to it today. Reduce stimulation, hydrate, use the hand brake, tell your confidant.</div>';
-  else if(lvl>=7)h+='<div class="al alw" style="margin-top:8px">At this level your analysis will distort. Use the hand brake first. Come back when you are at 5 or below.</div>';
+  if(pf)h+='<div class="al ald" style="margin-top:8px"><strong>Prodrome signals present.</strong> Name the signal. Write it down. Do not act on any impulse connected to it today. Reduce stimulation, hydrate, use Ground, tell your confidant.</div>';
+  else if(lvl>=7)h+='<div class="al alw" style="margin-top:8px">At this level your analysis will distort. Use Ground first. Come back when you are at 5 or below.</div>';
   h+='<div class="ripsy">Nervous system state: window of tolerance '+(lvl<=5?'open':lvl<=7?'narrowing':'closed')+'</div>';
   show('r-reg',h);updTaperBadge();updCareRegBanner();
 }
@@ -1329,17 +1373,18 @@ function doBody(){
   if(!checked.length){show('r-body','<span class="ok">No body signals present right now.</span>');return;}
   reviewState.body=checked.map(function(r){return r.querySelector('input').dataset.b;});
   var tips={
-    sleep:{n:'Fragmented sleep',t:'Keep your wake-up time fixed even if last night was rough. Irregular timing adds to the load whether or not you feel it.',w:'sleep disruption is one of the earliest and most reliable destabilisation signals',psy:'Circadian rhythm disruption'},
-    rest:{n:'Physical restlessness',t:'Slow rhythmic movement \u2014 a walk, gentle stretching \u2014 settles restlessness faster than staying still.',w:'stillness amplifies agitation in a high-gain system; movement gives the activation somewhere to go',psy:'Psychomotor agitation'},
-    fat:{n:'Fatigue / energy drop',t:'Eat something simple now and lower your output expectations for the rest of the session.',w:'SP blind means energy crashes are missed until they are acute',psy:'Allostatic load accumulation'},
-    dehy:{n:'Dehydration',t:'Drink water now, not after the next task.',w:'even mild dehydration degrades cognitive clarity and amplifies emotional reactivity',psy:'Cognitive performance degradation'},
+    sleep:{n:'Fragmented sleep',t:'Keep your wake-up time fixed even if last night was rough.',w:'sleep disruption is one of the earliest destabilisation signals',psy:'Circadian rhythm disruption'},
+    rest:{n:'Physical restlessness',t:'Slow rhythmic movement settles restlessness faster than staying still.',w:'stillness amplifies agitation in a high-gain system',psy:'Psychomotor agitation'},
+    fat:{n:'Fatigue / energy drop',t:'Eat something simple now and lower output expectations.',w:'SP blind means energy crashes are missed until acute',psy:'Allostatic load accumulation'},
+    dehy:{n:'Dehydration',t:'Drink water now, not after the next task.',w:'even mild dehydration degrades cognitive clarity',psy:'Cognitive performance degradation'},
     app:{n:'Appetite shift',t:'Normalise your next meal \u2014 familiar foods, no pressure.',w:'digestive instability adds to nervous system noise',psy:'Hypothalamic stress response'},
-    jaw:{n:'Jaw / neck tension',t:'Drop your jaw deliberately. Release your neck and shoulders.',w:'chronic muscular tension is stored effort the body is carrying',psy:'Somatic tension holding'},
+    jaw:{n:'Jaw / neck tension',t:'Drop your jaw deliberately. Release your neck and shoulders.',w:'chronic muscular tension is stored effort',psy:'Somatic tension holding'},
     chest:{n:'Chest tight / shallow breathing',t:'Extend your exhales deliberately.',w:'shallow breathing maintains sympathetic activation',psy:'Hyperventilation pattern'},
     gut:{n:'Gut tension / nausea',t:'Warm fluids. Reduce information intake.',w:'visceral sensitivity often leads cognitive awareness',psy:'Gut-brain axis activation'},
-    head:{n:'Head pressure / headache',t:'Hydrate. Screen break.',w:'tension headache is one of the clearest signals of sustained cognitive overload',psy:'Tension-type headache'}
+    head:{n:'Head pressure / headache',t:'Hydrate. Screen break.',w:'tension headache is one of the clearest signals of cognitive overload',psy:'Tension-type headache'}
   };
-  var h='';checked.forEach(function(r){var k=r.querySelector('input').dataset.b;if(tips[k])h+='<div class="ri"><div class="rin">'+tips[k].n+'</div><div class="rit">'+tips[k].t+'</div><div class="riw">'+tips[k].w+'</div><div class="ripsy">'+tips[k].psy+'</div></div>';});
+  var h='';
+  checked.forEach(function(r){var k=r.querySelector('input').dataset.b;if(tips[k])h+='<div class="ri"><div class="rin">'+tips[k].n+'</div><div class="rit">'+tips[k].t+'</div><div class="riw">'+tips[k].w+'</div><div class="ripsy">'+tips[k].psy+'</div></div>';});
   show('r-body',h);
 }
 
@@ -1348,14 +1393,14 @@ function doNoise(){
   if(!checked.length){show('r-noise','<span class="ok">No noise contamination present right now.</span>');return;}
   reviewState.noise=checked.map(function(r){return r.querySelector('input').dataset.n;});
   var keys=reviewState.noise;var h='';
-  if(keys.some(function(k){return['old','seen','benefit'].includes(k);}))h+='<div class="al ali"><strong>Core wound activated.</strong> What they said landed on something older than this situation. Your pattern: noise arrives \u2192 the wound fires \u2192 the spiral begins. Name the wound. These are two separate events.<div class="ripsy" style="margin-top:4px">Psychological pattern: core wound activation, transference</div></div>';
-  if(keys.includes('truth'))h+='<div class="ri"><div class="rin">Truth denied by someone present for it</div><div class="rit">What actually happened is being reframed or denied. You do not need their acknowledgement for the truth to be real. Name what you know is factually true.</div><div class="riw">reality distortion by a trusted other is one of the most destabilising injury patterns</div><div class="ripsy">Psychological pattern: gaslighting, reality invalidation</div></div>';
-  if(keys.includes('attrib'))h+='<div class="ri"><div class="rin">Character attribution active</div><div class="rit">You are reading their behaviour as who they are rather than what their situation is producing. Separate the person from the context before deciding what this means.</div><div class="riw">character attribution amplifies interpersonal conflict and reduces accurate reading</div><div class="ripsy">Cognitive bias: fundamental attribution error</div></div>';
-  if(keys.includes('noev'))h+='<div class="ri"><div class="rin">No evidence given</div><div class="rit">An opinion stated without evidence is not data about your competence. It is data about their limitations.</div><div class="riw">competence claims require evidence \u2014 without it they carry no epistemic weight</div><div class="ripsy">Cognitive bias: argument from assertion</div></div>';
-  if(keys.includes('defend'))h+='<div class="ri"><div class="rin">Urge to defend</div><div class="rit">The urge to explain or prove yourself is coming from the wound, not from the situation. Does this actually require a defence? Usually no.</div><div class="riw">the defend reflex is the wound speaking</div><div class="ripsy">Psychological pattern: reactive self-justification</div></div>';
-  if(keys.includes('rumi'))h+='<div class="ri"><div class="rin">Rumination loop active</div><div class="rit">Building a case in your head is not resolving anything. Set the argument down. What do you actually feel underneath the case?</div><div class="riw">rumination loops maintain activation without producing resolution</div><div class="ripsy">Cognitive pattern: ruminative thinking</div></div>';
+  if(keys.some(function(k){return['old','seen','benefit'].includes(k);}))h+='<div class="al ali"><strong>Core wound activated.</strong> What they said landed on something older than this situation. Your pattern: noise arrives \u2192 the wound fires \u2192 the spiral begins. These are two separate events.<div class="ripsy" style="margin-top:4px">Psychological pattern: core wound activation, transference</div></div>';
+  if(keys.includes('truth'))h+='<div class="ri"><div class="rin">Truth denied by someone present for it</div><div class="rit">What actually happened is being reframed or denied. You do not need their acknowledgement for the truth to be real.</div><div class="riw">reality distortion by a trusted other is one of the most destabilising injury patterns</div><div class="ripsy">Psychological pattern: gaslighting, reality invalidation</div></div>';
+  if(keys.includes('attrib'))h+='<div class="ri"><div class="rin">Character attribution active</div><div class="rit">You are reading their behaviour as who they are rather than what their situation is producing. Separate the person from the context.</div><div class="riw">character attribution amplifies conflict and reduces accurate reading</div><div class="ripsy">Cognitive bias: fundamental attribution error</div></div>';
+  if(keys.includes('noev'))h+='<div class="ri"><div class="rin">No evidence given</div><div class="rit">An opinion stated without evidence is not data about your competence. It is data about their limitations.</div><div class="riw">competence claims require evidence</div><div class="ripsy">Cognitive bias: argument from assertion</div></div>';
+  if(keys.includes('defend'))h+='<div class="ri"><div class="rin">Urge to defend</div><div class="rit">The urge to explain or prove yourself is coming from the wound, not from the situation.</div><div class="riw">the defend reflex is the wound speaking</div><div class="ripsy">Psychological pattern: reactive self-justification</div></div>';
+  if(keys.includes('rumi'))h+='<div class="ri"><div class="rin">Rumination loop active</div><div class="rit">Building a case in your head is not resolving anything. What do you actually feel underneath the case?</div><div class="riw">rumination loops maintain activation without producing resolution</div><div class="ripsy">Cognitive pattern: ruminative thinking</div></div>';
   if(keys.includes('ctx'))h+='<div class="ri"><div class="rin">Missing context</div><div class="rit">Name specifically what this person does not know. Their reading is based on incomplete information.</div><div class="riw">responses based on incomplete context are about the gap in their knowledge</div><div class="ripsy">Cognitive bias: context-dependent interpretation</div></div>';
-  if(checked.length>=3)h+='<div class="al alw" style="margin-top:8px"><strong>High contamination.</strong> Use the hand brake before continuing any further analysis.</div>';
+  if(checked.length>=3)h+='<div class="al alw" style="margin-top:8px"><strong>High contamination.</strong> Use Ground before continuing any further analysis.</div>';
   h+='<div class="ipt">Their reading of you is not a fact about you. What is concretely, verifiably true \u2014 separate from what they think?</div>';
   show('r-noise',h);
 }
@@ -1366,24 +1411,24 @@ function doDistort(){
   if(!crows.length&&!drows.length){show('r-distort','<span class="ok">No distortion patterns present right now.</span>');return;}
   reviewState.distort=crows.map(function(r){return r.querySelector('input').dataset.c;}).concat(drows.map(function(r){return r.querySelector('input').dataset.d;}));
   var keys=crows.map(function(r){return r.querySelector('input').dataset.c;});var h='';
-  if(keys.some(function(k){return['cat1','cat2','cat5'].includes(k);}))h+='<div class="ri"><div class="rin">Catastrophising</div><div class="rit">Name the most realistic outcome \u2014 not the worst one. What is actually likely given what you concretely know?</div><div class="riw">catastrophising collapses the gap between possible and certain</div><div class="ripsy">Cognitive distortion: catastrophising</div></div>';
+  if(keys.some(function(k){return['cat1','cat2','cat5'].includes(k);}))h+='<div class="ri"><div class="rin">Catastrophising</div><div class="rit">Name the most realistic outcome. What is actually likely given what you concretely know?</div><div class="riw">catastrophising collapses the gap between possible and certain</div><div class="ripsy">Cognitive distortion: catastrophising</div></div>';
   if(keys.some(function(k){return['cat4','cat6'].includes(k);}))h+='<div class="ri"><div class="rin">Fortune telling</div><div class="rit">You are predicting others\u2019 future judgements as if already decided. Return to what is actually known now.</div><div class="riw">mind-reading future responses treats speculation as fact</div><div class="ripsy">Cognitive distortion: fortune telling / mind reading</div></div>';
-  if(keys.includes('cat3'))h+='<div class="ri"><div class="rin">Guilt as catastrophising</div><div class="rit">Ask specifically: what did I do wrong? If no clear answer, this is catastrophising dressed as conscience.</div><div class="riw">guilt after a boundary is almost always conditioned response, not accurate signal</div><div class="ripsy">Cognitive distortion: emotional reasoning + catastrophising</div></div>';
-  if(keys.includes('cat7'))h+='<div class="ri"><div class="rin">Urgency illusion</div><div class="rit">Ask: what specifically breaks if this does not happen in the next hour? If nothing, the urgency is manufactured.</div><div class="riw">false urgency generates cortisol and forces premature decisions</div><div class="ripsy">Cognitive distortion: magnification + should statements</div></div>';
+  if(keys.includes('cat3'))h+='<div class="ri"><div class="rin">Guilt as catastrophising</div><div class="rit">Ask specifically: what did I do wrong? If no clear answer, this is catastrophising dressed as conscience.</div><div class="riw">guilt after a boundary is almost always conditioned response</div><div class="ripsy">Cognitive distortion: emotional reasoning + catastrophising</div></div>';
+  if(keys.includes('cat7'))h+='<div class="ri"><div class="rin">Urgency illusion</div><div class="rit">Ask: what specifically breaks if this does not happen in the next hour?</div><div class="riw">false urgency generates cortisol and forces premature decisions</div><div class="ripsy">Cognitive distortion: magnification + should statements</div></div>';
   var dm={
-    all:{n:'All-or-nothing framing',t:'Find one exception to the binary.',w:'all-or-nothing collapses nuance and creates false urgency',psy:'Cognitive distortion: dichotomous thinking'},
+    all:{n:'All-or-nothing framing',t:'Find one exception to the binary.',w:'all-or-nothing collapses nuance',psy:'Cognitive distortion: dichotomous thinking'},
     emo:{n:'Feelings as evidence',t:'Name the feeling and the fact separately.',w:'emotional reasoning treats internal states as proof of external facts',psy:'Cognitive distortion: emotional reasoning'},
-    mind:{n:"Filling in others' thoughts",t:'What do you actually know? What are you adding?',w:"mind-reading fills the gap with fear, not accurate reading",psy:'Cognitive distortion: mind reading'},
-    should:{n:'Rigid shoulds / musts',t:"Replace 'should' with 'prefer' or 'choose'.",w:'rigid prescriptions function as commands regardless of appropriateness',psy:'Cognitive distortion: should statements'},
+    mind:{n:"Filling in others' thoughts",t:'What do you actually know? What are you adding?',w:"mind-reading fills the gap with fear",psy:'Cognitive distortion: mind reading'},
+    should:{n:'Rigid shoulds / musts',t:"Replace 'should' with 'prefer' or 'choose'.",w:'rigid prescriptions function as commands',psy:'Cognitive distortion: should statements'},
     pers:{n:"Carrying what isn't mine",t:'Name explicitly what is yours and what belongs to the other person.',w:'responsibility expands quietly in a high-sensitivity system',psy:'Cognitive distortion: personalisation'},
     mini:{n:'Minimising needs or contribution',t:'Name one thing you need. Name one thing you contributed today.',w:'minimisation sounds like objectivity but is self-erasure',psy:'Cognitive distortion: minimisation'},
     ref:{n:'Reframing too quickly',t:'Let the discomfort be present for one full breath before moving toward meaning.',w:'premature reframing bypasses processing',psy:'Defence mechanism: intellectualisation'},
     spot:{n:'Spotlight effect',t:'Others are almost certainly attending to their own concerns.',w:'systematic overestimation of how much others observe and evaluate you',psy:'Cognitive bias: spotlight effect'},
     burden:{n:'Needs as burden',t:"Expressing a need is not an imposition \u2014 it is information.",w:'the belief that needs are burdensome drives suppression and resentment',psy:'Schema: defectiveness / shame'},
     conn:{n:'Connection requires self-adjustment',t:"You do not need to become different to be connected.",w:'this belief drives fawning and eventual withdrawal',psy:'Schema: subjugation'},
-    neg:{n:'Negativity bias active',t:'Name one thing that is working or has worked today. The flaw is not the whole picture.',w:'flaws carry disproportionate cognitive weight when the negativity bias is active',psy:'Cognitive bias: negativity bias'},
+    neg:{n:'Negativity bias active',t:'Name one thing that is working or has worked today.',w:'flaws carry disproportionate cognitive weight when negativity bias is active',psy:'Cognitive bias: negativity bias'},
     affect:{n:'Strong emotions feel unsafe',t:'The emotion is not dangerous. It is information. Stay with it for one breath before managing it.',w:'treating emotions as unsafe amplifies them and prevents processing',psy:'Defence mechanism: affect phobia'},
-    ready:{n:'Readiness condition active',t:'Clarity does not precede action \u2014 it follows it. Name the smallest possible next step and take it.',w:'waiting for readiness is a form of avoidance that feels like preparation',psy:'Cognitive pattern: readiness condition / behavioural inhibition'}
+    ready:{n:'Readiness condition active',t:'Clarity does not precede action \u2014 it follows it. Name the smallest possible next step and take it.',w:'waiting for readiness is avoidance that feels like preparation',psy:'Cognitive pattern: readiness condition / behavioural inhibition'}
   };
   if(drows.length){if(h)h+='<div style="height:6px"></div>';drows.forEach(function(r){var k=r.querySelector('input').dataset.d;if(dm[k])h+='<div class="ri"><div class="rin">'+dm[k].n+'</div><div class="rit">'+dm[k].t+'</div><div class="riw">'+dm[k].w+'</div><div class="ripsy">'+dm[k].psy+'</div></div>';});}
   h+='<div class="ipt">Is what you are experiencing a prediction or a fact?</div>';
@@ -1415,7 +1460,7 @@ function doScan(){
     snap:{n:'Disproportionate force',t:'One breath before you respond.',w:'excess force in low-stakes situations costs credibility',psy:'Emotional dysregulation: reactive aggression'},
     numb:{n:'Emotional flattening',t:'Name one emotion internally.',w:'flatness signals the system has exceeded processing capacity',psy:'Defence mechanism: dissociation / numbing'},
     scan:{n:'Tracking their read of me',t:'Return attention to what you actually feel.',w:'attending to their perception amplifies anxiety and disconnects you',psy:'Hypervigilance: social monitoring'},
-    small:{n:'Becoming smaller in the interaction',t:'Name one thing you actually think about this situation. Say it internally first.',w:'shrinking in interactions is fawning in early stage \u2014 a loss of self-presence before it becomes visible',psy:'Trauma response: fawning / self-erasure'}
+    small:{n:'Becoming smaller in the interaction',t:'Name one thing you actually think about this situation. Say it internally first.',w:'shrinking in interactions is fawning in early stage',psy:'Trauma response: fawning / self-erasure'}
   };
   var h='';
   if(bb.length>=4)h+='<div class="al alw" style="margin-bottom:8px"><strong>High boundary pressure.</strong> Use the physiological sigh before responding. 9 seconds.</div>';
@@ -1426,48 +1471,12 @@ function doScan(){
 
 // ── GAME CHECK ──
 var GAMES={
-  complaint:{
-    name:'Why Don\'t You \u2014 Yes But',
-    role:'Victim presenting problems; Rescuer invited to help then blocked',
-    ego:'Child ego state presenting problems; rejects Adult solutions to maintain the game',
-    payoff:'Confirmation that no solution exists; avoidance of change; negative strokes',
-    response:'Name the pattern directly. Do not offer another solution. Ask: what would actually need to change for this to resolve?'
-  },
-  deflect:{
-    name:'Why Don\'t You \u2014 Yes But',
-    role:'Victim inviting Rescuer; each solution is found inadequate',
-    ego:'Child ego state in Victim position; Critical Parent blocking each Adult offer',
-    payoff:'Maintains helplessness; collects evidence that others cannot help; avoids responsibility for change',
-    response:'Stop offering solutions. Reflect back: it sounds like none of the options feel workable. What would a workable option look like to you?'
-  },
-  position:{
-    name:'Now I\'ve Got You / Courtroom',
-    role:'Persecutor positioning target as wrong or inadequate; trial dynamic',
-    ego:'Critical Parent in Persecutor role; invites Adaptive Child response',
-    payoff:'Justification of superiority or grievance; collection of evidence against the other',
-    response:'Do not defend. Name what is happening: this feels like a trial rather than a conversation. I am not available for that.'
-  },
-  perform:{
-    name:'Wooden Leg / Stupid',
-    role:'Victim performing limitation to avoid responsibility or invite rescue',
-    ego:'Adapted Child performing incapacity; blocks Natural Child or Adult functioning',
-    payoff:'Avoidance of responsibility or effort; collection of rescue or sympathy strokes',
-    response:'Do not rescue or take over. Name what capacity is actually present and what is being asked of it.'
-  },
-  third:{
-    name:'Let\'s You and Him Fight / Jealousy',
-    role:'Manipulator shaping the dynamic through triangulation or indirect provocation',
-    ego:'Adapted Child using indirect channels; avoids direct Adult-to-Adult contact',
-    payoff:'Avoidance of direct confrontation; creation of drama or attention; maintenance of power through ambiguity',
-    response:'Do not engage with the triangle. Direct contact only: if there is something to say, say it directly to me.'
-  },
-  image:{
-    name:'Look How Hard I\'ve Tried / Martyr',
-    role:'Rescuer or helper performing sacrifice for image or legacy',
-    ego:'Nurturing Parent performing for approval; underlying Child seeking recognition',
-    payoff:'Strokes for goodness or effort; avoidance of authentic contribution without reward; identity maintenance through helpfulness',
-    response:'Notice whether help is being offered for its own sake or as a claim. Contribution does not require an audience.'
-  }
+  complaint:{name:'Why Don\'t You \u2014 Yes But',role:'Victim presenting problems; Rescuer invited to help then blocked',ego:'Child ego state presenting problems; rejects Adult solutions to maintain the game',payoff:'Confirmation that no solution exists; avoidance of change; negative strokes',response:'Name the pattern directly. Do not offer another solution. Ask: what would actually need to change for this to resolve?'},
+  deflect:{name:'Why Don\'t You \u2014 Yes But',role:'Victim inviting Rescuer; each solution is found inadequate',ego:'Child ego state in Victim position; Critical Parent blocking each Adult offer',payoff:'Maintains helplessness; collects evidence that others cannot help; avoids responsibility for change',response:'Stop offering solutions. Reflect back: it sounds like none of the options feel workable. What would a workable option look like to you?'},
+  position:{name:'Now I\'ve Got You / Courtroom',role:'Persecutor positioning target as wrong or inadequate; trial dynamic',ego:'Critical Parent in Persecutor role; invites Adaptive Child response',payoff:'Justification of superiority or grievance; collection of evidence against the other',response:'Do not defend. Name what is happening: this feels like a trial rather than a conversation. I am not available for that.'},
+  perform:{name:'Wooden Leg / Stupid',role:'Victim performing limitation to avoid responsibility or invite rescue',ego:'Adapted Child performing incapacity; blocks Natural Child or Adult functioning',payoff:'Avoidance of responsibility or effort; collection of rescue or sympathy strokes',response:'Do not rescue or take over. Name what capacity is actually present and what is being asked of it.'},
+  third:{name:'Let\'s You and Him Fight / Jealousy',role:'Manipulator shaping the dynamic through triangulation or indirect provocation',ego:'Adapted Child using indirect channels; avoids direct Adult-to-Adult contact',payoff:'Avoidance of direct confrontation; creation of drama or attention; maintenance of power through ambiguity',response:'Do not engage with the triangle. Direct contact only: if there is something to say, say it directly to me.'},
+  image:{name:'Look How Hard I\'ve Tried / Martyr',role:'Rescuer or helper performing sacrifice for image or legacy',ego:'Nurturing Parent performing for approval; underlying Child seeking recognition',payoff:'Strokes for goodness or effort; avoidance of authentic contribution without reward',response:'Notice whether help is being offered for its own sake or as a claim. Contribution does not require an audience.'}
 };
 
 function doGame(){
@@ -1476,8 +1485,7 @@ function doGame(){
   reviewState.game=checked.map(function(r){return r.querySelector('input').dataset.g;});
   var h='';
   checked.forEach(function(r){
-    var k=r.querySelector('input').dataset.g;
-    var g=GAMES[k];if(!g)return;
+    var k=r.querySelector('input').dataset.g;var g=GAMES[k];if(!g)return;
     h+='<div class="game-block">';
     h+='<div class="game-name">'+g.name+'</div>';
     h+='<div class="game-row"><strong>Role</strong>'+g.role+'</div>';
@@ -1497,21 +1505,21 @@ function doEffort(){
   reviewState.effort=ep.map(function(r){return r.querySelector('input').dataset.e;}).concat(sb.map(function(r){return r.querySelector('input').dataset.s2;}));
   var em={
     burst:{n:'Intensity burst active',t:'Build the stop into the next work block before you start it. One hour focused then complete break.',w:"burst-then-crash is your system's default \u2014 it needs structural containment",psy:'Pattern: ultradian rhythm dysregulation'},
-    phil:{n:'Philosophical drift',t:'Name the next physical action before continuing thinking. What will you do in the next 10 minutes specifically?',w:'meaning-making under pressure feels like progress but functions as avoidance',psy:'Defence mechanism: intellectualisation'},
+    phil:{n:'Philosophical drift',t:'Name the next physical action before continuing thinking.',w:'meaning-making under pressure feels like progress but functions as avoidance',psy:'Defence mechanism: intellectualisation'},
     spblind:{n:'SP blind effort distortion',t:'Check body signals now. If working 90+ minutes without break, stop.',w:"SP blindness means capacity feels fine until it isn't",psy:'Interoceptive deficit: SP blind threshold failure'},
-    fatigue:{n:'Effort continuing despite fatigue',t:'Stop. The output produced past this point will cost more to correct than it contributes. Rest is the productive choice now.',w:'continuing through clear fatigue is not discipline \u2014 it is overriding a protective signal',psy:'Pattern: fatigue signal suppression'},
+    fatigue:{n:'Effort continuing despite fatigue',t:'Stop. The output produced past this point will cost more to correct than it contributes.',w:'continuing through clear fatigue is overriding a protective signal',psy:'Pattern: fatigue signal suppression'},
     switch:{n:'Task avoidance through substitution',t:'Return to the task you left. Name what made you leave. That friction marks the real work.',w:'moving to easier tasks produces activity without progress on what matters',psy:'Behavioural pattern: avoidance via substitution'},
-    rest:{n:'Rest anxiety active',t:'Name one thing that would actually fall apart if you stopped for 30 minutes. If nothing concrete comes to mind, the anxiety is the distortion.',w:"the sense that stopping causes collapse is a hypervigilance pattern, not an accurate read of the situation",psy:'Cognitive pattern: hypervigilance about rest / control schema'}
+    rest:{n:'Rest anxiety active',t:'Name one thing that would actually fall apart if you stopped for 30 minutes. If nothing concrete comes to mind, the anxiety is the distortion.',w:"the sense that stopping causes collapse is a hypervigilance pattern",psy:'Cognitive pattern: hypervigilance about rest / control schema'}
   };
   var sm2={
     depth:{n:'Depth without movement',t:'One concrete thing done imperfectly moves work forward more than extended analysis.',w:'depth is your greatest strength and most available avoidance',psy:'Behavioural pattern: analysis paralysis'},
     abstr:{n:'Abstraction as avoidance',t:'Name the specific concrete task you are avoiding. Do that first.',w:'abstraction maintains distance from the work',psy:'Defence mechanism: intellectualisation'},
     iso:{n:'Isolation under pressure',t:"Co-regulation is how you get back to steady. One brief contact today.",w:'isolation removes the co-regulation that would actually help',psy:'Coping pattern: avoidant isolation'},
     sov:{n:'Sovereignty as avoidance',t:'Asking for help does not compromise independence.',w:'sovereignty means self-determination, not self-sufficiency',psy:'Schema: mistrust / self-reliance overextension'},
-    perf:{n:'Over-optimisation / perfection bias',t:'Name what already works well enough. Ship or move on. The next improvement has diminishing returns and you know it.',w:'perfection bias is avoidance in disguise \u2014 it feels like quality but functions as a reason not to finish',psy:'Cognitive pattern: perfectionism / completion anxiety'},
+    perf:{n:'Over-optimisation / perfection bias',t:'Name what already works well enough. Ship or move on.',w:'perfection bias is avoidance in disguise',psy:'Cognitive pattern: perfectionism / completion anxiety'},
     flaw:{n:'Attention narrowing to flaws',t:'Name one thing that is working or was done well today before continuing.',w:'attention locked on flaws amplifies them and distorts the overall picture',psy:'Cognitive bias: negativity bias + selective abstraction'},
-    worth:{n:'Contingent self-worth',t:'Your value as a person is not produced by your output today. Name one thing you are regardless of what you complete.',w:'tying self-worth to results makes every setback a threat to identity',psy:'Schema: conditional self-worth'},
-    image:{n:'Performance and image emphasis',t:'Ask: who am I doing this for right now? If the answer involves an audience, return to the work itself.',w:'emphasis on how you appear rather than what you are building is a sign of disintegration pressure',psy:'Ego state: image management under stress'}
+    worth:{n:'Contingent self-worth',t:'Your value as a person is not produced by your output today.',w:'tying self-worth to results makes every setback a threat to identity',psy:'Schema: conditional self-worth'},
+    image:{n:'Performance and image emphasis',t:'Ask: who am I doing this for right now?',w:'emphasis on how you appear rather than what you are building is a sign of disintegration pressure',psy:'Ego state: image management under stress'}
   };
   var h='';
   ep.forEach(function(r){var k=r.querySelector('input').dataset.e;if(em[k])h+='<div class="ri"><div class="rin">'+em[k].n+'</div><div class="rit">'+em[k].t+'</div><div class="riw">'+em[k].w+'</div><div class="ripsy">'+em[k].psy+'</div></div>';});
@@ -1529,7 +1537,13 @@ function doIntegration(){
   vibrate([80,100,80,100,80]);
 }
 
-if(!NO_TOKEN){setInterval(function(){saveToGist();},3*60*1000);}
+if(!NO_TOKEN){
+  setInterval(async function(){
+    await saveToGist();
+    await loadTodayFromGist();
+  },3*60*1000);
+}
+
 buildReg();
 initCare();
 if(!NO_TOKEN){loadTodayFromGist();}
