@@ -113,8 +113,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1
 .hbf:active{transform:scale(0.94)}
 /* Ground overlay */
 .bov{display:none;position:fixed;top:0;left:0;right:0;bottom:0;z-index:200;background:rgba(0,0,0,0.4);overflow-y:auto}
-.bov.open{display:flex;justify-content:center}
-.bov-inner{background:var(--bg);width:100%;max-width:560px;min-height:100vh;padding:1rem;position:relative}
+.bov.open{display:block;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.bov-inner{background:var(--bg);width:100%;max-width:560px;min-height:100%;padding:1rem 1rem 2rem;position:relative;margin:0 auto}
 .bovh{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;padding-top:0.5rem}
 .bovt{font-size:17px;font-weight:600;color:var(--text)}
 .bovc{background:none;border:none;font-size:26px;cursor:pointer;color:var(--text3);line-height:1;padding:0;-webkit-tap-highlight-color:transparent}
@@ -123,11 +123,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1
 .bov-tab.on{background:var(--calm);color:#fff;border-color:var(--calm)}
 .bov-pane{display:none}
 .bov-pane.on{display:block}
-/* Breathing zone — visually distinct */
-.breath-zone{background:var(--calm-bg);border-radius:var(--rl);padding:1rem;margin:-0.5rem -0.5rem 0;border:1px solid var(--calm-bdr)}
 .btbs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1rem}
 .btb{flex:1;min-width:110px;padding:9px 8px;border-radius:var(--r);border:1px solid var(--bdr2);background:transparent;color:var(--text2);font-size:12px;cursor:pointer;text-align:center;line-height:1.4;-webkit-tap-highlight-color:transparent;font-family:inherit}
-.btb.on{background:var(--calm);color:#fff;font-weight:600;border-color:var(--calm)}
+.btb.on{background:var(--text);color:var(--bg);font-weight:600;border-color:var(--text)}
 .btb .bn{font-weight:600;display:block}
 .btb .bs{font-size:10px;display:block;margin-top:1px;opacity:0.8}
 .arena{display:flex;flex-direction:column;align-items:center;padding:.5rem 0 1rem}
@@ -148,17 +146,15 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1
 .bcy{font-size:12px;color:var(--text3);margin-bottom:.7rem;min-height:18px}
 .bcr{display:flex;gap:8px}
 .bct{padding:10px 24px;border-radius:var(--r);border:1px solid var(--bdr2);background:transparent;color:var(--text);font-size:13px;cursor:pointer;-webkit-tap-highlight-color:transparent;font-family:inherit}
-/* Grounding techniques zone — visually distinct */
-.grnd-zone{background:var(--calm-bg);border-radius:var(--rl);padding:1rem;margin:-0.5rem -0.5rem 0;border:1px solid var(--calm-bdr)}
-.grnd-techs{display:flex;flex-direction:column;gap:8px}
-.grnd-card{background:var(--bg);border:1px solid var(--bdr);border-radius:var(--rl);padding:1rem}
-.grnd-title{font-size:14px;font-weight:600;color:var(--text);margin-bottom:4px}
-.grnd-desc{font-size:12px;color:var(--text2);line-height:1.5;margin-bottom:10px}
+.grnd-techs{display:flex;flex-direction:column;gap:10px}
+.grnd-card{background:var(--bg2);border:1px solid var(--bdr);border-radius:14px;padding:1.2rem 1.1rem}
+.grnd-title{font-size:15px;font-weight:600;color:var(--text);margin-bottom:6px}
+.grnd-desc{font-size:12.5px;color:var(--text2);line-height:1.6;margin-bottom:12px}
 .grnd-body{display:none}
 .grnd-body.open{display:block}
-.grnd-prompt{font-size:15px;font-weight:600;color:var(--text);text-align:center;padding:1rem 0;line-height:1.5}
-.grnd-counter{font-size:32px;font-weight:600;color:var(--calm);text-align:center;margin:.5rem 0}
-.grnd-sense{font-size:12px;color:var(--text3);text-align:center;margin-bottom:1rem}
+.grnd-prompt{font-size:15px;font-weight:600;color:var(--text);text-align:center;padding:1.2rem 0.5rem;line-height:1.5}
+.grnd-counter{font-size:34px;font-weight:600;color:var(--calm);text-align:center;margin:.6rem 0}
+.grnd-sense{font-size:12.5px;color:var(--text3);text-align:center;margin-bottom:1rem}
 .grnd-btn{width:100%;padding:11px;border-radius:var(--r);border:1px solid var(--bdr2);background:transparent;color:var(--text2);font-size:13px;cursor:pointer;font-family:inherit;margin-top:4px;-webkit-tap-highlight-color:transparent}
 .grnd-btn.primary{background:transparent;color:var(--text2);border-color:var(--bdr2)}
 .grnd-btn:active{opacity:.7}
@@ -166,7 +162,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1
 .grnd-timer-fill{height:100%;border-radius:3px;background:var(--calm);transition:width .1s linear}
 .grnd-pulse{width:80px;height:80px;border-radius:50%;background:var(--calm-bg);margin:1rem auto;transition:transform .5s ease-in-out}
 .grnd-pulse.expand{transform:scale(1.3)}
-.grnd-done-q{font-size:14px;color:var(--text2);text-align:center;margin-bottom:12px}
+.grnd-done-q{font-size:14px;color:var(--text2);text-align:center;margin-bottom:14px;padding-top:4px}
 .grnd-done-btns{display:flex;gap:8px}
 .grnd-done-btn{flex:1;padding:11px;border-radius:var(--r);font-size:13px;cursor:pointer;font-family:inherit;border:1px solid var(--bdr2);background:transparent;color:var(--text2);-webkit-tap-highlight-color:transparent}
 .grnd-done-btn.settled{background:var(--sb);color:var(--st);border-color:var(--sbo)}
@@ -278,13 +274,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1
 <div class="bov" id="boverlay">
   <div class="bov-inner">
     <div class="bovh"><span class="bovt">Ground</span><button class="bovc" onclick="closeBreath()">&#215;</button></div>
-    <div class="bov-tabs">
-      <button class="bov-tab on" onclick="switchBovTab('breath',this)">Breathing</button>
-      <button class="bov-tab" onclick="switchBovTab('ground',this)">If breathing isn&#39;t working</button>
-    </div>
+    <div class="bov-tabs" style="display:none"></div>
     <div class="bov-pane on" id="bov-breath">
-      <div class="breath-zone">
-        <div class="btbs" id="btabs"></div>
+      <div class="btbs" id="btabs"></div>
         <div class="arena">
           <div class="breath-timer" id="breath-timer">00:00</div>
           <div class="rw"><canvas id="bcanvas" width="240" height="240"></canvas>
@@ -298,13 +290,14 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1
           <div class="bcy" id="bcycles"></div>
           <div class="bcr"><button class="bct" onclick="stopBreath()">Stop</button></div>
         </div>
+      <div style="margin-top:1rem">
+        <button class="btn" id="more-opts-btn" onclick="toggleMoreOpts()">More options</button>
+        <div id="more-opts" style="display:none;margin-top:10px">
+          <div class="grnd-techs" id="grnd-techs"></div>
+        </div>
       </div>
     </div>
-    <div class="bov-pane" id="bov-ground">
-      <div class="grnd-zone">
-        <div class="grnd-techs" id="grnd-techs"></div>
-      </div>
-    </div>
+    <div class="bov-pane" id="bov-ground" style="display:none"></div>
   </div>
 </div>
 
@@ -1055,6 +1048,7 @@ function getAudioCtx(){
 function beep(){
   try{
     var ctx=getAudioCtx();
+    if(ctx.state==='suspended'){ctx.resume();}
     var o=ctx.createOscillator();var g=ctx.createGain();
     o.type='sine';o.frequency.setValueAtTime(660,ctx.currentTime);
     g.gain.setValueAtTime(0.0001,ctx.currentTime);
@@ -1166,14 +1160,9 @@ function bRunP(){
   document.getElementById('cp-count').textContent=cv2;
   if(bCI)clearInterval(bCI);
   bCI=setInterval(function(){cv2--;document.getElementById('cp-count').textContent=cv2>0?cv2:'';if(cv2<=0)clearInterval(bCI);},1000);
-  // Beep at each second tick on the circle
-  var bTickI=setInterval(function(){
-    if(!bR){clearInterval(bTickI);return;}
-    beep();
-  },1000);
   var dMs=dur*1000;bPS=performance.now();
   function frame(now){
-    if(!bR){clearInterval(bTickI);return;}
+    if(!bR){return;}
     var el=Math.min(now-bPS,dMs);var frac=el/dMs;
     var ease=isHold?1:(0.5-0.5*Math.cos(Math.PI*frac));
     var r=sR+(eR-sR)*ease;bIR=r;bApB(r);
@@ -1181,12 +1170,13 @@ function bRunP(){
     var dotF=fr[bPh]+(fr[bPh+1]-fr[bPh])*frac;
     bDr(dotF,innerR);
     if(el<dMs){bRaf=requestAnimationFrame(frame);}
-    else{clearInterval(bTickI);bIR=eR;bPh++;if(bPh>=b.ph.length){bPh=0;bC++;}requestAnimationFrame(function(){if(bR)bRunP();});}
+    else{bIR=eR;bPh++;if(bPh>=b.ph.length){bPh=0;bC++;}requestAnimationFrame(function(){if(bR)bRunP();});}
   }
   bRaf=requestAnimationFrame(frame);
 }
-function openBreath(){document.getElementById('boverlay').classList.add('open');document.body.style.overflow='hidden';initB();initGrounding();}
+function openBreath(){document.getElementById('boverlay').classList.add('open');document.body.style.overflow='hidden';initB();initGrounding();document.getElementById('more-opts').style.display='none';}
 function closeBreath(){bStop();document.getElementById('boverlay').classList.remove('open');document.body.style.overflow='';}
+function toggleMoreOpts(){var el=document.getElementById('more-opts');var open=el.style.display!=='none';el.style.display=open?'none':'block';document.getElementById('more-opts-btn').textContent=open?'More options':'Hide options';if(!open)el.scrollIntoView({behavior:'smooth',block:'start'});}
 function stopBreath(){bStop();}
 
 // ── GROUNDING ──
