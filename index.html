@@ -108,19 +108,14 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1
 .vlnot{font-size:11px;color:var(--text3);margin-top:4px;line-height:1.4;font-style:italic}
 .inp{margin-top:8px;padding:10px 12px;border-radius:var(--r);border-left:3px solid var(--ibo);background:var(--ib);font-size:13px;line-height:1.6;color:var(--it)}
 .dsp{margin-top:8px;padding:10px 12px;border-radius:var(--r);border-left:3px solid var(--wbo);background:var(--wb);font-size:13px;line-height:1.6;color:var(--wt)}
-/* Ground button — calming teal */
-.hbf{position:fixed;bottom:24px;right:16px;z-index:100;width:54px;height:54px;border-radius:50%;background:var(--calm);color:#1a1a1a;border:none;cursor:pointer;font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.3;-webkit-tap-highlight-color:transparent;box-shadow:0 2px 12px rgba(0,0,0,0.25);font-family:inherit}
+.hbf{position:fixed;bottom:24px;right:16px;z-index:100;width:54px;height:54px;border-radius:50%;background:var(--calm);color:#fff;border:none;cursor:pointer;font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.3;-webkit-tap-highlight-color:transparent;box-shadow:0 2px 12px rgba(0,0,0,0.25);font-family:inherit}
 .hbf:active{transform:scale(0.94)}
-/* Ground overlay */
 .bov{display:none;position:fixed;top:0;left:0;right:0;bottom:0;z-index:200;background:rgba(0,0,0,0.4);overflow-y:auto}
 .bov.open{display:block;overflow-y:auto;-webkit-overflow-scrolling:touch}
 .bov-inner{background:var(--bg);width:100%;max-width:560px;min-height:100%;padding:1rem 1rem 2rem;position:relative;margin:0 auto}
 .bovh{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;padding-top:0.5rem}
 .bovt{font-size:17px;font-weight:600;color:var(--text)}
 .bovc{background:none;border:none;font-size:26px;cursor:pointer;color:var(--text3);line-height:1;padding:0;-webkit-tap-highlight-color:transparent}
-.bov-tabs{display:flex;gap:6px;margin-bottom:1rem}
-.bov-tab{flex:1;padding:9px 8px;border-radius:var(--r);border:1px solid var(--bdr2);background:transparent;color:var(--text2);font-size:13px;cursor:pointer;font-family:inherit;-webkit-tap-highlight-color:transparent}
-.bov-tab.on{background:var(--calm);color:#fff;border-color:var(--calm)}
 .bov-pane{display:none}
 .bov-pane.on{display:block}
 .btbs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1rem}
@@ -188,6 +183,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1
 .rgcv{font-size:12px;font-weight:600;margin-top:2px;color:var(--text)}
 .rgm{padding:8px 10px;border-radius:var(--r);border:1px solid var(--bdr);font-size:13px;line-height:1.6;margin-top:6px;color:var(--text)}
 .rgmk{font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.4px;margin-bottom:4px}
+.reg-psych{margin-top:8px;padding:10px 12px;border-radius:var(--r);border:1px solid var(--bdr);background:var(--bg);font-size:12px;line-height:1.7;color:var(--text2)}
+.reg-psych-desc{font-style:italic;color:var(--text2);margin-bottom:8px;padding-bottom:8px;border-bottom:1px solid var(--bdr)}
+.reg-psych-row{display:flex;gap:6px;margin-top:5px;line-height:1.5}
+.reg-psych-lbl{font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.3px;flex-shrink:0;padding-top:1px;min-width:90px}
+.reg-psych-val{font-size:12px;color:var(--text2)}
 .dcd{font-size:13px;color:var(--text2);margin-bottom:.8rem;padding-top:0.4rem}
 .dcdb{border-radius:var(--rl);padding:12px 14px;margin-bottom:10px;border:1px solid var(--bdr)}
 .dcdk{font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.4px;margin-bottom:4px}
@@ -270,26 +270,24 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1
 
 <button class="hbf" onclick="openBreath()">Ground</button>
 
-<!-- GROUND OVERLAY -->
 <div class="bov" id="boverlay">
   <div class="bov-inner">
     <div class="bovh"><span class="bovt">Ground</span><button class="bovc" onclick="closeBreath()">&#215;</button></div>
-    <div class="bov-tabs" style="display:none"></div>
     <div class="bov-pane on" id="bov-breath">
       <div class="btbs" id="btabs"></div>
-        <div class="arena">
-          <div class="breath-timer" id="breath-timer">00:00</div>
-          <div class="rw"><canvas id="bcanvas" width="240" height="240"></canvas>
-            <button class="cbtn" id="center-btn" onclick="toggleRun()">
-              <span class="cph" id="cp-phase">Tap to start</span>
-              <span class="cpc" id="cp-count"></span>
-            </button>
-          </div>
-          <div class="prow" id="phases-row"></div>
-          <div class="bdw"><div class="bwh" id="bwhen"></div><div class="bde" id="bdesc"></div></div>
-          <div class="bcy" id="bcycles"></div>
-          <div class="bcr"><button class="bct" onclick="stopBreath()">Stop</button></div>
+      <div class="arena">
+        <div class="breath-timer" id="breath-timer">00:00</div>
+        <div class="rw"><canvas id="bcanvas" width="240" height="240"></canvas>
+          <button class="cbtn" id="center-btn" onclick="toggleRun()">
+            <span class="cph" id="cp-phase">Tap to start</span>
+            <span class="cpc" id="cp-count"></span>
+          </button>
         </div>
+        <div class="prow" id="phases-row"></div>
+        <div class="bdw"><div class="bwh" id="bwhen"></div><div class="bde" id="bdesc"></div></div>
+        <div class="bcy" id="bcycles"></div>
+        <div class="bcr"><button class="bct" onclick="stopBreath()">Stop</button></div>
+      </div>
       <div style="margin-top:1rem">
         <button class="btn" id="more-opts-btn" onclick="toggleMoreOpts()">More options</button>
         <div id="more-opts" style="display:none;margin-top:10px">
@@ -297,7 +295,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1
         </div>
       </div>
     </div>
-    <div class="bov-pane" id="bov-ground" style="display:none"></div>
   </div>
 </div>
 
@@ -562,26 +559,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1
     </div>
     <div class="sdiv" style="margin-top:14px">Alignment values</div>
     <div class="vlg">
-      <div class="vlc">
-        <div class="vln">Clarity</div>
-        <div class="vlis">Seeing accurately through noise, projection, and distortion</div>
-        <div class="vlnot">Not over-analysis, certainty-seeking, or eliminating ambiguity at all costs</div>
-      </div>
-      <div class="vlc">
-        <div class="vln">Freedom</div>
-        <div class="vlis">Self-determination without asking permission to exist</div>
-        <div class="vlnot">Not isolation, defiance, avoidance of structure, or infinite optionality</div>
-      </div>
-      <div class="vlc">
-        <div class="vln">Authenticity</div>
-        <div class="vlis">Refusing surface engagement, insisting on what is real</div>
-        <div class="vlnot">Not emotional dumping, impulsive expression, or performing inner states</div>
-      </div>
-      <div class="vlc">
-        <div class="vln">Compassion</div>
-        <div class="vlis">Genuine care that includes truth and discernment</div>
-        <div class="vlnot">Not self-sacrifice, rescuing, emotional merging, or carrying others&#39; regulation</div>
-      </div>
+      <div class="vlc"><div class="vln">Clarity</div><div class="vlis">Seeing accurately through noise, projection, and distortion</div><div class="vlnot">Not over-analysis, certainty-seeking, or eliminating ambiguity at all costs</div></div>
+      <div class="vlc"><div class="vln">Freedom</div><div class="vlis">Self-determination without asking permission to exist</div><div class="vlnot">Not isolation, defiance, avoidance of structure, or infinite optionality</div></div>
+      <div class="vlc"><div class="vln">Authenticity</div><div class="vlis">Refusing surface engagement, insisting on what is real</div><div class="vlnot">Not emotional dumping, impulsive expression, or performing inner states</div></div>
+      <div class="vlc"><div class="vln">Compassion</div><div class="vlis">Genuine care that includes truth and discernment</div><div class="vlnot">Not self-sacrifice, rescuing, emotional merging, or carrying others&#39; regulation</div></div>
     </div>
   </div>
 
@@ -634,14 +615,7 @@ function showSetup(){
   document.body.innerHTML='';
   var w=document.createElement('div');
   w.style.cssText='min-height:100vh;display:flex;align-items:center;justify-content:center;padding:2rem;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;background:#f0f0ec';
-  w.innerHTML='<div style="background:#fff;border-radius:12px;padding:1.5rem;max-width:400px;width:100%;border:1px solid rgba(0,0,0,0.12)">'
-    +'<div style="font-size:16px;font-weight:600;color:#1a1a1a;margin-bottom:6px">Inner Systems</div>'
-    +'<div style="font-size:13px;color:#555;line-height:1.6;margin-bottom:14px">Paste your GitHub Personal Access Token to enable history saving across devices. Or use without a token \u2014 the app works fully, but nothing is saved and history cannot be accessed.</div>'
-    +'<input id="tok-input" type="password" placeholder="ghp_..." style="width:100%;padding:10px 11px;border-radius:8px;border:1px solid rgba(0,0,0,0.25);background:#f7f7f5;color:#1a1a1a;font-size:13px;font-family:inherit;margin-bottom:8px;box-sizing:border-box">'
-    +'<button id="tok-save" style="width:100%;padding:11px;border-radius:8px;border:1px solid rgba(0,0,0,0.25);background:#1a1a1a;font-size:13px;cursor:pointer;font-family:inherit;color:#fff;margin-bottom:8px">Save token and open app</button>'
-    +'<button id="tok-skip" style="width:100%;padding:11px;border-radius:8px;border:1px solid rgba(0,0,0,0.18);background:transparent;font-size:13px;cursor:pointer;font-family:inherit;color:#555">Use without saving</button>'
-    +'<div style="font-size:11px;color:#999;text-align:center;line-height:1.5;margin-top:10px">Token stored in Safari on this device only \u2014 never in the file.</div>'
-    +'</div>';
+  w.innerHTML='<div style="background:#fff;border-radius:12px;padding:1.5rem;max-width:400px;width:100%;border:1px solid rgba(0,0,0,0.12)"><div style="font-size:16px;font-weight:600;color:#1a1a1a;margin-bottom:6px">Inner Systems</div><div style="font-size:13px;color:#555;line-height:1.6;margin-bottom:14px">Paste your GitHub Personal Access Token to enable history saving across devices. Or use without a token \u2014 the app works fully, but nothing is saved and history cannot be accessed.</div><input id="tok-input" type="password" placeholder="ghp_..." style="width:100%;padding:10px 11px;border-radius:8px;border:1px solid rgba(0,0,0,0.25);background:#f7f7f5;color:#1a1a1a;font-size:13px;font-family:inherit;margin-bottom:8px;box-sizing:border-box"><button id="tok-save" style="width:100%;padding:11px;border-radius:8px;border:1px solid rgba(0,0,0,0.25);background:#1a1a1a;font-size:13px;cursor:pointer;font-family:inherit;color:#fff;margin-bottom:8px">Save token and open app</button><button id="tok-skip" style="width:100%;padding:11px;border-radius:8px;border:1px solid rgba(0,0,0,0.18);background:transparent;font-size:13px;cursor:pointer;font-family:inherit;color:#555">Use without saving</button><div style="font-size:11px;color:#999;text-align:center;line-height:1.5;margin-top:10px">Token stored in Safari on this device only \u2014 never in the file.</div></div>';
   document.body.appendChild(w);
   document.getElementById('tok-save').onclick=function(){var v=document.getElementById('tok-input').value.trim();if(!v){alert('Please paste your GitHub token, or tap "Use without saving".');return;}setToken(v);location.reload();};
   document.getElementById('tok-skip').onclick=function(){localStorage.setItem('vk_no_token','1');location.reload();};
@@ -657,9 +631,7 @@ const SK='vk_'+TODAY+'_';
 function persist(k,v){try{localStorage.setItem(SK+k,typeof v==='boolean'?String(v):v);}catch(e){}}
 function recall(k,df){try{var v=localStorage.getItem(SK+k);if(v===null)return df;if(v==='true')return true;if(v==='false')return false;return v;}catch(e){return df;}}
 
-try{Object.keys(localStorage).filter(function(k){
-  return k.startsWith('vk_')&&!k.startsWith(SK)&&k!=='vk_hist_index'&&!k.startsWith('vk_day_')&&k!=='vk_gist_token'&&k!=='vk_no_token';
-}).forEach(function(k){localStorage.removeItem(k);});}catch(e){}
+try{Object.keys(localStorage).filter(function(k){return k.startsWith('vk_')&&!k.startsWith(SK)&&k!=='vk_hist_index'&&!k.startsWith('vk_day_')&&k!=='vk_gist_token'&&k!=='vk_no_token';}).forEach(function(k){localStorage.removeItem(k);});}catch(e){}
 
 function saveLocalDay(date,data){try{localStorage.setItem('vk_day_'+date,JSON.stringify(data));}catch(e){}}
 function loadLocalDay(date){try{var raw=localStorage.getItem('vk_day_'+date);return raw?JSON.parse(raw):null;}catch(e){return null;}}
@@ -678,199 +650,84 @@ var REVIEW_CHK_IDS=[
   'rs2-depth','rs2-abstr','rs2-iso','rs2-sov','rs2-perf','rs2-flaw','rs2-worth','rs2-image'
 ];
 
-function togChk(row,id){
-  var cb=document.getElementById(id);if(!cb)return;
-  cb.checked=!cb.checked;
-  persist('chk-'+id,cb.checked);
-}
-
-// ── FULL LABEL MAP FOR HISTORY ──
 var LABEL_MAP={
-  // Body signals
   sleep:'Fragmented sleep',rest:'Physical restlessness',fat:'Fatigue',dehy:'Dehydration',app:'Appetite shift',jaw:'Jaw tension',chest:'Chest tight',gut:'Gut tension',head:'Head pressure',
-  // Noise
   ctx:'Missing context',old:'Older trigger activated',benefit:'Self-doubt benefiting other',noev:'No evidence given',defend:'Urge to defend',seen:'Feeling unseen',rumi:'Rumination loop',truth:'Truth denied',attrib:'Character attribution',
-  // Catastrophising
   cat1:'Treating possible as certain',cat2:'Pre-emptive failure',cat3:'Guilt after boundary',cat4:'Predicting permanent judgement',cat5:'Temporary feels permanent',cat6:'Reading emotions as confirmation',cat7:'Urgency illusion',
-  // Cognitive filters
   all:'All-or-nothing',emo:'Feelings as evidence',mind:'Mind reading',should:'Rigid shoulds',pers:'Carrying what is not mine',mini:'Minimising needs',ref:'Reframing too quickly',spot:'Spotlight effect',burden:'Needs as burden',conn:'Adjusting to maintain connection',neg:'Negativity bias',affect:'Emotions feel unsafe',ready:'Readiness condition',
-  // Boundary pressure
   time:'Time assumed',no:'No being pushed past',priv:'Privacy probed',dis:'State dismissed',shift:'Responsibility shifted',guilt:'Guilt as leverage',rush:'Decision rushed',comp:'Competence undermined',drain:'Emptied after contact',
-  // Behavioural drift
   wd:'Excess withdrawal',oe:'Over-explaining',fawn:'False agreement',give:'Over-giving',resent:'Resentment after giving',snap:'Disproportionate force',numb:'Emotional flattening',scan:'Tracking their read',small:'Becoming smaller',
-  // Game check
   complaint:'Complaint without resolution',deflect:'Solutions found wanting',position:'Positioning as wrong',perform:'Competence performed',third:'Third person dynamic',image:'Contribution tied to image',
-  // Effort patterns
   burst:'Intensity burst',phil:'Philosophical drift',spblind:'SP blind override',fatigue:'Effort despite fatigue',switch:'Task avoidance',rest:'Rest anxiety',
-  // Structural bias
-  depth:'Depth without movement',abstr:'Abstraction as avoidance',iso:'Isolation under pressure',sov:'Sovereignty as avoidance',perf:'Over-optimisation',flaw:'Attention narrowing to flaws',worth:'Contingent self-worth',image2:'Performance emphasis'
+  depth:'Depth without movement',abstr:'Abstraction as avoidance',iso:'Isolation under pressure',sov:'Sovereignty as avoidance',perf:'Over-optimisation',flaw:'Attention narrowing to flaws',worth:'Contingent self-worth'
 };
 
-// ── GIST SYNC ──
+function togChk(row,id){var cb=document.getElementById(id);if(!cb)return;cb.checked=!cb.checked;persist('chk-'+id,cb.checked);}
+
 function buildSaveData(){
-  var data={
-    date:TODAY,
-    savedAt:Date.now(),
-    care:{
-      intentions:{main:recall('intent-main',''),value:recall('intent-value',''),protect:recall('intent-protect','')},
-      goals:{},guardrails:{},
-      reflection:{what:recall('reflect-what',''),good:recall('reflect-good',''),next:recall('reflect-next','')}
-    },
-    review:reviewState,
-    taper:{s1:recall('tc-s1',false),s2:recall('tc-s2',false),ins:recall('tc-ins',false),urg:recall('tc-urg',false),sub:recall('tc-sub',false),tspd:recall('tc-tspd',false),mood:recall('tc-mood',false),status:recall('tc-status-val','')}
-  };
+  var data={date:TODAY,savedAt:Date.now(),care:{intentions:{main:recall('intent-main',''),value:recall('intent-value',''),protect:recall('intent-protect','')},goals:{},guardrails:{},reflection:{what:recall('reflect-what',''),good:recall('reflect-good',''),next:recall('reflect-next','')}},review:reviewState,taper:{s1:recall('tc-s1',false),s2:recall('tc-s2',false),ins:recall('tc-ins',false),urg:recall('tc-urg',false),sub:recall('tc-sub',false),tspd:recall('tc-tspd',false),mood:recall('tc-mood',false),status:recall('tc-status-val','')}};
   ['regulation','fitness','admin','novisits','land','tribe','partner','family'].forEach(function(g){data.care.goals[g]=recall('goal-'+g,'');});
   ['s1a','s1b','s2a','s2b','s3a','s3b','p1a','p1b','p2a','p2b','p3a','p3b','t1a','t1b','t2a','t2b','t3a','t3b','t4a','t4b'].forEach(function(y){data.care.guardrails[y]=recall(y,'');});
-  var chks={};
-  REVIEW_CHK_IDS.forEach(function(id){chks[id]=recall('chk-'+id,false);});
-  data.chks=chks;
+  var chks={};REVIEW_CHK_IDS.forEach(function(id){chks[id]=recall('chk-'+id,false);});data.chks=chks;
   return data;
 }
 
 async function saveToGist(){
   if(NO_TOKEN)return;
-  try{
-    var data=buildSaveData();
-    saveLocalDay(TODAY,data);
-    updateHistIndex(TODAY);
-    var tok=getToken();if(!GIST_ID||!tok)return;
-    var files={};files[TODAY+'.json']={content:JSON.stringify(data,null,2)};
-    await fetch('https://api.github.com/gists/'+GIST_ID,{method:'PATCH',headers:{'Authorization':'token '+tok,'Content-Type':'application/json'},body:JSON.stringify({files:files})});
-  }catch(e){console.log('Gist save error',e);}
+  try{var data=buildSaveData();saveLocalDay(TODAY,data);updateHistIndex(TODAY);var tok=getToken();if(!GIST_ID||!tok)return;var files={};files[TODAY+'.json']={content:JSON.stringify(data,null,2)};await fetch('https://api.github.com/gists/'+GIST_ID,{method:'PATCH',headers:{'Authorization':'token '+tok,'Content-Type':'application/json'},body:JSON.stringify({files:files})});}catch(e){console.log('Gist save error',e);}
 }
 
 async function loadTodayFromGist(){
-  if(NO_TOKEN)return;
-  var tok=getToken();if(!GIST_ID||!tok)return;
-  try{
-    var r=await fetch('https://api.github.com/gists/'+GIST_ID,{headers:{'Authorization':'token '+tok}});
-    var g=await r.json();
-    var fname=TODAY+'.json';
-    if(g.files&&g.files[fname]){
-      var data=JSON.parse(g.files[fname].content);
-      var local=loadLocalDay(TODAY);
-      if(!local||!local.savedAt||!data.savedAt||data.savedAt>=local.savedAt){
-        saveLocalDay(TODAY,data);
-        restoreFromData(data);
-      }
-    }
-    if(g.files){
-      var idx=[];
-      Object.keys(g.files).forEach(function(fn){
-        if(fn.endsWith('.json')){var d=fn.replace('.json','');if(/^\d{4}-\d{2}-\d{2}$/.test(d))idx.push(d);}
-      });
-      idx.sort(function(a,b){return b.localeCompare(a);});
-      localStorage.setItem('vk_hist_index',JSON.stringify(idx.slice(0,30)));
-    }
+  if(NO_TOKEN)return;var tok=getToken();if(!GIST_ID||!tok)return;
+  try{var r=await fetch('https://api.github.com/gists/'+GIST_ID,{headers:{'Authorization':'token '+tok}});var g=await r.json();var fname=TODAY+'.json';
+    if(g.files&&g.files[fname]){var data=JSON.parse(g.files[fname].content);var local=loadLocalDay(TODAY);if(!local||!local.savedAt||!data.savedAt||data.savedAt>=local.savedAt){saveLocalDay(TODAY,data);restoreFromData(data);}}
+    if(g.files){var idx=[];Object.keys(g.files).forEach(function(fn){if(fn.endsWith('.json')){var d=fn.replace('.json','');if(/^\d{4}-\d{2}-\d{2}$/.test(d))idx.push(d);}});idx.sort(function(a,b){return b.localeCompare(a);});localStorage.setItem('vk_hist_index',JSON.stringify(idx.slice(0,30)));}
   }catch(e){console.log('Gist load error',e);}
 }
 
 function restoreFromData(data){
   if(!data)return;
-  var c=data.care||{};
-  var i=c.intentions||{};
-  ['main','value','protect'].forEach(function(k){
-    var el=document.getElementById('intent-'+k);
-    if(el&&i[k]!==undefined){el.value=i[k];persist('intent-'+k,i[k]);}
-  });
-  var rf=c.reflection||{};
-  ['what','good','next'].forEach(function(k){
-    var el=document.getElementById('reflect-'+k);
-    if(el&&rf[k]!==undefined){el.value=rf[k];persist('reflect-'+k,rf[k]);}
-  });
+  var c=data.care||{};var i=c.intentions||{};
+  ['main','value','protect'].forEach(function(k){var el=document.getElementById('intent-'+k);if(el&&i[k]!==undefined){el.value=i[k];persist('intent-'+k,i[k]);}});
+  var rf=c.reflection||{};['what','good','next'].forEach(function(k){var el=document.getElementById('reflect-'+k);if(el&&rf[k]!==undefined){el.value=rf[k];persist('reflect-'+k,rf[k]);}});
   if(c.goals){Object.entries(c.goals).forEach(function(e){persist('goal-'+e[0],e[1]);applyGoalBtn(e[0],e[1]);});}
-  if(c.guardrails){
-    Object.entries(c.guardrails).forEach(function(e){
-      persist(e[0],e[1]);
-      var btn=document.getElementById(e[0]);
-      if(btn){btn.classList.remove('yo','no');if(e[1]==='yo')btn.classList.add('yo');else if(e[1]==='no')btn.classList.add('no');}
-    });
-  }
+  if(c.guardrails){Object.entries(c.guardrails).forEach(function(e){persist(e[0],e[1]);var btn=document.getElementById(e[0]);if(btn){btn.classList.remove('yo','no');if(e[1]==='yo')btn.classList.add('yo');else if(e[1]==='no')btn.classList.add('no');}});}
   var t=data.taper||{};
-  ['s1','s2','ins','urg','sub','tspd','mood'].forEach(function(k){
-    persist('tc-'+k,t[k]||false);
-    var el=document.getElementById('tc-'+k);if(el)el.checked=t[k]||false;
-  });
-  if(t.status){
-    persist('tc-status-val',t.status);
-    var sc=t.status==='green'?'tpg':t.status==='yellow'?'tpy':'tpr';
-    var sm=t.status==='green'?'Green \u2014 stable, continue current phase.':t.status==='yellow'?'Yellow \u2014 hold current dose, do not reduce.':'Red \u2014 fall back to previous stable dose.';
-    var stEl=document.getElementById('tc-status');if(stEl){stEl.style.display='block';stEl.className='tpst '+sc;stEl.textContent=sm;}
-  }
-  if(data.chks){
-    Object.entries(data.chks).forEach(function(e){
-      persist('chk-'+e[0],e[1]);
-      var el=document.getElementById(e[0]);if(el)el.checked=e[1];
-    });
-  }
+  ['s1','s2','ins','urg','sub','tspd','mood'].forEach(function(k){persist('tc-'+k,t[k]||false);var el=document.getElementById('tc-'+k);if(el)el.checked=t[k]||false;});
+  if(t.status){persist('tc-status-val',t.status);var sc=t.status==='green'?'tpg':t.status==='yellow'?'tpy':'tpr';var sm=t.status==='green'?'Green \u2014 stable, continue current phase.':t.status==='yellow'?'Yellow \u2014 hold current dose, do not reduce.':'Red \u2014 fall back to previous stable dose.';var stEl=document.getElementById('tc-status');if(stEl){stEl.style.display='block';stEl.className='tpst '+sc;stEl.textContent=sm;}}
+  if(data.chks){Object.entries(data.chks).forEach(function(e){persist('chk-'+e[0],e[1]);var el=document.getElementById(e[0]);if(el)el.checked=e[1];});}
   if(data.review)reviewState=data.review;
   updCareRegBanner();updReflCtx();updTaperBadge();
   if([...document.querySelectorAll('.ynbtn.yo,.ynbtn.no')].length>0)doGuardrails();
 }
 
-function updateHistIndex(date){
-  try{var idx=JSON.parse(localStorage.getItem('vk_hist_index')||'[]');if(!idx.includes(date))idx.unshift(date);idx=idx.slice(0,30);localStorage.setItem('vk_hist_index',JSON.stringify(idx));}catch(e){}
-}
-
-async function loadFromGist(date){
-  var local=loadLocalDay(date);if(local)return local;
-  var tok=getToken();if(!GIST_ID||!tok)return null;
-  try{
-    var r=await fetch('https://api.github.com/gists/'+GIST_ID,{headers:{'Authorization':'token '+tok}});
-    var g=await r.json();var fname=date+'.json';
-    if(g.files&&g.files[fname])return JSON.parse(g.files[fname].content);
-  }catch(e){}
-  return null;
-}
+function updateHistIndex(date){try{var idx=JSON.parse(localStorage.getItem('vk_hist_index')||'[]');if(!idx.includes(date))idx.unshift(date);idx=idx.slice(0,30);localStorage.setItem('vk_hist_index',JSON.stringify(idx));}catch(e){}}
+async function loadFromGist(date){var local=loadLocalDay(date);if(local)return local;var tok=getToken();if(!GIST_ID||!tok)return null;try{var r=await fetch('https://api.github.com/gists/'+GIST_ID,{headers:{'Authorization':'token '+tok}});var g=await r.json();var fname=date+'.json';if(g.files&&g.files[fname])return JSON.parse(g.files[fname].content);}catch(e){}return null;}
 
 document.addEventListener('visibilitychange',function(){if(document.visibilityState==='hidden')saveToGist();});
 window.addEventListener('beforeunload',function(){saveToGist();});
 
-// ── HISTORY ──
-function toggleHist(bodyId,btn){
-  var body=document.getElementById(bodyId);body.classList.toggle('open');
-  if(body.classList.contains('open'))renderHistDays(bodyId);
-}
+function toggleHist(bodyId,btn){var body=document.getElementById(bodyId);body.classList.toggle('open');if(body.classList.contains('open'))renderHistDays(bodyId);}
 function renderHistDays(bodyId){
   var prefix=bodyId.replace('-body','');var daysEl=document.getElementById(prefix+'-days');
   if(NO_TOKEN){daysEl.innerHTML='<div style="font-size:13px;color:var(--text3);padding:8px 0">History requires a token.</div>';return;}
   var idx=[];try{idx=JSON.parse(localStorage.getItem('vk_hist_index')||'[]');}catch(e){}
   if(!idx.length){daysEl.innerHTML='<div style="font-size:13px;color:var(--text3);padding:8px 0">No history yet.</div>';return;}
-  daysEl.innerHTML='';
-  idx.forEach(function(date){
-    var d=document.createElement('div');d.className='hist-day';
-    d.innerHTML='<span class="hd-date">'+date+'</span><span class="hd-status">tap to view</span>';
-    d.onclick=function(){loadHistDay(date,prefix,daysEl,d);};
-    daysEl.appendChild(d);
-  });
+  daysEl.innerHTML='';idx.forEach(function(date){var d=document.createElement('div');d.className='hist-day';d.innerHTML='<span class="hd-date">'+date+'</span><span class="hd-status">tap to view</span>';d.onclick=function(){loadHistDay(date,prefix,daysEl,d);};daysEl.appendChild(d);});
 }
 
 async function loadHistDay(date,prefix,daysEl,dayEl){
   daysEl.querySelectorAll('.hist-day').forEach(function(d){d.classList.remove('active');});dayEl.classList.add('active');
-  var viewEl=document.getElementById(prefix+'-view');
-  viewEl.innerHTML='<div style="font-size:13px;color:var(--text3);padding:8px 0">Loading...</div>';viewEl.classList.add('show');
-  var data=await loadFromGist(date);
-  if(!data){viewEl.innerHTML='<div style="font-size:13px;color:var(--text3);padding:8px 0">No data found.</div>';return;}
+  var viewEl=document.getElementById(prefix+'-view');viewEl.innerHTML='<div style="font-size:13px;color:var(--text3);padding:8px 0">Loading...</div>';viewEl.classList.add('show');
+  var data=await loadFromGist(date);if(!data){viewEl.innerHTML='<div style="font-size:13px;color:var(--text3);padding:8px 0">No data found.</div>';return;}
   var h='<div style="font-size:11px;color:var(--text3);font-weight:600;text-transform:uppercase;letter-spacing:.4px;margin-bottom:10px">'+date+'</div>';
   if(prefix==='hist-care'){
     var c=data.care||{};var i=c.intentions||{};
     if(i.main||i.value||i.protect){h+='<div class="hv-head">Morning intention</div>';if(i.main)h+='<div class="hv-val">'+escH(i.main)+'</div>';if(i.value)h+='<div class="hv-val">'+escH(i.value)+'</div>';if(i.protect)h+='<div class="hv-val">'+escH(i.protect)+'</div>';}
-    if(c.goals){
-      h+='<div class="hv-head">Goals</div>';
-      var glabels={regulation:'Regulation',fitness:'Physical fitness',admin:'Admin',novisits:'NoVisits',land:'Land',tribe:'Finding my tribe',partner:'Finding a partner',family:'Family'};
-      var hasGoal=false;
-      Object.entries(c.goals).forEach(function(e){if(e[1]==='y'){h+='<span class="hv-yn hv-yes">'+glabels[e[0]]+'</span>';hasGoal=true;}else if(e[1]==='n'){h+='<span class="hv-yn hv-no">'+glabels[e[0]]+'</span>';hasGoal=true;}});
-      if(!hasGoal)h+='<div style="font-size:12px;color:var(--text3)">No goals recorded.</div>';
-    }
-    if(c.guardrails){
-      h+='<div class="hv-head" style="margin-top:8px">Guardrails</div>';
-      var gmap={s1a:'No intoxicants',s2a:'No caffeine',s3a:'No nicotine',p1a:'No unusual meaning',p2a:'No urgency to communicate',p3a:'Insight check',t1a:'Following routines',t2a:'Stability over insight',t3a:'No escalation',t4a:'Corrected drift'};
-      Object.entries(gmap).forEach(function(e){var yv=c.guardrails[e[0]];var nv=c.guardrails[e[0].replace('a','b')];if(yv==='yo')h+='<span class="hv-yn hv-yes">'+e[1]+'</span>';else if(nv==='no')h+='<span class="hv-yn hv-no">'+e[1]+'</span>';});
-    }
-    var rf=c.reflection||{};
-    if(rf.what||rf.good||rf.next){h+='<div class="hv-head">Evening reflection</div>';if(rf.what)h+='<div class="hv-val">'+escH(rf.what)+'</div>';if(rf.good)h+='<div class="hv-val">'+escH(rf.good)+'</div>';if(rf.next)h+='<div class="hv-val">'+escH(rf.next)+'</div>';}
-  }
-  else if(prefix==='hist-review'){
+    if(c.goals){h+='<div class="hv-head">Goals</div>';var gl={regulation:'Regulation',fitness:'Physical fitness',admin:'Admin',novisits:'NoVisits',land:'Land',tribe:'Finding my tribe',partner:'Finding a partner',family:'Family'};var hg=false;Object.entries(c.goals).forEach(function(e){if(e[1]==='y'){h+='<span class="hv-yn hv-yes">'+gl[e[0]]+'</span>';hg=true;}else if(e[1]==='n'){h+='<span class="hv-yn hv-no">'+gl[e[0]]+'</span>';hg=true;}});if(!hg)h+='<div style="font-size:12px;color:var(--text3)">No goals recorded.</div>';}
+    if(c.guardrails){h+='<div class="hv-head" style="margin-top:8px">Guardrails</div>';var gm={s1a:'No intoxicants',s2a:'No caffeine',s3a:'No nicotine',p1a:'No unusual meaning',p2a:'No urgency to communicate',p3a:'Insight check',t1a:'Following routines',t2a:'Stability over insight',t3a:'No escalation',t4a:'Corrected drift'};Object.entries(gm).forEach(function(e){var yv=c.guardrails[e[0]];var nv=c.guardrails[e[0].replace('a','b')];if(yv==='yo')h+='<span class="hv-yn hv-yes">'+e[1]+'</span>';else if(nv==='no')h+='<span class="hv-yn hv-no">'+e[1]+'</span>';});}
+    var rf=c.reflection||{};if(rf.what||rf.good||rf.next){h+='<div class="hv-head">Evening reflection</div>';if(rf.what)h+='<div class="hv-val">'+escH(rf.what)+'</div>';if(rf.good)h+='<div class="hv-val">'+escH(rf.good)+'</div>';if(rf.next)h+='<div class="hv-val">'+escH(rf.next)+'</div>';}
+  } else if(prefix==='hist-review'){
     var rv=data.review||{};
     if(rv.body&&rv.body.length){h+='<div class="hv-head">Body signals</div>';rv.body.forEach(function(k){h+='<div class="hv-item">\u2022 '+(LABEL_MAP[k]||k)+'</div>';});}
     if(rv.reg&&rv.reg.level){h+='<div class="hv-head">Regulation</div><div class="hv-item">Level '+rv.reg.level+' \u2014 '+escH(rv.reg.band)+'</div>';}
@@ -879,38 +736,21 @@ async function loadHistDay(date,prefix,daysEl,dayEl){
     if(rv.scan&&rv.scan.length){h+='<div class="hv-head">Interaction scan</div>';rv.scan.forEach(function(k){h+='<div class="hv-item">\u2022 '+(LABEL_MAP[k]||k)+'</div>';});}
     if(rv.game&&rv.game.length){h+='<div class="hv-head">Game check</div>';rv.game.forEach(function(k){h+='<div class="hv-item">\u2022 '+(LABEL_MAP[k]||k)+'</div>';});}
     if(rv.effort&&rv.effort.length){h+='<div class="hv-head">Effort patterns</div>';rv.effort.forEach(function(k){h+='<div class="hv-item">\u2022 '+(LABEL_MAP[k]||k)+'</div>';});}
-  }
-  else if(prefix==='hist-taper'){
+  } else if(prefix==='hist-taper'){
     var tp=data.taper||{};h+='<div class="hv-head">Taper check</div>';
-    var tmap={s1:'Sleep stable',s2:'Sleep restorative',ins:'Thinking clear',urg:'No urgency',sub:'No prohibited substances',tspd:'Thought speed normal',mood:'Mood stable'};
-    Object.entries(tmap).forEach(function(e){
-      if(tp[e[0]])h+='<div class="hv-item">\u2713 '+e[1]+'</div>';
-    });
+    var tm={s1:'Sleep stable',s2:'Sleep restorative',ins:'Thinking clear',urg:'No urgency',sub:'No prohibited substances',tspd:'Thought speed normal',mood:'Mood stable'};
+    Object.entries(tm).forEach(function(e){if(tp[e[0]])h+='<div class="hv-item">\u2713 '+e[1]+'</div>';});
     if(tp.status){var sc=tp.status==='green'?'tpg':tp.status==='yellow'?'tpy':'tpr';h+='<div style="margin-top:8px"><span class="hv-status '+sc+'">'+tp.status.charAt(0).toUpperCase()+tp.status.slice(1)+'</span></div>';}
   }
   viewEl.innerHTML=h||'<div style="font-size:13px;color:var(--text3)">No data recorded.</div>';
 }
 function escH(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
 
-// ── TABS ──
-function switchTab(id,btn){
-  document.querySelectorAll('.tpane').forEach(function(p){p.classList.remove('on');});
-  document.querySelectorAll('.tbtn').forEach(function(b){b.classList.remove('on');});
-  document.getElementById('tab-'+id).classList.add('on');btn.classList.add('on');
-  window.scrollTo(0,0);
-  if(id==='care')updReflCtx();
-}
-function switchBovTab(id,btn){
-  document.querySelectorAll('.bov-tab').forEach(function(b){b.classList.remove('on');});
-  document.querySelectorAll('.bov-pane').forEach(function(p){p.classList.remove('on');});
-  btn.classList.add('on');
-  document.getElementById('bov-'+id).classList.add('on');
-}
+function switchTab(id,btn){document.querySelectorAll('.tpane').forEach(function(p){p.classList.remove('on');});document.querySelectorAll('.tbtn').forEach(function(b){b.classList.remove('on');});document.getElementById('tab-'+id).classList.add('on');btn.classList.add('on');window.scrollTo(0,0);if(id==='care')updReflCtx();}
 function show(id,html){var el=document.getElementById(id);if(!el)return;el.innerHTML=html;el.classList.add('show');}
 function togTptr(el,id){var cb=document.getElementById(id);if(!cb)return;cb.checked=!cb.checked;persist(id,cb.checked);}
 function togAff(el){var cb=el.querySelector('input');cb.checked=!cb.checked;el.classList.toggle('done',cb.checked);}
 
-// ── YN ──
 function yn(onId,offId){
   var on=document.getElementById(onId);var off=document.getElementById(offId);
   var isY=onId.endsWith('a');var cls=isY?'yo':'no';var offCls=isY?'no':'yo';
@@ -930,7 +770,7 @@ function doGuardrails(){
     {yes:'t1a',no:'t1b',sec:'Structure',tx:'Following routines today',adv:'Pick the smallest possible routine item and do just that. One item. Structure rebuilds from the smallest unit.'},
     {yes:'t2a',no:'t2b',sec:'Structure',tx:'Choosing stability over insight or pleasure',adv:'The pull toward insight or pleasure is real and it is also a pattern. Stability today is the more important choice.'},
     {yes:'t3a',no:'t3b',sec:'Structure',tx:'No escalation or urgency in thinking',adv:'Escalation is an early signal. Slow everything down. No new communications or decisions today. Use Ground.'},
-    {yes:'t4a',no:'t4b',sec:'Structure',tx:'Corrected a drift today',adv:'Name the drift specifically. What was it? Name what you will do differently in the next hour, not tomorrow.'},
+    {yes:'t4a',no:'t4b',sec:'Structure',tx:'Corrected a drift today',adv:'Name the drift specifically. What was it? Name what you will do differently in the next hour, not tomorrow.'}
   ];
   var nos=checks.filter(function(c){return document.getElementById(c.no)&&document.getElementById(c.no).classList.contains('no');});
   var anyAns=checks.some(function(c){return(document.getElementById(c.yes)&&document.getElementById(c.yes).classList.contains('yo'))||(document.getElementById(c.no)&&document.getElementById(c.no).classList.contains('no'));});
@@ -946,7 +786,6 @@ function doGuardrails(){
   show('r-guard',h);
 }
 
-// ── TAPER ──
 function runTaper(){
   var ids=['tc-s1','tc-s2','tc-ins','tc-urg','tc-sub','tc-tspd','tc-mood'];
   var count=ids.filter(function(id){return document.getElementById(id).checked;}).length;
@@ -958,7 +797,6 @@ function runTaper(){
   persist('tc-status-val',val);
 }
 
-// ── DAILY CARE ──
 var BY_DAY={
   0:{f:'Recovery + rest + Organising',s:'Space and systems reset',i:'No performance today. Rest is the work. Reset your physical and digital environment.',goals:['regulation','admin']},
   1:{f:'NoVisits',s:'Deep work',i:'One focused session on NoVisits. Protect long blocks. No context switching.',goals:['novisits','regulation']},
@@ -977,7 +815,7 @@ var GOALS=[
   {id:'land',ico:'&#127807;',nm:'Land',sb:'Land situation \u2014 one concrete step'},
   {id:'tribe',ico:'&#128301;',nm:'Finding my tribe',sb:'One connection with someone who sees accurately'},
   {id:'partner',ico:'&#129309;',nm:'Finding a partner',sb:'Presence, openness, one genuine interaction'},
-  {id:'family',ico:'&#127968;',nm:'Family',sb:'Responsibilities and obligations \u2014 as needed'},
+  {id:'family',ico:'&#127968;',nm:'Family',sb:'Responsibilities and obligations \u2014 as needed'}
 ];
 
 function initCare(){
@@ -988,8 +826,7 @@ function initCare(){
   document.getElementById('goal-intro').textContent="Based on today\u2019s schedule, these goals are suggested. Adjust as needed.";
   var grid=document.getElementById('goal-grid');grid.innerHTML='';
   GOALS.forEach(function(g){
-    var isAuto=s.goals.includes(g.id);
-    var saved=recall('goal-'+g.id,null);
+    var isAuto=s.goals.includes(g.id);var saved=recall('goal-'+g.id,null);
     if(saved===null&&isAuto){persist('goal-'+g.id,'y');saved='y';}
     var active=saved||null;
     var row=document.createElement('div');row.className='gitem';
@@ -999,26 +836,14 @@ function initCare(){
     grid.appendChild(row);if(active)applyGoalBtn(g.id,active);
   });
   ['intent-main','intent-value','intent-protect','reflect-what','reflect-good','reflect-next'].forEach(function(id){var el=document.getElementById(id);if(el)el.value=recall(id,'');});
-  var rhythm=document.getElementById('dc-rhythm');rhythm.innerHTML='';
-  var today=d.getDay();
+  var rhythm=document.getElementById('dc-rhythm');rhythm.innerHTML='';var today=d.getDay();
   Object.entries(BY_DAY).forEach(function(e){var dn=e[0];var v=e[1];var it=Number(dn)===today;var row=document.createElement('div');row.className='drr'+(it?' today':'');row.innerHTML='<div class="drd">'+DAYS[Number(dn)]+'</div><div class="drt">'+v.f+'</div>';rhythm.appendChild(row);});
   ['s1a','s1b','s2a','s2b','s3a','s3b','p1a','p1b','p2a','p2b','p3a','p3b','t1a','t1b','t2a','t2b','t3a','t3b','t4a','t4b'].forEach(function(id){var v=recall(id,'');var btn=document.getElementById(id);if(!btn)return;if(v==='yo')btn.classList.add('yo');else if(v==='no')btn.classList.add('no');});
   ['tc-s1','tc-s2','tc-ins','tc-urg','tc-sub','tc-tspd','tc-mood'].forEach(function(id){var el=document.getElementById(id);if(el)el.checked=recall(id,false);});
   REVIEW_CHK_IDS.forEach(function(id){var el=document.getElementById(id);if(el)el.checked=recall('chk-'+id,false);});
-  REGI.forEach(function(it){
-    var el=document.getElementById('rr-'+it.id);
-    if(el){
-      var saved=recall('chk-rr-'+it.id,false);
-      el.checked=saved;
-      var row=el.closest('.ritm');if(row)row.classList.toggle('sel',saved);
-    }
-  });
+  REGI.forEach(function(it){var el=document.getElementById('rr-'+it.id);if(el){var saved=recall('chk-rr-'+it.id,false);el.checked=saved;var row=el.closest('.ritm');if(row)row.classList.toggle('sel',saved);}});
   var savedStatus=recall('tc-status-val','');
-  if(savedStatus){
-    var sc=savedStatus==='green'?'tpg':savedStatus==='yellow'?'tpy':'tpr';
-    var sm=savedStatus==='green'?'Green \u2014 stable, continue current phase.':savedStatus==='yellow'?'Yellow \u2014 hold current dose, do not reduce.':'Red \u2014 fall back to previous stable dose.';
-    var stEl=document.getElementById('tc-status');stEl.style.display='block';stEl.className='tpst '+sc;stEl.textContent=sm;
-  }
+  if(savedStatus){var sc=savedStatus==='green'?'tpg':savedStatus==='yellow'?'tpy':'tpr';var sm=savedStatus==='green'?'Green \u2014 stable, continue current phase.':savedStatus==='yellow'?'Yellow \u2014 hold current dose, do not reduce.':'Red \u2014 fall back to previous stable dose.';var stEl=document.getElementById('tc-status');stEl.style.display='block';stEl.className='tpst '+sc;stEl.textContent=sm;}
   updCareRegBanner();updReflCtx();updTaperBadge();
   if([...document.querySelectorAll('.ynbtn.yo,.ynbtn.no')].length>0)doGuardrails();
   if(!NO_TOKEN){updateHistIndex(TODAY);initHistDays();}
@@ -1038,29 +863,11 @@ function updCareRegBanner(){document.getElementById('care-reg-banner').classList
 function updTaperBadge(){var f=recall('prodrome-flagged','false')==='true';document.getElementById('taper-badge').classList.toggle('show',f);document.getElementById('taper-prodrome-banner').classList.toggle('show',f);}
 function updReflCtx(){var m=document.getElementById('intent-main').value||'';var b=document.getElementById('reflect-ctx-block');if(m.trim()){b.style.display='block';document.getElementById('reflect-ctx-text').textContent=m;}else b.style.display='none';}
 
-// ── AUDIO ──
 var _audioCtx=null;
-function getAudioCtx(){
-  if(!_audioCtx)_audioCtx=new(window.AudioContext||window.webkitAudioContext)();
-  if(_audioCtx.state==='suspended')_audioCtx.resume();
-  return _audioCtx;
-}
-function beep(){
-  try{
-    var ctx=getAudioCtx();
-    if(ctx.state==='suspended'){ctx.resume();}
-    var o=ctx.createOscillator();var g=ctx.createGain();
-    o.type='sine';o.frequency.setValueAtTime(660,ctx.currentTime);
-    g.gain.setValueAtTime(0.0001,ctx.currentTime);
-    g.gain.exponentialRampToValueAtTime(0.15,ctx.currentTime+0.01);
-    g.gain.exponentialRampToValueAtTime(0.0001,ctx.currentTime+0.4);
-    o.connect(g);g.connect(ctx.destination);
-    o.start(ctx.currentTime);o.stop(ctx.currentTime+0.45);
-  }catch(e){}
-}
+function getAudioCtx(){if(!_audioCtx)_audioCtx=new(window.AudioContext||window.webkitAudioContext)();if(_audioCtx.state==='suspended')_audioCtx.resume();return _audioCtx;}
+function beep(){try{var ctx=getAudioCtx();var o=ctx.createOscillator();var g=ctx.createGain();o.type='sine';o.frequency.setValueAtTime(660,ctx.currentTime);g.gain.setValueAtTime(0.0001,ctx.currentTime);g.gain.exponentialRampToValueAtTime(0.15,ctx.currentTime+0.01);g.gain.exponentialRampToValueAtTime(0.0001,ctx.currentTime+0.4);o.connect(g);g.connect(ctx.destination);o.start(ctx.currentTime);o.stop(ctx.currentTime+0.45);}catch(e){}}
 function vibrate(ms){try{if(navigator.vibrate)navigator.vibrate(ms||80);}catch(e){}}
 
-// ── BREATHING ──
 var BREATHS=[
   {nm:'4-7-8',sb:'deepest calm',ph:['Inhale','Hold','Exhale'],ti:[4,7,8],col:'#1D9E75',wh:"Spiralling, flooded, or can't slow your thoughts.",de:'Long hold and extended exhale force the body to override anxiety. Most powerful reset.'},
   {nm:'Extended exhale',sb:'everyday calm',ph:['Inhale','Exhale'],ti:[4,8],col:'#378ADD',wh:'Tense or stressed but not flooded.',de:'Exhale twice as long as inhale. Stimulates vagus nerve, slows heart rate.'},
@@ -1068,118 +875,29 @@ var BREATHS=[
   {nm:'Physiological sigh',sb:'instant reset',ph:['Inhale','Inhale+','Exhale'],ti:[2,1,6],col:'#D4537E',wh:'Something just triggered a sharp spike, seconds before you react.',de:'Double inhale then long exhale. 9 seconds. Fastest physiological brake available.'}
 ];
 var BCX=120,BCY=120,BR=108,RMIN=46,RMAX=72,TK=10;
-var bI=0,bR=false,bC=0,bPh=0,bPS=null,bRaf=null,bCI=null,bIR=RMIN;
-var bTimerStart=null,bTimerRaf=null;
+var bI=0,bR=false,bC=0,bPh=0,bPS=null,bRaf=null,bCI=null,bIR=RMIN,bTimerStart=null,bTimerRaf=null;
 
 function bFr(b){var t=b.ti.reduce(function(a,v){return a+v;},0);var f=[0];var a=0;b.ti.forEach(function(v){a+=v;f.push(a/t);});return f;}
 function bIsI(p){return p.toLowerCase().startsWith('inhale');}
 function bIsH(p){return p.toLowerCase().startsWith('hold');}
-
-function initB(){
-  var tabs=document.getElementById('btabs');tabs.innerHTML='';
-  BREATHS.forEach(function(b,i){
-    var btn=document.createElement('button');btn.className='btb'+(i===bI?' on':'');
-    btn.innerHTML='<span class="bn">'+b.nm+'</span><span class="bs">'+b.sb+'</span>';
-    btn.onclick=function(){selB(i);};tabs.appendChild(btn);
-  });
-  rBCh();updBD();bSetI();bDr(null,null);
-  document.getElementById('breath-timer').textContent='00:00';
-}
+function initB(){var tabs=document.getElementById('btabs');tabs.innerHTML='';BREATHS.forEach(function(b,i){var btn=document.createElement('button');btn.className='btb'+(i===bI?' on':'');btn.innerHTML='<span class="bn">'+b.nm+'</span><span class="bs">'+b.sb+'</span>';btn.onclick=function(){selB(i);};tabs.appendChild(btn);});rBCh();updBD();bSetI();bDr(null,null);document.getElementById('breath-timer').textContent='00:00';}
 function selB(i){bStop();bI=i;document.querySelectorAll('.btb').forEach(function(b,j){b.classList.toggle('on',j===i);});rBCh();updBD();bSetI();bDr(null,null);}
 function updBD(){var b=BREATHS[bI];document.getElementById('bwhen').textContent=b.wh;document.getElementById('bdesc').textContent=b.de;}
-function rBCh(){
-  var b=BREATHS[bI];var row=document.getElementById('phases-row');row.innerHTML='';
-  b.ph.forEach(function(ph,i){var d=document.createElement('div');d.className='pchip';d.id='phchip-'+i;d.innerHTML='<span class="pn">'+ph+'</span><span class="ps">'+b.ti[i]+'s</span>';row.appendChild(d);});
-}
+function rBCh(){var b=BREATHS[bI];var row=document.getElementById('phases-row');row.innerHTML='';b.ph.forEach(function(ph,i){var d=document.createElement('div');d.className='pchip';d.id='phchip-'+i;d.innerHTML='<span class="pn">'+ph+'</span><span class="ps">'+b.ti[i]+'s</span>';row.appendChild(d);});}
 function bSetI(){bIR=RMIN;bApB(RMIN);document.getElementById('cp-phase').textContent='Tap to start';document.getElementById('cp-count').textContent='';}
-function bApB(r){
-  var sz=Math.round(r*2);var btn=document.getElementById('center-btn');var col=BREATHS[bI].col;
-  btn.style.cssText='width:'+sz+'px;height:'+sz+'px;background:'+col+';border-radius:50%;border:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)';
-}
-function bDr(df,innerR){
-  var cv=document.getElementById('bcanvas');if(!cv)return;
-  var ctx=cv.getContext('2d');var b=BREATHS[bI];var col=b.col;var fr=bFr(b);
-  ctx.clearRect(0,0,240,240);
-  ctx.globalAlpha=bR?1:0.3;
-  ctx.beginPath();ctx.arc(BCX,BCY,BR,0,Math.PI*2);ctx.strokeStyle=col;ctx.lineWidth=2.5;ctx.stroke();
-  fr.forEach(function(f){
-    var a=f*Math.PI*2-Math.PI/2;
-    var ox=BCX+Math.cos(a)*(BR-TK),oy=BCY+Math.sin(a)*(BR-TK);
-    var ix=BCX+Math.cos(a)*(BR+TK),iy=BCY+Math.sin(a)*(BR+TK);
-    ctx.beginPath();ctx.moveTo(ox,oy);ctx.lineTo(ix,iy);ctx.strokeStyle=col;ctx.lineWidth=3.5;ctx.lineCap='round';ctx.stroke();
-    ctx.beginPath();ctx.moveTo(ox,oy);ctx.lineTo(ix,iy);ctx.strokeStyle='rgba(0,0,0,0.55)';ctx.lineWidth=1.5;ctx.lineCap='round';ctx.stroke();
-  });
-  if(innerR!==null){ctx.globalAlpha=bR?0.25:0.1;ctx.beginPath();ctx.arc(BCX,BCY,innerR,0,Math.PI*2);ctx.fillStyle=col;ctx.fill();}
-  ctx.globalAlpha=1;
-  if(df===null)return;
-  var a=df*Math.PI*2-Math.PI/2;
-  var dx=BCX+Math.cos(a)*BR,dy=BCY+Math.sin(a)*BR;
-  ctx.beginPath();ctx.arc(dx,dy,9,0,Math.PI*2);ctx.fillStyle='#ffffff';ctx.fill();
-  ctx.beginPath();ctx.arc(dx,dy,7,0,Math.PI*2);ctx.fillStyle=col;ctx.fill();
-  ctx.beginPath();ctx.arc(dx,dy,3,0,Math.PI*2);ctx.fillStyle='rgba(255,255,255,0.8)';ctx.fill();
-}
-
-function tickTimer(){
-  if(!bR)return;
-  var el=document.getElementById('breath-timer');
-  var secs=Math.floor((performance.now()-bTimerStart)/1000);
-  var m=Math.floor(secs/60);var s=secs%60;
-  el.textContent=(m<10?'0'+m:m)+':'+(s<10?'0'+s:s);
-  bTimerRaf=requestAnimationFrame(tickTimer);
-}
-
+function bApB(r){var sz=Math.round(r*2);var btn=document.getElementById('center-btn');var col=BREATHS[bI].col;btn.style.cssText='width:'+sz+'px;height:'+sz+'px;background:'+col+';border-radius:50%;border:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)';}
+function bDr(df,innerR){var cv=document.getElementById('bcanvas');if(!cv)return;var ctx=cv.getContext('2d');var b=BREATHS[bI];var col=b.col;var fr=bFr(b);ctx.clearRect(0,0,240,240);ctx.globalAlpha=bR?1:0.3;ctx.beginPath();ctx.arc(BCX,BCY,BR,0,Math.PI*2);ctx.strokeStyle=col;ctx.lineWidth=2.5;ctx.stroke();fr.forEach(function(f){var a=f*Math.PI*2-Math.PI/2;var ox=BCX+Math.cos(a)*(BR-TK),oy=BCY+Math.sin(a)*(BR-TK);var ix=BCX+Math.cos(a)*(BR+TK),iy=BCY+Math.sin(a)*(BR+TK);ctx.beginPath();ctx.moveTo(ox,oy);ctx.lineTo(ix,iy);ctx.strokeStyle=col;ctx.lineWidth=3.5;ctx.lineCap='round';ctx.stroke();ctx.beginPath();ctx.moveTo(ox,oy);ctx.lineTo(ix,iy);ctx.strokeStyle='rgba(0,0,0,0.55)';ctx.lineWidth=1.5;ctx.lineCap='round';ctx.stroke();});if(innerR!==null){ctx.globalAlpha=bR?0.25:0.1;ctx.beginPath();ctx.arc(BCX,BCY,innerR,0,Math.PI*2);ctx.fillStyle=col;ctx.fill();}ctx.globalAlpha=1;if(df===null)return;var a=df*Math.PI*2-Math.PI/2;var dx=BCX+Math.cos(a)*BR,dy=BCY+Math.sin(a)*BR;ctx.beginPath();ctx.arc(dx,dy,9,0,Math.PI*2);ctx.fillStyle='#ffffff';ctx.fill();ctx.beginPath();ctx.arc(dx,dy,7,0,Math.PI*2);ctx.fillStyle=col;ctx.fill();ctx.beginPath();ctx.arc(dx,dy,3,0,Math.PI*2);ctx.fillStyle='rgba(255,255,255,0.8)';ctx.fill();}
+function tickTimer(){if(!bR)return;var el=document.getElementById('breath-timer');var secs=Math.floor((performance.now()-bTimerStart)/1000);var m=Math.floor(secs/60);var s=secs%60;el.textContent=(m<10?'0'+m:m)+':'+(s<10?'0'+s:s);bTimerRaf=requestAnimationFrame(tickTimer);}
 function toggleRun(){if(bR)bStop();else bStart();}
-function bStart(){
-  bR=true;bC=0;bPh=0;bIR=RMIN;bTimerStart=performance.now();bTimerRaf=requestAnimationFrame(tickTimer);
-  // Unlock audio context on first user tap
-  try{getAudioCtx();}catch(e){}
-  bRunP();
-}
-function bStop(){
-  bR=false;
-  if(bRaf)cancelAnimationFrame(bRaf);
-  if(bCI)clearInterval(bCI);
-  if(bTimerRaf)cancelAnimationFrame(bTimerRaf);
-  bRaf=null;bCI=null;bTimerRaf=null;
-  document.querySelectorAll('.pchip').forEach(function(c){c.classList.remove('cur');});
-  document.getElementById('bcycles').textContent='';
-  bSetI();bDr(null,null);
-  document.getElementById('breath-timer').textContent='00:00';
-}
-function bRunP(){
-  if(!bR)return;
-  var b=BREATHS[bI];var ph=b.ph[bPh];var dur=b.ti[bPh];var fr=bFr(b);
-  beep();vibrate(80);
-  document.querySelectorAll('.pchip').forEach(function(c,i){c.classList.toggle('cur',i===bPh);});
-  document.getElementById('cp-phase').textContent=ph;
-  document.getElementById('bcycles').textContent='Cycle '+(bC+1);
-  var isInhale=bIsI(ph);var isHold=bIsH(ph);
-  var sR=bIR;var eR=isHold?bIR:(isInhale?RMAX:RMIN);
-  var sInnerR=bIR;var eInnerR=eR;
-  var cv2=dur;
-  document.getElementById('cp-count').textContent=cv2;
-  if(bCI)clearInterval(bCI);
-  bCI=setInterval(function(){cv2--;document.getElementById('cp-count').textContent=cv2>0?cv2:'';if(cv2<=0)clearInterval(bCI);},1000);
-  var dMs=dur*1000;bPS=performance.now();
-  function frame(now){
-    if(!bR){return;}
-    var el=Math.min(now-bPS,dMs);var frac=el/dMs;
-    var ease=isHold?1:(0.5-0.5*Math.cos(Math.PI*frac));
-    var r=sR+(eR-sR)*ease;bIR=r;bApB(r);
-    var innerR=sInnerR+(eInnerR-sInnerR)*ease;
-    var dotF=fr[bPh]+(fr[bPh+1]-fr[bPh])*frac;
-    bDr(dotF,innerR);
-    if(el<dMs){bRaf=requestAnimationFrame(frame);}
-    else{bIR=eR;bPh++;if(bPh>=b.ph.length){bPh=0;bC++;}requestAnimationFrame(function(){if(bR)bRunP();});}
-  }
-  bRaf=requestAnimationFrame(frame);
-}
-function openBreath(){document.getElementById('boverlay').classList.add('open');document.body.style.overflow='hidden';initB();initGrounding();document.getElementById('more-opts').style.display='none';}
+function bStart(){bR=true;bC=0;bPh=0;bIR=RMIN;bTimerStart=performance.now();bTimerRaf=requestAnimationFrame(tickTimer);try{getAudioCtx();}catch(e){}bRunP();}
+function bStop(){bR=false;if(bRaf)cancelAnimationFrame(bRaf);if(bCI)clearInterval(bCI);if(bTimerRaf)cancelAnimationFrame(bTimerRaf);bRaf=null;bCI=null;bTimerRaf=null;document.querySelectorAll('.pchip').forEach(function(c){c.classList.remove('cur');});document.getElementById('bcycles').textContent='';bSetI();bDr(null,null);document.getElementById('breath-timer').textContent='00:00';}
+function bRunP(){if(!bR)return;var b=BREATHS[bI];var ph=b.ph[bPh];var dur=b.ti[bPh];var fr=bFr(b);beep();vibrate(80);document.querySelectorAll('.pchip').forEach(function(c,i){c.classList.toggle('cur',i===bPh);});document.getElementById('cp-phase').textContent=ph;document.getElementById('bcycles').textContent='Cycle '+(bC+1);var isInhale=bIsI(ph);var isHold=bIsH(ph);var sR=bIR;var eR=isHold?bIR:(isInhale?RMAX:RMIN);var sInnerR=bIR;var eInnerR=eR;var cv2=dur;document.getElementById('cp-count').textContent=cv2;if(bCI)clearInterval(bCI);bCI=setInterval(function(){cv2--;document.getElementById('cp-count').textContent=cv2>0?cv2:'';if(cv2<=0)clearInterval(bCI);},1000);var dMs=dur*1000;bPS=performance.now();function frame(now){if(!bR)return;var el=Math.min(now-bPS,dMs);var frac=el/dMs;var ease=isHold?1:(0.5-0.5*Math.cos(Math.PI*frac));var r=sR+(eR-sR)*ease;bIR=r;bApB(r);var innerR=sInnerR+(eInnerR-sInnerR)*ease;var dotF=fr[bPh]+(fr[bPh+1]-fr[bPh])*frac;bDr(dotF,innerR);if(el<dMs){bRaf=requestAnimationFrame(frame);}else{bIR=eR;bPh++;if(bPh>=b.ph.length){bPh=0;bC++;}requestAnimationFrame(function(){if(bR)bRunP();});}}bRaf=requestAnimationFrame(frame);}
+function openBreath(){document.getElementById('boverlay').classList.add('open');document.body.style.overflow='hidden';initB();initGrounding();document.getElementById('more-opts').style.display='none';document.getElementById('more-opts-btn').textContent='More options';}
 function closeBreath(){bStop();document.getElementById('boverlay').classList.remove('open');document.body.style.overflow='';}
 function toggleMoreOpts(){var el=document.getElementById('more-opts');var open=el.style.display!=='none';el.style.display=open?'none':'block';document.getElementById('more-opts-btn').textContent=open?'More options':'Hide options';if(!open)el.scrollIntoView({behavior:'smooth',block:'start'});}
 function stopBreath(){bStop();}
 
-// ── GROUNDING ──
+// ── GROUNDING — 8 techniques in order ──
 var GRND_TECHS=[
   {
     id:'g54321',title:'5-4-3-2-1 Grounding',
@@ -1214,7 +932,20 @@ var GRND_TECHS=[
       'What is one sound in this environment that is ordinary and non-threatening?'
     ]
   },
-  {id:'gcontact',title:'Self-contact',desc:'Place one hand on your chest. Physical self-contact activates the social engagement system without requiring another person.',dur:30}
+  {id:'gcontact',title:'Self-contact',desc:'Place one hand on your chest. Physical self-contact activates the social engagement system without requiring another person.',dur:30},
+  {
+    id:'gbodyscan',title:'Body scan \u2014 60 seconds',
+    desc:'Brief interoceptive awareness. Five zones, 10 seconds each. Notice what is there without changing it. Reduces cortisol and increases body awareness.',
+    zones:[
+      {label:'Head',prompt:'Notice your head and face. Any tension, pressure, or sensation. No need to change anything.'},
+      {label:'Chest',prompt:'Notice your chest. Your breath, your heartbeat, any tightness or ease.'},
+      {label:'Belly',prompt:'Notice your belly. Any contraction, warmth, or movement with the breath.'},
+      {label:'Hands',prompt:'Notice your hands. Temperature, tingling, heaviness, or stillness.'},
+      {label:'Feet',prompt:'Notice your feet. Contact with the floor, weight, temperature.'}
+    ]
+  },
+  {id:'gbilateral',title:'Bilateral tapping',desc:'Alternate tapping left knee and right knee slowly. Bilateral stimulation reduces acute distress. Evidence base: EMDR research, dual attention stimulus.',dur:30},
+  {id:'gyawn',title:'Intentional yawning',desc:'Three prompted yawns. Yawning activates the precuneus and induces a parasympathetic shift. Open the possibility \u2014 do not force it.',count:3}
 ];
 
 function initGrounding(){
@@ -1224,106 +955,72 @@ function initGrounding(){
     card.innerHTML='<div class="grnd-title">'+tech.title+'</div><div class="grnd-desc">'+tech.desc+'</div><div class="grnd-body" id="body-'+tech.id+'"></div>';
     var startBtn=document.createElement('button');startBtn.className='grnd-btn primary';startBtn.textContent='Start';
     startBtn.onclick=function(){startGrounding(tech);};
-    card.appendChild(startBtn);
-    wrap.appendChild(card);
+    card.appendChild(startBtn);wrap.appendChild(card);
   });
 }
 
 function startGrounding(tech){
-  var body=document.getElementById('body-'+tech.id);
-  body.classList.add('open');body.innerHTML='';
-  var card=document.getElementById('grnd-'+tech.id);
-  card.querySelector('.grnd-btn.primary').style.display='none';
+  var body=document.getElementById('body-'+tech.id);body.classList.add('open');body.innerHTML='';
+  var card=document.getElementById('grnd-'+tech.id);card.querySelector('.grnd-btn.primary').style.display='none';
   if(tech.id==='g54321')run54321(tech,body,0,0);
   else if(tech.id==='gcold')runSimple(tech,body);
   else if(tech.id==='gmove')runMove(tech,body,0);
   else if(tech.id==='gorient')runOrient(tech,body,0);
   else if(tech.id==='gcontact')runContact(tech,body);
+  else if(tech.id==='gbodyscan')runBodyScan(tech,body,0);
+  else if(tech.id==='gbilateral')runBilateral(tech,body);
+  else if(tech.id==='gyawn')runYawn(tech,body,0);
 }
 
 function run54321(tech,body,senseIdx,tapped){
   var sense=tech.senses[senseIdx];
-  body.innerHTML='<div class="grnd-prompt">'+sense.prompt+'</div>'
-    +'<div class="grnd-sense">'+sense.label+'</div>'
-    +'<div class="grnd-counter">'+(sense.count-tapped)+'</div>'
-    +'<button class="grnd-btn primary" id="tap-btn">Tap each time you notice one</button>';
-  document.getElementById('tap-btn').onclick=function(){
-    beep();vibrate(60);tapped++;
-    if(tapped>=sense.count){if(senseIdx+1<tech.senses.length)run54321(tech,body,senseIdx+1,0);else showDone(tech,body);}
-    else document.querySelector('#body-'+tech.id+' .grnd-counter').textContent=(sense.count-tapped);
-  };
+  body.innerHTML='<div class="grnd-prompt">'+sense.prompt+'</div><div class="grnd-sense">'+sense.label+'</div><div class="grnd-counter">'+(sense.count-tapped)+'</div><button class="grnd-btn primary" id="tap-btn">Tap each time you notice one</button>';
+  document.getElementById('tap-btn').onclick=function(){beep();vibrate(60);tapped++;if(tapped>=sense.count){if(senseIdx+1<tech.senses.length)run54321(tech,body,senseIdx+1,0);else showDone(tech,body);}else document.querySelector('#body-'+tech.id+' .grnd-counter').textContent=(sense.count-tapped);};
 }
-
 function runSimple(tech,body){
-  body.innerHTML='<div class="grnd-prompt" style="font-size:14px">Go splash cold water on your face or hold it on your wrists. Come back when done.</div>'
-    +'<button class="grnd-btn primary" style="margin-top:12px" id="done-cold">Done \u2014 I tried it</button>';
+  body.innerHTML='<div class="grnd-prompt" style="font-size:14px">Go splash cold water on your face or hold it on your wrists. Come back when done.</div><button class="grnd-btn primary" style="margin-top:12px" id="done-cold">Done \u2014 I tried it</button>';
   document.getElementById('done-cold').onclick=function(){showDone(tech,body);};
 }
-
 function runMove(tech,body,idx){
   var move=tech.moves[idx];
-  body.innerHTML='<div class="grnd-prompt">'+move.label+'</div>'
-    +'<div class="grnd-sense" style="margin-top:.5rem">'+(idx+1)+' of '+tech.moves.length+'</div>'
-    +'<div class="grnd-counter" id="move-count" style="color:var(--text3)">'+move.dur+'s</div>'
-    +'<div class="grnd-timer-bar"><div class="grnd-timer-fill" id="move-fill" style="width:100%"></div></div>'
-    +'<button class="grnd-btn primary" id="move-start-btn">Start</button>';
-  document.getElementById('move-start-btn').onclick=function(){
-    this.style.display='none';
-    beep();vibrate(100);
-    var rem=move.dur;var total=move.dur;
-    var iv=setInterval(function(){
-      rem--;
-      var el=document.getElementById('move-count');var fill=document.getElementById('move-fill');
-      if(el)el.textContent=rem+'s';
-      if(fill)fill.style.width=Math.round(rem/total*100)+'%';
-      if(rem<=0){
-        clearInterval(iv);vibrate(150);
-        var nb=document.createElement('button');nb.className='grnd-btn primary';nb.textContent=idx+1<tech.moves.length?'Next':'Done';nb.style.marginTop='8px';
-        nb.onclick=function(){if(idx+1<tech.moves.length)runMove(tech,body,idx+1);else showDone(tech,body);};
-        body.appendChild(nb);
-      }
-    },1000);
-  };
+  body.innerHTML='<div class="grnd-prompt">'+move.label+'</div><div class="grnd-sense" style="margin-top:.5rem">'+(idx+1)+' of '+tech.moves.length+'</div><div class="grnd-counter" id="move-count" style="color:var(--text3)">'+move.dur+'s</div><div class="grnd-timer-bar"><div class="grnd-timer-fill" id="move-fill" style="width:100%"></div></div><button class="grnd-btn primary" id="move-start-btn">Start</button>';
+  document.getElementById('move-start-btn').onclick=function(){this.style.display='none';beep();vibrate(100);var rem=move.dur;var total=move.dur;var iv=setInterval(function(){rem--;var el=document.getElementById('move-count');var fill=document.getElementById('move-fill');if(el)el.textContent=rem+'s';if(fill)fill.style.width=Math.round(rem/total*100)+'%';if(rem<=0){clearInterval(iv);vibrate(150);var nb=document.createElement('button');nb.className='grnd-btn primary';nb.textContent=idx+1<tech.moves.length?'Next':'Done';nb.style.marginTop='8px';nb.onclick=function(){if(idx+1<tech.moves.length)runMove(tech,body,idx+1);else showDone(tech,body);};body.appendChild(nb);}},1000);};
 }
-
 function runOrient(tech,body,idx){
   var q=tech.questions[idx];
-  body.innerHTML='<div class="grnd-prompt">'+q+'</div>'
-    +'<div class="grnd-sense" style="margin-top:.5rem">'+(idx+1)+' of '+tech.questions.length+'</div>'
-    +'<button class="grnd-btn primary" style="margin-top:12px" id="orient-next">'+(idx+1<tech.questions.length?'Next':'Done')+'</button>';
-  document.getElementById('orient-next').onclick=function(){
-    beep();vibrate(60);
-    if(idx+1<tech.questions.length)runOrient(tech,body,idx+1);else showDone(tech,body);
-  };
+  body.innerHTML='<div class="grnd-prompt">'+q+'</div><div class="grnd-sense" style="margin-top:.5rem">'+(idx+1)+' of '+tech.questions.length+'</div><button class="grnd-btn primary" style="margin-top:12px" id="orient-next">'+(idx+1<tech.questions.length?'Next':'Done')+'</button>';
+  document.getElementById('orient-next').onclick=function(){beep();vibrate(60);if(idx+1<tech.questions.length)runOrient(tech,body,idx+1);else showDone(tech,body);};
 }
-
 function runContact(tech,body){
-  body.innerHTML='<div class="grnd-prompt">Place one hand on your chest. Feel the weight and warmth. Stay here.</div>'
-    +'<div class="grnd-pulse" id="contact-pulse"></div>'
-    +'<div class="grnd-counter" id="contact-count">'+tech.dur+'</div>';
+  body.innerHTML='<div class="grnd-prompt">Place one hand on your chest. Feel the weight and warmth. Stay here.</div><div class="grnd-pulse" id="contact-pulse"></div><div class="grnd-counter" id="contact-count">'+tech.dur+'</div>';
   var rem=tech.dur;var pulse=false;
   var piv=setInterval(function(){pulse=!pulse;var el=document.getElementById('contact-pulse');if(el)el.classList.toggle('expand',pulse);},1500);
   var iv=setInterval(function(){rem--;var el=document.getElementById('contact-count');if(el)el.textContent=rem;if(rem<=0){clearInterval(iv);clearInterval(piv);vibrate(200);showDone(tech,body);}},1000);
 }
-
+function runBodyScan(tech,body,idx){
+  var zone=tech.zones[idx];
+  body.innerHTML='<div class="grnd-prompt">'+zone.prompt+'</div><div class="grnd-sense">'+zone.label+' \u2014 '+(idx+1)+' of '+tech.zones.length+'</div><div class="grnd-timer-bar"><div class="grnd-timer-fill" id="scan-fill" style="width:100%"></div></div><div class="grnd-counter" id="scan-count">10</div><button class="grnd-btn primary" id="scan-next-btn" style="display:none">'+(idx+1<tech.zones.length?'Next zone':'Done')+'</button>';
+  var rem=10;var total=10;
+  var iv=setInterval(function(){rem--;var el=document.getElementById('scan-count');var fill=document.getElementById('scan-fill');if(el)el.textContent=rem;if(fill)fill.style.width=Math.round(rem/total*100)+'%';if(rem<=0){clearInterval(iv);vibrate(80);var nb=document.getElementById('scan-next-btn');if(nb)nb.style.display='block';}},1000);
+  document.getElementById('scan-next-btn').onclick=function(){beep();if(idx+1<tech.zones.length)runBodyScan(tech,body,idx+1);else showDone(tech,body);};
+}
+function runBilateral(tech,body){
+  body.innerHTML='<div class="grnd-prompt">Tap left knee. Tap right knee. Slow and alternating.</div><div style="display:flex;justify-content:center;gap:40px;margin:1rem 0"><div id="bl-left" style="width:48px;height:48px;border-radius:50%;background:var(--bdr);transition:background .15s;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--text3)">L</div><div id="bl-right" style="width:48px;height:48px;border-radius:50%;background:var(--bdr);transition:background .15s;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--text3)">R</div></div><div class="grnd-timer-bar"><div class="grnd-timer-fill" id="bl-fill" style="width:100%"></div></div><div class="grnd-counter" id="bl-count">'+tech.dur+'</div>';
+  vibrate(80);var rem=tech.dur;var total=tech.dur;var side=0;
+  var tapIv=setInterval(function(){var L=document.getElementById('bl-left');var R=document.getElementById('bl-right');if(!L||!R){clearInterval(tapIv);return;}if(side===0){L.style.background='var(--calm)';L.style.color='#fff';R.style.background='var(--bdr)';R.style.color='var(--text3)';}else{R.style.background='var(--calm)';R.style.color='#fff';L.style.background='var(--bdr)';L.style.color='var(--text3)';}vibrate(40);side=1-side;},1000);
+  var countIv=setInterval(function(){rem--;var el=document.getElementById('bl-count');var fill=document.getElementById('bl-fill');if(el)el.textContent=rem;if(fill)fill.style.width=Math.round(rem/total*100)+'%';if(rem<=0){clearInterval(tapIv);clearInterval(countIv);vibrate(150);showDone(tech,body);}},1000);
+}
+function runYawn(tech,body,done){
+  if(done>=tech.count){showDone(tech,body);return;}
+  body.innerHTML='<div class="grnd-prompt">Open your mouth wide and invite a yawn.<br>Don\u2019t force it \u2014 just open the possibility.</div><div class="grnd-sense">Yawn '+(done+1)+' of '+tech.count+'</div><div style="font-size:48px;text-align:center;margin:1rem 0;letter-spacing:4px">'+Array(done+1).fill('\uD83D\uDFE2').join('')+Array(tech.count-done).fill('\u25CB').join('')+'</div><button class="grnd-btn primary" id="yawn-btn">Done \u2014 I yawned</button><button class="grnd-btn" id="yawn-skip" style="margin-top:6px">Couldn\u2019t yawn \u2014 skip</button>';
+  document.getElementById('yawn-btn').onclick=function(){beep();vibrate(60);runYawn(tech,body,done+1);};
+  document.getElementById('yawn-skip').onclick=function(){runYawn(tech,body,done+1);};
+}
 function showDone(tech,body){
-  body.innerHTML='<div class="grnd-done-q">How do you feel now?</div>'
-    +'<div class="grnd-done-btns">'
-    +'<button class="grnd-done-btn settled" onclick="grndSettled(\''+tech.id+'\')">More settled</button>'
-    +'<button class="grnd-done-btn still" onclick="grndStill(\''+tech.id+'\')">Still activated</button>'
-    +'</div>'
-    +'<div class="grnd-still-msg" id="still-'+tech.id+'"></div>';
+  body.innerHTML='<div class="grnd-done-q">How do you feel now?</div><div class="grnd-done-btns"><button class="grnd-done-btn settled" onclick="grndSettled(\''+tech.id+'\')">More settled</button><button class="grnd-done-btn still" onclick="grndStill(\''+tech.id+'\')">Still activated</button></div><div class="grnd-still-msg" id="still-'+tech.id+'"></div>';
 }
-function grndSettled(id){
-  var body=document.getElementById('body-'+id);
-  body.innerHTML='<div class="grnd-prompt" style="font-size:14px;padding:.5rem 0">\u2713 Good. Stay here for a moment before returning.</div>';
-}
-function grndStill(id){
-  var remaining=GRND_TECHS.filter(function(t){return t.id!==id;}).map(function(t){return t.title;}).join(', ');
-  var el=document.getElementById('still-'+id);
-  el.textContent='Try another technique: '+remaining;
-  el.classList.add('show');
-}
+function grndSettled(id){document.getElementById('body-'+id).innerHTML='<div class="grnd-prompt" style="font-size:14px;padding:.5rem 0">\u2713 Good. Stay here for a moment before returning.</div>';}
+function grndStill(id){var remaining=GRND_TECHS.filter(function(t){return t.id!==id;}).map(function(t){return t.title;}).join(', ');var el=document.getElementById('still-'+id);el.textContent='Try another technique: '+remaining;el.classList.add('show');}
 
 // ── REGULATION ──
 var REGI=[
@@ -1341,6 +1038,71 @@ var REGI=[
   {id:'panic',tx:'I feel completely overwhelmed \u2014 body shaking, mind blanking, or feeling unreal',votes:{10:3,9:1,8:1},prod:false}
 ];
 var RLB={1:'Silent awareness',2:'Meta-awareness',3:'Observing ego',4:'Integrated presence',5:'Engaged self',6:'Emotional identity',7:'Narrative ego',8:'Sensory immersion',9:'Flow / trance',10:'Raw survival'};
+
+// ── REGULATION PSYCHOLOGICAL MARKERS ──
+var REG_PSYCH={
+  1:{
+    desc:'Attention is open and uncontracted. No content is being mistaken for self. The system is at rest without being absent.',
+    ego:'No active ego position. The Adult is present but not needed — there is nothing to manage or defend.',
+    self:'Self and object are clearly differentiated. Nothing arising is being absorbed as self-definition.',
+    defence:'No defence mechanism active. Nothing is being protected against.'
+  },
+  2:{
+    desc:'Attention is present and watching itself. Thoughts and feelings are arising but being recognised as events rather than facts.',
+    ego:'Adult ego state is observing without investing. No Victim, Rescuer, or Persecutor position is active.',
+    self:'The self is holding the object at slight distance — interested but not merged.',
+    defence:'Minimal. Intellectualisation is possible — watching can become a way of not feeling fully.'
+  },
+  3:{
+    desc:'Attention is available and flexible. Content is being processed as it arises. Some effort is required to maintain perspective, but it is accessible.',
+    ego:'Adult is functioning as observer. Parent and Child are present but not running the show.',
+    self:'Self and object in healthy contact. Neither merged nor walled off.',
+    defence:'Mild rationalisation possible — meaning-making is beginning to run slightly ahead of feeling.'
+  },
+  4:{
+    desc:'Attention is free but purposefully directed. Content is being processed and choices are being made from a stable base.',
+    ego:'Adult ego state is fully functional — reality-testing, choosing, engaged. No role position is dominating.',
+    self:'Self and object in clear, boundaried contact. The object is experienced as separate and real.',
+    defence:'Minimal. The system is processing rather than protecting.'
+  },
+  5:{
+    desc:'Attention is engaged with a task or person. Grounded enough to act but close enough to the edge of 4 that the state needs protecting.',
+    ego:'Adult is directing. A mild Nurturing Parent may be active if helping or supporting others.',
+    self:'Self is stable. Object is experienced as separate. The contact is chosen rather than compelled.',
+    defence:'Slight suppression possible — some material may be set aside to stay functional.'
+  },
+  6:{
+    desc:'Attention is being pulled by emotional content. Feelings are starting to define the frame rather than inform it. The Adult is still reachable but requires effort.',
+    ego:'Adapted Child or Victim position becoming active. The Adult has stepped back. Feelings are beginning to function as evidence rather than information.',
+    self:'The object is starting to be introjected — what is happening out there is beginning to feel like a statement about the self.',
+    defence:'Emotional reasoning active — internal states are being used as proof of external facts.'
+  },
+  7:{
+    desc:'Attention is locked onto a story the mind is actively constructing. What happened is being rewritten into a case — assigning cause, blame, or meaning.',
+    ego:'Persecutor or Victim position is active. The Adult has stepped back. The mind is either building a case against someone or rehearsing helplessness.',
+    self:'The object has been absorbed into the self-narrative. What they did or said is being used to define what you are or what this situation means about you.',
+    defence:'Rationalisation active. The mind is generating a coherent explanation that feels like clarity but is protecting against the discomfort of uncertainty or loss of control.'
+  },
+  8:{
+    desc:'Attention has been captured by physical state or compulsive loop. The body\'s signals or a repeating pattern have become the dominant reality.',
+    ego:'Child ego state is running — either the Adapted Child managing overwhelm, or the Natural Child responding to immediate sensation. The Adult is largely offline.',
+    self:'Self-object differentiation is reduced. External events feel like direct extensions of the internal state — everything is personal.',
+    defence:'Acting out or repetition compulsion active — behaviour or loops are being used to discharge what cannot be processed internally.'
+  },
+  9:{
+    desc:'Attention is locked in a loop or has dissociated into a flow state that is no longer voluntary. The system is running on autopilot.',
+    ego:'Adapted Child in trance — either frozen or cycling. No Adult is available to interrupt the pattern.',
+    self:'Self-boundary is minimal. What is arising is not being experienced as separate from the self — it is the self, for now.',
+    defence:'Dissociation active — the system has created distance from what it cannot process. The loop is maintaining a bearable unreality.'
+  },
+  10:{
+    desc:'Attention has collapsed into threat-response. There is no perspective available — only the trigger and the reaction. The system is in survival mode.',
+    ego:'No functional ego position. The Child is in fight, flight, or freeze. No Adult or Parent capacity is accessible.',
+    self:'Self-object boundary has dissolved. The threat is experienced as fused with the self — there is no safe distance from it.',
+    defence:'Primitive defences only — splitting, denial, or total shutdown. No integration is possible from here. Stabilise before anything else.'
+  }
+};
+
 var RST={
   1:{a:'Very free / diffuse',b:'Very high',s:'Minimal',m:'Re-engage gently \u2014 small action, food, a simple task.'},
   2:{a:'Light / meta-aware',b:'High',s:'Low',m:'Stay simple \u2014 breathe, short walk, one concrete next step.'},
@@ -1364,8 +1126,7 @@ function buildReg(){
     d.onclick=function(){var cb=d.querySelector('input');cb.checked=!cb.checked;d.classList.toggle('sel',cb.checked);persist('chk-rr-'+it.id,cb.checked);};
     d.querySelector('input').onclick=function(e){e.stopPropagation();};
     wrap.appendChild(d);
-    var saved=recall('chk-rr-'+it.id,false);
-    if(saved){d.querySelector('input').checked=true;d.classList.add('sel');}
+    var saved=recall('chk-rr-'+it.id,false);if(saved){d.querySelector('input').checked=true;d.classList.add('sel');}
   });
 }
 
@@ -1376,7 +1137,7 @@ function doReg(){
   REGI.forEach(function(it){if(!sel.has(it.id))return;Object.entries(it.votes).forEach(function(e){scores[Number(e[0])]+=e[1];});});
   var sorted=Object.entries(scores).map(function(e){return[Number(e[0]),e[1]];}).sort(function(a,b){return b[1]-a[1];});
   var lvl=sorted[0][0];persist('reg-level',String(lvl));
-  var bd=RBD(lvl);var st=RST[lvl];
+  var bd=RBD(lvl);var st=RST[lvl];var ps=REG_PSYCH[lvl];
   var pf=REGI.filter(function(it){return it.prod&&sel.has(it.id);}).length>0;
   persist('prodrome-flagged',String(pf));
   var selItems=REGI.filter(function(it){return sel.has(it.id);}).map(function(it){return it.tx;});
@@ -1384,6 +1145,14 @@ function doReg(){
   var h='<span class="bpill bp'+bd+'">'+RBDL[bd]+'</span><br><strong>'+lvl+' \u2014 '+RLB[lvl]+'</strong><br><br>';
   h+='<div class="rgg"><div class="rgc"><div class="rgck">Attention</div><div class="rgcv">'+st.a+'</div></div><div class="rgc"><div class="rgck">Brakes</div><div class="rgcv">'+st.b+'</div></div><div class="rgc"><div class="rgck">Salience</div><div class="rgcv">'+st.s+'</div></div></div>';
   h+='<div class="rgm"><div class="rgmk">What to do now</div>'+st.m+'</div>';
+  if(ps){
+    h+='<div class="reg-psych">';
+    h+='<div class="reg-psych-desc">'+ps.desc+'</div>';
+    h+='<div class="reg-psych-row"><div class="reg-psych-lbl">Ego state</div><div class="reg-psych-val">'+ps.ego+'</div></div>';
+    h+='<div class="reg-psych-row"><div class="reg-psych-lbl">Self and object</div><div class="reg-psych-val">'+ps.self+'</div></div>';
+    h+='<div class="reg-psych-row"><div class="reg-psych-lbl">Defence</div><div class="reg-psych-val">'+ps.defence+'</div></div>';
+    h+='</div>';
+  }
   if(pf)h+='<div class="al ald" style="margin-top:8px"><strong>Prodrome signals present.</strong> Name the signal. Write it down. Do not act on any impulse connected to it today. Reduce stimulation, hydrate, use Ground, tell your confidant.</div>';
   else if(lvl>=7)h+='<div class="al alw" style="margin-top:8px">At this level your analysis will distort. Use Ground first. Come back when you are at 5 or below.</div>';
   h+='<div class="ripsy">Nervous system state: window of tolerance '+(lvl<=5?'open':lvl<=7?'narrowing':'closed')+'</div>';
@@ -1405,8 +1174,7 @@ function doBody(){
     gut:{n:'Gut tension / nausea',t:'Warm fluids. Reduce information intake.',w:'visceral sensitivity often leads cognitive awareness',psy:'Gut-brain axis activation'},
     head:{n:'Head pressure / headache',t:'Hydrate. Screen break.',w:'tension headache is one of the clearest signals of cognitive overload',psy:'Tension-type headache'}
   };
-  var h='';
-  checked.forEach(function(r){var k=r.querySelector('input').dataset.b;if(tips[k])h+='<div class="ri"><div class="rin">'+tips[k].n+'</div><div class="rit">'+tips[k].t+'</div><div class="riw">'+tips[k].w+'</div><div class="ripsy">'+tips[k].psy+'</div></div>';});
+  var h='';checked.forEach(function(r){var k=r.querySelector('input').dataset.b;if(tips[k])h+='<div class="ri"><div class="rin">'+tips[k].n+'</div><div class="rit">'+tips[k].t+'</div><div class="riw">'+tips[k].w+'</div><div class="ripsy">'+tips[k].psy+'</div></div>';});
   show('r-body',h);
 }
 
@@ -1440,7 +1208,7 @@ function doDistort(){
   var dm={
     all:{n:'All-or-nothing framing',t:'Find one exception to the binary.',w:'all-or-nothing collapses nuance',psy:'Cognitive distortion: dichotomous thinking'},
     emo:{n:'Feelings as evidence',t:'Name the feeling and the fact separately.',w:'emotional reasoning treats internal states as proof of external facts',psy:'Cognitive distortion: emotional reasoning'},
-    mind:{n:"Filling in others' thoughts",t:'What do you actually know? What are you adding?',w:"mind-reading fills the gap with fear",psy:'Cognitive distortion: mind reading'},
+    mind:{n:"Filling in others' thoughts",t:'What do you actually know? What are you adding?',w:'mind-reading fills the gap with fear',psy:'Cognitive distortion: mind reading'},
     should:{n:'Rigid shoulds / musts',t:"Replace 'should' with 'prefer' or 'choose'.",w:'rigid prescriptions function as commands',psy:'Cognitive distortion: should statements'},
     pers:{n:"Carrying what isn't mine",t:'Name explicitly what is yours and what belongs to the other person.',w:'responsibility expands quietly in a high-sensitivity system',psy:'Cognitive distortion: personalisation'},
     mini:{n:'Minimising needs or contribution',t:'Name one thing you need. Name one thing you contributed today.',w:'minimisation sounds like objectivity but is self-erasure',psy:'Cognitive distortion: minimisation'},
@@ -1467,7 +1235,7 @@ function doScan(){
     no:{n:'"No" being pushed past',t:'My answer is still no.',w:'adding explanation signals a better argument might change it',psy:'Boundary violation: consent erosion'},
     priv:{n:'Privacy being probed',t:'I prefer not to discuss that.',w:'a preference does not require justification',psy:'Boundary violation: privacy intrusion'},
     dis:{n:'State being dismissed',t:'I see it differently.',w:'naming the difference without debating preserves your perception',psy:'Invalidation: emotional dismissal'},
-    shift:{n:'Responsibility shifted',t:"That's yours to handle.",w:"returning ownership cleanly prevents gradual accumulation",psy:'Dynamic: responsibility transfer'},
+    shift:{n:'Responsibility shifted',t:"That's yours to handle.",w:'returning ownership cleanly prevents gradual accumulation',psy:'Dynamic: responsibility transfer'},
     guilt:{n:'Guilt used as leverage',t:'I understand, and my answer is no.',w:'acknowledging their feeling without yielding separates empathy from compliance',psy:'Manipulation: guilt induction'},
     rush:{n:'Decision being rushed',t:"I'll respond after I've had time to think.",w:'slowing down protects your clarity',psy:'Pressure tactic: time compression'},
     comp:{n:'Competence undermined',t:"That's the decision. Stop. Do not defend it.",w:'defending invites further challenge',psy:'Undermining: competence invalidation'},
@@ -1491,7 +1259,6 @@ function doScan(){
   show('r-scan',h);
 }
 
-// ── GAME CHECK ──
 var GAMES={
   complaint:{name:'Why Don\'t You \u2014 Yes But',role:'Victim presenting problems; Rescuer invited to help then blocked',payoff:'Confirmation that no solution exists; avoidance of change; negative strokes',response:'Name the pattern directly. Do not offer another solution. Ask: what would actually need to change for this to resolve?'},
   deflect:{name:'Why Don\'t You \u2014 Yes But',role:'Victim inviting Rescuer; each solution is found inadequate',payoff:'Maintains helplessness; collects evidence that others cannot help; avoids responsibility for change',response:'Stop offering solutions. Reflect back: it sounds like none of the options feel workable. What would a workable option look like to you?'},
@@ -1506,14 +1273,11 @@ function doGame(){
   if(!checked.length){show('r-game','<span class="ok">No game patterns identified right now.</span>');return;}
   reviewState.game=checked.map(function(r){return r.querySelector('input').dataset.g;});
   var h='';
-  checked.forEach(function(r){
-    var k=r.querySelector('input').dataset.g;var g=GAMES[k];if(!g)return;
-    h+='<div class="game-block">';
-    h+='<div class="game-name">'+g.name+'</div>';
+  checked.forEach(function(r){var k=r.querySelector('input').dataset.g;var g=GAMES[k];if(!g)return;
+    h+='<div class="game-block"><div class="game-name">'+g.name+'</div>';
     h+='<div class="game-row"><strong>Role</strong>'+g.role+'</div>';
     h+='<div class="game-row"><strong>Payoff</strong>'+g.payoff+'</div>';
-    h+='<div class="game-action">'+g.response+'</div>';
-    h+='</div>';
+    h+='<div class="game-action">'+g.response+'</div></div>';
   });
   show('r-game',h);
 }
@@ -1529,12 +1293,12 @@ function doEffort(){
     spblind:{n:'SP blind effort distortion',t:'Check body signals now. If working 90+ minutes without break, stop.',w:"SP blindness means capacity feels fine until it isn't",psy:'Interoceptive deficit: SP blind threshold failure'},
     fatigue:{n:'Effort continuing despite fatigue',t:'Stop. The output produced past this point will cost more to correct than it contributes.',w:'continuing through clear fatigue is overriding a protective signal',psy:'Pattern: fatigue signal suppression'},
     switch:{n:'Task avoidance through substitution',t:'Return to the task you left. Name what made you leave. That friction marks the real work.',w:'moving to easier tasks produces activity without progress on what matters',psy:'Behavioural pattern: avoidance via substitution'},
-    rest:{n:'Rest anxiety active',t:'Name one thing that would actually fall apart if you stopped for 30 minutes. If nothing concrete comes to mind, the anxiety is the distortion.',w:"the sense that stopping causes collapse is a hypervigilance pattern",psy:'Cognitive pattern: hypervigilance about rest / control schema'}
+    rest:{n:'Rest anxiety active',t:'Name one thing that would actually fall apart if you stopped for 30 minutes. If nothing concrete comes to mind, the anxiety is the distortion.',w:'the sense that stopping causes collapse is a hypervigilance pattern',psy:'Cognitive pattern: hypervigilance about rest / control schema'}
   };
   var sm2={
     depth:{n:'Depth without movement',t:'One concrete thing done imperfectly moves work forward more than extended analysis.',w:'depth is your greatest strength and most available avoidance',psy:'Behavioural pattern: analysis paralysis'},
     abstr:{n:'Abstraction as avoidance',t:'Name the specific concrete task you are avoiding. Do that first.',w:'abstraction maintains distance from the work',psy:'Defence mechanism: intellectualisation'},
-    iso:{n:'Isolation under pressure',t:"Co-regulation is how you get back to steady. One brief contact today.",w:'isolation removes the co-regulation that would actually help',psy:'Coping pattern: avoidant isolation'},
+    iso:{n:'Isolation under pressure',t:'Co-regulation is how you get back to steady. One brief contact today.',w:'isolation removes the co-regulation that would actually help',psy:'Coping pattern: avoidant isolation'},
     sov:{n:'Sovereignty as avoidance',t:'Asking for help does not compromise independence.',w:'sovereignty means self-determination, not self-sufficiency',psy:'Schema: mistrust / self-reliance overextension'},
     perf:{n:'Over-optimisation / perfection bias',t:'Name what already works well enough. Ship or move on.',w:'perfection bias is avoidance in disguise',psy:'Cognitive pattern: perfectionism / completion anxiety'},
     flaw:{n:'Attention narrowing to flaws',t:'Name one thing that is working or was done well today before continuing.',w:'attention locked on flaws amplifies them and distorts the overall picture',psy:'Cognitive bias: negativity bias + selective abstraction'},
@@ -1550,25 +1314,13 @@ function doEffort(){
 
 function doIntegration(){
   document.getElementById('mantra').style.display='block';
-  try{
-    var ctx=getAudioCtx();var t=ctx.currentTime;
-    for(var i=0;i<3;i++){var o=ctx.createOscillator();var g=ctx.createGain();o.type='sine';o.frequency.setValueAtTime(660,t);g.gain.setValueAtTime(0.0001,t);g.gain.exponentialRampToValueAtTime(0.18,t+0.01);g.gain.exponentialRampToValueAtTime(0.0001,t+1.2);o.connect(g);g.connect(ctx.destination);o.start(t);o.stop(t+1.3);t+=1.1;}
-  }catch(e){}
+  try{var ctx=getAudioCtx();var t=ctx.currentTime;for(var i=0;i<3;i++){var o=ctx.createOscillator();var g=ctx.createGain();o.type='sine';o.frequency.setValueAtTime(660,t);g.gain.setValueAtTime(0.0001,t);g.gain.exponentialRampToValueAtTime(0.18,t+0.01);g.gain.exponentialRampToValueAtTime(0.0001,t+1.2);o.connect(g);g.connect(ctx.destination);o.start(t);o.stop(t+1.3);t+=1.1;}}catch(e){}
   vibrate([80,100,80,100,80]);
 }
 
-if(!NO_TOKEN){
-  setInterval(async function(){
-    await saveToGist();
-    await loadTodayFromGist();
-  },3*60*1000);
-}
-
-if(document.getElementById('reg-items')){
-  buildReg();
-  initCare();
-  if(!NO_TOKEN){loadTodayFromGist();}
-}
+if(!NO_TOKEN){setInterval(async function(){await saveToGist();await loadTodayFromGist();},3*60*1000);}
+buildReg();initCare();
+if(!NO_TOKEN){loadTodayFromGist();}
 </script>
 </body>
 </html>
