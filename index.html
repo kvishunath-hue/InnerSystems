@@ -108,7 +108,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1
 .vlnot{font-size:11px;color:var(--text3);margin-top:4px;line-height:1.4;font-style:italic}
 .inp{margin-top:8px;padding:10px 12px;border-radius:var(--r);border-left:3px solid var(--ibo);background:var(--ib);font-size:13px;line-height:1.6;color:var(--it)}
 .dsp{margin-top:8px;padding:10px 12px;border-radius:var(--r);border-left:3px solid var(--wbo);background:var(--wb);font-size:13px;line-height:1.6;color:var(--wt)}
-.hbf{position:fixed;bottom:24px;right:16px;z-index:100;width:54px;height:54px;border-radius:50%;background:var(--calm);color:#fff;border:none;cursor:pointer;font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.3;-webkit-tap-highlight-color:transparent;box-shadow:0 2px 12px rgba(0,0,0,0.25);font-family:inherit}
+.hbf{position:fixed;bottom:24px;right:16px;z-index:100;width:54px;height:54px;border-radius:50%;background:var(--calm);color:#1a1a1a;border:none;cursor:pointer;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.3;-webkit-tap-highlight-color:transparent;box-shadow:0 2px 12px rgba(0,0,0,0.25);font-family:inherit}
 .hbf:active{transform:scale(0.94)}
 .bov{display:none;position:fixed;top:0;left:0;right:0;bottom:0;z-index:200;background:rgba(0,0,0,0.4);overflow-y:auto}
 .bov.open{display:block;overflow-y:auto;-webkit-overflow-scrolling:touch}
@@ -183,10 +183,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1
 .rgcv{font-size:12px;font-weight:600;margin-top:2px;color:var(--text)}
 .rgm{padding:8px 10px;border-radius:var(--r);border:1px solid var(--bdr);font-size:13px;line-height:1.6;margin-top:6px;color:var(--text)}
 .rgmk{font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.4px;margin-bottom:4px}
-.reg-psych{margin-top:8px;padding:10px 12px;border-radius:var(--r);border:1px solid var(--bdr);background:var(--bg);font-size:12px;line-height:1.7;color:var(--text2)}
-.reg-psych-desc{font-style:italic;color:var(--text2);margin-bottom:8px;padding-bottom:8px;border-bottom:1px solid var(--bdr)}
-.reg-psych-row{display:flex;gap:6px;margin-top:5px;line-height:1.5}
-.reg-psych-lbl{font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.3px;flex-shrink:0;padding-top:1px;min-width:90px}
+.reg-psych{margin-top:8px;padding:0;border-radius:var(--r);border:1px solid var(--bdr);background:var(--bg);font-size:12px;line-height:1.7;color:var(--text2);overflow:hidden}
+.reg-psych-desc{font-style:italic;color:var(--text2);padding:10px 12px;border-bottom:1px solid var(--bdr)}
+.reg-psych-row{display:flex;gap:6px;padding:10px 12px;line-height:1.5;border-bottom:1px solid var(--bdr)}
+.reg-psych-row:last-child{border-bottom:none}
+.reg-psych-lbl{font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.3px;flex-shrink:0;padding-top:1px;width:95px;border-right:1px solid var(--bdr);padding-right:10px;margin-right:4px}
 .reg-psych-val{font-size:12px;color:var(--text2)}
 .dcd{font-size:13px;color:var(--text2);margin-bottom:.8rem;padding-top:0.4rem}
 .dcdb{border-radius:var(--rl);padding:12px 14px;margin-bottom:10px;border:1px solid var(--bdr)}
@@ -273,7 +274,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1
 <div class="bov" id="boverlay">
   <div class="bov-inner">
     <div class="bovh"><span class="bovt">Ground</span><button class="bovc" onclick="closeBreath()">&#215;</button></div>
-    <div class="bov-pane on" id="bov-breath">
+    <div class="btbs" id="gov-tabs">
+      <button class="btb on" onclick="switchGov('breathing',this)"><span class="bn">Breathing</span><span class="bs">guided patterns</span></button>
+      <button class="btb" onclick="switchGov('grounding',this)"><span class="bn">Grounding</span><span class="bs">body-based techniques</span></button>
+    </div>
+    <div class="bov-pane on" id="bov-breathing">
       <div class="btbs" id="btabs"></div>
       <div class="arena">
         <div class="breath-timer" id="breath-timer">00:00</div>
@@ -288,12 +293,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1
         <div class="bcy" id="bcycles"></div>
         <div class="bcr"><button class="bct" onclick="stopBreath()">Stop</button></div>
       </div>
-      <div style="margin-top:1rem">
-        <button class="btn" id="more-opts-btn" onclick="toggleMoreOpts()">More options</button>
-        <div id="more-opts" style="display:none;margin-top:10px">
-          <div class="grnd-techs" id="grnd-techs"></div>
-        </div>
-      </div>
+    </div>
+    <div class="bov-pane" id="bov-grounding">
+      <div class="grnd-techs" id="grnd-techs"></div>
     </div>
   </div>
 </div>
@@ -806,7 +808,7 @@ var BY_DAY={
   5:{f:'Land + Family responsibilities',s:'Practical and relational',i:'Land situation and family obligations. Concrete, grounded, done.',goals:['land','family','regulation']},
   6:{f:'Physical fitness + Connection',s:'Body and presence',i:'Fitness then genuine connection. Tribe or partner. Regulate before reaching out.',goals:['fitness','tribe','partner','regulation']}
 };
-var DAYS=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+var DAYS=['Sunday','Monday','Tuesday','Thursday','Friday','Saturday'];
 var GOALS=[
   {id:'regulation',ico:'&#9889;',nm:'Regulation + recovery',sb:'Daily baseline \u2014 routines, review, taper check'},
   {id:'fitness',ico:'&#128170;',nm:'Physical fitness',sb:'Movement, exercise, body care'},
@@ -881,7 +883,7 @@ function bFr(b){var t=b.ti.reduce(function(a,v){return a+v;},0);var f=[0];var a=
 function bIsI(p){return p.toLowerCase().startsWith('inhale');}
 function bIsH(p){return p.toLowerCase().startsWith('hold');}
 function initB(){var tabs=document.getElementById('btabs');tabs.innerHTML='';BREATHS.forEach(function(b,i){var btn=document.createElement('button');btn.className='btb'+(i===bI?' on':'');btn.innerHTML='<span class="bn">'+b.nm+'</span><span class="bs">'+b.sb+'</span>';btn.onclick=function(){selB(i);};tabs.appendChild(btn);});rBCh();updBD();bSetI();bDr(null,null);document.getElementById('breath-timer').textContent='00:00';}
-function selB(i){bStop();bI=i;document.querySelectorAll('.btb').forEach(function(b,j){b.classList.toggle('on',j===i);});rBCh();updBD();bSetI();bDr(null,null);}
+function selB(i){bStop();bI=i;document.querySelectorAll('#btabs .btb').forEach(function(b,j){b.classList.toggle('on',j===i);});rBCh();updBD();bSetI();bDr(null,null);}
 function updBD(){var b=BREATHS[bI];document.getElementById('bwhen').textContent=b.wh;document.getElementById('bdesc').textContent=b.de;}
 function rBCh(){var b=BREATHS[bI];var row=document.getElementById('phases-row');row.innerHTML='';b.ph.forEach(function(ph,i){var d=document.createElement('div');d.className='pchip';d.id='phchip-'+i;d.innerHTML='<span class="pn">'+ph+'</span><span class="ps">'+b.ti[i]+'s</span>';row.appendChild(d);});}
 function bSetI(){bIR=RMIN;bApB(RMIN);document.getElementById('cp-phase').textContent='Tap to start';document.getElementById('cp-count').textContent='';}
@@ -892,12 +894,11 @@ function toggleRun(){if(bR)bStop();else bStart();}
 function bStart(){bR=true;bC=0;bPh=0;bIR=RMIN;bTimerStart=performance.now();bTimerRaf=requestAnimationFrame(tickTimer);try{getAudioCtx();}catch(e){}bRunP();}
 function bStop(){bR=false;if(bRaf)cancelAnimationFrame(bRaf);if(bCI)clearInterval(bCI);if(bTimerRaf)cancelAnimationFrame(bTimerRaf);bRaf=null;bCI=null;bTimerRaf=null;document.querySelectorAll('.pchip').forEach(function(c){c.classList.remove('cur');});document.getElementById('bcycles').textContent='';bSetI();bDr(null,null);document.getElementById('breath-timer').textContent='00:00';}
 function bRunP(){if(!bR)return;var b=BREATHS[bI];var ph=b.ph[bPh];var dur=b.ti[bPh];var fr=bFr(b);beep();vibrate(80);document.querySelectorAll('.pchip').forEach(function(c,i){c.classList.toggle('cur',i===bPh);});document.getElementById('cp-phase').textContent=ph;document.getElementById('bcycles').textContent='Cycle '+(bC+1);var isInhale=bIsI(ph);var isHold=bIsH(ph);var sR=bIR;var eR=isHold?bIR:(isInhale?RMAX:RMIN);var sInnerR=bIR;var eInnerR=eR;var cv2=dur;document.getElementById('cp-count').textContent=cv2;if(bCI)clearInterval(bCI);bCI=setInterval(function(){cv2--;document.getElementById('cp-count').textContent=cv2>0?cv2:'';if(cv2<=0)clearInterval(bCI);},1000);var dMs=dur*1000;bPS=performance.now();function frame(now){if(!bR)return;var el=Math.min(now-bPS,dMs);var frac=el/dMs;var ease=isHold?1:(0.5-0.5*Math.cos(Math.PI*frac));var r=sR+(eR-sR)*ease;bIR=r;bApB(r);var innerR=sInnerR+(eInnerR-sInnerR)*ease;var dotF=fr[bPh]+(fr[bPh+1]-fr[bPh])*frac;bDr(dotF,innerR);if(el<dMs){bRaf=requestAnimationFrame(frame);}else{bIR=eR;bPh++;if(bPh>=b.ph.length){bPh=0;bC++;}requestAnimationFrame(function(){if(bR)bRunP();});}}bRaf=requestAnimationFrame(frame);}
-function openBreath(){document.getElementById('boverlay').classList.add('open');document.body.style.overflow='hidden';initB();initGrounding();document.getElementById('more-opts').style.display='none';document.getElementById('more-opts-btn').textContent='More options';}
+function switchGov(pane,btn){document.querySelectorAll('#gov-tabs .btb').forEach(function(b){b.classList.remove('on');});btn.classList.add('on');document.getElementById('bov-breathing').classList.toggle('on',pane==='breathing');document.getElementById('bov-grounding').classList.toggle('on',pane==='grounding');if(pane==='grounding')bStop();}
+function openBreath(){document.getElementById('boverlay').classList.add('open');document.body.style.overflow='hidden';initB();initGrounding();document.querySelectorAll('#gov-tabs .btb').forEach(function(b,i){b.classList.toggle('on',i===0);});document.getElementById('bov-breathing').classList.add('on');document.getElementById('bov-grounding').classList.remove('on');}
 function closeBreath(){bStop();document.getElementById('boverlay').classList.remove('open');document.body.style.overflow='';}
-function toggleMoreOpts(){var el=document.getElementById('more-opts');var open=el.style.display!=='none';el.style.display=open?'none':'block';document.getElementById('more-opts-btn').textContent=open?'More options':'Hide options';if(!open)el.scrollIntoView({behavior:'smooth',block:'start'});}
 function stopBreath(){bStop();}
 
-// ── GROUNDING — 8 techniques in order ──
 var GRND_TECHS=[
   {
     id:'g54321',title:'5-4-3-2-1 Grounding',
@@ -1022,7 +1023,6 @@ function showDone(tech,body){
 function grndSettled(id){document.getElementById('body-'+id).innerHTML='<div class="grnd-prompt" style="font-size:14px;padding:.5rem 0">\u2713 Good. Stay here for a moment before returning.</div>';}
 function grndStill(id){var remaining=GRND_TECHS.filter(function(t){return t.id!==id;}).map(function(t){return t.title;}).join(', ');var el=document.getElementById('still-'+id);el.textContent='Try another technique: '+remaining;el.classList.add('show');}
 
-// ── REGULATION ──
 var REGI=[
   {id:'stillness',tx:'My mind feels quiet and spacious \u2014 no urgency present',votes:{1:3,2:2,3:1,4:1},prod:false},
   {id:'meta',tx:'I can notice my thoughts as thoughts \u2014 I am aware that I am thinking',votes:{2:3,3:2,4:1},prod:false},
@@ -1039,68 +1039,17 @@ var REGI=[
 ];
 var RLB={1:'Silent awareness',2:'Meta-awareness',3:'Observing ego',4:'Integrated presence',5:'Engaged self',6:'Emotional identity',7:'Narrative ego',8:'Sensory immersion',9:'Flow / trance',10:'Raw survival'};
 
-// ── REGULATION PSYCHOLOGICAL MARKERS ──
 var REG_PSYCH={
-  1:{
-    desc:'Attention is open and uncontracted. No content is being mistaken for self. The system is at rest without being absent.',
-    ego:'No active ego position. The Adult is present but not needed — there is nothing to manage or defend.',
-    self:'Self and object are clearly differentiated. Nothing arising is being absorbed as self-definition.',
-    defence:'No defence mechanism active. Nothing is being protected against.'
-  },
-  2:{
-    desc:'Attention is present and watching itself. Thoughts and feelings are arising but being recognised as events rather than facts.',
-    ego:'Adult ego state is observing without investing. No Victim, Rescuer, or Persecutor position is active.',
-    self:'The self is holding the object at slight distance — interested but not merged.',
-    defence:'Minimal. Intellectualisation is possible — watching can become a way of not feeling fully.'
-  },
-  3:{
-    desc:'Attention is available and flexible. Content is being processed as it arises. Some effort is required to maintain perspective, but it is accessible.',
-    ego:'Adult is functioning as observer. Parent and Child are present but not running the show.',
-    self:'Self and object in healthy contact. Neither merged nor walled off.',
-    defence:'Mild rationalisation possible — meaning-making is beginning to run slightly ahead of feeling.'
-  },
-  4:{
-    desc:'Attention is free but purposefully directed. Content is being processed and choices are being made from a stable base.',
-    ego:'Adult ego state is fully functional — reality-testing, choosing, engaged. No role position is dominating.',
-    self:'Self and object in clear, boundaried contact. The object is experienced as separate and real.',
-    defence:'Minimal. The system is processing rather than protecting.'
-  },
-  5:{
-    desc:'Attention is engaged with a task or person. Grounded enough to act but close enough to the edge of 4 that the state needs protecting.',
-    ego:'Adult is directing. A mild Nurturing Parent may be active if helping or supporting others.',
-    self:'Self is stable. Object is experienced as separate. The contact is chosen rather than compelled.',
-    defence:'Slight suppression possible — some material may be set aside to stay functional.'
-  },
-  6:{
-    desc:'Attention is being pulled by emotional content. Feelings are starting to define the frame rather than inform it. The Adult is still reachable but requires effort.',
-    ego:'Adapted Child or Victim position becoming active. The Adult has stepped back. Feelings are beginning to function as evidence rather than information.',
-    self:'The object is starting to be introjected — what is happening out there is beginning to feel like a statement about the self.',
-    defence:'Emotional reasoning active — internal states are being used as proof of external facts.'
-  },
-  7:{
-    desc:'Attention is locked onto a story the mind is actively constructing. What happened is being rewritten into a case — assigning cause, blame, or meaning.',
-    ego:'Persecutor or Victim position is active. The Adult has stepped back. The mind is either building a case against someone or rehearsing helplessness.',
-    self:'The object has been absorbed into the self-narrative. What they did or said is being used to define what you are or what this situation means about you.',
-    defence:'Rationalisation active. The mind is generating a coherent explanation that feels like clarity but is protecting against the discomfort of uncertainty or loss of control.'
-  },
-  8:{
-    desc:'Attention has been captured by physical state or compulsive loop. The body\'s signals or a repeating pattern have become the dominant reality.',
-    ego:'Child ego state is running — either the Adapted Child managing overwhelm, or the Natural Child responding to immediate sensation. The Adult is largely offline.',
-    self:'Self-object differentiation is reduced. External events feel like direct extensions of the internal state — everything is personal.',
-    defence:'Acting out or repetition compulsion active — behaviour or loops are being used to discharge what cannot be processed internally.'
-  },
-  9:{
-    desc:'Attention is locked in a loop or has dissociated into a flow state that is no longer voluntary. The system is running on autopilot.',
-    ego:'Adapted Child in trance — either frozen or cycling. No Adult is available to interrupt the pattern.',
-    self:'Self-boundary is minimal. What is arising is not being experienced as separate from the self — it is the self, for now.',
-    defence:'Dissociation active — the system has created distance from what it cannot process. The loop is maintaining a bearable unreality.'
-  },
-  10:{
-    desc:'Attention has collapsed into threat-response. There is no perspective available — only the trigger and the reaction. The system is in survival mode.',
-    ego:'No functional ego position. The Child is in fight, flight, or freeze. No Adult or Parent capacity is accessible.',
-    self:'Self-object boundary has dissolved. The threat is experienced as fused with the self — there is no safe distance from it.',
-    defence:'Primitive defences only — splitting, denial, or total shutdown. No integration is possible from here. Stabilise before anything else.'
-  }
+  1:{desc:'Attention is open and uncontracted. No content is being mistaken for self. The system is at rest without being absent.',ego:'No active ego position. The Adult is present but not needed — there is nothing to manage or defend.',self:'Self and object are clearly differentiated. Nothing arising is being absorbed as self-definition.',defence:'No defence mechanism active. Nothing is being protected against.'},
+  2:{desc:'Attention is present and watching itself. Thoughts and feelings are arising but being recognised as events rather than facts.',ego:'Adult ego state is observing without investing. No Victim, Rescuer, or Persecutor position is active.',self:'The self is holding the object at slight distance — interested but not merged.',defence:'Minimal. Intellectualisation is possible — watching can become a way of not feeling fully.'},
+  3:{desc:'Attention is available and flexible. Content is being processed as it arises. Some effort is required to maintain perspective, but it is accessible.',ego:'Adult is functioning as observer. Parent and Child are present but not running the show.',self:'Self and object in healthy contact. Neither merged nor walled off.',defence:'Mild rationalisation possible — meaning-making is beginning to run slightly ahead of feeling.'},
+  4:{desc:'Attention is free but purposefully directed. Content is being processed and choices are being made from a stable base.',ego:'Adult ego state is fully functional — reality-testing, choosing, engaged. No role position is dominating.',self:'Self and object in clear, boundaried contact. The object is experienced as separate and real.',defence:'Minimal. The system is processing rather than protecting.'},
+  5:{desc:'Attention is engaged with a task or person. Grounded enough to act but close enough to the edge of 4 that the state needs protecting.',ego:'Adult is directing. A mild Nurturing Parent may be active if helping or supporting others.',self:'Self is stable. Object is experienced as separate. The contact is chosen rather than compelled.',defence:'Slight suppression possible — some material may be set aside to stay functional.'},
+  6:{desc:'Attention is being pulled by emotional content. Feelings are starting to define the frame rather than inform it. The Adult is still reachable but requires effort.',ego:'Adapted Child or Victim position becoming active. The Adult has stepped back. Feelings are beginning to function as evidence rather than information.',self:'The object is starting to be introjected — what is happening out there is beginning to feel like a statement about the self.',defence:'Emotional reasoning active — internal states are being used as proof of external facts.'},
+  7:{desc:'Attention is locked onto a story the mind is actively constructing. What happened is being rewritten into a case — assigning cause, blame, or meaning.',ego:'Persecutor or Victim position is active. The Adult has stepped back. The mind is either building a case against someone or rehearsing helplessness.',self:'The object has been absorbed into the self-narrative. What they did or said is being used to define what you are or what this situation means about you.',defence:'Rationalisation active. The mind is generating a coherent explanation that feels like clarity but is protecting against the discomfort of uncertainty or loss of control.'},
+  8:{desc:'Attention has been captured by physical state or compulsive loop. The body\'s signals or a repeating pattern have become the dominant reality.',ego:'Child ego state is running — either the Adapted Child managing overwhelm, or the Natural Child responding to immediate sensation. The Adult is largely offline.',self:'Self-object differentiation is reduced. External events feel like direct extensions of the internal state — everything is personal.',defence:'Acting out or repetition compulsion active — behaviour or loops are being used to discharge what cannot be processed internally.'},
+  9:{desc:'Attention is locked in a loop or has dissociated into a flow state that is no longer voluntary. The system is running on autopilot.',ego:'Adapted Child in trance — either frozen or cycling. No Adult is available to interrupt the pattern.',self:'Self-boundary is minimal. What is arising is not being experienced as separate from the self — it is the self, for now.',defence:'Dissociation active — the system has created distance from what it cannot process. The loop is maintaining a bearable unreality.'},
+  10:{desc:'Attention has collapsed into threat-response. There is no perspective available — only the trigger and the reaction. The system is in survival mode.',ego:'No functional ego position. The Child is in fight, flight, or freeze. No Adult or Parent capacity is accessible.',self:'Self-object boundary has dissolved. The threat is experienced as fused with the self — there is no safe distance from it.',defence:'Primitive defences only — splitting, denial, or total shutdown. No integration is possible from here. Stabilise before anything else.'}
 };
 
 var RST={
