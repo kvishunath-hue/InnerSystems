@@ -449,7 +449,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1
       <div class="chkrow" onclick="togChk(this,'rd-conn')"><input type="checkbox" id="rd-conn" data-d="conn"><span>I am adjusting or suppressing who I am in order to maintain connection</span></div>
       <div class="chkrow" onclick="togChk(this,'rd-neg')"><input type="checkbox" id="rd-neg" data-d="neg"><span>Flaws and what is wrong are carrying more weight than strengths and what is working</span></div>
       <div class="chkrow" onclick="togChk(this,'rd-affect')"><input type="checkbox" id="rd-affect" data-d="affect"><span>I notice a sense that strong emotions are unsafe or need to be managed before they can be felt</span></div>
-      <div class="chkrow" onclick="togChk(this,'rd-ready')"><input type="checkbox" id="rd-ready" data-d="ready"><span>I notice a sense that I need to feel ready or clear before I can act</span></div>
     </div>
     <button class="btn" onclick="doDistort()">Notice</button>
     <div class="res" id="r-distort"></div>
@@ -529,12 +528,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1
       <div class="chkrow" onclick="togChk(this,'re-phil')"><input type="checkbox" id="re-phil" data-e="phil"><span>I am spending more time framing and meaning-making than doing the next concrete action</span></div>
       <div class="chkrow" onclick="togChk(this,'re-spblind')"><input type="checkbox" id="re-spblind" data-e="spblind"><span>I have pushed past tiredness, hunger, or thirst without noticing &#8212; the crash is arriving now</span></div>
       <div class="chkrow" onclick="togChk(this,'re-fatigue')"><input type="checkbox" id="re-fatigue" data-e="fatigue"><span>I notice effort continuing despite clear fatigue &#8212; I am pushing through signals I can feel</span></div>
-      <div class="chkrow" onclick="togChk(this,'re-switch')"><input type="checkbox" id="re-switch" data-e="switch"><span>I am moving to an easier task to avoid the friction of the one that actually matters</span></div>
       <div class="chkrow" onclick="togChk(this,'re-rest')"><input type="checkbox" id="re-rest" data-e="rest"><span>I notice a sense that stopping or resting could cause things to fall apart</span></div>
     </div>
     <div class="sdiv">Structural bias</div>
     <div class="chks" id="sb-list">
-      <div class="chkrow" onclick="togChk(this,'rs2-depth')"><input type="checkbox" id="rs2-depth" data-s2="depth"><span>I know a great deal about the problem but have not yet taken the first concrete step</span></div>
       <div class="chkrow" onclick="togChk(this,'rs2-abstr')"><input type="checkbox" id="rs2-abstr" data-s2="abstr"><span>I am moving into abstraction or concept-level thinking to avoid the concrete work in front of me</span></div>
       <div class="chkrow" onclick="togChk(this,'rs2-iso')"><input type="checkbox" id="rs2-iso" data-s2="iso"><span>I am withdrawing from contact that would actually regulate me</span></div>
       <div class="chkrow" onclick="togChk(this,'rs2-sov')"><input type="checkbox" id="rs2-sov" data-s2="sov"><span>I am framing avoidance of support or collaboration as independence</span></div>
@@ -542,6 +539,16 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1
       <div class="chkrow" onclick="togChk(this,'rs2-flaw')"><input type="checkbox" id="rs2-flaw" data-s2="flaw"><span>I notice my attention narrowing toward flaws or what is not working rather than toward what is</span></div>
       <div class="chkrow" onclick="togChk(this,'rs2-worth')"><input type="checkbox" id="rs2-worth" data-s2="worth"><span>I notice my sense of self-worth becoming tied to results, output, or performance today</span></div>
       <div class="chkrow" onclick="togChk(this,'rs2-image')"><input type="checkbox" id="rs2-image" data-s2="image"><span>I notice increased emphasis on how I am performing, what results I am producing, or how I appear</span></div>
+    </div>
+    <div class="sdiv">Procrastination signals</div>
+    <div class="chks" id="proc-list">
+      <div class="chkrow" onclick="togChk(this,'rp-switch')"><input type="checkbox" id="rp-switch" data-p="switch"><span>I am doing easier things instead of the one that matters</span></div>
+      <div class="chkrow" onclick="togChk(this,'rp-depth')"><input type="checkbox" id="rp-depth" data-p="depth"><span>I am researching or preparing instead of starting</span></div>
+      <div class="chkrow" onclick="togChk(this,'rp-ready')"><input type="checkbox" id="rp-ready" data-p="ready"><span>I am waiting to feel ready or clear before acting</span></div>
+      <div class="chkrow" onclick="togChk(this,'rp-restart')"><input type="checkbox" id="rp-restart" data-p="restart"><span>I keep restarting instead of continuing where I left off</span></div>
+      <div class="chkrow" onclick="togChk(this,'rp-later')"><input type="checkbox" id="rp-later" data-p="later"><span>I am telling myself I will do it later when conditions are better</span></div>
+      <div class="chkrow" onclick="togChk(this,'rp-large')"><input type="checkbox" id="rp-large" data-p="large"><span>The task feels too large to begin</span></div>
+      <div class="chkrow" onclick="togChk(this,'rp-outcome')"><input type="checkbox" id="rp-outcome" data-p="outcome"><span>I am avoiding something because the outcome matters too much</span></div>
     </div>
     <button class="btn" onclick="doEffort()">Notice</button>
     <div class="res" id="r-effort"></div>
@@ -674,13 +681,14 @@ var REVIEW_CHK_IDS=[
   'rb-sleep','rb-rest','rb-fat','rb-dehy','rb-app','rb-jaw','rb-chest','rb-gut','rb-head',
   'rn-ctx','rn-old','rn-benefit','rn-noev','rn-defend','rn-seen','rn-rumi','rn-truth','rn-attrib',
   'rc-cat1','rc-cat2','rc-cat3','rc-cat4','rc-cat5','rc-cat6','rc-cat7',
-  'rd-all','rd-emo','rd-mind','rd-should','rd-pers','rd-mini','rd-ref','rd-spot','rd-burden','rd-conn','rd-neg','rd-affect','rd-ready',
+  'rd-all','rd-emo','rd-mind','rd-should','rd-pers','rd-mini','rd-ref','rd-spot','rd-burden','rd-conn','rd-neg','rd-affect',
   'rv-time','rv-no','rv-priv','rv-dis','rv-shift','rv-guilt','rv-rush','rv-comp','rv-drain',
   'rs-wd','rs-oe','rs-fawn','rs-give','rs-resent','rs-snap','rs-numb','rs-scan','rs-small','rs-authfawn','rs-authund',
   'rg-complaint','rg-deflect','rg-position','rg-perform','rg-third','rg-image',
   'rr-norec','rr-fbign','rr-careweap','rr-realrew','rr-bndpun','rr-triang','rr-credit','rr-agency',
-  're-burst','re-phil','re-spblind','re-fatigue','re-switch','re-rest',
-  'rs2-depth','rs2-abstr','rs2-iso','rs2-sov','rs2-perf','rs2-flaw','rs2-worth','rs2-image'
+  're-burst','re-phil','re-spblind','re-fatigue','re-rest',
+  'rs2-abstr','rs2-iso','rs2-sov','rs2-perf','rs2-flaw','rs2-worth','rs2-image',
+  'rp-switch','rp-depth','rp-ready','rp-restart','rp-later','rp-large','rp-outcome'
 ];
 
 var LABEL_MAP={
@@ -692,8 +700,9 @@ var LABEL_MAP={
   wd:'Excess withdrawal',oe:'Over-explaining',fawn:'False agreement',give:'Over-giving',resent:'Resentment after giving',snap:'Disproportionate force',numb:'Emotional flattening',scan:'Tracking their read',small:'Becoming smaller',authfawn:'Authority fawning',authund:'Authority undermined',
   complaint:'Complaint without resolution',deflect:'Solutions found wanting',position:'Positioning as wrong',perform:'Competence performed',third:'Third person dynamic',image:'Contribution tied to image',
   norec:'No reciprocity',fbign:'Feedback ignored',careweap:'Care weaponised',realrew:'Reality rewritten',bndpun:'Boundaries punished',triang:'Triangulation',credit:'Credit taken',agency:'Agency undermined',
-  burst:'Intensity burst',phil:'Philosophical drift',spblind:'SP blind override',fatigue:'Effort despite fatigue',switch:'Task avoidance',rest:'Rest anxiety',
-  depth:'Depth without movement',abstr:'Abstraction as avoidance',iso:'Isolation under pressure',sov:'Sovereignty as avoidance',perf:'Over-optimisation',flaw:'Attention narrowing to flaws',worth:'Contingent self-worth'
+  burst:'Intensity burst',phil:'Philosophical drift',spblind:'SP blind override',fatigue:'Effort despite fatigue',rest:'Rest anxiety',
+  abstr:'Abstraction as avoidance',iso:'Isolation under pressure',sov:'Sovereignty as avoidance',perf:'Over-optimisation',flaw:'Attention narrowing to flaws',worth:'Contingent self-worth',
+  switch:'Task avoidance',depth:'Depth without movement',ready:'Readiness condition',restart:'Restarting instead of continuing',later:'Deferring to better conditions',large:'Task too large to begin',outcome:'Outcome-loaded avoidance'
 };
 
 function togChk(row,id){var cb=document.getElementById(id);if(!cb)return;cb.checked=!cb.checked;persist('chk-'+id,cb.checked);}
@@ -1216,8 +1225,7 @@ function doDistort(){
     burden:{n:'Needs as burden',t:"Expressing a need is not an imposition \u2014 it is information.",w:'the belief that needs are burdensome drives suppression and resentment',psy:'Schema: defectiveness / shame'},
     conn:{n:'Connection requires self-adjustment',t:"You do not need to become different to be connected.",w:'this belief drives fawning and eventual withdrawal',psy:'Schema: subjugation'},
     neg:{n:'Negativity bias active',t:'Name one thing that is working or has worked today.',w:'flaws carry disproportionate cognitive weight when negativity bias is active',psy:'Cognitive bias: negativity bias'},
-    affect:{n:'Strong emotions feel unsafe',t:'The emotion is not dangerous. It is information. Stay with it for one breath before managing it.',w:'treating emotions as unsafe amplifies them and prevents processing',psy:'Defence mechanism: affect phobia'},
-    ready:{n:'Readiness condition active',t:'Clarity does not precede action \u2014 it follows it. Name the smallest possible next step and take it.',w:'waiting for readiness is avoidance that feels like preparation',psy:'Cognitive pattern: readiness condition / behavioural inhibition'}
+    affect:{n:'Strong emotions feel unsafe',t:'The emotion is not dangerous. It is information. Stay with it for one breath before managing it.',w:'treating emotions as unsafe amplifies them and prevents processing',psy:'Defence mechanism: affect phobia'}
   };
   if(drows.length){if(h)h+='<div style="height:6px"></div>';drows.forEach(function(r){var k=r.querySelector('input').dataset.d;if(dm[k])h+='<div class="ri"><div class="rin">'+dm[k].n+'</div><div class="rit">'+dm[k].t+'</div><div class="riw">'+dm[k].w+'</div><div class="ripsy">'+dm[k].psy+'</div></div>';});}
   h+='<div class="ipt">Is what you are experiencing a prediction or a fact?</div>';
@@ -1311,18 +1319,17 @@ function doGame(){
 function doEffort(){
   var ep=[...document.querySelectorAll('#ep-list .chkrow')].filter(function(r){return r.querySelector('input').checked;});
   var sb=[...document.querySelectorAll('#sb-list .chkrow')].filter(function(r){return r.querySelector('input').checked;});
-  if(!ep.length&&!sb.length){show('r-effort','<span class="ok">No patterns flagged right now.</span>');return;}
-  reviewState.effort=ep.map(function(r){return r.querySelector('input').dataset.e;}).concat(sb.map(function(r){return r.querySelector('input').dataset.s2;}));
+  var pp=[...document.querySelectorAll('#proc-list .chkrow')].filter(function(r){return r.querySelector('input').checked;});
+  if(!ep.length&&!sb.length&&!pp.length){show('r-effort','<span class="ok">No patterns flagged right now.</span>');return;}
+  reviewState.effort=ep.map(function(r){return r.querySelector('input').dataset.e;}).concat(sb.map(function(r){return r.querySelector('input').dataset.s2;})).concat(pp.map(function(r){return r.querySelector('input').dataset.p;}));
   var em={
     burst:{n:'Intensity burst active',t:'Build the stop into the next work block before you start it. One hour focused then complete break.',w:"burst-then-crash is your system's default \u2014 it needs structural containment",psy:'Pattern: ultradian rhythm dysregulation'},
     phil:{n:'Philosophical drift',t:'Name the next physical action before continuing thinking.',w:'meaning-making under pressure feels like progress but functions as avoidance',psy:'Defence mechanism: intellectualisation'},
     spblind:{n:'SP blind effort distortion',t:'Check body signals now. If working 90+ minutes without break, stop.',w:"SP blindness means capacity feels fine until it isn't",psy:'Interoceptive deficit: SP blind threshold failure'},
     fatigue:{n:'Effort continuing despite fatigue',t:'Stop. The output produced past this point will cost more to correct than it contributes.',w:'continuing through clear fatigue is overriding a protective signal',psy:'Pattern: fatigue signal suppression'},
-    switch:{n:'Task avoidance through substitution',t:'Return to the task you left. Name what made you leave. That friction marks the real work.',w:'moving to easier tasks produces activity without progress on what matters',psy:'Behavioural pattern: avoidance via substitution'},
     rest:{n:'Rest anxiety active',t:'Name one thing that would actually fall apart if you stopped for 30 minutes. If nothing concrete comes to mind, the anxiety is the distortion.',w:'the sense that stopping causes collapse is a hypervigilance pattern',psy:'Cognitive pattern: hypervigilance about rest / control schema'}
   };
   var sm2={
-    depth:{n:'Depth without movement',t:'One concrete thing done imperfectly moves work forward more than extended analysis.',w:'depth is your greatest strength and most available avoidance',psy:'Behavioural pattern: analysis paralysis'},
     abstr:{n:'Abstraction as avoidance',t:'Name the specific concrete task you are avoiding. Do that first.',w:'abstraction maintains distance from the work',psy:'Defence mechanism: intellectualisation'},
     iso:{n:'Isolation under pressure',t:'Co-regulation is how you get back to steady. One brief contact today.',w:'isolation removes the co-regulation that would actually help',psy:'Coping pattern: avoidant isolation'},
     sov:{n:'Sovereignty as avoidance',t:'Asking for help does not compromise independence.',w:'sovereignty means self-determination, not self-sufficiency',psy:'Schema: mistrust / self-reliance overextension'},
@@ -1331,9 +1338,19 @@ function doEffort(){
     worth:{n:'Contingent self-worth',t:'Your value as a person is not produced by your output today.',w:'tying self-worth to results makes every setback a threat to identity',psy:'Schema: conditional self-worth'},
     image:{n:'Performance and image emphasis',t:'Ask: who am I doing this for right now?',w:'emphasis on how you appear rather than what you are building is a sign of disintegration pressure',psy:'Ego state: image management under stress'}
   };
+  var pm={
+    switch:{n:'Task avoidance through substitution',t:'Return to the task you left. Name what made you leave. That friction marks the real work.',w:'moving to easier tasks produces activity without progress on what matters',psy:'Behavioural pattern: avoidance via substitution'},
+    depth:{n:'Depth without movement',t:'One concrete thing done imperfectly moves work forward more than extended analysis.',w:'depth is your greatest strength and most available avoidance',psy:'Behavioural pattern: analysis paralysis'},
+    ready:{n:'Readiness condition active',t:'Clarity does not precede action \u2014 it follows it. Name the smallest possible next step and take it.',w:'waiting for readiness is avoidance that feels like preparation',psy:'Cognitive pattern: readiness condition / behavioural inhibition'},
+    restart:{n:'Restarting instead of continuing',t:'Open what you already have. Continue from the last sentence, the last line, the last step. Do not start over.',w:'restarting feels productive but avoids the harder work of finishing',psy:'Behavioural pattern: completion avoidance'},
+    later:{n:'Deferring to better conditions',t:'The conditions will not be better later. They will be the same, plus the weight of having postponed.',w:'later is almost never a plan \u2014 it is a feeling dressed as a schedule',psy:'Cognitive pattern: conditional action / temporal discounting'},
+    large:{n:'Task feels too large to begin',t:'Name one piece that takes under 10 minutes. Do that. The rest becomes visible after the first step.',w:'overwhelm inflates the task beyond its actual size',psy:'Cognitive distortion: magnification / task inflation'},
+    outcome:{n:'Outcome-loaded avoidance',t:'The task has become a proxy for identity. Separate the doing from the result. The first step is not a commitment to the final outcome.',w:'when the outcome matters too much, starting feels like exposing yourself to judgement',psy:'Schema: performance anxiety / identity fusion'}
+  };
   var h='';
   ep.forEach(function(r){var k=r.querySelector('input').dataset.e;if(em[k])h+='<div class="ri"><div class="rin">'+em[k].n+'</div><div class="rit">'+em[k].t+'</div><div class="riw">'+em[k].w+'</div><div class="ripsy">'+em[k].psy+'</div></div>';});
   sb.forEach(function(r){var k=r.querySelector('input').dataset.s2;if(sm2[k])h+='<div class="ri"><div class="rin">'+sm2[k].n+'</div><div class="rit">'+sm2[k].t+'</div><div class="riw">'+sm2[k].w+'</div><div class="ripsy">'+sm2[k].psy+'</div></div>';});
+  if(pp.length){h+='<div class="sdiv">Procrastination</div>';pp.forEach(function(r){var k=r.querySelector('input').dataset.p;if(pm[k])h+='<div class="ri"><div class="rin">'+pm[k].n+'</div><div class="rit">'+pm[k].t+'</div><div class="riw">'+pm[k].w+'</div><div class="ripsy">'+pm[k].psy+'</div></div>';});}
   h+='<div class="ipt">What is the next concrete action \u2014 not the next thought about the action?</div>';
   show('r-effort',h);
 }
