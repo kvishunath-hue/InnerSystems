@@ -267,6 +267,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1
   <button class="tbtn on" onclick="switchTab('care',this)">Daily care</button>
   <button class="tbtn" onclick="switchTab('review',this)">Review</button>
   <button class="tbtn" onclick="switchTab('taper',this)">Taper<span class="tbadge" id="taper-badge"></span></button>
+  <button class="tbtn" onclick="switchTab('quit',this)">Quit</button>
 </div>
 
 <button class="hbf" onclick="openBreath()">Ground</button>
@@ -374,7 +375,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1
 <div class="tpane" id="tab-review">
   <div class="hdr">
     <h1>Inner systems review</h1>
-    <div class="tag">Purpose, not performance.</div>
+    <div class="tag">Nothing is bad or good. Just notice.</div>
     <div class="ter"><span class="tp n">5w4</span><span class="tp n">SX / SO</span><span class="tp n">SP blind</span><span class="tp">INTJ</span><span class="tp">integrates &#8594; 8</span><span class="tp">disintegrates &#8594; 7</span></div>
   </div>
 
@@ -391,6 +392,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1
       <div class="chkrow" onclick="togChk(this,'rb-chest')"><input type="checkbox" id="rb-chest" data-b="chest"><span>My chest feels tight or my breathing is shallow</span></div>
       <div class="chkrow" onclick="togChk(this,'rb-gut')"><input type="checkbox" id="rb-gut" data-b="gut"><span>My stomach is tight, unsettled, or there is low-grade nausea</span></div>
       <div class="chkrow" onclick="togChk(this,'rb-head')"><input type="checkbox" id="rb-head" data-b="head"><span>I have head pressure or a tension headache building</span></div>
+      <div class="chkrow" onclick="togChk(this,'rb-neglect')"><input type="checkbox" id="rb-neglect" data-b="neglect"><span>I am skipping something I know my body needs or doing something I know costs me later</span></div>
     </div>
     <button class="btn" onclick="doBody()">Notice</button>
     <div class="res" id="r-body"></div>
@@ -416,7 +418,19 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1
       <div class="chkrow" onclick="togChk(this,'rn-seen')"><input type="checkbox" id="rn-seen" data-n="seen"><span>I feel unseen &#8212; they are responding to who they think I am, not who I actually am</span></div>
       <div class="chkrow" onclick="togChk(this,'rn-rumi')"><input type="checkbox" id="rn-rumi" data-n="rumi"><span>My mind is replaying what they said and building a case</span></div>
       <div class="chkrow" onclick="togChk(this,'rn-truth')"><input type="checkbox" id="rn-truth" data-n="truth"><span>What actually happened is being denied or reframed by someone who was present for it</span></div>
-      <div class="chkrow" onclick="togChk(this,'rn-attrib')"><input type="checkbox" id="rn-attrib" data-n="attrib"><span>I notice I am reading this person&#39;s behaviour as a reflection of their character rather than their situation</span></div>
+      <div class="chkrow" onclick="togChk(this,'rn-reject')"><input type="checkbox" id="rn-reject" data-n="reject"><span>I feel rejected or excluded &#8212; the wound is about not being wanted, not about what was said</span></div>
+      <div class="chkrow" onclick="togChk(this,'rn-project')"><input type="checkbox" id="rn-project" data-n="project"><span>I am being treated as though something is wrong with me &#8212; the judgement feels like it is about them, not me</span></div>
+    </div>
+    <div class="sdiv">Relationship patterns in this interaction</div>
+    <div class="chks" id="rel-list">
+      <div class="chkrow" onclick="togChk(this,'rn-norec')"><input type="checkbox" id="rn-norec" data-nr="norec"><span>Effort flows in one direction &#8212; I give, they receive, and it is not returned</span></div>
+      <div class="chkrow" onclick="togChk(this,'rn-fbign')"><input type="checkbox" id="rn-fbign" data-nr="fbign"><span>I have told them what hurts and they keep doing it</span></div>
+      <div class="chkrow" onclick="togChk(this,'rn-careweap')"><input type="checkbox" id="rn-careweap" data-nr="careweap"><span>My empathy, guilt, or sense of responsibility is being used as a lever</span></div>
+      <div class="chkrow" onclick="togChk(this,'rn-realrew')"><input type="checkbox" id="rn-realrew" data-nr="realrew"><span>What happened is being denied or reframed by someone who was present for it</span></div>
+      <div class="chkrow" onclick="togChk(this,'rn-bndpun')"><input type="checkbox" id="rn-bndpun" data-nr="bndpun"><span>Saying no triggers cold shoulder, drama, or escalation</span></div>
+      <div class="chkrow" onclick="togChk(this,'rn-triang')"><input type="checkbox" id="rn-triang" data-nr="triang"><span>The dynamic is being managed through a third person rather than directly</span></div>
+      <div class="chkrow" onclick="togChk(this,'rn-credit')"><input type="checkbox" id="rn-credit" data-nr="credit"><span>My work or input is being claimed by them or dismissed as insignificant</span></div>
+      <div class="chkrow" onclick="togChk(this,'rn-agency')"><input type="checkbox" id="rn-agency" data-nr="agency"><span>My ability to make my own decisions is being controlled, blocked, or overridden</span></div>
     </div>
     <button class="btn" onclick="doNoise()">Notice</button>
     <div class="res" id="r-noise"></div>
@@ -449,6 +463,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1
       <div class="chkrow" onclick="togChk(this,'rd-conn')"><input type="checkbox" id="rd-conn" data-d="conn"><span>I am adjusting or suppressing who I am in order to maintain connection</span></div>
       <div class="chkrow" onclick="togChk(this,'rd-neg')"><input type="checkbox" id="rd-neg" data-d="neg"><span>Flaws and what is wrong are carrying more weight than strengths and what is working</span></div>
       <div class="chkrow" onclick="togChk(this,'rd-affect')"><input type="checkbox" id="rd-affect" data-d="affect"><span>I notice a sense that strong emotions are unsafe or need to be managed before they can be felt</span></div>
+      <div class="chkrow" onclick="togChk(this,'rd-attrib')"><input type="checkbox" id="rd-attrib" data-d="attrib"><span>I am reading this person&#39;s behaviour as a reflection of their character rather than their situation</span></div>
     </div>
     <button class="btn" onclick="doDistort()">Notice</button>
     <div class="res" id="r-distort"></div>
@@ -482,6 +497,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1
       <div class="chkrow" onclick="togChk(this,'rs-small')"><input type="checkbox" id="rs-small" data-s="small"><span>I notice I am becoming smaller or less clear than I actually am during this interaction</span></div>
       <div class="chkrow" onclick="togChk(this,'rs-authfawn')"><input type="checkbox" id="rs-authfawn" data-s="authfawn"><span>I am deferring beyond what the situation requires because of their position, not because they are right</span></div>
       <div class="chkrow" onclick="togChk(this,'rs-authund')"><input type="checkbox" id="rs-authund" data-s="authund"><span>I am letting someone override my decision without pushback, or qualifying what I actually think</span></div>
+      <div class="chkrow" onclick="togChk(this,'rs-helpless')"><input type="checkbox" id="rs-helpless" data-s="helpless"><span>I feel helpless watching someone being harmed and unable to intervene effectively</span></div>
     </div>
     <button class="btn" onclick="doScan()">Notice</button>
     <div class="res" id="r-scan"></div>
@@ -503,20 +519,27 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1
   </div>
 
   <div class="card">
-    <div class="ch"><span class="sn">07</span><span class="st">Relationship pattern check</span></div>
-    <p class="si">Check whether a recurring pattern is active with a specific person. These are not incidents &#8212; they are structures that repeat.</p>
-    <div class="chks" id="rel-list">
-      <div class="chkrow" onclick="togChk(this,'rr-norec')"><input type="checkbox" id="rr-norec" data-rel="norec"><span>Effort flows in one direction &#8212; I give, they receive, and it is not returned</span></div>
-      <div class="chkrow" onclick="togChk(this,'rr-fbign')"><input type="checkbox" id="rr-fbign" data-rel="fbign"><span>I have told them what hurts and they keep doing it</span></div>
-      <div class="chkrow" onclick="togChk(this,'rr-careweap')"><input type="checkbox" id="rr-careweap" data-rel="careweap"><span>My empathy, guilt, or sense of responsibility is being used as a lever</span></div>
-      <div class="chkrow" onclick="togChk(this,'rr-realrew')"><input type="checkbox" id="rr-realrew" data-rel="realrew"><span>What happened is being denied or reframed by someone who was present for it</span></div>
-      <div class="chkrow" onclick="togChk(this,'rr-bndpun')"><input type="checkbox" id="rr-bndpun" data-rel="bndpun"><span>Saying no triggers cold shoulder, drama, or escalation</span></div>
-      <div class="chkrow" onclick="togChk(this,'rr-triang')"><input type="checkbox" id="rr-triang" data-rel="triang"><span>The dynamic is being managed through a third person rather than directly</span></div>
-      <div class="chkrow" onclick="togChk(this,'rr-credit')"><input type="checkbox" id="rr-credit" data-rel="credit"><span>My work or input is being claimed by them or dismissed as insignificant</span></div>
-      <div class="chkrow" onclick="togChk(this,'rr-agency')"><input type="checkbox" id="rr-agency" data-rel="agency"><span>My ability to make my own decisions is being controlled, blocked, or overridden</span></div>
+    <div class="ch"><span class="sn">07</span><span class="st">Authority dynamics</span></div>
+    <p class="si">Check what is active in a situation where authority &#8212; yours or theirs &#8212; is in play.</p>
+    <div class="sdiv" style="margin-top:4px">Patterns that undermine you</div>
+    <div class="chks" id="auth-list">
+      <div class="chkrow" onclick="togChk(this,'ra-diminish')"><input type="checkbox" id="ra-diminish" data-a="diminish"><span>My position, contribution, or competence is being diminished in front of others</span></div>
+      <div class="chkrow" onclick="togChk(this,'ra-override')"><input type="checkbox" id="ra-override" data-a="override"><span>A decision I already made is being reversed or overridden without discussion</span></div>
+      <div class="chkrow" onclick="togChk(this,'ra-condescend')"><input type="checkbox" id="ra-condescend" data-a="condescend"><span>I am being spoken to as though I lack understanding or capability I clearly have</span></div>
+      <div class="chkrow" onclick="togChk(this,'ra-exclude')"><input type="checkbox" id="ra-exclude" data-a="exclude"><span>I am being excluded from decisions or conversations that directly affect me</span></div>
+      <div class="chkrow" onclick="togChk(this,'ra-defer')"><input type="checkbox" id="ra-defer" data-a="defer"><span>I am deferring to someone who has position but not better judgement</span></div>
+      <div class="chkrow" onclick="togChk(this,'ra-freeze')"><input type="checkbox" id="ra-freeze" data-a="freeze"><span>I am going quiet or freezing in the presence of someone whose authority feels larger than it is</span></div>
     </div>
-    <button class="btn" onclick="doRelPattern()">Notice</button>
-    <div class="res" id="r-rel"></div>
+    <div class="sdiv">Holding your position</div>
+    <div class="chks" id="hold-list">
+      <div class="chkrow" onclick="togChk(this,'ra-stated')"><input type="checkbox" id="ra-stated" data-ah="stated"><span>I have stated my position clearly and once &#8212; without over-explaining or softening</span></div>
+      <div class="chkrow" onclick="togChk(this,'ra-silence')"><input type="checkbox" id="ra-silence" data-ah="silence"><span>I am using silence rather than filling space &#8212; letting the weight of what I said land</span></div>
+      <div class="chkrow" onclick="togChk(this,'ra-struct')"><input type="checkbox" id="ra-struct" data-ah="struct"><span>I have a structure in place so this pattern does not require repeated confrontation</span></div>
+      <div class="chkrow" onclick="togChk(this,'ra-diplo')"><input type="checkbox" id="ra-diplo" data-ah="diplo"><span>I am choosing diplomacy &#8212; firm content, measured delivery, no unnecessary heat</span></div>
+      <div class="chkrow" onclick="togChk(this,'ra-walk')"><input type="checkbox" id="ra-walk" data-ah="walk"><span>I have recognised that this conversation cannot be won and have chosen to disengage</span></div>
+    </div>
+    <button class="btn" onclick="doAuthority()">Notice</button>
+    <div class="res" id="r-auth"></div>
   </div>
 
   <div class="card">
@@ -593,7 +616,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1
       <div class="idc"><div class="idk">Stacking</div><div class="idv">SX / SO &#183; SP blind</div></div>
       <div class="idc"><div class="idk">Integration</div><div class="idv">toward 8 &#8212; decisive engagement</div></div>
       <div class="idc"><div class="idk">Disintegration</div><div class="idv">toward 7 &#8212; scattered / stimulation</div></div>
-      <div class="idc"><div class="idk">Core wound</div><div class="idv">Betrayal, manipulation, truth denied</div></div>
+      <div class="idc"><div class="idk">Core wound</div><div class="idv">Betrayal, manipulation, truth denied, rejection</div></div>
       <div class="idc"><div class="idk">Risk pattern</div><div class="idv">Noise &#8594; wound &#8594; spiral</div></div>
     </div>
     <div class="sdiv" style="margin-top:14px">Alignment values</div>
@@ -643,6 +666,51 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1
     <div class="hist-body" id="hist-taper-body"><div class="hist-days" id="hist-taper-days"></div><div class="hist-view" id="hist-taper-view"></div></div>
   </div>
 </div>
+
+<!-- QUIT -->
+<div class="tpane" id="tab-quit">
+  <div class="hdr"><h1>Quit smoking</h1><div class="tag">Each craving lasts 3&#8211;5 minutes. You only need to get through this one.</div></div>
+  <div class="card">
+    <div class="ch"><span class="sn"></span><span class="st">What I am using today</span></div>
+    <p class="si">Check everything active right now. More tools running = higher chance of getting through the day.</p>
+    <div class="tpts" id="quit-tools">
+      <div class="tptr" onclick="togTptr(this,'qc-patch')"><input type="checkbox" id="qc-patch"><span>Nicotine patch on</span></div>
+      <div class="tptr" onclick="togTptr(this,'qc-gum')"><input type="checkbox" id="qc-gum"><span>Nicotine gum or lozenge available</span></div>
+      <div class="tptr" onclick="togTptr(this,'qc-exercise')"><input type="checkbox" id="qc-exercise"><span>Exercised or moved today</span></div>
+      <div class="tptr" onclick="togTptr(this,'qc-water')"><input type="checkbox" id="qc-water"><span>Hydrating consistently</span></div>
+      <div class="tptr" onclick="togTptr(this,'qc-hands')"><input type="checkbox" id="qc-hands"><span>Keeping hands busy &#8212; pen, stress ball, anything tactile</span></div>
+      <div class="tptr" onclick="togTptr(this,'qc-oral')"><input type="checkbox" id="qc-oral"><span>Oral substitute &#8212; toothpick, straw, cinnamon stick</span></div>
+      <div class="tptr" onclick="togTptr(this,'qc-routine')"><input type="checkbox" id="qc-routine"><span>Changed the routine around smoking triggers</span></div>
+      <div class="tptr" onclick="togTptr(this,'qc-confid')"><input type="checkbox" id="qc-confid"><span>Told someone I am quitting</span></div>
+    </div>
+    <button class="btn" onclick="runQuit()">Check status</button>
+    <div class="tpst" id="qc-status"></div>
+  </div>
+
+  <div class="card">
+    <div class="ch"><span class="sn"></span><span class="st">When a craving hits</span></div>
+    <div style="font-size:13px;line-height:1.9;color:var(--text2)">
+      <div><strong style="color:var(--text)">HALT</strong> &#8212; Am I Hungry, Angry, Lonely, or Tired? Address the real need first. Cravings often mask one of these four.</div>
+      <div style="margin-top:8px"><strong style="color:var(--text)">4 Ds</strong></div>
+      <div><strong>Delay</strong> &#8212; Wait 5 minutes. The craving will peak and pass.</div>
+      <div><strong>Deep breathe</strong> &#8212; Use the physiological sigh. 9 seconds. Tap Ground.</div>
+      <div><strong>Drink water</strong> &#8212; Slowly. The physical act interrupts the loop.</div>
+      <div><strong>Do something else</strong> &#8212; Walk, stand up, change rooms, call someone.</div>
+      <div style="margin-top:8px"><strong style="color:var(--text)">Urge surfing</strong> &#8212; Notice the craving as a wave. It rises, peaks, and falls. You do not need to act on it. Watch it pass. It will.</div>
+      <div style="margin-top:8px"><strong style="color:var(--text)">Change the scene</strong> &#8212; If you always smoke in a specific place, leave that place. Break the spatial trigger.</div>
+      <div style="margin-top:8px"><strong style="color:var(--text)">Cost it</strong> &#8212; One pack a day for a year. Calculate the number. Let it land.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div style="font-size:13px;line-height:1.9;color:var(--text2)">
+      <div>Nicotine is load in itself and a step toward cannabis in your pattern.</div>
+      <div>Every previous episode was preceded by an increase in prohibited substances.</div>
+      <div>The craving is not about the cigarette. It is about regulation. Use Ground instead.</div>
+      <div>You are not quitting something. You are protecting your nervous system.</div>
+    </div>
+  </div>
+</div>
 </div>
 
 <script>
@@ -675,31 +743,33 @@ try{Object.keys(localStorage).filter(function(k){return k.startsWith('vk_')&&!k.
 function saveLocalDay(date,data){try{localStorage.setItem('vk_day_'+date,JSON.stringify(data));}catch(e){}}
 function loadLocalDay(date){try{var raw=localStorage.getItem('vk_day_'+date);return raw?JSON.parse(raw):null;}catch(e){return null;}}
 
-var reviewState={body:[],reg:{level:0,band:'',items:[]},noise:[],distort:[],scan:[],game:[],rel:[],effort:[]};
+var reviewState={body:[],reg:{level:0,band:'',items:[]},noise:[],distort:[],scan:[],game:[],auth:[],rel:[],effort:[]};
 
 var REVIEW_CHK_IDS=[
-  'rb-sleep','rb-rest','rb-fat','rb-dehy','rb-app','rb-jaw','rb-chest','rb-gut','rb-head',
-  'rn-ctx','rn-old','rn-benefit','rn-noev','rn-defend','rn-seen','rn-rumi','rn-truth','rn-attrib',
+  'rb-sleep','rb-rest','rb-fat','rb-dehy','rb-app','rb-jaw','rb-chest','rb-gut','rb-head','rb-neglect',
+  'rn-ctx','rn-old','rn-benefit','rn-noev','rn-defend','rn-seen','rn-rumi','rn-truth','rn-reject','rn-project',
+  'rn-norec','rn-fbign','rn-careweap','rn-realrew','rn-bndpun','rn-triang','rn-credit','rn-agency',
   'rc-cat1','rc-cat2','rc-cat3','rc-cat4','rc-cat5','rc-cat6','rc-cat7',
-  'rd-all','rd-emo','rd-mind','rd-should','rd-pers','rd-mini','rd-ref','rd-spot','rd-burden','rd-conn','rd-neg','rd-affect',
+  'rd-all','rd-emo','rd-mind','rd-should','rd-pers','rd-mini','rd-ref','rd-spot','rd-burden','rd-conn','rd-neg','rd-affect','rd-attrib',
   'rv-time','rv-no','rv-priv','rv-dis','rv-shift','rv-guilt','rv-rush','rv-comp','rv-drain',
-  'rs-wd','rs-oe','rs-fawn','rs-give','rs-resent','rs-snap','rs-numb','rs-scan','rs-small','rs-authfawn','rs-authund',
+  'rs-wd','rs-oe','rs-fawn','rs-give','rs-resent','rs-snap','rs-numb','rs-scan','rs-small','rs-authfawn','rs-authund','rs-helpless',
   'rg-complaint','rg-deflect','rg-position','rg-perform','rg-third','rg-image',
-  'rr-norec','rr-fbign','rr-careweap','rr-realrew','rr-bndpun','rr-triang','rr-credit','rr-agency',
+  'ra-diminish','ra-override','ra-condescend','ra-exclude','ra-defer','ra-freeze','ra-stated','ra-silence','ra-struct','ra-diplo','ra-walk',
   're-burst','re-phil','re-spblind','re-fatigue','re-rest',
   'rs2-abstr','rs2-iso','rs2-sov','rs2-perf','rs2-flaw','rs2-worth','rs2-image',
   'rp-switch','rp-depth','rp-ready','rp-restart','rp-later','rp-large','rp-outcome'
 ];
 
 var LABEL_MAP={
-  sleep:'Fragmented sleep',rest:'Physical restlessness',fat:'Fatigue',dehy:'Dehydration',app:'Appetite shift',jaw:'Jaw tension',chest:'Chest tight',gut:'Gut tension',head:'Head pressure',
-  ctx:'Missing context',old:'Older trigger activated',benefit:'Self-doubt benefiting other',noev:'No evidence given',defend:'Urge to defend',seen:'Feeling unseen',rumi:'Rumination loop',truth:'Truth denied',attrib:'Character attribution',
+  sleep:'Fragmented sleep',rest:'Physical restlessness',fat:'Fatigue',dehy:'Dehydration',app:'Appetite shift',jaw:'Jaw tension',chest:'Chest tight',gut:'Gut tension',head:'Head pressure',neglect:'Self-care overridden',
+  ctx:'Missing context',old:'Older trigger activated',benefit:'Self-doubt benefiting other',noev:'No evidence given',defend:'Urge to defend',seen:'Feeling unseen',rumi:'Rumination loop',truth:'Truth denied',reject:'Rejection wound',project:'Projection received',
+  norec:'No reciprocity',fbign:'Feedback ignored',careweap:'Care weaponised',realrew:'Reality rewritten',bndpun:'Boundaries punished',triang:'Triangulation',credit:'Credit taken',agency:'Agency undermined',
+  diminish:'Being diminished',override:'Decision reversed',condescend:'Condescension',exclude:'Excluded from decisions',defer:'Deferring to position',freeze:'Freezing in authority presence',stated:'Position stated',silence:'Silence used',struct:'Structure in place',diplo:'Diplomacy active',walk:'Disengagement chosen',
   cat1:'Treating possible as certain',cat2:'Pre-emptive failure',cat3:'Guilt after boundary',cat4:'Predicting permanent judgement',cat5:'Temporary feels permanent',cat6:'Reading emotions as confirmation',cat7:'Urgency illusion',
   all:'All-or-nothing',emo:'Feelings as evidence',mind:'Mind reading',should:'Rigid shoulds',pers:'Carrying what is not mine',mini:'Minimising needs',ref:'Reframing too quickly',spot:'Spotlight effect',burden:'Needs as burden',conn:'Adjusting to maintain connection',neg:'Negativity bias',affect:'Emotions feel unsafe',ready:'Readiness condition',
   time:'Time assumed',no:'No being pushed past',priv:'Privacy probed',dis:'State dismissed',shift:'Responsibility shifted',guilt:'Guilt as leverage',rush:'Decision rushed',comp:'Competence undermined',drain:'Emptied after contact',
-  wd:'Excess withdrawal',oe:'Over-explaining',fawn:'False agreement',give:'Over-giving',resent:'Resentment after giving',snap:'Disproportionate force',numb:'Emotional flattening',scan:'Tracking their read',small:'Becoming smaller',authfawn:'Authority fawning',authund:'Authority undermined',
+  wd:'Excess withdrawal',oe:'Over-explaining',fawn:'False agreement',give:'Over-giving',resent:'Resentment after giving',snap:'Disproportionate force',numb:'Emotional flattening',scan:'Tracking their read',small:'Becoming smaller',authfawn:'Authority fawning',authund:'Authority undermined',helpless:'Helplessness about harm',
   complaint:'Complaint without resolution',deflect:'Solutions found wanting',position:'Positioning as wrong',perform:'Competence performed',third:'Third person dynamic',image:'Contribution tied to image',
-  norec:'No reciprocity',fbign:'Feedback ignored',careweap:'Care weaponised',realrew:'Reality rewritten',bndpun:'Boundaries punished',triang:'Triangulation',credit:'Credit taken',agency:'Agency undermined',
   burst:'Intensity burst',phil:'Philosophical drift',spblind:'SP blind override',fatigue:'Effort despite fatigue',rest:'Rest anxiety',
   abstr:'Abstraction as avoidance',iso:'Isolation under pressure',sov:'Sovereignty as avoidance',perf:'Over-optimisation',flaw:'Attention narrowing to flaws',worth:'Contingent self-worth',
   switch:'Task avoidance',depth:'Depth without movement',ready:'Readiness condition',restart:'Restarting instead of continuing',later:'Deferring to better conditions',large:'Task too large to begin',outcome:'Outcome-loaded avoidance'
@@ -778,6 +848,7 @@ async function loadHistDay(date,prefix,daysEl,dayEl){
     if(rv.distort&&rv.distort.length){h+='<div class="hv-head">Distortion</div>';rv.distort.forEach(function(k){h+='<div class="hv-item">\u2022 '+(LABEL_MAP[k]||k)+'</div>';});}
     if(rv.scan&&rv.scan.length){h+='<div class="hv-head">Interaction scan</div>';rv.scan.forEach(function(k){h+='<div class="hv-item">\u2022 '+(LABEL_MAP[k]||k)+'</div>';});}
     if(rv.game&&rv.game.length){h+='<div class="hv-head">Game check</div>';rv.game.forEach(function(k){h+='<div class="hv-item">\u2022 '+(LABEL_MAP[k]||k)+'</div>';});}
+    if(rv.auth&&rv.auth.length){h+='<div class="hv-head">Authority dynamics</div>';rv.auth.forEach(function(k){h+='<div class="hv-item">\u2022 '+(LABEL_MAP[k]||k)+'</div>';});}
     if(rv.rel&&rv.rel.length){h+='<div class="hv-head">Relationship patterns</div>';rv.rel.forEach(function(k){h+='<div class="hv-item">\u2022 '+(LABEL_MAP[k]||k)+'</div>';});}
     if(rv.effort&&rv.effort.length){h+='<div class="hv-head">Effort patterns</div>';rv.effort.forEach(function(k){h+='<div class="hv-item">\u2022 '+(LABEL_MAP[k]||k)+'</div>';});}
   } else if(prefix==='hist-taper'){
@@ -884,6 +955,7 @@ function initCare(){
   Object.entries(BY_DAY).forEach(function(e){var dn=e[0];var v=e[1];var it=Number(dn)===today;var row=document.createElement('div');row.className='drr'+(it?' today':'');row.innerHTML='<div class="drd">'+DAYS[Number(dn)]+'</div><div class="drt">'+v.f+'</div>';rhythm.appendChild(row);});
   ['s1a','s1b','s2a','s2b','s3a','s3b','p1a','p1b','p2a','p2b','p3a','p3b','t1a','t1b','t2a','t2b','t3a','t3b','t4a','t4b'].forEach(function(id){var v=recall(id,'');var btn=document.getElementById(id);if(!btn)return;if(v==='yo')btn.classList.add('yo');else if(v==='no')btn.classList.add('no');});
   ['tc-s1','tc-s2','tc-ins','tc-urg','tc-sub','tc-tspd','tc-mood'].forEach(function(id){var el=document.getElementById(id);if(el)el.checked=recall(id,false);});
+  ['qc-patch','qc-gum','qc-exercise','qc-water','qc-hands','qc-oral','qc-routine','qc-confid'].forEach(function(id){var el=document.getElementById(id);if(el)el.checked=recall(id,false);});
   REVIEW_CHK_IDS.forEach(function(id){var el=document.getElementById(id);if(el)el.checked=recall('chk-'+id,false);});
   REGI.forEach(function(it){var el=document.getElementById('rr-'+it.id);if(el){var saved=recall('chk-rr-'+it.id,false);el.checked=saved;var row=el.closest('.ritm');if(row)row.classList.toggle('sel',saved);}});
   var savedStatus=recall('tc-status-val','');
@@ -1112,16 +1184,16 @@ var REG_PSYCH={
 };
 
 var RST={
-  1:{a:'Very free / diffuse',b:'Very high',s:'Minimal',m:'Re-engage gently \u2014 small action, food, a simple task.'},
-  2:{a:'Light / meta-aware',b:'High',s:'Low',m:'Stay simple \u2014 breathe, short walk, one concrete next step.'},
-  3:{a:'Available / flexible',b:'Strong',s:'Low\u2013moderate',m:'Choose one practical focus and move into it.'},
-  4:{a:'Free but directed',b:'Optimal',s:'Context-appropriate',m:'Protect this state \u2014 low novelty, steady rhythm, no unnecessary decisions.'},
-  5:{a:'Chosen / task-focused',b:'Stable',s:'Task-aligned',m:'Do one small completion, then return to 4.'},
-  6:{a:'Pulled by emotion',b:'Declining',s:'Emotion-amplified',m:"Allow the emotion to be present \u2014 feel it without letting it define you. Name it, don\u2019t become it."},
-  7:{a:'Sticky / story-driven',b:'Low',s:'Narrative-amplified',m:'Name the story your mind is building. Step away from the screen. No decisions for at least 2 hours. Water and movement first.'},
-  8:{a:'Body-captured',b:'Depleted',s:'Physiology-dominant',m:'Body first \u2014 ORS, bland food, physical rest. No cognitive demands. Avoid all decisions.'},
-  9:{a:'Locked / trance',b:'Very low',s:'Loop-amplified',m:'Interrupt the loop gently \u2014 stand up, change rooms, walk outside if possible.'},
-  10:{a:'Threat-fused',b:'Collapsed',s:'Threat-maximised',m:'Remove yourself from triggers now. Hydrate. Use Ground. Tell your confidant. Do not make any decisions.'}
+  1:{a:'Very free / diffuse',b:'Very high',s:'Minimal',c:'Full',ba:'Nothing \u2014 system at rest',m:'Re-engage gently \u2014 small action, food, a simple task.'},
+  2:{a:'Light / meta-aware',b:'High',s:'Low',c:'Full',ba:'Over-analysis',m:'Stay simple \u2014 breathe, short walk, one concrete next step.'},
+  3:{a:'Available / flexible',b:'Strong',s:'Low\u2013moderate',c:'Full',ba:'Rationalisation',m:'Choose one practical focus and move into it.'},
+  4:{a:'Free but directed',b:'Optimal',s:'Context-appropriate',c:'Full',ba:'Unnecessary complexity',m:'Protect this state \u2014 low novelty, steady rhythm, no unnecessary decisions.'},
+  5:{a:'Chosen / task-focused',b:'Stable',s:'Task-aligned',c:'Available',ba:'Overcommitment',m:'Do one small completion, then return to 4.'},
+  6:{a:'Pulled by emotion',b:'Declining',s:'Emotion-amplified',c:'Narrowing',ba:'Emotional reasoning, impulsive communication',m:"Allow the emotion to be present \u2014 feel it without letting it define you. Name it, don\u2019t become it."},
+  7:{a:'Sticky / story-driven',b:'Low',s:'Narrative-amplified',c:'Limited',ba:'Rumination, case-building, premature decisions',m:'Name the story your mind is building. Step away from the screen. No decisions for at least 2 hours. Water and movement first.'},
+  8:{a:'Body-captured',b:'Depleted',s:'Physiology-dominant',c:'Minimal',ba:'Compulsive action, substance use',m:'Body first \u2014 ORS, bland food, physical rest. No cognitive demands. Avoid all decisions.'},
+  9:{a:'Locked / trance',b:'Very low',s:'Loop-amplified',c:'Absent',ba:'Dissociation, loop behaviour',m:'Interrupt the loop gently \u2014 stand up, change rooms, walk outside if possible.'},
+  10:{a:'Threat-fused',b:'Collapsed',s:'Threat-maximised',c:'Absent',ba:'Everything \u2014 fight, flight, freeze',m:'Remove yourself from triggers now. Hydrate. Use Ground. Tell your confidant. Do not make any decisions.'}
 };
 var RBD=function(l){return l<=3?'w':l<=5?'e':l<=7?'i':l<=9?'c':'s';};
 var RBDL={w:'Witness band',e:'Equilibrium band',i:'Identity band',c:'Capture band',s:'Survival'};
@@ -1152,6 +1224,7 @@ function doReg(){
   reviewState.reg={level:lvl,band:RLB[lvl],items:selItems};
   var h='<span class="bpill bp'+bd+'">'+RBDL[bd]+'</span><br><strong>'+lvl+' \u2014 '+RLB[lvl]+'</strong><br><br>';
   h+='<div class="rgg"><div class="rgc"><div class="rgck">Attention</div><div class="rgcv">'+st.a+'</div></div><div class="rgc"><div class="rgck">Brakes</div><div class="rgcv">'+st.b+'</div></div><div class="rgc"><div class="rgck">Salience</div><div class="rgcv">'+st.s+'</div></div></div>';
+  h+='<div class="rgg"><div class="rgc"><div class="rgck">Choice</div><div class="rgcv">'+st.c+'</div></div><div class="rgc" style="grid-column:span 2"><div class="rgck">Braking against</div><div class="rgcv">'+st.ba+'</div></div></div>';
   h+='<div class="rgm"><div class="rgmk">What to do now</div>'+st.m+'</div>';
   if(ps){
     h+='<div class="reg-psych">';
@@ -1180,7 +1253,8 @@ function doBody(){
     jaw:{n:'Jaw / neck tension',t:'Drop your jaw deliberately. Release your neck and shoulders.',w:'chronic muscular tension is stored effort',psy:'Somatic tension holding'},
     chest:{n:'Chest tight / shallow breathing',t:'Extend your exhales deliberately.',w:'shallow breathing maintains sympathetic activation',psy:'Hyperventilation pattern'},
     gut:{n:'Gut tension / nausea',t:'Warm fluids. Reduce information intake.',w:'visceral sensitivity often leads cognitive awareness',psy:'Gut-brain axis activation'},
-    head:{n:'Head pressure / headache',t:'Hydrate. Screen break.',w:'tension headache is one of the clearest signals of cognitive overload',psy:'Tension-type headache'}
+    head:{n:'Head pressure / headache',t:'Hydrate. Screen break.',w:'tension headache is one of the clearest signals of cognitive overload',psy:'Tension-type headache'},
+    neglect:{n:'Self-care being overridden',t:'Name the specific thing you are skipping or the specific thing you know costs you. Do the care task now, or stop the harmful one. Not later.',w:'overriding self-care signals is how small costs compound into structural damage',psy:'Behavioural pattern: self-neglect under load'}
   };
   var h='';checked.forEach(function(r){var k=r.querySelector('input').dataset.b;if(tips[k])h+='<div class="ri"><div class="rin">'+tips[k].n+'</div><div class="rit">'+tips[k].t+'</div><div class="riw">'+tips[k].w+'</div><div class="ripsy">'+tips[k].psy+'</div></div>';});
   show('r-body',h);
@@ -1188,17 +1262,31 @@ function doBody(){
 
 function doNoise(){
   var checked=[...document.querySelectorAll('#noise-list .chkrow')].filter(function(r){return r.querySelector('input').checked;});
-  if(!checked.length){show('r-noise','<span class="ok">No noise contamination present right now.</span>');return;}
+  var relChecked=[...document.querySelectorAll('#rel-list .chkrow')].filter(function(r){return r.querySelector('input').checked;});
+  if(!checked.length&&!relChecked.length){show('r-noise','<span class="ok">No noise contamination present right now.</span>');return;}
   reviewState.noise=checked.map(function(r){return r.querySelector('input').dataset.n;});
+  reviewState.rel=relChecked.map(function(r){return r.querySelector('input').dataset.nr;});
   var keys=reviewState.noise;var h='';
-  if(keys.some(function(k){return['old','seen','benefit'].includes(k);}))h+='<div class="al ali"><strong>Core wound activated.</strong> What they said landed on something older than this situation. Your pattern: noise arrives \u2192 the wound fires \u2192 the spiral begins. These are two separate events.<div class="ripsy" style="margin-top:4px">Psychological pattern: core wound activation, transference</div></div>';
-  if(keys.includes('truth'))h+='<div class="ri"><div class="rin">Truth denied by someone present for it</div><div class="rit">What actually happened is being reframed or denied. You do not need their acknowledgement for the truth to be real.</div><div class="riw">reality distortion by a trusted other is one of the most destabilising injury patterns</div><div class="ripsy">Psychological pattern: gaslighting, reality invalidation</div></div>';
-  if(keys.includes('attrib'))h+='<div class="ri"><div class="rin">Character attribution active</div><div class="rit">You are reading their behaviour as who they are rather than what their situation is producing. Separate the person from the context.</div><div class="riw">character attribution amplifies conflict and reduces accurate reading</div><div class="ripsy">Cognitive bias: fundamental attribution error</div></div>';
-  if(keys.includes('noev'))h+='<div class="ri"><div class="rin">No evidence given</div><div class="rit">An opinion stated without evidence is not data about your competence. It is data about their limitations.</div><div class="riw">competence claims require evidence</div><div class="ripsy">Cognitive bias: argument from assertion</div></div>';
-  if(keys.includes('defend'))h+='<div class="ri"><div class="rin">Urge to defend</div><div class="rit">The urge to explain or prove yourself is coming from the wound, not from the situation.</div><div class="riw">the defend reflex is the wound speaking</div><div class="ripsy">Psychological pattern: reactive self-justification</div></div>';
-  if(keys.includes('rumi'))h+='<div class="ri"><div class="rin">Rumination loop active</div><div class="rit">Building a case in your head is not resolving anything. What do you actually feel underneath the case?</div><div class="riw">rumination loops maintain activation without producing resolution</div><div class="ripsy">Cognitive pattern: ruminative thinking</div></div>';
-  if(keys.includes('ctx'))h+='<div class="ri"><div class="rin">Missing context</div><div class="rit">Name specifically what this person does not know. Their reading is based on incomplete information.</div><div class="riw">responses based on incomplete context are about the gap in their knowledge</div><div class="ripsy">Cognitive bias: context-dependent interpretation</div></div>';
-  if(checked.length>=3)h+='<div class="al alw" style="margin-top:8px"><strong>High contamination.</strong> Use Ground before continuing any further analysis.</div>';
+  if(keys.some(function(k){return['old','seen','benefit','reject'].includes(k);}))h+='<div class="al ali"><strong>Core wound activated.</strong> What they said landed on something older than this situation. Your pattern: noise arrives \u2192 the wound fires \u2192 the spiral begins. These are two separate events. Do one thing: name the wound. Betrayal, rejection, being unseen. Then name what actually happened. They are not the same.<div class="ripsy" style="margin-top:4px">Psychological pattern: core wound activation, transference</div></div>';
+  if(keys.includes('old'))h+='<div class="ri"><div class="rin">Older trigger activated</div><div class="rit">What they said or did landed on something from before this moment. Name the older event. Then name what actually happened today. Respond to today, not to then.</div><div class="riw">when old wounds are activated, the emotional response belongs to the original event and gets projected onto the current one</div><div class="ripsy">Psychological pattern: transference / implicit memory activation</div></div>';
+  if(keys.includes('benefit'))h+='<div class="ri"><div class="rin">Self-doubt benefits someone else</div><div class="rit">Name who benefits from you doubting yourself. If someone gains power, compliance, or control when you question your own perception, the doubt is not yours \u2014 it is theirs, placed in you.</div><div class="riw">induced self-doubt in the presence of someone who benefits from it is a manipulation pattern, not a thinking error</div><div class="ripsy">Manipulation: induced self-doubt / gaslighting</div></div>';
+  if(keys.includes('truth'))h+='<div class="ri"><div class="rin">Truth denied by someone present for it</div><div class="rit">What actually happened is being reframed or denied. You do not need their acknowledgement for the truth to be real. Write down what happened in your own words before the reframe settles in.</div><div class="riw">reality distortion by a trusted other is one of the most destabilising injury patterns</div><div class="ripsy">Psychological pattern: gaslighting, reality invalidation</div></div>';
+  if(keys.includes('reject'))h+='<div class="ri"><div class="rin">Rejection wound active</div><div class="rit">The pain is real. The interpretation may not be. Name what actually happened \u2014 did they reject you, or did something else occur that your system is reading as rejection? One breath before you respond from this place.</div><div class="riw">rejection sensitivity amplifies ambiguous signals into confirmation of the wound</div><div class="ripsy">Schema: rejection sensitivity / abandonment</div></div>';
+  if(keys.includes('project'))h+='<div class="ri"><div class="rin">Projection received</div><div class="rit">The judgement is about their framework, not about you. Do not absorb it. Do not argue against it. Let it land on the floor between you, not inside you.</div><div class="riw">absorbing a projection as self-knowledge is one of the fastest ways to lose clarity</div><div class="ripsy">Defence mechanism: projective identification</div></div>';
+  if(keys.includes('noev'))h+='<div class="ri"><div class="rin">No evidence given</div><div class="rit">An opinion stated without evidence is not data about your competence. It is data about their limitations. Do not engage with the claim. Ask for specifics. If none come, the conversation is over.</div><div class="riw">competence claims require evidence</div><div class="ripsy">Cognitive bias: argument from assertion</div></div>';
+  if(keys.includes('defend'))h+='<div class="ri"><div class="rin">Urge to defend</div><div class="rit">The urge to explain or prove yourself is coming from the wound, not from the situation. Do not explain. State your position once. Stop. If the urge continues, use Ground.</div><div class="riw">the defend reflex is the wound speaking</div><div class="ripsy">Psychological pattern: reactive self-justification</div></div>';
+  if(keys.includes('rumi'))h+='<div class="ri"><div class="rin">Rumination loop active</div><div class="rit">Building a case in your head is not resolving anything. Write down the three facts of the situation. Close the document. Walk away for 20 minutes. If the loop restarts, use Ground.</div><div class="riw">rumination loops maintain activation without producing resolution</div><div class="ripsy">Cognitive pattern: ruminative thinking</div></div>';
+  if(keys.includes('ctx'))h+='<div class="ri"><div class="rin">Missing context</div><div class="rit">Name specifically what this person does not know. Their reading is based on incomplete information. You do not need to correct them unless doing so serves you.</div><div class="riw">responses based on incomplete context are about the gap in their knowledge</div><div class="ripsy">Cognitive bias: context-dependent interpretation</div></div>';
+  if(keys.includes('seen'))h+='<div class="ri"><div class="rin">Feeling unseen</div><div class="rit">They are responding to who they think you are, not who you actually are. That gap is their limitation, not your failure. Do not perform visibility. Stay steady.</div><div class="riw">the pain of being unseen is one of the deepest 4-wing wounds</div><div class="ripsy">Schema: defectiveness / misattunement</div></div>';
+  // Relationship patterns
+  if(relChecked.length){
+    h+='<div class="sdiv">Relationship patterns in this interaction</div>';
+    if(relChecked.length>=3)h+='<div class="al alw" style="margin-bottom:8px"><strong>Multiple patterns active.</strong> This is not a collection of incidents \u2014 it is a structure. The question is whether this dynamic is sustainable.</div>';
+    relChecked.forEach(function(r){var k=r.querySelector('input').dataset.nr;var p=REL_PATTERNS[k];if(!p)return;
+      h+='<div class="ri"><div class="rin">'+p.n+'</div><div class="rit">'+p.t+'</div><div class="riw">'+p.w+'</div><div class="ripsy">'+p.psy+'</div></div>';
+    });
+  }
+  if(checked.length>=3)h+='<div class="al alw" style="margin-top:8px"><strong>High contamination.</strong> Use Ground before continuing any further analysis. No decisions, no responses, no communications until you are at regulation level 5 or below.</div>';
   h+='<div class="ipt">Their reading of you is not a fact about you. What is concretely, verifiably true \u2014 separate from what they think?</div>';
   show('r-noise',h);
 }
@@ -1208,11 +1296,17 @@ function doDistort(){
   var drows=[...document.querySelectorAll('#dist-list .chkrow')].filter(function(r){return r.querySelector('input').checked;});
   if(!crows.length&&!drows.length){show('r-distort','<span class="ok">No distortion patterns present right now.</span>');return;}
   reviewState.distort=crows.map(function(r){return r.querySelector('input').dataset.c;}).concat(drows.map(function(r){return r.querySelector('input').dataset.d;}));
-  var keys=crows.map(function(r){return r.querySelector('input').dataset.c;});var h='';
-  if(keys.some(function(k){return['cat1','cat2','cat5'].includes(k);}))h+='<div class="ri"><div class="rin">Catastrophising</div><div class="rit">Name the most realistic outcome. What is actually likely given what you concretely know?</div><div class="riw">catastrophising collapses the gap between possible and certain</div><div class="ripsy">Cognitive distortion: catastrophising</div></div>';
-  if(keys.some(function(k){return['cat4','cat6'].includes(k);}))h+='<div class="ri"><div class="rin">Fortune telling</div><div class="rit">You are predicting others\u2019 future judgements as if already decided. Return to what is actually known now.</div><div class="riw">mind-reading future responses treats speculation as fact</div><div class="ripsy">Cognitive distortion: fortune telling / mind reading</div></div>';
-  if(keys.includes('cat3'))h+='<div class="ri"><div class="rin">Guilt as catastrophising</div><div class="rit">Ask specifically: what did I do wrong? If no clear answer, this is catastrophising dressed as conscience.</div><div class="riw">guilt after a boundary is almost always conditioned response</div><div class="ripsy">Cognitive distortion: emotional reasoning + catastrophising</div></div>';
-  if(keys.includes('cat7'))h+='<div class="ri"><div class="rin">Urgency illusion</div><div class="rit">Ask: what specifically breaks if this does not happen in the next hour?</div><div class="riw">false urgency generates cortisol and forces premature decisions</div><div class="ripsy">Cognitive distortion: magnification + should statements</div></div>';
+  var cm={
+    cat1:{n:'Treating possible as certain',t:'Name the most realistic outcome. What is actually likely given what you concretely know?',w:'catastrophising collapses the gap between possible and certain',psy:'Cognitive distortion: catastrophising'},
+    cat2:{n:'Pre-emptive failure',t:'You have not failed yet. Name what has actually happened so far, not what you are predicting.',w:'anticipating failure creates the emotional experience of it before it occurs',psy:'Cognitive distortion: catastrophising / fortune telling'},
+    cat3:{n:'Guilt after setting a boundary',t:'Ask specifically: what did I do wrong? If no clear answer, this is catastrophising dressed as conscience.',w:'guilt after a boundary is almost always conditioned response',psy:'Cognitive distortion: emotional reasoning + catastrophising'},
+    cat4:{n:'Predicting permanent judgement',t:'You are predicting others\u2019 future judgements as if already decided. Return to what is actually known now.',w:'mind-reading future responses treats speculation as fact',psy:'Cognitive distortion: fortune telling / mind reading'},
+    cat5:{n:'Temporary feels permanent',t:'Name one thing that has changed in the last month. Things move. This will too.',w:'treating temporary states as permanent amplifies despair',psy:'Cognitive distortion: overgeneralisation'},
+    cat6:{n:'Reading emotions as confirmation',t:'Their emotional state is not evidence of your fear. What do you actually know about what they feel?',w:'using someone else\u2019s affect as proof of your catastrophe is emotional reasoning layered on mind reading',psy:'Cognitive distortion: emotional reasoning + mind reading'},
+    cat7:{n:'Urgency illusion',t:'Ask: what specifically breaks if this does not happen in the next hour?',w:'false urgency generates cortisol and forces premature decisions',psy:'Cognitive distortion: magnification + should statements'}
+  };
+  var h='';
+  crows.forEach(function(r){var k=r.querySelector('input').dataset.c;if(cm[k])h+='<div class="ri"><div class="rin">'+cm[k].n+'</div><div class="rit">'+cm[k].t+'</div><div class="riw">'+cm[k].w+'</div><div class="ripsy">'+cm[k].psy+'</div></div>';});
   var dm={
     all:{n:'All-or-nothing framing',t:'Find one exception to the binary.',w:'all-or-nothing collapses nuance',psy:'Cognitive distortion: dichotomous thinking'},
     emo:{n:'Feelings as evidence',t:'Name the feeling and the fact separately.',w:'emotional reasoning treats internal states as proof of external facts',psy:'Cognitive distortion: emotional reasoning'},
@@ -1223,11 +1317,12 @@ function doDistort(){
     ref:{n:'Reframing too quickly',t:'Let the discomfort be present for one full breath before moving toward meaning.',w:'premature reframing bypasses processing',psy:'Defence mechanism: intellectualisation'},
     spot:{n:'Spotlight effect',t:'Others are almost certainly attending to their own concerns.',w:'systematic overestimation of how much others observe and evaluate you',psy:'Cognitive bias: spotlight effect'},
     burden:{n:'Needs as burden',t:"Expressing a need is not an imposition \u2014 it is information.",w:'the belief that needs are burdensome drives suppression and resentment',psy:'Schema: defectiveness / shame'},
-    conn:{n:'Connection requires self-adjustment',t:"You do not need to become different to be connected.",w:'this belief drives fawning and eventual withdrawal',psy:'Schema: subjugation'},
+    conn:{n:'Connection requires self-adjustment',t:"Letting connection exist with less self-adjustment may feel lighter. You do not need to become different to be connected.",w:'chronic adaptation erodes authenticity and energy',psy:'Schema: subjugation'},
     neg:{n:'Negativity bias active',t:'Name one thing that is working or has worked today.',w:'flaws carry disproportionate cognitive weight when negativity bias is active',psy:'Cognitive bias: negativity bias'},
-    affect:{n:'Strong emotions feel unsafe',t:'The emotion is not dangerous. It is information. Stay with it for one breath before managing it.',w:'treating emotions as unsafe amplifies them and prevents processing',psy:'Defence mechanism: affect phobia'}
+    affect:{n:'Strong emotions feel unsafe',t:'The emotion is not dangerous. It is information. Stay with it for one breath before managing it.',w:'treating emotions as unsafe amplifies them and prevents processing',psy:'Defence mechanism: affect phobia'},
+    attrib:{n:'Character attribution active',t:'You are reading their behaviour as who they are rather than what their situation is producing. Separate the person from the context.',w:'character attribution amplifies conflict and reduces accurate reading',psy:'Cognitive bias: fundamental attribution error'}
   };
-  if(drows.length){if(h)h+='<div style="height:6px"></div>';drows.forEach(function(r){var k=r.querySelector('input').dataset.d;if(dm[k])h+='<div class="ri"><div class="rin">'+dm[k].n+'</div><div class="rit">'+dm[k].t+'</div><div class="riw">'+dm[k].w+'</div><div class="ripsy">'+dm[k].psy+'</div></div>';});}
+  if(drows.length){drows.forEach(function(r){var k=r.querySelector('input').dataset.d;if(dm[k])h+='<div class="ri"><div class="rin">'+dm[k].n+'</div><div class="rit">'+dm[k].t+'</div><div class="riw">'+dm[k].w+'</div><div class="ripsy">'+dm[k].psy+'</div></div>';});}
   h+='<div class="ipt">Is what you are experiencing a prediction or a fact?</div>';
   show('r-distort',h);
 }
@@ -1259,7 +1354,8 @@ function doScan(){
     scan:{n:'Tracking their read of me',t:'Return attention to what you actually feel.',w:'attending to their perception amplifies anxiety and disconnects you',psy:'Hypervigilance: social monitoring'},
     small:{n:'Becoming smaller in the interaction',t:'Name one thing you actually think about this situation. Say it internally first.',w:'shrinking in interactions is fawning in early stage',psy:'Trauma response: fawning / self-erasure'},
     authfawn:{n:'Authority fawning',t:'What structure can you put in place so this deference does not need to happen? Their position does not make them right.',w:'deferring beyond what the situation requires erodes your own judgement over time',psy:'Trauma response: authority fawning'},
-    authund:{n:'Authority undermined',t:'You already took a position. Abandoning it without new evidence is not diplomacy \u2014 it is capitulation. What structure can you put in place so this conversation does not need to happen?',w:'letting someone override your decision without pushback teaches them your positions are negotiable',psy:'Behavioural pattern: authority surrender'}
+    authund:{n:'Authority undermined',t:'You already took a position. Abandoning it without new evidence is not diplomacy \u2014 it is capitulation. What structure can you put in place so this conversation does not need to happen?',w:'letting someone override your decision without pushback teaches them your positions are negotiable',psy:'Behavioural pattern: authority surrender'},
+    helpless:{n:'Helplessness about someone being harmed',t:'Name what is actually within your control. If direct intervention is blocked, indirect access or structural support may still be available. Do not confuse inability to fix with inability to act.',w:'helplessness in the presence of harm activates the wound and can drive impulsive action or complete shutdown',psy:'Emotional response: learned helplessness / moral injury'}
   };
   var h='';
   if(bb.length>=4)h+='<div class="al alw" style="margin-bottom:8px"><strong>High boundary pressure.</strong> Use the physiological sigh before responding. 9 seconds.</div>';
@@ -1316,6 +1412,34 @@ function doGame(){
   show('r-game',h);
 }
 
+function doAuthority(){
+  var ap=[...document.querySelectorAll('#auth-list .chkrow')].filter(function(r){return r.querySelector('input').checked;});
+  var hp=[...document.querySelectorAll('#hold-list .chkrow')].filter(function(r){return r.querySelector('input').checked;});
+  if(!ap.length&&!hp.length){show('r-auth','<span class="ok">No authority dynamics flagged right now.</span>');return;}
+  reviewState.auth=ap.map(function(r){return r.querySelector('input').dataset.a;}).concat(hp.map(function(r){return r.querySelector('input').dataset.ah;}));
+  var am={
+    diminish:{n:'Being diminished in front of others',t:'Name what happened factually, once, to the person who did it. Not as a complaint \u2014 as information. If it happens again, escalate structurally, not emotionally.',w:'public diminishment is a power move \u2014 responding emotionally confirms the dynamic',psy:'Relational dynamic: status undermining'},
+    override:{n:'Decision being reversed without discussion',t:'Name the decision. Name that it was made. Ask specifically what changed. If nothing changed, the override is the issue, not the decision.',w:'silent reversals erode authority gradually and train others to treat your decisions as provisional',psy:'Relational dynamic: authority erosion'},
+    condescend:{n:'Being spoken to below your level',t:'Do not correct their perception of you. Demonstrate competence through action and let the gap between their assumption and your output speak for itself.',w:'defending against condescension accepts the frame \u2014 performing above it breaks it',psy:'Social dynamic: status misattribution'},
+    exclude:{n:'Excluded from relevant decisions',t:'Name the specific decision you were excluded from. Request inclusion for the next one in writing. If it continues, the exclusion is structural, not accidental.',w:'exclusion from decisions that affect you removes agency while maintaining accountability',psy:'Relational dynamic: decision gatekeeping'},
+    defer:{n:'Deferring to position over substance',t:'Their title does not make them right. Name internally what you actually think. If you choose not to say it, make sure the choice is strategic, not fearful.',w:'habitual deference to authority figures connects to the authority wound \u2014 the pattern predates this person',psy:'Trauma response: authority figure submission'},
+    freeze:{n:'Freezing in the presence of authority',t:'The freeze is the wound, not the situation. Name one thing you know to be true about your competence right now. Ground in that before responding.',w:'freezing in the presence of authority is a stored response \u2014 the body is responding to an older dynamic',psy:'Trauma response: freeze / authority activation'}
+  };
+  var hm={
+    stated:{n:'Position stated clearly',t:'Good. Do not repeat it. Repetition signals uncertainty.',w:'stating once and stopping communicates confidence',psy:'Communication pattern: assertion'},
+    silence:{n:'Using silence effectively',t:'Let the silence work. The urge to fill it is anxiety, not necessity.',w:'silence after a clear statement is one of the most effective authority tools available',psy:'Communication pattern: strategic silence'},
+    struct:{n:'Structural protection in place',t:'Name the structure. If it does not exist yet, what would it be? A written record, a witness, a formal process, a boundary communicated in advance.',w:'structure removes the need for repeated confrontation and reduces emotional cost',psy:'Strategy: structural containment'},
+    diplo:{n:'Diplomacy active',t:'Firm content, measured delivery. The message does not change \u2014 the temperature does. Say what you mean without giving them a reaction to manage.',w:'diplomacy is not softening your position \u2014 it is controlling the delivery so the content lands',psy:'Communication pattern: strategic diplomacy'},
+    walk:{n:'Disengagement chosen',t:'Not every conversation can be won. Recognising that and walking away is not defeat \u2014 it is efficiency. Re-engage only if something structural changes.',w:'strategic disengagement preserves energy for situations that can actually move',psy:'Strategy: selective engagement'}
+  };
+  var h='';
+  if(ap.length>=3)h+='<div class="al alw" style="margin-bottom:8px"><strong>Multiple authority patterns active.</strong> This is not a single incident. Check whether a structural response is needed rather than repeated individual confrontations.</div>';
+  if(ap.length){h+='<div class="sdiv" style="margin-top:0">Patterns present</div>';ap.forEach(function(r){var k=r.querySelector('input').dataset.a;if(am[k])h+='<div class="ri"><div class="rin">'+am[k].n+'</div><div class="rit">'+am[k].t+'</div><div class="riw">'+am[k].w+'</div><div class="ripsy">'+am[k].psy+'</div></div>';});}
+  if(hp.length){h+='<div class="sdiv">What you are doing right</div>';hp.forEach(function(r){var k=r.querySelector('input').dataset.ah;if(hm[k])h+='<div class="ri"><div class="rin">'+hm[k].n+'</div><div class="rit">'+hm[k].t+'</div><div class="riw">'+hm[k].w+'</div><div class="ripsy">'+hm[k].psy+'</div></div>';});}
+  h+='<div class="ipt">What structure would make this conversation unnecessary next time?</div>';
+  show('r-auth',h);
+}
+
 function doEffort(){
   var ep=[...document.querySelectorAll('#ep-list .chkrow')].filter(function(r){return r.querySelector('input').checked;});
   var sb=[...document.querySelectorAll('#sb-list .chkrow')].filter(function(r){return r.querySelector('input').checked;});
@@ -1357,8 +1481,18 @@ function doEffort(){
 
 function doIntegration(){
   document.getElementById('mantra').style.display='block';
-  try{var ctx=getAudioCtx();var t=ctx.currentTime;for(var i=0;i<3;i++){var o=ctx.createOscillator();var g=ctx.createGain();o.type='sine';o.frequency.setValueAtTime(660,t);g.gain.setValueAtTime(0.0001,t);g.gain.exponentialRampToValueAtTime(0.18,t+0.01);g.gain.exponentialRampToValueAtTime(0.0001,t+1.2);o.connect(g);g.connect(ctx.destination);o.start(t);o.stop(t+1.3);t+=1.1;}}catch(e){}
-  vibrate([80,100,80,100,80]);
+  try{var ctx=getAudioCtx();var t=ctx.currentTime;for(var i=0;i<3;i++){var o=ctx.createOscillator();var g=ctx.createGain();o.type='sine';o.frequency.setValueAtTime(528,t);g.gain.setValueAtTime(0.0001,t);g.gain.exponentialRampToValueAtTime(0.2,t+0.02);g.gain.exponentialRampToValueAtTime(0.0001,t+2.0);o.connect(g);g.connect(ctx.destination);o.start(t);o.stop(t+2.1);t+=2.0;}}catch(e){}
+  vibrate([80,200,80,200,80]);
+}
+
+function runQuit(){
+  var ids=['qc-patch','qc-gum','qc-exercise','qc-water','qc-hands','qc-oral','qc-routine','qc-confid'];
+  var count=ids.filter(function(id){return document.getElementById(id).checked;}).length;
+  var cls,msg;
+  if(count>=6){cls='tpg';msg='Strong support active. Keep all tools running. You are doing this.';}
+  else if(count>=3){cls='tpy';msg='Some support active. Add one more tool today. Each one makes the next craving easier.';}
+  else{cls='tpr';msg='Low support. The cravings will be harder without tools. Pick one from the list and activate it now.';}
+  var el=document.getElementById('qc-status');el.style.display='block';el.className='tpst '+cls;el.textContent=msg;
 }
 
 if(!NO_TOKEN){setInterval(async function(){await saveToGist();await loadTodayFromGist();},3*60*1000);}
