@@ -690,6 +690,82 @@ body{
 </div>
 
 
+<!-- DEEP REVIEW -->
+<div class="screen" id="scr-review">
+  <button class="btn-back" onclick="showScreen('scr-home')">&#8592; Back</button>
+  <div style="margin-bottom:8px"><span class="card-title">Deep review</span><div style="font-size:12px;color:var(--text3);margin-top:2px">Nothing is bad or good. Just notice.</div>
+    <div style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap">
+      <span style="font-size:11px;padding:3px 9px;border-radius:20px;border:1px solid var(--bdr2);color:var(--text2);font-weight:600">5w4</span>
+      <span style="font-size:11px;padding:3px 9px;border-radius:20px;border:1px solid var(--bdr2);color:var(--text2);font-weight:600">SX/SO</span>
+      <span style="font-size:11px;padding:3px 9px;border-radius:20px;border:1px solid var(--bdr2);color:var(--text2);font-weight:600">SP blind</span>
+      <span style="font-size:11px;padding:3px 9px;border-radius:20px;border:1px solid var(--bdr2);color:var(--text2)">INTJ</span>
+      <span style="font-size:11px;padding:3px 9px;border-radius:20px;border:1px solid var(--bdr2);color:var(--text2)">&#8594; 8</span>
+      <span style="font-size:11px;padding:3px 9px;border-radius:20px;border:1px solid var(--bdr2);color:var(--text2)">&#8592; 7</span>
+    </div>
+  </div>
+  <div class="card"><div class="card-head"><span class="card-num">01</span><span class="card-title">Body signals</span></div><div class="card-desc">SP blind &#8212; you will miss these until they are loud.</div><div id="b-list"></div><button class="btn" onclick="doBody()">Notice</button><div class="result" id="r-body"></div></div>
+  <div class="card"><div class="card-head"><span class="card-num">02</span><span class="card-title">Regulation level</span></div><div class="card-desc">Select everything present. This tells you how much to trust your analysis today.</div><div class="reg-items" id="reg-items"></div><button class="btn" onclick="doReg()">Notice</button><div class="result" id="r-reg"></div></div>
+  <div class="card"><div class="card-head"><span class="card-num">03</span><span class="card-title">Signal check</span></div><div class="card-desc">Is the signal real or is the wound running?</div><div class="sdiv" style="margin-top:0">What fired</div><div id="noise-list"></div><div class="sdiv">Relationship patterns</div><div id="rel-list"></div><button class="btn" onclick="doNoise()">Notice</button><div class="result" id="r-noise"></div></div>
+  <div class="card"><div class="card-head"><span class="card-num">04</span><span class="card-title">Distortion check</span></div><div class="card-desc">Check what is active in your thinking.</div><div class="sdiv" style="margin-top:0">Catastrophising</div><div id="c-list"></div><div class="sdiv">Cognitive filters</div><div id="dist-list"></div><button class="btn" onclick="doDistort()">Notice</button><div class="result" id="r-distort"></div></div>
+  <div class="card"><div class="card-head"><span class="card-num">05</span><span class="card-title">Interaction scan</span></div><div class="card-desc">What is present in a recent or ongoing interaction.</div><div class="sdiv" style="margin-top:0">Boundary pressure</div><div id="bnd-list"></div><div class="sdiv">Behavioural drift</div><div id="soc-list"></div><button class="btn" onclick="doScan()">Notice</button><div class="result" id="r-scan"></div></div>
+  <div class="card"><div class="card-head"><span class="card-num">06</span><span class="card-title">Game check</span></div><div class="card-desc">Unconscious repetitive sequences &#8212; not malice, but structure.</div><div id="game-list"></div><button class="btn" onclick="doGame()">Notice</button><div class="result" id="r-game"></div></div>
+  <div class="card"><div class="card-head"><span class="card-num">07</span><span class="card-title">Authority dynamics</span></div><div class="card-desc">What is active where authority is in play.</div><div class="sdiv" style="margin-top:0">Patterns that undermine you</div><div id="auth-list"></div><div class="sdiv">Holding your position</div><div id="hold-list"></div><button class="btn" onclick="doAuthority()">Notice</button><div class="result" id="r-auth"></div></div>
+  <div class="card"><div class="card-head"><span class="card-num">08</span><span class="card-title">Effort patterns</span></div><div class="card-desc">Your system's default configuration under load.</div><div class="sdiv" style="margin-top:0">Effort patterns</div><div id="ep-list"></div><div class="sdiv">Structural bias</div><div id="sb-list"></div><div class="sdiv">Procrastination signals</div><div id="proc-list"></div><button class="btn" onclick="doEffort()">Notice</button><div class="result" id="r-effort"></div></div>
+  <div class="card">
+    <div class="card-head"><span class="card-num">09</span><span class="card-title">Integration &#8212; moving toward 8</span></div>
+    <div class="prompt" style="margin-top:0;margin-bottom:8px">Stepping out of the observer position into direct, embodied engagement. Depth and analysis as foundation for action, not a reason to keep watching.</div>
+    <div class="al al-warn" style="margin:0 0 8px">Watch for disintegration toward 7: scattered attention, seeking novelty to avoid staying with what is hard.</div>
+    <div class="afs">Release</div>
+    <div class="aff">
+      <div class="afi" onclick="togAff(this)"><input type="checkbox"><span>There is room to loosen the need to be right or complete.</span></div>
+      <div class="afi" onclick="togAff(this)"><input type="checkbox"><span>There is room to let others be imperfect without fixing them.</span></div>
+      <div class="afi" onclick="togAff(this)"><input type="checkbox"><span>There is room to offer help without expectation of return.</span></div>
+      <div class="afi" onclick="togAff(this)"><input type="checkbox"><span>There is room for presence or attention to be enough.</span></div>
+      <div class="afi" onclick="togAff(this)"><input type="checkbox"><span>There is room for a softer internal tone.</span></div>
+    </div>
+    <div class="afs">Steadiness</div>
+    <div class="aff">
+      <div class="afi" onclick="togAff(this)"><input type="checkbox"><span>There is room to move with direction rather than certainty.</span></div>
+      <div class="afi" onclick="togAff(this)"><input type="checkbox"><span>There is room to allow not knowing without forcing clarity.</span></div>
+      <div class="afi" onclick="togAff(this)"><input type="checkbox"><span>There is room to accept the limits of time, energy, or understanding.</span></div>
+      <div class="afi" onclick="togAff(this)"><input type="checkbox"><span>There is room to notice effort without measuring worth.</span></div>
+    </div>
+    <div class="afs">Action</div>
+    <div class="aff">
+      <div class="afi" onclick="togAff(this)"><input type="checkbox"><span>There is room to act from what I know without waiting to know more.</span></div>
+      <div class="afi" onclick="togAff(this)"><input type="checkbox"><span>There is room to contribute in ways that respect my regulation.</span></div>
+      <div class="afi" onclick="togAff(this)"><input type="checkbox"><span>There is room to build for the contribution rather than the applause.</span></div>
+      <div class="afi" onclick="togAff(this)"><input type="checkbox"><span>There is room to say what I mean once, clearly, and stop.</span></div>
+    </div>
+    <button class="btn" style="margin-top:14px" onclick="doIntegration()">Complete review</button>
+    <div class="mantra" id="mantra">&#8220;Awareness is the greatest agent for change&#8221;</div>
+  </div>
+  <div class="card">
+    <div class="card-title" style="margin-bottom:6px">Identity reference</div>
+    <div class="id-grid">
+      <div class="id-cell"><div class="id-key">Type</div><div class="id-val">5w4 &#183; INTJ</div></div>
+      <div class="id-cell"><div class="id-key">Stacking</div><div class="id-val">SX/SO &#183; SP blind</div></div>
+      <div class="id-cell"><div class="id-key">Integration</div><div class="id-val">toward 8</div></div>
+      <div class="id-cell"><div class="id-key">Disintegration</div><div class="id-val">toward 7</div></div>
+      <div class="id-cell"><div class="id-key">System</div><div class="id-val">High-gain</div></div>
+      <div class="id-cell"><div class="id-key">Risk pattern</div><div class="id-val">Noise &#8594; wound &#8594; spiral</div></div>
+    </div>
+    <div class="sdiv" style="margin-top:14px">Core wounds</div>
+    <div style="font-size:13px;line-height:1.8;color:var(--text2)">
+      <div>Betrayal and manipulation</div>
+      <div>Truth present but denied</div>
+      <div>Rejection</div>
+      <div>Not being seen</div>
+      <div>Being overridden</div>
+      <div>Helplessness</div>
+    </div>
+  </div>
+  <div class="hist-section">
+    <button class="hist-toggle" onclick="toggleHist('hist-review-body',this)"><span>History &#8212; last 30 days</span><span>&#9660;</span></button>
+    <div class="hist-body" id="hist-review-body"><div id="hist-review-days"></div><div class="hist-view" id="hist-review-view"></div></div>
+  </div>
+</div>
+
 </div><!-- end .app -->
 
 <script>
