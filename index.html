@@ -497,6 +497,10 @@ body{
 <!-- ACTIVATED SCREEN -->
 <div class="screen" id="scr-activated">
   <button class="btn-back" onclick="showScreen('scr-home')">&#8592; Back</button>
+  <div class="card" style="margin-bottom:8px">
+    <div class="card-title" style="margin-bottom:8px">What am I feeling right now?</div>
+    <div style="display:flex;flex-wrap:wrap;gap:6px" id="emo-pick"></div>
+  </div>
   <div class="card">
     <div class="card-head"><span class="card-title">Regulation check</span></div>
     <div class="card-desc">Select everything present right now. More than one is normal.</div>
@@ -510,6 +514,8 @@ body{
 <div class="screen" id="scr-situation">
   <button class="btn-back" onclick="showScreen('scr-home')">&#8592; Back</button>
   <div class="card" style="margin-bottom:8px">
+    <div class="card-title" style="margin-bottom:8px">What am I feeling right now?</div>
+    <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px" id="emo-pick-sit"></div>
     <div class="card-title" style="margin-bottom:10px">Who is this with?</div>
     <div class="sit-option" onclick="goSitFamily()">
       <div class="entry-info">
@@ -674,6 +680,48 @@ body{
   </div>
   <div class="card"><div class="card-title" style="margin-bottom:8px">Weekly rhythm</div><div class="rhythm-grid" id="dc-rhythm"></div></div>
   <div class="card">
+    <div class="card-title" style="margin-bottom:10px">Where I am</div>
+    <div style="border-left:3px solid var(--calm);padding:8px 12px;margin-bottom:8px;border-radius:0 var(--r) var(--r) 0;background:var(--calm-bg)">
+      <div style="font-size:11px;font-weight:600;color:var(--calm);text-transform:uppercase;letter-spacing:.4px">Phase 1 &#8212; Stabilisation (now &#8594; Nov 2026)</div>
+      <div style="font-size:12px;color:var(--text2);margin-top:4px;line-height:1.7">
+        <strong style="color:var(--text)">This app:</strong> Self-administered STAIR Phase 1 + DBT distress tolerance (TIPP) + polyvagal self-regulation<br>
+        <strong style="color:var(--text)">Body:</strong> Fitness as Se inferior development + vagal tone building. Moderate base, vigorous 2&#8211;3x/week. Consistency over intensity.<br>
+        <strong style="color:var(--text)">Mind:</strong> Emotion naming before pattern analysis. Structured short-form mindfulness only &#8212; no extended open awareness. Signal detection. Prodrome monitoring with external anchors.<br>
+        <strong style="color:var(--text)">Container:</strong> Sobriety non-negotiable. No trauma processing. No parts work. Stabilise first.<br>
+        <strong style="color:var(--text)">Exit:</strong> AD filed. Finances secured. Property registered. November 1, 2026.
+      </div>
+    </div>
+    <div style="border-left:3px solid var(--info-bdr);padding:8px 12px;margin-bottom:8px;border-radius:0 var(--r) var(--r) 0">
+      <div style="font-size:11px;font-weight:600;color:var(--info-text);text-transform:uppercase;letter-spacing:.4px">Phase 2 &#8212; Processing (post-exit, Month 1&#8211;6)</div>
+      <div style="font-size:12px;color:var(--text3);margin-top:4px;line-height:1.7">
+        <strong style="color:var(--text2)">Month 1&#8211;3:</strong> Independent therapist trained in STAIR/E-STAIR + somatic work. Formal emotion regulation + interpersonal skills (DEAR MAN). Body-based therapy &#8212; Somatic Experiencing or Sensorimotor Psychotherapy for what talk therapy cannot reach.<br>
+        <strong style="color:var(--text2)">Month 3&#8211;6:</strong> IFS for parts integration (hero, shadow, wounded child) if stable. EMDR for specific trauma memories (rehab abuse, ECT, father&#8217;s death). Continue somatic work.<br>
+        <strong style="color:var(--text2)">Not through this app.</strong> Needs co-regulation with a human, from safety.
+      </div>
+    </div>
+    <div style="border-left:3px solid var(--ok-bdr);padding:8px 12px;margin-bottom:8px;border-radius:0 var(--r) var(--r) 0">
+      <div style="font-size:11px;font-weight:600;color:var(--ok);text-transform:uppercase;letter-spacing:.4px">Phase 3 &#8212; Reconnection (mid-2027+)</div>
+      <div style="font-size:12px;color:var(--text3);margin-top:4px;line-height:1.7">
+        Interpersonal effectiveness in real relationships. Trust calibration &#8212; extend trust based on demonstrated reliability, not words. Partner from safety, not from need. Community, tribe, professional network. Outside-person skills mature from defence to genuine connection. NoVisits at full capacity.
+      </div>
+    </div>
+    <div style="font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.4px;margin-top:10px">Therapeutic layers</div>
+    <div style="font-size:12px;color:var(--text2);line-height:1.7;margin-top:4px">
+      <div><strong style="color:var(--text)">1. Body regulation:</strong> Polyvagal tools (breathing, self-contact, cold water). Somatic Experiencing or Sensorimotor Psychotherapy with therapist. Fitness as vagal tone + Se development.</div>
+      <div><strong style="color:var(--text)">2. Emotion + interpersonal:</strong> STAIR/E-STAIR. DBT skills (distress tolerance, emotion regulation, interpersonal effectiveness, structured mindfulness).</div>
+      <div><strong style="color:var(--text)">3. Parts work:</strong> IFS &#8212; hero drive as manager, persecutory shadow as firefighter, wounded child as exile. With therapist only.</div>
+      <div><strong style="color:var(--text)">4. Trauma memory:</strong> EMDR for discrete traumatic memories. Bypasses intellectualisation. Post-stabilisation only.</div>
+      <div><strong style="color:var(--text)">5. Autonomic flexibility:</strong> Ongoing. HRV building through fitness + breathing. Vagal tone as the foundation everything else rests on.</div>
+    </div>
+    <div style="font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.4px;margin-top:14px">NoVisits timeline</div>
+    <div style="font-size:12px;color:var(--text2);line-height:1.6;margin-top:4px">
+      <div><strong style="color:var(--text)">Now &#8594; Jun:</strong> Phase 0. Research, planning, architecture. No launches, no deadlines.</div>
+      <div><strong style="color:var(--text)">Jul &#8594; Oct:</strong> Phase 1. Small contained work blocks. One action per day. If it feels urgent &#8212; check intensity.</div>
+      <div><strong style="color:var(--text)">Nov 2026+:</strong> Full commitment from outside the house.</div>
+    </div>
+    <div style="font-size:11px;color:var(--text3);font-style:italic;margin-top:8px;line-height:1.5">NoVisits does not need to succeed before exit. It needs to survive until after exit.</div>
+  </div>
+  <div class="card">
     <div class="card-title" style="margin-bottom:8px">Timetable</div>
     <div class="tt-row"><div class="tt-time">06:00</div><div>Wake up</div></div>
     <div class="tt-row"><div class="tt-time">10:00</div><div>Work block 1</div></div>
@@ -695,15 +743,15 @@ body{
   <button class="btn-back" onclick="showScreen('scr-home')">&#8592; Back</button>
   <div style="margin-bottom:8px"><span class="card-title">Deep review</span><div style="font-size:12px;color:var(--text3);margin-top:2px">Nothing is bad or good. Just notice.</div>
     <div style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap">
-      <span style="font-size:11px;padding:3px 9px;border-radius:20px;border:1px solid var(--bdr2);color:var(--text2);font-weight:600">5w4</span>
+      <span style="font-size:11px;padding:3px 9px;border-radius:20px;border:1px solid var(--bdr2);color:var(--text2);font-weight:600">4w5</span>
       <span style="font-size:11px;padding:3px 9px;border-radius:20px;border:1px solid var(--bdr2);color:var(--text2);font-weight:600">SX/SO</span>
       <span style="font-size:11px;padding:3px 9px;border-radius:20px;border:1px solid var(--bdr2);color:var(--text2);font-weight:600">SP blind</span>
-      <span style="font-size:11px;padding:3px 9px;border-radius:20px;border:1px solid var(--bdr2);color:var(--text2)">INTJ</span>
-      <span style="font-size:11px;padding:3px 9px;border-radius:20px;border:1px solid var(--bdr2);color:var(--text2)">&#8594; 8</span>
-      <span style="font-size:11px;padding:3px 9px;border-radius:20px;border:1px solid var(--bdr2);color:var(--text2)">&#8592; 7</span>
+      <span style="font-size:11px;padding:3px 9px;border-radius:20px;border:1px solid var(--bdr2);color:var(--text2)">INFJ</span>
+      <span style="font-size:11px;padding:3px 9px;border-radius:20px;border:1px solid var(--bdr2);color:var(--text2)">&#8594; 1</span>
+      <span style="font-size:11px;padding:3px 9px;border-radius:20px;border:1px solid var(--bdr2);color:var(--text2)">&#8592; 2</span>
     </div>
   </div>
-  <div class="card"><div class="card-head"><span class="card-num">01</span><span class="card-title">Body signals</span></div><div class="card-desc">SP blind &#8212; you will miss these until they are loud.</div><div id="b-list"></div><button class="btn" onclick="doBody()">Notice</button><div class="result" id="r-body"></div></div>
+  <div class="card"><div class="card-head"><span class="card-num">01</span><span class="card-title">Body signals</span></div><div class="card-desc">Se inferior + SP blind &#8212; your weakest function. You will miss these until they are loud. Check deliberately.</div><div id="b-list"></div><button class="btn" onclick="doBody()">Notice</button><div class="result" id="r-body"></div></div>
   <div class="card"><div class="card-head"><span class="card-num">02</span><span class="card-title">Regulation level</span></div><div class="card-desc">Select everything present. This tells you how much to trust your analysis today.</div><div class="reg-items" id="reg-items"></div><button class="btn" onclick="doReg()">Notice</button><div class="result" id="r-reg"></div></div>
   <div class="card"><div class="card-head"><span class="card-num">03</span><span class="card-title">Signal check</span></div><div class="card-desc">Is the signal real or is the wound running?</div><div class="sdiv" style="margin-top:0">What fired</div><div id="noise-list"></div><div class="sdiv">Relationship patterns</div><div id="rel-list"></div><button class="btn" onclick="doNoise()">Notice</button><div class="result" id="r-noise"></div></div>
   <div class="card"><div class="card-head"><span class="card-num">04</span><span class="card-title">Distortion check</span></div><div class="card-desc">Check what is active in your thinking.</div><div class="sdiv" style="margin-top:0">Catastrophising</div><div id="c-list"></div><div class="sdiv">Cognitive filters</div><div id="dist-list"></div><button class="btn" onclick="doDistort()">Notice</button><div class="result" id="r-distort"></div></div>
@@ -712,9 +760,9 @@ body{
   <div class="card"><div class="card-head"><span class="card-num">07</span><span class="card-title">Authority dynamics</span></div><div class="card-desc">What is active where authority is in play.</div><div class="sdiv" style="margin-top:0">Patterns that undermine you</div><div id="auth-list"></div><div class="sdiv">Holding your position</div><div id="hold-list"></div><button class="btn" onclick="doAuthority()">Notice</button><div class="result" id="r-auth"></div></div>
   <div class="card"><div class="card-head"><span class="card-num">08</span><span class="card-title">Effort patterns</span></div><div class="card-desc">Your system's default configuration under load.</div><div class="sdiv" style="margin-top:0">Effort patterns</div><div id="ep-list"></div><div class="sdiv">Structural bias</div><div id="sb-list"></div><div class="sdiv">Procrastination signals</div><div id="proc-list"></div><button class="btn" onclick="doEffort()">Notice</button><div class="result" id="r-effort"></div></div>
   <div class="card">
-    <div class="card-head"><span class="card-num">09</span><span class="card-title">Integration &#8212; moving toward 8</span></div>
-    <div class="prompt" style="margin-top:0;margin-bottom:8px">Stepping out of the observer position into direct, embodied engagement. Depth and analysis as foundation for action, not a reason to keep watching.</div>
-    <div class="al al-warn" style="margin:0 0 8px">Watch for disintegration toward 7: scattered attention, seeking novelty to avoid staying with what is hard.</div>
+    <div class="card-head"><span class="card-num">09</span><span class="card-title">Integration &#8212; moving toward 1</span></div>
+    <div class="prompt" style="margin-top:0;margin-bottom:8px">Moving toward 1: stepping out of emotional intensity into disciplined, principled action. Using depth and authenticity as a foundation for structure, not a reason to stay in the feeling.</div>
+    <div class="al al-warn" style="margin:0 0 8px">Watch for disintegration toward 2: over-giving, rescuing, earning love through sacrifice. The hero drive IS the disintegration &#8212; it feeds the psychosis loop directly.</div>
     <div class="afs">Release</div>
     <div class="aff">
       <div class="afi" onclick="togAff(this)"><input type="checkbox"><span>There is room to loosen the need to be right or complete.</span></div>
@@ -743,12 +791,12 @@ body{
   <div class="card">
     <div class="card-title" style="margin-bottom:6px">Identity reference</div>
     <div class="id-grid">
-      <div class="id-cell"><div class="id-key">Type</div><div class="id-val">5w4 &#183; INTJ</div></div>
+      <div class="id-cell"><div class="id-key">Type</div><div class="id-val">4w5 &#183; INFJ</div></div>
       <div class="id-cell"><div class="id-key">Stacking</div><div class="id-val">SX/SO &#183; SP blind</div></div>
-      <div class="id-cell"><div class="id-key">Integration</div><div class="id-val">toward 8</div></div>
-      <div class="id-cell"><div class="id-key">Disintegration</div><div class="id-val">toward 7</div></div>
+      <div class="id-cell"><div class="id-key">Integration</div><div class="id-val">toward 1</div></div>
+      <div class="id-cell"><div class="id-key">Disintegration</div><div class="id-val">toward 2</div></div>
       <div class="id-cell"><div class="id-key">System</div><div class="id-val">High-gain</div></div>
-      <div class="id-cell"><div class="id-key">Risk pattern</div><div class="id-val">Noise &#8594; wound &#8594; spiral</div></div>
+      <div class="id-cell"><div class="id-key">Stack</div><div class="id-val">Ni-Fe-Ti-Se</div></div>
     </div>
     <div class="sdiv" style="margin-top:14px">Core wounds</div>
     <div style="font-size:13px;line-height:1.8;color:var(--text2)">
@@ -823,7 +871,10 @@ var REGI=[
   {id:'urgency',tx:'I feel I must act, decide, or communicate something important right now',votes:{7:2,8:2,10:1},prod:true},
   {id:'body',tx:'My body is pulling my attention — exhaustion, hunger, physical discomfort',votes:{8:3,6:1},prod:false},
   {id:'compulsion',tx:'I am seeking reassurance or repeating the same thought loop',votes:{8:2,9:3,7:1},prod:false},
-  {id:'panic',tx:'I feel completely overwhelmed — body shaking, mind blanking, or feeling unreal',votes:{10:3,9:1,8:1},prod:false}
+  {id:'panic',tx:'I feel completely overwhelmed — body shaking, mind blanking, or feeling unreal',votes:{10:3,9:1,8:1},prod:false},
+  {id:'thinking',tx:'My thinking has shifted from directed to self-generating \u2014 pattern recognition running at full volume, everything connecting',votes:{7:3,8:2},prod:true},
+  {id:'heroexhaust',tx:'I have been carrying more than is mine \u2014 exhaustion or resentment building (4\u21922 disintegration)',votes:{6:2,7:2,8:1},prod:false},
+  {id:'punitive',tx:'I notice a shift toward wanting to expose, punish, or force consequences on someone',votes:{7:2,8:3,9:1},prod:false}
 ];
 var RLB={1:'Silent awareness',2:'Meta-awareness',3:'Observing ego',4:'Integrated presence',5:'Engaged self',6:'Emotional identity',7:'Narrative ego',8:'Sensory immersion',9:'Flow / trance',10:'Raw survival'};
 var RST={
@@ -862,7 +913,7 @@ var BODY_TIPS={
   chest:{n:'Chest tight / shallow breathing',t:'Extend your exhales deliberately.',w:'shallow breathing maintains sympathetic activation',psy:'Hyperventilation pattern'},
   gut:{n:'Gut tension / nausea',t:'Warm fluids. Reduce information intake.',w:'visceral sensitivity often leads cognitive awareness',psy:'Gut-brain axis activation'},
   head:{n:'Head pressure',t:'Hydrate. Screen break.',w:'tension headache is one of the clearest signals of cognitive overload',psy:'Tension-type headache'},
-  neglect:{n:'Self-care being overridden',t:'Name the thing you are skipping. Do the care task now. Not later.',w:'overriding self-care signals is how small costs compound into structural damage',psy:'Self-neglect under load'}
+  neglect:{n:'Self-care being overridden',t:'Name the thing you are skipping. Do the care task now. Not later.',w:'overriding self-care signals is how small costs compound into structural damage',psy:'Behavioural pattern: self-neglect under load'}
 };
 
 // Noise items — family
@@ -896,7 +947,10 @@ var OUT_NOISE=[
   {id:'motives',tx:'I am assigning motives I cannot verify'},
   {id:'withdraw',tx:'I am withdrawing from something that might actually be safe'},
   {id:'perform',tx:'I am performing competence instead of just being competent'},
-  {id:'test',tx:'I am testing this person against standards they do not know about'}
+  {id:'test',tx:'I am testing this person against standards they do not know about'},
+  {id:'idealise',tx:'I am investing more in this person than evidence supports'},
+  {id:'resonance',tx:'This person activates my thinking and I notice I cannot easily stop'},
+  {id:'substprox',tx:'This person normalises substances or minimises my history'}
 ];
 
 // Catastrophising
@@ -953,7 +1007,8 @@ var SOC_ITEMS=[
   {id:'small',tx:'I am becoming smaller or less clear than I actually am'},
   {id:'authfawn',tx:'I am deferring because of their position, not because they are right'},
   {id:'authund',tx:'I am letting someone override my decision without pushback'},
-  {id:'helpless',tx:'I feel helpless watching someone being harmed and unable to intervene'}
+  {id:'helpless',tx:'I feel helpless watching someone being harmed and unable to intervene'},
+  {id:'absorb',tx:'I am absorbing this person\'s emotional state as though it were my own (Fe absorption)'}
 ];
 
 // Games
@@ -1049,7 +1104,9 @@ var TAPER_ITEMS=[
   {id:'urg',tx:'No unusual urgency or heightened significance'},
   {id:'sub',tx:'No increase in use of prohibited substances'},
   {id:'tspd',tx:'My thought speed feels normal'},
-  {id:'mood',tx:'My mood feels stable'}
+  {id:'mood',tx:'My mood feels stable'},
+  {id:'ext',tx:'Someone who sees me clearly would agree with my current read of things'},
+  {id:'cessation',tx:'I have not recently stopped any substance abruptly'}
 ];
 
 // Quit items
@@ -1168,6 +1225,7 @@ function doQuickReg(){
   h+='<div class="reg-grid"><div class="reg-cell"><div class="reg-key">Attention</div><div class="reg-val">'+st.a+'</div></div><div class="reg-cell"><div class="reg-key">Brakes</div><div class="reg-val">'+st.b+'</div></div><div class="reg-cell"><div class="reg-key">Choice</div><div class="reg-val">'+st.c+'</div></div></div>';
   h+='<div class="reg-grid"><div class="reg-cell" style="grid-column:span 2"><div class="reg-key">Braking against</div><div class="reg-val">'+st.ba+'</div></div><div class="reg-cell"><div class="reg-key">Salience</div><div class="reg-val">'+st.s+'</div></div></div>';
   h+='<div style="margin-top:8px;padding:10px 12px;border-radius:var(--r);border-left:3px solid var(--info-bdr);background:var(--info-bg);color:var(--info-text);font-size:13px;line-height:1.6">'+st.m+'</div>';
+  if(lvl>=6)h+='<div class="al al-warn" style="margin-top:8px"><strong>Regulation 6+. Hard brake active.</strong> No decisions, no communications, no responses for 2 hours. This is not a suggestion \u2014 it is a structural hold. Use Ground. Hydrate. Move.</div>';
   if(lvl>=7)h+='<div style="margin-top:8px"><button class="btn btn-calm" onclick="openGround(\'activated\')">Open Ground</button></div>';
   document.getElementById('reg-pill').textContent='Level '+lvl+' — '+RLB[lvl];
   document.getElementById('reg-pill').style.background=lvl<=3?'var(--info-bg)':lvl<=5?'var(--ok-bg)':lvl<=7?'var(--warn-bg)':'var(--alert-bg)';
@@ -1195,9 +1253,15 @@ function doReg(){
   h+='<div class="reg-grid"><div class="reg-cell"><div class="reg-key">Choice</div><div class="reg-val">'+st.c+'</div></div><div class="reg-cell" style="grid-column:span 2"><div class="reg-key">Braking against</div><div class="reg-val">'+st.ba+'</div></div></div>';
   h+='<div style="margin-top:8px;padding:10px 12px;border-radius:var(--r);border-left:3px solid var(--info-bdr);background:var(--info-bg);color:var(--info-text);font-size:13px;line-height:1.6">'+st.m+'</div>';
   if(ps){h+='<div class="reg-psych"><div class="reg-psych-desc">'+ps.desc+'</div><div class="reg-psych-row"><div class="reg-psych-lbl">Ego state</div><div class="reg-psych-val">'+ps.ego+'</div></div><div class="reg-psych-row"><div class="reg-psych-lbl">Self & object</div><div class="reg-psych-val">'+ps.self+'</div></div><div class="reg-psych-row"><div class="reg-psych-lbl">Defence</div><div class="reg-psych-val">'+ps.defence+'</div></div></div>';}
-  if(pf)h+='<div class="al al-alert" style="margin-top:8px"><strong>Prodrome signals present.</strong> Name the signal. Do not act on any impulse connected to it today.</div>';
-  else if(lvl>=7)h+='<div class="al al-warn" style="margin-top:8px">At this level your analysis will distort. Use Ground first.</div>';
-  h+='<div class="ri-psy" style="margin-top:6px">Window of tolerance '+(lvl<=5?'open':lvl<=7?'narrowing':'closed')+'</div>';
+  if(pf)h+='<div class="al al-alert" style="margin-top:8px"><strong>Prodrome signals present.</strong> Name the signal. Do not act on any impulse connected to it today. Reduce stimulation, hydrate, use Ground, tell your confidant.</div>';
+  if(lvl>=6)h+='<div class="al al-warn" style="margin-top:8px"><strong>Regulation 6+. Hard brake.</strong> No decisions, no communications, no responses for 2 hours. Use Ground. Hydrate. Move.</div>';
+  // Shadow switch detection
+  var heroActive=sel.has('heroexhaust');var punitiveActive=sel.has('punitive');
+  if(heroActive&&punitiveActive)h+='<div class="al al-alert" style="margin-top:8px"><strong>Shadow switch risk.</strong> Hero exhaustion + punitive impulse = the collapse point. This is where the Facebook accusations, the emails, the acting out came from. Do not act on anything right now. Ground. Tell your confidant. No communications until tomorrow.</div>';
+  else if(punitiveActive)h+='<div class="al al-warn" style="margin-top:8px"><strong>Punitive impulse detected.</strong> The urge to expose, punish, or force consequences is the persecutory shadow firing. It feels righteous. It is not. Document what you want to say. Read it tomorrow. Do not send anything today.</div>';
+  else if(heroActive)h+='<div class="al al-info" style="margin-top:8px"><strong>4\u21922 disintegration active.</strong> Over-giving, rescuing, earning visibility through sacrifice. This is how a 4 tries to be seen \u2014 it does not work and it feeds the psychosis loop. Name what you can put down today. You are not the hero. You are a person building freedom.</div>';
+  if(sel.has('thinking'))h+='<div class="al al-warn" style="margin-top:8px"><strong>Ni with volume too high.</strong> Pattern recognition running past convergence \u2014 everything connecting, everything significant. This feels like insight. It is not. It is your high-gain system amplifying Ni past the point where it can sort. Turn down the gain: physiological sigh, cold water, move your body. The body is the volume knob.</div>';
+  h+='<div style="font-size:11px;color:var(--text3);font-style:italic;margin-top:6px">Window of tolerance '+(lvl<=5?'open':lvl<=7?'narrowing':'closed')+'</div>';
   document.getElementById('reg-pill').textContent='Level '+lvl+' — '+RLB[lvl];
   show('r-reg',h);
 }
@@ -1205,7 +1269,7 @@ function doReg(){
 function doBody(){
   var checked=[...document.querySelectorAll('#b-list .chk-row')].filter(r=>r.querySelector('input').checked);
   if(!checked.length){show('r-body','<span class="ri-ok">No body signals present right now.</span>');return;}
-  var h='';checked.forEach(function(r){var k=r.querySelector('input').dataset.b;var t=BODY_TIPS[k];if(t)h+='<div class="ri"><div class="ri-name">'+t.n+'</div><div class="ri-action">'+t.t+'</div><div class="ri-why">'+t.w+'</div><div class="ri-psy">'+t.psy+'</div></div>';});
+  var h='';checked.forEach(function(r){var k=r.querySelector('input').dataset.b;var t=BODY_TIPS[k];if(t)h+='<div class="ri"><div class="ri-name">'+t.n+'</div><div class="ri-action">'+t.t+'</div><div class="ri-why">'+t.w+'</div><div class="ri-psy" style="font-size:11px;color:var(--text3);font-style:italic;margin-top:4px">'+t.psy+'</div></div>';});
   show('r-body',h);
 }
 
@@ -1217,8 +1281,9 @@ function doNoise(){
   if(keys.some(k=>['old','seen','benefit','reject'].includes(k)))h+='<div class="al al-info"><strong>Core wound activated.</strong> The wound and the situation are two separate events. Name the wound. Then name what actually happened. Respond to today, not to then.</div>';
   checked.forEach(function(r){var k=r.querySelector('input').dataset.n;
     var nm={ctx:'Missing context',old:'Older trigger',benefit:'Self-doubt serves someone',noev:'No evidence given',defend:'Urge to defend',seen:'Feeling unseen',rumi:'Rumination loop',truth:'Truth denied',reject:'Rejection wound',project:'Projection received'};
+    var psy={ctx:'Confirmation bias from partial data',old:'Trauma re-activation (amygdala hijack)',benefit:'Gaslighting internalisation',noev:'Competence schema threat',defend:'Ego syntonic defence activation',seen:'4 core wound: identity not reflected (Fe hunger)',rumi:'Default mode network perseveration',truth:'Reality testing under social pressure',reject:'Rejection sensitivity dysphoria',project:'Projective identification received'};
     var act={ctx:'Name what they do not know. Their reading is based on incomplete information. You do not need to correct them unless it serves you.',old:'Name the older event. Then name what happened today. Respond to today.',benefit:'Name who benefits from you doubting yourself. If someone gains control when you question your perception, the doubt is theirs, placed in you.',noev:'An opinion without evidence is data about their limitations, not your competence. Ask for specifics. If none come, the conversation is over.',defend:'The urge is from the wound, not the situation. State your position once. Stop.',seen:'They cannot see you. Stop expecting it. What is the next action that does not require their recognition?',rumi:'Write down three facts. Close the document. Walk away for 20 minutes.',truth:'What happened is not negotiable. Write it down before the reframe settles in.',reject:'Name what actually happened — did they reject you, or is your system reading it as rejection? One breath before responding from this place.',project:'The judgement is about their framework. Do not absorb it. Let it land between you, not inside you.'};
-    h+='<div class="ri"><div class="ri-name">'+(nm[k]||k)+'</div><div class="ri-action">'+(act[k]||'')+'</div></div>';
+    h+='<div class="ri"><div class="ri-name">'+(nm[k]||k)+'</div><div class="ri-action">'+(act[k]||'')+'</div>'+(psy[k]?'<div style="font-size:11px;color:var(--text3);font-style:italic;margin-top:4px">'+psy[k]+'</div>':'')+'</div>';
   });
   if(relChecked.length){
     h+='<div class="sdiv">Relationship patterns</div>';
@@ -1250,9 +1315,14 @@ function doOutNoise(){
   var checked=[...document.querySelectorAll('#out-noise-list .chk-row')].filter(r=>r.querySelector('input').checked);
   if(!checked.length){show('r-out-noise','<span class="ri-ok">No outside-system patterns active.</span>');return;}
   var h='';
-  if(checked.length>=2)h+='<div class="al al-warn" style="margin-bottom:8px"><strong>Your system is mapping family patterns onto someone outside your system.</strong> Slow down. This person may not be doing what it feels like they are doing.</div>';
-  var nm={mapping:'Reading through a home pattern',intensity:'Reacting with disproportionate intensity',motives:'Assigning unverifiable motives',withdraw:'Withdrawing from potential safety',perform:'Performing competence',test:'Testing against hidden standards'};
-  var act={mapping:'Name the family pattern you recognise. Then ask: is this person actually doing this, or does it feel familiar?',intensity:'The intensity belongs to the wound, not this person. They have not earned this level of reaction. Scale back.',motives:'You do not have enough data. Gather more before acting on the interpretation.',withdraw:'The withdrawal reflex protects you from family. It may be blocking something safe. Stay open one step longer than feels comfortable.',perform:'You do not need to prove yourself to this person. Being competent is enough. Drop the performance.',test:'They do not know your test. Name what you actually need from this interaction and ask for it directly.'};
+  var substFlag=checked.some(function(r){return r.querySelector('input').dataset.out==='substprox';});
+  var resFlag=checked.some(function(r){return r.querySelector('input').dataset.out==='resonance';});
+  if(substFlag)h+='<div class="al al-alert" style="margin-bottom:8px"><strong>Substance proximity detected.</strong> This person\'s relationship with substances is structurally incompatible with your sobriety. No intellectual value justifies the risk. This is non-negotiable.</div>';
+  else if(checked.length>=2)h+='<div class="al al-warn" style="margin-bottom:8px"><strong>Your system is mapping family patterns onto someone outside your system.</strong> Slow down. This person may not be doing what it feels like they are doing.</div>';
+  if(resFlag&&!substFlag)h+='<div class="al al-info" style="margin-bottom:8px"><strong>Resonance risk.</strong> This person activates your Ni at a depth that feels valuable. Check: are you more regulated or less regulated after this interaction? If less \u2014 they are a cost, not a connection, regardless of the quality of the thinking.</div>';
+  var nm={mapping:'Reading through a home pattern',intensity:'Reacting with disproportionate intensity',motives:'Assigning unverifiable motives',withdraw:'Withdrawing from potential safety',perform:'Performing competence',test:'Testing against hidden standards',idealise:'Idealising beyond evidence',resonance:'Thinking engine activated — cannot stop',substprox:'Substance proximity risk'};
+  var act={mapping:'Name the family pattern you recognise. Then ask: is this person actually doing this, or does it feel familiar?',intensity:'The intensity belongs to the wound, not this person. They have not earned this level of reaction. Scale back.',motives:'You do not have enough data. Gather more before acting on the interpretation.',withdraw:'The withdrawal reflex protects you from family. It may be blocking something safe. Stay open one step longer than feels comfortable.',perform:'You do not need to prove yourself to this person. Being competent is enough. Drop the performance.',test:'They do not know your test. Name what you actually need from this interaction and ask for it directly.',idealise:'Check the evidence. What has this person actually demonstrated? Separate what they are from what you want them to be.',resonance:'Name the cost. Is this interaction worth what it takes from your regulation budget today? Set a time limit. Check regulation after.',substprox:'This person\'s relationship with substances is incompatible with your sobriety. No intellectual value justifies proximity to normalised use. This is structural.'};
+  var nm2={mapping:'Reading through home pattern',intensity:'Disproportionate reaction',motives:'Assigning unverifiable motives',withdraw:'Withdrawing from safety',perform:'Performing competence',test:'Testing against hidden standards',idealise:'Idealising beyond evidence',resonance:'Thinking engine activated',substprox:'Substance proximity risk'};
   checked.forEach(function(r){var k=r.querySelector('input').dataset.out;h+='<div class="ri"><div class="ri-name">'+(nm[k]||k)+'</div><div class="ri-action">'+(act[k]||'')+'</div></div>';});
   h+='<div class="prompt">Is this person doing what the wound says they are doing, or does it feel like something you recognise?</div>';
   show('r-out-noise',h);
@@ -1263,10 +1333,10 @@ function doDistort(){
   var drows=[...document.querySelectorAll('#dist-list .chk-row')].filter(r=>r.querySelector('input').checked);
   if(!crows.length&&!drows.length){show('r-distort','<span class="ri-ok">No distortion patterns present.</span>');return;}
   var h='';
-  var cm={cat1:{n:'Treating possible as certain',t:'Name the most realistic outcome.'},cat2:{n:'Pre-emptive failure',t:'You have not failed yet. Name what has actually happened.'},cat3:{n:'Guilt after boundary',t:'What did you do wrong? If no clear answer, this is catastrophising as conscience.'},cat4:{n:'Predicting permanent judgement',t:'Return to what is actually known now.'},cat5:{n:'Temporary feels permanent',t:'Name one thing that changed in the last month.'},cat6:{n:'Reading emotions as confirmation',t:'Their emotional state is not evidence of your fear.'},cat7:{n:'Urgency illusion',t:'What breaks if this does not happen in the next hour?'}};
-  crows.forEach(function(r){var k=r.querySelector('input').dataset.c;if(cm[k])h+='<div class="ri"><div class="ri-name">'+cm[k].n+'</div><div class="ri-action">'+cm[k].t+'</div></div>';});
-  var dm={all:{n:'All-or-nothing',t:'Find one exception to the binary.'},emo:{n:'Feelings as evidence',t:'Name the feeling and the fact separately.'},mind:{n:'Mind reading',t:'What do you actually know? What are you adding?'},should:{n:'Rigid shoulds',t:'Replace should with prefer or choose.'},pers:{n:'Carrying what is not mine',t:'Name what is yours and what belongs to the other person.'},mini:{n:'Minimising needs',t:'Name one thing you need today.'},ref:{n:'Reframing too quickly',t:'Let the discomfort be present for one breath.'},spot:{n:'Spotlight effect',t:'Others are attending to their own concerns.'},burden:{n:'Needs as burden',t:'Expressing a need is information, not imposition.'},conn:{n:'Adjusting to maintain connection',t:'Letting connection exist with less self-adjustment may feel lighter.'},neg:{n:'Negativity bias',t:'Name one thing that is working today.'},affect:{n:'Emotions feel unsafe',t:'The emotion is information. Stay with it for one breath.'},attrib:{n:'Character attribution',t:'Separate the person from the context.'}};
-  drows.forEach(function(r){var k=r.querySelector('input').dataset.d;if(dm[k])h+='<div class="ri"><div class="ri-name">'+dm[k].n+'</div><div class="ri-action">'+dm[k].t+'</div></div>';});
+  var cm={cat1:{n:'Treating possible as certain',t:'Name the most realistic outcome.',psy:'Probability neglect / catastrophic cognition'},cat2:{n:'Pre-emptive failure',t:'You have not failed yet. Name what has actually happened.',psy:'Anticipatory anxiety / learned helplessness'},cat3:{n:'Guilt after boundary',t:'What did you do wrong? If no clear answer, this is catastrophising as conscience.',psy:'Superego activation post-assertion'},cat4:{n:'Predicting permanent judgement',t:'Return to what is actually known now.'},cat5:{n:'Temporary feels permanent',t:'Name one thing that changed in the last month.',psy:'Permanence distortion'},cat6:{n:'Reading emotions as confirmation',t:'Their emotional state is not evidence of your fear.'},cat7:{n:'Urgency illusion',t:'What breaks if this does not happen in the next hour?'}};
+  crows.forEach(function(r){var k=r.querySelector('input').dataset.c;if(cm[k])h+='<div class="ri"><div class="ri-name">'+cm[k].n+'</div><div class="ri-action">'+cm[k].t+'</div>'+(cm[k].psy?'<div style="font-size:11px;color:var(--text3);font-style:italic;margin-top:4px">'+cm[k].psy+'</div>':'')+'</div>';});
+  var dm={all:{n:'All-or-nothing',t:'Find one exception to the binary.',psy:'Splitting / dichotomous thinking'},emo:{n:'Feelings as evidence',t:'Name the feeling and the fact separately.',psy:'Emotional reasoning (Ni-Fe fusion under load)'},mind:{n:'Mind reading',t:'What do you actually know? What are you adding?',psy:'Theory of mind over-extension (Fe overreach)'},should:{n:'Rigid shoulds',t:'Replace should with prefer or choose.'},pers:{n:'Carrying what is not mine',t:'Name what is yours and what belongs to the other person.',psy:'Hyper-responsibility (Fe + hero drive)'},mini:{n:'Minimising needs',t:'Name one thing you need today.'},ref:{n:'Reframing too quickly',t:'Let the discomfort be present for one breath.'},spot:{n:'Spotlight effect',t:'Others are attending to their own concerns.'},burden:{n:'Needs as burden',t:'Expressing a need is information, not imposition.'},conn:{n:'Adjusting to maintain connection',t:'Letting connection exist with less self-adjustment may feel lighter.',psy:'Fe accommodation / false self presentation'},neg:{n:'Negativity bias',t:'Name one thing that is working today.'},affect:{n:'Emotions feel unsafe',t:'The emotion is information. Stay with it for one breath.'},attrib:{n:'Character attribution',t:'Separate the person from the context.',psy:'Fundamental attribution error'}};
+  drows.forEach(function(r){var k=r.querySelector('input').dataset.d;if(dm[k])h+='<div class="ri"><div class="ri-name">'+dm[k].n+'</div><div class="ri-action">'+dm[k].t+'</div>'+(dm[k].psy?'<div style="font-size:11px;color:var(--text3);font-style:italic;margin-top:4px">'+dm[k].psy+'</div>':'')+'</div>';});
   h+='<div class="prompt">Is what you are experiencing a prediction or a fact?</div>';
   show('r-distort',h);
 }
@@ -1276,7 +1346,7 @@ function doScan(){
   var sb=[...document.querySelectorAll('#soc-list .chk-row')].filter(r=>r.querySelector('input').checked);
   if(!bb.length&&!sb.length){show('r-scan','<span class="ri-ok">No boundary pressure or drift present.</span>');return;}
   var bm={time:{n:'Time assumed',t:'I am not available for that.'},no:{n:'No being pushed past',t:'My answer is still no.'},priv:{n:'Privacy probed',t:'I prefer not to discuss that.'},dis:{n:'State dismissed',t:'I see it differently.'},shift:{n:'Responsibility shifted',t:'That is yours to handle.'},guilt:{n:'Guilt as leverage',t:'I understand, and my answer is no.'},rush:{n:'Decision rushed',t:'I will respond after I have had time to think.'},comp:{n:'Competence undermined',t:'That is the decision. Do not defend it.'},drain:{n:'Emptied after contact',t:'Reduce duration and frequency.'}};
-  var sm={wd:{n:'Excess withdrawal',t:'One small act of re-engagement.'},oe:{n:'Over-explaining',t:'Stop at the first complete sentence.'},fawn:{n:'False agreement',t:'Say nothing rather than agree with something false.'},give:{n:'Over-giving',t:'Name what is yours to give. Give that. Stop.'},resent:{n:'Resentment',t:'The resentment is the signal. Adjust the boundary.'},snap:{n:'Disproportionate force',t:'One breath before you respond.'},numb:{n:'Emotional flattening',t:'Name one emotion internally.'},scan:{n:'Tracking their read',t:'Return attention to what you actually feel.'},small:{n:'Becoming smaller',t:'Name one thing you actually think about this.'},authfawn:{n:'Authority fawning',t:'Their position does not make them right. What structure prevents this recurring?'},authund:{n:'Authority undermined',t:'You already took a position. Abandoning it without new evidence is capitulation.'},helpless:{n:'Helplessness about harm',t:'Name what is within your control. If nothing, this is not your task today.'}};
+  var sm={wd:{n:'Excess withdrawal',t:'One small act of re-engagement.'},oe:{n:'Over-explaining',t:'Stop at the first complete sentence.'},fawn:{n:'False agreement',t:'Say nothing rather than agree with something false.'},give:{n:'Over-giving',t:'Name what is yours to give. Give that. Stop.'},resent:{n:'Resentment',t:'The resentment is the signal. Adjust the boundary.'},snap:{n:'Disproportionate force',t:'One breath before you respond.'},numb:{n:'Emotional flattening',t:'Name one emotion internally.'},scan:{n:'Tracking their read',t:'Return attention to what you actually feel.'},small:{n:'Becoming smaller',t:'Name one thing you actually think about this.'},authfawn:{n:'Authority fawning',t:'Their position does not make them right. What structure prevents this recurring?'},authund:{n:'Authority undermined',t:'You already took a position. Abandoning it without new evidence is capitulation.'},helpless:{n:'Helplessness about harm',t:'Name what is within your control. If nothing, this is not your task today.'},absorb:{n:'Fe absorption',t:'This is their emotional state, not yours. Name what you actually feel underneath what you absorbed. Ground before responding \u2014 you cannot regulate for both of you.'}};
   var h='';
   if(bb.length>=4)h+='<div class="al al-warn" style="margin-bottom:8px"><strong>High boundary pressure.</strong> Physiological sigh before responding. 9 seconds.</div>';
   if(bb.length){h+='<div class="sdiv" style="margin-top:0">Boundary pressure</div>';bb.forEach(function(r){var k=r.querySelector('input').dataset.bv;if(bm[k])h+='<div class="ri"><div class="ri-name">'+bm[k].n+'</div><div class="ri-action">'+bm[k].t+'</div></div>';});}
@@ -1310,11 +1380,11 @@ function doEffort(){
   var sb=[...document.querySelectorAll('#sb-list .chk-row')].filter(r=>r.querySelector('input').checked);
   var pp=[...document.querySelectorAll('#proc-list .chk-row')].filter(r=>r.querySelector('input').checked);
   if(!ep.length&&!sb.length&&!pp.length){show('r-effort','<span class="ri-ok">No patterns flagged.</span>');return;}
-  var em={burst:{n:'Intensity burst',t:'Build the stop into the next block. One hour then break.'},phil:{n:'Philosophical drift',t:'Name the next physical action before continuing thinking.'},spblind:{n:'SP blind override',t:'Check body signals now. If 90+ minutes without break, stop.'},fatigue:{n:'Effort despite fatigue',t:'Stop. Output past this point costs more to correct than it contributes.'},rest:{n:'Rest anxiety',t:'Name one thing that falls apart if you stop for 30 minutes. If nothing concrete, the anxiety is the distortion.'}};
+  var em={burst:{n:'Intensity burst',t:'Build the stop into the next block. One hour then break. If this is the third burst this week, the hero drive may be active \u2014 check whether you are carrying more than is yours.',psy:'Pattern: ultradian dysregulation \u2192 hero drive mechanism'},phil:{n:'Philosophical drift',t:'Name the next physical action before continuing thinking.'},spblind:{n:'SP blind override',t:'Check body signals now. If 90+ minutes without break, stop.'},fatigue:{n:'Effort despite fatigue',t:'Stop. Output past this point costs more to correct than it contributes.'},rest:{n:'Rest anxiety',t:'Name one thing that falls apart if you stop for 30 minutes. If nothing concrete, the anxiety is the distortion.'}};
   var sm={abstr:{n:'Abstraction as avoidance',t:'Name the concrete task. Do that first.'},iso:{n:'Isolation under pressure',t:'One brief contact today. Co-regulation is how you get back to steady.'},sov:{n:'Sovereignty as avoidance',t:'Asking for help does not compromise independence.'},perf:{n:'Over-optimisation',t:'Name what works well enough. Ship or move on.'},flaw:{n:'Attention narrowing to flaws',t:'Name one thing working today before continuing.'},worth:{n:'Contingent self-worth',t:'Your value is not produced by your output today.'},image:{n:'Performance emphasis',t:'Who am I doing this for right now?'}};
   var pm={switch:{n:'Task avoidance',t:'Return to the task you left. The friction marks the real work.'},depth:{n:'Depth without movement',t:'One concrete thing done imperfectly moves work forward more than analysis.'},ready:{n:'Readiness condition',t:'Clarity follows action, not the other way round. Smallest next step.'},restart:{n:'Restarting instead of continuing',t:'Open what you have. Continue from the last point. Do not start over.'},later:{n:'Deferring to better conditions',t:'Conditions will not be better later. They will be the same, plus the weight of postponing.'},large:{n:'Task too large',t:'Name one piece under 10 minutes. Do that.'},outcome:{n:'Outcome-loaded avoidance',t:'The first step is not a commitment to the final outcome.'}};
   var h='';
-  ep.forEach(function(r){var k=r.querySelector('input').dataset.e;if(em[k])h+='<div class="ri"><div class="ri-name">'+em[k].n+'</div><div class="ri-action">'+em[k].t+'</div></div>';});
+  ep.forEach(function(r){var k=r.querySelector('input').dataset.e;if(em[k])h+='<div class="ri"><div class="ri-name">'+em[k].n+'</div><div class="ri-action">'+em[k].t+'</div>'+(em[k].psy?'<div style="font-size:11px;color:var(--text3);font-style:italic;margin-top:4px">'+em[k].psy+'</div>':'')+'</div>';});
   if(sb.length){h+='<div class="sdiv">Structural bias</div>';sb.forEach(function(r){var k=r.querySelector('input').dataset.s2;if(sm[k])h+='<div class="ri"><div class="ri-name">'+sm[k].n+'</div><div class="ri-action">'+sm[k].t+'</div></div>';});}
   if(pp.length){h+='<div class="sdiv">Procrastination</div>';pp.forEach(function(r){var k=r.querySelector('input').dataset.p;if(pm[k])h+='<div class="ri"><div class="ri-name">'+pm[k].n+'</div><div class="ri-action">'+pm[k].t+'</div></div>';});}
   h+='<div class="prompt">What is the next concrete action — not the next thought about the action?</div>';
@@ -1508,6 +1578,23 @@ function initCare(){
 function updReflCtx(){var m=document.getElementById('intent-main');if(!m)return;var b=document.getElementById('reflect-ctx-block');if(m.value.trim()){b.style.display='block';document.getElementById('reflect-ctx-text').textContent=m.value;}else b.style.display='none';}
 
 // ═══════════ INIT ═══════════
+
+// Emotion naming
+var EMOTIONS=['Angry','Afraid','Sad','Ashamed','Helpless','Rejected','Unseen','Overwhelmed','Resentful','Numb'];
+function buildEmoPicker(containerId){
+  var el=document.getElementById(containerId);if(!el)return;
+  EMOTIONS.forEach(function(emo){
+    var btn=document.createElement('button');
+    btn.style.cssText='padding:6px 12px;border-radius:20px;border:1px solid var(--bdr2);background:transparent;color:var(--text2);font-size:12px;cursor:pointer;font-family:inherit';
+    btn.textContent=emo;
+    btn.onclick=function(){
+      el.querySelectorAll('button').forEach(function(b){b.style.background='transparent';b.style.color='var(--text2)';b.style.borderColor='var(--bdr2)';});
+      btn.style.background='var(--calm-bg)';btn.style.color='var(--calm)';btn.style.borderColor='var(--calm-bdr)';
+    };
+    el.appendChild(btn);
+  });
+}
+
 function init(){
   // Build all checklists
   buildChkList('b-list',BODY_ITEMS,'b');
@@ -1532,6 +1619,8 @@ function init(){
   buildChkList('land-check-list',LAND_ITEMS,'l');
   buildTaperList();
   buildQuitList();
+  buildEmoPicker('emo-pick');
+  buildEmoPicker('emo-pick-sit');
   initCare();
 }
 init();
