@@ -590,7 +590,7 @@ body{
     <div class="card-title" style="color:var(--alert)">Craving active</div>
     <div class="card-desc">This craving will peak and pass in 3-5 minutes. You only need to get through this one.</div>
     <div class="al al-alert" style="margin:0 0 10px"><strong>The chain:</strong> Cigarettes &#8596; Pornography &#8594; Cannabis &#8594; Psychosis. Either entry point lowers the threshold for the next. Breaking any link protects the chain from completing.</div>
-    <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9632;</span><div><div class="csec-nm">HALT check</div><div class="csec-ds">What is the real need?</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="halt-list" class="chk-list"></div></div></div>
+    <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9632;</span><div><div class="csec-nm">HALT check</div><div class="csec-ds">What is the real need?</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="halt-list" class="chk-list"><button class="btn" onclick="event.stopPropagation();doHALT()">Notice</button><div class="result" id="r-halt"></div></div></div></div>
     <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9888;</span><div><div class="csec-nm">What you lose</div><div class="csec-ds">The cost of completing the chain</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div style="font-size:13px;line-height:1.8;color:var(--text2)"><div>5th episode. Warehousing. Career gone.</div><div>Every month of sobriety erased.</div><div>The exit plan dies.</div><div>They were right about you.</div><div>The craving is not about the substance. It is about regulation.</div></div></div></div>
     <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9654;</span><div><div class="csec-nm">Do this now</div><div class="csec-ds">Delay, breathe, water, call, move</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div style="font-size:13px;line-height:1.8;color:var(--text2)"><div><strong style="color:var(--text)">Delay</strong> — 5 minutes.</div><div><strong style="color:var(--text)">Breathe</strong> — Tap Ground.</div><div><strong style="color:var(--text)">Drink water</strong> — Slowly.</div><div><strong style="color:var(--text)">Call your confidant</strong></div><div><strong style="color:var(--text)">Change the scene</strong></div></div></div></div>
     <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9733;</span><div><div class="csec-nm">Quit tools</div><div class="csec-ds">What am I using today</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="quit-tools"></div><button class="btn" onclick="event.stopPropagation();runQuit()">Check support status</button><div class="taper-status" id="qc-status"></div></div></div>
@@ -606,6 +606,7 @@ body{
     <div class="card-desc">The fight is legitimate. Check whether the wound is running alongside it.</div>
     <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9632;</span><div><div class="csec-nm">Intensity + certainty</div><div class="csec-ds">Check before the next action</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="sdiv" style="margin-top:0">Intensity level right now</div><div class="intensity-bar" id="int-bar"></div><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-bottom:12px"><span>Low</span><span>High</span></div><div class="sdiv">Certainty level right now</div><div class="intensity-bar" id="cert-bar"></div><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-bottom:12px"><span>Uncertain</span><span>Certain</span></div><button class="btn" onclick="event.stopPropagation();doLandCheck()">Notice</button><div class="result" id="r-land"></div></div></div>
     <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9679;</span><div><div class="csec-nm">Wound check</div><div class="csec-ds">Is the wound running alongside the fight?</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="land-check-list" class="chk-list"></div></div></div>
+    <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9670;</span><div><div class="csec-nm">Which wound is running</div><div class="csec-ds">Select and get guidance</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="wound-pick-land" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px"></div><button class="btn" onclick="event.stopPropagation();doWoundPick()">Notice</button><div class="result" id="r-wound-pick"></div></div></div>
     <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9654;</span><div><div class="csec-nm">Next legal steps</div><div class="csec-ds">Decoupled from emotion</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div style="font-size:12px;line-height:1.7;color:var(--text2)"><div>1. SIC Second Appeal (RTI deemed refusal)</div><div>2. CCLA forensic audit request</div><div>3. Part-B correction (Bhu Bharati Act)</div><div>4. Lokayukta complaint</div><div>5. FIR under IT Act Sec 66C, 66D, 65</div><div>6. HC writ if all channels fail</div></div></div></div>
   </div>
 </div>
@@ -1102,13 +1103,16 @@ var TAPER_ITEMS=[
 // Quit items
 var QUIT_ITEMS=[
   {id:'patch',tx:'Nicotine patch on'},
-  {id:'gum',tx:'Nicotine gum or lozenge available'},
   {id:'exercise',tx:'Exercised or moved today'},
   {id:'water',tx:'Hydrating consistently'},
   {id:'hands',tx:'Keeping hands busy'},
-  {id:'oral',tx:'Oral substitute — toothpick, straw, cinnamon stick'},
+  {id:'oral',tx:'Oral substitute \u2014 toothpick, straw, cinnamon stick'},
   {id:'routine',tx:'Changed the routine around smoking triggers'},
-  {id:'confid',tx:'Told someone I am quitting'}
+  {id:'confid',tx:'Told someone I am quitting'},
+  {id:'pscreen',tx:'Screen time limited \u2014 no private browsing windows open'},
+  {id:'palone',tx:'Not isolating \u2014 staying in shared spaces when urge is present'},
+  {id:'pnamed',tx:'Named the sexual frustration as what it is, not as boredom or restlessness'},
+  {id:'pscene',tx:'Changed the scene \u2014 left the room where the urge started'}
 ];
 
 // Schedule
@@ -1215,8 +1219,10 @@ function doQuickReg(){
   h+='<div class="reg-grid"><div class="reg-cell"><div class="reg-key">Attention</div><div class="reg-val">'+st.a+'</div></div><div class="reg-cell"><div class="reg-key">Choice</div><div class="reg-val">'+st.c+'</div></div><div class="reg-cell"><div class="reg-key">Salience</div><div class="reg-val">'+st.s+'</div></div></div>';
   h+='<div class="reg-grid" style="grid-template-columns:1fr 2fr"><div class="reg-cell"><div class="reg-key">Brakes</div><div class="reg-val">'+st.b+'</div></div><div class="reg-cell"><div class="reg-key">Braking against</div><div class="reg-val">'+st.ba+'</div></div></div>';
   h+='<div style="margin-top:8px;padding:10px 12px;border-radius:var(--r);border-left:3px solid var(--info-bdr);background:var(--info-bg);color:var(--info-text);font-size:13px;line-height:1.6">'+st.m+'</div>';
-  if(lvl>=6)h+='<div class="al al-warn" style="margin-top:8px"><strong>Regulation 6+. Hard brake active.</strong> No decisions, no communications, no responses for 2 hours. This is not a suggestion \u2014 it is a structural hold. Use Ground. Hydrate. Move.</div>';
-  if(lvl>=7)h+='<div style="margin-top:8px"><button class="btn btn-calm" onclick="openGround(\'activated\')">Open Ground</button></div>';
+  var bandPsy={w:'Parasympathetic dominant \u2014 ventral vagal online',e:'Balanced autonomic tone \u2014 window of tolerance',i:'Sympathetic activation beginning \u2014 amygdala priming',c:'Sympathetic dominant \u2014 prefrontal offline',s:'Dorsal vagal or extreme sympathetic \u2014 survival physiology'};
+h+='<div style="font-size:11px;color:var(--text3);font-style:italic;margin-top:6px;margin-bottom:6px">'+(bandPsy[bd]||'')+'</div>';
+if(lvl>=6)h+='<div class="al al-warn" style="margin-top:8px"><strong>Regulation 6+. Hard brake active.</strong> No decisions, no communications, no responses for 2 hours. This is not a suggestion \u2014 it is a structural hold. Use Ground. Hydrate. Move.</div>';
+  if(lvl>=7)h+='<div style="margin-top:8px;font-size:12px;color:var(--text3)">Regulation is high. Use Ground (bottom of screen) before continuing.</div>';
   document.getElementById('reg-pill').textContent='Level '+lvl+' — '+RLB[lvl];
   document.getElementById('reg-pill').style.background=lvl<=3?'var(--info-bg)':lvl<=5?'var(--ok-bg)':lvl<=7?'var(--warn-bg)':'var(--alert-bg)';
   document.getElementById('reg-pill').style.color=lvl<=3?'var(--info-text)':lvl<=5?'var(--ok)':lvl<=7?'var(--warn-text)':'var(--alert)';
@@ -1244,7 +1250,9 @@ function doReg(){
   h+='<div style="margin-top:8px;padding:10px 12px;border-radius:var(--r);border-left:3px solid var(--info-bdr);background:var(--info-bg);color:var(--info-text);font-size:13px;line-height:1.6">'+st.m+'</div>';
   if(ps){h+='<div class="reg-psych"><div class="reg-psych-desc">'+ps.desc+'</div><div class="reg-psych-row"><div class="reg-psych-lbl">Ego state</div><div class="reg-psych-val">'+ps.ego+'</div></div><div class="reg-psych-row"><div class="reg-psych-lbl">Self & object</div><div class="reg-psych-val">'+ps.self+'</div></div><div class="reg-psych-row"><div class="reg-psych-lbl">Defence</div><div class="reg-psych-val">'+ps.defence+'</div></div></div>';}
   if(pf)h+='<div class="al al-alert" style="margin-top:8px"><strong>Prodrome signals present.</strong> Name the signal. Do not act on any impulse connected to it today. Reduce stimulation, hydrate, use Ground, tell your confidant.</div>';
-  if(lvl>=6)h+='<div class="al al-warn" style="margin-top:8px"><strong>Regulation 6+. Hard brake.</strong> No decisions, no communications, no responses for 2 hours. Use Ground. Hydrate. Move.</div>';
+  var bandPsy={w:'Parasympathetic dominant \u2014 ventral vagal online',e:'Balanced autonomic tone \u2014 window of tolerance',i:'Sympathetic activation beginning \u2014 amygdala priming',c:'Sympathetic dominant \u2014 prefrontal offline',s:'Dorsal vagal or extreme sympathetic \u2014 survival physiology'};
+h+='<div style="font-size:11px;color:var(--text3);font-style:italic;margin-top:6px;margin-bottom:6px">'+(bandPsy[bd]||'')+'</div>';
+if(lvl>=6)h+='<div class="al al-warn" style="margin-top:8px"><strong>Regulation 6+. Hard brake.</strong> No decisions, no communications, no responses for 2 hours. Use Ground. Hydrate. Move.</div>';
   // Shadow switch detection
   var heroActive=sel.has('heroexhaust');var punitiveActive=sel.has('punitive');
   if(heroActive&&punitiveActive)h+='<div class="al al-alert" style="margin-top:8px"><strong>Shadow switch risk.</strong> Hero exhaustion + punitive impulse = the collapse point. This is where the Facebook accusations, the emails, the acting out came from. Do not act on anything right now. Ground. Tell your confidant. No communications until tomorrow.</div>';
@@ -1295,8 +1303,14 @@ function doFamNoise(){
   if(!checked.length&&!relChecked.length){show('r-fam-noise','<span class="ri-ok">No signal contamination present.</span>');return;}
   var keys=checked.map(r=>r.querySelector('input').dataset.n);var h='';
   if(keys.some(k=>['old','seen','benefit','reject'].includes(k)))h+='<div class="al al-info"><strong>Core wound activated.</strong> Name the wound. Then name what actually happened. They are not the same.</div>';
-  checked.forEach(function(r){var k=r.querySelector('input').dataset.n;h+='<div class="ri"><div class="ri-name">'+r.querySelector('span').textContent.substring(0,80)+'</div></div>';});
-  if(relChecked.length){h+='<div class="sdiv">Relationship patterns</div>';relChecked.forEach(function(r){h+='<div class="ri"><div class="ri-name">'+r.querySelector('span').textContent.substring(0,80)+'</div></div>';});}
+  var nm={ctx:'Missing context',old:'Older trigger',benefit:'Self-doubt serves someone',noev:'No evidence given',defend:'Urge to defend',seen:'Feeling unseen',rumi:'Rumination loop',truth:'Truth denied',reject:'Rejection wound',project:'Projection received'};
+  var psy={ctx:'Confirmation bias from partial data',old:'Trauma re-activation (amygdala hijack)',benefit:'Gaslighting internalisation',noev:'Competence schema threat',defend:'Ego syntonic defence activation',seen:'4 core wound: identity not reflected (Fe hunger)',rumi:'Default mode network perseveration',truth:'Reality testing under social pressure',reject:'Rejection sensitivity dysphoria',project:'Projective identification received'};
+  var act={ctx:'Name what they do not know. Their reading is based on incomplete information.',old:'Name the older event. Then name what happened today. Respond to today.',benefit:'Who benefits from you doubting yourself right now?',noev:'An opinion without evidence is data about their limitations.',defend:'The urge is from the wound, not the situation. State your position once. Stop.',seen:'They cannot see you. Stop expecting it. What is the next action that does not require their recognition?',rumi:'Write down three facts. Close the document. Walk away for 20 minutes.',truth:'What happened is not negotiable. Write it down before the reframe settles in.',reject:'Name what actually happened \u2014 did they reject you, or is your system reading it as rejection?',project:'The judgement is about their framework. Do not absorb it.'};
+  checked.forEach(function(r){var k=r.querySelector('input').dataset.n;h+='<div class="ri"><div class="ri-name">'+(nm[k]||k)+'</div><div class="ri-action">'+(act[k]||'')+'</div>'+(psy[k]?'<div style="font-size:11px;color:var(--text3);font-style:italic;margin-top:4px">'+psy[k]+'</div>':'')+'</div>';});
+  if(relChecked.length){h+='<div class="sdiv">Relationship patterns</div>';
+    var relAct={norec:'Reduce without announcing.',fbign:'What boundary would make the next occurrence impossible?',careweap:'Name the lever: guilt, responsibility, or rescue.',realrew:'Write down what happened before the reframe settles.',bndpun:'The punishment is proof the boundary was necessary.',triang:'Direct contact only.',credit:'Name your contribution clearly, once, to yourself.',agency:'Name the decision being controlled. Reclaim it.'};
+    var rnm={norec:'No reciprocity',fbign:'Feedback ignored',careweap:'Care weaponised',realrew:'Reality rewritten',bndpun:'Boundaries punished',triang:'Triangulation',credit:'Credit taken',agency:'Agency undermined'};
+    relChecked.forEach(function(r){var k=r.querySelector('input').dataset.nr;h+='<div class="ri"><div class="ri-name">'+(rnm[k]||k)+'</div><div class="ri-action">'+(relAct[k]||'')+'</div></div>';});}
   h+='<div class="prompt">What is the next concrete action? Not the next thought about the action.</div>';
   show('r-fam-noise',h);
 }
@@ -1313,7 +1327,8 @@ function doOutNoise(){
   var nm={mapping:'Reading through a home pattern',intensity:'Reacting with disproportionate intensity',motives:'Assigning unverifiable motives',withdraw:'Withdrawing from potential safety',perform:'Performing competence',test:'Testing against hidden standards',idealise:'Idealising beyond evidence',resonance:'Thinking engine activated — cannot stop',substprox:'Substance proximity risk'};
   var act={mapping:'Name the family pattern you recognise. Then ask: is this person actually doing this, or does it feel familiar?',intensity:'The intensity belongs to the wound, not this person. They have not earned this level of reaction. Scale back.',motives:'You do not have enough data. Gather more before acting on the interpretation.',withdraw:'The withdrawal reflex protects you from family. It may be blocking something safe. Stay open one step longer than feels comfortable.',perform:'You do not need to prove yourself to this person. Being competent is enough. Drop the performance.',test:'They do not know your test. Name what you actually need from this interaction and ask for it directly.',idealise:'Check the evidence. What has this person actually demonstrated? Separate what they are from what you want them to be.',resonance:'Name the cost. Is this interaction worth what it takes from your regulation budget today? Set a time limit. Check regulation after.',substprox:'This person\'s relationship with substances is incompatible with your sobriety. No intellectual value justifies proximity to normalised use. This is structural.'};
   var nm2={mapping:'Reading through home pattern',intensity:'Disproportionate reaction',motives:'Assigning unverifiable motives',withdraw:'Withdrawing from safety',perform:'Performing competence',test:'Testing against hidden standards',idealise:'Idealising beyond evidence',resonance:'Thinking engine activated',substprox:'Substance proximity risk'};
-  checked.forEach(function(r){var k=r.querySelector('input').dataset.out;h+='<div class="ri"><div class="ri-name">'+(nm[k]||k)+'</div><div class="ri-action">'+(act[k]||'')+'</div></div>';});
+  var opsy={mapping:'Trauma schema generalisation',intensity:'Amygdala hijack \u2014 wound-driven over-response',motives:'Theory of mind over-extension',withdraw:'Avoidant attachment activation',perform:'Compensatory self-presentation',test:'Covert contract \u2014 unarticulated expectations',idealise:'Idealisation defence (splitting)',resonance:'Ni activation past sorting threshold',substprox:'Structural sobriety threat'};
+  checked.forEach(function(r){var k=r.querySelector('input').dataset.out;h+='<div class="ri"><div class="ri-name">'+(nm[k]||k)+'</div><div class="ri-action">'+(act[k]||'')+'</div>'+(opsy[k]?'<div style="font-size:11px;color:var(--text3);font-style:italic;margin-top:4px">'+opsy[k]+'</div>':'')+'</div>';});
   h+='<div class="prompt">Is this person doing what the wound says they are doing, or does it feel like something you recognise?</div>';
   show('r-out-noise',h);
 }
@@ -1335,20 +1350,20 @@ function doScan(){
   var bb=[...document.querySelectorAll('#bnd-list .chk-row')].filter(r=>r.querySelector('input').checked);
   var sb=[...document.querySelectorAll('#soc-list .chk-row')].filter(r=>r.querySelector('input').checked);
   if(!bb.length&&!sb.length){show('r-scan','<span class="ri-ok">No boundary pressure or drift present.</span>');return;}
-  var bm={time:{n:'Time assumed',t:'I am not available for that.'},no:{n:'No being pushed past',t:'My answer is still no.'},priv:{n:'Privacy probed',t:'I prefer not to discuss that.'},dis:{n:'State dismissed',t:'I see it differently.'},shift:{n:'Responsibility shifted',t:'That is yours to handle.'},guilt:{n:'Guilt as leverage',t:'I understand, and my answer is no.'},rush:{n:'Decision rushed',t:'I will respond after I have had time to think.'},comp:{n:'Competence undermined',t:'That is the decision. Do not defend it.'},drain:{n:'Emptied after contact',t:'Reduce duration and frequency.'}};
-  var sm={wd:{n:'Excess withdrawal',t:'One small act of re-engagement.'},oe:{n:'Over-explaining',t:'Stop at the first complete sentence.'},fawn:{n:'False agreement',t:'Say nothing rather than agree with something false.'},give:{n:'Over-giving',t:'Name what is yours to give. Give that. Stop.'},resent:{n:'Resentment',t:'The resentment is the signal. Adjust the boundary.'},snap:{n:'Disproportionate force',t:'One breath before you respond.'},numb:{n:'Emotional flattening',t:'Name one emotion internally.'},scan:{n:'Tracking their read',t:'Return attention to what you actually feel.'},small:{n:'Becoming smaller',t:'Name one thing you actually think about this.'},authfawn:{n:'Authority fawning',t:'Their position does not make them right. What structure prevents this recurring?'},authund:{n:'Authority undermined',t:'You already took a position. Abandoning it without new evidence is capitulation.'},helpless:{n:'Helplessness about harm',t:'Name what is within your control. If nothing, this is not your task today.'},absorb:{n:'Fe absorption',t:'This is their emotional state, not yours. Name what you actually feel underneath what you absorbed. Ground before responding \u2014 you cannot regulate for both of you.'}};
+  var bm={time:{n:'Time assumed',t:'I am not available for that.',psy:'Boundary dissolution \u2014 assumed access'},no:{n:'No being pushed past',t:'My answer is still no.'},priv:{n:'Privacy probed',t:'I prefer not to discuss that.'},dis:{n:'State dismissed',t:'I see it differently.'},shift:{n:'Responsibility shifted',t:'That is yours to handle.'},guilt:{n:'Guilt as leverage',t:'I understand, and my answer is no.',psy:'Emotional manipulation \u2014 guilt induction'},rush:{n:'Decision rushed',t:'I will respond after I have had time to think.'},comp:{n:'Competence undermined',t:'That is the decision. Do not defend it.'},drain:{n:'Emptied after contact',t:'Reduce duration and frequency.',psy:'Empathic overload \u2014 Fe depletion'}};
+  var sm={wd:{n:'Excess withdrawal',t:'One small act of re-engagement.'},oe:{n:'Over-explaining',t:'Stop at the first complete sentence.'},fawn:{n:'False agreement',psy:'Fawn response \u2014 conflict avoidance through compliance',t:'Say nothing rather than agree with something false.'},give:{n:'Over-giving',t:'Name what is yours to give. Give that. Stop.'},resent:{n:'Resentment',t:'The resentment is the signal. Adjust the boundary.'},snap:{n:'Disproportionate force',t:'One breath before you respond.'},numb:{n:'Emotional flattening',t:'Name one emotion internally.'},scan:{n:'Tracking their read',t:'Return attention to what you actually feel.'},small:{n:'Becoming smaller',psy:'Self-diminishment under perceived threat',t:'Name one thing you actually think about this.'},authfawn:{n:'Authority fawning',t:'Their position does not make them right. What structure prevents this recurring?'},authund:{n:'Authority undermined',t:'You already took a position. Abandoning it without new evidence is capitulation.'},helpless:{n:'Helplessness about harm',t:'Name what is within your control. If nothing, this is not your task today.'},absorb:{n:'Fe absorption',psy:'Emotional contagion \u2014 Fe auxiliary absorbing unprocessed affect',t:'This is their emotional state, not yours. Name what you actually feel underneath what you absorbed. Ground before responding \u2014 you cannot regulate for both of you.'}};
   var h='';
   if(bb.length>=4)h+='<div class="al al-warn" style="margin-bottom:8px"><strong>High boundary pressure.</strong> Physiological sigh before responding. 9 seconds.</div>';
-  if(bb.length){h+='<div class="sdiv" style="margin-top:0">Boundary pressure</div>';bb.forEach(function(r){var k=r.querySelector('input').dataset.bv;if(bm[k])h+='<div class="ri"><div class="ri-name">'+bm[k].n+'</div><div class="ri-action">'+bm[k].t+'</div></div>';});}
-  if(sb.length){h+='<div class="sdiv">Behavioural drift</div>';sb.forEach(function(r){var k=r.querySelector('input').dataset.s;if(sm[k])h+='<div class="ri"><div class="ri-name">'+sm[k].n+'</div><div class="ri-action">'+sm[k].t+'</div></div>';});}
+  if(bb.length){h+='<div class="sdiv" style="margin-top:0">Boundary pressure</div>';bb.forEach(function(r){var k=r.querySelector('input').dataset.bv;if(bm[k])h+='<div class="ri"><div class="ri-name">'+bm[k].n+'</div><div class="ri-action">'+bm[k].t+'</div>'+(bm[k].psy?'<div style="font-size:11px;color:var(--text3);font-style:italic;margin-top:4px">'+bm[k].psy+'</div>':'')+'</div>';});}
+  if(sb.length){h+='<div class="sdiv">Behavioural drift</div>';sb.forEach(function(r){var k=r.querySelector('input').dataset.s;if(sm[k])h+='<div class="ri"><div class="ri-name">'+sm[k].n+'</div><div class="ri-action">'+sm[k].t+'</div>'+(sm[k].psy?'<div style="font-size:11px;color:var(--text3);font-style:italic;margin-top:4px">'+sm[k].psy+'</div>':'')+'</div>';});}
   show('r-scan',h);
 }
 
 function doGame(){
   var checked=[...document.querySelectorAll('#game-list .chk-row')].filter(r=>r.querySelector('input').checked);
   if(!checked.length){show('r-game','<span class="ri-ok">No game patterns identified.</span>');return;}
-  var gm={complaint:{name:'Why Don\'t You — Yes But',response:'Name the pattern. Do not offer another solution.'},deflect:{name:'Why Don\'t You — Yes But',response:'Stop offering solutions. What would a workable option look like to you?'},position:{name:'Now I\'ve Got You / Courtroom',response:'Do not defend. This is a trial, not a conversation. Not available for that.'},perform:{name:'Wooden Leg / Stupid',response:'Do not rescue. Name what capacity is actually present.'},third:{name:'Let\'s You and Him Fight',response:'Direct contact only. If there is something to say, say it directly.'},image:{name:'Look How Hard I\'ve Tried / Martyr',response:'Contribution does not require an audience.'}};
-  var h='';checked.forEach(function(r){var k=r.querySelector('input').dataset.g;var g=gm[k];if(!g)return;h+='<div class="game-block"><div class="game-name">'+g.name+'</div><div class="game-action">'+g.response+'</div></div>';});
+  var gm={complaint:{name:'Why Don\'t You — Yes But',response:'Name the pattern. Do not offer another solution.'},deflect:{name:'Why Don\'t You — Yes But',response:'Stop offering solutions. What would a workable option look like to you?'},position:{name:'Now I\'ve Got You / Courtroom',response:'Do not defend. This is a trial, not a conversation. Not available for that.',psy:'Transactional Analysis. Ego state: Critical Parent prosecuting.'},perform:{name:'Wooden Leg / Stupid',response:'Do not rescue. Name what capacity is actually present.'},third:{name:'Let\'s You and Him Fight',response:'Direct contact only. If there is something to say, say it directly.'},image:{name:'Look How Hard I\'ve Tried / Martyr',response:'Contribution does not require an audience.'}};
+  var h='';checked.forEach(function(r){var k=r.querySelector('input').dataset.g;var g=gm[k];if(!g)return;h+='<div class="game-block"><div class="game-name">'+g.name+'</div><div class="game-action">'+g.response+'</div>'+(g.psy?'<div style="font-size:11px;color:var(--text3);font-style:italic;margin-top:4px">'+g.psy+'</div>':'')+'</div>';});
   show('r-game',h);
 }
 
@@ -1356,10 +1371,10 @@ function doAuthority(){
   var ap=[...document.querySelectorAll('#auth-list .chk-row')].filter(r=>r.querySelector('input').checked);
   var hp=[...document.querySelectorAll('#hold-list .chk-row')].filter(r=>r.querySelector('input').checked);
   if(!ap.length&&!hp.length){show('r-auth','<span class="ri-ok">No authority dynamics flagged.</span>');return;}
-  var am={diminish:{n:'Being diminished',t:'Name it factually, once. If it recurs, escalate structurally.'},override:{n:'Decision reversed',t:'Name the decision. Ask what changed. If nothing, the override is the issue.'},condescend:{n:'Condescension',t:'Do not correct their perception. Demonstrate through action.'},exclude:{n:'Excluded from decisions',t:'Request inclusion for the next one in writing.'},defer:{n:'Deferring to position',t:'Their title does not make them right. Name what you actually think.'},freeze:{n:'Freezing in authority presence',t:'The freeze is the wound. Name one thing you know about your competence right now.'}};
+  var am={diminish:{n:'Being diminished',psy:'Status threat \u2014 social rank devaluation',t:'Name it factually, once. If it recurs, escalate structurally.'},override:{n:'Decision reversed',t:'Name the decision. Ask what changed. If nothing, the override is the issue.'},condescend:{n:'Condescension',t:'Do not correct their perception. Demonstrate through action.'},exclude:{n:'Excluded from decisions',t:'Request inclusion for the next one in writing.'},defer:{n:'Deferring to position',t:'Their title does not make them right. Name what you actually think.'},freeze:{n:'Freezing in authority presence',psy:'Dorsal vagal freeze response',t:'The freeze is the wound. Name one thing you know about your competence right now.'}};
   var hm={stated:{n:'Position stated',t:'Do not repeat it. Repetition signals uncertainty.'},silence:{n:'Using silence',t:'Let it work. The urge to fill it is anxiety.'},struct:{n:'Structure in place',t:'Name it. If it does not exist, what would it be?'},diplo:{n:'Diplomacy active',t:'Firm content, measured delivery. The message does not change.'},walk:{n:'Disengagement chosen',t:'Re-engage only if something structural changes.'}};
   var h='';
-  if(ap.length){h+='<div class="sdiv" style="margin-top:0">Patterns present</div>';ap.forEach(function(r){var k=r.querySelector('input').dataset.a;if(am[k])h+='<div class="ri"><div class="ri-name">'+am[k].n+'</div><div class="ri-action">'+am[k].t+'</div></div>';});}
+  if(ap.length){h+='<div class="sdiv" style="margin-top:0">Patterns present</div>';ap.forEach(function(r){var k=r.querySelector('input').dataset.a;if(am[k])h+='<div class="ri"><div class="ri-name">'+am[k].n+'</div><div class="ri-action">'+am[k].t+'</div>'+(am[k].psy?'<div style="font-size:11px;color:var(--text3);font-style:italic;margin-top:4px">'+am[k].psy+'</div>':'')+'</div>';});}
   if(hp.length){h+='<div class="sdiv">What you are doing right</div>';hp.forEach(function(r){var k=r.querySelector('input').dataset.ah;if(hm[k])h+='<div class="ri"><div class="ri-name">'+hm[k].n+'</div><div class="ri-action">'+hm[k].t+'</div></div>';});}
   h+='<div class="prompt">What structure would make this conversation unnecessary next time?</div>';
   show('r-auth',h);
@@ -1395,6 +1410,52 @@ function doLandCheck(){
   show('r-land',h);
 }
 
+
+
+var WOUND_DATA={
+  hero:{nm:'Hero drive',psy:'4\u21922 disintegration \u2014 earning love through unsustainable service',act:'The land issue is real. The compulsion to solve it alone is the wound. Delegate where possible. Help only where it serves the plan.'},
+  unseen:{nm:'Not being seen',psy:'4 core wound \u2014 Fe hunger for external reflection of internal truth',act:'Your effort is real. Their inability to see it is about their capacity, not your worth. Document for yourself.'},
+  betrayal:{nm:'Betrayal',psy:'Trust schema violation \u2014 attachment disruption',act:'Protect information. Their behaviour is data about reliability. Adjust access, not your compass.'},
+  manipulation:{nm:'Manipulation',psy:'Orientation attack \u2014 gaslighting targets psychosis vulnerability',act:'Documentation is the anchor. Write what happened factually. Protect your orientation.'},
+  truth:{nm:'Truth denied',psy:'Reality testing under social pressure',act:'You do not need their agreement. Write it down. Let them be wrong. Keep the truth in yours.'},
+  helpless:{nm:'Helplessness',psy:'Learned helplessness \u2014 repeated agency failure',act:'The small undoings are not the battle. The timeline is. Every sober day focused on exit is winning.'},
+  override:{nm:'Being overridden',psy:'Autonomy violation \u2014 decision erasure',act:'Stop fighting each override. Structural fix is ownership and exit. Note it. Keep moving.'},
+  infant:{nm:'Being infantilised',psy:'Competence denial \u2014 history weaponised against present clarity',act:'Do not argue harder. Execute from competence. Let outcomes speak.'},
+  unshared:{nm:'Responsibility not shared',psy:'Parentification \u2014 carrying beyond capacity since age 23',act:'This family will not share it. Grieve that. The grief is the release.'},
+  reject:{nm:'Rejection',psy:'Rejection sensitivity \u2014 4w5 reads as unseeable',act:'Their rejection is about their capacity, not your worth. The right people will not need convincing.'}
+};
+
+function doWoundPick(){
+  var btns=document.querySelectorAll('#wound-pick-land button');
+  var sel=[];btns.forEach(function(b){if(b.style.background!=='transparent')sel.push(b);});
+  if(!sel.length){show('r-wound-pick','<span class="ri-ok">No wound selected.</span>');return;}
+  var h='';
+  sel.forEach(function(btn){
+    var w=WOUND_DATA[btn.dataset.wid];
+    if(w)h+='<div class="ri"><div class="ri-name">'+w.nm+'</div><div style="font-size:11px;color:var(--text3);font-style:italic;margin-bottom:2px">'+w.psy+'</div><div class="ri-action">'+w.act+'</div></div>';
+  });
+  show('r-wound-pick',h);
+}
+function doHALT(){
+  var checked=[...document.querySelectorAll('#halt-list .chk-row')].filter(r=>r.querySelector('input').checked);
+  var h='';
+  var hm={
+    hungry:{nm:'Hungry',psy:'Physiological need masking as craving',act:'Eat something now. Real food, not sugar. The craving may resolve.'},
+    angry:{nm:'Angry / frustrated',psy:'Sympathetic activation redirecting toward substance',act:'The anger is real. The craving is riding on the activation. Ground first, then address what made you angry.'},
+    lonely:{nm:'Lonely',psy:'Attachment need substituted with dopamine',act:'Call someone. Text Shravya. The craving is a substitute for connection, not a need for the substance.'},
+    tired:{nm:'Tired',psy:'Executive function depleted \u2014 defences low',act:'Sleep if possible. If not, do nothing demanding. Your guard is down.'},
+    sexual:{nm:'Sexually frustrated',psy:'Conditioned dopamine pathway activated \u2014 the chain entry point',act:'Name it as sexual frustration, not boredom. Leave the room. The dopamine chain starts here.'}
+  };
+  if(checked.length){
+    checked.forEach(function(r){
+      var k=r.querySelector('input').dataset.halt;
+      if(hm[k])h+='<div class="ri"><div class="ri-name">'+hm[k].nm+'</div><div class="ri-why">'+hm[k].psy+'</div><div class="ri-action">'+hm[k].act+'</div></div>';
+    });
+  } else {
+    h='<span class="ri-ok">No HALT signals checked. The craving may be habit or environmental trigger. Change the scene.</span>';
+  }
+  show('r-halt',h);
+}
 function doIntegration(){
   document.getElementById('mantra').style.display='block';
   try{var ctx=getAudioCtx();var t=ctx.currentTime;
@@ -1682,6 +1743,22 @@ function init(){
   initCare();
 }
 init();
+
+  // Build wound picker for land
+  var wpl=document.getElementById('wound-pick-land');
+  if(wpl){Object.keys(WOUND_DATA).forEach(function(k){
+    var w=WOUND_DATA[k];
+    var btn=document.createElement('button');
+    btn.style.cssText='padding:6px 12px;border-radius:20px;border:1px solid var(--bdr2);background:transparent;color:var(--text2);font-size:12px;cursor:pointer;font-family:inherit';
+    btn.textContent=w.nm;btn.dataset.wid=k;
+    btn.onclick=function(e){
+      e.stopPropagation();
+      var isSel=btn.style.background!=='transparent';
+      if(isSel){btn.style.background='transparent';btn.style.color='var(--text2)';btn.style.borderColor='var(--bdr2)';}
+      else{btn.style.background='var(--calm-bg)';btn.style.color='var(--calm)';btn.style.borderColor='var(--calm-bdr)';}
+    };
+    wpl.appendChild(btn);
+  });}
 
 </script>
 </body>
