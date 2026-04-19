@@ -483,6 +483,13 @@ body{
         <div class="entry-desc">Full systematic scan — when regulated</div>
       </div>
     </div>
+    <div class="entry-btn" onclick="showScreen('scr-phase')">
+      <div class="entry-ico">&#9670;</div>
+      <div class="entry-info">
+        <div class="entry-name">Where I am</div>
+        <div class="entry-desc">Phases, therapeutic roadmap, medication, timeline</div>
+      </div>
+    </div>
     <div class="entry-btn" onclick="showScreen('scr-care')">
       <div class="entry-ico">&#9733;</div>
       <div class="entry-info">
@@ -565,6 +572,7 @@ body{
   <div class="card">
     <div class="card-title" style="color:var(--alert)">Craving active</div>
     <div class="card-desc">This craving will peak and pass in 3-5 minutes. You only need to get through this one.</div>
+    <div class="al al-alert" style="margin:0 0 10px"><strong>The chain:</strong> Cigarettes &#8596; Pornography &#8594; Cannabis &#8594; Psychosis. Either entry point lowers the threshold for the next. Breaking any link protects the chain from completing.</div>
     <div class="sdiv" style="margin-top:0">HALT — what is the real need?</div>
     <div id="halt-list" class="chk-list"></div>
     <div class="sdiv">What you lose if you use</div>
@@ -573,6 +581,7 @@ body{
       <div>Every month of sobriety erased.</div>
       <div>The exit plan dies.</div>
       <div>They were right about you.</div>
+      <div>The craving is not about the substance. It is about regulation. Name the real need.</div>
     </div>
     <div class="sdiv">Do this now</div>
     <div style="font-size:13px;line-height:1.8;color:var(--text2);padding:0 0 8px">
@@ -644,11 +653,12 @@ body{
   </div>
   <div class="card">
     <div class="card-title" style="margin-bottom:8px">Daily guardrails</div>
-    <div class="al al-alert" style="margin:0 0 10px"><strong>Hard boundaries.</strong> Intoxicants are not neutral for you. Cannabis triggers recurrent psychosis. Caffeine and nicotine add load a high-gain system cannot afford.</div>
+    <div class="al al-alert" style="margin:0 0 10px"><strong>Hard boundaries.</strong> Cigarettes &#8596; Pornography &#8594; Cannabis &#8594; Psychosis. Each link is an entry point. Each one lowers the threshold for the next. The craving is never about the substance \u2014 it is about regulation. Name the real need.</div>
     <div class="sdiv" style="margin-top:0">Intoxicants</div>
     <div class="yn-row"><span class="yn-text">No intoxicants today</span><div class="yn-btns"><button class="yn-btn" id="s1a" onclick="yn('s1a','s1b')">Yes</button><button class="yn-btn" id="s1b" onclick="yn('s1b','s1a')">No</button></div></div>
     <div class="yn-row"><span class="yn-text">No caffeine today</span><div class="yn-btns"><button class="yn-btn" id="s2a" onclick="yn('s2a','s2b')">Yes</button><button class="yn-btn" id="s2b" onclick="yn('s2b','s2a')">No</button></div></div>
     <div class="yn-row"><span class="yn-text">No nicotine today</span><div class="yn-btns"><button class="yn-btn" id="s3a" onclick="yn('s3a','s3b')">Yes</button><button class="yn-btn" id="s3b" onclick="yn('s3b','s3a')">No</button></div></div>
+    <div class="yn-row"><span class="yn-text">No pornography today</span><div class="yn-btns"><button class="yn-btn" id="s4a" onclick="yn('s4a','s4b')">Yes</button><button class="yn-btn" id="s4b" onclick="yn('s4b','s4a')">No</button></div></div>
     <div class="sdiv">Prodrome awareness</div>
     <div class="yn-row"><span class="yn-text">No unusual sense of meaning, pattern, or significance in ordinary events</span><div class="yn-btns"><button class="yn-btn" id="p1a" onclick="yn('p1a','p1b')">Yes</button><button class="yn-btn" id="p1b" onclick="yn('p1b','p1a')">No</button></div></div>
     <div class="yn-row"><span class="yn-text">No urgency to communicate something important to others</span><div class="yn-btns"><button class="yn-btn" id="p2a" onclick="yn('p2a','p2b')">Yes</button><button class="yn-btn" id="p2b" onclick="yn('p2b','p2a')">No</button></div></div>
@@ -680,12 +690,32 @@ body{
   </div>
   <div class="card"><div class="card-title" style="margin-bottom:8px">Weekly rhythm</div><div class="rhythm-grid" id="dc-rhythm"></div></div>
   <div class="card">
+    <div class="card-title" style="margin-bottom:8px">Timetable</div>
+    <div class="tt-row"><div class="tt-time">06:00</div><div>Wake up</div></div>
+    <div class="tt-row"><div class="tt-time">10:00</div><div>Work block 1</div></div>
+    <div class="tt-row"><div class="tt-time">13:00</div><div>Break</div></div>
+    <div class="tt-row"><div class="tt-time">15:00</div><div>Work block 2</div></div>
+    <div class="tt-row"><div class="tt-time">18:00</div><div>Done</div></div>
+    <div class="tt-row"><div class="tt-time">21:00</div><div>Wind down</div></div>
+    <div class="tt-row"><div class="tt-time">22:00</div><div>Sleep</div></div>
+  </div>
+  <div class="hist-section">
+    <button class="hist-toggle" onclick="toggleHist('hist-care-body',this)"><span>History &#8212; last 30 days</span><span>&#9660;</span></button>
+    <div class="hist-body" id="hist-care-body"><div id="hist-care-days"></div><div class="hist-view" id="hist-care-view"></div></div>
+  </div>
+</div>
+
+
+<!-- WHERE I AM SCREEN -->
+<div class="screen" id="scr-phase">
+  <button class="btn-back" onclick="showScreen('scr-home')">&#8592; Back</button>
+  <div class="card">
     <div class="card-title" style="margin-bottom:10px">Where I am</div>
     <div style="border-left:3px solid var(--calm);padding:8px 12px;margin-bottom:8px;border-radius:0 var(--r) var(--r) 0;background:var(--calm-bg)">
       <div style="font-size:11px;font-weight:600;color:var(--calm);text-transform:uppercase;letter-spacing:.4px">Phase 1 &#8212; Stabilisation (now &#8594; Nov 2026)</div>
       <div style="font-size:12px;color:var(--text2);margin-top:4px;line-height:1.7">
         <strong style="color:var(--text)">This app:</strong> Self-administered STAIR Phase 1 + DBT distress tolerance (TIPP) + polyvagal self-regulation<br>
-        <strong style="color:var(--text)">Body:</strong> Fitness as Se inferior development + vagal tone building. Moderate base, vigorous 2&#8211;3x/week. Consistency over intensity.<br>
+        <strong style="color:var(--text)">Body:</strong> Fitness as Se inferior development + vagal tone building. Walk 30 min daily \u2014 that IS your workout at VO2max 24. Progress intensity only when walking HR drops below 115 at the same pace. Consistency over intensity. No transformation protocol \u2014 recovery protocol.<br>
         <strong style="color:var(--text)">Mind:</strong> Emotion naming before pattern analysis. Structured short-form mindfulness only &#8212; no extended open awareness. Signal detection. Prodrome monitoring with external anchors.<br>
         <strong style="color:var(--text)">Container:</strong> Sobriety non-negotiable. No trauma processing. No parts work. Stabilise first.<br>
         <strong style="color:var(--text)">Exit:</strong> AD filed. Finances secured. Property registered. November 1, 2026.
@@ -713,6 +743,11 @@ body{
       <div><strong style="color:var(--text)">4. Trauma memory:</strong> EMDR for discrete traumatic memories. Bypasses intellectualisation. Post-stabilisation only.</div>
       <div><strong style="color:var(--text)">5. Autonomic flexibility:</strong> Ongoing. HRV building through fitness + breathing. Vagal tone as the foundation everything else rests on.</div>
     </div>
+    <div style="font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.4px;margin-top:14px">Medication</div>
+    <div style="font-size:12px;color:var(--text2);line-height:1.7;margin-top:4px;margin-bottom:10px">
+      <div>Aripiprazole 1.25mg \u2014 the right medication at the right dose. Best cardiovascular and metabolic profile among antipsychotics. Best evidence for CIP relapse prevention. Do not change what is working.</div>
+      <div>Any additions \u2014 check CYP2D6 interaction (bupropion increases aripiprazole blood levels up to 5x). Any cessation \u2014 psychotic symptoms appeared within 3-5 days in your history.</div>
+    </div>
     <div style="font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.4px;margin-top:14px">NoVisits timeline</div>
     <div style="font-size:12px;color:var(--text2);line-height:1.6;margin-top:4px">
       <div><strong style="color:var(--text)">Now &#8594; Jun:</strong> Phase 0. Research, planning, architecture. No launches, no deadlines.</div>
@@ -721,27 +756,12 @@ body{
     </div>
     <div style="font-size:11px;color:var(--text3);font-style:italic;margin-top:8px;line-height:1.5">NoVisits does not need to succeed before exit. It needs to survive until after exit.</div>
   </div>
-  <div class="card">
-    <div class="card-title" style="margin-bottom:8px">Timetable</div>
-    <div class="tt-row"><div class="tt-time">06:00</div><div>Wake up</div></div>
-    <div class="tt-row"><div class="tt-time">10:00</div><div>Work block 1</div></div>
-    <div class="tt-row"><div class="tt-time">13:00</div><div>Break</div></div>
-    <div class="tt-row"><div class="tt-time">15:00</div><div>Work block 2</div></div>
-    <div class="tt-row"><div class="tt-time">18:00</div><div>Done</div></div>
-    <div class="tt-row"><div class="tt-time">21:00</div><div>Wind down</div></div>
-    <div class="tt-row"><div class="tt-time">22:00</div><div>Sleep</div></div>
-  </div>
-  <div class="hist-section">
-    <button class="hist-toggle" onclick="toggleHist('hist-care-body',this)"><span>History &#8212; last 30 days</span><span>&#9660;</span></button>
-    <div class="hist-body" id="hist-care-body"><div id="hist-care-days"></div><div class="hist-view" id="hist-care-view"></div></div>
-  </div>
 </div>
-
 
 <!-- DEEP REVIEW -->
 <div class="screen" id="scr-review">
   <button class="btn-back" onclick="showScreen('scr-home')">&#8592; Back</button>
-  <div style="margin-bottom:8px"><span class="card-title">Deep review</span><div style="font-size:12px;color:var(--text3);margin-top:2px">Nothing is bad or good. Just notice.</div>
+  <div style="margin-bottom:8px"><span class="card-title">Deep review</span><div style="font-size:12px;color:var(--text3);margin-top:2px">Awareness is enough.</div>
     <div style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap">
       <span style="font-size:11px;padding:3px 9px;border-radius:20px;border:1px solid var(--bdr2);color:var(--text2);font-weight:600">4w5</span>
       <span style="font-size:11px;padding:3px 9px;border-radius:20px;border:1px solid var(--bdr2);color:var(--text2);font-weight:600">SX/SO</span>
@@ -798,6 +818,8 @@ body{
       <div class="id-cell"><div class="id-key">System</div><div class="id-val">High-gain</div></div>
       <div class="id-cell"><div class="id-key">Stack</div><div class="id-val">Ni-Fe-Ti-Se</div></div>
     </div>
+    <div style="margin-top:8px;padding:7px 10px;background:var(--bg2);border-radius:var(--r)"><div class="id-key">Risk chain</div><div class="id-val" style="font-size:12px">Cigarettes &#8596; Pornography &#8594; Cannabis &#8594; Psychosis</div></div>
+    <div style="margin-top:4px;padding:7px 10px;background:var(--bg2);border-radius:var(--r)"><div class="id-key">Cascade</div><div class="id-val" style="font-size:12px">Wound &#8594; dysregulation &#8594; Ni volume too high &#8594; craving &#8594; chain completes</div></div>
     <div class="sdiv" style="margin-top:14px">Core wounds</div>
     <div style="font-size:13px;line-height:1.8;color:var(--text2)">
       <div>Betrayal and manipulation</div>
@@ -913,7 +935,8 @@ var BODY_TIPS={
   chest:{n:'Chest tight / shallow breathing',t:'Extend your exhales deliberately.',w:'shallow breathing maintains sympathetic activation',psy:'Hyperventilation pattern'},
   gut:{n:'Gut tension / nausea',t:'Warm fluids. Reduce information intake.',w:'visceral sensitivity often leads cognitive awareness',psy:'Gut-brain axis activation'},
   head:{n:'Head pressure',t:'Hydrate. Screen break.',w:'tension headache is one of the clearest signals of cognitive overload',psy:'Tension-type headache'},
-  neglect:{n:'Self-care being overridden',t:'Name the thing you are skipping. Do the care task now. Not later.',w:'overriding self-care signals is how small costs compound into structural damage',psy:'Behavioural pattern: self-neglect under load'}
+  neglect:{n:'Self-care being overridden',t:'Name the thing you are skipping. Do the care task now. Not later.',w:'overriding self-care signals is how small costs compound into structural damage',psy:'Behavioural pattern: self-neglect under load'},
+  hrv:{n:'HRV/HR flag from watch',t:'Rest day. No big decisions. No intense work. Walk gently if anything. Your autonomic system is depleted \u2014 aripiprazole suppresses HRV and today it shows.',w:'HRV below 20 or RHR above 85 means parasympathetic brake is near-absent',psy:'Autonomic nervous system depletion \u2014 vagal tone insufficient'}
 };
 
 // Noise items — family
@@ -1076,15 +1099,17 @@ var BODY_ITEMS=[
   {id:'chest',tx:'My chest feels tight or breathing is shallow'},
   {id:'gut',tx:'My stomach is tight or unsettled'},
   {id:'head',tx:'I have head pressure or a tension headache building'},
-  {id:'neglect',tx:'I am skipping something my body needs or doing something that costs me later'}
+  {id:'neglect',tx:'I am skipping something my body needs or doing something that costs me later'},
+  {id:'hrv',tx:'My morning HRV was below 20 or resting HR was above 85 (check watch)'}
 ];
 
 // HALT
 var HALT_ITEMS=[
-  {id:'hungry',tx:'I am hungry — the craving may be masking a need for food'},
-  {id:'angry',tx:'I am angry or frustrated — the craving is riding on that activation'},
-  {id:'lonely',tx:'I am lonely — the craving is a substitute for connection'},
-  {id:'tired',tx:'I am tired — the craving appears when defences are low'}
+  {id:'hungry',tx:'I am hungry \u2014 the craving may be masking a need for food'},
+  {id:'angry',tx:'I am angry or frustrated \u2014 the craving is riding on that activation'},
+  {id:'lonely',tx:'I am lonely \u2014 the craving is a substitute for connection'},
+  {id:'tired',tx:'I am tired \u2014 the craving appears when defences are low'},
+  {id:'sexual',tx:'I am sexually frustrated \u2014 the craving is routing through the dopamine chain'}
 ];
 
 // Land check items
@@ -1419,6 +1444,8 @@ function yn(onId,offId){
   else{on.classList.add(cls);off.classList.remove(offCls);persist(onId,cls);persist(offId,'');}
 }
 
+function togGoal(btn){btn.classList.toggle('gy');persist(btn.id,btn.classList.contains('gy'));}
+
 // ═══════════ TAPER + QUIT ═══════════
 function runTaper(){
   var count=TAPER_ITEMS.filter(item=>document.getElementById('tc-'+item.id).checked).length;
@@ -1560,7 +1587,7 @@ function initCare(){
   var grid=document.getElementById('goal-grid');grid.innerHTML='';
   GOALS.forEach(function(g){
     var row=document.createElement('div');row.className='goal-item';
-    row.innerHTML='<div class="goal-ico">'+g.ico+'</div><div class="goal-info"><div class="goal-name">'+g.nm+'</div><div class="goal-sub">'+g.sb+'</div></div><div class="goal-btns"><button class="goal-btn" id="gb-'+g.id+'-y">Yes</button><button class="goal-btn" id="gb-'+g.id+'-n">No</button></div>';
+    row.innerHTML='<div class="goal-ico">'+g.ico+'</div><div class="goal-info"><div class="goal-name">'+g.nm+'</div><div class="goal-sub">'+g.sb+'</div></div><div class="goal-btns"><button class="goal-btn" id="gb-'+g.id+'" onclick="togGoal(this)">Yes</button></div>';
     grid.appendChild(row);
   });
   // Rhythm
@@ -1569,7 +1596,7 @@ function initCare(){
   // Restore text fields
   ['intent-main','intent-value','intent-protect','reflect-what','reflect-good','reflect-next'].forEach(function(id){var el=document.getElementById(id);if(el)el.value=recall(id,'');});
   // Restore guardrails
-  ['s1a','s1b','s2a','s2b','s3a','s3b','p1a','p1b','p2a','p2b','p3a','p3b','t1a','t1b','t2a','t2b'].forEach(function(id){var v=recall(id,'');var btn=document.getElementById(id);if(btn&&v)btn.classList.add(v);});
+  ['s1a','s1b','s2a','s2b','s3a','s3b','s4a','s4b','p1a','p1b','p2a','p2b','p3a','p3b','t1a','t1b','t2a','t2b'].forEach(function(id){var v=recall(id,'');var btn=document.getElementById(id);if(btn&&v)btn.classList.add(v);});
   // Restore taper + quit
   TAPER_ITEMS.forEach(function(item){var el=document.getElementById('tc-'+item.id);if(el)el.checked=recall('tc-'+item.id,false);});
   QUIT_ITEMS.forEach(function(item){var el=document.getElementById('qc-'+item.id);if(el)el.checked=recall('qc-'+item.id,false);});
