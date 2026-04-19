@@ -43,6 +43,7 @@ body{
 .screen{display:none;padding:0 1rem}
 .screen.on{display:block}
 
+
 /* ── HEADER ── */
 .app-header{padding:1.2rem 1rem .8rem;text-align:center}
 .app-title{font-size:18px;font-weight:700;color:var(--text);letter-spacing:-0.3px}
@@ -235,6 +236,34 @@ body{
 
 
 
+
+/* ── COLLAPSIBLE SECTIONS ── */
+.csec{background:var(--bg);border:1px solid var(--bdr);border-radius:var(--rl);margin-bottom:6px;overflow:hidden}
+.csec-head{padding:11px 14px;cursor:pointer;display:flex;align-items:center;gap:12px;-webkit-tap-highlight-color:transparent}
+.csec-head:active{opacity:.7}
+.csec-ico{font-size:16px;flex-shrink:0;width:28px;text-align:center;color:var(--text3)}
+.csec-nm{font-size:13px;font-weight:600;color:var(--text)}
+.csec-ds{font-size:11px;color:var(--text3);margin-top:2px}
+.csec-chv{margin-left:auto;font-size:10px;color:var(--text3);transition:transform .2s}
+.csec.open .csec-chv{transform:rotate(180deg)}
+.csec-body{display:none;padding:0 14px 12px}
+.csec.open>.csec-body{display:block}
+/* ── BREATHING IN GROUND ── */
+.arena{display:flex;flex-direction:column;align-items:center;padding:.5rem 0 1rem}
+.breath-timer{font-size:13px;color:var(--text3);margin-bottom:.5rem;font-variant-numeric:tabular-nums;min-height:20px}
+.rw{position:relative;width:240px;height:240px;margin-bottom:1rem}
+.rw canvas{position:absolute;top:0;left:0}
+.cbtn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);border-radius:50%;border:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;-webkit-tap-highlight-color:transparent}
+.cph{font-size:13px;font-weight:600;color:#fff;pointer-events:none;text-align:center;padding:0 6px}
+.cpc{font-size:20px;font-weight:600;color:#fff;pointer-events:none;min-height:26px;text-align:center}
+.prow{display:flex;gap:7px;flex-wrap:wrap;justify-content:center;margin-bottom:.7rem}
+.pchip{display:flex;flex-direction:column;align-items:center;padding:5px 9px;border-radius:var(--r);border:1px solid var(--bdr);min-width:52px}
+.pchip.cur{border-color:var(--calm);background:var(--calm-bg)}
+.pn{font-size:11px;color:var(--text2)}
+.ps{font-size:12px;font-weight:600;margin-top:1px;color:var(--text)}
+.bcy{font-size:12px;color:var(--text3);margin-bottom:.7rem;min-height:18px;text-align:center}
+.bcr{display:flex;gap:8px;justify-content:center}
+.bct{padding:10px 24px;border-radius:var(--r);border:1px solid var(--bdr2);background:transparent;color:var(--text);font-size:13px;cursor:pointer;font-family:inherit}
 
 /* ── GROUNDING TECHNIQUES ── */
 .grnd-techs{display:flex;flex-direction:column;gap:10px}
@@ -504,25 +533,15 @@ body{
 <!-- ACTIVATED SCREEN -->
 <div class="screen" id="scr-activated">
   <button class="btn-back" onclick="showScreen('scr-home')">&#8592; Back</button>
-  <div class="card" style="margin-bottom:8px">
-    <div class="card-title" style="margin-bottom:8px">What am I feeling right now?</div>
-    <div style="display:flex;flex-wrap:wrap;gap:6px" id="emo-pick"></div>
-  </div>
-  <div class="card">
-    <div class="card-head"><span class="card-title">Regulation check</span></div>
-    <div class="card-desc">Select everything present right now. More than one is normal.</div>
-    <div class="reg-items" id="quick-reg-items"></div>
-    <button class="btn" onclick="doQuickReg()">Notice</button>
-    <div class="result" id="r-quick-reg"></div>
-  </div>
+  <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9679;</span><div><div class="csec-nm">What am I feeling</div><div class="csec-ds">Name the emotion before analysing</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div style="display:flex;flex-wrap:wrap;gap:6px" id="emo-pick"></div></div></div>
+  <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9678;</span><div><div class="csec-nm">Regulation check</div><div class="csec-ds">How much to trust your analysis right now</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="card-desc">Select everything present. More than one is normal.</div><div class="reg-items" id="quick-reg-items"></div><button class="btn" onclick="event.stopPropagation();doQuickReg()">Notice</button><div class="result" id="r-quick-reg"></div></div></div>
 </div>
 
 <!-- SITUATION SCREEN -->
 <div class="screen" id="scr-situation">
   <button class="btn-back" onclick="showScreen('scr-home')">&#8592; Back</button>
   <div class="card" style="margin-bottom:8px">
-    <div class="card-title" style="margin-bottom:8px">What am I feeling right now?</div>
-    <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px" id="emo-pick-sit"></div>
+    <div class="csec" style="margin-bottom:10px"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9679;</span><div><div class="csec-nm">What am I feeling</div><div class="csec-ds">Name it before checking the signal</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div style="display:flex;flex-wrap:wrap;gap:6px" id="emo-pick-sit"></div></div></div>
     <div class="card-title" style="margin-bottom:10px">Who is this with?</div>
     <div class="sit-option" onclick="goSitFamily()">
       <div class="entry-info">
@@ -545,10 +564,8 @@ body{
   <div class="card">
     <div class="card-title">Signal check — family / known pattern</div>
     <div class="card-desc">Check what is present. The wound and the situation are two separate events.</div>
-    <div class="sdiv" style="margin-top:0">What fired</div>
-    <div id="fam-noise-list" class="chk-list"></div>
-    <div class="sdiv">Relationship patterns in this interaction</div>
-    <div id="fam-rel-list" class="chk-list"></div>
+    <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9632;</span><div><div class="csec-nm">What fired</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="fam-noise-list" class="chk-list"></div></div></div>
+    <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9679;</span><div><div class="csec-nm">Relationship patterns</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="fam-rel-list" class="chk-list"></div></div></div>
     <button class="btn" onclick="doFamNoise()">Notice</button>
     <div class="result" id="r-fam-noise"></div>
   </div>
@@ -573,29 +590,11 @@ body{
     <div class="card-title" style="color:var(--alert)">Craving active</div>
     <div class="card-desc">This craving will peak and pass in 3-5 minutes. You only need to get through this one.</div>
     <div class="al al-alert" style="margin:0 0 10px"><strong>The chain:</strong> Cigarettes &#8596; Pornography &#8594; Cannabis &#8594; Psychosis. Either entry point lowers the threshold for the next. Breaking any link protects the chain from completing.</div>
-    <div class="sdiv" style="margin-top:0">HALT — what is the real need?</div>
-    <div id="halt-list" class="chk-list"></div>
-    <div class="sdiv">What you lose if you use</div>
-    <div style="font-size:13px;line-height:1.8;color:var(--text2);padding:0 0 12px">
-      <div>5th episode. Warehousing. Career gone.</div>
-      <div>Every month of sobriety erased.</div>
-      <div>The exit plan dies.</div>
-      <div>They were right about you.</div>
-      <div>The craving is not about the substance. It is about regulation. Name the real need.</div>
-    </div>
-    <div class="sdiv">Do this now</div>
-    <div style="font-size:13px;line-height:1.8;color:var(--text2);padding:0 0 8px">
-      <div><strong style="color:var(--text)">Delay</strong> — 5 minutes. Set a timer.</div>
-      <div><strong style="color:var(--text)">Breathe</strong> — Tap Ground. Physiological sigh. 9 seconds.</div>
-      <div><strong style="color:var(--text)">Drink water</strong> — Slowly. The physical act interrupts the loop.</div>
-      <div><strong style="color:var(--text)">Call your confidant</strong> — Co-regulation, not willpower.</div>
-      <div><strong style="color:var(--text)">Change the scene</strong> — Leave the room. Break the spatial trigger.</div>
-    </div>
-    <div class="sdiv">Tools active today</div>
-    <div id="quit-tools"></div>
-    <button class="btn" onclick="runQuit()" style="margin-bottom:8px">Check support status</button>
-    <div class="taper-status" id="qc-status"></div>
-        <button class="btn btn-calm" onclick="openGround('craving')">Open Ground</button>
+    <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9632;</span><div><div class="csec-nm">HALT check</div><div class="csec-ds">What is the real need?</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="halt-list" class="chk-list"></div></div></div>
+    <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9888;</span><div><div class="csec-nm">What you lose</div><div class="csec-ds">The cost of completing the chain</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div style="font-size:13px;line-height:1.8;color:var(--text2)"><div>5th episode. Warehousing. Career gone.</div><div>Every month of sobriety erased.</div><div>The exit plan dies.</div><div>They were right about you.</div><div>The craving is not about the substance. It is about regulation.</div></div></div></div>
+    <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9654;</span><div><div class="csec-nm">Do this now</div><div class="csec-ds">Delay, breathe, water, call, move</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div style="font-size:13px;line-height:1.8;color:var(--text2)"><div><strong style="color:var(--text)">Delay</strong> — 5 minutes.</div><div><strong style="color:var(--text)">Breathe</strong> — Tap Ground.</div><div><strong style="color:var(--text)">Drink water</strong> — Slowly.</div><div><strong style="color:var(--text)">Call your confidant</strong></div><div><strong style="color:var(--text)">Change the scene</strong></div></div></div></div>
+    <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9733;</span><div><div class="csec-nm">Quit tools</div><div class="csec-ds">What am I using today</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="quit-tools"></div><button class="btn" onclick="event.stopPropagation();runQuit()">Check support status</button><div class="taper-status" id="qc-status"></div></div></div>
+    
   </div>
 </div>
 
@@ -605,24 +604,9 @@ body{
   <div class="card">
     <div class="card-title">Land issue — intensity check</div>
     <div class="card-desc">The fight is legitimate. Check whether the wound is running alongside it.</div>
-    <div class="sdiv" style="margin-top:0">Intensity level right now</div>
-    <div class="intensity-bar" id="int-bar"></div>
-    <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-bottom:12px"><span>Low</span><span>High</span></div>
-    <div class="sdiv">Certainty level right now</div>
-    <div class="intensity-bar" id="cert-bar"></div>
-    <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-bottom:12px"><span>Uncertain</span><span>Certain</span></div>
-    <div id="land-check-list" class="chk-list"></div>
-    <button class="btn" onclick="doLandCheck()">Notice</button>
-    <div class="result" id="r-land"></div>
-    <div class="sdiv" style="margin-top:14px">Next legal steps (decoupled from emotion)</div>
-    <div style="font-size:12px;line-height:1.7;color:var(--text2)">
-      <div>1. SIC Second Appeal (RTI deemed refusal)</div>
-      <div>2. CCLA forensic audit request</div>
-      <div>3. Part-B correction (Bhu Bharati Act)</div>
-      <div>4. Lokayukta complaint</div>
-      <div>5. FIR under IT Act Sec 66C, 66D, 65</div>
-      <div>6. HC writ if all channels fail</div>
-    </div>
+    <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9632;</span><div><div class="csec-nm">Intensity + certainty</div><div class="csec-ds">Check before the next action</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="sdiv" style="margin-top:0">Intensity level right now</div><div class="intensity-bar" id="int-bar"></div><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-bottom:12px"><span>Low</span><span>High</span></div><div class="sdiv">Certainty level right now</div><div class="intensity-bar" id="cert-bar"></div><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-bottom:12px"><span>Uncertain</span><span>Certain</span></div><button class="btn" onclick="event.stopPropagation();doLandCheck()">Notice</button><div class="result" id="r-land"></div></div></div>
+    <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9679;</span><div><div class="csec-nm">Wound check</div><div class="csec-ds">Is the wound running alongside the fight?</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="land-check-list" class="chk-list"></div></div></div>
+    <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9654;</span><div><div class="csec-nm">Next legal steps</div><div class="csec-ds">Decoupled from emotion</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div style="font-size:12px;line-height:1.7;color:var(--text2)"><div>1. SIC Second Appeal (RTI deemed refusal)</div><div>2. CCLA forensic audit request</div><div>3. Part-B correction (Bhu Bharati Act)</div><div>4. Lokayukta complaint</div><div>5. FIR under IT Act Sec 66C, 66D, 65</div><div>6. HC writ if all channels fail</div></div></div></div>
   </div>
 </div>
 
@@ -630,67 +614,66 @@ body{
 <!-- DAILY CARE SCREEN -->
 <div class="screen" id="scr-care">
   <button class="btn-back" onclick="showScreen('scr-home')">&#8592; Back</button>
-  <div class="prayer-card">
-    <div class="prayer-text">
-      <strong>Prakrti</strong>
-      <span style="display:block;margin-bottom:4px">Intelligence beyond my awareness.</span>
-      I acknowledge what I do not control and do not know. I act where choice is mine, and release what belongs to process. May balance reassert itself. Om Shanti.
-    </div>
-  </div>
   <div style="font-size:13px;color:var(--text2);margin-bottom:8px" id="dc-date"></div>
   <div class="card" id="dc-day-block" style="padding:12px 14px;margin-bottom:8px"></div>
   <div class="al al-alert" id="care-reg-banner" style="display:none;margin-bottom:8px">Regulation level is high today. Use Ground before goal work.</div>
-  <div class="card">
-    <div class="card-title" style="margin-bottom:8px">Goal planning</div>
+
+  <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9733;</span><div><div class="csec-nm">Prayer</div><div class="csec-ds">Prakrti</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
+    <div class="prayer-card"><div class="prayer-text"><strong>Prakrti</strong><span style="display:block;margin-bottom:4px">Intelligence beyond my awareness.</span>I acknowledge what I do not control and do not know. I act where choice is mine, and release what belongs to process. May balance reassert itself. Om Shanti.</div></div>
+  </div></div>
+
+  <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9678;</span><div><div class="csec-nm">Goal planning</div><div class="csec-ds">Auto-selected daily goals</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
     <div style="font-size:12px;color:var(--text3);margin-bottom:12px" id="goal-intro"></div>
     <div class="goal-grid" id="goal-grid"></div>
-  </div>
-  <div class="card">
-    <div class="card-title" style="margin-bottom:8px">Morning intention</div>
+  </div></div>
+
+  <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9654;</span><div><div class="csec-nm">Morning intention</div><div class="csec-ds">One thing, one quality, one boundary</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
     <div class="isec"><div class="ilbl">One thing that matters most today</div><textarea class="itxt" id="intent-main" rows="2" placeholder="Today I am moving toward..." oninput="persist('intent-main',this.value);updReflCtx()"></textarea></div>
     <div class="isec"><div class="ilbl">What I am bringing to this day</div><textarea class="itxt" id="intent-value" rows="2" placeholder="Today I am showing up as..." oninput="persist('intent-value',this.value)"></textarea></div>
-    <div class="isec" style="margin-bottom:0"><div class="ilbl">What I am protecting today</div><textarea class="itxt" id="intent-protect" rows="2" placeholder="Today I am protecting..." oninput="persist('intent-protect',this.value)"></textarea></div>
-  </div>
-  <div class="card">
-    <div class="card-title" style="margin-bottom:8px">Daily guardrails</div>
-    <div class="al al-alert" style="margin:0 0 10px"><strong>Hard boundaries.</strong> Cigarettes &#8596; Pornography &#8594; Cannabis &#8594; Psychosis. Each link is an entry point. Each one lowers the threshold for the next. The craving is never about the substance \u2014 it is about regulation. Name the real need.</div>
-    <div class="sdiv" style="margin-top:0">Intoxicants</div>
-    <div class="yn-row"><span class="yn-text">No intoxicants today</span><div class="yn-btns"><button class="yn-btn" id="s1a" onclick="yn('s1a','s1b')">Yes</button><button class="yn-btn" id="s1b" onclick="yn('s1b','s1a')">No</button></div></div>
-    <div class="yn-row"><span class="yn-text">No caffeine today</span><div class="yn-btns"><button class="yn-btn" id="s2a" onclick="yn('s2a','s2b')">Yes</button><button class="yn-btn" id="s2b" onclick="yn('s2b','s2a')">No</button></div></div>
-    <div class="yn-row"><span class="yn-text">No nicotine today</span><div class="yn-btns"><button class="yn-btn" id="s3a" onclick="yn('s3a','s3b')">Yes</button><button class="yn-btn" id="s3b" onclick="yn('s3b','s3a')">No</button></div></div>
-    <div class="yn-row"><span class="yn-text">No pornography today</span><div class="yn-btns"><button class="yn-btn" id="s4a" onclick="yn('s4a','s4b')">Yes</button><button class="yn-btn" id="s4b" onclick="yn('s4b','s4a')">No</button></div></div>
+    <div class="isec"><div class="ilbl">What I am protecting today</div><textarea class="itxt" id="intent-protect" rows="2" placeholder="Today I am protecting..." oninput="persist('intent-protect',this.value)"></textarea></div>
+  </div></div>
+
+  <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9888;</span><div><div class="csec-nm">Guardrails</div><div class="csec-ds">Intoxicants, prodrome, structure</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
+    <div class="al al-alert" style="margin:0 0 10px"><strong>Hard boundaries.</strong> Cigarettes &#8596; Pornography &#8594; Cannabis &#8594; Psychosis. The craving is never about the substance.</div>
+    <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9632;</span><div><div class="csec-nm">Intoxicants</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
+    <div class="yn-row"><span class="yn-text" id="gt-s1">No intoxicants today</span><div class="yn-btns"><button class="yn-btn" id="s1a" onclick="event.stopPropagation();yn('s1a','s1b')">Yes</button><button class="yn-btn" id="s1b" onclick="event.stopPropagation();yn('s1b','s1a')">No</button></div></div>
+    <div class="yn-row"><span class="yn-text" id="gt-s2">No caffeine today</span><div class="yn-btns"><button class="yn-btn" id="s2a" onclick="event.stopPropagation();yn('s2a','s2b')">Yes</button><button class="yn-btn" id="s2b" onclick="event.stopPropagation();yn('s2b','s2a')">No</button></div></div>
+    <div class="yn-row"><span class="yn-text" id="gt-s3">No nicotine today</span><div class="yn-btns"><button class="yn-btn" id="s3a" onclick="event.stopPropagation();yn('s3a','s3b')">Yes</button><button class="yn-btn" id="s3b" onclick="event.stopPropagation();yn('s3b','s3a')">No</button></div></div>
+    <div class="yn-row"><span class="yn-text" id="gt-s4">No pornography today</span><div class="yn-btns"><button class="yn-btn" id="s4a" onclick="event.stopPropagation();yn('s4a','s4b')">Yes</button><button class="yn-btn" id="s4b" onclick="event.stopPropagation();yn('s4b','s4a')">No</button></div></div>
     <div class="sdiv">Prodrome awareness</div>
-    <div class="yn-row"><span class="yn-text">No unusual sense of meaning, pattern, or significance in ordinary events</span><div class="yn-btns"><button class="yn-btn" id="p1a" onclick="yn('p1a','p1b')">Yes</button><button class="yn-btn" id="p1b" onclick="yn('p1b','p1a')">No</button></div></div>
-    <div class="yn-row"><span class="yn-text">No urgency to communicate something important to others</span><div class="yn-btns"><button class="yn-btn" id="p2a" onclick="yn('p2a','p2b')">Yes</button><button class="yn-btn" id="p2b" onclick="yn('p2b','p2a')">No</button></div></div>
-    <div class="yn-row"><span class="yn-text">I acknowledge that insight can feel intact while being compromised</span><div class="yn-btns"><button class="yn-btn" id="p3a" onclick="yn('p3a','p3b')">Yes</button><button class="yn-btn" id="p3b" onclick="yn('p3b','p3a')">No</button></div></div>
+    <div class="yn-row"><span class="yn-text">No unusual sense of meaning or significance</span><div class="yn-btns"><button class="yn-btn" id="p1a" onclick="event.stopPropagation();yn('p1a','p1b')">Yes</button><button class="yn-btn" id="p1b" onclick="event.stopPropagation();yn('p1b','p1a')">No</button></div></div>
+    <div class="yn-row"><span class="yn-text">No urgency to communicate something important</span><div class="yn-btns"><button class="yn-btn" id="p2a" onclick="event.stopPropagation();yn('p2a','p2b')">Yes</button><button class="yn-btn" id="p2b" onclick="event.stopPropagation();yn('p2b','p2a')">No</button></div></div>
+    <div class="yn-row"><span class="yn-text">Insight can feel intact while being compromised</span><div class="yn-btns"><button class="yn-btn" id="p3a" onclick="event.stopPropagation();yn('p3a','p3b')">Yes</button><button class="yn-btn" id="p3b" onclick="event.stopPropagation();yn('p3b','p3a')">No</button></div></div>
     <div class="sdiv">Structure</div>
-    <div class="yn-row"><span class="yn-text">Following routines today even if motivation is low</span><div class="yn-btns"><button class="yn-btn" id="t1a" onclick="yn('t1a','t1b')">Yes</button><button class="yn-btn" id="t1b" onclick="yn('t1b','t1a')">No</button></div></div>
-    <div class="yn-row"><span class="yn-text">I choose stability over insight or pleasure today</span><div class="yn-btns"><button class="yn-btn" id="t2a" onclick="yn('t2a','t2b')">Yes</button><button class="yn-btn" id="t2b" onclick="yn('t2b','t2a')">No</button></div></div>
+    <div class="yn-row"><span class="yn-text">Following routines today</span><div class="yn-btns"><button class="yn-btn" id="t1a" onclick="event.stopPropagation();yn('t1a','t1b')">Yes</button><button class="yn-btn" id="t1b" onclick="event.stopPropagation();yn('t1b','t1a')">No</button></div></div>
+    <div class="yn-row"><span class="yn-text">Stability over insight or pleasure today</span><div class="yn-btns"><button class="yn-btn" id="t2a" onclick="event.stopPropagation();yn('t2a','t2b')">Yes</button><button class="yn-btn" id="t2b" onclick="event.stopPropagation();yn('t2b','t2a')">No</button></div></div>
     <div class="result" id="r-guard"></div>
-  </div>
-  <div class="card">
-    <div class="card-title" style="margin-bottom:8px">Taper check</div>
-    <div class="card-desc">The body leads. The system follows.</div>
+  </div></div>
+
+  <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9675;</span><div><div class="csec-nm">Taper check</div><div class="csec-ds">The body leads. The system follows.</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
     <div class="al al-alert" id="taper-prodrome-banner" style="display:none;margin-bottom:8px">Prodrome signals were flagged today.</div>
     <div id="taper-checks"></div>
-    <button class="btn" onclick="runTaper()">Check status</button>
+    <button class="btn" onclick="event.stopPropagation();runTaper()">Check status</button>
     <div class="taper-status" id="tc-status"></div>
     <div style="margin-top:10px;font-size:12px;line-height:1.8;color:var(--text3)">
       <div>Spiritual intensity without grounding is not growth. It is prodrome.</div>
       <div>Insight feeling intact is not the same as insight being intact.</div>
       <div>Fast thoughts + elevated mood = yellow or red, not inspiration.</div>
     </div>
-  </div>
-  <div class="card">
-    <div class="card-title" style="margin-bottom:8px">Evening reflection</div>
+  </div></div>
+
+  <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9679;</span><div><div class="csec-nm">Evening reflection</div><div class="csec-ds">What happened, where I showed up</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
     <div class="isec" id="reflect-ctx-block" style="display:none"><div class="ilbl" style="color:var(--text3)">This morning you wrote</div><div id="reflect-ctx-text" style="font-size:13px;color:var(--text2);font-style:italic;padding:8px 11px;border-radius:var(--r);border:1px solid var(--bdr);line-height:1.5"></div></div>
     <div class="isec"><div class="ilbl">What actually happened</div><textarea class="itxt" id="reflect-what" rows="2" placeholder="Today..." oninput="persist('reflect-what',this.value)"></textarea></div>
     <div class="isec"><div class="ilbl">Where I showed up as myself</div><textarea class="itxt" id="reflect-good" rows="2" placeholder="I showed up when..." oninput="persist('reflect-good',this.value)"></textarea></div>
-    <div class="isec" style="margin-bottom:0"><div class="ilbl">What needs correction tomorrow</div><textarea class="itxt" id="reflect-next" rows="2" placeholder="Tomorrow I will..." oninput="persist('reflect-next',this.value)"></textarea></div>
-  </div>
-  <div class="card"><div class="card-title" style="margin-bottom:8px">Weekly rhythm</div><div class="rhythm-grid" id="dc-rhythm"></div></div>
-  <div class="card">
-    <div class="card-title" style="margin-bottom:8px">Timetable</div>
+    <div class="isec"><div class="ilbl">What needs correction tomorrow</div><textarea class="itxt" id="reflect-next" rows="2" placeholder="Tomorrow I will..." oninput="persist('reflect-next',this.value)"></textarea></div>
+  </div></div>
+
+  <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9654;</span><div><div class="csec-nm">Weekly rhythm</div><div class="csec-ds">Rhythm grid</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
+    <div class="rhythm-grid" id="dc-rhythm"></div>
+  </div></div>
+
+  <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9632;</span><div><div class="csec-nm">Timetable</div><div class="csec-ds">Daily schedule</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
     <div class="tt-row"><div class="tt-time">06:00</div><div>Wake up</div></div>
     <div class="tt-row"><div class="tt-time">10:00</div><div>Work block 1</div></div>
     <div class="tt-row"><div class="tt-time">13:00</div><div>Break</div></div>
@@ -698,19 +681,19 @@ body{
     <div class="tt-row"><div class="tt-time">18:00</div><div>Done</div></div>
     <div class="tt-row"><div class="tt-time">21:00</div><div>Wind down</div></div>
     <div class="tt-row"><div class="tt-time">22:00</div><div>Sleep</div></div>
-  </div>
+  </div></div>
+
+  </div></div>
   <div class="hist-section">
     <button class="hist-toggle" onclick="toggleHist('hist-care-body',this)"><span>History &#8212; last 30 days</span><span>&#9660;</span></button>
     <div class="hist-body" id="hist-care-body"><div id="hist-care-days"></div><div class="hist-view" id="hist-care-view"></div></div>
   </div>
 </div>
-
-
-<!-- WHERE I AM SCREEN -->
 <div class="screen" id="scr-phase">
   <button class="btn-back" onclick="showScreen('scr-home')">&#8592; Back</button>
   <div class="card">
     <div class="card-title" style="margin-bottom:10px">Where I am</div>
+    <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico" style="color:var(--calm)">&#9654;</span><div><div class="csec-nm">Phase 1 — Stabilisation</div><div class="csec-ds">Now → Nov 2026</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
     <div style="border-left:3px solid var(--calm);padding:8px 12px;margin-bottom:8px;border-radius:0 var(--r) var(--r) 0;background:var(--calm-bg)">
       <div style="font-size:11px;font-weight:600;color:var(--calm);text-transform:uppercase;letter-spacing:.4px">Phase 1 &#8212; Stabilisation (now &#8594; Nov 2026)</div>
       <div style="font-size:12px;color:var(--text2);margin-top:4px;line-height:1.7">
@@ -721,6 +704,8 @@ body{
         <strong style="color:var(--text)">Exit:</strong> AD filed. Finances secured. Property registered. November 1, 2026.
       </div>
     </div>
+    </div></div>
+    <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico" style="color:var(--info-text)">&#9654;</span><div><div class="csec-nm">Phase 2 — Processing</div><div class="csec-ds">Post-exit, Month 1–6</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
     <div style="border-left:3px solid var(--info-bdr);padding:8px 12px;margin-bottom:8px;border-radius:0 var(--r) var(--r) 0">
       <div style="font-size:11px;font-weight:600;color:var(--info-text);text-transform:uppercase;letter-spacing:.4px">Phase 2 &#8212; Processing (post-exit, Month 1&#8211;6)</div>
       <div style="font-size:12px;color:var(--text3);margin-top:4px;line-height:1.7">
@@ -729,13 +714,16 @@ body{
         <strong style="color:var(--text2)">Not through this app.</strong> Needs co-regulation with a human, from safety.
       </div>
     </div>
+    </div></div>
+    <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico" style="color:var(--ok)">&#9654;</span><div><div class="csec-nm">Phase 3 — Reconnection</div><div class="csec-ds">Mid-2027+</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
     <div style="border-left:3px solid var(--ok-bdr);padding:8px 12px;margin-bottom:8px;border-radius:0 var(--r) var(--r) 0">
       <div style="font-size:11px;font-weight:600;color:var(--ok);text-transform:uppercase;letter-spacing:.4px">Phase 3 &#8212; Reconnection (mid-2027+)</div>
       <div style="font-size:12px;color:var(--text3);margin-top:4px;line-height:1.7">
         Interpersonal effectiveness in real relationships. Trust calibration &#8212; extend trust based on demonstrated reliability, not words. Partner from safety, not from need. Community, tribe, professional network. Outside-person skills mature from defence to genuine connection. NoVisits at full capacity.
       </div>
     </div>
-    <div style="font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.4px;margin-top:10px">Therapeutic layers</div>
+    </div></div>
+    <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9678;</span><div><div class="csec-nm">Therapeutic layers</div><div class="csec-ds">5 layers across phases</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
     <div style="font-size:12px;color:var(--text2);line-height:1.7;margin-top:4px">
       <div><strong style="color:var(--text)">1. Body regulation:</strong> Polyvagal tools (breathing, self-contact, cold water). Somatic Experiencing or Sensorimotor Psychotherapy with therapist. Fitness as vagal tone + Se development.</div>
       <div><strong style="color:var(--text)">2. Emotion + interpersonal:</strong> STAIR/E-STAIR. DBT skills (distress tolerance, emotion regulation, interpersonal effectiveness, structured mindfulness).</div>
@@ -743,101 +731,75 @@ body{
       <div><strong style="color:var(--text)">4. Trauma memory:</strong> EMDR for discrete traumatic memories. Bypasses intellectualisation. Post-stabilisation only.</div>
       <div><strong style="color:var(--text)">5. Autonomic flexibility:</strong> Ongoing. HRV building through fitness + breathing. Vagal tone as the foundation everything else rests on.</div>
     </div>
-    <div style="font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.4px;margin-top:14px">Medication</div>
+    </div></div>
+    <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9675;</span><div><div class="csec-nm">Medication</div><div class="csec-ds">Aripiprazole 1.25mg</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
     <div style="font-size:12px;color:var(--text2);line-height:1.7;margin-top:4px;margin-bottom:10px">
       <div>Aripiprazole 1.25mg \u2014 the right medication at the right dose. Best cardiovascular and metabolic profile among antipsychotics. Best evidence for CIP relapse prevention. Do not change what is working.</div>
       <div>Any additions \u2014 check CYP2D6 interaction (bupropion increases aripiprazole blood levels up to 5x). Any cessation \u2014 psychotic symptoms appeared within 3-5 days in your history.</div>
     </div>
-    <div style="font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.4px;margin-top:14px">NoVisits timeline</div>
+    </div></div>
+    <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9654;</span><div><div class="csec-nm">NoVisits timeline</div><div class="csec-ds">Phase 0 → Full commitment</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
     <div style="font-size:12px;color:var(--text2);line-height:1.6;margin-top:4px">
       <div><strong style="color:var(--text)">Now &#8594; Jun:</strong> Phase 0. Research, planning, architecture. No launches, no deadlines.</div>
       <div><strong style="color:var(--text)">Jul &#8594; Oct:</strong> Phase 1. Small contained work blocks. One action per day. If it feels urgent &#8212; check intensity.</div>
       <div><strong style="color:var(--text)">Nov 2026+:</strong> Full commitment from outside the house.</div>
     </div>
     <div style="font-size:11px;color:var(--text3);font-style:italic;margin-top:8px;line-height:1.5">NoVisits does not need to succeed before exit. It needs to survive until after exit.</div>
+  </div></div>
   </div>
 </div>
 
 <!-- DEEP REVIEW -->
 <div class="screen" id="scr-review">
   <button class="btn-back" onclick="showScreen('scr-home')">&#8592; Back</button>
-  <div style="margin-bottom:8px"><span class="card-title">Deep review</span><div style="font-size:12px;color:var(--text3);margin-top:2px">Awareness is enough.</div>
-    <div style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap">
-      <span style="font-size:11px;padding:3px 9px;border-radius:20px;border:1px solid var(--bdr2);color:var(--text2);font-weight:600">4w5</span>
-      <span style="font-size:11px;padding:3px 9px;border-radius:20px;border:1px solid var(--bdr2);color:var(--text2);font-weight:600">SX/SO</span>
-      <span style="font-size:11px;padding:3px 9px;border-radius:20px;border:1px solid var(--bdr2);color:var(--text2);font-weight:600">SP blind</span>
-      <span style="font-size:11px;padding:3px 9px;border-radius:20px;border:1px solid var(--bdr2);color:var(--text2)">INFJ</span>
-      <span style="font-size:11px;padding:3px 9px;border-radius:20px;border:1px solid var(--bdr2);color:var(--text2)">&#8594; 1</span>
-      <span style="font-size:11px;padding:3px 9px;border-radius:20px;border:1px solid var(--bdr2);color:var(--text2)">&#8592; 2</span>
-    </div>
-  </div>
-  <div class="card"><div class="card-head"><span class="card-num">01</span><span class="card-title">Body signals</span></div><div class="card-desc">Se inferior + SP blind &#8212; your weakest function. You will miss these until they are loud. Check deliberately.</div><div id="b-list"></div><button class="btn" onclick="doBody()">Notice</button><div class="result" id="r-body"></div></div>
-  <div class="card"><div class="card-head"><span class="card-num">02</span><span class="card-title">Regulation level</span></div><div class="card-desc">Select everything present. This tells you how much to trust your analysis today.</div><div class="reg-items" id="reg-items"></div><button class="btn" onclick="doReg()">Notice</button><div class="result" id="r-reg"></div></div>
-  <div class="card"><div class="card-head"><span class="card-num">03</span><span class="card-title">Signal check</span></div><div class="card-desc">Is the signal real or is the wound running?</div><div class="sdiv" style="margin-top:0">What fired</div><div id="noise-list"></div><div class="sdiv">Relationship patterns</div><div id="rel-list"></div><button class="btn" onclick="doNoise()">Notice</button><div class="result" id="r-noise"></div></div>
-  <div class="card"><div class="card-head"><span class="card-num">04</span><span class="card-title">Distortion check</span></div><div class="card-desc">Check what is active in your thinking.</div><div class="sdiv" style="margin-top:0">Catastrophising</div><div id="c-list"></div><div class="sdiv">Cognitive filters</div><div id="dist-list"></div><button class="btn" onclick="doDistort()">Notice</button><div class="result" id="r-distort"></div></div>
-  <div class="card"><div class="card-head"><span class="card-num">05</span><span class="card-title">Interaction scan</span></div><div class="card-desc">What is present in a recent or ongoing interaction.</div><div class="sdiv" style="margin-top:0">Boundary pressure</div><div id="bnd-list"></div><div class="sdiv">Behavioural drift</div><div id="soc-list"></div><button class="btn" onclick="doScan()">Notice</button><div class="result" id="r-scan"></div></div>
-  <div class="card"><div class="card-head"><span class="card-num">06</span><span class="card-title">Game check</span></div><div class="card-desc">Unconscious repetitive sequences &#8212; not malice, but structure.</div><div id="game-list"></div><button class="btn" onclick="doGame()">Notice</button><div class="result" id="r-game"></div></div>
-  <div class="card"><div class="card-head"><span class="card-num">07</span><span class="card-title">Authority dynamics</span></div><div class="card-desc">What is active where authority is in play.</div><div class="sdiv" style="margin-top:0">Patterns that undermine you</div><div id="auth-list"></div><div class="sdiv">Holding your position</div><div id="hold-list"></div><button class="btn" onclick="doAuthority()">Notice</button><div class="result" id="r-auth"></div></div>
-  <div class="card"><div class="card-head"><span class="card-num">08</span><span class="card-title">Effort patterns</span></div><div class="card-desc">Your system's default configuration under load.</div><div class="sdiv" style="margin-top:0">Effort patterns</div><div id="ep-list"></div><div class="sdiv">Structural bias</div><div id="sb-list"></div><div class="sdiv">Procrastination signals</div><div id="proc-list"></div><button class="btn" onclick="doEffort()">Notice</button><div class="result" id="r-effort"></div></div>
-  <div class="card">
-    <div class="card-head"><span class="card-num">09</span><span class="card-title">Integration &#8212; moving toward 1</span></div>
-    <div class="prompt" style="margin-top:0;margin-bottom:8px">Moving toward 1: stepping out of emotional intensity into disciplined, principled action. Using depth and authenticity as a foundation for structure, not a reason to stay in the feeling.</div>
+  <div style="margin-bottom:8px"><span class="card-title">Deep review</span><div style="font-size:12px;color:var(--text3);margin-top:2px">Awareness is enough.</div></div>
+
+  <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9670;</span><div><div class="csec-nm">4w5 · INFJ · SX/SO · SP blind · →1 · ←2</div><div class="csec-ds">Cigarettes ↔ Pornography → Cannabis → Psychosis</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
+    <div style="font-size:11px;color:var(--text3);margin-bottom:6px">Ni-Fe-Ti-Se · High-gain · Wound → dysregulation → Ni volume too high → craving → chain completes</div>
+    <div style="font-size:12px;color:var(--text2)">Core wounds: Hero drive (trap) · Not being seen · Betrayal · Manipulation · Truth denied · Helplessness · Being overridden · Being infantilised · Responsibility not shared · Rejection</div>
+  </div></div>
+  <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico" style="font-size:12px;font-weight:700">01</span><div><div class="csec-nm">Body signals</div><div class="csec-ds">Se inferior + SP blind &#8212; your weakest function. You will miss these until they are loud. Check deliberately.</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="b-list"></div><button class="btn" onclick="doBody()">Notice</button><div class="result" id="r-body"></div></div></div>
+  <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico" style="font-size:12px;font-weight:700">02</span><div><div class="csec-nm">Regulation level</div><div class="csec-ds">Select everything present. This tells you how much to trust your analysis today.</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="reg-items" id="reg-items"></div><button class="btn" onclick="doReg()">Notice</button><div class="result" id="r-reg"></div></div></div>
+  <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico" style="font-size:12px;font-weight:700">03</span><div><div class="csec-nm">Signal check</div><div class="csec-ds">Is the signal real or is the wound running?</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9632;</span><div><div class="csec-nm">What fired</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="noise-list"></div></div></div><div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9679;</span><div><div class="csec-nm">Relationship patterns</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="rel-list"></div></div></div><button class="btn" onclick="doNoise()">Notice</button><div class="result" id="r-noise"></div></div></div>
+  <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico" style="font-size:12px;font-weight:700">04</span><div><div class="csec-nm">Distortion check</div><div class="csec-ds">Check what is active in your thinking.</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9632;</span><div><div class="csec-nm">Catastrophising</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="c-list"></div></div></div><div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9679;</span><div><div class="csec-nm">Cognitive filters</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="dist-list"></div></div></div><button class="btn" onclick="doDistort()">Notice</button><div class="result" id="r-distort"></div></div></div>
+  <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico" style="font-size:12px;font-weight:700">05</span><div><div class="csec-nm">Interaction scan</div><div class="csec-ds">What is present in a recent or ongoing interaction.</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9632;</span><div><div class="csec-nm">Boundary pressure</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="bnd-list"></div></div></div><div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9679;</span><div><div class="csec-nm">Behavioural drift</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="soc-list"></div></div></div><button class="btn" onclick="doScan()">Notice</button><div class="result" id="r-scan"></div></div></div>
+  <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico" style="font-size:12px;font-weight:700">06</span><div><div class="csec-nm">Game check</div><div class="csec-ds">Unconscious repetitive sequences &#8212; not malice, but structure.</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="game-list"></div><button class="btn" onclick="doGame()">Notice</button><div class="result" id="r-game"></div></div></div>
+  <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico" style="font-size:12px;font-weight:700">07</span><div><div class="csec-nm">Authority dynamics</div><div class="csec-ds">What is active where authority is in play.</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9632;</span><div><div class="csec-nm">Patterns that undermine</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="auth-list"></div></div></div><div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9679;</span><div><div class="csec-nm">Holding your position</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="hold-list"></div></div></div><button class="btn" onclick="doAuthority()">Notice</button><div class="result" id="r-auth"></div></div></div>
+  <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico" style="font-size:12px;font-weight:700">08</span><div><div class="csec-nm">Effort patterns</div><div class="csec-ds">Your system's default configuration under load.</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9632;</span><div><div class="csec-nm">Effort patterns</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="ep-list"></div></div></div><div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9679;</span><div><div class="csec-nm">Structural bias</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="sb-list"></div></div></div><div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9675;</span><div><div class="csec-nm">Procrastination signals</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="proc-list"></div></div></div><button class="btn" onclick="doEffort()">Notice</button><div class="result" id="r-effort"></div></div></div>
+  <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico" style="font-size:12px;font-weight:700">09</span><div><div class="csec-nm">Integration — moving toward 1</div><div class="csec-ds">Discipline, principled action, structure</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="prompt" style="margin-top:0;margin-bottom:8px">Moving toward 1: stepping out of emotional intensity into disciplined, principled action. Using depth and authenticity as a foundation for structure, not a reason to stay in the feeling.</div>
     <div class="al al-warn" style="margin:0 0 8px">Watch for disintegration toward 2: over-giving, rescuing, earning love through sacrifice. The hero drive IS the disintegration &#8212; it feeds the psychosis loop directly.</div>
-    <div class="afs">Release</div>
-    <div class="aff">
+    <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9675;</span><div><div class="csec-nm">Release</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="aff">
       <div class="afi" onclick="togAff(this)"><input type="checkbox"><span>There is room to loosen the need to be right or complete.</span></div>
       <div class="afi" onclick="togAff(this)"><input type="checkbox"><span>There is room to let others be imperfect without fixing them.</span></div>
       <div class="afi" onclick="togAff(this)"><input type="checkbox"><span>There is room to offer help without expectation of return.</span></div>
       <div class="afi" onclick="togAff(this)"><input type="checkbox"><span>There is room for presence or attention to be enough.</span></div>
       <div class="afi" onclick="togAff(this)"><input type="checkbox"><span>There is room for a softer internal tone.</span></div>
-    </div>
-    <div class="afs">Steadiness</div>
-    <div class="aff">
+    </div></div></div>
+    <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9675;</span><div><div class="csec-nm">Steadiness</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="aff">
       <div class="afi" onclick="togAff(this)"><input type="checkbox"><span>There is room to move with direction rather than certainty.</span></div>
       <div class="afi" onclick="togAff(this)"><input type="checkbox"><span>There is room to allow not knowing without forcing clarity.</span></div>
       <div class="afi" onclick="togAff(this)"><input type="checkbox"><span>There is room to accept the limits of time, energy, or understanding.</span></div>
       <div class="afi" onclick="togAff(this)"><input type="checkbox"><span>There is room to notice effort without measuring worth.</span></div>
-    </div>
-    <div class="afs">Action</div>
-    <div class="aff">
+    </div></div></div>
+    <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9675;</span><div><div class="csec-nm">Action</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="aff">
       <div class="afi" onclick="togAff(this)"><input type="checkbox"><span>There is room to act from what I know without waiting to know more.</span></div>
       <div class="afi" onclick="togAff(this)"><input type="checkbox"><span>There is room to contribute in ways that respect my regulation.</span></div>
       <div class="afi" onclick="togAff(this)"><input type="checkbox"><span>There is room to build for the contribution rather than the applause.</span></div>
       <div class="afi" onclick="togAff(this)"><input type="checkbox"><span>There is room to say what I mean once, clearly, and stop.</span></div>
-    </div>
+    </div></div></div>
     <button class="btn" style="margin-top:14px" onclick="doIntegration()">Complete review</button>
-    <div class="mantra" id="mantra">&#8220;Awareness is the greatest agent for change&#8221;</div>
-  </div>
-  <div class="card">
-    <div class="card-title" style="margin-bottom:6px">Identity reference</div>
-    <div class="id-grid">
-      <div class="id-cell"><div class="id-key">Type</div><div class="id-val">4w5 &#183; INFJ</div></div>
-      <div class="id-cell"><div class="id-key">Stacking</div><div class="id-val">SX/SO &#183; SP blind</div></div>
-      <div class="id-cell"><div class="id-key">Integration</div><div class="id-val">toward 1</div></div>
-      <div class="id-cell"><div class="id-key">Disintegration</div><div class="id-val">toward 2</div></div>
-      <div class="id-cell"><div class="id-key">System</div><div class="id-val">High-gain</div></div>
-      <div class="id-cell"><div class="id-key">Stack</div><div class="id-val">Ni-Fe-Ti-Se</div></div>
+    <div class="mantra" id="mantra">
+      <span id="m1" style="opacity:0;transition:opacity 1s">&#8220;Awareness</span>
+      <span id="m2" style="opacity:0;transition:opacity 1s">is the greatest agent</span>
+      <span id="m3" style="opacity:0;transition:opacity 1s">for change.&#8221;</span>
     </div>
-    <div style="margin-top:8px;padding:7px 10px;background:var(--bg2);border-radius:var(--r)"><div class="id-key">Risk chain</div><div class="id-val" style="font-size:12px">Cigarettes &#8596; Pornography &#8594; Cannabis &#8594; Psychosis</div></div>
-    <div style="margin-top:4px;padding:7px 10px;background:var(--bg2);border-radius:var(--r)"><div class="id-key">Cascade</div><div class="id-val" style="font-size:12px">Wound &#8594; dysregulation &#8594; Ni volume too high &#8594; craving &#8594; chain completes</div></div>
-    <div class="sdiv" style="margin-top:14px">Core wounds</div>
-    <div style="font-size:13px;line-height:1.8;color:var(--text2)">
-      <div>Betrayal and manipulation</div>
-      <div>Truth present but denied</div>
-      <div>Rejection</div>
-      <div>Not being seen</div>
-      <div>Being overridden</div>
-      <div>Helplessness</div>
-    </div>
-  </div>
+  </div></div>
   <div class="hist-section">
     <button class="hist-toggle" onclick="toggleHist('hist-review-body',this)"><span>History &#8212; last 30 days</span><span>&#9660;</span></button>
     <div class="hist-body" id="hist-review-body"><div id="hist-review-days"></div><div class="hist-view" id="hist-review-view"></div></div>
   </div>
 </div>
-
-</div><!-- end .app -->
-
+</div>
 <script>
 // ═══════════ CONFIG ═══════════
 const GIST_ID='92ea8a47f979c421b8d9264935e86700';
@@ -875,6 +837,7 @@ function getAudioCtx(){if(!_audioCtx)_audioCtx=new(window.AudioContext||window.w
 function beep(){try{var ctx=getAudioCtx();var o=ctx.createOscillator();var g=ctx.createGain();o.type='sine';o.frequency.setValueAtTime(660,ctx.currentTime);g.gain.setValueAtTime(0.0001,ctx.currentTime);g.gain.exponentialRampToValueAtTime(0.15,ctx.currentTime+0.01);g.gain.exponentialRampToValueAtTime(0.0001,ctx.currentTime+0.4);o.connect(g);g.connect(ctx.destination);o.start(ctx.currentTime);o.stop(ctx.currentTime+0.45);}catch(e){}}
 function vibrate(ms){try{if(navigator.vibrate)navigator.vibrate(ms||80);}catch(e){}}
 function show(id,html){var el=document.getElementById(id);if(!el)return;el.innerHTML=html;el.classList.add('show');}
+function togSec(ev,el){ev.stopPropagation();el.classList.toggle("open");}
 function togChk(row){var cb=row.querySelector('input');cb.checked=!cb.checked;}
 function togAff(el){var cb=el.querySelector('input');cb.checked=!cb.checked;el.classList.toggle('done',cb.checked);}
 
@@ -935,7 +898,8 @@ var BODY_TIPS={
   chest:{n:'Chest tight / shallow breathing',t:'Extend your exhales deliberately.',w:'shallow breathing maintains sympathetic activation',psy:'Hyperventilation pattern'},
   gut:{n:'Gut tension / nausea',t:'Warm fluids. Reduce information intake.',w:'visceral sensitivity often leads cognitive awareness',psy:'Gut-brain axis activation'},
   head:{n:'Head pressure',t:'Hydrate. Screen break.',w:'tension headache is one of the clearest signals of cognitive overload',psy:'Tension-type headache'},
-  neglect:{n:'Self-care being overridden',t:'Name the thing you are skipping. Do the care task now. Not later.',w:'overriding self-care signals is how small costs compound into structural damage',psy:'Behavioural pattern: self-neglect under load'},
+  neglect:{n:'Self-care being skipped',t:'Name the thing you are skipping. Do it now. Not later.',w:'overriding self-care signals is how small costs compound into structural damage',psy:'Behavioural pattern: self-neglect under load'},
+  selfharm:{n:'Doing something that costs later',t:'Name what you are doing and what it will cost. Is the short-term relief worth the long-term price?',w:'the dopamine chain starts with small concessions that feel manageable',psy:'Delayed consequence discounting'},
   hrv:{n:'HRV/HR flag from watch',t:'Rest day. No big decisions. No intense work. Walk gently if anything. Your autonomic system is depleted \u2014 aripiprazole suppresses HRV and today it shows.',w:'HRV below 20 or RHR above 85 means parasympathetic brake is near-absent',psy:'Autonomic nervous system depletion \u2014 vagal tone insufficient'}
 };
 
@@ -943,9 +907,9 @@ var BODY_TIPS={
 var FAM_NOISE=[
   {id:'ctx',tx:'This person does not have full context and has consistently misread me'},
   {id:'old',tx:'What they said triggered something older than this situation'},
-  {id:'benefit',tx:'I am being asked to doubt my perception by someone who benefits from my self-doubt'},
+  {id:'benefit',tx:'I am doubting my own perception right now'},
   {id:'noev',tx:'My competence is being questioned without specific evidence'},
-  {id:'defend',tx:'I feel the urge to explain, defend, or prove myself'},
+  {id:'defend',tx:'I feel the urge to explain or prove myself'},
   {id:'seen',tx:'I feel unseen — they are responding to who they think I am'},
   {id:'rumi',tx:'My mind is replaying what they said and building a case'},
   {id:'truth',tx:'What actually happened is being denied or reframed'},
@@ -1099,7 +1063,8 @@ var BODY_ITEMS=[
   {id:'chest',tx:'My chest feels tight or breathing is shallow'},
   {id:'gut',tx:'My stomach is tight or unsettled'},
   {id:'head',tx:'I have head pressure or a tension headache building'},
-  {id:'neglect',tx:'I am skipping something my body needs or doing something that costs me later'},
+  {id:'neglect',tx:'I am skipping something my body needs'},
+  {id:'selfharm',tx:'I am doing something that costs me later'},
   {id:'hrv',tx:'My morning HRV was below 20 or resting HR was above 85 (check watch)'}
 ];
 
@@ -1247,8 +1212,8 @@ function doQuickReg(){
   var bdl={w:'Witness band',e:'Equilibrium',i:'Identity band',c:'Capture band',s:'Survival'};
   persist('reg-level',String(lvl));
   var h='<span class="bpill bp-'+bd+'">'+bdl[bd]+'</span><br><strong>'+lvl+' — '+RLB[lvl]+'</strong><br><br>';
-  h+='<div class="reg-grid"><div class="reg-cell"><div class="reg-key">Attention</div><div class="reg-val">'+st.a+'</div></div><div class="reg-cell"><div class="reg-key">Brakes</div><div class="reg-val">'+st.b+'</div></div><div class="reg-cell"><div class="reg-key">Choice</div><div class="reg-val">'+st.c+'</div></div></div>';
-  h+='<div class="reg-grid"><div class="reg-cell" style="grid-column:span 2"><div class="reg-key">Braking against</div><div class="reg-val">'+st.ba+'</div></div><div class="reg-cell"><div class="reg-key">Salience</div><div class="reg-val">'+st.s+'</div></div></div>';
+  h+='<div class="reg-grid"><div class="reg-cell"><div class="reg-key">Attention</div><div class="reg-val">'+st.a+'</div></div><div class="reg-cell"><div class="reg-key">Choice</div><div class="reg-val">'+st.c+'</div></div><div class="reg-cell"><div class="reg-key">Salience</div><div class="reg-val">'+st.s+'</div></div></div>';
+  h+='<div class="reg-grid" style="grid-template-columns:1fr 2fr"><div class="reg-cell"><div class="reg-key">Brakes</div><div class="reg-val">'+st.b+'</div></div><div class="reg-cell"><div class="reg-key">Braking against</div><div class="reg-val">'+st.ba+'</div></div></div>';
   h+='<div style="margin-top:8px;padding:10px 12px;border-radius:var(--r);border-left:3px solid var(--info-bdr);background:var(--info-bg);color:var(--info-text);font-size:13px;line-height:1.6">'+st.m+'</div>';
   if(lvl>=6)h+='<div class="al al-warn" style="margin-top:8px"><strong>Regulation 6+. Hard brake active.</strong> No decisions, no communications, no responses for 2 hours. This is not a suggestion \u2014 it is a structural hold. Use Ground. Hydrate. Move.</div>';
   if(lvl>=7)h+='<div style="margin-top:8px"><button class="btn btn-calm" onclick="openGround(\'activated\')">Open Ground</button></div>';
@@ -1274,8 +1239,8 @@ function doReg(){
   var st=RST[lvl];var ps=REG_PSYCH[lvl];
   var pf=REGI.filter(it=>it.prod&&sel.has(it.id)).length>0;
   var h='<span class="bpill bp-'+bd+'">'+bdl[bd]+'</span><br><strong>'+lvl+' — '+RLB[lvl]+'</strong><br><br>';
-  h+='<div class="reg-grid"><div class="reg-cell"><div class="reg-key">Attention</div><div class="reg-val">'+st.a+'</div></div><div class="reg-cell"><div class="reg-key">Brakes</div><div class="reg-val">'+st.b+'</div></div><div class="reg-cell"><div class="reg-key">Salience</div><div class="reg-val">'+st.s+'</div></div></div>';
-  h+='<div class="reg-grid"><div class="reg-cell"><div class="reg-key">Choice</div><div class="reg-val">'+st.c+'</div></div><div class="reg-cell" style="grid-column:span 2"><div class="reg-key">Braking against</div><div class="reg-val">'+st.ba+'</div></div></div>';
+  h+='<div class="reg-grid"><div class="reg-cell"><div class="reg-key">Attention</div><div class="reg-val">'+st.a+'</div></div><div class="reg-cell"><div class="reg-key">Choice</div><div class="reg-val">'+st.c+'</div></div><div class="reg-cell"><div class="reg-key">Salience</div><div class="reg-val">'+st.s+'</div></div></div>';
+  h+='<div class="reg-grid" style="grid-template-columns:1fr 2fr"><div class="reg-cell"><div class="reg-key">Brakes</div><div class="reg-val">'+st.b+'</div></div><div class="reg-cell"><div class="reg-key">Braking against</div><div class="reg-val">'+st.ba+'</div></div></div>';
   h+='<div style="margin-top:8px;padding:10px 12px;border-radius:var(--r);border-left:3px solid var(--info-bdr);background:var(--info-bg);color:var(--info-text);font-size:13px;line-height:1.6">'+st.m+'</div>';
   if(ps){h+='<div class="reg-psych"><div class="reg-psych-desc">'+ps.desc+'</div><div class="reg-psych-row"><div class="reg-psych-lbl">Ego state</div><div class="reg-psych-val">'+ps.ego+'</div></div><div class="reg-psych-row"><div class="reg-psych-lbl">Self & object</div><div class="reg-psych-val">'+ps.self+'</div></div><div class="reg-psych-row"><div class="reg-psych-lbl">Defence</div><div class="reg-psych-val">'+ps.defence+'</div></div></div>';}
   if(pf)h+='<div class="al al-alert" style="margin-top:8px"><strong>Prodrome signals present.</strong> Name the signal. Do not act on any impulse connected to it today. Reduce stimulation, hydrate, use Ground, tell your confidant.</div>';
@@ -1307,13 +1272,13 @@ function doNoise(){
   checked.forEach(function(r){var k=r.querySelector('input').dataset.n;
     var nm={ctx:'Missing context',old:'Older trigger',benefit:'Self-doubt serves someone',noev:'No evidence given',defend:'Urge to defend',seen:'Feeling unseen',rumi:'Rumination loop',truth:'Truth denied',reject:'Rejection wound',project:'Projection received'};
     var psy={ctx:'Confirmation bias from partial data',old:'Trauma re-activation (amygdala hijack)',benefit:'Gaslighting internalisation',noev:'Competence schema threat',defend:'Ego syntonic defence activation',seen:'4 core wound: identity not reflected (Fe hunger)',rumi:'Default mode network perseveration',truth:'Reality testing under social pressure',reject:'Rejection sensitivity dysphoria',project:'Projective identification received'};
-    var act={ctx:'Name what they do not know. Their reading is based on incomplete information. You do not need to correct them unless it serves you.',old:'Name the older event. Then name what happened today. Respond to today.',benefit:'Name who benefits from you doubting yourself. If someone gains control when you question your perception, the doubt is theirs, placed in you.',noev:'An opinion without evidence is data about their limitations, not your competence. Ask for specifics. If none come, the conversation is over.',defend:'The urge is from the wound, not the situation. State your position once. Stop.',seen:'They cannot see you. Stop expecting it. What is the next action that does not require their recognition?',rumi:'Write down three facts. Close the document. Walk away for 20 minutes.',truth:'What happened is not negotiable. Write it down before the reframe settles in.',reject:'Name what actually happened — did they reject you, or is your system reading it as rejection? One breath before responding from this place.',project:'The judgement is about their framework. Do not absorb it. Let it land between you, not inside you.'};
+    var act={ctx:'Name what they do not know. Their reading is based on incomplete information. You do not need to correct them unless it serves you.',old:'Name the older event. Then name what happened today. Respond to today.',benefit:'Who benefits from you doubting yourself right now? If someone gains control when you question your perception, the doubt was placed in you. It is not yours.',noev:'An opinion without evidence is data about their limitations, not your competence. Ask for specifics. If none come, the conversation is over.',defend:'The urge is from the wound, not the situation. State your position once. Stop.',seen:'They cannot see you. Stop expecting it. What is the next action that does not require their recognition?',rumi:'Write down three facts. Close the document. Walk away for 20 minutes.',truth:'What happened is not negotiable. Write it down before the reframe settles in.',reject:'Name what actually happened — did they reject you, or is your system reading it as rejection? One breath before responding from this place.',project:'The judgement is about their framework. Do not absorb it. Let it land between you, not inside you.'};
     h+='<div class="ri"><div class="ri-name">'+(nm[k]||k)+'</div><div class="ri-action">'+(act[k]||'')+'</div>'+(psy[k]?'<div style="font-size:11px;color:var(--text3);font-style:italic;margin-top:4px">'+psy[k]+'</div>':'')+'</div>';
   });
   if(relChecked.length){
     h+='<div class="sdiv">Relationship patterns</div>';
     if(relChecked.length>=3)h+='<div class="al al-warn" style="margin-bottom:8px"><strong>Multiple patterns active.</strong> This is a structure, not a collection of incidents.</div>';
-    var relAct={norec:'Reduce without announcing.',fbign:'What boundary would protect you from the next occurrence?',careweap:'Name the lever: guilt, responsibility, or rescue. Once named, it loses force.',realrew:'Write down what happened in your own words before the reframe settles.',bndpun:'The punishment is proof the boundary was necessary. Do not retract.',triang:'Direct contact only. Do not respond to second-hand messages.',credit:'Name your contribution clearly, once, to yourself.',agency:'Name the decision being controlled. Reclaim it without asking permission.'};
+    var relAct={norec:'Reduce without announcing.',fbign:'What boundary would make the next occurrence impossible, not just unwelcome? If they cannot change, what structure removes your exposure to it?',careweap:'Name the lever: guilt, responsibility, or rescue. Once named, it loses force.',realrew:'Write down what happened in your own words before the reframe settles.',bndpun:'The punishment is proof the boundary was necessary. Do not retract.',triang:'Direct contact only. Do not respond to second-hand messages.',credit:'Name your contribution clearly, once, to yourself.',agency:'Name the decision being controlled. Reclaim it without asking permission.'};
     relChecked.forEach(function(r){var k=r.querySelector('input').dataset.nr;
       var nm={norec:'No reciprocity',fbign:'Feedback ignored',careweap:'Care weaponised',realrew:'Reality rewritten',bndpun:'Boundaries punished',triang:'Triangulation',credit:'Credit taken',agency:'Agency undermined'};
       h+='<div class="ri"><div class="ri-name">'+(nm[k]||k)+'</div><div class="ri-action">'+(relAct[k]||'')+'</div></div>';
@@ -1432,8 +1397,13 @@ function doLandCheck(){
 
 function doIntegration(){
   document.getElementById('mantra').style.display='block';
-  try{var ctx=getAudioCtx();var t=ctx.currentTime;for(var i=0;i<3;i++){var o=ctx.createOscillator();var g=ctx.createGain();o.type='sine';o.frequency.setValueAtTime(528,t);g.gain.setValueAtTime(0.0001,t);g.gain.exponentialRampToValueAtTime(0.2,t+0.02);g.gain.exponentialRampToValueAtTime(0.0001,t+2.0);o.connect(g);g.connect(ctx.destination);o.start(t);o.stop(t+2.1);t+=2.0;}}catch(e){}
+  try{var ctx=getAudioCtx();var t=ctx.currentTime;
+  for(var i=0;i<3;i++){var o=ctx.createOscillator();var g=ctx.createGain();o.type='sine';o.frequency.setValueAtTime(528,t);g.gain.setValueAtTime(0.0001,t);g.gain.exponentialRampToValueAtTime(0.2,t+0.02);g.gain.exponentialRampToValueAtTime(0.0001,t+2.0);o.connect(g);g.connect(ctx.destination);o.start(t);o.stop(t+2.1);t+=2.0;}
+  }catch(e){}
   vibrate([80,200,80,200,80]);
+  setTimeout(function(){document.getElementById('m1').style.opacity='1';},200);
+  setTimeout(function(){document.getElementById('m2').style.opacity='1';},2200);
+  setTimeout(function(){document.getElementById('m3').style.opacity='1';},4200);
 }
 
 // ═══════════ GUARDRAILS ═══════════
@@ -1442,6 +1412,22 @@ function yn(onId,offId){
   var isY=onId.endsWith('a');var cls=isY?'yo':'no';var offCls=isY?'no':'yo';
   if(on.classList.contains(cls)){on.classList.remove(cls);persist(onId,'');}
   else{on.classList.add(cls);off.classList.remove(offCls);persist(onId,cls);persist(offId,'');}
+  // Flip substance guardrail text
+  var flipMap={'s1b':'Intoxicants taken','s2b':'Caffeine taken','s3b':'Nicotine taken','s4b':'Pornography used'};
+  var origMap={'s1a':'No intoxicants today','s2a':'No caffeine today','s3a':'No nicotine today','s4a':'No pornography today'};
+  var gtId=onId.replace('a','').replace('b','');
+  var gtEl=document.getElementById('gt-'+gtId);
+  if(gtEl&&flipMap[onId]&&on.classList.contains('no'))gtEl.textContent=flipMap[onId];
+  if(gtEl&&origMap[onId]&&on.classList.contains('yo'))gtEl.textContent=origMap[onId];
+  if(gtEl&&!on.classList.contains('yo')&&!on.classList.contains('no')){var orig=origMap[gtId+'a'];if(orig)gtEl.textContent=orig;}
+  // Substance entertaining warning
+  if(onId==='p4b'&&on.classList.contains('no')){
+    var r=document.getElementById('r-entertain');
+    r.innerHTML='<div class="al al-alert"><strong>False confidence is active.</strong> The thought \"I can handle it this time\" is not insight \u2014 it is the future pulling you toward the chain. Every previous episode started with this exact feeling of control. You are not seeing the danger because the danger is wearing the mask of confidence. Name the craving underneath. Use Ground. Tell your confidant now.</div>';
+    r.style.display='block';
+  } else if(onId==='p4a'||onId==='p4b'){
+    var r=document.getElementById('r-entertain');if(r)r.style.display='none';
+  }
 }
 
 function togGoal(btn){btn.classList.toggle('gy');persist(btn.id,btn.classList.contains('gy'));}
@@ -1514,21 +1500,54 @@ function startBreathCard(bi){
   var b=BREATHS[bi];
   var body=document.getElementById('bbody-'+bi);body.classList.add('open');
   var card=document.getElementById('breath-card-'+bi);card.querySelector('.grnd-btn').style.display='none';
-  // Simple breath guide
-  body.innerHTML='<div class="arena"><div class="breath-timer" id="bt-'+bi+'">00:00</div><div class="rw"><canvas id="bc-'+bi+'" width="240" height="240"></canvas><button class="cbtn" id="cb-'+bi+'" style="width:92px;height:92px;background:var(--calm);border-radius:50%;border:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)"><span class="cph">Tap to start</span><span class="cpc" id="cc-'+bi+'"></span></button></div><div class="prow" id="pr-'+bi+'"></div><div style="text-align:center;margin-bottom:.7rem"><div style="font-size:12px;color:var(--text2);line-height:1.5">'+b.de+'</div></div><div class="bcy" id="cy-'+bi+'"></div><div class="bcr"><button class="bct" id="bs-'+bi+'">Stop</button></div></div>';
-  // Build phase chips
+  var calmColor=getComputedStyle(document.documentElement).getPropertyValue('--calm').trim()||'#2a7a6a';
+  var BCX=120,BCY=120,BR=108,RMIN=46,RMAX=72,TK=10;
+  // Compute phase fractions
+  var total=b.ti.reduce(function(a,v){return a+v;},0);
+  var fracs=[0];var acc=0;b.ti.forEach(function(v){acc+=v;fracs.push(acc/total);});
+
+  body.innerHTML='<div class="arena"><div class="breath-timer" id="bt-'+bi+'">00:00</div><div class="rw"><canvas id="bc-'+bi+'" width="240" height="240"></canvas><button class="cbtn" id="cb-'+bi+'" style="width:92px;height:92px;background:'+calmColor+';border-radius:50%;border:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)"><span class="cph">Tap to start</span><span class="cpc" id="cc-'+bi+'"></span></button></div><div class="prow" id="pr-'+bi+'"></div><div style="text-align:center;margin-bottom:.7rem"><div style="font-size:12px;color:var(--text2);line-height:1.5">'+b.de+'</div></div><div class="bcy" id="cy-'+bi+'"></div><div class="bcr"><button class="bct" id="bs-'+bi+'">Stop</button></div></div>';
   var pr=document.getElementById('pr-'+bi);b.ph.forEach(function(ph,i){var d=document.createElement('div');d.className='pchip';d.id='pc-'+bi+'-'+i;d.innerHTML='<span class="pn">'+ph+'</span><span class="ps">'+b.ti[i]+'s</span>';pr.appendChild(d);});
-  // Draw initial ring
-  var cv=document.getElementById('bc-'+bi);if(cv){var cx=cv.getContext('2d');cx.globalAlpha=0.3;cx.beginPath();cx.arc(120,120,108,0,Math.PI*2);cx.strokeStyle='var(--calm)';cx.lineWidth=2.5;cx.stroke();}
-  // Wire up
-  var running=false,cyc=0,phi=0,raf=null,ci=null,timerStart=null,timerRaf=null,ir=46;
+
+  // Draw ring function
+  function drawRing(dotFrac,innerR){
+    var cv=document.getElementById('bc-'+bi);if(!cv)return;
+    var ctx=cv.getContext('2d');
+    ctx.clearRect(0,0,240,240);
+    // Outer ring
+    ctx.globalAlpha=running?1:0.3;
+    ctx.beginPath();ctx.arc(BCX,BCY,BR,0,Math.PI*2);ctx.strokeStyle=calmColor;ctx.lineWidth=2.5;ctx.stroke();
+    // Phase markers
+    fracs.forEach(function(f){
+      var a=f*Math.PI*2-Math.PI/2;
+      var ox=BCX+Math.cos(a)*(BR-TK),oy=BCY+Math.sin(a)*(BR-TK);
+      var ix=BCX+Math.cos(a)*(BR+TK),iy=BCY+Math.sin(a)*(BR+TK);
+      ctx.beginPath();ctx.moveTo(ox,oy);ctx.lineTo(ix,iy);ctx.strokeStyle=calmColor;ctx.lineWidth=3.5;ctx.lineCap='round';ctx.stroke();
+    });
+    // Inner fill
+    if(innerR!==null&&innerR!==undefined){ctx.globalAlpha=running?0.25:0.1;ctx.beginPath();ctx.arc(BCX,BCY,innerR,0,Math.PI*2);ctx.fillStyle=calmColor;ctx.fill();}
+    ctx.globalAlpha=1;
+    // Moving dot
+    if(dotFrac!==null&&dotFrac!==undefined){
+      var a=dotFrac*Math.PI*2-Math.PI/2;
+      var dx=BCX+Math.cos(a)*BR,dy=BCY+Math.sin(a)*BR;
+      ctx.beginPath();ctx.arc(dx,dy,9,0,Math.PI*2);ctx.fillStyle='#ffffff';ctx.fill();
+      ctx.beginPath();ctx.arc(dx,dy,7,0,Math.PI*2);ctx.fillStyle=calmColor;ctx.fill();
+      ctx.beginPath();ctx.arc(dx,dy,3,0,Math.PI*2);ctx.fillStyle='rgba(255,255,255,0.8)';ctx.fill();
+    }
+  }
+
+  drawRing(null,null);
+
+  var running=false,cyc=0,phi=0,raf=null,ci=null,timerStart=null,timerRaf=null,ir=RMIN;
   var btn=document.getElementById('cb-'+bi);
   var stopBtn=document.getElementById('bs-'+bi);
   function stop(){running=false;if(raf)cancelAnimationFrame(raf);if(ci)clearInterval(ci);if(timerRaf)cancelAnimationFrame(timerRaf);body.classList.remove('open');body.innerHTML='';card.querySelector('.grnd-btn').style.display='';}
   stopBtn.onclick=stop;
   btn.onclick=function(){
     if(running){stop();return;}
-    running=true;cyc=0;phi=0;ir=46;timerStart=performance.now();
+    running=true;cyc=0;phi=0;ir=RMIN;timerStart=performance.now();
+    try{getAudioCtx();}catch(e){}
     function tickT(){if(!running)return;var s=Math.floor((performance.now()-timerStart)/1000);var m=Math.floor(s/60);s=s%60;var e=document.getElementById('bt-'+bi);if(e)e.textContent=(m<10?'0'+m:m)+':'+(s<10?'0'+s:s);timerRaf=requestAnimationFrame(tickT);}
     timerRaf=requestAnimationFrame(tickT);
     function runPhase(){
@@ -1539,11 +1558,23 @@ function startBreathCard(bi){
       btn.querySelector('.cph').textContent=ph;
       document.getElementById('cy-'+bi).textContent='Cycle '+(cyc+1);
       var isI=ph.toLowerCase().startsWith('inhale');var isH=ph.toLowerCase().startsWith('hold');
-      var sR=ir,eR=isH?ir:(isI?72:46);var cv2=dur;
+      var sR=ir,eR=isH?ir:(isI?RMAX:RMIN);var cv2=dur;
       document.getElementById('cc-'+bi).textContent=cv2;
       if(ci)clearInterval(ci);ci=setInterval(function(){cv2--;var e=document.getElementById('cc-'+bi);if(e)e.textContent=cv2>0?cv2:'';if(cv2<=0)clearInterval(ci);},1000);
       var ps=performance.now(),dMs=dur*1000;
-      function fr(now){if(!running)return;var el=Math.min(now-ps,dMs);var frac=el/dMs;var ease=isH?1:(0.5-0.5*Math.cos(Math.PI*frac));var r=sR+(eR-sR)*ease;ir=r;var sz=Math.round(r*2);btn.style.width=sz+'px';btn.style.height=sz+'px';if(el<dMs){raf=requestAnimationFrame(fr);}else{ir=eR;phi++;if(phi>=b.ph.length){phi=0;cyc++;}requestAnimationFrame(function(){if(running)runPhase();});}}
+      function fr(now){
+        if(!running)return;
+        var el=Math.min(now-ps,dMs);var frac=el/dMs;
+        var ease=isH?1:(0.5-0.5*Math.cos(Math.PI*frac));
+        var r=sR+(eR-sR)*ease;ir=r;
+        // Resize button
+        var sz=Math.round(r*2);btn.style.width=sz+'px';btn.style.height=sz+'px';
+        // Draw ring with dot
+        var dotF=fracs[phi]+(fracs[phi+1]-fracs[phi])*frac;
+        drawRing(dotF,r);
+        if(el<dMs){raf=requestAnimationFrame(fr);}
+        else{ir=eR;phi++;if(phi>=b.ph.length){phi=0;cyc++;}requestAnimationFrame(function(){if(running)runPhase();});}
+      }
       raf=requestAnimationFrame(fr);
     }
     runPhase();
@@ -1596,7 +1627,7 @@ function initCare(){
   // Restore text fields
   ['intent-main','intent-value','intent-protect','reflect-what','reflect-good','reflect-next'].forEach(function(id){var el=document.getElementById(id);if(el)el.value=recall(id,'');});
   // Restore guardrails
-  ['s1a','s1b','s2a','s2b','s3a','s3b','s4a','s4b','p1a','p1b','p2a','p2b','p3a','p3b','t1a','t1b','t2a','t2b'].forEach(function(id){var v=recall(id,'');var btn=document.getElementById(id);if(btn&&v)btn.classList.add(v);});
+  ['s1a','s1b','s2a','s2b','s3a','s3b','s4a','s4b','p1a','p1b','p2a','p2b','p3a','p3b','p4a','p4b','t1a','t1b','t2a','t2b'].forEach(function(id){var v=recall(id,'');var btn=document.getElementById(id);if(btn&&v)btn.classList.add(v);});
   // Restore taper + quit
   TAPER_ITEMS.forEach(function(item){var el=document.getElementById('tc-'+item.id);if(el)el.checked=recall('tc-'+item.id,false);});
   QUIT_ITEMS.forEach(function(item){var el=document.getElementById('qc-'+item.id);if(el)el.checked=recall('qc-'+item.id,false);});
@@ -1651,6 +1682,7 @@ function init(){
   initCare();
 }
 init();
+
 </script>
 </body>
 </html>
