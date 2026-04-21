@@ -886,6 +886,22 @@ function buildSaveData(){
   data.goals=recall('goals','');
   // Regulation
   data.regLevel=recall('reg-level','');
+  // Taper checks
+  ['s1','s2','ins','urg','sub','tspd','mood','ext','cessation'].forEach(function(k){
+    var el=document.getElementById('tc-'+k);if(el)data['tc-'+k]=el.checked;
+  });
+  // Quit tool checks
+  ['patch','exercise','water','hands','oral','routine','confid','pscreen','palone','pnamed','pscene'].forEach(function(k){
+    var el=document.getElementById('qc-'+k);if(el&&el.checked)data['qc-'+k]=true;
+  });
+  // Weekly rhythm
+  var rhythm={};document.querySelectorAll('.rhythm-cell.on').forEach(function(c){rhythm[c.dataset.key]=true;});
+  if(Object.keys(rhythm).length)data.rhythm=rhythm;
+  // Emotion selection
+  var emoPick=document.getElementById('emo-pick');
+  if(emoPick){var selEmo=emoPick.querySelector('button[style*="var(--calm-bg)"]');if(selEmo)data.emotion=selEmo.textContent;}
+  var emoPickSit=document.getElementById('emo-pick-sit');
+  if(emoPickSit){var selEmo2=emoPickSit.querySelector('button[style*="var(--calm-bg)"]');if(selEmo2)data.emotionSit=selEmo2.textContent;}
   // Checkboxes from review
   var chks={};document.querySelectorAll('.chk-row input[type=checkbox]').forEach(function(cb){if(cb.checked&&cb.id){var span=cb.parentElement.querySelector('span');chks[cb.id]=span?span.textContent.substring(0,80):'checked';}});
   data.chks=chks;
@@ -894,6 +910,12 @@ function buildSaveData(){
 
 function saveToday(){
   var data=buildSaveData();
+  // Don't save empty days
+  var hasContent=data['intent-main']||data['intent-value']||data['intent-protect']||
+    data['reflect-what']||data['reflect-good']||data['reflect-next']||
+    data.regLevel||data.goals||(data.chks&&Object.keys(data.chks).length)||
+    data.s1a||data.s1b||data.s3a||data.s3b||data.s4a||data.s4b;
+  if(!hasContent)return;
   localStorage.setItem('vk_day_'+TODAY,JSON.stringify(data));
   addHistDate(TODAY);
 }
@@ -983,7 +1005,7 @@ function loadHistoryFromGist(){
 
 
 // One-time history reset — fresh start from 2026-04-22
-if(!localStorage.getItem('vk_hist_reset_v2')){
+if(!localStorage.getItem('vk_hist_reset_v3')||localStorage.getItem('vk_hist_reset_v3')==='done'){
   // Clear all local history
   var keysToRemove=[];
   for(var i=0;i<localStorage.length;i++){
@@ -992,21 +1014,31 @@ if(!localStorage.getItem('vk_hist_reset_v2')){
   }
   keysToRemove.forEach(function(k){localStorage.removeItem(k);});
   localStorage.setItem(HIST_KEY,'[]');
-  localStorage.setItem('vk_hist_reset_v2','done');
-  // Clear Gist history
+  localStorage.setItem('vk_hist_reset_v3',String(Date.now()));
+  // Clear Gist history — delete all date files + empty history.json
   if(getToken()){
-    var body={files:{}};
-    body.files[HIST_FILE]={content:'{}'};
     fetch('https://api.github.com/gists/'+GIST_ID,{
-      method:'PATCH',
-      headers:{'Authorization':'token '+getToken(),'Content-Type':'application/json'},
-      body:JSON.stringify(body)
+      headers:{'Authorization':'token '+getToken()}
+    }).then(function(r){return r.json();}).then(function(g){
+      if(!g.files)return;
+      var body={files:{}};
+      body.files[HIST_FILE]={content:'{}'};
+      Object.keys(g.files).forEach(function(f){
+        if(f.match(/^\d{4}-\d{2}-\d{2}\.json$/))body.files[f]=null;
+      });
+      return fetch('https://api.github.com/gists/'+GIST_ID,{
+        method:'PATCH',
+        headers:{'Authorization':'token '+getToken(),'Content-Type':'application/json'},
+        body:JSON.stringify(body)
+      });
     }).catch(function(e){});
   }
 }
 
 // Sync on load + every 3 minutes
-if(getToken()){
+var resetTs=parseInt(localStorage.getItem('vk_hist_reset_v3')||'0');
+var justReset=Date.now()-resetTs<30000;
+if(getToken()&&!justReset){
   loadHistoryFromGist();
   setTimeout(syncToGist,5000);
   setInterval(syncToGist,180000);
@@ -1674,14 +1706,7 @@ function yn(onId,offId){
   if(gtEl&&flipMap[onId]&&on.classList.contains('no'))gtEl.textContent=flipMap[onId];
   if(gtEl&&origMap[onId]&&on.classList.contains('yo'))gtEl.textContent=origMap[onId];
   if(gtEl&&!on.classList.contains('yo')&&!on.classList.contains('no')){var orig=origMap[gtId+'a'];if(orig)gtEl.textContent=orig;}
-  // Substance entertaining warning
-  if(onId==='p4b'&&on.classList.contains('no')){
-    var r=document.getElementById('r-entertain');
-    r.innerHTML='<div class="al al-alert"><strong>False confidence is active.</strong> The thought \"I can handle it this time\" is not insight \u2014 it is the future pulling you toward the chain. Every previous episode started with this exact feeling of control. You are not seeing the danger because the danger is wearing the mask of confidence. Name the craving underneath. Use Ground. Tell your confidant now.</div>';
-    r.style.display='block';
-  } else if(onId==='p4a'||onId==='p4b'){
-    var r=document.getElementById('r-entertain');if(r)r.style.display='none';
-  }
+
 }
 
 function togGoal(btn){btn.classList.toggle('gy');persist(btn.id,btn.classList.contains('gy'));}
@@ -1882,7 +1907,7 @@ function initCare(){
   // Restore text fields
   ['intent-main','intent-value','intent-protect','reflect-what','reflect-good','reflect-next'].forEach(function(id){var el=document.getElementById(id);if(el)el.value=recall(id,'');});
   // Restore guardrails
-  ['s1a','s1b','s2a','s2b','s3a','s3b','s4a','s4b','p1a','p1b','p2a','p2b','p3a','p3b','p4a','p4b','t1a','t1b','t2a','t2b'].forEach(function(id){var v=recall(id,'');var btn=document.getElementById(id);if(btn&&v)btn.classList.add(v);});
+  ['s1a','s1b','s2a','s2b','s3a','s3b','s4a','s4b','p1a','p1b','p2a','p2b','p3a','p3b','t1a','t1b','t2a','t2b'].forEach(function(id){var v=recall(id,'');var btn=document.getElementById(id);if(btn&&v)btn.classList.add(v);});
   // Restore taper + quit
   TAPER_ITEMS.forEach(function(item){var el=document.getElementById('tc-'+item.id);if(el)el.checked=recall('tc-'+item.id,false);});
   QUIT_ITEMS.forEach(function(item){var el=document.getElementById('qc-'+item.id);if(el)el.checked=recall('qc-'+item.id,false);});
@@ -2076,9 +2101,18 @@ function renderDayView(data,view,mode){
     if(data['reflect-what'])h+='<div class="dv-label">What happened</div><div class="dv-row">'+data['reflect-what']+'</div>';
     if(data['reflect-good'])h+='<div class="dv-label">Where I showed up</div><div class="dv-row">'+data['reflect-good']+'</div>';
     if(data['reflect-next'])h+='<div class="dv-label">Correction</div><div class="dv-row">'+data['reflect-next']+'</div>';
+    // Emotion
+    if(data.emotion)h+='<div class="dv-label">Emotion named</div><div class="dv-row">'+data.emotion+'</div>';
+    // Taper
+    var taperOk=0,taperTotal=0;
+    ['s1','s2','ins','urg','sub','tspd','mood','ext','cessation'].forEach(function(k){
+      if(data['tc-'+k]!==undefined){taperTotal++;if(data['tc-'+k])taperOk++;}
+    });
+    if(taperTotal)h+='<div class="dv-label">Taper</div><div class="dv-row">'+taperOk+'/'+taperTotal+' stable</div>';
   }
   
   if(mode==='review'){
+    if(data.emotion)h+='<div class="dv-label">Emotion at worst moment</div><div class="dv-row">'+data.emotion+'</div>';
     if(data.regLevel)h+='<div class="dv-label">Worst-moment regulation</div><div class="dv-row">Level '+data.regLevel+'</div>';
     if(data.chks){
       var entries=Object.entries(data.chks);
@@ -2148,6 +2182,20 @@ function buildCareTrends(days){
   // Engagement
   var intentDays=days.filter(function(d){return d['intent-main'];}).length;
   var reflectDays=days.filter(function(d){return d['reflect-what'];}).length;
+  // Taper stability trend
+  var taperDays=days.filter(function(d){
+    var ok=0,tot=0;
+    ['s1','s2','ins','urg','sub','tspd','mood','ext','cessation'].forEach(function(k){
+      if(d['tc-'+k]!==undefined){tot++;if(d['tc-'+k])ok++;}
+    });
+    return tot>0&&ok>=tot-1;
+  });
+  if(days.length){
+    h+='<div class="trend-card"><div class="trend-title">Taper stability</div>';
+    h+='<div class="streak"><div class="streak-label">Days mostly stable</div><div class="streak-val" style="color:'+(taperDays.length>=days.length*0.8?'var(--ok)':'var(--warn-text)')+'">'+taperDays.length+'</div><div class="streak-unit">/'+days.length+'</div></div>';
+    h+='</div>';
+  }
+
   h+='<div class="trend-card"><div class="trend-title">Engagement</div>';
   h+='<div class="streak"><div class="streak-label">Morning intention filled</div><div class="streak-val">'+intentDays+'</div><div class="streak-unit">/'+days.length+'</div></div>';
   h+='<div class="streak"><div class="streak-label">Evening reflection filled</div><div class="streak-val">'+reflectDays+'</div><div class="streak-unit">/'+days.length+'</div></div>';
