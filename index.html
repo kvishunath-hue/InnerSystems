@@ -248,6 +248,42 @@ body{
 .csec.open .csec-chv{transform:rotate(180deg)}
 .csec-body{display:none;padding:0 14px 12px}
 .csec.open>.csec-body{display:block}
+/* ── CALENDAR ── */
+.cal{margin-bottom:12px}
+.cal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.cal-nav{background:none;border:none;color:var(--text2);font-size:16px;cursor:pointer;padding:4px 8px}
+.cal-month{font-size:13px;font-weight:600;color:var(--text)}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;text-align:center}
+.cal-dow{font-size:10px;color:var(--text3);padding:4px 0}
+.cal-day{font-size:12px;padding:6px 0;border-radius:var(--r);cursor:pointer;color:var(--text3);background:transparent;border:none;font-family:inherit}
+.cal-day:hover{background:var(--bg2)}
+.cal-day.has-data{color:var(--text);font-weight:600}
+.cal-day.has-data::after{content:'';display:block;width:4px;height:4px;border-radius:50%;background:var(--calm);margin:2px auto 0}
+.cal-day.today{border:1px solid var(--calm);color:var(--calm)}
+.cal-day.sel{background:var(--calm-bg);color:var(--calm)}
+.cal-day.empty{visibility:hidden}
+.day-view{background:var(--bg);border:1px solid var(--bdr);border-radius:var(--rl);padding:14px;margin-top:8px}
+.day-view .dv-title{font-size:13px;font-weight:600;margin-bottom:8px}
+.day-view .dv-row{font-size:12px;color:var(--text2);padding:3px 0;line-height:1.5}
+.day-view .dv-label{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;margin-top:8px;margin-bottom:2px}
+/* ── TRENDS ── */
+.trend-card{background:var(--bg);border:1px solid var(--bdr);border-radius:var(--rl);padding:14px;margin-bottom:8px}
+.trend-title{font-size:12px;font-weight:600;color:var(--text);margin-bottom:8px}
+.trend-sub{font-size:11px;color:var(--text3);margin-bottom:6px}
+.trend-chart{height:80px;display:flex;align-items:flex-end;gap:2px;margin-bottom:6px}
+.trend-bar{flex:1;border-radius:3px 3px 0 0;min-width:4px;max-width:12px;transition:height .3s}
+.trend-axis{display:flex;justify-content:space-between;font-size:9px;color:var(--text3)}
+.streak{display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid var(--bdr)}
+.streak:last-child{border:none}
+.streak-label{font-size:12px;color:var(--text2);flex:1}
+.streak-val{font-size:16px;font-weight:700;min-width:36px;text-align:right}
+.streak-unit{font-size:10px;color:var(--text3);min-width:32px}
+.streak-best{font-size:10px;color:var(--text3)}
+.sig-freq{display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--bdr)}
+.sig-freq:last-child{border:none}
+.sig-freq-bar{height:6px;border-radius:3px;min-width:4px}
+.sig-freq-label{font-size:11px;color:var(--text2);flex:1}
+.sig-freq-count{font-size:11px;color:var(--text3);min-width:20px;text-align:right}
 /* ── BREATHING IN GROUND ── */
 .arena{display:flex;flex-direction:column;align-items:center;padding:.5rem 0 1rem}
 .breath-timer{font-size:13px;color:var(--text3);margin-bottom:.5rem;font-variant-numeric:tabular-nums;min-height:20px}
@@ -452,7 +488,7 @@ body{
 <div class="app-header">
   <div class="app-title">Inner Systems</div>
   <div class="app-sub">Nothing is bad or good. Just notice.</div>
-  <div class="app-updated">Last updated: 19 April 2026</div>
+  <div class="app-updated">Last updated: 21 April 2026</div>
   <div class="reg-indicator" id="reg-pill">Not checked today</div>
 </div>
 
@@ -474,6 +510,26 @@ body{
 
 <!-- ═══════════ SCREENS ═══════════ -->
 
+
+<!-- SETUP SCREEN -->
+<div class="screen" id="scr-setup" style="display:none">
+  <div style="max-width:360px;margin:0 auto;padding:40px 0">
+    <div style="text-align:center;margin-bottom:32px">
+      <div style="font-size:20px;font-weight:700;color:var(--text);margin-bottom:6px">Inner Systems</div>
+      <div style="font-size:12px;color:var(--text3)">Sync your data across devices with GitHub Gist</div>
+    </div>
+    <div style="background:var(--bg);border:1px solid var(--bdr);border-radius:var(--rl);padding:20px;margin-bottom:12px">
+      <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:10px">GitHub Personal Access Token</div>
+      <div style="font-size:11px;color:var(--text3);margin-bottom:12px;line-height:1.5">
+        Create a token at github.com/settings/tokens with <strong>gist</strong> scope only. Your token stays on this device — it is never sent anywhere except GitHub's API.
+      </div>
+      <input type="password" id="setup-token" placeholder="ghp_xxxxxxxxxxxx" style="width:100%;padding:10px 12px;border-radius:var(--r);border:1px solid var(--bdr2);background:var(--bg2);color:var(--text);font-size:13px;font-family:monospace;box-sizing:border-box;margin-bottom:12px;outline:none">
+      <button class="btn" style="width:100%" onclick="doSetup()">Connect</button>
+    </div>
+    <button style="width:100%;padding:12px;border-radius:var(--rl);border:1px solid var(--bdr);background:transparent;color:var(--text3);font-size:12px;cursor:pointer;font-family:inherit" onclick="skipSetup()">Use without sync — data stays on this device only</button>
+  </div>
+</div>
+
 <!-- HOME / ENTRY -->
 <div class="screen on" id="scr-home">
   <div class="entry-grid">
@@ -481,7 +537,7 @@ body{
       <div class="entry-ico">&#9888;</div>
       <div class="entry-info">
         <div class="entry-name">I'm activated</div>
-        <div class="entry-desc">Regulation check + grounding if needed</div>
+        <div class="entry-desc">Worst moment check + grounding if needed</div>
       </div>
     </div>
     <div class="entry-btn" onclick="goSituation()">
@@ -534,7 +590,7 @@ body{
 <div class="screen" id="scr-activated">
   <button class="btn-back" onclick="showScreen('scr-home')">&#8592; Back</button>
   <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9679;</span><div><div class="csec-nm">What am I feeling</div><div class="csec-ds">Name the emotion before analysing</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div style="display:flex;flex-wrap:wrap;gap:6px" id="emo-pick"></div></div></div>
-  <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9678;</span><div><div class="csec-nm">Regulation check</div><div class="csec-ds">How much to trust your analysis right now</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="card-desc">Select everything present. More than one is normal.</div><div class="reg-items" id="quick-reg-items"></div><button class="btn" onclick="event.stopPropagation();doQuickReg()">Notice</button><div class="result" id="r-quick-reg"></div></div></div>
+  <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9678;</span><div><div class="csec-nm">Regulation check</div><div class="csec-ds">Your worst moment today — how activated were you?</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="card-desc">Select everything present. More than one is normal.</div><div class="reg-items" id="quick-reg-items"></div><button class="btn" onclick="event.stopPropagation();doQuickReg()">Notice</button><div class="result" id="r-quick-reg"></div></div></div>
 </div>
 
 <!-- SITUATION SCREEN -->
@@ -685,10 +741,9 @@ body{
   </div></div>
 
   </div></div>
-  <div class="hist-section">
-    <button class="hist-toggle" onclick="toggleHist('hist-care-body',this)"><span>History &#8212; last 30 days</span><span>&#9660;</span></button>
-    <div class="hist-body" id="hist-care-body"><div id="hist-care-days"></div><div class="hist-view" id="hist-care-view"></div></div>
-  </div>
+  <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9633;</span><div><div class="csec-nm">Trends</div><div class="csec-ds">Streaks, regulation, patterns</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
+    <div id="trends-care"></div>
+  </div></div>
 </div>
 <div class="screen" id="scr-phase">
   <button class="btn-back" onclick="showScreen('scr-home')">&#8592; Back</button>
@@ -760,7 +815,7 @@ body{
     <div style="font-size:12px;color:var(--text2)">Core wounds: Hero drive (trap) · Not being seen · Betrayal · Manipulation · Truth denied · Helplessness · Being overridden · Being infantilised · Responsibility not shared · Rejection</div>
   </div></div>
   <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico" style="font-size:12px;font-weight:700">01</span><div><div class="csec-nm">Body signals</div><div class="csec-ds">Se inferior + SP blind &#8212; your weakest function. You will miss these until they are loud. Check deliberately.</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="b-list"></div><button class="btn" onclick="doBody()">Notice</button><div class="result" id="r-body"></div></div></div>
-  <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico" style="font-size:12px;font-weight:700">02</span><div><div class="csec-nm">Regulation level</div><div class="csec-ds">Select everything present. This tells you how much to trust your analysis today.</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="reg-items" id="reg-items"></div><button class="btn" onclick="doReg()">Notice</button><div class="result" id="r-reg"></div></div></div>
+  <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico" style="font-size:12px;font-weight:700">02</span><div><div class="csec-nm">Regulation level</div><div class="csec-ds">Your worst moment today. What was present at its peak?</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="reg-items" id="reg-items"></div><button class="btn" onclick="doReg()">Notice</button><div class="result" id="r-reg"></div></div></div>
   <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico" style="font-size:12px;font-weight:700">03</span><div><div class="csec-nm">Signal check</div><div class="csec-ds">Is the signal real or is the wound running?</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9632;</span><div><div class="csec-nm">What fired</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="noise-list"></div></div></div><div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9679;</span><div><div class="csec-nm">Relationship patterns</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="rel-list"></div></div></div><button class="btn" onclick="doNoise()">Notice</button><div class="result" id="r-noise"></div></div></div>
   <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico" style="font-size:12px;font-weight:700">04</span><div><div class="csec-nm">Distortion check</div><div class="csec-ds">Check what is active in your thinking.</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9632;</span><div><div class="csec-nm">Catastrophising</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="c-list"></div></div></div><div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9679;</span><div><div class="csec-nm">Cognitive filters</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="dist-list"></div></div></div><button class="btn" onclick="doDistort()">Notice</button><div class="result" id="r-distort"></div></div></div>
   <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico" style="font-size:12px;font-weight:700">05</span><div><div class="csec-nm">Interaction scan</div><div class="csec-ds">What is present in a recent or ongoing interaction.</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9632;</span><div><div class="csec-nm">Boundary pressure</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="bnd-list"></div></div></div><div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9679;</span><div><div class="csec-nm">Behavioural drift</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="soc-list"></div></div></div><button class="btn" onclick="doScan()">Notice</button><div class="result" id="r-scan"></div></div></div>
@@ -795,10 +850,9 @@ body{
       <span id="m3" style="opacity:0;transition:opacity 1s">for change.&#8221;</span>
     </div>
   </div></div>
-  <div class="hist-section">
-    <button class="hist-toggle" onclick="toggleHist('hist-review-body',this)"><span>History &#8212; last 30 days</span><span>&#9660;</span></button>
-    <div class="hist-body" id="hist-review-body"><div id="hist-review-days"></div><div class="hist-view" id="hist-review-view"></div></div>
-  </div>
+  <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9633;</span><div><div class="csec-nm">Trends</div><div class="csec-ds">Regulation trend, signal frequency</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
+    <div id="trends-review"></div>
+  </div></div>
 </div>
 </div>
 <script>
@@ -807,17 +861,156 @@ const GIST_ID='92ea8a47f979c421b8d9264935e86700';
 function getToken(){return localStorage.getItem('vk_gist_token')||'';}
 function setToken(t){localStorage.setItem('vk_gist_token',t.trim());}
 var NO_TOKEN=localStorage.getItem('vk_no_token')==='1';
-if(!getToken()&&!NO_TOKEN){
-  // Simple setup prompt
-  var tok=prompt('Paste GitHub token for sync (cancel for no-sync mode):');
-  if(tok)setToken(tok); else localStorage.setItem('vk_no_token','1');
-  location.reload();
-}
+var NEED_SETUP=!getToken()&&!NO_TOKEN;
+function doSetup(){var t=document.getElementById('setup-token').value.trim();if(!t)return;setToken(t);location.reload();}
+function skipSetup(){localStorage.setItem('vk_no_token','1');location.reload();}
 
 const TODAY=new Date().toLocaleDateString('en-CA',{timeZone:'Asia/Kolkata'});
 const SK='vk_'+TODAY+'_';
 function persist(k,v){try{localStorage.setItem(SK+k,typeof v==='boolean'?String(v):v);}catch(e){}}
 function recall(k,df){try{var v=localStorage.getItem(SK+k);if(v===null)return df;if(v==='true')return true;if(v==='false')return false;return v;}catch(e){return df;}}
+
+
+// ═══════════ HISTORY & SYNC ═══════════
+var HIST_KEY='vk_hist_index';
+function getHistIndex(){try{return JSON.parse(localStorage.getItem(HIST_KEY)||'[]');}catch(e){return [];}}
+function addHistDate(d){var idx=getHistIndex();if(!idx.includes(d)){idx.push(d);idx.sort().reverse();localStorage.setItem(HIST_KEY,JSON.stringify(idx));}}
+
+function buildSaveData(){
+  var data={date:TODAY,ts:Date.now()};
+  // Care fields
+  ['intent-main','intent-value','intent-protect','reflect-what','reflect-good','reflect-next'].forEach(function(k){data[k]=recall(k,'');});
+  // Guardrails
+  ['s1a','s1b','s2a','s2b','s3a','s3b','s4a','s4b','p1a','p1b','p2a','p2b','p3a','p3b','t1a','t1b','t2a','t2b'].forEach(function(k){data[k]=recall(k,'');});
+  // Goals
+  data.goals=recall('goals','');
+  // Regulation
+  data.regLevel=recall('reg-level','');
+  // Checkboxes from review
+  var chks={};document.querySelectorAll('.chk-row input[type=checkbox]').forEach(function(cb){if(cb.checked&&cb.id){var span=cb.parentElement.querySelector('span');chks[cb.id]=span?span.textContent.substring(0,80):'checked';}});
+  data.chks=chks;
+  return data;
+}
+
+function saveToday(){
+  var data=buildSaveData();
+  localStorage.setItem('vk_day_'+TODAY,JSON.stringify(data));
+  addHistDate(TODAY);
+}
+
+function loadDay(date){
+  var local=localStorage.getItem('vk_day_'+date);
+  if(local)return JSON.parse(local);
+  return null;
+}
+
+// Auto-save every 60 seconds
+setInterval(saveToday,60000);
+
+// Gist sync
+// All history in one Gist file
+var HIST_FILE='history.json';
+var gistLoaded=false;
+
+function getAllHistory(){
+  var idx=getHistIndex();
+  var all={};
+  idx.forEach(function(date){
+    var d=loadDay(date);
+    if(d)all[date]=d;
+  });
+  return all;
+}
+
+function syncToGist(){
+  var token=getToken();if(!token)return Promise.resolve(null);
+  // Save today first
+  saveToday();
+  // Build full history
+  var all=getAllHistory();
+  var body={files:{}};
+  body.files[HIST_FILE]={content:JSON.stringify(all)};
+  // Also save today as individual file for backward compat
+  body.files[TODAY+'.json']={content:JSON.stringify(all[TODAY]||buildSaveData(),null,2)};
+  return fetch('https://api.github.com/gists/'+GIST_ID,{
+    method:'PATCH',
+    headers:{'Authorization':'token '+token,'Content-Type':'application/json'},
+    body:JSON.stringify(body)
+  }).then(function(r){return r.json();}).then(function(g){
+    console.log('Gist synced');return g;
+  }).catch(function(e){console.error('Gist sync error:',e);return null;});
+}
+
+function loadHistoryFromGist(){
+  var token=getToken();if(!token)return Promise.resolve(false);
+  return fetch('https://api.github.com/gists/'+GIST_ID,{
+    headers:{'Authorization':'token '+token}
+  }).then(function(r){return r.json();}).then(function(g){
+    if(!g.files)return false;
+    // Load history.json if it exists
+    if(g.files[HIST_FILE]){
+      var all=JSON.parse(g.files[HIST_FILE].content);
+      Object.keys(all).forEach(function(date){
+        // Gist wins for past days, localStorage wins for today
+        if(date!==TODAY){
+          localStorage.setItem('vk_day_'+date,JSON.stringify(all[date]));
+        } else {
+          // Merge: only overwrite if local is empty
+          if(!loadDay(date)){
+            localStorage.setItem('vk_day_'+date,JSON.stringify(all[date]));
+          }
+        }
+        addHistDate(date);
+      });
+      gistLoaded=true;
+      buildTrends();
+      return true;
+    }
+    // Fallback: load individual date files
+    var dates=Object.keys(g.files).filter(function(f){return f.match(/^\d{4}-\d{2}-\d{2}\.json$/);});
+    dates.forEach(function(f){
+      var date=f.replace('.json','');
+      try{
+        var data=JSON.parse(g.files[f].content);
+        if(date!==TODAY){localStorage.setItem('vk_day_'+date,JSON.stringify(data));}
+        addHistDate(date);
+      }catch(e){}
+    });
+    if(dates.length){gistLoaded=true;buildTrends();}
+    return dates.length>0;
+  }).catch(function(e){console.error('Gist load error:',e);return false;});
+}
+
+
+// One-time history reset — fresh start from 2026-04-22
+if(!localStorage.getItem('vk_hist_reset_v2')){
+  // Clear all local history
+  var keysToRemove=[];
+  for(var i=0;i<localStorage.length;i++){
+    var key=localStorage.key(i);
+    if(key&&(key.startsWith('vk_day_')||key===HIST_KEY||key.startsWith('vk_2026')))keysToRemove.push(key);
+  }
+  keysToRemove.forEach(function(k){localStorage.removeItem(k);});
+  localStorage.setItem(HIST_KEY,'[]');
+  localStorage.setItem('vk_hist_reset_v2','done');
+  // Clear Gist history
+  if(getToken()){
+    var body={files:{}};
+    body.files[HIST_FILE]={content:'{}'};
+    fetch('https://api.github.com/gists/'+GIST_ID,{
+      method:'PATCH',
+      headers:{'Authorization':'token '+getToken(),'Content-Type':'application/json'},
+      body:JSON.stringify(body)
+    }).catch(function(e){});
+  }
+}
+
+// Sync on load + every 3 minutes
+if(getToken()){
+  loadHistoryFromGist();
+  setTimeout(syncToGist,5000);
+  setInterval(syncToGist,180000);
+}
 
 // ═══════════ NAVIGATION ═══════════
 function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('on'));document.getElementById(id).classList.add('on');window.scrollTo(0,0);}
@@ -1146,7 +1339,7 @@ function buildChkList(containerId, items, dataAttr){
   items.forEach(function(item){
     var row=document.createElement('div');row.className='chk-row';
     row.onclick=function(){togChk(row);};
-    row.innerHTML='<input type="checkbox" data-'+dataAttr+'="'+item.id+'"><span>'+item.tx+'</span>';
+    row.innerHTML='<input type="checkbox" id="chk-'+dataAttr+'-'+item.id+'" data-'+dataAttr+'="'+item.id+'"><span>'+item.tx+'</span>';
     el.appendChild(row);
   });
 }
@@ -1715,6 +1908,51 @@ function buildEmoPicker(containerId){
   });
 }
 
+
+// ID to text lookup for history display
+var ID_TEXT={};
+function mapItems(items,prefix){items.forEach(function(i){ID_TEXT[prefix+i.id]=i.tx;});}
+mapItems(BODY_ITEMS,'b-');mapItems(REGI,'rr-');
+mapItems(FAM_NOISE,'n-');mapItems(REL_PATTERNS,'nr-');
+mapItems(CAT_ITEMS,'c-');mapItems(DIST_ITEMS,'d-');
+mapItems(BND_ITEMS,'bv-');mapItems(SOC_ITEMS,'s-');
+mapItems(GAME_ITEMS,'g-');mapItems(AUTH_ITEMS,'a-');mapItems(HOLD_ITEMS,'ah-');
+mapItems(EP_ITEMS,'e-');mapItems(SB_ITEMS,'s2-');mapItems(PROC_ITEMS,'p-');
+mapItems(HALT_ITEMS,'halt-');mapItems(LAND_ITEMS,'l-');
+mapItems(QUIT_ITEMS,'qc-');mapItems(TAPER_ITEMS,'tc-');
+// Also map with chk- prefix
+function mapItemsChk(items,prefix){items.forEach(function(i){ID_TEXT['chk-'+prefix+'-'+i.id]=i.tx;});}
+mapItemsChk(BODY_ITEMS,'b');mapItemsChk(REGI,'rr');mapItemsChk(CAT_ITEMS,'c');mapItemsChk(DIST_ITEMS,'d');mapItemsChk(BND_ITEMS,'bv');mapItemsChk(SOC_ITEMS,'s');mapItemsChk(GAME_ITEMS,'g');mapItemsChk(AUTH_ITEMS,'a');mapItemsChk(HOLD_ITEMS,'ah');mapItemsChk(EP_ITEMS,'e');mapItemsChk(SB_ITEMS,'s2');mapItemsChk(PROC_ITEMS,'p');mapItemsChk(HALT_ITEMS,'halt');mapItemsChk(LAND_ITEMS,'l');mapItemsChk(QUIT_ITEMS,'qc');mapItemsChk(TAPER_ITEMS,'tc');mapItemsChk(FAM_NOISE,'n');mapItemsChk(REL_PATTERNS,'nr');mapItemsChk(OUT_NOISE,'out');
+
+// Map old v1 format IDs (rb-sleep, rn-ctx etc)
+function mapItemsOld(items,prefix){items.forEach(function(i){ID_TEXT['r'+prefix+'-'+i.id]=i.tx;});}
+mapItemsOld(BODY_ITEMS,'b');mapItemsOld(REGI,'r');
+mapItemsOld(FAM_NOISE,'n');mapItemsOld(REL_PATTERNS,'nr');
+mapItemsOld(CAT_ITEMS,'c');mapItemsOld(DIST_ITEMS,'d');
+mapItemsOld(BND_ITEMS,'v');mapItemsOld(SOC_ITEMS,'s');
+mapItemsOld(GAME_ITEMS,'g');mapItemsOld(AUTH_ITEMS,'a');mapItemsOld(HOLD_ITEMS,'h');
+mapItemsOld(EP_ITEMS,'e');mapItemsOld(SB_ITEMS,'s2');mapItemsOld(PROC_ITEMS,'p');
+// Also try direct prefix patterns from old data
+BODY_ITEMS.forEach(function(i){ID_TEXT['rb-'+i.id]=i.tx;});
+CAT_ITEMS.forEach(function(i){ID_TEXT['rc-'+i.id]=i.tx;});
+DIST_ITEMS.forEach(function(i){ID_TEXT['rd-'+i.id]=i.tx;});
+BND_ITEMS.forEach(function(i){ID_TEXT['rv-'+i.id]=i.tx;});
+SOC_ITEMS.forEach(function(i){ID_TEXT['rs-'+i.id]=i.tx;});
+GAME_ITEMS.forEach(function(i){ID_TEXT['rg-'+i.id]=i.tx;});
+EP_ITEMS.forEach(function(i){ID_TEXT['re-'+i.id]=i.tx;});
+SB_ITEMS.forEach(function(i){ID_TEXT['rs2-'+i.id]=i.tx;});
+PROC_ITEMS.forEach(function(i){ID_TEXT['rp-'+i.id]=i.tx;});
+FAM_NOISE.forEach(function(i){ID_TEXT['rn-'+i.id]=i.tx;});
+AUTH_ITEMS.forEach(function(i){ID_TEXT['ra-'+i.id]=i.tx;});
+HOLD_ITEMS.forEach(function(i){ID_TEXT['rah-'+i.id]=i.tx;});
+REGI.forEach(function(i){ID_TEXT['rr-'+i.id]=i.tx;});
+// Also map without prefix for bare IDs
+[BODY_ITEMS,REGI,CAT_ITEMS,DIST_ITEMS,BND_ITEMS,SOC_ITEMS,
+ GAME_ITEMS,AUTH_ITEMS,HOLD_ITEMS,EP_ITEMS,SB_ITEMS,PROC_ITEMS,
+ HALT_ITEMS,LAND_ITEMS,QUIT_ITEMS,TAPER_ITEMS,FAM_NOISE,REL_PATTERNS,OUT_NOISE].forEach(function(arr){
+  if(!arr)return;arr.forEach(function(i){ID_TEXT[i.id]=i.tx;});
+});
+
 function init(){
   // Build all checklists
   buildChkList('b-list',BODY_ITEMS,'b');
@@ -1743,7 +1981,253 @@ function init(){
   buildEmoPicker('emo-pick-sit');
   initCare();
 }
+if(NEED_SETUP){document.getElementById("scr-home").classList.remove("on");document.getElementById("scr-setup").style.display="block";}
 init();
+
+// ═══════════ CALENDAR ═══════════
+function buildCalendar(containerId,viewId,mode){
+  var container=document.getElementById(containerId);
+  if(!container)return;
+  var now=new Date();
+  var calMonth=now.getMonth();
+  var calYear=now.getFullYear();
+  
+  function render(){
+    var histDates=getHistIndex();
+    var first=new Date(calYear,calMonth,1);
+    var lastDay=new Date(calYear,calMonth+1,0).getDate();
+    var startDow=first.getDay();
+    var months=['January','February','March','April','May','June','July','August','September','October','November','December'];
+    var dows=['Su','Mo','Tu','We','Th','Fr','Sa'];
+    
+    var h='<div class="cal-head"><button class="cal-nav" onclick="event.stopPropagation()">&lt;</button><span class="cal-month">'+months[calMonth]+' '+calYear+'</span><button class="cal-nav" onclick="event.stopPropagation()">&gt;</button></div>';
+    h+='<div class="cal-grid">';
+    dows.forEach(function(d){h+='<div class="cal-dow">'+d+'</div>';});
+    for(var i=0;i<startDow;i++)h+='<div class="cal-day empty"></div>';
+    for(var d=1;d<=lastDay;d++){
+      var dateStr=calYear+'-'+String(calMonth+1).padStart(2,'0')+'-'+String(d).padStart(2,'0');
+      var isToday=dateStr===TODAY;
+      var hasData=histDates.includes(dateStr);
+      var cls='cal-day'+(isToday?' today':'')+(hasData?' has-data':'');
+      h+='<button class="'+cls+'" data-date="'+dateStr+'" onclick="event.stopPropagation()">'+d+'</button>';
+    }
+    h+='</div>';
+    container.innerHTML=h;
+    
+    // Wire nav
+    container.querySelector('.cal-nav').onclick=function(e){e.stopPropagation();calMonth--;if(calMonth<0){calMonth=11;calYear--;}render();};
+    container.querySelectorAll('.cal-nav')[1].onclick=function(e){e.stopPropagation();calMonth++;if(calMonth>11){calMonth=0;calYear++;}render();};
+    
+    // Wire day clicks
+    container.querySelectorAll('.cal-day:not(.empty)').forEach(function(btn){
+      btn.onclick=function(e){
+        e.stopPropagation();
+        container.querySelectorAll('.cal-day').forEach(function(b){b.classList.remove('sel');});
+        btn.classList.add('sel');
+        showDayView(btn.dataset.date,viewId,mode);
+      };
+    });
+  }
+  render();
+}
+
+function showDayView(date,viewId,mode){
+  var view=document.getElementById(viewId);if(!view)return;
+  var data=loadDay(date);
+  
+  // Try Gist if not local
+  if(!data&&getToken()){
+    view.innerHTML='<div class="day-view"><div class="dv-title">Loading from Gist...</div></div>';
+    loadFromGist(date).then(function(gd){
+      if(gd){localStorage.setItem('vk_day_'+date,JSON.stringify(gd));renderDayView(gd,view,mode);}
+      else{view.innerHTML='<div class="day-view"><div class="dv-title">'+date+'</div><div class="dv-row" style="color:var(--text3)">No data for this day.</div></div>';}
+    });
+    return;
+  }
+  
+  if(!data){view.innerHTML='<div class="day-view"><div class="dv-title">'+date+'</div><div class="dv-row" style="color:var(--text3)">No data for this day.</div></div>';return;}
+  renderDayView(data,view,mode);
+}
+
+function renderDayView(data,view,mode){
+  var h='<div class="day-view"><div class="dv-title">'+data.date+'</div>';
+  
+  if(mode==='care'){
+    if(data['intent-main']||data['intent-value']||data['intent-protect']){
+      h+='<div class="dv-label">Morning intention</div>';
+      if(data['intent-main'])h+='<div class="dv-row">\u2022 '+data['intent-main']+'</div>';
+      if(data['intent-value'])h+='<div class="dv-row">\u2022 '+data['intent-value']+'</div>';
+      if(data['intent-protect'])h+='<div class="dv-row">\u2022 '+data['intent-protect']+'</div>';
+    }
+    // Guardrails
+    var guards=[];
+    if(data.s1a==='yo')guards.push({t:'No intoxicants',ok:true});
+    if(data.s1b==='no')guards.push({t:'Intoxicants',ok:false});
+    if(data.s2a==='yo')guards.push({t:'No caffeine',ok:true});
+    if(data.s2b==='no')guards.push({t:'Caffeine',ok:false});
+    if(data.s3a==='yo')guards.push({t:'No nicotine',ok:true});
+    if(data.s3b==='no')guards.push({t:'Nicotine',ok:false});
+    if(data.s4a==='yo')guards.push({t:'No pornography',ok:true});
+    if(data.s4b==='no')guards.push({t:'Pornography',ok:false});
+    if(guards.length){h+='<div class="dv-label">Guardrails</div>';guards.forEach(function(g){
+      h+='<div class="dv-row" style="color:'+(g.ok?'var(--ok)':'var(--alert)')+'">'+( g.ok?'\u2713 ':'\u2717 ')+g.t+'</div>';
+    });}
+    // Reflection
+    if(data['reflect-what'])h+='<div class="dv-label">What happened</div><div class="dv-row">'+data['reflect-what']+'</div>';
+    if(data['reflect-good'])h+='<div class="dv-label">Where I showed up</div><div class="dv-row">'+data['reflect-good']+'</div>';
+    if(data['reflect-next'])h+='<div class="dv-label">Correction</div><div class="dv-row">'+data['reflect-next']+'</div>';
+  }
+  
+  if(mode==='review'){
+    if(data.regLevel)h+='<div class="dv-label">Worst-moment regulation</div><div class="dv-row">Level '+data.regLevel+'</div>';
+    if(data.chks){
+      var entries=Object.entries(data.chks);
+      if(entries.length){h+='<div class="dv-label">Signals present ('+entries.length+')</div>';
+      entries.forEach(function(e){
+        var label=typeof e[1]==='string'&&e[1]!=='checked'&&e[1]!=='true'?e[1]:(ID_TEXT[e[0]]||e[0]);
+        h+='<div class="dv-row" style="font-size:11px;padding:2px 0 2px 10px;border-left:2px solid var(--bdr2)">'+label+'</div>';
+      });}
+    }
+  }
+  
+  h+='</div>';
+  view.innerHTML=h;
+}
+
+// Build calendars
+
+// ═══════════ TRENDS ═══════════
+function buildTrends(){
+  var idx=getHistIndex();
+  var last30=idx.slice(0,30);
+  var days=[];
+  last30.forEach(function(date){
+    var d=loadDay(date);
+    if(d)days.push(d);
+  });
+  
+  buildCareTrends(days);
+  buildReviewTrends(days);
+}
+
+function buildCareTrends(days){
+  var el=document.getElementById('trends-care');if(!el)return;
+  var h='';
+  
+  // Guardrail streaks
+  var substances=['s1','s2','s3','s4'];
+  var subNames={s1:'Intoxicants',s2:'Caffeine',s3:'Nicotine',s4:'Pornography'};
+  h+='<div class="trend-card"><div class="trend-title">Guardrail streaks</div>';
+  substances.forEach(function(s){
+    var current=0,best=0,counting=true;
+    days.forEach(function(d){
+      var clean=d[s+'a']==='yo';
+      var broken=d[s+'b']==='no';
+      if(clean&&counting){current++;}
+      else if(broken){counting=false;}
+      // Best streak across all days
+    });
+    // Recalculate best
+    var streak=0;
+    days.slice().reverse().forEach(function(d){
+      var clean=d[s+'a']==='yo';
+      if(clean){streak++;if(streak>best)best=streak;}
+      else{streak=0;}
+    });
+    // Current streak from most recent
+    current=0;
+    for(var i=0;i<days.length;i++){
+      if(days[i][s+'a']==='yo')current++;
+      else break;
+    }
+    var col=current>=7?'var(--ok)':current>=3?'var(--warn-text)':'var(--alert)';
+    h+='<div class="streak"><div class="streak-label">'+subNames[s]+'</div><div class="streak-val" style="color:'+col+'">'+current+'</div><div class="streak-unit">days</div><div class="streak-best">best: '+best+'</div></div>';
+  });
+  h+='</div>';
+  
+  // Engagement
+  var intentDays=days.filter(function(d){return d['intent-main'];}).length;
+  var reflectDays=days.filter(function(d){return d['reflect-what'];}).length;
+  h+='<div class="trend-card"><div class="trend-title">Engagement</div>';
+  h+='<div class="streak"><div class="streak-label">Morning intention filled</div><div class="streak-val">'+intentDays+'</div><div class="streak-unit">/'+days.length+'</div></div>';
+  h+='<div class="streak"><div class="streak-label">Evening reflection filled</div><div class="streak-val">'+reflectDays+'</div><div class="streak-unit">/'+days.length+'</div></div>';
+  h+='</div>';
+  
+  el.innerHTML=h||'<div style="font-size:12px;color:var(--text3)">No data yet. Check in daily to see trends.</div>';
+}
+
+function buildReviewTrends(days){
+  var el=document.getElementById('trends-review');if(!el)return;
+  var h='';
+  
+  // Regulation trend — bar chart of worst-moment levels
+  var regDays=days.filter(function(d){return d.regLevel;});
+  if(regDays.length>=2){
+    h+='<div class="trend-card"><div class="trend-title">Worst-moment regulation</div><div class="trend-sub">Lower is better. Each bar is your peak activation that day.</div>';
+    h+='<div class="trend-chart">';
+    var maxLvl=10;
+    regDays.slice(0,30).reverse().forEach(function(d){
+      var lvl=parseInt(d.regLevel)||0;
+      var pct=Math.round(lvl/maxLvl*100);
+      var col=lvl<=3?'var(--info-text)':lvl<=5?'var(--ok)':lvl<=7?'var(--warn-text)':'var(--alert)';
+      h+='<div class="trend-bar" style="height:'+pct+'%;background:'+col+'" title="'+d.date+': Level '+lvl+'"></div>';
+    });
+    h+='</div>';
+    h+='<div class="trend-axis"><span>'+regDays[regDays.length-1].date.substring(5)+'</span><span>'+regDays[0].date.substring(5)+'</span></div>';
+    // Average
+    var avg=regDays.reduce(function(s,d){return s+(parseInt(d.regLevel)||0);},0)/regDays.length;
+    h+='<div style="margin-top:8px;font-size:11px;color:var(--text3)">Average: '+avg.toFixed(1)+' over '+regDays.length+' days</div>';
+    h+='</div>';
+  }
+  
+  // Signal frequency — which items fire most
+  var freq={};
+  days.forEach(function(d){
+    if(!d.chks)return;
+    Object.keys(d.chks).forEach(function(k){
+      freq[k]=(freq[k]||0)+1;
+    });
+  });
+  var sorted=Object.entries(freq).sort(function(a,b){return b[1]-a[1];});
+  if(sorted.length){
+    var top=sorted.slice(0,10);
+    var maxCount=top[0][1];
+    h+='<div class="trend-card"><div class="trend-title">Most frequent signals</div><div class="trend-sub">What fires most across '+days.length+' days</div>';
+    top.forEach(function(entry){
+      var label=ID_TEXT[entry[0]]||entry[0];
+      if(label.length>60)label=label.substring(0,57)+'...';
+      var pct=Math.round(entry[1]/maxCount*100);
+      var freq_pct=Math.round(entry[1]/days.length*100);
+      h+='<div class="sig-freq"><div class="sig-freq-label">'+label+'</div><div style="width:60px"><div class="sig-freq-bar" style="width:'+pct+'%;background:var(--calm)"></div></div><div class="sig-freq-count">'+entry[1]+'/'+days.length+'</div></div>';
+    });
+    h+='</div>';
+  }
+  
+  // Prodrome flags
+  var prodDays=days.filter(function(d){
+    return d.p1b==='no'||d.p2b==='no';
+  });
+  if(prodDays.length){
+    h+='<div class="trend-card" style="border-color:var(--alert)"><div class="trend-title" style="color:var(--alert)">Prodrome flags</div>';
+    h+='<div style="font-size:12px;color:var(--text2)">'+prodDays.length+' day'+(prodDays.length>1?'s':'')+' with prodrome signals in last '+days.length+' days</div>';
+    prodDays.forEach(function(d){
+      h+='<div style="font-size:11px;color:var(--text3);margin-top:4px">'+d.date+'</div>';
+    });
+    h+='</div>';
+  }
+  
+  el.innerHTML=h||'<div style="font-size:12px;color:var(--text3)">No review data yet. Complete deep reviews to see trends.</div>';
+}
+
+buildTrends();
+
+
+
+// Save on page unload
+window.addEventListener('beforeunload',saveToday);
+// Save on screen change
+var origShowScreen=showScreen;
+showScreen=function(id){saveToday();origShowScreen(id);};
 
   // Build wound picker for land
   var wpl=document.getElementById('wound-pick-land');
