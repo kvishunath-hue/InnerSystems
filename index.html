@@ -699,7 +699,7 @@ body{
       <div style="font-size:11px;font-weight:600;color:var(--calm);text-transform:uppercase;letter-spacing:.4px">Phase 1 &#8212; Stabilisation (now &#8594; Nov 2026)</div>
       <div style="font-size:12px;color:var(--text2);margin-top:4px;line-height:1.7">
         <strong style="color:var(--text)">This app:</strong> Self-administered STAIR Phase 1 + DBT distress tolerance (TIPP) + polyvagal self-regulation<br>
-        <strong style="color:var(--text)">Body:</strong> Fitness as Se inferior development + vagal tone building. Walk 30 min daily \u2014 that IS your workout at VO2max 24. Progress intensity only when walking HR drops below 115 at the same pace. Consistency over intensity. No transformation protocol \u2014 recovery protocol.<br>
+        <strong style="color:var(--text)">Body:</strong> Fitness as Se inferior development + vagal tone building. Walk 30 min daily — that IS your workout at VO2max 24. Progress intensity only when walking HR drops below 115 at the same pace. Consistency over intensity. No transformation protocol — recovery protocol.<br>
         <strong style="color:var(--text)">Mind:</strong> Emotion naming before pattern analysis. Structured short-form mindfulness only &#8212; no extended open awareness. Signal detection. Prodrome monitoring with external anchors.<br>
         <strong style="color:var(--text)">Container:</strong> Sobriety non-negotiable. No trauma processing. No parts work. Stabilise first.<br>
         <strong style="color:var(--text)">Exit:</strong> AD filed. Finances secured. Property registered. November 1, 2026.
@@ -735,8 +735,8 @@ body{
     </div></div>
     <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9675;</span><div><div class="csec-nm">Medication</div><div class="csec-ds">Aripiprazole 1.25mg</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
     <div style="font-size:12px;color:var(--text2);line-height:1.7;margin-top:4px;margin-bottom:10px">
-      <div>Aripiprazole 1.25mg \u2014 the right medication at the right dose. Best cardiovascular and metabolic profile among antipsychotics. Best evidence for CIP relapse prevention. Do not change what is working.</div>
-      <div>Any additions \u2014 check CYP2D6 interaction (bupropion increases aripiprazole blood levels up to 5x). Any cessation \u2014 psychotic symptoms appeared within 3-5 days in your history.</div>
+      <div>Aripiprazole 1.25mg — the right medication at the right dose. Best cardiovascular and metabolic profile among antipsychotics. Best evidence for CIP relapse prevention. Do not change what is working.</div>
+      <div>Any additions — check CYP2D6 interaction (bupropion increases aripiprazole blood levels up to 5x). Any cessation — psychotic symptoms appeared within 3-5 days in your history.</div>
     </div>
     </div></div>
     <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9654;</span><div><div class="csec-nm">NoVisits timeline</div><div class="csec-ds">Phase 0 → Full commitment</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
@@ -1557,7 +1557,9 @@ function buildGroundList(ctx){
   });
 }
 
+var activeBreathStop=null;
 function startBreathCard(bi){
+  if(activeBreathStop)activeBreathStop();
   var b=BREATHS[bi];
   var body=document.getElementById('bbody-'+bi);body.classList.add('open');
   var card=document.getElementById('breath-card-'+bi);card.querySelector('.grnd-btn').style.display='none';
@@ -1603,8 +1605,9 @@ function startBreathCard(bi){
   var running=false,cyc=0,phi=0,raf=null,ci=null,timerStart=null,timerRaf=null,ir=RMIN;
   var btn=document.getElementById('cb-'+bi);
   var stopBtn=document.getElementById('bs-'+bi);
-  function stop(){running=false;if(raf)cancelAnimationFrame(raf);if(ci)clearInterval(ci);if(timerRaf)cancelAnimationFrame(timerRaf);body.classList.remove('open');body.innerHTML='';card.querySelector('.grnd-btn').style.display='';}
+  function stop(){running=false;if(raf)cancelAnimationFrame(raf);if(ci)clearInterval(ci);if(timerRaf)cancelAnimationFrame(timerRaf);body.classList.remove('open');body.innerHTML='';card.querySelector('.grnd-btn').style.display='';activeBreathStop=null;}
   stopBtn.onclick=stop;
+  activeBreathStop=stop;
   btn.onclick=function(){
     if(running){stop();return;}
     running=true;cyc=0;phi=0;ir=RMIN;timerStart=performance.now();
@@ -1628,13 +1631,11 @@ function startBreathCard(bi){
         var el=Math.min(now-ps,dMs);var frac=el/dMs;
         var ease=isH?1:(0.5-0.5*Math.cos(Math.PI*frac));
         var r=sR+(eR-sR)*ease;ir=r;
-        // Resize button
         var sz=Math.round(r*2);btn.style.width=sz+'px';btn.style.height=sz+'px';
-        // Draw ring with dot
         var dotF=fracs[phi]+(fracs[phi+1]-fracs[phi])*frac;
         drawRing(dotF,r);
         if(el<dMs){raf=requestAnimationFrame(fr);}
-        else{ir=eR;phi++;if(phi>=b.ph.length){phi=0;cyc++;}requestAnimationFrame(function(){if(running)runPhase();});}
+        else{ir=eR;phi++;if(phi>=b.ph.length){phi=0;cyc++;}runPhase();}
       }
       raf=requestAnimationFrame(fr);
     }
