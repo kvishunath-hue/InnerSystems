@@ -530,6 +530,28 @@ body{
   </div>
 </div>
 
+
+<!-- TOKEN SETTINGS SCREEN -->
+<div class="screen" id="scr-token" style="display:none">
+  <div style="max-width:360px;margin:0 auto;padding:40px 0">
+    <div style="text-align:center;margin-bottom:24px">
+      <div style="font-size:18px;font-weight:700;color:var(--text);margin-bottom:6px">Sync Settings</div>
+      <div style="font-size:12px;color:var(--text3)">GitHub Gist sync</div>
+    </div>
+    <div style="background:var(--bg);border:1px solid var(--bdr);border-radius:var(--rl);padding:20px;margin-bottom:12px">
+      <div id="token-current" style="font-size:11px;color:var(--text3);margin-bottom:12px"></div>
+      <div style="font-size:12px;font-weight:600;color:var(--text);margin-bottom:8px">GitHub Personal Access Token</div>
+      <div style="font-size:11px;color:var(--text3);margin-bottom:12px;line-height:1.5">
+        Create at github.com/settings/tokens with <strong>gist</strong> scope. Classic token recommended.
+      </div>
+      <input type="password" id="token-input" placeholder="ghp_xxxxxxxxxxxx" style="width:100%;padding:10px 12px;border-radius:var(--r);border:1px solid var(--bdr2);background:var(--bg2);color:var(--text);font-size:13px;font-family:monospace;box-sizing:border-box;margin-bottom:12px;outline:none">
+      <button class="btn" style="width:100%;margin-bottom:8px" onclick="saveNewToken()">Update token</button>
+      <button style="width:100%;padding:10px;border-radius:var(--r);border:1px solid var(--bdr);background:transparent;color:var(--text3);font-size:12px;cursor:pointer;font-family:inherit;margin-bottom:8px" onclick="removeToken()">Remove token — local only</button>
+    </div>
+    <button style="width:100%;padding:12px;border-radius:var(--rl);border:1px solid var(--bdr);background:transparent;color:var(--text2);font-size:12px;cursor:pointer;font-family:inherit" onclick="closeTokenScreen()">Cancel</button>
+  </div>
+</div>
+
 <!-- HOME / ENTRY -->
 <div class="screen on" id="scr-home">
   <div class="entry-grid">
@@ -877,9 +899,15 @@ function addHistDate(d){var idx=getHistIndex();if(!idx.includes(d)){idx.push(d);
 function buildSaveData(){
   var data={date:TODAY,ts:Date.now()};
   // Care fields
-  ['intent-main','intent-value','intent-protect','reflect-what','reflect-good','reflect-next'].forEach(function(k){data[k]=recall(k,'');});
+  ['intent-main','intent-value','intent-protect','reflect-what','reflect-good','reflect-next'].forEach(function(k){
+    var v=recall(k,'');var ts=parseInt(localStorage.getItem(SK+k+'_ts')||'0');
+    data[k]={v:v,ts:ts||Date.now()};
+  });
   // Guardrails
-  ['s1a','s1b','s2a','s2b','s3a','s3b','s4a','s4b','p1a','p1b','p2a','p2b','p3a','p3b','t1a','t1b','t2a','t2b'].forEach(function(k){data[k]=recall(k,'');});
+  ['s1a','s1b','s2a','s2b','s3a','s3b','s4a','s4b','p1a','p1b','p2a','p2b','p3a','p3b','t1a','t1b','t2a','t2b'].forEach(function(k){
+    var v=recall(k,'');var ts=parseInt(localStorage.getItem(SK+k+'_ts')||'0');
+    data[k]={v:v,ts:ts||Date.now()};
+  });
   // Goals
   data.goals=recall('goals','');
   // Regulation
@@ -901,7 +929,7 @@ function buildSaveData(){
   var emoPickSit=document.getElementById('emo-pick-sit');
   if(emoPickSit){var selEmo2=emoPickSit.querySelector('button[style*="var(--calm-bg)"]');if(selEmo2)data.emotionSit=selEmo2.textContent;}
   // Checkboxes from review
-  var chks={};document.querySelectorAll('.chk-row input[type=checkbox], .taper-row input[type=checkbox], .reg-item input[type=checkbox], .afi input[type=checkbox]').forEach(function(cb){if(cb.checked&&cb.id){var span=cb.parentElement.querySelector('span');chks[cb.id]=span?span.textContent.substring(0,80):'checked';}});
+  var chks={};document.querySelectorAll('.chk-row input[type=checkbox], .taper-row input[type=checkbox], .reg-item input[type=checkbox], .afi input[type=checkbox]').forEach(function(cb){if(cb.checked&&cb.id){var span=cb.parentElement.querySelector('span');chks[cb.id]={v:span?span.textContent.substring(0,80):'checked',ts:Date.now()};}});
   data.landIntensity=landIntensity;
   data.landCertainty=landCertainty;
   data.chks=chks;
@@ -912,13 +940,14 @@ function buildSaveData(){
 }
 
 var syncTimer=null;
+function dv2(d){return typeof d==='object'&&d!==null?d.v:d;}
 function saveToday(){
   var data=buildSaveData();
   // Don't save empty days
-  var hasContent=data['intent-main']||data['intent-value']||data['intent-protect']||
-    data['reflect-what']||data['reflect-good']||data['reflect-next']||
+  var hasContent=dv2(data['intent-main'])||dv2(data['intent-value'])||dv2(data['intent-protect'])||
+    dv2(data['reflect-what'])||dv2(data['reflect-good'])||dv2(data['reflect-next'])||
     data.regLevel||data.goals||(data.chks&&Object.keys(data.chks).length)||
-    data.s1a||data.s1b||data.s3a||data.s3b||data.s4a||data.s4b;
+    dv2(data.s1a)||dv2(data.s1b)||dv2(data.s3a)||dv2(data.s3b)||dv2(data.s4a)||dv2(data.s4b);
   if(!hasContent)return;
   localStorage.setItem('vk_day_'+TODAY,JSON.stringify(data));
   addHistDate(TODAY);
@@ -997,6 +1026,7 @@ function hPush(){
   }).catch(function(e){
     hSyncBusy=false;
     var ss=document.getElementById('sync-status');if(ss)ss.textContent='Sync failed: '+e.message;
+    if(e.message==='HTTP 403'||e.message==='HTTP 401'){hSyncDirty=false;if(hSyncTimer)clearTimeout(hSyncTimer);}
     return null;
   });
 }
@@ -1011,9 +1041,15 @@ function hPull(){
     if(g.files[HIST_FILE]){
       var all=JSON.parse(g.files[HIST_FILE].content);
       Object.keys(all).forEach(function(date){
-        localStorage.setItem('vk_day_'+date,JSON.stringify(all[date]));
+        if(date!==TODAY){
+          localStorage.setItem('vk_day_'+date,JSON.stringify(all[date]));
+        } else {
+          // Merge today per-field — restoreFromDayData handles timestamp comparison
+          restoreFromDayData(all[date]);
+          // After merge, save merged state back
+          setTimeout(function(){localStorage.setItem('vk_day_'+TODAY,JSON.stringify(buildSaveData()));},100);
+        }
         addHistDate(date);
-        if(date===TODAY)restoreFromDayData(all[date]);
       });
       buildTrends();
       if(ss)ss.textContent='\u2713 '+new Date().toLocaleTimeString();
@@ -1028,7 +1064,11 @@ function hPull(){
 
 // Hook every persist call to mark dirty
 var _hp=persist;
-persist=function(k,v){_hp(k,v);hMarkDirty();};
+persist=function(k,v){_hp(k,v);
+  // Store timestamp for this field
+  try{localStorage.setItem(SK+k+'_ts',String(Date.now()));}catch(e){}
+  hMarkDirty();
+};
 
 // On open: pull from Gist
 if(getToken()&&!justReset){
@@ -1053,19 +1093,35 @@ window.addEventListener('beforeunload',function(){saveToday();});
 
 
 
+var prevScreen=null;
 function showTokenPrompt(){
   var current=getToken();
-  var msg=current?'Token set ('+current.substring(0,8)+'...). Paste new token to replace, or cancel:':'No token set. Paste GitHub token with gist scope:';
-  var tok=prompt(msg);
-  if(tok===null)return;
-  if(tok.trim()){
-    setToken(tok.trim());
-    var ss=document.getElementById('sync-status');if(ss)ss.textContent='Token updated. Pulling...';
-    hPull();
-  } else {
-    localStorage.removeItem('vk_gist_token');
-    var ss=document.getElementById('sync-status');if(ss)ss.textContent='Token removed. Local only.';
-  }
+  var tc=document.getElementById('token-current');
+  if(tc)tc.textContent=current?'Current token: '+current.substring(0,8)+'...'+current.substring(current.length-4):'No token set.';
+  document.getElementById('token-input').value='';
+  prevScreen=document.querySelector('.screen.on');
+  document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('on');});
+  document.getElementById('scr-token').style.display='block';
+}
+function saveNewToken(){
+  var tok=document.getElementById('token-input').value.trim();
+  if(!tok)return;
+  setToken(tok);
+  localStorage.removeItem('vk_no_token');
+  closeTokenScreen();
+  var ss=document.getElementById('sync-status');if(ss)ss.textContent='Token updated. Pulling...';
+  hPull();
+}
+function removeToken(){
+  localStorage.removeItem('vk_gist_token');
+  localStorage.setItem('vk_no_token','1');
+  closeTokenScreen();
+  var ss=document.getElementById('sync-status');if(ss)ss.textContent='Token removed. Local only.';
+}
+function closeTokenScreen(){
+  document.getElementById('scr-token').style.display='none';
+  if(prevScreen)prevScreen.classList.add('on');
+  else document.getElementById('scr-home').classList.add('on');
 }
 
 // ═══════════ NAVIGATION ═══════════
@@ -2116,29 +2172,31 @@ function renderDayView(data,view,mode){
   var h='<div class="day-view"><div class="dv-title">'+data.date+'</div>';
   
   if(mode==='care'){
-    if(data['intent-main']||data['intent-value']||data['intent-protect']){
+    // Extract values from {v,ts} format
+  function dv(d){return typeof d==='object'&&d!==null?d.v:d;}
+  if(dv(data['intent-main'])||dv(data['intent-value'])||dv(data['intent-protect'])){
       h+='<div class="dv-label">Morning intention</div>';
-      if(data['intent-main'])h+='<div class="dv-row">\u2022 '+data['intent-main']+'</div>';
-      if(data['intent-value'])h+='<div class="dv-row">\u2022 '+data['intent-value']+'</div>';
-      if(data['intent-protect'])h+='<div class="dv-row">\u2022 '+data['intent-protect']+'</div>';
+      if(dv(data['intent-main']))h+='<div class="dv-row">\u2022 '+dv(data['intent-main'])+'</div>';
+      if(dv(data['intent-value']))h+='<div class="dv-row">\u2022 '+dv(data['intent-value'])+'</div>';
+      if(dv(data['intent-protect']))h+='<div class="dv-row">\u2022 '+dv(data['intent-protect'])+'</div>';
     }
     // Guardrails
     var guards=[];
-    if(data.s1a==='yo')guards.push({t:'No intoxicants',ok:true});
-    if(data.s1b==='no')guards.push({t:'Intoxicants',ok:false});
-    if(data.s2a==='yo')guards.push({t:'No caffeine',ok:true});
-    if(data.s2b==='no')guards.push({t:'Caffeine',ok:false});
-    if(data.s3a==='yo')guards.push({t:'No nicotine',ok:true});
-    if(data.s3b==='no')guards.push({t:'Nicotine',ok:false});
-    if(data.s4a==='yo')guards.push({t:'No pornography',ok:true});
-    if(data.s4b==='no')guards.push({t:'Pornography',ok:false});
+    if(dv(data.s1a)==='yo')guards.push({t:'No intoxicants',ok:true});
+    if(dv(data.s1b)==='no')guards.push({t:'Intoxicants',ok:false});
+    if(dv(data.s2a)==='yo')guards.push({t:'No caffeine',ok:true});
+    if(dv(data.s2b)==='no')guards.push({t:'Caffeine',ok:false});
+    if(dv(data.s3a)==='yo')guards.push({t:'No nicotine',ok:true});
+    if(dv(data.s3b)==='no')guards.push({t:'Nicotine',ok:false});
+    if(dv(data.s4a)==='yo')guards.push({t:'No pornography',ok:true});
+    if(dv(data.s4b)==='no')guards.push({t:'Pornography',ok:false});
     if(guards.length){h+='<div class="dv-label">Guardrails</div>';guards.forEach(function(g){
       h+='<div class="dv-row" style="color:'+(g.ok?'var(--ok)':'var(--alert)')+'">'+( g.ok?'\u2713 ':'\u2717 ')+g.t+'</div>';
     });}
     // Reflection
-    if(data['reflect-what'])h+='<div class="dv-label">What happened</div><div class="dv-row">'+data['reflect-what']+'</div>';
-    if(data['reflect-good'])h+='<div class="dv-label">Where I showed up</div><div class="dv-row">'+data['reflect-good']+'</div>';
-    if(data['reflect-next'])h+='<div class="dv-label">Correction</div><div class="dv-row">'+data['reflect-next']+'</div>';
+    if(dv(data['reflect-what']))h+='<div class="dv-label">What happened</div><div class="dv-row">'+dv(data['reflect-what'])+'</div>';
+    if(dv(data['reflect-good']))h+='<div class="dv-label">Where I showed up</div><div class="dv-row">'+dv(data['reflect-good'])+'</div>';
+    if(dv(data['reflect-next']))h+='<div class="dv-label">Correction</div><div class="dv-row">'+dv(data['reflect-next'])+'</div>';
     // Emotion
     if(data.emotion)h+='<div class="dv-label">Emotion named</div><div class="dv-row">'+data.emotion+'</div>';
     // Taper
@@ -2156,7 +2214,7 @@ function renderDayView(data,view,mode){
       var entries=Object.entries(data.chks);
       if(entries.length){h+='<div class="dv-label">Signals present ('+entries.length+')</div>';
       entries.forEach(function(e){
-        var label=typeof e[1]==='string'&&e[1]!=='checked'&&e[1]!=='true'?e[1]:(ID_TEXT[e[0]]||e[0]);
+        var rawVal=typeof e[1]==='object'?e[1].v:e[1];var label=typeof rawVal==='string'&&rawVal!=='checked'&&rawVal!=='true'?rawVal:(ID_TEXT[e[0]]||e[0]);
         h+='<div class="dv-row" style="font-size:11px;padding:2px 0 2px 10px;border-left:2px solid var(--bdr2)">'+label+'</div>';
       });}
     }
@@ -2172,13 +2230,23 @@ function renderDayView(data,view,mode){
 
 function restoreFromDayData(data){
   if(!data||data.date!==TODAY)return;
-  // Restore text fields
+  // Restore text fields — per-field timestamp wins
   ['intent-main','intent-value','intent-protect','reflect-what','reflect-good','reflect-next'].forEach(function(k){
-    if(data[k]){persist(k,data[k]);var el=document.getElementById(k);if(el)el.value=data[k];}
+    var remote=data[k];
+    if(!remote)return;
+    var rv=typeof remote==='object'?remote.v:remote;
+    var rts=typeof remote==='object'?remote.ts:0;
+    var lts=parseInt(localStorage.getItem(SK+k+'_ts')||'0');
+    if(rts>=lts&&rv){_hp(k,rv);localStorage.setItem(SK+k+'_ts',String(rts));var el=document.getElementById(k);if(el)el.value=rv;}
   });
-  // Restore guardrails
+  // Restore guardrails — per-field timestamp wins
   ['s1a','s1b','s2a','s2b','s3a','s3b','s4a','s4b','p1a','p1b','p2a','p2b','p3a','p3b','t1a','t1b','t2a','t2b'].forEach(function(id){
-    if(data[id]){persist(id,data[id]);var btn=document.getElementById(id);if(btn)btn.classList.add(data[id]);}
+    var remote=data[id];
+    if(!remote)return;
+    var rv=typeof remote==='object'?remote.v:remote;
+    var rts=typeof remote==='object'?remote.ts:0;
+    var lts=parseInt(localStorage.getItem(SK+id+'_ts')||'0');
+    if(rts>=lts&&rv){_hp(id,rv);localStorage.setItem(SK+id+'_ts',String(rts));var btn=document.getElementById(id);if(btn)btn.classList.add(rv);}
   });
   // Restore goals
   if(data.goals)persist('goals',data.goals);
@@ -2223,16 +2291,20 @@ function restoreFromDayData(data){
       if(el)el.classList.toggle('on',data.rhythm[k]);
     });
   }
-  // Restore checkboxes (chk-row and taper-row)
+  // Restore checkboxes — merge by timestamp
   if(data.chks){
     Object.keys(data.chks).forEach(function(cbId){
-      var cb=document.getElementById(cbId);
-      if(cb){
-        cb.checked=true;
-        var row=cb.closest('.chk-row');if(row)row.classList.add('on');
-        var regRow=cb.closest('.reg-item');if(regRow)regRow.classList.add('sel');
-        // Also persist individually for taper/quit recall
-        persist(cbId,true);
+      var remote=data.chks[cbId];
+      var rts=typeof remote==='object'?remote.ts:0;
+      var lts=parseInt(localStorage.getItem(SK+cbId+'_ts')||'0');
+      if(rts>=lts){
+        var cb=document.getElementById(cbId);
+        if(cb){
+          cb.checked=true;
+          var row=cb.closest('.chk-row');if(row)row.classList.add('on');
+          var regRow=cb.closest('.reg-item');if(regRow)regRow.classList.add('sel');
+          _hp(cbId,true);localStorage.setItem(SK+cbId+'_ts',String(rts||Date.now()));
+        }
       }
     });
   }
@@ -2286,8 +2358,8 @@ function buildCareTrends(days){
   h+='</div>';
   
   // Engagement
-  var intentDays=days.filter(function(d){return d['intent-main'];}).length;
-  var reflectDays=days.filter(function(d){return d['reflect-what'];}).length;
+  var intentDays=days.filter(function(d){var v=d['intent-main'];return typeof v==='object'?v.v:v;}).length;
+  var reflectDays=days.filter(function(d){var v=d['reflect-what'];return typeof v==='object'?v.v:v;}).length;
   // Taper stability trend
   var taperDays=days.filter(function(d){
     var ok=0,tot=0;
