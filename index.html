@@ -885,7 +885,9 @@ function buildSaveData(){
     data[k]={v:v,ts:ts||Date.now()};
   });
   // Goals
-  data.goals=recall('goals','');
+  // Save goal button states
+  var goalState={};document.querySelectorAll('.goal-btn').forEach(function(btn){if(btn.id&&btn.classList.contains('gy'))goalState[btn.id]=true;});
+  data.goalBtns=goalState;
   // Regulation
   data.regLevel=recall('reg-level','');
   // Taper checks
@@ -921,7 +923,7 @@ function saveToday(){
   // Don't save empty days
   var hasContent=dv2(data['intent-main'])||dv2(data['intent-value'])||dv2(data['intent-protect'])||
     dv2(data['reflect-what'])||dv2(data['reflect-good'])||dv2(data['reflect-next'])||
-    data.regLevel||data.goals||(data.chks&&Object.keys(data.chks).length)||
+    data.regLevel||(data.goalBtns&&Object.keys(data.goalBtns).length)||(data.chks&&Object.keys(data.chks).length)||
     dv2(data.s1a)||dv2(data.s1b)||dv2(data.s3a)||dv2(data.s3b)||dv2(data.s4a)||dv2(data.s4b);
   if(!hasContent)return;
   localStorage.setItem('vk_day_'+TODAY,JSON.stringify(data));
@@ -2105,8 +2107,13 @@ function restoreFromDayData(data){
     var lts=parseInt(localStorage.getItem(SK+id+'_ts')||'0');
     if(rts>=lts&&rv){_hp(id,rv);localStorage.setItem(SK+id+'_ts',String(rts));var btn=document.getElementById(id);if(btn)btn.classList.add(rv);}
   });
-  // Restore goals
-  if(data.goals)persist('goals',data.goals);
+  // Restore goal buttons
+  if(data.goalBtns){
+    Object.keys(data.goalBtns).forEach(function(id){
+      var btn=document.getElementById(id);
+      if(btn&&data.goalBtns[id]){btn.classList.add('gy');_hp(id,true);}
+    });
+  }
   // Restore reg level
   if(data.regLevel)persist('reg-level',data.regLevel);
   // Restore emotion
