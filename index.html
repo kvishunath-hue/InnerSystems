@@ -692,7 +692,7 @@ body{
 
   <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9888;</span><div><div class="csec-nm">Guardrails</div><div class="csec-ds">Intoxicants, prodrome, structure</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
     <div class="al al-alert" style="margin:0 0 10px"><strong>Hard boundaries.</strong> Cigarettes &#8596; Pornography &#8594; Cannabis &#8594; Psychosis. The craving is never about the substance.</div>
-    <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9632;</span><div><div class="csec-nm">Intoxicants</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
+    <div class="sdiv" style="margin-top:0">Intoxicants</div>
     <div class="yn-row"><span class="yn-text" id="gt-s1">No intoxicants today</span><div class="yn-btns"><button class="yn-btn" id="s1a" onclick="event.stopPropagation();yn('s1a','s1b')">Yes</button><button class="yn-btn" id="s1b" onclick="event.stopPropagation();yn('s1b','s1a')">No</button></div></div>
     <div class="yn-row"><span class="yn-text" id="gt-s2">No caffeine today</span><div class="yn-btns"><button class="yn-btn" id="s2a" onclick="event.stopPropagation();yn('s2a','s2b')">Yes</button><button class="yn-btn" id="s2b" onclick="event.stopPropagation();yn('s2b','s2a')">No</button></div></div>
     <div class="yn-row"><span class="yn-text" id="gt-s3">No nicotine today</span><div class="yn-btns"><button class="yn-btn" id="s3a" onclick="event.stopPropagation();yn('s3a','s3b')">Yes</button><button class="yn-btn" id="s3b" onclick="event.stopPropagation();yn('s3b','s3a')">No</button></div></div>
@@ -705,7 +705,6 @@ body{
     <div class="yn-row"><span class="yn-text">Following routines today</span><div class="yn-btns"><button class="yn-btn" id="t1a" onclick="event.stopPropagation();yn('t1a','t1b')">Yes</button><button class="yn-btn" id="t1b" onclick="event.stopPropagation();yn('t1b','t1a')">No</button></div></div>
     <div class="yn-row"><span class="yn-text">Stability over insight or pleasure today</span><div class="yn-btns"><button class="yn-btn" id="t2a" onclick="event.stopPropagation();yn('t2a','t2b')">Yes</button><button class="yn-btn" id="t2b" onclick="event.stopPropagation();yn('t2b','t2a')">No</button></div></div>
     <div class="result" id="r-guard"></div>
-  </div></div>
   </div></div>
 
   <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9675;</span><div><div class="csec-nm">Taper check</div><div class="csec-ds">The body leads. The system follows.</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
@@ -980,6 +979,7 @@ function loadHistoryFromGist(){
           // Merge: only overwrite if local is empty
           if(!loadDay(date)){
             localStorage.setItem('vk_day_'+date,JSON.stringify(all[date]));
+            restoreFromDayData(all[date]);
           }
         }
         addHistDate(date);
@@ -2137,6 +2137,27 @@ function renderDayView(data,view,mode){
 // Build calendars
 
 // ═══════════ TRENDS ═══════════
+
+function restoreFromDayData(data){
+  if(!data||data.date!==TODAY)return;
+  // Restore text fields
+  ['intent-main','intent-value','intent-protect','reflect-what','reflect-good','reflect-next'].forEach(function(k){
+    if(data[k]){persist(k,data[k]);var el=document.getElementById(k);if(el)el.value=data[k];}
+  });
+  // Restore guardrails
+  ['s1a','s1b','s2a','s2b','s3a','s3b','s4a','s4b','p1a','p1b','p2a','p2b','p3a','p3b','t1a','t1b','t2a','t2b'].forEach(function(id){
+    if(data[id]){persist(id,data[id]);var btn=document.getElementById(id);if(btn)btn.classList.add(data[id]);}
+  });
+  // Restore reg level
+  if(data.regLevel)persist('reg-level',data.regLevel);
+  // Restore checkboxes
+  if(data.chks){
+    Object.keys(data.chks).forEach(function(cbId){
+      var cb=document.getElementById(cbId);
+      if(cb){cb.checked=true;var row=cb.closest('.chk-row');if(row)row.classList.add('on');}
+    });
+  }
+}
 function buildTrends(){
   var idx=getHistIndex();
   var last30=idx.slice(0,30);
