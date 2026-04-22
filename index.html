@@ -1064,8 +1064,9 @@ function hPull(){
 
 // Hook every persist call to mark dirty
 var _hp=persist;
+var _restoring=false;
 persist=function(k,v){_hp(k,v);
-  // Store timestamp for this field
+  if(_restoring)return;
   try{localStorage.setItem(SK+k+'_ts',String(Date.now()));}catch(e){}
   hMarkDirty();
 };
@@ -2230,6 +2231,7 @@ function renderDayView(data,view,mode){
 
 function restoreFromDayData(data){
   if(!data||data.date!==TODAY)return;
+  _restoring=true;
   // Restore text fields — per-field timestamp wins
   ['intent-main','intent-value','intent-protect','reflect-what','reflect-good','reflect-next'].forEach(function(k){
     var remote=data[k];
@@ -2308,6 +2310,7 @@ function restoreFromDayData(data){
       }
     });
   }
+  _restoring=false;
 }
 function buildTrends(){
   var idx=getHistIndex();
