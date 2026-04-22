@@ -1082,8 +1082,8 @@ function saveNewToken(){
   setToken(tok);
   localStorage.removeItem('vk_no_token');
   closeTokenScreen();
-  var ss=document.getElementById('sync-status');if(ss)ss.textContent='Token updated. Pulling...';
-  hPull();
+  var ss=document.getElementById('sync-status');if(ss)ss.textContent='Token updated. Syncing...';
+  hSyncDirty=true;hPull().then(function(){hPush();});
 }
 function removeToken(){
   localStorage.removeItem('vk_gist_token');
