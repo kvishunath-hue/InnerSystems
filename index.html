@@ -976,8 +976,8 @@ function loadHistoryFromGist(){
         if(date!==TODAY){
           localStorage.setItem('vk_day_'+date,JSON.stringify(all[date]));
         } else {
-          // Merge: only overwrite if local is empty
-          if(!loadDay(date)){
+          // Gist always wins for today
+          if(all[date]){
             localStorage.setItem('vk_day_'+date,JSON.stringify(all[date]));
             restoreFromDayData(all[date]);
           }
@@ -1043,7 +1043,7 @@ if(getToken()&&!justReset){
   if(ss0)ss0.textContent='Token found. Syncing...';
   loadHistoryFromGist();
   setTimeout(syncToGist,5000);
-  setInterval(syncToGist,180000);
+  setInterval(function(){syncToGist().then(function(){loadHistoryFromGist();});},180000);
 } else {
   var ss1=document.getElementById('sync-status');
   if(ss1&&!getToken())ss1.textContent='No token. Local only.';
