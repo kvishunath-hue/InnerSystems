@@ -250,22 +250,6 @@ body{
 .csec.open>.csec-body{display:block}
 /* ── CALENDAR ── */
 .cal{margin-bottom:12px}
-.cal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
-.cal-nav{background:none;border:none;color:var(--text2);font-size:16px;cursor:pointer;padding:4px 8px}
-.cal-month{font-size:13px;font-weight:600;color:var(--text)}
-.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;text-align:center}
-.cal-dow{font-size:10px;color:var(--text3);padding:4px 0}
-.cal-day{font-size:12px;padding:6px 0;border-radius:var(--r);cursor:pointer;color:var(--text3);background:transparent;border:none;font-family:inherit}
-.cal-day:hover{background:var(--bg2)}
-.cal-day.has-data{color:var(--text);font-weight:600}
-.cal-day.has-data::after{content:'';display:block;width:4px;height:4px;border-radius:50%;background:var(--calm);margin:2px auto 0}
-.cal-day.today{border:1px solid var(--calm);color:var(--calm)}
-.cal-day.sel{background:var(--calm-bg);color:var(--calm)}
-.cal-day.empty{visibility:hidden}
-.day-view{background:var(--bg);border:1px solid var(--bdr);border-radius:var(--rl);padding:14px;margin-top:8px}
-.day-view .dv-title{font-size:13px;font-weight:600;margin-bottom:8px}
-.day-view .dv-row{font-size:12px;color:var(--text2);padding:3px 0;line-height:1.5}
-.day-view .dv-label{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;margin-top:8px;margin-bottom:2px}
 /* ── TRENDS ── */
 .trend-card{background:var(--bg);border:1px solid var(--bdr);border-radius:var(--rl);padding:14px;margin-bottom:8px}
 .trend-title{font-size:12px;font-weight:600;color:var(--text);margin-bottom:8px}
@@ -399,14 +383,6 @@ body{
 .game-action{margin-top:8px;padding:8px 10px;border-radius:var(--r);border-left:3px solid var(--info-bdr);background:var(--info-bg);font-size:12px;line-height:1.5;color:var(--info-text)}
 
 /* ── HISTORY ── */
-.hist-section{margin-top:10px;border-top:1px solid var(--bdr);padding-top:12px}
-.hist-toggle{
-  width:100%;padding:10px;border-radius:var(--r);border:1px solid var(--bdr2);
-  background:transparent;color:var(--text2);font-size:13px;cursor:pointer;
-  font-family:inherit;text-align:left;display:flex;justify-content:space-between;align-items:center;
-}
-.hist-body{display:none;margin-top:10px}
-.hist-body.open{display:block}
 .hist-day{
   padding:8px 11px;border-radius:var(--r);border:1px solid var(--bdr);font-size:13px;
   cursor:pointer;color:var(--text2);margin-bottom:4px;display:flex;justify-content:space-between;align-items:center;
@@ -939,7 +915,6 @@ function buildSaveData(){
   return data;
 }
 
-var syncTimer=null;
 function dv2(d){return typeof d==='object'&&d!==null?d.v:d;}
 function saveToday(){
   var data=buildSaveData();
@@ -951,9 +926,6 @@ function saveToday(){
   if(!hasContent)return;
   localStorage.setItem('vk_day_'+TODAY,JSON.stringify(data));
   addHistDate(TODAY);
-  // Debounced sync to Gist — 2 seconds after last change
-  if(syncTimer)clearTimeout(syncTimer);
-  syncTimer=setTimeout(function(){hPush();var ss=document.getElementById('sync-status');if(ss)ss.textContent='Syncing...';},2000);
 }
 
 function loadDay(date){
@@ -987,7 +959,7 @@ function getAllHistory(){
 var justReset=false;
 var ss0=document.getElementById('sync-status');
 if(getToken()&&!justReset){
-  if(ss0)ss0.textContent='Token found. Syncing...';
+  
 
 } else {
   var ss1=document.getElementById('sync-status');
@@ -1127,10 +1099,7 @@ function closeTokenScreen(){
 
 // ═══════════ NAVIGATION ═══════════
 function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('on'));document.getElementById(id).classList.add('on');window.scrollTo(0,0);}
-function navTo(tab){
-  var map={home:'scr-home',care:'scr-care',review:'scr-review'};
-  showScreen(map[tab]||'scr-home');
-}
+
 function goActivated(){showScreen('scr-activated');}
 function goSituation(){showScreen('scr-situation');}
 function goSitFamily(){showScreen('scr-sit-family');}
@@ -1812,7 +1781,7 @@ function runQuit(){
 }
 
 // ═══════════ HISTORY ═══════════
-function toggleHist(id,btn){var el=document.getElementById(id);el.classList.toggle('open');btn.querySelector('span:last-child').textContent=el.classList.contains('open')?'\u25B2':'\u25BC';}
+
 
 // ═══════════ BREATHING ═══════════
 var BREATHS=[
@@ -2105,125 +2074,11 @@ if(savedReg){
 }
 
 // ═══════════ CALENDAR ═══════════
-function buildCalendar(containerId,viewId,mode){
-  var container=document.getElementById(containerId);
-  if(!container)return;
-  var now=new Date();
-  var calMonth=now.getMonth();
-  var calYear=now.getFullYear();
-  
-  function render(){
-    var histDates=getHistIndex();
-    var first=new Date(calYear,calMonth,1);
-    var lastDay=new Date(calYear,calMonth+1,0).getDate();
-    var startDow=first.getDay();
-    var months=['January','February','March','April','May','June','July','August','September','October','November','December'];
-    var dows=['Su','Mo','Tu','We','Th','Fr','Sa'];
-    
-    var h='<div class="cal-head"><button class="cal-nav" onclick="event.stopPropagation()">&lt;</button><span class="cal-month">'+months[calMonth]+' '+calYear+'</span><button class="cal-nav" onclick="event.stopPropagation()">&gt;</button></div>';
-    h+='<div class="cal-grid">';
-    dows.forEach(function(d){h+='<div class="cal-dow">'+d+'</div>';});
-    for(var i=0;i<startDow;i++)h+='<div class="cal-day empty"></div>';
-    for(var d=1;d<=lastDay;d++){
-      var dateStr=calYear+'-'+String(calMonth+1).padStart(2,'0')+'-'+String(d).padStart(2,'0');
-      var isToday=dateStr===TODAY;
-      var hasData=histDates.includes(dateStr);
-      var cls='cal-day'+(isToday?' today':'')+(hasData?' has-data':'');
-      h+='<button class="'+cls+'" data-date="'+dateStr+'" onclick="event.stopPropagation()">'+d+'</button>';
-    }
-    h+='</div>';
-    container.innerHTML=h;
-    
-    // Wire nav
-    container.querySelector('.cal-nav').onclick=function(e){e.stopPropagation();calMonth--;if(calMonth<0){calMonth=11;calYear--;}render();};
-    container.querySelectorAll('.cal-nav')[1].onclick=function(e){e.stopPropagation();calMonth++;if(calMonth>11){calMonth=0;calYear++;}render();};
-    
-    // Wire day clicks
-    container.querySelectorAll('.cal-day:not(.empty)').forEach(function(btn){
-      btn.onclick=function(e){
-        e.stopPropagation();
-        container.querySelectorAll('.cal-day').forEach(function(b){b.classList.remove('sel');});
-        btn.classList.add('sel');
-        showDayView(btn.dataset.date,viewId,mode);
-      };
-    });
-  }
-  render();
-}
 
-function showDayView(date,viewId,mode){
-  var view=document.getElementById(viewId);if(!view)return;
-  var data=loadDay(date);
-  
-  // Try Gist if not local
-  if(!data&&getToken()){
-    view.innerHTML='<div class="day-view"><div class="dv-title">Loading from Gist...</div></div>';
-    loadFromGist(date).then(function(gd){
-      if(gd){localStorage.setItem('vk_day_'+date,JSON.stringify(gd));renderDayView(gd,view,mode);}
-      else{view.innerHTML='<div class="day-view"><div class="dv-title">'+date+'</div><div class="dv-row" style="color:var(--text3)">No data for this day.</div></div>';}
-    });
-    return;
-  }
-  
-  if(!data){view.innerHTML='<div class="day-view"><div class="dv-title">'+date+'</div><div class="dv-row" style="color:var(--text3)">No data for this day.</div></div>';return;}
-  renderDayView(data,view,mode);
-}
 
-function renderDayView(data,view,mode){
-  var h='<div class="day-view"><div class="dv-title">'+data.date+'</div>';
-  
-  if(mode==='care'){
-    // Extract values from {v,ts} format
-  function dv(d){return typeof d==='object'&&d!==null?d.v:d;}
-  if(dv(data['intent-main'])||dv(data['intent-value'])||dv(data['intent-protect'])){
-      h+='<div class="dv-label">Morning intention</div>';
-      if(dv(data['intent-main']))h+='<div class="dv-row">\u2022 '+dv(data['intent-main'])+'</div>';
-      if(dv(data['intent-value']))h+='<div class="dv-row">\u2022 '+dv(data['intent-value'])+'</div>';
-      if(dv(data['intent-protect']))h+='<div class="dv-row">\u2022 '+dv(data['intent-protect'])+'</div>';
-    }
-    // Guardrails
-    var guards=[];
-    if(dv(data.s1a)==='yo')guards.push({t:'No intoxicants',ok:true});
-    if(dv(data.s1b)==='no')guards.push({t:'Intoxicants',ok:false});
-    if(dv(data.s2a)==='yo')guards.push({t:'No caffeine',ok:true});
-    if(dv(data.s2b)==='no')guards.push({t:'Caffeine',ok:false});
-    if(dv(data.s3a)==='yo')guards.push({t:'No nicotine',ok:true});
-    if(dv(data.s3b)==='no')guards.push({t:'Nicotine',ok:false});
-    if(dv(data.s4a)==='yo')guards.push({t:'No pornography',ok:true});
-    if(dv(data.s4b)==='no')guards.push({t:'Pornography',ok:false});
-    if(guards.length){h+='<div class="dv-label">Guardrails</div>';guards.forEach(function(g){
-      h+='<div class="dv-row" style="color:'+(g.ok?'var(--ok)':'var(--alert)')+'">'+( g.ok?'\u2713 ':'\u2717 ')+g.t+'</div>';
-    });}
-    // Reflection
-    if(dv(data['reflect-what']))h+='<div class="dv-label">What happened</div><div class="dv-row">'+dv(data['reflect-what'])+'</div>';
-    if(dv(data['reflect-good']))h+='<div class="dv-label">Where I showed up</div><div class="dv-row">'+dv(data['reflect-good'])+'</div>';
-    if(dv(data['reflect-next']))h+='<div class="dv-label">Correction</div><div class="dv-row">'+dv(data['reflect-next'])+'</div>';
-    // Emotion
-    if(data.emotion)h+='<div class="dv-label">Emotion named</div><div class="dv-row">'+data.emotion+'</div>';
-    // Taper
-    var taperOk=0,taperTotal=0;
-    ['s1','s2','ins','urg','sub','tspd','mood','ext','cessation'].forEach(function(k){
-      if(data['tc-'+k]!==undefined){taperTotal++;if(data['tc-'+k])taperOk++;}
-    });
-    if(taperTotal)h+='<div class="dv-label">Taper</div><div class="dv-row">'+taperOk+'/'+taperTotal+' stable</div>';
-  }
-  
-  if(mode==='review'){
-    if(data.emotion)h+='<div class="dv-label">Emotion at worst moment</div><div class="dv-row">'+data.emotion+'</div>';
-    if(data.regLevel)h+='<div class="dv-label">Worst-moment regulation</div><div class="dv-row">Level '+data.regLevel+'</div>';
-    if(data.chks){
-      var entries=Object.entries(data.chks);
-      if(entries.length){h+='<div class="dv-label">Signals present ('+entries.length+')</div>';
-      entries.forEach(function(e){
-        var rawVal=typeof e[1]==='object'?e[1].v:e[1];var label=typeof rawVal==='string'&&rawVal!=='checked'&&rawVal!=='true'?rawVal:(ID_TEXT[e[0]]||e[0]);
-        h+='<div class="dv-row" style="font-size:11px;padding:2px 0 2px 10px;border-left:2px solid var(--bdr2)">'+label+'</div>';
-      });}
-    }
-  }
-  
-  h+='</div>';
-  view.innerHTML=h;
-}
+
+
+
 
 // Build calendars
 
@@ -2450,35 +2305,9 @@ function buildReviewTrends(days){
 
 buildTrends();
 
-
-
-// Save on page unload
-window.addEventListener('beforeunload',function(){
-  saveToday();
-  // Sync immediately on close using sendBeacon
-  var token=getToken();
-  if(token){
-    var all=getAllHistory();
-    var body={files:{}};
-    body.files[HIST_FILE]={content:JSON.stringify(all)};
-    body.files[TODAY+'.json']={content:JSON.stringify(all[TODAY]||buildSaveData(),null,2)};
-    var blob=new Blob([JSON.stringify(body)],{type:'application/json'});
-    // sendBeacon doesn't support auth headers, so use sync XHR as fallback
-    try{
-      var xhr=new XMLHttpRequest();
-      xhr.open('PATCH','https://api.github.com/gists/'+GIST_ID,false);
-      xhr.setRequestHeader('Authorization','token '+token);
-      xhr.setRequestHeader('Content-Type','application/json');
-      xhr.send(JSON.stringify(body));
-    }catch(e){}
-  }
-});
-// Save on screen change
-// showScreen save handled by persist->markDirty
-
-  // Build wound picker for land
-  var wpl=document.getElementById('wound-pick-land');
-  if(wpl){Object.keys(WOUND_DATA).forEach(function(k){
+// Build wound picker for land
+var wpl=document.getElementById('wound-pick-land');
+if(wpl){Object.keys(WOUND_DATA).forEach(function(k){
     var w=WOUND_DATA[k];
     var btn=document.createElement('button');
     btn.style.cssText='padding:6px 12px;border-radius:20px;border:1px solid var(--bdr2);background:transparent;color:var(--text2);font-size:12px;cursor:pointer;font-family:inherit';
