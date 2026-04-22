@@ -865,7 +865,7 @@ function skipSetup(){localStorage.setItem('vk_no_token','1');location.reload();}
 
 const TODAY=new Date().toLocaleDateString('en-CA',{timeZone:'Asia/Kolkata'});
 const SK='vk_'+TODAY+'_';
-function persist(k,v){try{localStorage.setItem(SK+k,typeof v==='boolean'?String(v):v);}catch(e){}}
+function persist(k,v){try{localStorage.setItem(SK+k,typeof v==='boolean'?String(v):v);saveToday();}catch(e){}}
 function recall(k,df){try{var v=localStorage.getItem(SK+k);if(v===null)return df;if(v==='true')return true;if(v==='false')return false;return v;}catch(e){return df;}}
 
 
@@ -911,6 +911,7 @@ function buildSaveData(){
   return data;
 }
 
+var syncTimer=null;
 function saveToday(){
   var data=buildSaveData();
   // Don't save empty days
@@ -921,6 +922,9 @@ function saveToday(){
   if(!hasContent)return;
   localStorage.setItem('vk_day_'+TODAY,JSON.stringify(data));
   addHistDate(TODAY);
+  // Debounced sync to Gist — 2 seconds after last change
+  if(syncTimer)clearTimeout(syncTimer);
+  syncTimer=setTimeout(function(){hPush();var ss=document.getElementById('sync-status');if(ss)ss.textContent='Syncing...';},2000);
 }
 
 function loadDay(date){
@@ -947,70 +951,12 @@ function getAllHistory(){
   return all;
 }
 
-function syncToGist(){
-  var token=getToken();if(!token)return Promise.resolve(null);
-  // Save today first
-  saveToday();
-  // Build full history
-  var all=getAllHistory();
-  var body={files:{}};
-  body.files[HIST_FILE]={content:JSON.stringify(all)};
-  // Also save today as individual file for backward compat
-  body.files[TODAY+'.json']={content:JSON.stringify(all[TODAY]||buildSaveData(),null,2)};
-  return fetch('https://api.github.com/gists/'+GIST_ID,{
-    method:'PATCH',
-    headers:{'Authorization':'token '+token,'Content-Type':'application/json'},
-    body:JSON.stringify(body)
-  }).then(function(r){if(!r.ok)throw new Error('HTTP '+r.status);return r.json();}).then(function(g){
-    var ss=document.getElementById('sync-status');if(ss)ss.textContent='Synced '+new Date().toLocaleTimeString();return g;
-  }).catch(function(e){console.error('Gist sync error:',e);var ss=document.getElementById('sync-status');if(ss)ss.textContent='Sync failed: '+e.message;return null;});
-}
 
-function loadHistoryFromGist(){
-  var token=getToken();if(!token)return Promise.resolve(false);
-  var ss=document.getElementById('sync-status');if(ss)ss.textContent='Loading from Gist...';
-  return fetch('https://api.github.com/gists/'+GIST_ID,{
-    headers:{'Authorization':'token '+token}
-  }).then(function(r){return r.json();}).then(function(g){
-    if(!g.files)return false;
-    // Load history.json if it exists
-    if(g.files[HIST_FILE]){
-      var all=JSON.parse(g.files[HIST_FILE].content);
-      Object.keys(all).forEach(function(date){
-        // Gist wins for past days, localStorage wins for today
-        if(date!==TODAY){
-          localStorage.setItem('vk_day_'+date,JSON.stringify(all[date]));
-        } else {
-          // Gist always wins for today
-          if(all[date]){
-            localStorage.setItem('vk_day_'+date,JSON.stringify(all[date]));
-            restoreFromDayData(all[date]);
-          }
-        }
-        addHistDate(date);
-      });
-      gistLoaded=true;
-      buildTrends();
-      return true;
-    }
-    // Fallback: load individual date files
-    var dates=Object.keys(g.files).filter(function(f){return f.match(/^\d{4}-\d{2}-\d{2}\.json$/);});
-    dates.forEach(function(f){
-      var date=f.replace('.json','');
-      try{
-        var data=JSON.parse(g.files[f].content);
-        if(date!==TODAY){localStorage.setItem('vk_day_'+date,JSON.stringify(data));}
-        addHistDate(date);
-      }catch(e){}
-    });
-    if(dates.length){gistLoaded=true;buildTrends();}
-    return dates.length>0;
-  }).catch(function(e){console.error('Gist load error:',e);return false;});
-}
+
 
 
 // One-time history reset — fresh start from 2026-04-22
-if(!localStorage.getItem('vk_hist_reset_v3')||localStorage.getItem('vk_hist_reset_v3')==='done'){
+if(!localStorage.getItem('vk_hist_reset_v4')||localStorage.getItem('vk_hist_reset_v4')==='done'){
   // Clear all local history
   var keysToRemove=[];
   for(var i=0;i<localStorage.length;i++){
@@ -1019,7 +965,7 @@ if(!localStorage.getItem('vk_hist_reset_v3')||localStorage.getItem('vk_hist_rese
   }
   keysToRemove.forEach(function(k){localStorage.removeItem(k);});
   localStorage.setItem(HIST_KEY,'[]');
-  localStorage.setItem('vk_hist_reset_v3',String(Date.now()));
+  localStorage.setItem('vk_hist_reset_v4',String(Date.now()));
   // Clear Gist history — delete all date files + empty history.json
   if(getToken()){
     fetch('https://api.github.com/gists/'+GIST_ID,{
@@ -1041,19 +987,107 @@ if(!localStorage.getItem('vk_hist_reset_v3')||localStorage.getItem('vk_hist_rese
 }
 
 // Sync on load + every 3 minutes
-var resetTs=parseInt(localStorage.getItem('vk_hist_reset_v3')||'0');
-var justReset=Date.now()-resetTs<30000;
+var resetTs=parseInt(localStorage.getItem('vk_hist_reset_v4')||'0');
+var justReset=Date.now()-resetTs<60000;
 var ss0=document.getElementById('sync-status');
 if(getToken()&&!justReset){
   if(ss0)ss0.textContent='Token found. Syncing...';
-  loadHistoryFromGist();
-  setTimeout(syncToGist,5000);
-  setInterval(function(){syncToGist().then(function(){loadHistoryFromGist();});},180000);
+
 } else {
   var ss1=document.getElementById('sync-status');
   if(ss1&&!getToken())ss1.textContent='No token. Local only.';
   if(ss1&&justReset)ss1.textContent='Reset active. Sync in 30s.';
 }
+
+
+// ═══════════ HANDOFF SYNC ═══════════
+var hSyncDirty=false;
+var hSyncTimer=null;
+var hSyncBusy=false;
+
+function hMarkDirty(){
+  hSyncDirty=true;
+  if(hSyncTimer)clearTimeout(hSyncTimer);
+  hSyncTimer=setTimeout(hPush,5000);
+}
+
+function hPush(){
+  if(!getToken()||hSyncBusy)return Promise.resolve(null);
+  hSyncBusy=true;
+  saveToday();
+  var all=getAllHistory();
+  var body={files:{}};
+  body.files[HIST_FILE]={content:JSON.stringify(all)};
+  body.files[TODAY+'.json']={content:JSON.stringify(all[TODAY]||buildSaveData(),null,2)};
+  return fetch('https://api.github.com/gists/'+GIST_ID,{
+    method:'PATCH',
+    headers:{'Authorization':'token '+getToken(),'Content-Type':'application/json'},
+    body:JSON.stringify(body)
+  }).then(function(r){if(!r.ok)throw new Error('HTTP '+r.status);return r.json();}).then(function(g){
+    hSyncDirty=false;hSyncBusy=false;
+    var ss=document.getElementById('sync-status');if(ss)ss.textContent='\u2713 '+new Date().toLocaleTimeString();
+    return g;
+  }).catch(function(e){
+    hSyncBusy=false;
+    var ss=document.getElementById('sync-status');if(ss)ss.textContent='Sync failed: '+e.message;
+    return null;
+  });
+}
+
+function hPull(){
+  if(!getToken())return Promise.resolve(false);
+  var ss=document.getElementById('sync-status');if(ss)ss.textContent='Pulling...';
+  return fetch('https://api.github.com/gists/'+GIST_ID,{
+    headers:{'Authorization':'token '+getToken()}
+  }).then(function(r){return r.json();}).then(function(g){
+    if(!g.files)return false;
+    if(g.files[HIST_FILE]){
+      var all=JSON.parse(g.files[HIST_FILE].content);
+      Object.keys(all).forEach(function(date){
+        localStorage.setItem('vk_day_'+date,JSON.stringify(all[date]));
+        addHistDate(date);
+        if(date===TODAY)restoreFromDayData(all[date]);
+      });
+      buildTrends();
+      if(ss)ss.textContent='\u2713 '+new Date().toLocaleTimeString();
+      return true;
+    }
+    return false;
+  }).catch(function(e){
+    if(ss)ss.textContent='Pull failed: '+e.message;
+    return false;
+  });
+}
+
+// Hook every persist call to mark dirty
+var _hp=persist;
+persist=function(k,v){_hp(k,v);hMarkDirty();};
+
+// On open: pull from Gist
+if(getToken()&&!justReset){
+  var ss0=document.getElementById('sync-status');
+  if(ss0)ss0.textContent='Connecting...';
+  hPull();
+} else {
+  var ss1=document.getElementById('sync-status');
+  if(ss1&&!getToken())ss1.textContent='No token. Local only.';
+  if(ss1&&justReset)ss1.textContent='Resetting...';
+}
+
+// Tab switch: push on leave, pull on return
+document.addEventListener('visibilitychange',function(){
+  if(document.hidden){
+    if(hSyncDirty&&getToken()){if(hSyncTimer)clearTimeout(hSyncTimer);hPush();}
+  } else {
+    if(getToken()&&!justReset)hPull();
+  }
+});
+
+// Page unload: save locally
+window.addEventListener('beforeunload',function(){saveToday();});
+
+// Safety net: push every 3 min if dirty
+setInterval(function(){if(hSyncDirty&&getToken())hPush();},180000);
 
 // ═══════════ NAVIGATION ═══════════
 function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('on'));document.getElementById(id).classList.add('on');window.scrollTo(0,0);}
@@ -2365,10 +2399,28 @@ buildTrends();
 
 
 // Save on page unload
-window.addEventListener('beforeunload',saveToday);
+window.addEventListener('beforeunload',function(){
+  saveToday();
+  // Sync immediately on close using sendBeacon
+  var token=getToken();
+  if(token){
+    var all=getAllHistory();
+    var body={files:{}};
+    body.files[HIST_FILE]={content:JSON.stringify(all)};
+    body.files[TODAY+'.json']={content:JSON.stringify(all[TODAY]||buildSaveData(),null,2)};
+    var blob=new Blob([JSON.stringify(body)],{type:'application/json'});
+    // sendBeacon doesn't support auth headers, so use sync XHR as fallback
+    try{
+      var xhr=new XMLHttpRequest();
+      xhr.open('PATCH','https://api.github.com/gists/'+GIST_ID,false);
+      xhr.setRequestHeader('Authorization','token '+token);
+      xhr.setRequestHeader('Content-Type','application/json');
+      xhr.send(JSON.stringify(body));
+    }catch(e){}
+  }
+});
 // Save on screen change
-var origShowScreen=showScreen;
-showScreen=function(id){saveToday();origShowScreen(id);};
+// showScreen save handled by persist->markDirty
 
   // Build wound picker for land
   var wpl=document.getElementById('wound-pick-land');
