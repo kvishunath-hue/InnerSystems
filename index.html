@@ -488,7 +488,7 @@ body{
 <div class="app-header">
   <div class="app-title">Inner Systems</div>
   <div class="app-sub">Nothing is bad or good. Just notice.</div>
-  <div class="app-updated">Last updated: 21 April 2026</div>
+  <div class="app-updated">Last updated: 22 April 2026</div><div id="sync-status" style="font-size:10px;color:var(--text3);margin-top:2px"></div>
   <div class="reg-indicator" id="reg-pill">Not checked today</div>
 </div>
 
@@ -706,6 +706,7 @@ body{
     <div class="yn-row"><span class="yn-text">Stability over insight or pleasure today</span><div class="yn-btns"><button class="yn-btn" id="t2a" onclick="event.stopPropagation();yn('t2a','t2b')">Yes</button><button class="yn-btn" id="t2b" onclick="event.stopPropagation();yn('t2b','t2a')">No</button></div></div>
     <div class="result" id="r-guard"></div>
   </div></div>
+  </div></div>
 
   <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9675;</span><div><div class="csec-nm">Taper check</div><div class="csec-ds">The body leads. The system follows.</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
     <div class="al al-alert" id="taper-prodrome-banner" style="display:none;margin-bottom:8px">Prodrome signals were flagged today.</div>
@@ -726,11 +727,10 @@ body{
     <div class="isec"><div class="ilbl">What needs correction tomorrow</div><textarea class="itxt" id="reflect-next" rows="2" placeholder="Tomorrow I will..." oninput="persist('reflect-next',this.value)"></textarea></div>
   </div></div>
 
-  <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9654;</span><div><div class="csec-nm">Weekly rhythm</div><div class="csec-ds">Rhythm grid</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
+  <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9654;</span><div><div class="csec-nm">Rhythm + timetable</div><div class="csec-ds">Weekly rhythm and daily schedule</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
+    <div style="font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Weekly rhythm</div>
     <div class="rhythm-grid" id="dc-rhythm"></div>
-  </div></div>
-
-  <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9632;</span><div><div class="csec-nm">Timetable</div><div class="csec-ds">Daily schedule</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
+    <div style="font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;margin:14px 0 6px">Timetable</div>
     <div class="tt-row"><div class="tt-time">06:00</div><div>Wake up</div></div>
     <div class="tt-row"><div class="tt-time">10:00</div><div>Work block 1</div></div>
     <div class="tt-row"><div class="tt-time">13:00</div><div>Break</div></div>
@@ -740,7 +740,6 @@ body{
     <div class="tt-row"><div class="tt-time">22:00</div><div>Sleep</div></div>
   </div></div>
 
-  </div></div>
   <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9633;</span><div><div class="csec-nm">Trends</div><div class="csec-ds">Streaks, regulation, patterns</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
     <div id="trends-care"></div>
   </div></div>
@@ -958,13 +957,14 @@ function syncToGist(){
     method:'PATCH',
     headers:{'Authorization':'token '+token,'Content-Type':'application/json'},
     body:JSON.stringify(body)
-  }).then(function(r){return r.json();}).then(function(g){
-    console.log('Gist synced');return g;
-  }).catch(function(e){console.error('Gist sync error:',e);return null;});
+  }).then(function(r){if(!r.ok)throw new Error('HTTP '+r.status);return r.json();}).then(function(g){
+    var ss=document.getElementById('sync-status');if(ss)ss.textContent='Synced '+new Date().toLocaleTimeString();return g;
+  }).catch(function(e){console.error('Gist sync error:',e);var ss=document.getElementById('sync-status');if(ss)ss.textContent='Sync failed: '+e.message;return null;});
 }
 
 function loadHistoryFromGist(){
   var token=getToken();if(!token)return Promise.resolve(false);
+  var ss=document.getElementById('sync-status');if(ss)ss.textContent='Loading from Gist...';
   return fetch('https://api.github.com/gists/'+GIST_ID,{
     headers:{'Authorization':'token '+token}
   }).then(function(r){return r.json();}).then(function(g){
@@ -1038,10 +1038,16 @@ if(!localStorage.getItem('vk_hist_reset_v3')||localStorage.getItem('vk_hist_rese
 // Sync on load + every 3 minutes
 var resetTs=parseInt(localStorage.getItem('vk_hist_reset_v3')||'0');
 var justReset=Date.now()-resetTs<30000;
+var ss0=document.getElementById('sync-status');
 if(getToken()&&!justReset){
+  if(ss0)ss0.textContent='Token found. Syncing...';
   loadHistoryFromGist();
   setTimeout(syncToGist,5000);
   setInterval(syncToGist,180000);
+} else {
+  var ss1=document.getElementById('sync-status');
+  if(ss1&&!getToken())ss1.textContent='No token. Local only.';
+  if(ss1&&justReset)ss1.textContent='Reset active. Sync in 30s.';
 }
 
 // ═══════════ NAVIGATION ═══════════
