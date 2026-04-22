@@ -187,8 +187,8 @@ body{
 /* ── GROUND OVERLAY ── */
 .ground-fab{
   position:fixed;bottom:24px;right:16px;z-index:100;
-  width:52px;height:52px;border-radius:50%;background:var(--alert-bg);
-  color:var(--alert);border:1px solid var(--alert-bdr);cursor:pointer;font-size:11px;font-weight:700;
+  width:62px;height:62px;border-radius:50%;background:var(--alert-bg);
+  color:var(--alert);border:1px solid var(--alert-bdr);cursor:pointer;font-size:12px;font-weight:700;
   display:flex;align-items:center;justify-content:center;text-align:center;
   line-height:1.2;-webkit-tap-highlight-color:transparent;
   box-shadow:0 2px 16px rgba(0,0,0,0.15);font-family:inherit;
@@ -823,23 +823,23 @@ body{
   <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico" style="font-size:12px;font-weight:700">09</span><div><div class="csec-nm">Integration — moving toward 1</div><div class="csec-ds">Discipline, principled action, structure</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="prompt" style="margin-top:0;margin-bottom:8px">Moving toward 1: stepping out of emotional intensity into disciplined, principled action. Using depth and authenticity as a foundation for structure, not a reason to stay in the feeling.</div>
     <div class="al al-warn" style="margin:0 0 8px">Watch for disintegration toward 2: over-giving, rescuing, earning love through sacrifice. The hero drive IS the disintegration &#8212; it feeds the psychosis loop directly.</div>
     <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9675;</span><div><div class="csec-nm">Release</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="aff">
-      <div class="afi" onclick="togAff(this)"><input type="checkbox"><span>There is room to loosen the need to be right or complete.</span></div>
-      <div class="afi" onclick="togAff(this)"><input type="checkbox"><span>There is room to let others be imperfect without fixing them.</span></div>
-      <div class="afi" onclick="togAff(this)"><input type="checkbox"><span>There is room to offer help without expectation of return.</span></div>
-      <div class="afi" onclick="togAff(this)"><input type="checkbox"><span>There is room for presence or attention to be enough.</span></div>
-      <div class="afi" onclick="togAff(this)"><input type="checkbox"><span>There is room for a softer internal tone.</span></div>
+      <div class="afi" onclick="togAff(this)"><input type="checkbox" id="afi-1"><span>There is room to loosen the need to be right or complete.</span></div>
+      <div class="afi" onclick="togAff(this)"><input type="checkbox" id="afi-2"><span>There is room to let others be imperfect without fixing them.</span></div>
+      <div class="afi" onclick="togAff(this)"><input type="checkbox" id="afi-3"><span>There is room to offer help without expectation of return.</span></div>
+      <div class="afi" onclick="togAff(this)"><input type="checkbox" id="afi-4"><span>There is room for presence or attention to be enough.</span></div>
+      <div class="afi" onclick="togAff(this)"><input type="checkbox" id="afi-5"><span>There is room for a softer internal tone.</span></div>
     </div></div></div>
     <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9675;</span><div><div class="csec-nm">Steadiness</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="aff">
-      <div class="afi" onclick="togAff(this)"><input type="checkbox"><span>There is room to move with direction rather than certainty.</span></div>
-      <div class="afi" onclick="togAff(this)"><input type="checkbox"><span>There is room to allow not knowing without forcing clarity.</span></div>
-      <div class="afi" onclick="togAff(this)"><input type="checkbox"><span>There is room to accept the limits of time, energy, or understanding.</span></div>
-      <div class="afi" onclick="togAff(this)"><input type="checkbox"><span>There is room to notice effort without measuring worth.</span></div>
+      <div class="afi" onclick="togAff(this)"><input type="checkbox" id="afi-6"><span>There is room to move with direction rather than certainty.</span></div>
+      <div class="afi" onclick="togAff(this)"><input type="checkbox" id="afi-7"><span>There is room to allow not knowing without forcing clarity.</span></div>
+      <div class="afi" onclick="togAff(this)"><input type="checkbox" id="afi-8"><span>There is room to accept the limits of time, energy, or understanding.</span></div>
+      <div class="afi" onclick="togAff(this)"><input type="checkbox" id="afi-9"><span>There is room to notice effort without measuring worth.</span></div>
     </div></div></div>
     <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9675;</span><div><div class="csec-nm">Action</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="aff">
-      <div class="afi" onclick="togAff(this)"><input type="checkbox"><span>There is room to act from what I know without waiting to know more.</span></div>
-      <div class="afi" onclick="togAff(this)"><input type="checkbox"><span>There is room to contribute in ways that respect my regulation.</span></div>
-      <div class="afi" onclick="togAff(this)"><input type="checkbox"><span>There is room to build for the contribution rather than the applause.</span></div>
-      <div class="afi" onclick="togAff(this)"><input type="checkbox"><span>There is room to say what I mean once, clearly, and stop.</span></div>
+      <div class="afi" onclick="togAff(this)"><input type="checkbox" id="afi-10"><span>There is room to act from what I know without waiting to know more.</span></div>
+      <div class="afi" onclick="togAff(this)"><input type="checkbox" id="afi-11"><span>There is room to contribute in ways that respect my regulation.</span></div>
+      <div class="afi" onclick="togAff(this)"><input type="checkbox" id="afi-12"><span>There is room to build for the contribution rather than the applause.</span></div>
+      <div class="afi" onclick="togAff(this)"><input type="checkbox" id="afi-13"><span>There is room to say what I mean once, clearly, and stop.</span></div>
     </div></div></div>
     <button class="btn" style="margin-top:14px" onclick="doIntegration()">Complete review</button>
     <div class="mantra" id="mantra">
@@ -901,8 +901,13 @@ function buildSaveData(){
   var emoPickSit=document.getElementById('emo-pick-sit');
   if(emoPickSit){var selEmo2=emoPickSit.querySelector('button[style*="var(--calm-bg)"]');if(selEmo2)data.emotionSit=selEmo2.textContent;}
   // Checkboxes from review
-  var chks={};document.querySelectorAll('.chk-row input[type=checkbox]').forEach(function(cb){if(cb.checked&&cb.id){var span=cb.parentElement.querySelector('span');chks[cb.id]=span?span.textContent.substring(0,80):'checked';}});
+  var chks={};document.querySelectorAll('.chk-row input[type=checkbox], .taper-row input[type=checkbox], .reg-item input[type=checkbox], .afi input[type=checkbox]').forEach(function(cb){if(cb.checked&&cb.id){var span=cb.parentElement.querySelector('span');chks[cb.id]=span?span.textContent.substring(0,80):'checked';}});
+  data.landIntensity=landIntensity;
+  data.landCertainty=landCertainty;
   data.chks=chks;
+  // Wound picker
+  var wp=document.getElementById('wound-pick-land');
+  if(wp){var wounds=[];wp.querySelectorAll('button').forEach(function(b){if(b.style.background&&b.style.background!=='transparent')wounds.push(b.textContent);});if(wounds.length)data.wounds=wounds;}
   return data;
 }
 
@@ -1384,9 +1389,10 @@ function buildChkList(containerId, items, dataAttr){
 
 function buildRegItems(containerId){
   var el=document.getElementById(containerId);if(!el)return;el.innerHTML='';
+  var pfx=containerId==='quick-reg-items'?'qr-':'rr-';
   REGI.forEach(function(it){
     var d=document.createElement('div');d.className='reg-item'+(it.prod?' prod':'');
-    d.innerHTML='<input type="checkbox" id="rr-'+it.id+'"><span>'+it.tx+(it.prod?' <span style="font-size:11px;color:var(--alert)">(prodrome)</span>':'')+'</span>';
+    d.innerHTML='<input type="checkbox" id="'+pfx+it.id+'"><span>'+it.tx+(it.prod?' <span style="font-size:11px;color:var(--alert)">(prodrome)</span>':'')+'</span>';
     d.onclick=function(){var cb=d.querySelector('input');cb.checked=!cb.checked;d.classList.toggle('sel',cb.checked);};
     el.appendChild(d);
   });
@@ -1440,7 +1446,7 @@ function setIntBar(barId,level){
 
 // ═══════════ CORE FUNCTIONS ═══════════
 function doQuickReg(){
-  var sel=new Set([...document.querySelectorAll('#quick-reg-items input:checked')].map(c=>c.id.replace('rr-','')));
+  var sel=new Set([...document.querySelectorAll('#quick-reg-items input:checked')].map(c=>c.id.replace('qr-','')));
   if(!sel.size){show('r-quick-reg','<span class="ri-ok">No signals selected.</span>');return;}
   var lvl=calcRegLevel(sel);
   var st=RST[lvl];var bd=lvl<=3?'w':lvl<=5?'e':lvl<=7?'i':lvl<=9?'c':'s';
@@ -1953,7 +1959,7 @@ mapItems(HALT_ITEMS,'halt-');mapItems(LAND_ITEMS,'l-');
 mapItems(QUIT_ITEMS,'qc-');mapItems(TAPER_ITEMS,'tc-');
 // Also map with chk- prefix
 function mapItemsChk(items,prefix){items.forEach(function(i){ID_TEXT['chk-'+prefix+'-'+i.id]=i.tx;});}
-mapItemsChk(BODY_ITEMS,'b');mapItemsChk(REGI,'rr');mapItemsChk(CAT_ITEMS,'c');mapItemsChk(DIST_ITEMS,'d');mapItemsChk(BND_ITEMS,'bv');mapItemsChk(SOC_ITEMS,'s');mapItemsChk(GAME_ITEMS,'g');mapItemsChk(AUTH_ITEMS,'a');mapItemsChk(HOLD_ITEMS,'ah');mapItemsChk(EP_ITEMS,'e');mapItemsChk(SB_ITEMS,'s2');mapItemsChk(PROC_ITEMS,'p');mapItemsChk(HALT_ITEMS,'halt');mapItemsChk(LAND_ITEMS,'l');mapItemsChk(QUIT_ITEMS,'qc');mapItemsChk(TAPER_ITEMS,'tc');mapItemsChk(FAM_NOISE,'n');mapItemsChk(REL_PATTERNS,'nr');mapItemsChk(OUT_NOISE,'out');
+mapItemsChk(BODY_ITEMS,'b');mapItemsChk(REGI,'rr');mapItemsChk(REGI,'qr');mapItemsChk(CAT_ITEMS,'c');mapItemsChk(DIST_ITEMS,'d');mapItemsChk(BND_ITEMS,'bv');mapItemsChk(SOC_ITEMS,'s');mapItemsChk(GAME_ITEMS,'g');mapItemsChk(AUTH_ITEMS,'a');mapItemsChk(HOLD_ITEMS,'ah');mapItemsChk(EP_ITEMS,'e');mapItemsChk(SB_ITEMS,'s2');mapItemsChk(PROC_ITEMS,'p');mapItemsChk(HALT_ITEMS,'halt');mapItemsChk(LAND_ITEMS,'l');mapItemsChk(QUIT_ITEMS,'qc');mapItemsChk(TAPER_ITEMS,'tc');mapItemsChk(FAM_NOISE,'n');mapItemsChk(REL_PATTERNS,'nr');mapItemsChk(OUT_NOISE,'out');
 
 // Map old v1 format IDs (rb-sleep, rn-ctx etc)
 function mapItemsOld(items,prefix){items.forEach(function(i){ID_TEXT['r'+prefix+'-'+i.id]=i.tx;});}
@@ -1976,7 +1982,7 @@ PROC_ITEMS.forEach(function(i){ID_TEXT['rp-'+i.id]=i.tx;});
 FAM_NOISE.forEach(function(i){ID_TEXT['rn-'+i.id]=i.tx;});
 AUTH_ITEMS.forEach(function(i){ID_TEXT['ra-'+i.id]=i.tx;});
 HOLD_ITEMS.forEach(function(i){ID_TEXT['rah-'+i.id]=i.tx;});
-REGI.forEach(function(i){ID_TEXT['rr-'+i.id]=i.tx;});
+REGI.forEach(function(i){ID_TEXT['rr-'+i.id]=i.tx;ID_TEXT['qr-'+i.id]=i.tx;});
 // Also map without prefix for bare IDs
 [BODY_ITEMS,REGI,CAT_ITEMS,DIST_ITEMS,BND_ITEMS,SOC_ITEMS,
  GAME_ITEMS,AUTH_ITEMS,HOLD_ITEMS,EP_ITEMS,SB_ITEMS,PROC_ITEMS,
@@ -2014,6 +2020,19 @@ function init(){
 }
 if(NEED_SETUP){document.getElementById("scr-home").classList.remove("on");document.getElementById("scr-setup").style.display="block";}
 init();
+
+// Restore reg-pill from saved level
+var savedReg=recall('reg-level','');
+if(savedReg){
+  var lvl=parseInt(savedReg);
+  var pill=document.getElementById('reg-pill');
+  if(pill&&lvl){
+    var RLB_R={1:'Witness',2:'Settled',3:'Composed',4:'Alert',5:'Effortful',6:'Narrowing',7:'Flooding',8:'Overwhelmed',9:'Captured',10:'Survival'};
+    pill.textContent='Level '+lvl+' — '+(RLB_R[lvl]||'');
+    pill.style.background=lvl<=3?'var(--info-bg)':lvl<=5?'var(--ok-bg)':lvl<=7?'var(--warn-bg)':'var(--alert-bg)';
+    pill.style.color=lvl<=3?'var(--info-text)':lvl<=5?'var(--ok)':lvl<=7?'var(--warn-text)':'var(--alert)';
+  }
+}
 
 // ═══════════ CALENDAR ═══════════
 function buildCalendar(containerId,viewId,mode){
@@ -2148,13 +2167,60 @@ function restoreFromDayData(data){
   ['s1a','s1b','s2a','s2b','s3a','s3b','s4a','s4b','p1a','p1b','p2a','p2b','p3a','p3b','t1a','t1b','t2a','t2b'].forEach(function(id){
     if(data[id]){persist(id,data[id]);var btn=document.getElementById(id);if(btn)btn.classList.add(data[id]);}
   });
+  // Restore goals
+  if(data.goals)persist('goals',data.goals);
   // Restore reg level
   if(data.regLevel)persist('reg-level',data.regLevel);
-  // Restore checkboxes
+  // Restore emotion
+  if(data.emotion){
+    var ep=document.getElementById('emo-pick');
+    if(ep){ep.querySelectorAll('button').forEach(function(b){
+      if(b.textContent===data.emotion){b.style.background='var(--calm-bg)';b.style.color='var(--calm)';b.style.borderColor='var(--calm-bdr)';}
+    });}
+  }
+  if(data.emotionSit){
+    var eps=document.getElementById('emo-pick-sit');
+    if(eps){eps.querySelectorAll('button').forEach(function(b){
+      if(b.textContent===data.emotionSit){b.style.background='var(--calm-bg)';b.style.color='var(--calm)';b.style.borderColor='var(--calm-bdr)';}
+    });}
+  }
+  // Restore intensity bars
+  if(data.landIntensity){
+    landIntensity=data.landIntensity;
+    var ib=document.querySelectorAll('#int-bar .int-dot');
+    ib.forEach(function(dot,i){if(i<data.landIntensity)dot.classList.add('on');});
+  }
+  if(data.landCertainty){
+    landCertainty=data.landCertainty;
+    var cb2=document.querySelectorAll('#cert-bar .int-dot');
+    cb2.forEach(function(dot,i){if(i<data.landCertainty)dot.classList.add('on');});
+  }
+  // Restore wound picker
+  if(data.wounds&&data.wounds.length){
+    var wpl=document.getElementById('wound-pick-land');
+    if(wpl){wpl.querySelectorAll('button').forEach(function(b){
+      if(data.wounds.includes(b.textContent)){b.style.background='var(--calm-bg)';b.style.color='var(--calm)';b.style.borderColor='var(--calm-bdr)';}
+    });}
+  }
+  // Restore rhythm
+  if(data.rhythm){
+    Object.keys(data.rhythm).forEach(function(k){
+      persist(k,data.rhythm[k]);
+      var el=document.getElementById(k);
+      if(el)el.classList.toggle('on',data.rhythm[k]);
+    });
+  }
+  // Restore checkboxes (chk-row and taper-row)
   if(data.chks){
     Object.keys(data.chks).forEach(function(cbId){
       var cb=document.getElementById(cbId);
-      if(cb){cb.checked=true;var row=cb.closest('.chk-row');if(row)row.classList.add('on');}
+      if(cb){
+        cb.checked=true;
+        var row=cb.closest('.chk-row');if(row)row.classList.add('on');
+        var regRow=cb.closest('.reg-item');if(regRow)regRow.classList.add('sel');
+        // Also persist individually for taper/quit recall
+        persist(cbId,true);
+      }
     });
   }
 }
