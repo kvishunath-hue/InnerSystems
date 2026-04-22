@@ -488,7 +488,7 @@ body{
 <div class="app-header">
   <div class="app-title">Inner Systems</div>
   <div class="app-sub">Nothing is bad or good. Just notice.</div>
-  <div class="app-updated">Last updated: 22 April 2026</div><div id="sync-status" style="font-size:10px;color:var(--text3);margin-top:2px"></div>
+  <div class="app-updated">Last updated: 22 April 2026</div><div id="sync-status" style="font-size:10px;color:var(--text3);margin-top:2px;cursor:pointer" onclick="showTokenPrompt()"></div>
   <div class="reg-indicator" id="reg-pill">Not checked today</div>
 </div>
 
@@ -955,40 +955,7 @@ function getAllHistory(){
 
 
 
-// One-time history reset — fresh start from 2026-04-22
-if(!localStorage.getItem('vk_hist_reset_v4')||localStorage.getItem('vk_hist_reset_v4')==='done'){
-  // Clear all local history
-  var keysToRemove=[];
-  for(var i=0;i<localStorage.length;i++){
-    var key=localStorage.key(i);
-    if(key&&(key.startsWith('vk_day_')||key===HIST_KEY||key.startsWith('vk_2026')))keysToRemove.push(key);
-  }
-  keysToRemove.forEach(function(k){localStorage.removeItem(k);});
-  localStorage.setItem(HIST_KEY,'[]');
-  localStorage.setItem('vk_hist_reset_v4',String(Date.now()));
-  // Clear Gist history — delete all date files + empty history.json
-  if(getToken()){
-    fetch('https://api.github.com/gists/'+GIST_ID,{
-      headers:{'Authorization':'token '+getToken()}
-    }).then(function(r){return r.json();}).then(function(g){
-      if(!g.files)return;
-      var body={files:{}};
-      body.files[HIST_FILE]={content:'{}'};
-      Object.keys(g.files).forEach(function(f){
-        if(f.match(/^\d{4}-\d{2}-\d{2}\.json$/))body.files[f]=null;
-      });
-      return fetch('https://api.github.com/gists/'+GIST_ID,{
-        method:'PATCH',
-        headers:{'Authorization':'token '+getToken(),'Content-Type':'application/json'},
-        body:JSON.stringify(body)
-      });
-    }).catch(function(e){});
-  }
-}
-
-// Sync on load + every 3 minutes
-var resetTs=parseInt(localStorage.getItem('vk_hist_reset_v4')||'0');
-var justReset=Date.now()-resetTs<60000;
+var justReset=false;
 var ss0=document.getElementById('sync-status');
 if(getToken()&&!justReset){
   if(ss0)ss0.textContent='Token found. Syncing...';
@@ -1008,7 +975,7 @@ var hSyncBusy=false;
 function hMarkDirty(){
   hSyncDirty=true;
   if(hSyncTimer)clearTimeout(hSyncTimer);
-  hSyncTimer=setTimeout(hPush,5000);
+  hSyncTimer=setTimeout(hPush,180000);
 }
 
 function hPush(){
@@ -1078,16 +1045,28 @@ if(getToken()&&!justReset){
 document.addEventListener('visibilitychange',function(){
   if(document.hidden){
     if(hSyncDirty&&getToken()){if(hSyncTimer)clearTimeout(hSyncTimer);hPush();}
-  } else {
-    if(getToken()&&!justReset)hPull();
   }
 });
 
 // Page unload: save locally
 window.addEventListener('beforeunload',function(){saveToday();});
 
-// Safety net: push every 3 min if dirty
-setInterval(function(){if(hSyncDirty&&getToken())hPush();},180000);
+
+
+function showTokenPrompt(){
+  var current=getToken();
+  var msg=current?'Token set ('+current.substring(0,8)+'...). Paste new token to replace, or cancel:':'No token set. Paste GitHub token with gist scope:';
+  var tok=prompt(msg);
+  if(tok===null)return;
+  if(tok.trim()){
+    setToken(tok.trim());
+    var ss=document.getElementById('sync-status');if(ss)ss.textContent='Token updated. Pulling...';
+    hPull();
+  } else {
+    localStorage.removeItem('vk_gist_token');
+    var ss=document.getElementById('sync-status');if(ss)ss.textContent='Token removed. Local only.';
+  }
+}
 
 // ═══════════ NAVIGATION ═══════════
 function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('on'));document.getElementById(id).classList.add('on');window.scrollTo(0,0);}
