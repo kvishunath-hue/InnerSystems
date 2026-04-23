@@ -961,7 +961,9 @@ function getAllHistory(){
 var justReset=false;
 
 // One-time history reset — fresh from 2026-04-23
-if(!localStorage.getItem('vk_fresh_v6')){
+var freshReset=false;
+if(!localStorage.getItem('vk_fresh_v7')){
+  freshReset=true;
   var keysToRemove=[];
   for(var i=0;i<localStorage.length;i++){
     var key=localStorage.key(i);
@@ -969,7 +971,7 @@ if(!localStorage.getItem('vk_fresh_v6')){
   }
   keysToRemove.forEach(function(k){localStorage.removeItem(k);});
   localStorage.setItem('vk_hist_index','[]');
-  localStorage.setItem('vk_fresh_v6','1');
+  localStorage.setItem('vk_fresh_v7','1');
   // Also clear Gist history
   var tok=getToken();
   if(tok){
@@ -1005,7 +1007,7 @@ function hMarkDirty(){
 }
 
 function hPush(){
-  if(!getToken()||hSyncBusy)return Promise.resolve(null);
+  if(!getToken()||hSyncBusy||freshReset)return Promise.resolve(null);
   hSyncBusy=true;
   saveToday();
   var local=getAllHistory();
@@ -1092,7 +1094,7 @@ persist=function(k,v){_hp(k,v);
 };
 
 // On open: pull from Gist
-if(getToken()&&!justReset){
+if(getToken()&&!justReset&&!freshReset){
   var ss0=document.getElementById('sync-status');
   if(ss0)ss0.textContent='Connecting...';
   hPull();
@@ -1100,6 +1102,7 @@ if(getToken()&&!justReset){
   var ss1=document.getElementById('sync-status');
   if(ss1&&!getToken())ss1.textContent='No token. Local only.';
   if(ss1&&justReset)ss1.textContent='Resetting...';
+  if(ss1&&freshReset)ss1.textContent='History cleared. Refresh to start fresh.';
 }
 
 // Tab switch: push on leave, pull on return
