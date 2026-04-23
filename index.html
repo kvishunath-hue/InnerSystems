@@ -863,7 +863,7 @@ function skipSetup(){localStorage.setItem('vk_no_token','1');location.reload();}
 
 const TODAY=new Date().toLocaleDateString('en-CA',{timeZone:'Asia/Kolkata'});
 const SK='vk_'+TODAY+'_';
-function persist(k,v){try{localStorage.setItem(SK+k,typeof v==='boolean'?String(v):v);saveToday();}catch(e){}}
+function persist(k,v){try{localStorage.setItem(SK+k,typeof v==='boolean'?String(v):v);}catch(e){}}
 function recall(k,df){try{var v=localStorage.getItem(SK+k);if(v===null)return df;if(v==='true')return true;if(v==='false')return false;return v;}catch(e){return df;}}
 
 
@@ -928,6 +928,7 @@ function saveToday(){
   if(!hasContent)return;
   localStorage.setItem('vk_day_'+TODAY,JSON.stringify(data));
   addHistDate(TODAY);
+  buildTrends();
 }
 
 function loadDay(date){
@@ -999,6 +1000,7 @@ if(getToken()&&!justReset){
 var hSyncDirty=false;
 var hSyncTimer=null;
 var hSyncBusy=false;
+var saveTodayTimer=null;
 
 function hMarkDirty(){
   hSyncDirty=true;
@@ -1007,7 +1009,7 @@ function hMarkDirty(){
 }
 
 function hPush(){
-  if(!getToken()||hSyncBusy||freshReset)return Promise.resolve(null);
+  if(!getToken()||hSyncBusy)return Promise.resolve(null);
   hSyncBusy=true;
   saveToday();
   var local=getAllHistory();
@@ -1091,6 +1093,9 @@ persist=function(k,v){_hp(k,v);
   if(_restoring)return;
   try{localStorage.setItem(SK+k+'_ts',String(Date.now()));}catch(e){}
   hMarkDirty();
+  // Debounced local save + trends update
+  if(saveTodayTimer)clearTimeout(saveTodayTimer);
+  saveTodayTimer=setTimeout(function(){saveToday();},2000);
 };
 
 // On open: pull from Gist
