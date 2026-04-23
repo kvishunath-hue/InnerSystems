@@ -1016,9 +1016,12 @@ function hPush(){
   // Fetch current Gist history and merge — Gist has days this device may not
   return fetch('https://api.github.com/gists/'+GIST_ID,{
     headers:{'Authorization':'token '+getToken()}
-  }).then(function(r){return r.json();}).then(function(g){
+  }).then(function(r){
+    if(!r.ok)return {};
+    return r.json();
+  }).then(function(g){
     var remote={};
-    if(g.files&&g.files[HIST_FILE]){try{remote=JSON.parse(g.files[HIST_FILE].content);}catch(e){}}
+    if(g&&g.files&&g.files[HIST_FILE]){try{remote=JSON.parse(g.files[HIST_FILE].content);}catch(e){}}
     // Merge: for each date, keep whichever has more data (local wins for today)
     var merged=Object.assign({},remote);
     Object.keys(local).forEach(function(date){
@@ -2268,7 +2271,8 @@ function buildCareTrends(days){
     // Current streak from most recent
     current=0;
     for(var i=0;i<days.length;i++){
-      if(days[i][s+'a']==='yo')current++;
+      var ra3=days[i][s+'a'];
+      if((typeof ra3==='object'?ra3.v:ra3)==='yo')current++;
       else break;
     }
     var col=current>=7?'var(--ok)':current>=3?'var(--warn-text)':'var(--alert)';
@@ -2283,7 +2287,9 @@ function buildCareTrends(days){
   var taperDays=days.filter(function(d){
     var ok=0,tot=0;
     ['s1','s2','ins','urg','sub','tspd','mood','ext','cessation'].forEach(function(k){
-      if(d['tc-'+k]!==undefined){tot++;if(d['tc-'+k])ok++;}
+      var v=d['tc-'+k];
+      if(v===undefined&&d.chks)v=d.chks['tc-'+k];
+      if(v!==undefined&&v!==null){tot++;if(typeof v==='object'?v.v:v)ok++;}
     });
     return tot>0&&ok>=tot-1;
   });
