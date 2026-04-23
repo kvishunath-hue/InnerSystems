@@ -962,28 +962,7 @@ function getAllHistory(){
 var justReset=false;
 
 // One-time history reset — fresh from 2026-04-23
-var freshReset=false;
-if(!localStorage.getItem('vk_fresh_v7')){
-  freshReset=true;
-  var keysToRemove=[];
-  for(var i=0;i<localStorage.length;i++){
-    var key=localStorage.key(i);
-    if(key&&(key.startsWith('vk_day_')||key==='vk_hist_index'))keysToRemove.push(key);
-  }
-  keysToRemove.forEach(function(k){localStorage.removeItem(k);});
-  localStorage.setItem('vk_hist_index','[]');
-  localStorage.setItem('vk_fresh_v7','1');
-  // Also clear Gist history
-  var tok=getToken();
-  if(tok){
-    var body={files:{}};body.files[HIST_FILE]={content:'{}'};
-    fetch('https://api.github.com/gists/'+GIST_ID,{
-      method:'PATCH',
-      headers:{'Authorization':'token '+tok,'Content-Type':'application/json'},
-      body:JSON.stringify(body)
-    }).catch(function(e){});
-  }
-}
+
 
 var ss0=document.getElementById('sync-status');
 if(getToken()&&!justReset){
@@ -1102,7 +1081,7 @@ persist=function(k,v){_hp(k,v);
 };
 
 // On open: pull from Gist
-if(getToken()&&!justReset&&!freshReset){
+if(getToken()&&!justReset){
   var ss0=document.getElementById('sync-status');
   if(ss0)ss0.textContent='Connecting...';
   hPull();
@@ -1110,7 +1089,6 @@ if(getToken()&&!justReset&&!freshReset){
   var ss1=document.getElementById('sync-status');
   if(ss1&&!getToken())ss1.textContent='No token. Local only.';
   if(ss1&&justReset)ss1.textContent='Resetting...';
-  if(ss1&&freshReset)ss1.textContent='History cleared. Refresh to start fresh.';
 }
 
 // Tab switch: push on leave, pull on return
@@ -1173,8 +1151,8 @@ function beep(){try{var ctx=getAudioCtx();var o=ctx.createOscillator();var g=ctx
 function vibrate(ms){try{if(navigator.vibrate)navigator.vibrate(ms||80);}catch(e){}}
 function show(id,html){var el=document.getElementById(id);if(!el)return;el.innerHTML=html;el.classList.add('show');}
 function togSec(ev,el){ev.stopPropagation();el.classList.toggle("open");}
-function togChk(row){var cb=row.querySelector('input');cb.checked=!cb.checked;}
-function togAff(el){var cb=el.querySelector('input');cb.checked=!cb.checked;el.classList.toggle('done',cb.checked);}
+function togChk(row){var cb=row.querySelector('input');cb.checked=!cb.checked;if(cb.id)persist(cb.id,cb.checked);}
+function togAff(el){var cb=el.querySelector('input');cb.checked=!cb.checked;el.classList.toggle('done',cb.checked);if(cb.id)persist(cb.id,cb.checked);}
 
 // ═══════════ DATA ═══════════
 
@@ -1491,7 +1469,7 @@ function buildRegItems(containerId){
   REGI.forEach(function(it){
     var d=document.createElement('div');d.className='reg-item'+(it.prod?' prod':'');
     d.innerHTML='<input type="checkbox" id="'+pfx+it.id+'"><span>'+it.tx+(it.prod?' <span style="font-size:11px;color:var(--alert)">(prodrome)</span>':'')+'</span>';
-    d.onclick=function(){var cb=d.querySelector('input');cb.checked=!cb.checked;d.classList.toggle('sel',cb.checked);};
+    d.onclick=function(){var cb=d.querySelector('input');cb.checked=!cb.checked;d.classList.toggle('sel',cb.checked);if(cb.id)persist(cb.id,cb.checked);};
     el.appendChild(d);
   });
 }
@@ -1540,6 +1518,7 @@ function setIntBar(barId,level){
   });
   if(barId==='int-bar')landIntensity=level;
   else landCertainty=level;
+  persist(barId+'-level',level);
 }
 
 // ═══════════ CORE FUNCTIONS ═══════════
@@ -2038,6 +2017,7 @@ function buildEmoPicker(containerId){
     btn.onclick=function(){
       el.querySelectorAll('button').forEach(function(b){b.style.background='transparent';b.style.color='var(--text2)';b.style.borderColor='var(--bdr2)';});
       btn.style.background='var(--calm-bg)';btn.style.color='var(--calm)';btn.style.borderColor='var(--calm-bdr)';
+      persist('emo-'+containerId,emo);
     };
     el.appendChild(btn);
   });
@@ -2331,27 +2311,40 @@ function buildReviewTrends(days){
     h+='</div>';
   }
   
-  // Signal frequency — which items fire most
-  var freq={};
+  // Signal frequency — per step
+  var stepGroups=[
+    {name:'Body signals',prefixes:['chk-b-']},
+    {name:'Noise contamination',prefixes:['chk-n-','chk-nr-']},
+    {name:'Distortion',prefixes:['chk-c-','chk-d-']},
+    {name:'Interaction',prefixes:['chk-bv-','chk-s-']},
+    {name:'Game patterns',prefixes:['chk-g-']},
+    {name:'Authority',prefixes:['chk-a-','chk-ah-']},
+    {name:'Effort + bias',prefixes:['chk-e-','chk-s2-','chk-p-']},
+    {name:'Regulation',prefixes:['qr-','rr-']}
+  ];
+  var allFreq={};
   days.forEach(function(d){
     if(!d.chks)return;
-    Object.keys(d.chks).forEach(function(k){
-      freq[k]=(freq[k]||0)+1;
-    });
+    Object.keys(d.chks).forEach(function(k){allFreq[k]=(allFreq[k]||0)+1;});
   });
-  var sorted=Object.entries(freq).sort(function(a,b){return b[1]-a[1];});
-  if(sorted.length){
-    var top=sorted.slice(0,10);
-    var maxCount=top[0][1];
-    h+='<div class="trend-card"><div class="trend-title">Most frequent signals</div><div class="trend-sub">What fires most across '+days.length+' days</div>';
-    top.forEach(function(entry){
-      var label=ID_TEXT[entry[0]]||entry[0];
-      if(label.length>60)label=label.substring(0,57)+'...';
-      var pct=Math.round(entry[1]/maxCount*100);
-      var freq_pct=Math.round(entry[1]/days.length*100);
-      h+='<div class="sig-freq"><div class="sig-freq-label">'+label+'</div><div style="width:60px"><div class="sig-freq-bar" style="width:'+pct+'%;background:var(--calm)"></div></div><div class="sig-freq-count">'+entry[1]+'/'+days.length+'</div></div>';
+  if(Object.keys(allFreq).length){
+    stepGroups.forEach(function(sg){
+      var items=Object.entries(allFreq).filter(function(e){
+        return sg.prefixes.some(function(p){return e[0].startsWith(p);});
+      }).sort(function(a,b){return b[1]-a[1];});
+      if(!items.length)return;
+      var top=items.slice(0,5);
+      var maxCount=top[0][1];
+      h+='<div class="trend-card"><div class="trend-title">'+sg.name+'</div><div class="trend-sub">Top patterns across '+days.length+' days</div>';
+      top.forEach(function(entry){
+        var rawVal=typeof entry[1]==='object'?entry[1].v:entry[1];
+        var label=ID_TEXT[entry[0]]||entry[0];
+        if(label.length>55)label=label.substring(0,52)+'...';
+        var pct=Math.round(entry[1]/maxCount*100);
+        h+='<div class="sig-freq"><div class="sig-freq-label">'+label+'</div><div style="width:60px"><div class="sig-freq-bar" style="width:'+pct+'%;background:var(--calm)"></div></div><div class="sig-freq-count">'+entry[1]+'/'+days.length+'</div></div>';
+      });
+      h+='</div>';
     });
-    h+='</div>';
   }
   
   // Prodrome flags
@@ -2384,6 +2377,7 @@ if(wpl){Object.keys(WOUND_DATA).forEach(function(k){
       var isSel=btn.style.background!=='transparent';
       if(isSel){btn.style.background='transparent';btn.style.color='var(--text2)';btn.style.borderColor='var(--bdr2)';}
       else{btn.style.background='var(--calm-bg)';btn.style.color='var(--calm)';btn.style.borderColor='var(--calm-bdr)';}
+      persist('wound-'+k,!isSel);
     };
     wpl.appendChild(btn);
   });}
