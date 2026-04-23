@@ -959,6 +959,29 @@ function getAllHistory(){
 
 
 var justReset=false;
+
+// One-time history reset — fresh from 2026-04-23
+if(!localStorage.getItem('vk_fresh_v6')){
+  var keysToRemove=[];
+  for(var i=0;i<localStorage.length;i++){
+    var key=localStorage.key(i);
+    if(key&&(key.startsWith('vk_day_')||key==='vk_hist_index'))keysToRemove.push(key);
+  }
+  keysToRemove.forEach(function(k){localStorage.removeItem(k);});
+  localStorage.setItem('vk_hist_index','[]');
+  localStorage.setItem('vk_fresh_v6','1');
+  // Also clear Gist history
+  var tok=getToken();
+  if(tok){
+    var body={files:{}};body.files[HIST_FILE]={content:'{}'};
+    fetch('https://api.github.com/gists/'+GIST_ID,{
+      method:'PATCH',
+      headers:{'Authorization':'token '+tok,'Content-Type':'application/json'},
+      body:JSON.stringify(body)
+    }).catch(function(e){});
+  }
+}
+
 var ss0=document.getElementById('sync-status');
 if(getToken()&&!justReset){
   
@@ -985,14 +1008,37 @@ function hPush(){
   if(!getToken()||hSyncBusy)return Promise.resolve(null);
   hSyncBusy=true;
   saveToday();
-  var all=getAllHistory();
-  var body={files:{}};
-  body.files[HIST_FILE]={content:JSON.stringify(all)};
-  body.files[TODAY+'.json']={content:JSON.stringify(all[TODAY]||buildSaveData(),null,2)};
+  var local=getAllHistory();
+  // Fetch current Gist history and merge — Gist has days this device may not
   return fetch('https://api.github.com/gists/'+GIST_ID,{
-    method:'PATCH',
-    headers:{'Authorization':'token '+getToken(),'Content-Type':'application/json'},
-    body:JSON.stringify(body)
+    headers:{'Authorization':'token '+getToken()}
+  }).then(function(r){return r.json();}).then(function(g){
+    var remote={};
+    if(g.files&&g.files[HIST_FILE]){try{remote=JSON.parse(g.files[HIST_FILE].content);}catch(e){}}
+    // Merge: for each date, keep whichever has more data (local wins for today)
+    var merged=Object.assign({},remote);
+    Object.keys(local).forEach(function(date){
+      if(date===TODAY||!merged[date]){
+        merged[date]=local[date];
+      } else {
+        // Past day: keep whichever has more checkboxes (more complete)
+        var lc=local[date].chks?Object.keys(local[date].chks).length:0;
+        var rc=merged[date].chks?Object.keys(merged[date].chks).length:0;
+        if(lc>=rc)merged[date]=local[date];
+      }
+    });
+    // Also write merged back to localStorage for trends
+    Object.keys(merged).forEach(function(date){
+      if(!local[date]){localStorage.setItem('vk_day_'+date,JSON.stringify(merged[date]));addHistDate(date);}
+    });
+    var body={files:{}};
+    body.files[HIST_FILE]={content:JSON.stringify(merged)};
+    body.files[TODAY+'.json']={content:JSON.stringify(merged[TODAY]||buildSaveData(),null,2)};
+    return fetch('https://api.github.com/gists/'+GIST_ID,{
+      method:'PATCH',
+      headers:{'Authorization':'token '+getToken(),'Content-Type':'application/json'},
+      body:JSON.stringify(body)
+    });
   }).then(function(r){if(!r.ok)throw new Error('HTTP '+r.status);return r.json();}).then(function(g){
     hSyncDirty=false;hSyncBusy=false;
     var ss=document.getElementById('sync-status');if(ss)ss.textContent='\u2713 '+new Date().toLocaleTimeString();
@@ -2198,8 +2244,8 @@ function buildCareTrends(days){
   substances.forEach(function(s){
     var current=0,best=0,counting=true;
     days.forEach(function(d){
-      var clean=d[s+'a']==='yo';
-      var broken=d[s+'b']==='no';
+      var ra=d[s+'a'];var clean=(typeof ra==='object'?ra.v:ra)==='yo';
+      var rb=d[s+'b'];var broken=(typeof rb==='object'?rb.v:rb)==='no';
       if(clean&&counting){current++;}
       else if(broken){counting=false;}
       // Best streak across all days
@@ -2207,7 +2253,7 @@ function buildCareTrends(days){
     // Recalculate best
     var streak=0;
     days.slice().reverse().forEach(function(d){
-      var clean=d[s+'a']==='yo';
+      var ra2=d[s+'a'];var clean=(typeof ra2==='object'?ra2.v:ra2)==='yo';
       if(clean){streak++;if(streak>best)best=streak;}
       else{streak=0;}
     });
@@ -2296,7 +2342,7 @@ function buildReviewTrends(days){
   
   // Prodrome flags
   var prodDays=days.filter(function(d){
-    return d.p1b==='no'||d.p2b==='no';
+    var p1=d.p1b,p2=d.p2b;return (typeof p1==='object'?p1.v:p1)==='no'||(typeof p2==='object'?p2.v:p2)==='no';
   });
   if(prodDays.length){
     h+='<div class="trend-card" style="border-color:var(--alert)"><div class="trend-title" style="color:var(--alert)">Prodrome flags</div>';
