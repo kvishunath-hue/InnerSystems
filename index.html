@@ -903,9 +903,9 @@ function buildSaveData(){
   if(Object.keys(rhythm).length)data.rhythm=rhythm;
   // Emotion selection
   var emoPick=document.getElementById('emo-pick');
-  if(emoPick){var selEmo=emoPick.querySelector('button[style*="var(--calm-bg)"]');if(selEmo)data.emotion=selEmo.textContent;}
+  if(emoPick){var selEmo=emoPick.querySelector('button[data-sel]');if(selEmo)data.emotion=selEmo.textContent;}
   var emoPickSit=document.getElementById('emo-pick-sit');
-  if(emoPickSit){var selEmo2=emoPickSit.querySelector('button[style*="var(--calm-bg)"]');if(selEmo2)data.emotionSit=selEmo2.textContent;}
+  if(emoPickSit){var selEmo2=emoPickSit.querySelector('button[data-sel]');if(selEmo2)data.emotionSit=selEmo2.textContent;}
   // Checkboxes from review
   var chks={};document.querySelectorAll('.chk-row input[type=checkbox], .taper-row input[type=checkbox], .reg-item input[type=checkbox], .afi input[type=checkbox]').forEach(function(cb){if(cb.checked&&cb.id){var span=cb.parentElement.querySelector('span');chks[cb.id]={v:span?span.textContent.substring(0,80):'checked',ts:Date.now()};}});
   data.landIntensity=landIntensity;
@@ -913,7 +913,7 @@ function buildSaveData(){
   data.chks=chks;
   // Wound picker
   var wp=document.getElementById('wound-pick-land');
-  if(wp){var wounds=[];wp.querySelectorAll('button').forEach(function(b){if(b.style.background&&b.style.background!=='transparent')wounds.push(b.textContent);});if(wounds.length)data.wounds=wounds;}
+  if(wp){var wounds=[];wp.querySelectorAll('button[data-sel]').forEach(function(b){wounds.push(b.textContent);});if(wounds.length)data.wounds=wounds;}
   return data;
 }
 
@@ -1614,16 +1614,16 @@ function doFamNoise(){
   var relChecked=[...document.querySelectorAll('#fam-rel-list .chk-row')].filter(r=>r.querySelector('input').checked);
   // Reuse main noise logic
   if(!checked.length&&!relChecked.length){show('r-fam-noise','<span class="ri-ok">No signal contamination present.</span>');return;}
-  var keys=checked.map(r=>r.querySelector('input').dataset.n);var h='';
+  var keys=checked.map(r=>r.querySelector('input').dataset.fn);var h='';
   if(keys.some(k=>['old','seen','benefit','reject'].includes(k)))h+='<div class="al al-info"><strong>Core wound activated.</strong> Name the wound. Then name what actually happened. They are not the same.</div>';
   var nm={ctx:'Missing context',old:'Older trigger',benefit:'Self-doubt serves someone',noev:'No evidence given',defend:'Urge to defend',seen:'Feeling unseen',rumi:'Rumination loop',truth:'Truth denied',reject:'Rejection wound',project:'Projection received'};
   var psy={ctx:'Confirmation bias from partial data',old:'Trauma re-activation (amygdala hijack)',benefit:'Gaslighting internalisation',noev:'Competence schema threat',defend:'Ego syntonic defence activation',seen:'4 core wound: identity not reflected (Fe hunger)',rumi:'Default mode network perseveration',truth:'Reality testing under social pressure',reject:'Rejection sensitivity dysphoria',project:'Projective identification received'};
   var act={ctx:'Name what they do not know. Their reading is based on incomplete information.',old:'Name the older event. Then name what happened today. Respond to today.',benefit:'Who benefits from you doubting yourself right now?',noev:'An opinion without evidence is data about their limitations.',defend:'The urge is from the wound, not the situation. State your position once. Stop.',seen:'They cannot see you. Stop expecting it. What is the next action that does not require their recognition?',rumi:'Write down three facts. Close the document. Walk away for 20 minutes.',truth:'What happened is not negotiable. Write it down before the reframe settles in.',reject:'Name what actually happened \u2014 did they reject you, or is your system reading it as rejection?',project:'The judgement is about their framework. Do not absorb it.'};
-  checked.forEach(function(r){var k=r.querySelector('input').dataset.n;h+='<div class="ri"><div class="ri-name">'+(nm[k]||k)+'</div><div class="ri-action">'+(act[k]||'')+'</div>'+(psy[k]?'<div style="font-size:11px;color:var(--text3);font-style:italic;margin-top:4px">'+psy[k]+'</div>':'')+'</div>';});
+  checked.forEach(function(r){var k=r.querySelector('input').dataset.fn;h+='<div class="ri"><div class="ri-name">'+(nm[k]||k)+'</div><div class="ri-action">'+(act[k]||'')+'</div>'+(psy[k]?'<div style="font-size:11px;color:var(--text3);font-style:italic;margin-top:4px">'+psy[k]+'</div>':'')+'</div>';});
   if(relChecked.length){h+='<div class="sdiv">Relationship patterns</div>';
     var relAct={norec:'Reduce without announcing.',fbign:'What boundary would make the next occurrence impossible?',careweap:'Name the lever: guilt, responsibility, or rescue.',realrew:'Write down what happened before the reframe settles.',bndpun:'The punishment is proof the boundary was necessary.',triang:'Direct contact only.',credit:'Name your contribution clearly, once, to yourself.',agency:'Name the decision being controlled. Reclaim it.'};
     var rnm={norec:'No reciprocity',fbign:'Feedback ignored',careweap:'Care weaponised',realrew:'Reality rewritten',bndpun:'Boundaries punished',triang:'Triangulation',credit:'Credit taken',agency:'Agency undermined'};
-    relChecked.forEach(function(r){var k=r.querySelector('input').dataset.nr;h+='<div class="ri"><div class="ri-name">'+(rnm[k]||k)+'</div><div class="ri-action">'+(relAct[k]||'')+'</div></div>';});}
+    relChecked.forEach(function(r){var k=r.querySelector('input').dataset.fnr;h+='<div class="ri"><div class="ri-name">'+(rnm[k]||k)+'</div><div class="ri-action">'+(relAct[k]||'')+'</div></div>';});}
   h+='<div class="prompt">What is the next concrete action? Not the next thought about the action.</div>';
   show('r-fam-noise',h);
 }
@@ -1739,8 +1739,7 @@ var WOUND_DATA={
 };
 
 function doWoundPick(){
-  var btns=document.querySelectorAll('#wound-pick-land button');
-  var sel=[];btns.forEach(function(b){if(b.style.background!=='transparent')sel.push(b);});
+  var sel=[...document.querySelectorAll('#wound-pick-land button[data-sel]')];
   if(!sel.length){show('r-wound-pick','<span class="ri-ok">No wound selected.</span>');return;}
   var h='';
   sel.forEach(function(btn){
@@ -2014,8 +2013,9 @@ function buildEmoPicker(containerId){
     btn.style.cssText='padding:6px 12px;border-radius:20px;border:1px solid var(--bdr2);background:transparent;color:var(--text2);font-size:12px;cursor:pointer;font-family:inherit';
     btn.textContent=emo;
     btn.onclick=function(){
-      el.querySelectorAll('button').forEach(function(b){b.style.background='transparent';b.style.color='var(--text2)';b.style.borderColor='var(--bdr2)';});
+      el.querySelectorAll('button').forEach(function(b){b.style.background='transparent';b.style.color='var(--text2)';b.style.borderColor='var(--bdr2)';delete b.dataset.sel;});
       btn.style.background='var(--calm-bg)';btn.style.color='var(--calm)';btn.style.borderColor='var(--calm-bdr)';
+      btn.dataset.sel='1';
       persist('emo-'+containerId,emo);
     };
     el.appendChild(btn);
@@ -2036,7 +2036,7 @@ mapItems(HALT_ITEMS,'halt-');mapItems(LAND_ITEMS,'l-');
 mapItems(QUIT_ITEMS,'qc-');mapItems(TAPER_ITEMS,'tc-');
 // Also map with chk- prefix
 function mapItemsChk(items,prefix){items.forEach(function(i){ID_TEXT['chk-'+prefix+'-'+i.id]=i.tx;});}
-mapItemsChk(BODY_ITEMS,'b');mapItemsChk(REGI,'rr');mapItemsChk(REGI,'qr');mapItemsChk(CAT_ITEMS,'c');mapItemsChk(DIST_ITEMS,'d');mapItemsChk(BND_ITEMS,'bv');mapItemsChk(SOC_ITEMS,'s');mapItemsChk(GAME_ITEMS,'g');mapItemsChk(AUTH_ITEMS,'a');mapItemsChk(HOLD_ITEMS,'ah');mapItemsChk(EP_ITEMS,'e');mapItemsChk(SB_ITEMS,'s2');mapItemsChk(PROC_ITEMS,'p');mapItemsChk(HALT_ITEMS,'halt');mapItemsChk(LAND_ITEMS,'l');mapItemsChk(QUIT_ITEMS,'qc');mapItemsChk(TAPER_ITEMS,'tc');mapItemsChk(FAM_NOISE,'n');mapItemsChk(REL_PATTERNS,'nr');mapItemsChk(OUT_NOISE,'out');
+mapItemsChk(BODY_ITEMS,'b');mapItemsChk(REGI,'rr');mapItemsChk(REGI,'qr');mapItemsChk(CAT_ITEMS,'c');mapItemsChk(DIST_ITEMS,'d');mapItemsChk(BND_ITEMS,'bv');mapItemsChk(SOC_ITEMS,'s');mapItemsChk(GAME_ITEMS,'g');mapItemsChk(AUTH_ITEMS,'a');mapItemsChk(HOLD_ITEMS,'ah');mapItemsChk(EP_ITEMS,'e');mapItemsChk(SB_ITEMS,'s2');mapItemsChk(PROC_ITEMS,'p');mapItemsChk(HALT_ITEMS,'halt');mapItemsChk(LAND_ITEMS,'l');mapItemsChk(QUIT_ITEMS,'qc');mapItemsChk(TAPER_ITEMS,'tc');mapItemsChk(FAM_NOISE,'n');mapItemsChk(FAM_NOISE,'fn');mapItemsChk(REL_PATTERNS,'nr');mapItemsChk(REL_PATTERNS,'fnr');mapItemsChk(OUT_NOISE,'out');
 
 // Map old v1 format IDs (rb-sleep, rn-ctx etc)
 function mapItemsOld(items,prefix){items.forEach(function(i){ID_TEXT['r'+prefix+'-'+i.id]=i.tx;});}
@@ -2074,8 +2074,8 @@ function init(){
   buildRegItems('quick-reg-items');
   buildChkList('noise-list',FAM_NOISE,'n');
   buildChkList('rel-list',REL_PATTERNS,'nr');
-  buildChkList('fam-noise-list',FAM_NOISE,'n');
-  buildChkList('fam-rel-list',REL_PATTERNS,'nr');
+  buildChkList('fam-noise-list',FAM_NOISE,'fn');
+  buildChkList('fam-rel-list',REL_PATTERNS,'fnr');
   buildChkList('out-noise-list',OUT_NOISE,'out');
   buildChkList('c-list',CAT_ITEMS,'c');
   buildChkList('dist-list',DIST_ITEMS,'d');
@@ -2156,13 +2156,13 @@ function restoreFromDayData(data){
   if(data.emotion){
     var ep=document.getElementById('emo-pick');
     if(ep){ep.querySelectorAll('button').forEach(function(b){
-      if(b.textContent===data.emotion){b.style.background='var(--calm-bg)';b.style.color='var(--calm)';b.style.borderColor='var(--calm-bdr)';}
+      if(b.textContent===data.emotion){b.style.background='var(--calm-bg)';b.style.color='var(--calm)';b.style.borderColor='var(--calm-bdr)';b.dataset.sel='1';}
     });}
   }
   if(data.emotionSit){
     var eps=document.getElementById('emo-pick-sit');
     if(eps){eps.querySelectorAll('button').forEach(function(b){
-      if(b.textContent===data.emotionSit){b.style.background='var(--calm-bg)';b.style.color='var(--calm)';b.style.borderColor='var(--calm-bdr)';}
+      if(b.textContent===data.emotionSit){b.style.background='var(--calm-bg)';b.style.color='var(--calm)';b.style.borderColor='var(--calm-bdr)';b.dataset.sel='1';}
     });}
   }
   // Restore intensity bars
@@ -2180,7 +2180,7 @@ function restoreFromDayData(data){
   if(data.wounds&&data.wounds.length){
     var wpl=document.getElementById('wound-pick-land');
     if(wpl){wpl.querySelectorAll('button').forEach(function(b){
-      if(data.wounds.includes(b.textContent)){b.style.background='var(--calm-bg)';b.style.color='var(--calm)';b.style.borderColor='var(--calm-bdr)';}
+      if(data.wounds.includes(b.textContent)){b.style.background='var(--calm-bg)';b.style.color='var(--calm)';b.style.borderColor='var(--calm-bdr)';b.dataset.sel='1';}
     });}
   }
   // Restore rhythm
@@ -2373,9 +2373,9 @@ if(wpl){Object.keys(WOUND_DATA).forEach(function(k){
     btn.textContent=w.nm;btn.dataset.wid=k;
     btn.onclick=function(e){
       e.stopPropagation();
-      var isSel=btn.style.background!=='transparent';
-      if(isSel){btn.style.background='transparent';btn.style.color='var(--text2)';btn.style.borderColor='var(--bdr2)';}
-      else{btn.style.background='var(--calm-bg)';btn.style.color='var(--calm)';btn.style.borderColor='var(--calm-bdr)';}
+      var isSel=btn.dataset.sel==='1';
+      if(isSel){btn.style.background='transparent';btn.style.color='var(--text2)';btn.style.borderColor='var(--bdr2)';delete btn.dataset.sel;}
+      else{btn.style.background='var(--calm-bg)';btn.style.color='var(--calm)';btn.style.borderColor='var(--calm-bdr)';btn.dataset.sel='1';}
       persist('wound-'+k,!isSel);
     };
     wpl.appendChild(btn);
