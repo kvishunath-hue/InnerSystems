@@ -1357,7 +1357,8 @@ var EP_ITEMS=[
   {id:'phil',tx:'I am spending more time framing than doing'},
   {id:'spblind',tx:'I have pushed past tiredness without noticing — the crash is arriving'},
   {id:'fatigue',tx:'Effort continuing despite clear fatigue'},
-  {id:'rest',tx:'Stopping or resting feels like things will fall apart'}
+  {id:'rest',tx:'Stopping or resting feels like things will fall apart'},
+  {id:'comprw',tx:'Craving after completing a task \u2014 reward system linking accomplishment to substance'}
 ];
 var SB_ITEMS=[
   {id:'abstr',tx:'I am moving into abstraction to avoid concrete work'},
@@ -1400,7 +1401,8 @@ var HALT_ITEMS=[
   {id:'angry',tx:'I am angry or frustrated \u2014 the craving is riding on that activation'},
   {id:'lonely',tx:'I am lonely \u2014 the craving is a substitute for connection'},
   {id:'tired',tx:'I am tired \u2014 the craving appears when defences are low'},
-  {id:'sexual',tx:'I am sexually frustrated \u2014 the craving is routing through the dopamine chain'}
+  {id:'sexual',tx:'I am sexually frustrated \u2014 the craving is routing through the dopamine chain'},
+  {id:'complete',tx:'I just finished something \u2014 the craving is riding the success, not a need'}
 ];
 
 // Land check items
@@ -1770,7 +1772,8 @@ function doHALT(){
     angry:{nm:'Angry / frustrated',psy:'Sympathetic activation redirecting toward substance',act:'The anger is real. The craving is riding on the activation. Ground first, then address what made you angry.'},
     lonely:{nm:'Lonely',psy:'Attachment need substituted with dopamine',act:'Call someone. Text Shravya. The craving is a substitute for connection, not a need for the substance.'},
     tired:{nm:'Tired',psy:'Executive function depleted \u2014 defences low',act:'Sleep if possible. If not, do nothing demanding. Your guard is down.'},
-    sexual:{nm:'Sexually frustrated',psy:'Conditioned dopamine pathway activated \u2014 the chain entry point',act:'Name it as sexual frustration, not boredom. Leave the room. The dopamine chain starts here.'}
+    sexual:{nm:'Sexually frustrated',psy:'Conditioned dopamine pathway activated \u2014 the chain entry point',act:'Name it as sexual frustration, not boredom. Leave the room. The dopamine chain starts here.'},
+    complete:{nm:'Completion reward',psy:'Post-task dopamine spike \u2014 reward system seeking celebration through substance',act:'You succeeded. The accomplishment is real. The craving is the system trying to celebrate through the chain instead of letting the success be its own reward. Sit with the feeling for 60 seconds. It will pass.'}
   };
   if(checked.length){
     checked.forEach(function(r){
