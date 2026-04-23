@@ -464,7 +464,7 @@ body{
 <div class="app-header">
   <div class="app-title">Inner Systems</div>
   <div class="app-sub">Nothing is bad or good. Just notice.</div>
-  <div class="app-updated">Last updated: 22 April 2026</div><div id="sync-status" style="font-size:10px;color:var(--text3);margin-top:2px;cursor:pointer" onclick="showTokenPrompt()"></div>
+  <div class="app-updated">Last updated: 23 April 2026</div><div id="sync-status" style="font-size:10px;color:var(--text3);margin-top:2px;cursor:pointer" onclick="showTokenPrompt()"></div>
   <div class="reg-indicator" id="reg-pill">Not checked today</div>
 </div>
 
@@ -942,102 +942,7 @@ function saveToday(){
   if(!hasContent)return;
   localStorage.setItem('vk_day_'+TODAY,JSON.stringify(data));
   addHistDate(TODAY);
-  function buildActivatedTrends(days){
-  var el=document.getElementById('trends-activated');if(!el)return;
-  var h='';
-  // Regulation trend (same as deep review but from quick-reg)
-  var regDays=days.filter(function(d){return d.regLevel;});
-  if(regDays.length>=2){
-    h+='<div class="trend-card"><div class="trend-title">Worst-moment regulation</div><div class="trend-sub">Lower is better</div>';
-    h+='<div class="trend-chart">';
-    regDays.slice(0,30).reverse().forEach(function(d){
-      var lvl=parseInt(d.regLevel)||0;
-      var pct=Math.round(lvl/10*100);
-      var col=lvl<=3?'var(--info-text)':lvl<=5?'var(--ok)':lvl<=7?'var(--warn-text)':'var(--alert)';
-      h+='<div class="trend-bar" style="height:'+pct+'%;background:'+col+'" title="'+d.date+': Level '+lvl+'"></div>';
-    });
-    h+='</div>';
-    h+='<div class="trend-axis"><span>'+regDays[regDays.length-1].date.substring(5)+'</span><span>'+regDays[0].date.substring(5)+'</span></div>';
-    var avg=regDays.reduce(function(s,d){return s+(parseInt(d.regLevel)||0);},0)/regDays.length;
-    h+='<div style="margin-top:8px;font-size:11px;color:var(--text3)">Average: '+avg.toFixed(1)+' over '+regDays.length+' days</div>';
-    h+='</div>';
-  }
-  // Emotion frequency
-  var emoFreq={};
-  days.forEach(function(d){if(d.emotion){var e=typeof d.emotion==='object'?d.emotion:d.emotion;if(e)emoFreq[e]=(emoFreq[e]||0)+1;}});
-  var emoSorted=Object.entries(emoFreq).sort(function(a,b){return b[1]-a[1];});
-  if(emoSorted.length){
-    var maxE=emoSorted[0][1];
-    h+='<div class="trend-card"><div class="trend-title">Emotions named</div><div class="trend-sub">Most frequent across '+days.length+' days</div>';
-    emoSorted.forEach(function(entry){
-      var pct=Math.round(entry[1]/maxE*100);
-      h+='<div class="sig-freq"><div class="sig-freq-label">'+entry[0]+'</div><div style="width:60px"><div class="sig-freq-bar" style="width:'+pct+'%;background:var(--calm)"></div></div><div class="sig-freq-count">'+entry[1]+'/'+days.length+'</div></div>';
-    });
-    h+='</div>';
-  }
-  el.innerHTML=h||'<div style="font-size:12px;color:var(--text3)">No activation data yet.</div>';
-}
-
-function buildSituationTrends(days){
-  var el=document.getElementById('trends-situation');if(!el)return;
-  var groups=[
-    {name:'Family — what fired',prefixes:['chk-fn-']},
-    {name:'Family — relationship patterns',prefixes:['chk-fnr-']},
-    {name:'Outside patterns',prefixes:['chk-out-']}
-  ];
-  var allFreq={};
-  days.forEach(function(d){if(!d.chks)return;Object.keys(d.chks).forEach(function(k){allFreq[k]=(allFreq[k]||0)+1;});});
-  var h='';
-  if(Object.keys(allFreq).length){
-    groups.forEach(function(sg){
-      var items=Object.entries(allFreq).filter(function(e){return sg.prefixes.some(function(p){return e[0].startsWith(p);});}).sort(function(a,b){return b[1]-a[1];});
-      if(!items.length)return;
-      var top=items.slice(0,5);var maxCount=top[0][1];
-      h+='<div class="trend-card"><div class="trend-title">'+sg.name+'</div><div class="trend-sub">Top patterns across '+days.length+' days</div>';
-      top.forEach(function(entry){var label=ID_TEXT[entry[0]]||entry[0];if(label.length>55)label=label.substring(0,52)+'...';var pct=Math.round(entry[1]/maxCount*100);h+='<div class="sig-freq"><div class="sig-freq-label">'+label+'</div><div style="width:60px"><div class="sig-freq-bar" style="width:'+pct+'%;background:var(--calm)"></div></div><div class="sig-freq-count">'+entry[1]+'/'+days.length+'</div></div>';});
-      h+='</div>';
-    });
-  }
-  el.innerHTML=h||'<div style="font-size:12px;color:var(--text3)">No situation data yet.</div>';
-}
-
-function buildCravingTrends(days){
-  var el=document.getElementById('trends-craving');if(!el)return;
-  var groups=[
-    {name:'HALT signals',prefixes:['chk-halt-']}
-  ];
-  var allFreq={};
-  days.forEach(function(d){if(!d.chks)return;Object.keys(d.chks).forEach(function(k){allFreq[k]=(allFreq[k]||0)+1;});});
-  var h='';
-  if(Object.keys(allFreq).length){
-    groups.forEach(function(sg){
-      var items=Object.entries(allFreq).filter(function(e){return sg.prefixes.some(function(p){return e[0].startsWith(p);});}).sort(function(a,b){return b[1]-a[1];});
-      if(!items.length)return;
-      var top=items.slice(0,5);var maxCount=top[0][1];
-      h+='<div class="trend-card"><div class="trend-title">'+sg.name+'</div><div class="trend-sub">Top patterns across '+days.length+' days</div>';
-      top.forEach(function(entry){var label=ID_TEXT[entry[0]]||entry[0];if(label.length>55)label=label.substring(0,52)+'...';var pct=Math.round(entry[1]/maxCount*100);h+='<div class="sig-freq"><div class="sig-freq-label">'+label+'</div><div style="width:60px"><div class="sig-freq-bar" style="width:'+pct+'%;background:var(--calm)"></div></div><div class="sig-freq-count">'+entry[1]+'/'+days.length+'</div></div>';});
-      h+='</div>';
-    });
-  }
-  el.innerHTML=h||'<div style="font-size:12px;color:var(--text3)">No craving data yet.</div>';
-}
-
-function buildLandTrends(days){
-  var el=document.getElementById('trends-land');if(!el)return;
-  var allFreq={};
-  days.forEach(function(d){if(!d.chks)return;Object.keys(d.chks).forEach(function(k){allFreq[k]=(allFreq[k]||0)+1;});});
-  var items=Object.entries(allFreq).filter(function(e){return e[0].startsWith('chk-l-');}).sort(function(a,b){return b[1]-a[1];});
-  var h='';
-  if(items.length){
-    var maxCount=items[0][1];
-    h+='<div class="trend-card"><div class="trend-title">Land check patterns</div><div class="trend-sub">Across '+days.length+' days</div>';
-    items.forEach(function(entry){var label=ID_TEXT[entry[0]]||entry[0];if(label.length>55)label=label.substring(0,52)+'...';var pct=Math.round(entry[1]/maxCount*100);h+='<div class="sig-freq"><div class="sig-freq-label">'+label+'</div><div style="width:60px"><div class="sig-freq-bar" style="width:'+pct+'%;background:var(--calm)"></div></div><div class="sig-freq-count">'+entry[1]+'/'+days.length+'</div></div>';});
-    h+='</div>';
-  }
-  el.innerHTML=h||'<div style="font-size:12px;color:var(--text3)">No land data yet.</div>';
-}
-
-buildTrends();
+  buildTrends();
 }
 
 function loadDay(date){
@@ -1165,102 +1070,7 @@ function hPull(){
         }
         addHistDate(date);
       });
-      function buildActivatedTrends(days){
-  var el=document.getElementById('trends-activated');if(!el)return;
-  var h='';
-  // Regulation trend (same as deep review but from quick-reg)
-  var regDays=days.filter(function(d){return d.regLevel;});
-  if(regDays.length>=2){
-    h+='<div class="trend-card"><div class="trend-title">Worst-moment regulation</div><div class="trend-sub">Lower is better</div>';
-    h+='<div class="trend-chart">';
-    regDays.slice(0,30).reverse().forEach(function(d){
-      var lvl=parseInt(d.regLevel)||0;
-      var pct=Math.round(lvl/10*100);
-      var col=lvl<=3?'var(--info-text)':lvl<=5?'var(--ok)':lvl<=7?'var(--warn-text)':'var(--alert)';
-      h+='<div class="trend-bar" style="height:'+pct+'%;background:'+col+'" title="'+d.date+': Level '+lvl+'"></div>';
-    });
-    h+='</div>';
-    h+='<div class="trend-axis"><span>'+regDays[regDays.length-1].date.substring(5)+'</span><span>'+regDays[0].date.substring(5)+'</span></div>';
-    var avg=regDays.reduce(function(s,d){return s+(parseInt(d.regLevel)||0);},0)/regDays.length;
-    h+='<div style="margin-top:8px;font-size:11px;color:var(--text3)">Average: '+avg.toFixed(1)+' over '+regDays.length+' days</div>';
-    h+='</div>';
-  }
-  // Emotion frequency
-  var emoFreq={};
-  days.forEach(function(d){if(d.emotion){var e=typeof d.emotion==='object'?d.emotion:d.emotion;if(e)emoFreq[e]=(emoFreq[e]||0)+1;}});
-  var emoSorted=Object.entries(emoFreq).sort(function(a,b){return b[1]-a[1];});
-  if(emoSorted.length){
-    var maxE=emoSorted[0][1];
-    h+='<div class="trend-card"><div class="trend-title">Emotions named</div><div class="trend-sub">Most frequent across '+days.length+' days</div>';
-    emoSorted.forEach(function(entry){
-      var pct=Math.round(entry[1]/maxE*100);
-      h+='<div class="sig-freq"><div class="sig-freq-label">'+entry[0]+'</div><div style="width:60px"><div class="sig-freq-bar" style="width:'+pct+'%;background:var(--calm)"></div></div><div class="sig-freq-count">'+entry[1]+'/'+days.length+'</div></div>';
-    });
-    h+='</div>';
-  }
-  el.innerHTML=h||'<div style="font-size:12px;color:var(--text3)">No activation data yet.</div>';
-}
-
-function buildSituationTrends(days){
-  var el=document.getElementById('trends-situation');if(!el)return;
-  var groups=[
-    {name:'Family — what fired',prefixes:['chk-fn-']},
-    {name:'Family — relationship patterns',prefixes:['chk-fnr-']},
-    {name:'Outside patterns',prefixes:['chk-out-']}
-  ];
-  var allFreq={};
-  days.forEach(function(d){if(!d.chks)return;Object.keys(d.chks).forEach(function(k){allFreq[k]=(allFreq[k]||0)+1;});});
-  var h='';
-  if(Object.keys(allFreq).length){
-    groups.forEach(function(sg){
-      var items=Object.entries(allFreq).filter(function(e){return sg.prefixes.some(function(p){return e[0].startsWith(p);});}).sort(function(a,b){return b[1]-a[1];});
-      if(!items.length)return;
-      var top=items.slice(0,5);var maxCount=top[0][1];
-      h+='<div class="trend-card"><div class="trend-title">'+sg.name+'</div><div class="trend-sub">Top patterns across '+days.length+' days</div>';
-      top.forEach(function(entry){var label=ID_TEXT[entry[0]]||entry[0];if(label.length>55)label=label.substring(0,52)+'...';var pct=Math.round(entry[1]/maxCount*100);h+='<div class="sig-freq"><div class="sig-freq-label">'+label+'</div><div style="width:60px"><div class="sig-freq-bar" style="width:'+pct+'%;background:var(--calm)"></div></div><div class="sig-freq-count">'+entry[1]+'/'+days.length+'</div></div>';});
-      h+='</div>';
-    });
-  }
-  el.innerHTML=h||'<div style="font-size:12px;color:var(--text3)">No situation data yet.</div>';
-}
-
-function buildCravingTrends(days){
-  var el=document.getElementById('trends-craving');if(!el)return;
-  var groups=[
-    {name:'HALT signals',prefixes:['chk-halt-']}
-  ];
-  var allFreq={};
-  days.forEach(function(d){if(!d.chks)return;Object.keys(d.chks).forEach(function(k){allFreq[k]=(allFreq[k]||0)+1;});});
-  var h='';
-  if(Object.keys(allFreq).length){
-    groups.forEach(function(sg){
-      var items=Object.entries(allFreq).filter(function(e){return sg.prefixes.some(function(p){return e[0].startsWith(p);});}).sort(function(a,b){return b[1]-a[1];});
-      if(!items.length)return;
-      var top=items.slice(0,5);var maxCount=top[0][1];
-      h+='<div class="trend-card"><div class="trend-title">'+sg.name+'</div><div class="trend-sub">Top patterns across '+days.length+' days</div>';
-      top.forEach(function(entry){var label=ID_TEXT[entry[0]]||entry[0];if(label.length>55)label=label.substring(0,52)+'...';var pct=Math.round(entry[1]/maxCount*100);h+='<div class="sig-freq"><div class="sig-freq-label">'+label+'</div><div style="width:60px"><div class="sig-freq-bar" style="width:'+pct+'%;background:var(--calm)"></div></div><div class="sig-freq-count">'+entry[1]+'/'+days.length+'</div></div>';});
-      h+='</div>';
-    });
-  }
-  el.innerHTML=h||'<div style="font-size:12px;color:var(--text3)">No craving data yet.</div>';
-}
-
-function buildLandTrends(days){
-  var el=document.getElementById('trends-land');if(!el)return;
-  var allFreq={};
-  days.forEach(function(d){if(!d.chks)return;Object.keys(d.chks).forEach(function(k){allFreq[k]=(allFreq[k]||0)+1;});});
-  var items=Object.entries(allFreq).filter(function(e){return e[0].startsWith('chk-l-');}).sort(function(a,b){return b[1]-a[1];});
-  var h='';
-  if(items.length){
-    var maxCount=items[0][1];
-    h+='<div class="trend-card"><div class="trend-title">Land check patterns</div><div class="trend-sub">Across '+days.length+' days</div>';
-    items.forEach(function(entry){var label=ID_TEXT[entry[0]]||entry[0];if(label.length>55)label=label.substring(0,52)+'...';var pct=Math.round(entry[1]/maxCount*100);h+='<div class="sig-freq"><div class="sig-freq-label">'+label+'</div><div style="width:60px"><div class="sig-freq-bar" style="width:'+pct+'%;background:var(--calm)"></div></div><div class="sig-freq-count">'+entry[1]+'/'+days.length+'</div></div>';});
-    h+='</div>';
-  }
-  el.innerHTML=h||'<div style="font-size:12px;color:var(--text3)">No land data yet.</div>';
-}
-
-buildTrends();
+      buildTrends();
       if(ss)ss.textContent='\u2713 '+new Date().toLocaleTimeString();
       return true;
     }
@@ -2217,10 +2027,10 @@ function buildEmoPicker(containerId){
     btn.style.cssText='padding:6px 12px;border-radius:20px;border:1px solid var(--bdr2);background:transparent;color:var(--text2);font-size:12px;cursor:pointer;font-family:inherit';
     btn.textContent=emo;
     btn.onclick=function(){
+      var wasSel=btn.dataset.sel==='1';
       el.querySelectorAll('button').forEach(function(b){b.style.background='transparent';b.style.color='var(--text2)';b.style.borderColor='var(--bdr2)';delete b.dataset.sel;});
-      btn.style.background='var(--calm-bg)';btn.style.color='var(--calm)';btn.style.borderColor='var(--calm-bdr)';
-      btn.dataset.sel='1';
-      persist('emo-'+containerId,emo);
+      if(!wasSel){btn.style.background='var(--calm-bg)';btn.style.color='var(--calm)';btn.style.borderColor='var(--calm-bdr)';btn.dataset.sel='1';persist('emo-'+containerId,emo);}
+      else{persist('emo-'+containerId,'');}
     };
     el.appendChild(btn);
   });
