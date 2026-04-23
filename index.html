@@ -983,8 +983,7 @@ var saveTodayTimer=null;
 
 function hMarkDirty(){
   hSyncDirty=true;
-  if(hSyncTimer)clearTimeout(hSyncTimer);
-  hSyncTimer=setTimeout(hPush,180000);
+  if(!hSyncTimer)hSyncTimer=setTimeout(function(){hSyncTimer=null;hPush();},180000);
 }
 
 function hPush(){
@@ -1032,7 +1031,7 @@ function hPush(){
   }).catch(function(e){
     hSyncBusy=false;
     var ss=document.getElementById('sync-status');if(ss)ss.textContent='Sync failed: '+e.message;
-    if(e.message==='HTTP 403'||e.message==='HTTP 401'){hSyncDirty=false;if(hSyncTimer)clearTimeout(hSyncTimer);}
+    // Auth errors — dirty stays true, will retry on next interaction
     return null;
   });
 }
