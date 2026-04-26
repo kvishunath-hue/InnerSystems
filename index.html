@@ -208,33 +208,7 @@ body{
 .ground-close{background:none;border:none;font-size:26px;cursor:pointer;color:var(--text3);line-height:1;padding:0}
 
 
-
-
-
-
 /* ── BREATHING ── */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 /* ── COLLAPSIBLE SECTIONS ── */
@@ -250,24 +224,6 @@ body{
 .csec.open>.csec-body{display:block}
 /* ── CALENDAR ── */
 .cal{margin-bottom:12px}
-/* ── TRENDS ── */
-.trend-card{background:var(--bg);border:1px solid var(--bdr);border-radius:var(--rl);padding:14px;margin-bottom:8px}
-.trend-title{font-size:12px;font-weight:600;color:var(--text);margin-bottom:8px}
-.trend-sub{font-size:11px;color:var(--text3);margin-bottom:6px}
-.trend-chart{height:80px;display:flex;align-items:flex-end;gap:2px;margin-bottom:6px}
-.trend-bar{flex:1;border-radius:3px 3px 0 0;min-width:4px;max-width:12px;transition:height .3s}
-.trend-axis{display:flex;justify-content:space-between;font-size:9px;color:var(--text3)}
-.streak{display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid var(--bdr)}
-.streak:last-child{border:none}
-.streak-label{font-size:12px;color:var(--text2);flex:1}
-.streak-val{font-size:16px;font-weight:700;min-width:36px;text-align:right}
-.streak-unit{font-size:10px;color:var(--text3);min-width:32px}
-.streak-best{font-size:10px;color:var(--text3)}
-.sig-freq{display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--bdr)}
-.sig-freq:last-child{border:none}
-.sig-freq-bar{height:6px;border-radius:3px;min-width:4px}
-.sig-freq-label{font-size:11px;color:var(--text2);flex:1}
-.sig-freq-count{font-size:11px;color:var(--text3);min-width:20px;text-align:right}
 /* ── BREATHING IN GROUND ── */
 .arena{display:flex;flex-direction:column;align-items:center;padding:.5rem 0 1rem}
 .breath-timer{font-size:13px;color:var(--text3);margin-bottom:.5rem;font-variant-numeric:tabular-nums;min-height:20px}
@@ -483,7 +439,6 @@ body{
 </div>
 
 
-
 <!-- ═══════════ SCREENS ═══════════ -->
 
 
@@ -589,9 +544,7 @@ body{
   <button class="btn-back" onclick="showScreen('scr-home')">&#8592; Back</button>
   <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9679;</span><div><div class="csec-nm">What am I feeling</div><div class="csec-ds">Name the emotion before analysing</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div style="display:flex;flex-wrap:wrap;gap:6px" id="emo-pick"></div></div></div>
   <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9678;</span><div><div class="csec-nm">Regulation check</div><div class="csec-ds">Your worst moment today — how activated were you?</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="card-desc">Select everything present. More than one is normal.</div><div class="reg-items" id="quick-reg-items"></div><button class="btn" onclick="event.stopPropagation();doQuickReg()">Notice</button><div class="result" id="r-quick-reg"></div></div></div>
-  <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9633;</span><div><div class="csec-nm">Trends</div><div class="csec-ds">Activation patterns</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
-    <div id="trends-activated"></div>
-  </div></div>
+  
 </div>
 
 <!-- SITUATION SCREEN -->
@@ -613,9 +566,7 @@ body{
       </div>
     </div>
   </div>
-  <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9633;</span><div><div class="csec-nm">Trends</div><div class="csec-ds">Situation patterns</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
-    <div id="trends-situation"></div>
-  </div></div>
+  
 </div>
 
 <!-- SITUATION: FAMILY -->
@@ -656,9 +607,7 @@ body{
     <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9733;</span><div><div class="csec-nm">Quit tools</div><div class="csec-ds">What am I using today</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="quit-tools"></div><button class="btn" onclick="event.stopPropagation();runQuit()">Check support status</button><div class="taper-status" id="qc-status"></div></div></div>
     
   
-  <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9633;</span><div><div class="csec-nm">Trends</div><div class="csec-ds">Craving patterns</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
-    <div id="trends-craving"></div>
-  </div></div>
+  
 </div>
 </div>
 
@@ -673,9 +622,7 @@ body{
     <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9670;</span><div><div class="csec-nm">Which wound is running</div><div class="csec-ds">Select and get guidance</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="wound-pick-land" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px"></div><button class="btn" onclick="event.stopPropagation();doWoundPick()">Notice</button><div class="result" id="r-wound-pick"></div></div></div>
     <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9654;</span><div><div class="csec-nm">Next legal steps</div><div class="csec-ds">Decoupled from emotion</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div style="font-size:12px;line-height:1.7;color:var(--text2)"><div>1. SIC Second Appeal (RTI deemed refusal)</div><div>2. CCLA forensic audit request</div><div>3. Part-B correction (Bhu Bharati Act)</div><div>4. Lokayukta complaint</div><div>5. FIR under IT Act Sec 66C, 66D, 65</div><div>6. HC writ if all channels fail</div></div></div></div>
   
-  <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9633;</span><div><div class="csec-nm">Trends</div><div class="csec-ds">Land patterns</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
-    <div id="trends-land"></div>
-  </div></div>
+  
 </div>
 </div>
 
@@ -751,9 +698,7 @@ body{
     <div class="tt-row"><div class="tt-time">22:00</div><div>Sleep</div></div>
   </div></div>
 
-  <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9633;</span><div><div class="csec-nm">Trends</div><div class="csec-ds">Streaks, regulation, patterns</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
-    <div id="trends-care"></div>
-  </div></div>
+  
 </div>
 <div class="screen" id="scr-phase">
   <button class="btn-back" onclick="showScreen('scr-home')">&#8592; Back</button>
@@ -860,9 +805,7 @@ body{
       <span id="m3" style="opacity:0;transition:opacity 1s">for change.&#8221;</span>
     </div>
   </div></div>
-  <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9633;</span><div><div class="csec-nm">Trends</div><div class="csec-ds">Regulation trend, signal frequency</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
-    <div id="trends-review"></div>
-  </div></div>
+  
 </div>
 </div>
 <script>
@@ -942,8 +885,7 @@ function saveToday(){
   if(!hasContent)return;
   localStorage.setItem('vk_day_'+TODAY,JSON.stringify(data));
   addHistDate(TODAY);
-  buildTrends();
-}
+  }
 
 function loadDay(date){
   var local=localStorage.getItem('vk_day_'+date);
@@ -970,9 +912,6 @@ function getAllHistory(){
 }
 
 
-
-
-
 var justReset=false;
 
 // One-time history reset — fresh from 2026-04-23
@@ -993,7 +932,6 @@ if(getToken()&&!justReset){
 var hSyncDirty=false;
 var hSyncTimer=null;
 var hSyncBusy=false;
-var saveTodayTimer=null;
 
 function hMarkDirty(){
   hSyncDirty=true;
@@ -1070,8 +1008,7 @@ function hPull(){
         }
         addHistDate(date);
       });
-      buildTrends();
-      if(ss)ss.textContent='\u2713 '+new Date().toLocaleTimeString();
+            if(ss)ss.textContent='\u2713 '+new Date().toLocaleTimeString();
       return true;
     }
     return false;
@@ -1088,9 +1025,6 @@ persist=function(k,v){_hp(k,v);
   if(_restoring)return;
   try{localStorage.setItem(SK+k+'_ts',String(Date.now()));}catch(e){}
   hMarkDirty();
-  // Debounced local save + trends update
-  if(saveTodayTimer)clearTimeout(saveTodayTimer);
-  saveTodayTimer=setTimeout(function(){saveToday();},2000);
 };
 
 // On open: pull from Gist
@@ -1113,7 +1047,6 @@ document.addEventListener('visibilitychange',function(){
 
 // Page unload: save locally
 window.addEventListener('beforeunload',function(){saveToday();});
-
 
 
 var prevScreen=null;
@@ -1740,7 +1673,6 @@ function doLandCheck(){
 }
 
 
-
 var WOUND_DATA={
   hero:{nm:'Hero drive',psy:'4\u21922 disintegration \u2014 earning love through unsustainable service',act:'The land issue is real. The compulsion to solve it alone is the wound. Delegate where possible. Help only where it serves the plan.'},
   unseen:{nm:'Not being seen',psy:'4 core wound \u2014 Fe hunger for external reflection of internal truth',act:'Your effort is real. Their inability to see it is about their capacity, not your worth. Document for yourself.'},
@@ -2131,10 +2063,6 @@ if(savedReg){
 // ═══════════ CALENDAR ═══════════
 
 
-
-
-
-
 // Build calendars
 
 // ═══════════ TRENDS ═══════════
@@ -2227,258 +2155,7 @@ function restoreFromDayData(data){
   }
   _restoring=false;
 }
-function buildTrends(){
-  var idx=getHistIndex();
-  var last30=idx.slice(0,30);
-  var days=[];
-  last30.forEach(function(date){
-    var d=loadDay(date);
-    if(d)days.push(d);
-  });
-  
-  buildCareTrends(days);
-  buildReviewTrends(days);
-  buildActivatedTrends(days);
-  buildSituationTrends(days);
-  buildCravingTrends(days);
-  buildLandTrends(days);
-}
 
-function buildCareTrends(days){
-  var el=document.getElementById('trends-care');if(!el)return;
-  var h='';
-  
-  // Guardrail streaks
-  var substances=['s1','s2','s3','s4'];
-  var subNames={s1:'Intoxicants',s2:'Caffeine',s3:'Nicotine',s4:'Pornography'};
-  h+='<div class="trend-card"><div class="trend-title">Guardrail streaks</div>';
-  substances.forEach(function(s){
-    var current=0,best=0,counting=true;
-    days.forEach(function(d){
-      var ra=d[s+'a'];var clean=(typeof ra==='object'?ra.v:ra)==='yo';
-      var rb=d[s+'b'];var broken=(typeof rb==='object'?rb.v:rb)==='no';
-      if(clean&&counting){current++;}
-      else if(broken){counting=false;}
-      // Best streak across all days
-    });
-    // Recalculate best
-    var streak=0;
-    days.slice().reverse().forEach(function(d){
-      var ra2=d[s+'a'];var clean=(typeof ra2==='object'?ra2.v:ra2)==='yo';
-      if(clean){streak++;if(streak>best)best=streak;}
-      else{streak=0;}
-    });
-    // Current streak from most recent
-    current=0;
-    for(var i=0;i<days.length;i++){
-      var ra3=days[i][s+'a'];
-      if((typeof ra3==='object'?ra3.v:ra3)==='yo')current++;
-      else break;
-    }
-    var col=current>=7?'var(--ok)':current>=3?'var(--warn-text)':'var(--alert)';
-    h+='<div class="streak"><div class="streak-label">'+subNames[s]+'</div><div class="streak-val" style="color:'+col+'">'+current+'</div><div class="streak-unit">days</div><div class="streak-best">best: '+best+'</div></div>';
-  });
-  h+='</div>';
-  
-  // Engagement
-  var intentDays=days.filter(function(d){var v=d['intent-main'];return typeof v==='object'?v.v:v;}).length;
-  var reflectDays=days.filter(function(d){var v=d['reflect-what'];return typeof v==='object'?v.v:v;}).length;
-  // Taper stability trend
-  var taperDays=days.filter(function(d){
-    var ok=0,tot=0;
-    ['s1','s2','ins','urg','sub','tspd','mood','ext','cessation'].forEach(function(k){
-      var v=d['tc-'+k];
-      if(v===undefined&&d.chks)v=d.chks['tc-'+k];
-      if(v!==undefined&&v!==null){tot++;if(typeof v==='object'?v.v:v)ok++;}
-    });
-    return tot>0&&ok>=tot-1;
-  });
-  if(days.length){
-    h+='<div class="trend-card"><div class="trend-title">Taper stability</div>';
-    h+='<div class="streak"><div class="streak-label">Days mostly stable</div><div class="streak-val" style="color:'+(taperDays.length>=days.length*0.8?'var(--ok)':'var(--warn-text)')+'">'+taperDays.length+'</div><div class="streak-unit">/'+days.length+'</div></div>';
-    h+='</div>';
-  }
-
-  h+='<div class="trend-card"><div class="trend-title">Engagement</div>';
-  h+='<div class="streak"><div class="streak-label">Morning intention filled</div><div class="streak-val">'+intentDays+'</div><div class="streak-unit">/'+days.length+'</div></div>';
-  h+='<div class="streak"><div class="streak-label">Evening reflection filled</div><div class="streak-val">'+reflectDays+'</div><div class="streak-unit">/'+days.length+'</div></div>';
-  h+='</div>';
-  
-  el.innerHTML=h||'<div style="font-size:12px;color:var(--text3)">No data yet. Check in daily to see trends.</div>';
-}
-
-function buildReviewTrends(days){
-  var el=document.getElementById('trends-review');if(!el)return;
-  var h='';
-  
-  // Regulation trend — bar chart of worst-moment levels
-  var regDays=days.filter(function(d){return d.regLevel;});
-  if(regDays.length>=2){
-    h+='<div class="trend-card"><div class="trend-title">Worst-moment regulation</div><div class="trend-sub">Lower is better. Each bar is your peak activation that day.</div>';
-    h+='<div class="trend-chart">';
-    var maxLvl=10;
-    regDays.slice(0,30).reverse().forEach(function(d){
-      var lvl=parseInt(d.regLevel)||0;
-      var pct=Math.round(lvl/maxLvl*100);
-      var col=lvl<=3?'var(--info-text)':lvl<=5?'var(--ok)':lvl<=7?'var(--warn-text)':'var(--alert)';
-      h+='<div class="trend-bar" style="height:'+pct+'%;background:'+col+'" title="'+d.date+': Level '+lvl+'"></div>';
-    });
-    h+='</div>';
-    h+='<div class="trend-axis"><span>'+regDays[regDays.length-1].date.substring(5)+'</span><span>'+regDays[0].date.substring(5)+'</span></div>';
-    // Average
-    var avg=regDays.reduce(function(s,d){return s+(parseInt(d.regLevel)||0);},0)/regDays.length;
-    h+='<div style="margin-top:8px;font-size:11px;color:var(--text3)">Average: '+avg.toFixed(1)+' over '+regDays.length+' days</div>';
-    h+='</div>';
-  }
-  
-  // Signal frequency — per step
-  var stepGroups=[
-    {name:'01 — Body signals',prefixes:['chk-b-']},
-    {name:'02 — Regulation',prefixes:['qr-','rr-']},
-    {name:'03 — Signal check',prefixes:['chk-n-','chk-nr-','chk-fn-','chk-fnr-']},
-    {name:'04 — Distortion check',prefixes:['chk-c-','chk-d-']},
-    {name:'05 — Interaction scan',prefixes:['chk-bv-','chk-s-']},
-    {name:'06 — Game check',prefixes:['chk-g-']},
-    {name:'07 — Authority dynamics',prefixes:['chk-a-','chk-ah-']},
-    {name:'08 — Effort patterns',prefixes:['chk-e-','chk-s2-','chk-p-']}
-  ];
-  var allFreq={};
-  days.forEach(function(d){
-    if(!d.chks)return;
-    Object.keys(d.chks).forEach(function(k){allFreq[k]=(allFreq[k]||0)+1;});
-  });
-  if(Object.keys(allFreq).length){
-    stepGroups.forEach(function(sg){
-      var items=Object.entries(allFreq).filter(function(e){
-        return sg.prefixes.some(function(p){return e[0].startsWith(p);});
-      }).sort(function(a,b){return b[1]-a[1];});
-      if(!items.length)return;
-      var top=items.slice(0,5);
-      var maxCount=top[0][1];
-      h+='<div class="trend-card"><div class="trend-title">'+sg.name+'</div><div class="trend-sub">Top patterns across '+days.length+' days</div>';
-      top.forEach(function(entry){
-        var rawVal=typeof entry[1]==='object'?entry[1].v:entry[1];
-        var label=ID_TEXT[entry[0]]||entry[0];
-        if(label.length>55)label=label.substring(0,52)+'...';
-        var pct=Math.round(entry[1]/maxCount*100);
-        h+='<div class="sig-freq"><div class="sig-freq-label">'+label+'</div><div style="width:60px"><div class="sig-freq-bar" style="width:'+pct+'%;background:var(--calm)"></div></div><div class="sig-freq-count">'+entry[1]+'/'+days.length+'</div></div>';
-      });
-      h+='</div>';
-    });
-  }
-  
-  // Prodrome flags
-  var prodDays=days.filter(function(d){
-    var p1=d.p1b,p2=d.p2b;return (typeof p1==='object'?p1.v:p1)==='no'||(typeof p2==='object'?p2.v:p2)==='no';
-  });
-  if(prodDays.length){
-    h+='<div class="trend-card" style="border-color:var(--alert)"><div class="trend-title" style="color:var(--alert)">Prodrome flags</div>';
-    h+='<div style="font-size:12px;color:var(--text2)">'+prodDays.length+' day'+(prodDays.length>1?'s':'')+' with prodrome signals in last '+days.length+' days</div>';
-    prodDays.forEach(function(d){
-      h+='<div style="font-size:11px;color:var(--text3);margin-top:4px">'+d.date+'</div>';
-    });
-    h+='</div>';
-  }
-  
-  el.innerHTML=h||'<div style="font-size:12px;color:var(--text3)">No review data yet. Complete deep reviews to see trends.</div>';
-}
-
-function buildActivatedTrends(days){
-  var el=document.getElementById('trends-activated');if(!el)return;
-  var h='';
-  // Regulation trend (same as deep review but from quick-reg)
-  var regDays=days.filter(function(d){return d.regLevel;});
-  if(regDays.length>=2){
-    h+='<div class="trend-card"><div class="trend-title">Worst-moment regulation</div><div class="trend-sub">Lower is better</div>';
-    h+='<div class="trend-chart">';
-    regDays.slice(0,30).reverse().forEach(function(d){
-      var lvl=parseInt(d.regLevel)||0;
-      var pct=Math.round(lvl/10*100);
-      var col=lvl<=3?'var(--info-text)':lvl<=5?'var(--ok)':lvl<=7?'var(--warn-text)':'var(--alert)';
-      h+='<div class="trend-bar" style="height:'+pct+'%;background:'+col+'" title="'+d.date+': Level '+lvl+'"></div>';
-    });
-    h+='</div>';
-    h+='<div class="trend-axis"><span>'+regDays[regDays.length-1].date.substring(5)+'</span><span>'+regDays[0].date.substring(5)+'</span></div>';
-    var avg=regDays.reduce(function(s,d){return s+(parseInt(d.regLevel)||0);},0)/regDays.length;
-    h+='<div style="margin-top:8px;font-size:11px;color:var(--text3)">Average: '+avg.toFixed(1)+' over '+regDays.length+' days</div>';
-    h+='</div>';
-  }
-  // Emotion frequency
-  var emoFreq={};
-  days.forEach(function(d){if(d.emotion){var e=typeof d.emotion==='object'?d.emotion:d.emotion;if(e)emoFreq[e]=(emoFreq[e]||0)+1;}});
-  var emoSorted=Object.entries(emoFreq).sort(function(a,b){return b[1]-a[1];});
-  if(emoSorted.length){
-    var maxE=emoSorted[0][1];
-    h+='<div class="trend-card"><div class="trend-title">Emotions named</div><div class="trend-sub">Most frequent across '+days.length+' days</div>';
-    emoSorted.forEach(function(entry){
-      var pct=Math.round(entry[1]/maxE*100);
-      h+='<div class="sig-freq"><div class="sig-freq-label">'+entry[0]+'</div><div style="width:60px"><div class="sig-freq-bar" style="width:'+pct+'%;background:var(--calm)"></div></div><div class="sig-freq-count">'+entry[1]+'/'+days.length+'</div></div>';
-    });
-    h+='</div>';
-  }
-  el.innerHTML=h||'<div style="font-size:12px;color:var(--text3)">No activation data yet.</div>';
-}
-
-function buildSituationTrends(days){
-  var el=document.getElementById('trends-situation');if(!el)return;
-  var groups=[
-    {name:'Family — what fired',prefixes:['chk-fn-']},
-    {name:'Family — relationship patterns',prefixes:['chk-fnr-']},
-    {name:'Outside patterns',prefixes:['chk-out-']}
-  ];
-  var allFreq={};
-  days.forEach(function(d){if(!d.chks)return;Object.keys(d.chks).forEach(function(k){allFreq[k]=(allFreq[k]||0)+1;});});
-  var h='';
-  if(Object.keys(allFreq).length){
-    groups.forEach(function(sg){
-      var items=Object.entries(allFreq).filter(function(e){return sg.prefixes.some(function(p){return e[0].startsWith(p);});}).sort(function(a,b){return b[1]-a[1];});
-      if(!items.length)return;
-      var top=items.slice(0,5);var maxCount=top[0][1];
-      h+='<div class="trend-card"><div class="trend-title">'+sg.name+'</div><div class="trend-sub">Top patterns across '+days.length+' days</div>';
-      top.forEach(function(entry){var label=ID_TEXT[entry[0]]||entry[0];if(label.length>55)label=label.substring(0,52)+'...';var pct=Math.round(entry[1]/maxCount*100);h+='<div class="sig-freq"><div class="sig-freq-label">'+label+'</div><div style="width:60px"><div class="sig-freq-bar" style="width:'+pct+'%;background:var(--calm)"></div></div><div class="sig-freq-count">'+entry[1]+'/'+days.length+'</div></div>';});
-      h+='</div>';
-    });
-  }
-  el.innerHTML=h||'<div style="font-size:12px;color:var(--text3)">No situation data yet.</div>';
-}
-
-function buildCravingTrends(days){
-  var el=document.getElementById('trends-craving');if(!el)return;
-  var groups=[
-    {name:'HALT signals',prefixes:['chk-halt-']}
-  ];
-  var allFreq={};
-  days.forEach(function(d){if(!d.chks)return;Object.keys(d.chks).forEach(function(k){allFreq[k]=(allFreq[k]||0)+1;});});
-  var h='';
-  if(Object.keys(allFreq).length){
-    groups.forEach(function(sg){
-      var items=Object.entries(allFreq).filter(function(e){return sg.prefixes.some(function(p){return e[0].startsWith(p);});}).sort(function(a,b){return b[1]-a[1];});
-      if(!items.length)return;
-      var top=items.slice(0,5);var maxCount=top[0][1];
-      h+='<div class="trend-card"><div class="trend-title">'+sg.name+'</div><div class="trend-sub">Top patterns across '+days.length+' days</div>';
-      top.forEach(function(entry){var label=ID_TEXT[entry[0]]||entry[0];if(label.length>55)label=label.substring(0,52)+'...';var pct=Math.round(entry[1]/maxCount*100);h+='<div class="sig-freq"><div class="sig-freq-label">'+label+'</div><div style="width:60px"><div class="sig-freq-bar" style="width:'+pct+'%;background:var(--calm)"></div></div><div class="sig-freq-count">'+entry[1]+'/'+days.length+'</div></div>';});
-      h+='</div>';
-    });
-  }
-  el.innerHTML=h||'<div style="font-size:12px;color:var(--text3)">No craving data yet.</div>';
-}
-
-function buildLandTrends(days){
-  var el=document.getElementById('trends-land');if(!el)return;
-  var allFreq={};
-  days.forEach(function(d){if(!d.chks)return;Object.keys(d.chks).forEach(function(k){allFreq[k]=(allFreq[k]||0)+1;});});
-  var items=Object.entries(allFreq).filter(function(e){return e[0].startsWith('chk-l-');}).sort(function(a,b){return b[1]-a[1];});
-  var h='';
-  if(items.length){
-    var maxCount=items[0][1];
-    h+='<div class="trend-card"><div class="trend-title">Land check patterns</div><div class="trend-sub">Across '+days.length+' days</div>';
-    items.forEach(function(entry){var label=ID_TEXT[entry[0]]||entry[0];if(label.length>55)label=label.substring(0,52)+'...';var pct=Math.round(entry[1]/maxCount*100);h+='<div class="sig-freq"><div class="sig-freq-label">'+label+'</div><div style="width:60px"><div class="sig-freq-bar" style="width:'+pct+'%;background:var(--calm)"></div></div><div class="sig-freq-count">'+entry[1]+'/'+days.length+'</div></div>';});
-    h+='</div>';
-  }
-  el.innerHTML=h||'<div style="font-size:12px;color:var(--text3)">No land data yet.</div>';
-}
-
-buildTrends();
 
 // Build wound picker for land
 var wpl=document.getElementById('wound-pick-land');
