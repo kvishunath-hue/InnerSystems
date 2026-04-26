@@ -1277,11 +1277,11 @@ var AUTH_ITEMS=[
   {id:'freeze',tx:'I am going quiet or freezing in the presence of authority'}
 ];
 var HOLD_ITEMS=[
-  {id:'stated',tx:'I have stated my position clearly and once'},
-  {id:'silence',tx:'I am using silence — letting what I said land'},
-  {id:'struct',tx:'I have a structure in place so this does not require repeated confrontation'},
-  {id:'diplo',tx:'I am choosing diplomacy — firm content, measured delivery'},
-  {id:'walk',tx:'I have recognised this conversation cannot be won and disengaged'}
+  {id:'stated',tx:'I did not state my position clearly'},
+  {id:'silence',tx:'I did not hold silence — I kept explaining or justifying'},
+  {id:'struct',tx:'I did not have a structure in place — I relied on confrontation'},
+  {id:'diplo',tx:'I did not stay diplomatic — the delivery matched the activation'},
+  {id:'walk',tx:'I did not disengage when the conversation could not be won'}
 ];
 
 // Effort
@@ -1634,10 +1634,10 @@ function doAuthority(){
   var hp=[...document.querySelectorAll('#hold-list .chk-row')].filter(r=>r.querySelector('input').checked);
   if(!ap.length&&!hp.length){show('r-auth','<span class="ri-ok">No authority dynamics flagged.</span>');return;}
   var am={diminish:{n:'Being diminished',psy:'Status threat \u2014 social rank devaluation',t:'Name it factually, once. If it recurs, escalate structurally.'},override:{n:'Decision reversed',t:'Name the decision. Ask what changed. If nothing, the override is the issue.'},condescend:{n:'Condescension',t:'Do not correct their perception. Demonstrate through action.'},exclude:{n:'Excluded from decisions',t:'Request inclusion for the next one in writing.'},defer:{n:'Deferring to position',t:'Their title does not make them right. Name what you actually think.'},freeze:{n:'Freezing in authority presence',psy:'Dorsal vagal freeze response',t:'The freeze is the wound. Name one thing you know about your competence right now.'}};
-  var hm={stated:{n:'Position stated',t:'Do not repeat it. Repetition signals uncertainty.'},silence:{n:'Using silence',t:'Let it work. The urge to fill it is anxiety.'},struct:{n:'Structure in place',t:'Name it. If it does not exist, what would it be?'},diplo:{n:'Diplomacy active',t:'Firm content, measured delivery. The message does not change.'},walk:{n:'Disengagement chosen',t:'Re-engage only if something structural changes.'}};
+  var hm={stated:{n:'Position unclear',t:'Write it in one sentence. Say it once next time. If you cannot say it in one sentence, the position is not clear yet.',psy:'Assertiveness deficit — Fe over-accommodating'},silence:{n:'Over-explaining',t:'The urge to explain is the wound asking to be understood. They heard you. Repeating weakens the message.',psy:'Anxious attachment — filling silence to manage the other\'s response'},struct:{n:'No structure',t:'What system, document, or boundary would make this confrontation unnecessary? Build that instead of arguing.',psy:'Reactive engagement — no containment structure'},diplo:{n:'Delivery matched activation',t:'The content was right. The delivery undermined it. Next time, write it first, wait 30 minutes, then deliver.',psy:'Sympathetic hijack of communication — amygdala driving tone'},walk:{n:'Did not disengage',t:'Name the moment you knew it could not be won. That is your exit cue next time. Nothing said after that point helped.',psy:'Sunk cost in conversation — Fe investment preventing withdrawal'}};
   var h='';
   if(ap.length){h+='<div class="sdiv" style="margin-top:0">Patterns present</div>';ap.forEach(function(r){var k=r.querySelector('input').dataset.a;if(am[k])h+='<div class="ri"><div class="ri-name">'+am[k].n+'</div><div class="ri-action">'+am[k].t+'</div>'+(am[k].psy?'<div style="font-size:11px;color:var(--text3);font-style:italic;margin-top:4px">'+am[k].psy+'</div>':'')+'</div>';});}
-  if(hp.length){h+='<div class="sdiv">What you are doing right</div>';hp.forEach(function(r){var k=r.querySelector('input').dataset.ah;if(hm[k])h+='<div class="ri"><div class="ri-name">'+hm[k].n+'</div><div class="ri-action">'+hm[k].t+'</div></div>';});}
+  if(hp.length){h+='<div class="sdiv">Where you lost position</div>';hp.forEach(function(r){var k=r.querySelector('input').dataset.ah;if(hm[k])h+='<div class="ri"><div class="ri-name">'+hm[k].n+'</div><div class="ri-action">'+hm[k].t+'</div>'+(hm[k].psy?'<div style="font-size:11px;color:var(--text3);font-style:italic;margin-top:4px">'+hm[k].psy+'</div>':'')+'</div>';});}
   h+='<div class="prompt">What structure would make this conversation unnecessary next time?</div>';
   show('r-auth',h);
 }
