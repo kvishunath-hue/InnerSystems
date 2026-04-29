@@ -601,8 +601,8 @@ body{
     <div class="card-title" style="color:var(--alert)">Craving active</div>
     <div class="card-desc">This craving will peak and pass in 3-5 minutes. You only need to get through this one.</div>
     <div class="al al-alert" style="margin:0 0 10px"><strong>The chain:</strong> Cigarettes &#8596; Pornography &#8594; Cannabis &#8594; Psychosis. Either entry point lowers the threshold for the next. Breaking any link protects the chain from completing.</div>
-    <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9632;</span><div><div class="csec-nm">HALT check</div><div class="csec-ds">What is the real need?</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="halt-list" class="chk-list"><button class="btn" onclick="event.stopPropagation();doHALT()">Notice</button><div class="result" id="r-halt"></div></div></div></div>
-    <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9888;</span><div><div class="csec-nm">What you lose</div><div class="csec-ds">The cost of completing the chain</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div style="font-size:13px;line-height:1.8;color:var(--text2)"><div><strong style="color:var(--alert)">The 5th episode is the one you may not come back from intact.</strong></div><div>Warehousing. Career gone.</div><div>Every month of sobriety erased.</div><div>The exit plan dies.</div><div>They were right about you.</div><div>The craving is not about the substance. It is about regulation.</div></div></div></div>
+    <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9632;</span><div><div class="csec-nm">HALT check</div><div class="csec-ds">What is the real need?</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="halt-list" class="chk-list"></div><button class="btn" onclick="event.stopPropagation();doHALT()">Notice</button><div class="result" id="r-halt"></div></div></div>
+    <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9888;</span><div><div class="csec-nm">What you lose</div><div class="csec-ds">The cost of completing the chain</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div style="font-size:13px;line-height:1.8;color:var(--text2)"><div><strong style="color:var(--alert)">The 5th episode is the one you may not come back from intact.</strong></div><div>Warehousing. Career gone.</div><div>Every month of sobriety erased.</div><div>The exit plan dies.</div><div>They were right about you.</div><div>The craving is not about the substance. It is about regulation.</div><div style="margin-top:6px;color:var(--warn-text)">If you act on this craving: future pull activates. Tomorrow's craving arrives with false confidence — the certainty that you can handle one more. That certainty is the chain.</div></div></div></div>
     <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9654;</span><div><div class="csec-nm">Do this now</div><div class="csec-ds">Delay, breathe, water, call, move</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div style="font-size:13px;line-height:1.8;color:var(--text2)"><div><strong style="color:var(--text)">Delay</strong> — 5 minutes.</div><div><strong style="color:var(--text)">Breathe</strong> — Tap Ground.</div><div><strong style="color:var(--text)">Drink water</strong> — Slowly.</div><div><strong style="color:var(--text)">Call your confidant</strong></div><div><strong style="color:var(--text)">Change the scene</strong></div></div></div></div>
     <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9733;</span><div><div class="csec-nm">Quit tools</div><div class="csec-ds">What am I using today</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="quit-tools"></div><button class="btn" onclick="event.stopPropagation();runQuit()">Check support status</button><div class="taper-status" id="qc-status"></div></div></div>
     
@@ -663,6 +663,7 @@ body{
     <div class="sdiv">Structure</div>
     <div class="yn-row"><span class="yn-text">Following routines today</span><div class="yn-btns"><button class="yn-btn" id="t1a" onclick="event.stopPropagation();yn('t1a','t1b')">Yes</button><button class="yn-btn" id="t1b" onclick="event.stopPropagation();yn('t1b','t1a')">No</button></div></div>
     <div class="yn-row"><span class="yn-text">Stability over insight or pleasure today</span><div class="yn-btns"><button class="yn-btn" id="t2a" onclick="event.stopPropagation();yn('t2a','t2b')">Yes</button><button class="yn-btn" id="t2b" onclick="event.stopPropagation();yn('t2b','t2a')">No</button></div></div>
+    <button class="btn" onclick="event.stopPropagation();doGuard()">Check status</button>
     <div class="result" id="r-guard"></div>
   </div></div>
 
@@ -1367,7 +1368,7 @@ var QUIT_ITEMS=[
   {id:'water',tx:'Hydrating consistently'},
   {id:'hands',tx:'Keeping hands busy'},
   {id:'oral',tx:'Oral substitute \u2014 toothpick, straw, cinnamon stick'},
-  {id:'routine',tx:'Changed the routine around smoking triggers'},
+  {id:'routine',tx:'Changed the routine around craving triggers'},
   {id:'confid',tx:'Told someone I am quitting'},
   {id:'pscreen',tx:'Screen time limited \u2014 no private browsing windows open'},
   {id:'palone',tx:'Not isolating \u2014 staying in shared spaces when urge is present'},
@@ -1702,7 +1703,7 @@ function doHALT(){
   var hm={
     hungry:{nm:'Hungry',psy:'Physiological need masking as craving',act:'Eat something now. Real food, not sugar. The craving may resolve.'},
     angry:{nm:'Angry / frustrated',psy:'Sympathetic activation redirecting toward substance',act:'The anger is real. The craving is riding on the activation. Ground first, then address what made you angry.'},
-    lonely:{nm:'Lonely',psy:'Attachment need substituted with dopamine',act:'Call someone. Text Shravya. The craving is a substitute for connection, not a need for the substance.'},
+    lonely:{nm:'Lonely',psy:'Attachment need substituted with dopamine',act:'Call someone. The craving is a substitute for connection, not a need for the substance.'},
     tired:{nm:'Tired',psy:'Executive function depleted \u2014 defences low',act:'Sleep if possible. If not, do nothing demanding. Your guard is down.'},
     sexual:{nm:'Sexually frustrated',psy:'Conditioned dopamine pathway activated \u2014 the chain entry point',act:'Name it as sexual frustration, not boredom. Leave the room. The dopamine chain starts here.'},
     complete:{nm:'Completion reward',psy:'Post-task dopamine spike \u2014 reward system seeking celebration through substance',act:'You succeeded. The accomplishment is real. The craving is the system trying to celebrate through the chain instead of letting the success be its own reward. Sit with the feeling for 60 seconds. It will pass.'}
@@ -1715,6 +1716,24 @@ function doHALT(){
   } else {
     h='<span class="ri-ok">No HALT signals checked. The craving may be habit or environmental trigger. Change the scene.</span>';
   }
+  // Add advice based on what's checked
+  if(checked.length){
+    h+='<div style="margin-top:10px;padding:10px;background:var(--bg);border:1px solid var(--bdr);border-radius:var(--r);font-size:12px;color:var(--text2);line-height:1.6">';
+    h+='<strong>Right now:</strong> ';
+    var advices=[];
+    checked.forEach(function(r){
+      var k=r.querySelector('input').dataset.halt;
+      if(k==='hungry')advices.push('eat something real before deciding anything');
+      if(k==='angry')advices.push('ground first, then address the anger');
+      if(k==='lonely')advices.push('call someone \u2014 the craving is substituting for connection');
+      if(k==='tired')advices.push('sleep if possible, do nothing demanding');
+      if(k==='sexual')advices.push('leave the room, name it, do not open a screen');
+      if(k==='complete')advices.push('sit with the success for 60 seconds without adding to it');
+    });
+    h+=advices.join('. ')+'.';
+    h+='</div>';
+  }
+  h+='<div style="margin-top:10px;font-size:11px;color:var(--text3);font-style:italic">If you act on this craving: future pull activates. The next one will feel manageable. That false confidence is the chain\'s mechanism.</div>';
   show('r-halt',h);
 }
 function doIntegration(){
@@ -1745,6 +1764,39 @@ function yn(onId,offId){
 
 }
 
+function doGuard(){
+  var h='';var broken=[];var held=[];var prodFlags=[];var structFlags=[];
+  var subs={s1:'Intoxicants',s2:'Caffeine',s3:'Nicotine',s4:'Pornography'};
+  var subWarn={
+    s1:'Intoxicants lower impulse control. The next craving will arrive with less resistance. Future pull is now active.',
+    s2:'Caffeine dysregulates sleep and amplifies anxiety. Both feed the chain.',
+    s3:'Nicotine is load in itself and a step toward cannabis in your pattern. The false confidence that you can handle one cigarette is the chain talking. Every cigarette reactivates the dopamine pathway.',
+    s4:'Pornography is a SPOF in your chain. It lowers the threshold for cannabis. The false confidence that it is harmless is the entry point the chain uses.'
+  };
+  var subHeld={
+    s1:'No intoxicants. Impulse control intact.',
+    s2:'No caffeine. Sleep and anxiety baseline protected.',
+    s3:'No nicotine. Dopamine pathway not reactivated.',
+    s4:'No pornography. Chain entry point closed.'
+  };
+  ['s1','s2','s3','s4'].forEach(function(s){
+    var a=document.getElementById(s+'a');var b=document.getElementById(s+'b');
+    if(b&&b.classList.contains('no'))broken.push({nm:subs[s],warn:subWarn[s]});
+    else if(a&&a.classList.contains('yo'))held.push({nm:subs[s],msg:subHeld[s]});
+  });
+  ['p1','p2','p3'].forEach(function(p){var b=document.getElementById(p+'b');if(b&&b.classList.contains('no'))prodFlags.push(p);});
+  ['t1','t2'].forEach(function(t){var b=document.getElementById(t+'b');if(b&&b.classList.contains('no'))structFlags.push(t);});
+  if(broken.length){
+    h+='<div class="al al-alert" style="margin-bottom:10px"><strong>Guardrails broken today.</strong> Future pull is now active. The next craving will arrive with false confidence. That feeling is the chain, not you.</div>';
+    broken.forEach(function(b){h+='<div class="ri"><div class="ri-name" style="color:var(--alert)">\u2717 '+b.nm+'</div><div class="ri-action">'+b.warn+'</div></div>';});
+  }
+  if(held.length){held.forEach(function(h2){h+='<div class="ri"><div class="ri-name" style="color:var(--ok)">\u2713 '+h2.nm+'</div><div class="ri-action">'+h2.msg+'</div></div>';});}
+  if(prodFlags.length){h+='<div class="al al-warn" style="margin-top:10px"><strong>Prodrome signals present.</strong> Spiritual intensity without grounding is not growth. Fast thoughts + elevated mood = yellow, not inspiration. Tell someone who sees you clearly.</div>';}
+  if(structFlags.length){h+='<div style="margin-top:8px;font-size:12px;color:var(--warn-text)">Structure is down. Without routine, the craving finds the gap. Rebuild one routine today.</div>';}
+  if(!broken.length&&!held.length&&!prodFlags.length&&!structFlags.length){h='<span class="ri-ok">No guardrails checked yet.</span>';}
+  if(!broken.length&&held.length&&!prodFlags.length){h+='<div style="margin-top:10px;font-size:12px;color:var(--ok)">All guardrails held. The chain has no entry point today.</div>';}
+  show('r-guard',h);
+}
 function togGoal(btn){btn.classList.toggle('gy');persist(btn.id,btn.classList.contains('gy'));}
 
 // ═══════════ TAPER + QUIT ═══════════
