@@ -645,8 +645,8 @@ body{
 
   <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9654;</span><div><div class="csec-nm">Morning intention</div><div class="csec-ds">One thing, one quality, one boundary</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
     <div class="isec"><div class="ilbl">One thing that matters most today</div><textarea class="itxt" id="intent-main" rows="2" placeholder="Today I am moving toward..." oninput="persist('intent-main',this.value);updReflCtx()"></textarea></div>
-    <div class="isec"><div class="ilbl">What I am bringing to this day</div><textarea class="itxt" id="intent-value" rows="2" placeholder="Today I am showing up as..." oninput="persist('intent-value',this.value)"></textarea></div>
-    <div class="isec"><div class="ilbl">What am I avoiding today</div><textarea class="itxt" id="intent-protect" rows="2" placeholder="I might avoid..." oninput="persist('intent-protect',this.value)"></textarea></div>
+    <div class="isec"><div class="ilbl">What I am bringing to this day</div><textarea class="itxt" id="intent-value" rows="2" placeholder="Today I am showing up as..." oninput="persist('intent-value',this.value);updReflCtx()"></textarea></div>
+    <div class="isec"><div class="ilbl">What am I avoiding today</div><textarea class="itxt" id="intent-protect" rows="2" placeholder="I might avoid..." oninput="persist('intent-protect',this.value);updReflCtx()"></textarea></div>
   </div></div>
 
   <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9888;</span><div><div class="csec-nm">Guardrails</div><div class="csec-ds">Yesterday — intoxicants, prodrome, structure</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
@@ -1801,7 +1801,7 @@ function yn(onId,offId){
   if(on.classList.contains(cls)){on.classList.remove(cls);persist(onId,'');}
   else{on.classList.add(cls);off.classList.remove(offCls);persist(onId,cls);persist(offId,'');}
   // Flip substance guardrail text
-  var flipMap={'s1b':'Intoxicants taken','s2b':'Caffeine taken','s3b':'Nicotine taken','s4b':'Pornography used'};
+  var flipMap={'s1b':'Intoxicants taken yesterday','s2b':'Caffeine taken yesterday','s3b':'Nicotine taken yesterday','s4b':'Pornography used yesterday'};
   var origMap={'s1a':'No intoxicants yesterday','s2a':'No caffeine yesterday','s3a':'No nicotine yesterday','s4a':'No pornography yesterday'};
   var gtId=onId.replace('a','').replace('b','');
   var gtEl=document.getElementById('gt-'+gtId);
@@ -2067,7 +2067,20 @@ function initCare(){
   QUIT_ITEMS.forEach(function(item){var el=document.getElementById('qc-'+item.id);if(el)el.checked=recall('qc-'+item.id,false);});
   updReflCtx();
 }
-function updReflCtx(){var m=document.getElementById('intent-main');if(!m)return;var b=document.getElementById('reflect-ctx-block');if(m.value.trim()){b.style.display='block';document.getElementById('reflect-ctx-text').textContent=m.value;}else b.style.display='none';}
+function updReflCtx(){
+  var m=document.getElementById('intent-main');
+  var v=document.getElementById('intent-value');
+  var p=document.getElementById('intent-protect');
+  var b=document.getElementById('reflect-ctx-block');
+  var t=document.getElementById('reflect-ctx-text');
+  if(!m||!b||!t)return;
+  var parts=[];
+  if(m.value.trim())parts.push(m.value.trim());
+  if(v&&v.value.trim())parts.push(v.value.trim());
+  if(p&&p.value.trim())parts.push(p.value.trim());
+  if(parts.length){b.style.display='block';t.textContent=parts.join(' · ');}
+  else b.style.display='none';
+}
 
 // ═══════════ INIT ═══════════
 
