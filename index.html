@@ -420,7 +420,7 @@ body{
 <div class="app-header">
   <div class="app-title">Inner Systems</div>
   <div class="app-sub">Nothing is bad or good. Just notice.</div>
-  <div class="app-updated">Last updated: 12 May 2026</div><div id="sync-status" style="font-size:10px;color:var(--text3);margin-top:2px;cursor:pointer" onclick="showTokenPrompt()"></div>
+  <div class="app-updated">Last updated: 17 May 2026</div><div id="sync-status" style="font-size:10px;color:var(--text3);margin-top:2px;cursor:pointer" onclick="showTokenPrompt()"></div>
   <div class="reg-indicator" id="reg-pill">Not checked today</div>
 </div>
 
@@ -493,6 +493,13 @@ body{
         <div class="entry-desc">Worst moment check + grounding if needed</div>
       </div>
     </div>
+    <div class="entry-btn" onclick="showScreen('scr-prep')">
+      <div class="entry-ico">&#9737;</div>
+      <div class="entry-info">
+        <div class="entry-name">Preparing for an activating event</div>
+        <div class="entry-desc">Something coming up — get the system ready</div>
+      </div>
+    </div>
     <div class="entry-btn" onclick="goSituation()">
       <div class="entry-ico">&#9881;</div>
       <div class="entry-info">
@@ -547,6 +554,29 @@ body{
   
 </div>
 
+<!-- PREP SCREEN -->
+<div class="screen" id="scr-prep">
+  <button class="btn-back" onclick="showScreen('scr-home')">&#8592; Back</button>
+  <div class="card">
+    <div class="card-title">Preparing for an activating event</div>
+    <div class="card-desc">Conversation with family, meeting, registration, important call. Get the system ready before, not during.</div>
+    <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9679;</span><div><div class="csec-nm">Name what is coming</div><div class="csec-ds">One line. No analysis yet.</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
+      <textarea class="itxt" id="prep-name" rows="2" placeholder="What event, with whom..." oninput="persist('prep-name',this.value)"></textarea>
+    </div></div>
+    <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9678;</span><div><div class="csec-nm">What you want from the event</div><div class="csec-ds">Outcome, not feeling. One sentence.</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
+      <textarea class="itxt" id="prep-goal" rows="2" placeholder="I want to..." oninput="persist('prep-goal',this.value)"></textarea>
+    </div></div>
+    <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9633;</span><div><div class="csec-nm">Likely wounds firing</div><div class="csec-ds">Which old patterns will this trigger?</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
+      <div id="prep-wound-list" class="chk-list"></div>
+    </div></div>
+    <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9632;</span><div><div class="csec-nm">Pre-event protocol</div><div class="csec-ds">Tick what you have done before the event</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
+      <div id="prep-protocol-list" class="chk-list"></div>
+    </div></div>
+    <button class="btn" onclick="doPrep()">Check readiness</button>
+    <div class="result" id="r-prep"></div>
+  </div>
+</div>
+
 <!-- SITUATION SCREEN -->
 <div class="screen" id="scr-situation">
   <button class="btn-back" onclick="showScreen('scr-home')">&#8592; Back</button>
@@ -573,9 +603,9 @@ body{
 <div class="screen" id="scr-sit-family">
   <button class="btn-back" onclick="showScreen('scr-situation')">&#8592; Back</button>
   <div class="card">
-    <div class="card-title">Signal check — family / known pattern</div>
+    <div class="card-title">Noise check — family / known pattern</div>
     <div class="card-desc">Check what is present. The wound and the situation are two separate events.</div>
-    <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9632;</span><div><div class="csec-nm">What fired</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="fam-noise-list" class="chk-list"></div></div></div>
+    <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9632;</span><div><div class="csec-nm">Wound or signal contamination</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="fam-noise-wound-list" class="chk-list"></div></div></div><div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9670;</span><div><div class="csec-nm">Manipulation or fawn triggers from others</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="fam-noise-manip-list" class="chk-list"></div></div></div><div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9678;</span><div><div class="csec-nm">Self-discounting or rationalising</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="fam-noise-self-list" class="chk-list"></div></div></div>
     <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9679;</span><div><div class="csec-nm">Relationship patterns</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="fam-rel-list" class="chk-list"></div></div></div>
     <button class="btn" onclick="doFamNoise()">Notice</button>
     <div class="result" id="r-fam-noise"></div>
@@ -586,9 +616,11 @@ body{
 <div class="screen" id="scr-sit-outside">
   <button class="btn-back" onclick="showScreen('scr-situation')">&#8592; Back</button>
   <div class="card">
-    <div class="card-title">Signal check — outside your system</div>
+    <div class="card-title">Noise check — outside your system</div>
     <div class="card-desc">Your system may be reading this person through a pattern they are not part of. Slow down.</div>
-    <div id="out-noise-list" class="chk-list"></div>
+    <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9632;</span><div><div class="csec-nm">Outside-system patterns</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="out-noise-list" class="chk-list"></div></div></div>
+    <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9670;</span><div><div class="csec-nm">Manipulation or fawn triggers from others</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="out-manip-list" class="chk-list"></div></div></div>
+    <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9678;</span><div><div class="csec-nm">Self-discounting or rationalising</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="out-self-list" class="chk-list"></div></div></div>
     <button class="btn" onclick="doOutNoise()">Notice</button>
     <div class="result" id="r-out-noise"></div>
   </div>
@@ -776,7 +808,7 @@ body{
   </div></div>
   <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico" style="font-size:12px;font-weight:700">01</span><div><div class="csec-nm">Body signals</div><div class="csec-ds">Se inferior + SP blind &#8212; your weakest function. You will miss these until they are loud. Check deliberately.</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="b-list"></div><button class="btn" onclick="doBody()">Notice</button><div class="result" id="r-body"></div></div></div>
   <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico" style="font-size:12px;font-weight:700">02</span><div><div class="csec-nm">Regulation level</div><div class="csec-ds">Your worst moment today. What was present at its peak?</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="reg-items" id="reg-items"></div><button class="btn" onclick="doReg()">Notice</button><div class="result" id="r-reg"></div></div></div>
-  <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico" style="font-size:12px;font-weight:700">03</span><div><div class="csec-nm">Noise check</div><div class="csec-ds">Is the signal real or is the wound running?</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9632;</span><div><div class="csec-nm">What fired</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="noise-list"></div></div></div><div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9679;</span><div><div class="csec-nm">Relationship patterns</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="rel-list"></div></div></div><button class="btn" onclick="doNoise()">Notice</button><div class="result" id="r-noise"></div></div></div>
+  <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico" style="font-size:12px;font-weight:700">03</span><div><div class="csec-nm">Noise check</div><div class="csec-ds">Is the signal real or is the wound running?</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9632;</span><div><div class="csec-nm">Wound or signal contamination</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="noise-wound-list"></div></div></div><div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9670;</span><div><div class="csec-nm">Manipulation or fawn triggers from others</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="noise-manip-list"></div></div></div><div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9678;</span><div><div class="csec-nm">Self-discounting or rationalising</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="noise-self-list"></div></div></div><div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9679;</span><div><div class="csec-nm">Relationship patterns</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="rel-list"></div></div></div><button class="btn" onclick="doNoise()">Notice</button><div class="result" id="r-noise"></div></div></div>
   <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico" style="font-size:12px;font-weight:700">04</span><div><div class="csec-nm">Distortion check</div><div class="csec-ds">Check what is active in your thinking.</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9632;</span><div><div class="csec-nm">Catastrophising</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="c-list"></div></div></div><div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9679;</span><div><div class="csec-nm">Cognitive filters</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="dist-list"></div></div></div><button class="btn" onclick="doDistort()">Notice</button><div class="result" id="r-distort"></div></div></div>
   <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico" style="font-size:12px;font-weight:700">05</span><div><div class="csec-nm">Interaction scan</div><div class="csec-ds">What is present in a recent or ongoing interaction.</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9632;</span><div><div class="csec-nm">Boundary pressure</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="bnd-list"></div></div></div><div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9679;</span><div><div class="csec-nm">Behavioural drift</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="soc-list"></div></div></div><button class="btn" onclick="doScan()">Notice</button><div class="result" id="r-scan"></div></div></div>
   <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico" style="font-size:12px;font-weight:700">06</span><div><div class="csec-nm">Game check</div><div class="csec-ds">Unconscious repetitive sequences &#8212; not malice, but structure.</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="game-list"></div><button class="btn" onclick="doGame()">Notice</button><div class="result" id="r-game"></div></div></div>
@@ -1092,6 +1124,58 @@ function closeTokenScreen(){
 // ═══════════ NAVIGATION ═══════════
 function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('on'));document.getElementById(id).classList.add('on');window.scrollTo(0,0);}
 
+
+var PREP_WOUNDS=[
+  {id:'betray',tx:'Betrayal or manipulation might be present'},
+  {id:'unseen',tx:'Being not seen or misread'},
+  {id:'override',tx:'My position being overridden or dismissed'},
+  {id:'helpless',tx:'Helplessness being performed to trigger my rescue'},
+  {id:'truth',tx:'Truth being denied or reframed'},
+  {id:'respshift',tx:'Responsibility being placed on me that is not mine'},
+  {id:'infant',tx:'Being infantilised or treated as incapable'},
+  {id:'shy',tx:'Shyness or performance anxiety, especially with women I find attractive'}
+];
+
+var PREP_PROTOCOL=[
+  {id:'sleep',tx:'I have slept enough'},
+  {id:'move',tx:'I have moved my body today'},
+  {id:'hydrate',tx:'I am hydrated'},
+  {id:'eat',tx:'I have eaten'},
+  {id:'ground',tx:'I have done one grounding technique in the last hour'},
+  {id:'position',tx:'I have written down my position in one sentence'},
+  {id:'exit',tx:'I know my exit cue if the conversation cannot be won'},
+  {id:'noargue',tx:'I have decided in advance: I will state once, not argue'},
+  {id:'after',tx:'I have an action planned for after the event \u2014 walk, call, ground'}
+];
+
+function doPrep(){
+  var wList=PREP_WOUNDS.filter(function(w){var cb=document.getElementById('chk-prep-w-'+w.id);return cb&&cb.checked;});
+  var pList=PREP_PROTOCOL.filter(function(p){var cb=document.getElementById('chk-prep-p-'+p.id);return cb&&cb.checked;});
+  var pTotal=PREP_PROTOCOL.length;
+  var h='';
+  // Protocol readiness
+  var pct=Math.round((pList.length/pTotal)*100);
+  var statusColor=pct>=70?'var(--ok)':pct>=40?'var(--warn-text)':'var(--alert)';
+  var statusText=pct>=70?'Ready':pct>=40?'Partial readiness':'Not ready';
+  h+='<div class="ri" style="background:var(--bg)"><div class="ri-name" style="color:'+statusColor+'">Protocol: '+statusText+' ('+pList.length+'/'+pTotal+')</div></div>';
+  if(pct<40)h+='<div class="al al-alert" style="margin-top:8px"><strong>Defer this event if possible.</strong> Going in without protocol means going in dysregulated. Sleep, eat, ground, and reschedule.</div>';
+  else if(pct<70)h+='<div class="al al-warn" style="margin-top:8px"><strong>Partial readiness.</strong> Tick more before going in if there is time. Otherwise: state once, do not argue, leave on your exit cue.</div>';
+  // Wounds anticipated
+  if(wList.length){
+    h+='<div class="sdiv" style="margin-top:12px">Wounds likely to fire</div>';
+    var wPsy={'betray':'Adjust expectation. They may not act in your interest. Do not give them anything that requires trust.','unseen':'They cannot see you. Stop expecting recognition. Hold your read of yourself internally.','override':'Position stated once. If they override, do not re-argue. Repetition signals uncertainty.','helpless':'Hero drive bait. Name their actual capacity beforehand. Do not rescue.','truth':'Document the facts before the meeting. Their reframe works only when your memory is unsupported.','respshift':'Decide beforehand what is yours and what is not. If they push, say it once.','infant':'Their tone is about their need to feel parental. Your competence does not depend on their acknowledgment.','shy':'The shyness is real but it is not data about your worth. Bring presence, not performance. Silence is fine.'};
+    wList.forEach(function(w){h+='<div class="ri"><div class="ri-name">'+w.tx+'</div><div class="ri-action">'+(wPsy[w.id]||'')+'</div></div>';});
+  }
+  // Standing advice
+  h+='<div style="margin-top:12px;font-size:12px;color:var(--text3);font-style:italic;line-height:1.6">Showing up is half the battle. State once, do not argue, leave on your exit cue.</div>';
+  show('r-prep',h);
+}
+
+function initPrep(){
+  buildChkList('prep-wound-list',PREP_WOUNDS,'prep-w');
+  buildChkList('prep-protocol-list',PREP_PROTOCOL,'prep-p');
+}
+
 function goActivated(){showScreen('scr-activated');}
 function goSituation(){showScreen('scr-situation');}
 function goSitFamily(){showScreen('scr-sit-family');}
@@ -1172,39 +1256,44 @@ var BODY_TIPS={
 };
 
 // Noise items — family
-var FAM_NOISE=[
-  {id:'ctx',tx:'This person does not have full context and has consistently misread me'},
+var NOISE_WOUND=[
+  {id:'ctx',tx:'This person does not have full context'},
   {id:'old',tx:'What they said triggered something older than this situation'},
-  {id:'benefit',tx:'I am doubting my own perception right now'},
-  {id:'noev',tx:'My competence is being questioned without specific evidence'},
-  {id:'defend',tx:'I feel the urge to explain or prove myself'},
-  {id:'seen',tx:'I feel unseen — they are responding to who they think I am'},
-  {id:'rumi',tx:'My mind is replaying what they said and building a case'},
+  {id:'benefit',tx:'Self-doubt is being placed in me, not arising from evidence'},
+  {id:'noev',tx:'They are stating an opinion as fact without evidence'},
+  {id:'defend',tx:'The urge to defend or explain is high'},
+  {id:'seen',tx:'I feel unseen \u2014 they are responding to who they think I am'},
+  {id:'rumi',tx:'I am replaying this in my head'},
   {id:'truth',tx:'What actually happened is being denied or reframed'},
-  {id:'reject',tx:'I feel rejected or excluded — the wound is about not being wanted'},
-  {id:'project',tx:'I am being treated as though something is wrong with me — the judgement is about them'},
-  {id:'manip',tx:'Information is being shared selectively — I am getting a curated version'},
+  {id:'reject',tx:'This is reading as rejection or abandonment'},
+  {id:'project',tx:'I am being treated as though something is wrong with me \u2014 the judgement is about them'}
+];
+var NOISE_MANIP=[
+  {id:'manip',tx:'Information is being shared selectively \u2014 I am getting a curated version'},
   {id:'mhelpless',tx:'Helplessness is being performed to trigger my rescue response'},
-  {id:'mdeny',tx:'Plausible deniability — they can claim they did not mean what they clearly did'},
+  {id:'mdeny',tx:'Plausible deniability \u2014 they can claim they did not mean what they clearly did'},
   {id:'magreed',tx:'They agreed privately then acted differently'},
   {id:'mflat',tx:'My thinking or depth is being encouraged because it serves their processing, not mine'},
-  {id:'mvictim',tx:'Victim stance is being used as a tool — real pain AND strategic positioning'},
+  {id:'mvictim',tx:'Victim stance is being used as a tool \u2014 real pain AND strategic positioning'},
   {id:'mguild',tx:'Guilt is being placed in me to steer my behaviour'},
   {id:'mnarr',tx:'A narrative about me is being spread that I cannot defend against'},
   {id:'murgent',tx:'Urgency is being manufactured to bypass my judgment'},
   {id:'mtest',tx:'Loyalty or love is being tested through unreasonable demands'},
   {id:'fawnpull',tx:'Someone is positioning themselves so I perform agreement or admiration'},
   {id:'fawnauth',tx:'Authority or status is being used to make me smaller in the interaction'},
-  {id:'fawndis',tx:'My disagreement is being treated as a character flaw, not a position'},
-  {id:'trustgive',tx:'I am giving trust without reality-checking — wanting connection more than evidence supports'},
+  {id:'fawndis',tx:'My disagreement is being treated as a character flaw, not a position'}
+];
+var NOISE_SELF=[
+  {id:'trustgive',tx:'I am giving trust without reality-checking \u2014 wanting connection more than evidence supports'},
   {id:'rational',tx:'I am building a case to justify what I already want to do'},
   {id:'urgency',tx:'This feels urgent but nothing changes if I wait 48 hours'},
   {id:'suspicion',tx:'I am connecting dots that someone stable and grounded would not connect'},
-  {id:'respshift',tx:'I am carrying something that is not mine to handle — the hero drive wants me to'},
-  {id:'discount',tx:'I am discounting what I did or what I know — minimising my own competence'},
-  {id:'disqual',tx:'I am disqualifying a positive outcome — telling myself it does not count'},
+  {id:'respshift',tx:'I am carrying something that is not mine to handle \u2014 the hero drive wants me to'},
+  {id:'discount',tx:'I am discounting what I did or what I know \u2014 minimising my own competence'},
+  {id:'disqual',tx:'I am disqualifying a positive outcome \u2014 telling myself it does not count'},
   {id:'compare',tx:'I am comparing myself to someone and concluding I fall short'}
 ];
+var FAM_NOISE=NOISE_WOUND.concat(NOISE_MANIP).concat(NOISE_SELF);
 var REL_PATTERNS=[
   {id:'norec',tx:'Effort flows one direction — I give, they receive, not returned'},
   {id:'fbign',tx:'I have told them what hurts and they keep doing it'},
@@ -1226,7 +1315,8 @@ var OUT_NOISE=[
   {id:'test',tx:'I am testing this person against standards they do not know about'},
   {id:'idealise',tx:'I am investing more in this person than evidence supports'},
   {id:'resonance',tx:'This person activates my thinking and I notice I cannot easily stop'},
-  {id:'substprox',tx:'This person normalises substances or minimises my history'}
+  {id:'substprox',tx:'This person normalises substances or minimises my history'},
+  {id:'shy',tx:'Shyness or performance anxiety is high, especially with women I find attractive'}
 ];
 
 // Catastrophising
@@ -1582,15 +1672,15 @@ function doBody(){
 }
 
 function doNoise(){
-  var checked=[...document.querySelectorAll('#noise-list .chk-row')].filter(r=>r.querySelector('input').checked);
+  var checked=[...document.querySelectorAll('#noise-wound-list .chk-row, #noise-manip-list .chk-row, #noise-self-list .chk-row')].filter(r=>r.querySelector('input').checked);
   var relChecked=[...document.querySelectorAll('#rel-list .chk-row')].filter(r=>r.querySelector('input').checked);
-  if(!checked.length&&!relChecked.length){show('r-noise','<span class="ri-ok">No signal contamination present.</span>');return;}
+  if(!checked.length&&!relChecked.length){show('r-noise','<span class="ri-ok">No noise present.</span>');return;}
   var keys=checked.map(r=>r.querySelector('input').dataset.n);var h='';
   if(keys.some(k=>['old','seen','benefit','reject'].includes(k)))h+='<div class="al al-info"><strong>Core wound activated.</strong> The wound and the situation are two separate events. Name the wound. Then name what actually happened. Respond to today, not to then.</div>';
   checked.forEach(function(r){var k=r.querySelector('input').dataset.n;
     var nm={ctx:'Missing context',old:'Older trigger',benefit:'Self-doubt serves someone',noev:'No evidence given',defend:'Urge to defend',seen:'Feeling unseen',rumi:'Rumination loop',truth:'Truth denied',reject:'Rejection wound',project:'Projection received',manip:'Selective information',mhelpless:'Performed helplessness',mdeny:'Plausible deniability',magreed:'Private agreement broken',mflat:'Cognitive instrumentalisation',mvictim:'Strategic victim stance',mguild:'Guilt placement',mnarr:'Narrative spreading',murgent:'Manufactured urgency',mtest:'Loyalty test',fawnpull:'Fawn trigger — performed agreement expected',fawnauth:'Authority used to shrink',fawndis:'Disagreement pathologised',trustgive:'Trust given without evidence',rational:'Rationalisation active',urgency:'False urgency',suspicion:'Suspicion beyond evidence',respshift:'Carrying what is not yours',discount:'Self-discounting',disqual:'Disqualifying the positive',compare:'Unfavourable comparison'};
-    var psy={ctx:'Confirmation bias from partial data',old:'Trauma re-activation (amygdala hijack)',benefit:'Gaslighting internalisation',noev:'Competence schema threat',defend:'Ego syntonic defence activation',seen:'4 core wound: identity not reflected (Fe hunger)',rumi:'Default mode network perseveration',truth:'Reality testing under social pressure',reject:'Rejection sensitivity dysphoria',project:'Projective identification received',manip:'Covert control \u2014 curated reality',mhelpless:'Hero drive trigger \u2014 4\u21922 disintegration bait',mdeny:'Accountability evasion \u2014 unconfrontable by design',magreed:'Tactical agreement \u2014 consent to end pressure',mflat:'Depth used as processing tool for someone else',mvictim:'Real pain co-existing with tactical deployment',mguild:'Emotional steering \u2014 guilt as remote control',mnarr:'Reputation control outside your presence',murgent:'Time pressure to bypass judgment',mtest:'Unreasonable demand framed as proof of love',fawnpull:'Social dominance eliciting submission response',fawnauth:'Status-based power differential activating fawn',fawndis:'Dissent reframed as deficiency to enforce compliance',trustgive:'Attachment need overriding reality testing',rational:'Post-hoc justification \u2014 ego protecting a decision already made',urgency:'Sympathetic activation creating time pressure',suspicion:'Hypervigilance \u2014 wound-driven pattern detection',respshift:'Hero drive \u2014 4\u21922 disintegration'};
-    var act={ctx:'Name what they do not know. Their reading is based on incomplete information. You do not need to correct them unless it serves you.',old:'Name the older event. Then name what happened today. Respond to today.',benefit:'Who benefits from you doubting yourself right now? If someone gains control when you question your perception, the doubt was placed in you. It is not yours.',noev:'An opinion without evidence is data about their limitations, not your competence. Ask for specifics. If none come, the conversation is over.',defend:'The urge is from the wound, not the situation. State your position once. Stop.',seen:'They cannot see you. Stop expecting it. What is the next action that does not require their recognition?',rumi:'Write down three facts. Close the document. Walk away for 20 minutes.',truth:'What happened is not negotiable. Write it down before the reframe settles in.',reject:'Name what actually happened \u2014 did they reject you, or is your system reading it as rejection? One breath before responding from this place.',project:'The judgement is about their framework. Do not absorb it. Let it land between you, not inside you.',manip:'Document what was said vs what was done. The gap is the manipulation. Do not confront \u2014 adjust access.',mhelpless:'Name the capacity they actually have. If they managed before you arrived, the helplessness is strategic. Do not rescue.',mdeny:'Write down exactly what happened. Their deniability works only when your memory is unsupported. Document.',magreed:'They agreed to end the pressure, not because they meant it. Stop making agreements without structural enforcement.',mflat:'Are they interested in your thinking, or in what your thinking produces for them? If the latter, pull back.',mvictim:'Both can be true. The pain is real AND it is being used. Compassion does not require compliance.',mguild:'Name the guilt. Then ask: whose behaviour caused this situation? If not yours, the guilt was placed in you. Return it.',mnarr:'You cannot defend against a narrative you are not present for. Let your behaviour be the counter-narrative.',murgent:'Name one real consequence of waiting 48 hours. If none, the urgency is designed to prevent clear thinking.',mtest:'Love does not require proof through self-harm. If the demand costs your regulation, it is a test, not a need.',fawnpull:'Notice the pull to perform. You do not owe admiration. Silence is a valid response.',fawnauth:'Their status does not make them right. Name your position internally even if you choose not to say it.',fawndis:'Your disagreement is not a symptom. If they cannot hold difference, that is their limitation, not your pathology.',trustgive:'Name what evidence supports trusting this person. If there is none, trust is the wound wanting connection, not judgment working.',rational:'Write down what you want to do and why. Read it as if someone else wrote it. The craving wearing a reasoning mask is still a craving.',urgency:'Name one real consequence of waiting 48 hours. If there is none, the urgency is activation, not reality.',suspicion:'Name the specific evidence. If it is a feeling without facts, the wound is connecting dots, not your judgment.',respshift:'Name what happens if you put this down. If the answer is discomfort but not harm, it is not yours.'};
+    var psy={ctx:'Confirmation bias from partial data',old:'Trauma re-activation (amygdala hijack)',benefit:'Gaslighting internalisation',noev:'Competence schema threat',defend:'Ego syntonic defence activation',seen:'4 core wound: identity not reflected (Fe hunger)',rumi:'Default mode network perseveration',truth:'Reality testing under social pressure',reject:'Rejection sensitivity dysphoria',project:'Projective identification received',manip:'Covert control \u2014 curated reality',mhelpless:'Hero drive trigger \u2014 4\u21922 disintegration bait',mdeny:'Accountability evasion \u2014 unconfrontable by design',magreed:'Tactical agreement \u2014 consent to end pressure',mflat:'Depth used as processing tool for someone else',mvictim:'Real pain co-existing with tactical deployment',mguild:'Emotional steering \u2014 guilt as remote control',mnarr:'Reputation control outside your presence',murgent:'Time pressure to bypass judgment',mtest:'Unreasonable demand framed as proof of love',fawnpull:'Social dominance eliciting submission response',fawnauth:'Status-based power differential activating fawn',fawndis:'Dissent reframed as deficiency to enforce compliance',trustgive:'Attachment need overriding reality testing',rational:'Post-hoc justification \u2014 ego protecting a decision already made',urgency:'Sympathetic activation creating time pressure',suspicion:'Hypervigilance \u2014 wound-driven pattern detection',respshift:'Hero drive \u2014 4\u21922 disintegration',discount:'Competence denial \u2014 internalised infantilisation',disqual:'Cognitive distortion \u2014 filtering out evidence of capability',compare:'Social comparison bias \u2014 4 core wound activation'};
+    var act={ctx:'Name what they do not know. Their reading is based on incomplete information. You do not need to correct them unless it serves you.',old:'Name the older event. Then name what happened today. Respond to today.',benefit:'Who benefits from you doubting yourself right now? If someone gains control when you question your perception, the doubt was placed in you. It is not yours.',noev:'An opinion without evidence is data about their limitations, not your competence. Ask for specifics. If none come, the conversation is over.',defend:'The urge is from the wound, not the situation. State your position once. Stop.',seen:'They cannot see you. Stop expecting it. What is the next action that does not require their recognition?',rumi:'Write down three facts. Close the document. Walk away for 20 minutes.',truth:'What happened is not negotiable. Write it down before the reframe settles in.',reject:'Name what actually happened \u2014 did they reject you, or is your system reading it as rejection? One breath before responding from this place.',project:'The judgement is about their framework. Do not absorb it. Let it land between you, not inside you.',manip:'Document what was said vs what was done. The gap is the manipulation. Do not confront \u2014 adjust access.',mhelpless:'Name the capacity they actually have. If they managed before you arrived, the helplessness is strategic. Do not rescue.',mdeny:'Write down exactly what happened. Their deniability works only when your memory is unsupported. Document.',magreed:'They agreed to end the pressure, not because they meant it. Stop making agreements without structural enforcement.',mflat:'Are they interested in your thinking, or in what your thinking produces for them? If the latter, pull back.',mvictim:'Both can be true. The pain is real AND it is being used. Compassion does not require compliance.',mguild:'Name the guilt. Then ask: whose behaviour caused this situation? If not yours, the guilt was placed in you. Return it.',mnarr:'You cannot defend against a narrative you are not present for. Let your behaviour be the counter-narrative.',murgent:'Name one real consequence of waiting 48 hours. If none, the urgency is designed to prevent clear thinking.',mtest:'Love does not require proof through self-harm. If the demand costs your regulation, it is a test, not a need.',fawnpull:'Notice the pull to perform. You do not owe admiration. Silence is a valid response.',fawnauth:'Their status does not make them right. Name your position internally even if you choose not to say it.',fawndis:'Your disagreement is not a symptom. If they cannot hold difference, that is their limitation, not your pathology.',trustgive:'Name what evidence supports trusting this person. If there is none, trust is the wound wanting connection, not judgment working.',rational:'Write down what you want to do and why. Read it as if someone else wrote it. The craving wearing a reasoning mask is still a craving.',urgency:'Name one real consequence of waiting 48 hours. If there is none, the urgency is activation, not reality.',suspicion:'Name the specific evidence. If it is a feeling without facts, the wound is connecting dots, not your judgment.',respshift:'Name what happens if you put this down. If the answer is discomfort but not harm, it is not yours.',discount:'Name one thing you did this week that required skill. The discounting is the wound, not the assessment.',disqual:'Write down the outcome. Read it without commentary. It happened. It counts.',compare:'Name what they have that you want. Then name what you have that they do not. The comparison was partial.'};
     h+='<div class="ri"><div class="ri-name">'+(nm[k]||k)+'</div><div class="ri-action">'+(act[k]||'')+'</div>'+(psy[k]?'<div style="font-size:11px;color:var(--text3);font-style:italic;margin-top:4px">'+psy[k]+'</div>':'')+'</div>';
   });
   if(relChecked.length){
@@ -1607,10 +1697,10 @@ function doNoise(){
 }
 
 function doFamNoise(){
-  var checked=[...document.querySelectorAll('#fam-noise-list .chk-row')].filter(r=>r.querySelector('input').checked);
+  var checked=[...document.querySelectorAll('#fam-noise-wound-list .chk-row, #fam-noise-manip-list .chk-row, #fam-noise-self-list .chk-row')].filter(r=>r.querySelector('input').checked);
   var relChecked=[...document.querySelectorAll('#fam-rel-list .chk-row')].filter(r=>r.querySelector('input').checked);
   // Reuse main noise logic
-  if(!checked.length&&!relChecked.length){show('r-fam-noise','<span class="ri-ok">No signal contamination present.</span>');return;}
+  if(!checked.length&&!relChecked.length){show('r-fam-noise','<span class="ri-ok">No noise present.</span>');return;}
   var keys=checked.map(r=>r.querySelector('input').dataset.fn);var h='';
   if(keys.some(k=>['old','seen','benefit','reject'].includes(k)))h+='<div class="al al-info"><strong>Core wound activated.</strong> Name the wound. Then name what actually happened. They are not the same.</div>';
   var nm={ctx:'Missing context',old:'Older trigger',benefit:'Self-doubt serves someone',noev:'No evidence given',defend:'Urge to defend',seen:'Feeling unseen',rumi:'Rumination loop',truth:'Truth denied',reject:'Rejection wound',project:'Projection received'};
@@ -1626,20 +1716,29 @@ function doFamNoise(){
 }
 
 function doOutNoise(){
-  var checked=[...document.querySelectorAll('#out-noise-list .chk-row')].filter(r=>r.querySelector('input').checked);
-  if(!checked.length){show('r-out-noise','<span class="ri-ok">No outside-system patterns active.</span>');return;}
+  var checked=[...document.querySelectorAll('#out-noise-list .chk-row, #out-manip-list .chk-row, #out-self-list .chk-row')].filter(r=>r.querySelector('input').checked);
+  if(!checked.length){show('r-out-noise','<span class="ri-ok">No noise present in this interaction. The reading may be accurate.</span>');return;}
+  var keys=checked.map(r=>r.querySelector('input').dataset.out);
   var h='';
-  var substFlag=checked.some(function(r){return r.querySelector('input').dataset.out==='substprox';});
-  var resFlag=checked.some(function(r){return r.querySelector('input').dataset.out==='resonance';});
-  if(substFlag)h+='<div class="al al-alert" style="margin-bottom:8px"><strong>Substance proximity detected.</strong> This person\'s relationship with substances is structurally incompatible with your sobriety. No intellectual value justifies the risk. This is non-negotiable.</div>';
-  else if(checked.length>=2)h+='<div class="al al-warn" style="margin-bottom:8px"><strong>Your system is mapping family patterns onto someone outside your system.</strong> Slow down. This person may not be doing what it feels like they are doing.</div>';
-  if(resFlag&&!substFlag)h+='<div class="al al-info" style="margin-bottom:8px"><strong>Resonance risk.</strong> This person activates your Ni at a depth that feels valuable. Check: are you more regulated or less regulated after this interaction? If less \u2014 they are a cost, not a connection, regardless of the quality of the thinking.</div>';
-  var nm={mapping:'Reading through a home pattern',intensity:'Reacting with disproportionate intensity',motives:'Assigning unverifiable motives',withdraw:'Withdrawing from potential safety',perform:'Performing competence',test:'Testing against hidden standards',idealise:'Idealising beyond evidence',resonance:'Thinking engine activated — cannot stop',substprox:'Substance proximity risk'};
-  var act={mapping:'Name the family pattern you recognise. Then ask: is this person actually doing this, or does it feel familiar?',intensity:'The intensity belongs to the wound, not this person. They have not earned this level of reaction. Scale back.',motives:'You do not have enough data. Gather more before acting on the interpretation.',withdraw:'The withdrawal reflex protects you from family. It may be blocking something safe. Stay open one step longer than feels comfortable.',perform:'You do not need to prove yourself to this person. Being competent is enough. Drop the performance.',test:'They do not know your test. Name what you actually need from this interaction and ask for it directly.',idealise:'Check the evidence. What has this person actually demonstrated? Separate what they are from what you want them to be.',resonance:'Name the cost. Is this interaction worth what it takes from your regulation budget today? Set a time limit. Check regulation after.',substprox:'This person\'s relationship with substances is incompatible with your sobriety. No intellectual value justifies proximity to normalised use. This is structural.'};
-  var nm2={mapping:'Reading through home pattern',intensity:'Disproportionate reaction',motives:'Assigning unverifiable motives',withdraw:'Withdrawing from safety',perform:'Performing competence',test:'Testing against hidden standards',idealise:'Idealising beyond evidence',resonance:'Thinking engine activated',substprox:'Substance proximity risk'};
-  var opsy={mapping:'Trauma schema generalisation',intensity:'Amygdala hijack \u2014 wound-driven over-response',motives:'Theory of mind over-extension',withdraw:'Avoidant attachment activation',perform:'Compensatory self-presentation',test:'Covert contract \u2014 unarticulated expectations',idealise:'Idealisation defence (splitting)',resonance:'Ni activation past sorting threshold',substprox:'Structural sobriety threat'};
-  checked.forEach(function(r){var k=r.querySelector('input').dataset.out;h+='<div class="ri"><div class="ri-name">'+(nm[k]||k)+'</div><div class="ri-action">'+(act[k]||'')+'</div>'+(opsy[k]?'<div style="font-size:11px;color:var(--text3);font-style:italic;margin-top:4px">'+opsy[k]+'</div>':'')+'</div>';});
-  h+='<div class="prompt">Is this person doing what the wound says they are doing, or does it feel like something you recognise?</div>';
+  if(keys.includes('mapping'))h+='<div class="al al-info"><strong>Pattern mapping active.</strong> The pattern you are seeing is from home, not from this person. They have not earned this read.</div>';
+  // Outside-specific items
+  var onm={mapping:'Pattern mapping',intensity:'Intensity mismatch',motives:'Unverified motives',withdraw:'Withdrawal from safety',perform:'Performing competence',test:'Hidden standards',idealise:'Over-investment',resonance:'Cognitive activation',substprox:'Substance proximity',shy:'Performance anxiety'};
+  var opsy={mapping:'Schema-driven perception \u2014 home dynamics being projected outward',intensity:'Sympathetic activation calibrated for past threat, not present',motives:'Theory of mind error \u2014 attribution without evidence',withdraw:'Avoidant attachment defence',perform:'Imposter posture \u2014 Fe performing acceptability',test:'Implicit relational standards \u2014 4 core wound testing',idealise:'Idealisation \u2014 splitting in attachment',resonance:'Cognitive instrumentalisation vulnerability \u2014 Ni activation overriding Ti',substprox:'Environmental relapse risk \u2014 dopamine chain proximity',shy:'Performance anxiety \u2014 SX instinct under critic activation'};
+  var oact={mapping:'Name the pattern. Name who it actually belongs to. This person is not them.',intensity:'Your intensity is real but it belongs to an older event. Respond to what is actually here.',motives:'Ask them. Or hold the question. Do not act on a motive you have not verified.',withdraw:'Name what is making you withdraw. If it is unfamiliarity rather than threat, sit with the discomfort.',perform:'Stop performing. Let your competence land without packaging it.',test:'They cannot pass a test they do not know about. State your standards or release the test.',idealise:'Name three things you actually know about them. Idealisation needs information to dissolve.',resonance:'If your thinking is being activated to serve them, pull back. You are not a processing tool.',substprox:'This person is environmental risk. Reduce contact. Do not explain.',shy:'The shyness is real but it is not data about your worth. Bring presence, not performance. Silence is fine.'};
+  // Add NOISE_MANIP and NOISE_SELF maps
+  var manipNm={manip:'Selective information',mhelpless:'Performed helplessness',mdeny:'Plausible deniability',magreed:'Private agreement broken',mflat:'Cognitive instrumentalisation',mvictim:'Strategic victim stance',mguild:'Guilt placement',mnarr:'Narrative spreading',murgent:'Manufactured urgency',mtest:'Loyalty test',fawnpull:'Fawn trigger',fawnauth:'Authority used to shrink',fawndis:'Disagreement pathologised'};
+  var manipPsy={manip:'Covert control \u2014 curated reality',mhelpless:'Hero drive trigger',mdeny:'Accountability evasion',magreed:'Tactical agreement',mflat:'Depth used as processing tool',mvictim:'Real pain + tactical deployment',mguild:'Guilt as remote control',mnarr:'Reputation control outside your presence',murgent:'Time pressure to bypass judgment',mtest:'Unreasonable demand as proof of love',fawnpull:'Social dominance eliciting fawn',fawnauth:'Status-based fawn activation',fawndis:'Dissent reframed as deficiency'};
+  var manipAct={manip:'Document what was said vs what was done. Adjust access.',mhelpless:'Name their actual capacity. Do not rescue.',mdeny:'Write down exactly what happened. Document.',magreed:'Stop making agreements without structural enforcement.',mflat:'Pull back. You are not a processing tool.',mvictim:'Compassion does not require compliance.',mguild:'Whose behaviour caused this? If not yours, return the guilt.',mnarr:'Let your behaviour be the counter-narrative.',murgent:'Name one real consequence of waiting 48 hours.',mtest:'The demand costs your regulation. It is a test, not a need.',fawnpull:'You do not owe admiration. Silence is valid.',fawnauth:'Their status does not make them right.',fawndis:'Your disagreement is not a symptom.'};
+  var selfNm={trustgive:'Trust given without evidence',rational:'Rationalisation active',urgency:'False urgency',suspicion:'Suspicion beyond evidence',respshift:'Carrying what is not yours',discount:'Self-discounting',disqual:'Disqualifying the positive',compare:'Unfavourable comparison'};
+  var selfPsy={trustgive:'Attachment overriding reality testing',rational:'Post-hoc justification',urgency:'Sympathetic time pressure',suspicion:'Wound-driven pattern detection',respshift:'Hero drive disintegration',discount:'Competence denial',disqual:'Cognitive distortion \u2014 filtering capability',compare:'Social comparison bias'};
+  var selfAct={trustgive:'Name what evidence supports trusting them.',rational:'Read your justification as if someone else wrote it.',urgency:'The urgency is activation, not reality.',suspicion:'Name the specific evidence.',respshift:'If the answer is discomfort but not harm, it is not yours.',discount:'Name one thing you did this week that required skill.',disqual:'Write down the outcome. Read it without commentary. It happened.',compare:'Name what they have that you want. Then name what you have that they do not.'};
+  checked.forEach(function(r){
+    var k=r.querySelector('input').dataset.out;
+    var nm=onm[k]||manipNm[k]||selfNm[k]||k;
+    var psy=opsy[k]||manipPsy[k]||selfPsy[k]||'';
+    var act=oact[k]||manipAct[k]||selfAct[k]||'';
+    h+='<div class="ri"><div class="ri-name">'+nm+'</div><div class="ri-action">'+act+'</div>'+(psy?'<div style="font-size:11px;color:var(--text3);font-style:italic;margin-top:4px">'+psy+'</div>':'')+'</div>';
+  });
   show('r-out-noise',h);
 }
 
@@ -1879,8 +1978,8 @@ var BREATHS=[
 var GRND_TECHS=[
   {id:'gcold',title:'Cold water',desc:'Splash cold water on your face or wrists. Dive reflex drops heart rate instantly.',simple:true},
   {id:'g54321',title:'5-4-3-2-1',desc:'Name things through each sense. Pulls attention from narrative into actual environment.',senses:[{label:'5 things you can see',count:5,prompt:'Look around. Name one thing you can see.'},{label:'4 things you can touch',count:4,prompt:'What can you physically feel?'},{label:'3 things you can hear',count:3,prompt:'What sounds are present?'},{label:'2 things you can smell',count:2,prompt:'What do you notice in the air?'},{label:'1 thing you can taste',count:1,prompt:'What taste is present?'}]},
-  {id:'gcontact',title:'Self-contact',desc:'Hand on your chest. Feel the weight and warmth. Vagal activation without another person.',dur:30},
-  {id:'gletgo',title:'Letting go of attention',desc:'Stop directing attention anywhere. Let it rest where it falls. Not meditation — stopping the effort of attending.',dur:60}
+  {id:'gcontact',title:'Self-contact',desc:'Hand on your chest. Feel the weight and warmth. Vagal activation without another person.',dur:180},
+  {id:'gletgo',title:'Letting go of attention',desc:'Stop directing attention anywhere. Let it rest where it falls. Not meditation — stopping the effort of attending.',dur:300}
 ];
 function buildGroundList(ctx){
   var wrap=document.getElementById('ground-list');wrap.innerHTML='';
@@ -2010,7 +2109,7 @@ function startGrounding(tech){
 function runSimple(tech,body){body.innerHTML='<div class="grnd-prompt" style="font-size:14px">Go splash cold water on your face or hold it on your wrists.</div><button class="grnd-btn" style="margin-top:12px" onclick="showDone(\''+tech.id+'\')">Done — I tried it</button>';}
 function run54321(tech,body,si,tapped){var s=tech.senses[si];body.innerHTML='<div class="grnd-prompt">'+s.prompt+'</div><div class="grnd-sense">'+s.label+'</div><div class="grnd-counter">'+(s.count-tapped)+'</div><button class="grnd-btn" id="tap-btn">Tap each time you notice one</button>';document.getElementById('tap-btn').onclick=function(){beep();vibrate(60);tapped++;if(tapped>=s.count){if(si+1<tech.senses.length)run54321(tech,body,si+1,0);else showDone2(tech.id,body);}else body.querySelector('.grnd-counter').textContent=(s.count-tapped);};}
 
-function runTimed(tech,body){body.innerHTML='<div class="grnd-prompt">'+(tech.id==='gcontact'?'Place one hand on your chest. Feel the weight and warmth.':'Stop directing your attention. Let it rest wherever it naturally falls.')+'</div><button class="grnd-btn" id="ts">Start</button>';document.getElementById('ts').onclick=function(){this.style.display='none';beep();body.innerHTML+='<div class="grnd-pulse" id="tp"></div><div class="grnd-counter" id="tc">'+tech.dur+'</div>';var rem=tech.dur;var pulse=false;var piv=setInterval(function(){pulse=!pulse;var e=document.getElementById('tp');if(e)e.classList.toggle('expand',pulse);},tech.id==='gletgo'?2500:1500);var iv=setInterval(function(){rem--;var e=document.getElementById('tc');if(e)e.textContent=rem;if(rem<=0){clearInterval(iv);clearInterval(piv);vibrate(200);showDone2(tech.id,body);}},1000);};}
+function runTimed(tech,body){body.innerHTML='<div class="grnd-prompt">'+(tech.id==='gcontact'?'Place one hand on your chest. Feel the weight and warmth.':'Stop directing your attention. Let it rest wherever it naturally falls.')+'</div><button class="grnd-btn" id="ts">Start</button>';document.getElementById('ts').onclick=function(){this.style.display='none';beep();var mm0=Math.floor(tech.dur/60);var ss0=tech.dur%60;var initT=mm0>0?(mm0+':'+(ss0<10?'0':'')+ss0):tech.dur;body.innerHTML+='<div class="grnd-pulse" id="tp"></div><div class="grnd-counter" id="tc">'+initT+'</div>';var rem=tech.dur;var pulse=false;var piv=setInterval(function(){pulse=!pulse;var e=document.getElementById('tp');if(e)e.classList.toggle('expand',pulse);},tech.id==='gletgo'?2500:1500);var iv=setInterval(function(){rem--;var e=document.getElementById('tc');if(e){var mm=Math.floor(rem/60);var ss=rem%60;e.textContent=mm>0?(mm+':'+(ss<10?'0':'')+ss):rem;}if(rem<=0){clearInterval(iv);clearInterval(piv);beep();vibrate(200);showDone2(tech.id,body);}},1000);};}
 
 function showDone(id){var body=document.getElementById('body-'+id);body.innerHTML='<div class="grnd-done-q">How do you feel now?</div><div class="grnd-done-btns"><button class="grnd-done-btn settled" onclick="grndSettled(\''+id+'\')">More settled</button><button class="grnd-done-btn still" onclick="grndStill(\''+id+'\')">Still activated</button></div><div class="grnd-still-msg" id="still-'+id+'"></div>';}
 function showDone2(id,body){body.innerHTML='<div class="grnd-done-q">How do you feel now?</div><div class="grnd-done-btns"><button class="grnd-done-btn settled" onclick="grndSettled(\''+id+'\')">More settled</button><button class="grnd-done-btn still" onclick="grndStill(\''+id+'\')">Still activated</button></div><div class="grnd-still-msg" id="still-'+id+'"></div>';}
@@ -2152,11 +2251,17 @@ function init(){
   buildChkList('b-list',BODY_ITEMS,'b');
   buildRegItems('reg-items');
   buildRegItems('quick-reg-items');
-  buildChkList('noise-list',FAM_NOISE,'n');
+  buildChkList('noise-wound-list',NOISE_WOUND,'n');
+  buildChkList('noise-manip-list',NOISE_MANIP,'n');
+  buildChkList('noise-self-list',NOISE_SELF,'n');
   buildChkList('rel-list',REL_PATTERNS,'nr');
-  buildChkList('fam-noise-list',FAM_NOISE,'fn');
+  buildChkList('fam-noise-wound-list',NOISE_WOUND,'fn');
+  buildChkList('fam-noise-manip-list',NOISE_MANIP,'fn');
+  buildChkList('fam-noise-self-list',NOISE_SELF,'fn');
   buildChkList('fam-rel-list',REL_PATTERNS,'fnr');
   buildChkList('out-noise-list',OUT_NOISE,'out');
+  buildChkList('out-manip-list',NOISE_MANIP,'out');
+  buildChkList('out-self-list',NOISE_SELF,'out');
   buildChkList('c-list',CAT_ITEMS,'c');
   buildChkList('dist-list',DIST_ITEMS,'d');
   buildChkList('bnd-list',BND_ITEMS,'bv');
@@ -2172,6 +2277,7 @@ function init(){
   buildTaperList();
   buildQuitList();
   buildEmoPicker('emo-pick');
+initPrep();
   buildEmoPicker('emo-pick-sit');
   initCare();
 }
