@@ -10,22 +10,53 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700&display=swap');
 *{box-sizing:border-box;margin:0;padding:0}
-body{
-  font-family:'DM Sans',-apple-system,BlinkMacSystemFont,sans-serif;
-  background:var(--bg3);color:var(--text);
-  -webkit-text-size-adjust:100%;
-  -webkit-font-smoothing:antialiased;
-}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",sans-serif;font-size:14px;line-height:1.5;margin:0;padding:0;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 :root{
-  --bg:#f5f3ee;--bg2:#edeae4;--bg3:#e8e5df;
-  --text:#2a2820;--text2:#6a6458;--text3:#9a9488;
-  --bdr:rgba(42,40,32,0.10);--bdr2:rgba(42,40,32,0.18);
-  --calm:#2a7a6a;--calm-bg:#e0eeeb;--calm-bdr:#3a8a7a;--calm-text:#1a5a4a;
-  --ok:#3a7a4a;--ok-bg:#e4ede6;--ok-bdr:#4a8a5a;
-  --warn:#b89a4a;--warn-bg:#f0ebe0;--warn-bdr:#c8aa5a;--warn-text:#8a7030;
-  --alert:#c47a5a;--alert-bg:#f0e6e0;--alert-bdr:#d48a6a;--alert-text:#8a4a30;
-  --info:#7a6a8a;--info-bg:#eae6ee;--info-bdr:#8a7a9a;--info-text:#5a4a6a;
-  --r:10px;--rl:14px
+  --bg:#0e1116;
+  --bg2:#161b22;
+  --bg3:#1e242d;
+  --bdr:#2d3540;
+  --bdr2:#3a4250;
+  --text:#e8ecf1;
+  --text2:#b8c0cc;
+  --text3:#7a8290;
+  --text4:#5a6270;
+  --r:12px;
+  --r2:8px;
+  
+  /* Heat level palette — also used app-wide */
+  --blue:#4f9ce8;
+  --blue-bg:rgba(79,156,232,0.12);
+  --blue-bdr:rgba(79,156,232,0.4);
+  
+  --green:#5ec27a;
+  --green-bg:rgba(94,194,122,0.12);
+  --green-bdr:rgba(94,194,122,0.4);
+  
+  --yellow:#e8b84a;
+  --yellow-bg:rgba(232,184,74,0.12);
+  --yellow-bdr:rgba(232,184,74,0.4);
+  
+  --red:#e8635c;
+  --red-bg:rgba(232,99,92,0.12);
+  --red-bdr:rgba(232,99,92,0.4);
+  
+  /* Semantic aliases — keep legacy names mapped to new palette */
+  --calm:var(--blue);
+  --calm-bg:var(--blue-bg);
+  --calm-bdr:var(--blue-bdr);
+  --ok:var(--green);
+  --ok-bg:var(--green-bg);
+  --ok-bdr:var(--green-bdr);
+  --warn-text:var(--yellow);
+  --warn-bg:var(--yellow-bg);
+  --warn-bdr:var(--yellow-bdr);
+  --alert:var(--red);
+  --alert-bg:var(--red-bg);
+  --alert-bdr:var(--red-bdr);
+  --info-text:var(--blue);
+  --info-bg:var(--blue-bg);
+  --info-bdr:var(--blue-bdr);
 }
 @media(prefers-color-scheme:dark){:root{
   --bg:#1a1810;--bg2:#22201a;--bg3:#161410;
@@ -39,7 +70,7 @@ body{
 }}
 
 /* ── LAYOUT ── */
-.app{max-width:540px;margin:0 auto;padding:0 0 2rem;min-height:100vh}
+.app{max-width:480px;margin:0 auto;padding:16px 14px 80px;min-height:100vh}
 .screen{display:none;padding:0 1rem}
 .screen.on{display:block}
 
@@ -157,7 +188,7 @@ body{
 .reg-psych-val{font-size:12px;color:var(--text2)}
 
 /* ── BAND PILLS ── */
-.bpill{display:inline-block;font-size:11px;padding:3px 10px;border-radius:20px;font-weight:600;margin-bottom:6px}
+
 .bp-w{background:var(--info-bg);color:var(--info-text)}
 .bp-e{background:var(--ok-bg);color:var(--ok)}
 .bp-i{background:var(--warn-bg);color:var(--warn-text)}
@@ -411,6 +442,59 @@ body{
 .int-seg.on-low{background:var(--ok)}
 .int-seg.on-mid{background:var(--warn)}
 .int-seg.on-high{background:var(--alert)}
+
+/* Heat level visual */
+.heat-bar{display:flex;height:6px;margin-top:8px;border-radius:3px;overflow:hidden}
+.heat-bar .z-blue{flex:2;background:var(--blue)}
+.heat-bar .z-green{flex:3;background:var(--green)}
+.heat-bar .z-yellow{flex:2;background:var(--yellow)}
+.heat-bar .z-red{flex:3;background:var(--red)}
+.heat-nums{display:flex;justify-content:space-between;margin-top:6px;padding:0 8px;font-size:10px;color:var(--text3)}
+.heat-nums span{width:22px;text-align:center}
+.heat-labels{display:flex;margin-top:4px;padding:0 2px;font-size:9px;letter-spacing:0.6px}
+.heat-labels>div{text-align:center}
+.heat-labels .l-blue{flex:2;color:var(--blue)}
+.heat-labels .l-green{flex:3;color:var(--green)}
+.heat-labels .l-yellow{flex:2;color:var(--yellow)}
+.heat-labels .l-red{flex:3;color:var(--red)}
+.heat-zone-msg{margin-top:10px;font-size:12px;color:var(--text2);line-height:1.5;padding:8px 12px;background:var(--bg);border-radius:var(--r2);border:1px solid var(--bdr)}
+.heat-zone-msg strong{color:var(--text)}
+
+/* Nicotine timer banner */
+.nicotine-banner{
+  background:var(--bg2);
+  border:1px solid var(--green-bdr);
+  border-radius:var(--r);
+  padding:14px 16px;
+  margin-bottom:14px;
+}
+.nb-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+.nb-label{
+  font-size:11px;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  color:var(--green);
+  font-weight:500;
+}
+.nb-time{
+  font-size:16px;
+  font-weight:500;
+  color:var(--text);
+  font-variant-numeric:tabular-nums;
+}
+.nb-quote{
+  font-size:11px;
+  color:var(--text3);
+  font-style:italic;
+  text-align:center;
+  margin-top:8px;
+  letter-spacing:0.3px;
+}
 </style>
 </head>
 <body>
@@ -420,7 +504,7 @@ body{
 <div class="app-header">
   <div class="app-title">Inner Systems</div>
   <div class="app-sub">Nothing is bad or good. Just notice.</div>
-  <div class="app-updated">Last updated: 17 May 2026</div><div id="sync-status" style="font-size:10px;color:var(--text3);margin-top:2px;cursor:pointer" onclick="showTokenPrompt()"></div>
+  <div class="app-updated">Last updated: 24 May 2026</div><div id="sync-status" style="font-size:10px;color:var(--text3);margin-top:2px;cursor:pointer" onclick="showTokenPrompt()"></div>
   <div class="reg-indicator" id="reg-pill">Not checked today</div>
 </div>
 
@@ -485,6 +569,13 @@ body{
 
 <!-- HOME / ENTRY -->
 <div class="screen on" id="scr-home">
+  <div id="nicotine-timer" class="nicotine-banner">
+    <div class="nb-top">
+      <div class="nb-label">No nicotine</div>
+      <div class="nb-time" id="nb-time">VVV</div>
+    </div>
+    <div class="nb-quote">Dad's 12 year death anniversary tribute</div>
+  </div>
   <div class="entry-grid">
     <div class="entry-btn urgent" onclick="goActivated()">
       <div class="entry-ico">&#9888;</div>
@@ -550,7 +641,12 @@ body{
 <div class="screen" id="scr-activated">
   <button class="btn-back" onclick="showScreen('scr-home')">&#8592; Back</button>
   <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9679;</span><div><div class="csec-nm">What am I feeling</div><div class="csec-ds">Name the emotion before analysing</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div style="display:flex;flex-wrap:wrap;gap:6px" id="emo-pick"></div></div></div>
-  <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9678;</span><div><div class="csec-nm">Regulation check</div><div class="csec-ds">Your worst moment today — how activated were you?</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="card-desc">Select everything present. More than one is normal.</div><div class="reg-items" id="quick-reg-items"></div><button class="btn" onclick="event.stopPropagation();doQuickReg()">Notice</button><div class="result" id="r-quick-reg"></div></div></div>
+    <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9711;</span><div><div class="csec-nm">Enneagram mode</div><div class="csec-ds">Where is the system pulling right now?</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
+      <div id="ennea-list-act" class="chk-list"></div>
+      <button class="btn" onclick="doEnneaAct()">Check mode</button>
+      <div class="result" id="r-ennea-act"></div>
+    </div></div>
+  <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9678;</span><div><div class="csec-nm">Heat check</div><div class="csec-ds">Your worst moment yesterday or today — how activated were you?</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="card-desc">Select everything present. More than one is normal.</div><div class="reg-items" id="quick-reg-items"></div><button class="btn" onclick="event.stopPropagation();doQuickReg()">Notice</button><div class="result" id="r-quick-reg"></div></div></div>
   
 </div>
 
@@ -609,6 +705,11 @@ body{
     <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9679;</span><div><div class="csec-nm">Relationship patterns</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="fam-rel-list" class="chk-list"></div></div></div>
     <button class="btn" onclick="doFamNoise()">Notice</button>
     <div class="result" id="r-fam-noise"></div>
+    <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9711;</span><div><div class="csec-nm">Enneagram mode</div><div class="csec-ds">Which mode is firing?</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
+      <div id="ennea-list-fam" class="chk-list"></div>
+      <button class="btn" onclick="doEnneaFam()">Check mode</button>
+      <div class="result" id="r-ennea-fam"></div>
+    </div></div>
   </div>
 </div>
 
@@ -623,6 +724,11 @@ body{
     <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9678;</span><div><div class="csec-nm">Self-discounting or rationalising</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="out-self-list" class="chk-list"></div></div></div>
     <button class="btn" onclick="doOutNoise()">Notice</button>
     <div class="result" id="r-out-noise"></div>
+    <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9711;</span><div><div class="csec-nm">Enneagram mode</div><div class="csec-ds">Which mode is firing?</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
+      <div id="ennea-list-out" class="chk-list"></div>
+      <button class="btn" onclick="doEnneaOut()">Check mode</button>
+      <div class="result" id="r-ennea-out"></div>
+    </div></div>
   </div>
 </div>
 
@@ -688,7 +794,9 @@ body{
     <div class="yn-row"><span class="yn-text" id="gt-s2">No caffeine yesterday</span><div class="yn-btns"><button class="yn-btn" id="s2a" onclick="event.stopPropagation();yn('s2a','s2b')">Yes</button><button class="yn-btn" id="s2b" onclick="event.stopPropagation();yn('s2b','s2a')">No</button></div></div>
     <div class="yn-row"><span class="yn-text" id="gt-s3">No nicotine yesterday</span><div class="yn-btns"><button class="yn-btn" id="s3a" onclick="event.stopPropagation();yn('s3a','s3b')">Yes</button><button class="yn-btn" id="s3b" onclick="event.stopPropagation();yn('s3b','s3a')">No</button></div></div>
     <div class="yn-row"><span class="yn-text" id="gt-s4">No pornography yesterday</span><div class="yn-btns"><button class="yn-btn" id="s4a" onclick="event.stopPropagation();yn('s4a','s4b')">Yes</button><button class="yn-btn" id="s4b" onclick="event.stopPropagation();yn('s4b','s4a')">No</button></div></div>
-    <div class="sdiv">Autonomic maintenance</div>
+    <div class="sdiv">Stability structure</div>
+    <div class="yn-row"><span class="yn-text">Stayed within stability structure yesterday — did not push past sleep, regulation, or routine limits</span><div class="yn-btns"><button class="yn-btn" id="m3a" onclick="event.stopPropagation();yn('m3a','m3b')">Yes</button><button class="yn-btn" id="m3b" onclick="event.stopPropagation();yn('m3b','m3a')">No</button></div></div>
+    <div class="sdiv" style="margin-top:8px">Autonomic maintenance</div>
     <div class="yn-row"><span class="yn-text">Moved body yesterday — walked or exercised</span><div class="yn-btns"><button class="yn-btn" id="m1a" onclick="event.stopPropagation();yn('m1a','m1b')">Yes</button><button class="yn-btn" id="m1b" onclick="event.stopPropagation();yn('m1b','m1a')">No</button></div></div>
     <div class="yn-row"><span class="yn-text">Slept 7+ hours last night</span><div class="yn-btns"><button class="yn-btn" id="m2a" onclick="event.stopPropagation();yn('m2a','m2b')">Yes</button><button class="yn-btn" id="m2b" onclick="event.stopPropagation();yn('m2b','m2a')">No</button></div></div>
     <div style="font-size:11px;color:var(--text3);font-style:italic;margin:4px 0 10px">Showing up is half the battle. Movement and sleep are regulation infrastructure.</div>
@@ -807,7 +915,12 @@ body{
     <div style="font-size:12px;color:var(--text2)">Core wounds: Hero drive (trap) · Not being seen · Betrayal · Manipulation · Truth denied · Helplessness · Being overridden · Being infantilised · Responsibility not shared · Rejection</div>
   </div></div>
   <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico" style="font-size:12px;font-weight:700">01</span><div><div class="csec-nm">Body signals</div><div class="csec-ds">Se inferior + SP blind &#8212; your weakest function. You will miss these until they are loud. Check deliberately.</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="b-list"></div><button class="btn" onclick="doBody()">Notice</button><div class="result" id="r-body"></div></div></div>
-  <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico" style="font-size:12px;font-weight:700">02</span><div><div class="csec-nm">Regulation level</div><div class="csec-ds">Your worst moment today. What was present at its peak?</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="reg-items" id="reg-items"></div><button class="btn" onclick="doReg()">Notice</button><div class="result" id="r-reg"></div></div></div>
+  <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico" style="font-size:12px;font-weight:700">02</span><div><div class="csec-nm">Heat level</div><div class="csec-ds">Your worst moment yesterday or today. What was present at its peak?</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="reg-items" id="reg-items"></div><button class="btn" onclick="doReg()">Notice</button><div class="result" id="r-reg"></div>
+    <div class="csec" style="margin-top:8px"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9711;</span><div><div class="csec-nm">Enneagram mode</div><div class="csec-ds">Which mode is firing?</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
+      <div id="ennea-list-dr" class="chk-list"></div>
+      <button class="btn" onclick="doEnneaDr()">Check mode</button>
+      <div class="result" id="r-ennea-dr"></div>
+    </div></div></div></div>
   <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico" style="font-size:12px;font-weight:700">03</span><div><div class="csec-nm">Noise check</div><div class="csec-ds">Is the signal real or is the wound running?</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9632;</span><div><div class="csec-nm">Wound or signal contamination</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="noise-wound-list"></div></div></div><div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9670;</span><div><div class="csec-nm">Manipulation or fawn triggers from others</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="noise-manip-list"></div></div></div><div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9678;</span><div><div class="csec-nm">Self-discounting or rationalising</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="noise-self-list"></div></div></div><div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9679;</span><div><div class="csec-nm">Relationship patterns</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="rel-list"></div></div></div><button class="btn" onclick="doNoise()">Notice</button><div class="result" id="r-noise"></div></div></div>
   <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico" style="font-size:12px;font-weight:700">04</span><div><div class="csec-nm">Distortion check</div><div class="csec-ds">Check what is active in your thinking.</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9632;</span><div><div class="csec-nm">Catastrophising</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="c-list"></div></div></div><div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9679;</span><div><div class="csec-nm">Cognitive filters</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="dist-list"></div></div></div><button class="btn" onclick="doDistort()">Notice</button><div class="result" id="r-distort"></div></div></div>
   <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico" style="font-size:12px;font-weight:700">05</span><div><div class="csec-nm">Interaction scan</div><div class="csec-ds">What is present in a recent or ongoing interaction.</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9632;</span><div><div class="csec-nm">Boundary pressure</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="bnd-list"></div></div></div><div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9679;</span><div><div class="csec-nm">Behavioural drift</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="soc-list"></div></div></div><button class="btn" onclick="doScan()">Notice</button><div class="result" id="r-scan"></div></div></div>
@@ -838,6 +951,19 @@ body{
       <div class="afi" onclick="togAff(this)"><input type="checkbox" id="afi-14"><span>I do not need to earn rest or safety.</span></div>
       <div class="afi" onclick="togAff(this)"><input type="checkbox" id="afi-15"><span>What I did today was enough.</span></div>
       <div class="afi" onclick="togAff(this)"><input type="checkbox" id="afi-16"><span>I am not behind. I am where the work brought me.</span></div>
+    <div class="sdiv" style="margin-top:12px">Values</div>
+    <div style="font-size:11px;color:var(--text3);line-height:1.6;padding:8px 12px;background:var(--bg);border-radius:var(--r);border:1px solid var(--bdr);margin-bottom:8px">
+      <strong style="color:var(--text2)">Clarity</strong> — seeing things as they are (not over-analysis or certainty-seeking)<br>
+      <strong style="color:var(--text2)">Freedom</strong> — acting without distortion or compulsion (not absence of structure or responsibility)<br>
+      <strong style="color:var(--text2)">Authenticity</strong> — expressing what is genuinely true (not emotional dumping or performance)<br>
+      <strong style="color:var(--text2)">Compassion</strong> — responding from recognition of shared reality (not self-sacrifice or carrying others' regulation)
+    </div>
+    <div class="sdiv" style="margin-top:12px">Future boosts</div>
+    <div class="afi" onclick="togAff(this)"><input type="checkbox" id="afi-17"><span>I take one small action toward Novisits today, no matter how rough.</span></div>
+    <div class="afi" onclick="togAff(this)"><input type="checkbox" id="afi-18"><span>I take one structural step toward exit or partnership — either way, support is coming.</span></div>
+    <div class="afi" onclick="togAff(this)"><input type="checkbox" id="afi-19"><span>I take one step toward body optimisation — walk, exercise, sleep, food, hydration.</span></div>
+    <div class="afi" onclick="togAff(this)"><input type="checkbox" id="afi-20"><span>I read or write something that builds the structure I am moving toward.</span></div>
+    <div class="afi" onclick="togAff(this)"><input type="checkbox" id="afi-21"><span>I make contact with a new friend or professional contact today.</span></div>
     </div></div></div>
     <button class="btn" style="margin-top:14px" onclick="doIntegration()">Complete review</button>
     <div class="mantra" id="mantra">
@@ -878,7 +1004,7 @@ function buildSaveData(){
     data[k]={v:v,ts:ts||Date.now()};
   });
   // Guardrails
-  ['s1a','s1b','s2a','s2b','s3a','s3b','s4a','s4b','m1a','m1b','m2a','m2b','p1a','p1b','p2a','p2b','p3a','p3b','t1a','t1b','t2a','t2b'].forEach(function(k){
+  ['s1a','s1b','s2a','s2b','s3a','s3b','s4a','s4b','m1a','m1b','m2a','m2b','m3a','m3b','p1a','p1b','p2a','p2b','p3a','p3b','t1a','t1b','t2a','t2b'].forEach(function(k){
     var v=recall(k,'');var ts=parseInt(localStorage.getItem(SK+k+'_ts')||'0');
     data[k]={v:v,ts:ts||Date.now()};
   });
@@ -1176,6 +1302,49 @@ function initPrep(){
   buildChkList('prep-protocol-list',PREP_PROTOCOL,'prep-p');
 }
 
+
+var ENNEA_MODES=[
+  {id:'e1',tx:'Correcting, judging, or moralising others'},
+  {id:'e2',tx:'Over-helping or seeking appreciation'},
+  {id:'e3',tx:'Increased emphasis on performance, results, or image'},
+  {id:'e4',tx:'Emotional intensity and sense of being misunderstood'},
+  {id:'e5',tx:'Withdrawal and protection of time or energy'},
+  {id:'e6',tx:'Over-explaining, self-defense, or seeking reassurance'},
+  {id:'e7',tx:'Movement toward distraction or reframing to reduce discomfort'},
+  {id:'e8',tx:'Rising forcefulness, control, or confrontation'},
+  {id:'e9',tx:'Numbing, disengagement, or decision avoidance'}
+];
+
+
+function initEnnea(){buildChkList('ennea-list-act',ENNEA_MODES,'ennea-act');buildChkList('ennea-list-fam',ENNEA_MODES,'ennea-fam');buildChkList('ennea-list-out',ENNEA_MODES,'ennea-out');buildChkList('ennea-list-dr',ENNEA_MODES,'ennea-dr');}
+function doEnneaAct(){doEnneaGeneric('ennea-list-act','r-ennea-act');}
+function doEnneaFam(){doEnneaGeneric('ennea-list-fam','r-ennea-fam');}
+function doEnneaOut(){doEnneaGeneric('ennea-list-out','r-ennea-out');}
+function doEnneaDr(){doEnneaGeneric('ennea-list-dr','r-ennea-dr');}
+
+function doEnneaGeneric(listId,resId){
+  var checked=[...document.querySelectorAll('#'+listId+' .chk-row')].filter(function(r){return r.querySelector('input').checked;});
+  if(!checked.length){show(resId,'<span class="ri-ok">No mode shift detected. Likely within 4w5 baseline.</span>');return;}
+  var native=['e4','e5'];
+  var keys=checked.map(function(r){var i=r.querySelector('input');return i.dataset.ennea||i.dataset.enneaSit||i.dataset.enneaFam||i.dataset.enneaOut||i.dataset.enneaDr||'';});
+  var nonNative=keys.filter(function(k){return native.indexOf(k)<0;});
+  var modes={e1:{n:'1 \u2014 Reformer',t:'Correction mode active. Easing standards may reduce strain.',psy:'Disintegration to 1 hero drive \u2014 discipline becoming standard for others'},
+    e2:{n:'2 \u2014 Helper',t:'Over-helping active. Pausing helping and restoring boundaries.',psy:'4\u21922 disintegration \u2014 hero drive firing'},
+    e3:{n:'3 \u2014 Achiever',t:'Performance pressure. Loosen the link between worth and output.',psy:'Image fixation \u2014 Fe-aux performing acceptability'},
+    e4:{n:'4 \u2014 Individualist (native)',t:'Within baseline. Lower emotional intensity if amplified.',psy:'Core type \u2014 natural territory'},
+    e5:{n:'5 \u2014 Investigator (native)',t:'Within baseline. Light re-engagement if too withdrawn.',psy:'Wing 5 \u2014 depth and conservation'},
+    e6:{n:'6 \u2014 Loyalist',t:'Reduce reassurance-seeking. Write facts only.',psy:'Anxiety scanning \u2014 Ti seeking certainty'},
+    e7:{n:'7 \u2014 Enthusiast',t:'Reduce stimulation. Stay with one task.',psy:'Distraction defence \u2014 bypassing discomfort'},
+    e8:{n:'8 \u2014 Challenger',t:'Lower force. Delay action. Soften tone.',psy:'Counter-narrative active \u2014 Charge 2 pole'},
+    e9:{n:'9 \u2014 Peacemaker',t:'Gentle activation. Name one priority.',psy:'Numbing defence \u2014 Ni-Fe shutdown'}};
+  var h='';
+  if(nonNative.length)h+='<div class="al al-warn"><strong>Cognition leaning outside 4w5 baseline.</strong> '+nonNative.length+' non-native mode(s) active.</div>';
+  else h+='<div class="ri" style="background:var(--ok-bg);border-color:var(--ok-bdr)"><div class="ri-name" style="color:var(--ok)">Within 4w5 baseline</div></div>';
+  keys.forEach(function(k){var m=modes[k];if(m)h+='<div class="ri"><div class="ri-name">'+m.n+'</div><div class="ri-action">'+m.t+'</div><div style="font-size:11px;color:var(--text3);font-style:italic;margin-top:4px">'+m.psy+'</div></div>';});
+  show(resId,h);
+}
+
+
 function goActivated(){showScreen('scr-activated');}
 function goSituation(){showScreen('scr-situation');}
 function goSitFamily(){showScreen('scr-sit-family');}
@@ -1197,21 +1366,16 @@ function togAff(el){var cb=el.querySelector('input');cb.checked=!cb.checked;el.c
 
 // Regulation items
 var REGI=[
-  {id:'stillness',tx:'My mind feels quiet and spacious — no urgency present',votes:{1:3,2:2,3:1,4:1},prod:false},
-  {id:'meta',tx:'I can notice my thoughts as thoughts — I am aware that I am thinking',votes:{2:3,3:2,4:1},prod:false},
-  {id:'observer',tx:'My emotions feel slightly separate from me — I can watch them',votes:{3:3,4:2,5:1},prod:false},
-  {id:'choice',tx:'I can choose where to direct my attention — it feels free, not pulled',votes:{4:3,5:2,3:1},prod:false},
-  {id:'grounded',tx:'I can act from here — calm, clear, no urgency driving me',votes:{5:3,4:2},prod:false},
-  {id:'emotion_me',tx:'I feel like I am the emotion — it has become my identity right now',votes:{6:3,7:1},prod:false},
-  {id:'story',tx:'My mind is building and rebuilding a story — assigning meaning, blame, or cause',votes:{7:3,6:1,8:1},prod:false},
-  {id:'spiritual',tx:'Things feel unusually charged or significant — ordinary events carry special meaning',votes:{7:3,8:2,10:1},prod:true},
-  {id:'urgency',tx:'I feel I must act, decide, or communicate something important right now',votes:{7:2,8:2,10:1},prod:true},
-  {id:'body',tx:'My body is pulling my attention — exhaustion, hunger, physical discomfort',votes:{8:3,6:1},prod:false},
-  {id:'compulsion',tx:'I am seeking reassurance or repeating the same thought loop',votes:{8:2,9:3,7:1},prod:false},
-  {id:'panic',tx:'I feel completely overwhelmed — body shaking, mind blanking, or feeling unreal',votes:{10:3,9:1,8:1},prod:false},
-  {id:'thinking',tx:'My thinking has shifted from directed to self-generating \u2014 pattern recognition running at full volume, everything connecting',votes:{7:3,8:2},prod:true},
-  {id:'heroexhaust',tx:'I have been carrying more than is mine \u2014 exhaustion or resentment building (4\u21922 disintegration)',votes:{6:2,7:2,8:1},prod:false},
-  {id:'punitive',tx:'I notice a shift toward wanting to expose, punish, or force consequences on someone',votes:{7:2,8:3,9:1},prod:false}
+  {id:'witness',tx:'I can notice my thoughts as thoughts — I am aware that I am thinking',votes:{1:3,2:1},prod:false},
+  {id:'observer',tx:'My emotions feel slightly separate from me — I can watch them',votes:{2:3,1:1,3:1},prod:false},
+  {id:'choice',tx:'I can choose where to direct my attention — it feels free, not pulled',votes:{2:2,1:1,3:2},prod:false},
+  {id:'meta',tx:'I am aware of my state and can describe it',votes:{3:3,2:1,4:1},prod:false},
+  {id:'edge',tx:'My attention is engaged with task or person — close to the edge of capacity',votes:{5:3,4:2,6:1},prod:false},
+  {id:'narrow',tx:'My attention is narrowing — options collapsing into one direction',votes:{6:3,7:2,5:1},prod:false},
+  {id:'flood',tx:'I am flooded — thoughts faster than I can sort them',votes:{7:3,8:2,6:1},prod:false},
+  {id:'capture',tx:'I am captured — only one outcome feels possible right now',votes:{8:3,9:2,7:1},prod:false},
+  {id:'survival',tx:'My body is acting before my mind catches up',votes:{9:3,10:2,8:1},prod:false},
+  {id:'panic',tx:'I feel completely overwhelmed — body shaking, mind blanking, or feeling unreal',votes:{10:3,9:1,8:1},prod:false}
 ];
 var RLB={1:'Silent awareness',2:'Meta-awareness',3:'Observing ego',4:'Integrated presence',5:'Engaged self',6:'Emotional identity',7:'Narrative ego',8:'Sensory immersion',9:'Flow / trance',10:'Raw survival'};
 var RST={
@@ -1336,6 +1500,9 @@ var DIST_ITEMS=[
   {id:'emo',tx:'I am treating my feelings as evidence of what is factually true'},
   {id:'mind',tx:'I am filling in what others are thinking without checking'},
   {id:'should',tx:'Rigid shoulds or musts are running the narrative'},
+  {id:'perfect',tx:'My attention is narrowing toward flaws or imperfection'},
+  {id:'personal',tx:'I am taking responsibility for things outside my control'},
+  {id:'overgen',tx:'I am drawing broad conclusions from limited data'},
   {id:'pers',tx:'I am carrying responsibility for something not mine'},
   {id:'mini',tx:'I am minimising my needs or dismissing my contribution'},
   {id:'ref',tx:'I am reframing too quickly — moving to meaning before discomfort has landed'},
@@ -1415,7 +1582,8 @@ var EP_ITEMS=[
   {id:'spblind',tx:'I have pushed past tiredness without noticing — the crash is arriving'},
   {id:'fatigue',tx:'Effort continuing despite clear fatigue'},
   {id:'rest',tx:'Stopping or resting feels like things will fall apart'},
-  {id:'comprw',tx:'Craving after completing a task \u2014 reward system linking accomplishment to substance'}
+  {id:'comprw',tx:'Craving after completing a task \u2014 reward system linking accomplishment to substance'},
+  {id:'assoc',tx:'Associative spread \u2014 thinking is jumping between ideas without anchor'}
 ];
 var SB_ITEMS=[
   {id:'abstr',tx:'I am moving into abstraction to avoid concrete work'},
@@ -1481,7 +1649,8 @@ var TAPER_ITEMS=[
   {id:'tspd',tx:'My thought speed felt normal yesterday'},
   {id:'mood',tx:'My mood felt stable yesterday'},
   {id:'ext',tx:'Someone who sees me clearly would have agreed with my read of things yesterday'},
-  {id:'cessation',tx:'I did not stop any substance abruptly recently'}
+  {id:'cessation',tx:'I did not stop any substance abruptly recently'},
+  {id:'pushst',tx:'I did not push past my stability structure yesterday \u2014 stayed within sleep, regulation, and routine limits'}
 ];
 
 // Quit items
@@ -1594,6 +1763,48 @@ function setIntBar(barId,level){
 }
 
 // ═══════════ CORE FUNCTIONS ═══════════
+
+function buildHeatViz(lvl){
+  // Map level 1-10 to x coordinate on terrain
+  // Terrain path: M 0 130 L 25 105 L 50 120 L 80 130 L 110 150 L 145 158 L 175 160 L 200 158 L 230 145 L 260 125 L 290 100 L 320 75 L 350 50 L 380 30 L 400 22
+  // 10 levels evenly across width 0-400: spacing 40px each
+  // Level positions: 1=20, 2=60, 3=100, 4=140, 5=180, 6=220, 7=260, 8=300, 9=340, 10=380
+  var pts={1:{x:20,y:117},2:{x:60,y:114},3:{x:100,y:138},4:{x:140,y:157},5:{x:175,y:160},6:{x:215,y:152},7:{x:260,y:125},8:{x:300,y:92},9:{x:355,y:47},10:{x:385,y:25}};
+  var p=pts[lvl]||pts[5];
+  var bx=p.x;
+  var by=p.y-7; // ball center 7px above terrain (radius 8 - 1 overlap)
+  var color='var(--green)';
+  if(lvl<=2)color='var(--blue)';
+  else if(lvl<=5)color='var(--green)';
+  else if(lvl<=7)color='var(--yellow)';
+  else color='var(--red)';
+  
+  var svg='<svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;border-radius:8px"><defs><linearGradient id="hSky" x1="0%" x2="0%" y1="0%" y2="100%"><stop offset="0%" stop-color="#1a2535"/><stop offset="100%" stop-color="#0e1116"/></linearGradient><linearGradient id="hFar" x1="0%" x2="0%" y1="0%" y2="100%"><stop offset="0%" stop-color="#3a4250"/><stop offset="100%" stop-color="#1e242d"/></linearGradient><linearGradient id="hMid" x1="0%" x2="0%" y1="0%" y2="100%"><stop offset="0%" stop-color="#454f5d"/><stop offset="100%" stop-color="#252b35"/></linearGradient><linearGradient id="hFront" x1="0%" x2="0%" y1="0%" y2="100%"><stop offset="0%" stop-color="#525c6c"/><stop offset="100%" stop-color="#2a3038"/></linearGradient><linearGradient id="hSnow" x1="0%" x2="0%" y1="0%" y2="100%"><stop offset="0%" stop-color="#f5f7fa"/><stop offset="100%" stop-color="#a8b3c0"/></linearGradient><linearGradient id="hGrass" x1="0%" x2="0%" y1="0%" y2="100%"><stop offset="0%" stop-color="#4a6855"/><stop offset="100%" stop-color="#2a3a30"/></linearGradient><filter id="hBall"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>';
+  svg+='<rect width="400" height="180" fill="url(#hSky)"/>';
+  svg+='<circle cx="50" cy="20" r="0.6" fill="#fff" opacity="0.5"/><circle cx="150" cy="15" r="0.6" fill="#fff" opacity="0.4"/><circle cx="280" cy="22" r="0.6" fill="#fff" opacity="0.5"/><circle cx="340" cy="12" r="0.6" fill="#fff" opacity="0.4"/>';
+  svg+='<path d="M 0 90 L 25 60 L 55 75 L 85 50 L 115 70 L 145 55 L 180 65 L 215 50 L 245 70 L 280 45 L 315 60 L 350 40 L 385 55 L 400 50 L 400 180 L 0 180 Z" fill="url(#hFar)" opacity="0.5"/>';
+  svg+='<path d="M 80 53 L 85 50 L 90 53 L 86 56 Z" fill="url(#hSnow)" opacity="0.5"/><path d="M 275 48 L 280 45 L 285 48 L 281 51 Z" fill="url(#hSnow)" opacity="0.5"/><path d="M 345 43 L 350 40 L 355 43 L 351 46 Z" fill="url(#hSnow)" opacity="0.5"/>';
+  svg+='<path d="M 0 110 L 40 85 L 75 95 L 110 80 L 145 100 L 190 105 L 235 90 L 275 75 L 310 60 L 345 45 L 380 35 L 400 30 L 400 180 L 0 180 Z" fill="url(#hMid)" opacity="0.75"/>';
+  svg+='<path d="M 305 65 L 310 60 L 315 65 L 311 68 Z" fill="url(#hSnow)" opacity="0.7"/><path d="M 340 50 L 345 45 L 350 50 L 346 53 Z" fill="url(#hSnow)" opacity="0.7"/><path d="M 375 40 L 380 35 L 385 40 L 381 43 Z" fill="url(#hSnow)" opacity="0.7"/>';
+  svg+='<path d="M 0 130 L 25 105 L 50 120 L 80 130 L 110 150 L 145 158 L 175 160 L 200 158 L 230 145 L 260 125 L 290 100 L 320 75 L 350 50 L 380 30 L 400 22 L 400 180 L 0 180 Z" fill="url(#hFront)"/>';
+  svg+='<path d="M 80 130 L 110 150 L 145 158 L 175 160 L 200 158 L 200 175 L 80 175 Z" fill="url(#hGrass)" opacity="0.85"/>';
+  svg+='<path d="M 375 33 L 380 30 L 385 33 L 381 37 Z" fill="url(#hSnow)"/><path d="M 345 53 L 350 50 L 355 53 L 351 57 Z" fill="url(#hSnow)" opacity="0.85"/><path d="M 315 78 L 320 75 L 325 78 L 321 81 Z" fill="url(#hSnow)" opacity="0.7"/>';
+  svg+='<circle cx="'+bx+'" cy="'+by+'" r="8" fill="'+color+'" filter="url(#hBall)"/><circle cx="'+bx+'" cy="'+by+'" r="8" fill="none" stroke="#fff" stroke-width="1.5" opacity="0.7"/><ellipse cx="'+(bx-3)+'" cy="'+(by-3)+'" rx="3" ry="2" fill="#fff" opacity="0.5"/>';
+  svg+='</svg>';
+  svg+='<div class="heat-bar"><div class="z-blue"></div><div class="z-green"></div><div class="z-yellow"></div><div class="z-red"></div></div>';
+  svg+='<div class="heat-nums"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span></div>';
+  svg+='<div class="heat-labels"><div class="l-blue">WITNESS</div><div class="l-green">EQUILIBRIUM</div><div class="l-yellow">CAPTURE</div><div class="l-red">SURVIVAL</div></div>';
+  
+  var zoneMsg='';
+  if(lvl<=2)zoneMsg='<strong>The ball is above the valley.</strong> Detached observation. Gravity pulls toward equilibrium \u2014 no effort required.';
+  else if(lvl<=5)zoneMsg='<strong>The ball is in the valley.</strong> This is where the system wants to rest. Stay here \u2014 low novelty, steady rhythm.';
+  else if(lvl<=7)zoneMsg='<strong>The ball is climbing.</strong> System narrowing. Roll back down: ground, hydrate, no decisions for two hours.';
+  else zoneMsg='<strong>The ball is on the peak.</strong> Hard brake. No decisions, no communications, no responses. Use Ground immediately.';
+  svg+='<div class="heat-zone-msg">'+zoneMsg+'</div>';
+  
+  return svg;
+}
+
 function doQuickReg(){
   var sel=new Set([...document.querySelectorAll('#quick-reg-items input:checked')].map(c=>c.id.replace('qr-','')));
   if(!sel.size){show('r-quick-reg','<span class="ri-ok">No signals selected.</span>');return;}
@@ -1602,7 +1813,7 @@ function doQuickReg(){
   var bdl={w:'Witness band',e:'Equilibrium',i:'Identity band',c:'Capture band',s:'Survival'};
   persist('reg-level',String(lvl));
 
-  var h='<span class="bpill bp-'+bd+'">'+bdl[bd]+'</span><br><strong>'+lvl+' — '+RLB[lvl]+'</strong><br><br>';
+  var h=buildHeatViz(lvl);
   h+='<div class="reg-grid"><div class="reg-cell"><div class="reg-key">Attention</div><div class="reg-val">'+st.a+'</div></div><div class="reg-cell"><div class="reg-key">Choice</div><div class="reg-val">'+st.c+'</div></div><div class="reg-cell"><div class="reg-key">Salience</div><div class="reg-val">'+st.s+'</div></div></div>';
   h+='<div class="reg-grid" style="grid-template-columns:1fr 2fr"><div class="reg-cell"><div class="reg-key">Brakes</div><div class="reg-val">'+st.b+'</div></div><div class="reg-cell"><div class="reg-key">Braking against</div><div class="reg-val">'+st.ba+'</div></div></div>';
   h+='<div style="margin-top:8px;padding:10px 12px;border-radius:var(--r);border-left:3px solid var(--info-bdr);background:var(--info-bg);color:var(--info-text);font-size:13px;line-height:1.6">'+st.m+'</div>';
@@ -1641,7 +1852,7 @@ function doReg(){
   var bdl={w:'Witness band',e:'Equilibrium',i:'Identity band',c:'Capture band',s:'Survival'};
   var st=RST[lvl];var ps=REG_PSYCH[lvl];
   var pf=REGI.filter(it=>it.prod&&sel.has(it.id)).length>0;
-  var h='<span class="bpill bp-'+bd+'">'+bdl[bd]+'</span><br><strong>'+lvl+' — '+RLB[lvl]+'</strong><br><br>';
+  var h=buildHeatViz(lvl);
   h+='<div class="reg-grid"><div class="reg-cell"><div class="reg-key">Attention</div><div class="reg-val">'+st.a+'</div></div><div class="reg-cell"><div class="reg-key">Choice</div><div class="reg-val">'+st.c+'</div></div><div class="reg-cell"><div class="reg-key">Salience</div><div class="reg-val">'+st.s+'</div></div></div>';
   h+='<div class="reg-grid" style="grid-template-columns:1fr 2fr"><div class="reg-cell"><div class="reg-key">Brakes</div><div class="reg-val">'+st.b+'</div></div><div class="reg-cell"><div class="reg-key">Braking against</div><div class="reg-val">'+st.ba+'</div></div></div>';
   h+='<div style="margin-top:8px;padding:8px 12px;border-radius:var(--r);background:var(--bg);border:1px solid var(--bdr);font-size:12px"><span style="color:var(--text3)">Signal-to-noise:</span> <strong style="color:'+(noiseItems2>signalItems2?'var(--alert)':'var(--ok)')+'">'+(noiseItems2===0?'Clean \u2014 all signal':(noiseItems2>=signal2-1?'Almost all noise':'Signal: '+signalItems2+' / Noise: '+noiseItems2))+'</strong></div>';
@@ -1749,7 +1960,7 @@ function doDistort(){
   var h='';
   var cm={cat1:{n:'Treating possible as certain',t:'Name the most realistic outcome.',psy:'Probability neglect / catastrophic cognition'},cat2:{n:'Pre-emptive failure',t:'You have not failed yet. Name what has actually happened.',psy:'Anticipatory anxiety / learned helplessness'},cat3:{n:'Guilt after boundary',t:'What did you do wrong? If no clear answer, this is catastrophising as conscience.',psy:'Superego activation post-assertion'},cat4:{n:'Predicting permanent judgement',t:'Return to what is actually known now.'},cat5:{n:'Temporary feels permanent',t:'Name one thing that changed in the last month.',psy:'Permanence distortion'},cat6:{n:'Reading emotions as confirmation',t:'Their emotional state is not evidence of your fear.'},cat7:{n:'Urgency illusion',t:'What breaks if this does not happen in the next hour?'}};
   crows.forEach(function(r){var k=r.querySelector('input').dataset.c;if(cm[k])h+='<div class="ri"><div class="ri-name">'+cm[k].n+'</div><div class="ri-action">'+cm[k].t+'</div>'+(cm[k].psy?'<div style="font-size:11px;color:var(--text3);font-style:italic;margin-top:4px">'+cm[k].psy+'</div>':'')+'</div>';});
-  var dm={all:{n:'All-or-nothing',t:'Find one exception to the binary.',psy:'Splitting / dichotomous thinking'},emo:{n:'Feelings as evidence',t:'Name the feeling and the fact separately.',psy:'Emotional reasoning (Ni-Fe fusion under load)'},mind:{n:'Mind reading',t:'What do you actually know? What are you adding?',psy:'Theory of mind over-extension (Fe overreach)'},should:{n:'Rigid shoulds',t:'Replace should with prefer or choose.'},pers:{n:'Carrying what is not mine',t:'Name what is yours and what belongs to the other person.',psy:'Hyper-responsibility (Fe + hero drive)'},mini:{n:'Minimising needs',t:'Name one thing you need today.'},ref:{n:'Reframing too quickly',t:'Let the discomfort be present for one breath.'},spot:{n:'Spotlight effect',t:'Others are attending to their own concerns.'},burden:{n:'Needs as burden',t:'Expressing a need is information, not imposition.'},conn:{n:'Adjusting to maintain connection',t:'Letting connection exist with less self-adjustment may feel lighter.',psy:'Fe accommodation / false self presentation'},neg:{n:'Negativity bias',t:'Name one thing that is working today.'},affect:{n:'Emotions feel unsafe',t:'The emotion is information. Stay with it for one breath.'},attrib:{n:'Character attribution',t:'Separate the person from the context.',psy:'Fundamental attribution error'}};
+  var dm={all:{n:'All-or-nothing',t:'Find one exception to the binary.',psy:'Splitting / dichotomous thinking'},emo:{n:'Feelings as evidence',t:'Name the feeling and the fact separately.',psy:'Emotional reasoning (Ni-Fe fusion under load)'},mind:{n:'Mind reading',t:'What do you actually know? What are you adding?',psy:'Theory of mind over-extension (Fe overreach)'},should:{n:'Rigid shoulds',t:'Replace should with prefer or choose.'},perfect:{n:'Perfection bias',t:'Name what is sufficient rather than ideal. Perfection delays completion.',psy:'Attention narrowing toward flaws'},personal:{n:'Personalisation',t:'List what is not yours to carry. Responsibility expands silently.',psy:'Responsibility expansion under sensitivity'},overgen:{n:'Overgeneralisation',t:'Ask how often this is actually true.',psy:'Isolated data feels universal under load'},pers:{n:'Carrying what is not mine',t:'Name what is yours and what belongs to the other person.',psy:'Hyper-responsibility (Fe + hero drive)'},mini:{n:'Minimising needs',t:'Name one thing you need today.'},ref:{n:'Reframing too quickly',t:'Let the discomfort be present for one breath.'},spot:{n:'Spotlight effect',t:'Others are attending to their own concerns.'},burden:{n:'Needs as burden',t:'Expressing a need is information, not imposition.'},conn:{n:'Adjusting to maintain connection',t:'Letting connection exist with less self-adjustment may feel lighter.',psy:'Fe accommodation / false self presentation'},neg:{n:'Negativity bias',t:'Name one thing that is working today.'},affect:{n:'Emotions feel unsafe',t:'The emotion is information. Stay with it for one breath.'},attrib:{n:'Character attribution',t:'Separate the person from the context.',psy:'Fundamental attribution error'}};
   drows.forEach(function(r){var k=r.querySelector('input').dataset.d;if(dm[k])h+='<div class="ri"><div class="ri-name">'+dm[k].n+'</div><div class="ri-action">'+dm[k].t+'</div>'+(dm[k].psy?'<div style="font-size:11px;color:var(--text3);font-style:italic;margin-top:4px">'+dm[k].psy+'</div>':'')+'</div>';});
   h+='<div class="prompt">Is what you are experiencing a prediction or a fact?</div>';
   show('r-distort',h);
@@ -1794,7 +2005,7 @@ function doEffort(){
   var sb=[...document.querySelectorAll('#sb-list .chk-row')].filter(r=>r.querySelector('input').checked);
   var pp=[...document.querySelectorAll('#proc-list .chk-row')].filter(r=>r.querySelector('input').checked);
   if(!ep.length&&!sb.length&&!pp.length){show('r-effort','<span class="ri-ok">No patterns flagged.</span>');return;}
-  var em={burst:{n:'Intensity burst',t:'Build the stop into the next block. One hour then break. If this is the third burst this week, the hero drive may be active \u2014 check whether you are carrying more than is yours.',psy:'Pattern: ultradian dysregulation \u2192 hero drive mechanism'},phil:{n:'Philosophical drift',t:'Name the next physical action before continuing thinking.'},spblind:{n:'SP blind override',t:'Check body signals now. If 90+ minutes without break, stop.'},fatigue:{n:'Effort despite fatigue',t:'Stop. Output past this point costs more to correct than it contributes.'},rest:{n:'Rest anxiety',t:'Name one thing that falls apart if you stop for 30 minutes. If nothing concrete, the anxiety is the distortion.'},comprw:{n:'Completion → craving',t:'The task is done. The reward is the completion itself. The craving is the system trying to extend a peak that is already passing. Do not add to it.',psy:'Post-task dopamine surge seeking chain extension'}};
+  var em={burst:{n:'Intensity burst',t:'Build the stop into the next block. One hour then break. If this is the third burst this week, the hero drive may be active \u2014 check whether you are carrying more than is yours.',psy:'Pattern: ultradian dysregulation \u2192 hero drive mechanism'},phil:{n:'Philosophical drift',t:'Name the next physical action before continuing thinking.'},spblind:{n:'SP blind override',t:'Check body signals now. If 90+ minutes without break, stop.'},fatigue:{n:'Effort despite fatigue',t:'Stop. Output past this point costs more to correct than it contributes.'},rest:{n:'Rest anxiety',t:'Name one thing that falls apart if you stop for 30 minutes. If nothing concrete, the anxiety is the distortion.'},comprw:{n:'Completion → craving',t:'The task is done. The reward is the completion itself. The craving is the system trying to extend a peak that is already passing. Do not add to it.',psy:'Post-task dopamine surge seeking chain extension'},assoc:{n:'Associative spread',t:'Name one concrete fact or next action. Pull attention to a single anchor.',psy:'Ni hyperactivity \u2014 pattern recognition without Ti anchor'}};
   var sm={abstr:{n:'Abstraction as avoidance',t:'Name the concrete task. Do that first.'},iso:{n:'Isolation under pressure',t:'One brief contact today. Co-regulation is how you get back to steady.'},sov:{n:'Sovereignty as avoidance',t:'Asking for help does not compromise independence.'},perf:{n:'Over-optimisation',t:'Name what works well enough. Ship or move on.'},flaw:{n:'Attention narrowing to flaws',t:'Name one thing working today before continuing.'},worth:{n:'Contingent self-worth',t:'Your value is not produced by your output today.'},image:{n:'Performance emphasis',t:'Who am I doing this for right now?'}};
   var pm={switch:{n:'Task avoidance',t:'Return to the task you left. The friction marks the real work.'},depth:{n:'Depth without movement',t:'One concrete thing done imperfectly moves work forward more than analysis.'},ready:{n:'Readiness condition',t:'Clarity follows action, not the other way round. Smallest next step.'},restart:{n:'Restarting instead of continuing',t:'Open what you have. Continue from the last point. Do not start over.'},later:{n:'Deferring to better conditions',t:'Conditions will not be better later. They will be the same, plus the weight of postponing.'},large:{n:'Task too large',t:'Name one piece under 10 minutes. Do that.'},outcome:{n:'Outcome-loaded avoidance',t:'The first step is not a commitment to the final outcome.'}};
   var h='';
@@ -1907,7 +2118,6 @@ function yn(onId,offId){
   if(gtEl&&flipMap[onId]&&on.classList.contains('no'))gtEl.textContent=flipMap[onId];
   if(gtEl&&origMap[onId]&&on.classList.contains('yo'))gtEl.textContent=origMap[onId];
   if(gtEl&&!on.classList.contains('yo')&&!on.classList.contains('no')){var orig=origMap[gtId+'a'];if(orig)gtEl.textContent=orig;}
-
 }
 
 function doGuard(){
@@ -1941,6 +2151,7 @@ function doGuard(){
   if(structFlags.length){h+='<div class="ri" style="margin-top:10px"><div class="ri-name" style="color:var(--warn-text)">\u2717 Structure down</div><div class="ri-action">Without routine, the craving finds the gap. Rebuild one routine.</div></div>';}
   // Movement + sleep
   var m1b=document.getElementById('m1b');var m2b=document.getElementById('m2b');
+  var m3b=document.getElementById('m3b');if(m3b&&m3b.classList.contains('no'))h+='<div class="ri"><div class="ri-name" style="color:var(--alert)">\u2717 Pushed past stability structure</div><div class="ri-action">Going beyond sleep, regulation, or routine limits creates a delayed crash. The capacity used yesterday is borrowed, not earned.</div></div>';
   if(m1b&&m1b.classList.contains('no'))h+='<div class="ri"><div class="ri-name" style="color:var(--alert)">\u2717 No movement yesterday</div><div class="ri-action">Every skipped walk costs autonomic capacity. HRV drops, craving threshold lowers. Walk today.</div></div>';
   if(m2b&&m2b.classList.contains('no'))h+='<div class="ri"><div class="ri-name" style="color:var(--alert)">\u2717 Poor sleep</div><div class="ri-action">Executive function depleted. Defences are low. Be careful with decisions today.</div></div>';
   if(!broken.length&&!held.length&&!prodFlags.length&&!structFlags.length){h='<span class="ri-ok">No guardrails checked yet.</span>';}
@@ -2127,6 +2338,37 @@ function closeGround(){document.getElementById('ground-overlay').classList.remov
 
 
 // ═══════════ DAILY CARE INIT ═══════════
+
+// === Nicotine timer — fixed start: 1 June 2026 ===
+// To reset, change NICOTINE_START_TS to a new ISO date below
+var NICOTINE_START_TS=new Date('2026-06-01T00:00:00').getTime();
+var nicotineInterval=null;
+
+function fmtNicotineDuration(ms){
+  if(ms<0)return null;
+  var totalMin=Math.floor(ms/60000);
+  var days=Math.floor(totalMin/(60*24));
+  var hours=Math.floor((totalMin%(60*24))/60);
+  var mins=totalMin%60;
+  return days+'d '+hours+'h '+mins+'m';
+}
+
+function updateNicotineTimer(){
+  var banner=document.getElementById('nicotine-timer');
+  if(!banner)return;
+  var ms=Date.now()-NICOTINE_START_TS;
+  if(ms<0){banner.style.display='none';return;}
+  banner.style.display='block';
+  var el=document.getElementById('nb-time');
+  if(el)el.textContent=fmtNicotineDuration(ms);
+}
+
+function startNicotineTimerInterval(){
+  if(nicotineInterval)clearInterval(nicotineInterval);
+  updateNicotineTimer();
+  nicotineInterval=setInterval(updateNicotineTimer,30000);
+}
+
 function initCare(){
   var d=new Date();
   document.getElementById('dc-date').textContent=d.toLocaleDateString(undefined,{weekday:'long',year:'numeric',month:'long',day:'numeric'});
@@ -2160,7 +2402,7 @@ function initCare(){
   // Restore text fields
   ['intent-main','intent-value','intent-protect','reflect-what','reflect-good','reflect-next'].forEach(function(id){var el=document.getElementById(id);if(el)el.value=recall(id,'');});
   // Restore guardrails
-  ['s1a','s1b','s2a','s2b','s3a','s3b','s4a','s4b','m1a','m1b','m2a','m2b','p1a','p1b','p2a','p2b','p3a','p3b','t1a','t1b','t2a','t2b'].forEach(function(id){var v=recall(id,'');var btn=document.getElementById(id);if(btn&&v)btn.classList.add(v);});
+  ['s1a','s1b','s2a','s2b','s3a','s3b','s4a','s4b','m1a','m1b','m2a','m2b','m3a','m3b','p1a','p1b','p2a','p2b','p3a','p3b','t1a','t1b','t2a','t2b'].forEach(function(id){var v=recall(id,'');var btn=document.getElementById(id);if(btn&&v)btn.classList.add(v);});
   // Restore taper + quit
   TAPER_ITEMS.forEach(function(item){var el=document.getElementById('tc-'+item.id);if(el)el.checked=recall('tc-'+item.id,false);});
   QUIT_ITEMS.forEach(function(item){var el=document.getElementById('qc-'+item.id);if(el)el.checked=recall('qc-'+item.id,false);});
@@ -2278,8 +2520,10 @@ function init(){
   buildQuitList();
   buildEmoPicker('emo-pick');
 initPrep();
+initEnnea();
   buildEmoPicker('emo-pick-sit');
   initCare();
+  startNicotineTimerInterval();
 }
 if(NEED_SETUP){document.getElementById("scr-home").classList.remove("on");document.getElementById("scr-setup").style.display="block";}
 init();
@@ -2317,7 +2561,7 @@ function restoreFromDayData(data){
     if(rts>=lts&&rv){_hp(k,rv);localStorage.setItem(SK+k+'_ts',String(rts));var el=document.getElementById(k);if(el)el.value=rv;}
   });
   // Restore guardrails — per-field timestamp wins
-  ['s1a','s1b','s2a','s2b','s3a','s3b','s4a','s4b','m1a','m1b','m2a','m2b','p1a','p1b','p2a','p2b','p3a','p3b','t1a','t1b','t2a','t2b'].forEach(function(id){
+  ['s1a','s1b','s2a','s2b','s3a','s3b','s4a','s4b','m1a','m1b','m2a','m2b','m3a','m3b','p1a','p1b','p2a','p2b','p3a','p3b','t1a','t1b','t2a','t2b'].forEach(function(id){
     var remote=data[id];
     if(!remote)return;
     var rv=typeof remote==='object'?remote.v:remote;
