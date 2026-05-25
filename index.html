@@ -12,55 +12,55 @@
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",sans-serif;font-size:14px;line-height:1.5;margin:0;padding:0;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 :root{
-  /* Warmer dark — easier on eyes */
-  --bg:#15171b;
-  --bg2:#1c1f24;
-  --bg3:#232830;
-  --bdr:#2b3038;
-  --bdr2:#353b45;
-  --text:#d4d7dc;
-  --text2:#9ca0a8;
-  --text3:#6e727a;
-  --text4:#4d5159;
+  /* Option A — Soft sandstone */
+  --bg:#1c1814;
+  --bg2:#25201a;
+  --bg3:#2d281e;
+  --bdr:#3d3528;
+  --bdr2:#4d4530;
+  --text:#f0ebde;
+  --text2:#c8c0a8;
+  --text3:#a89e88;
+  --text4:#7c7460;
   --r:14px;
   --r2:10px;
   --rl:16px;
-  
-  /* Muted, desaturated palette */
-  --blue:#6a9fc7;
-  --blue-bg:rgba(106,159,199,0.10);
-  --blue-bdr:rgba(106,159,199,0.28);
-  
-  --green:#7aab85;
-  --green-bg:rgba(122,171,133,0.10);
-  --green-bdr:rgba(122,171,133,0.28);
-  
-  --yellow:#c9a85e;
-  --yellow-bg:rgba(201,168,94,0.10);
-  --yellow-bdr:rgba(201,168,94,0.28);
-  
-  --red:#c47872;
-  --red-bg:rgba(196,120,114,0.10);
-  --red-bdr:rgba(196,120,114,0.28);
-  
-  /* Semantic aliases */
+
+  --blue:#95b5d8;
+  --blue-bg:rgba(149,181,216,0.12);
+  --blue-bdr:rgba(149,181,216,0.35);
+
+  --green:#a8c898;
+  --green-bg:rgba(168,200,152,0.15);
+  --green-bdr:rgba(168,200,152,0.45);
+
+  --yellow:#e0c478;
+  --yellow-bg:rgba(224,196,120,0.12);
+  --yellow-bdr:rgba(224,196,120,0.35);
+
+  --red:#d8867a;
+  --red-bg:rgba(216,134,122,0.12);
+  --red-bdr:rgba(216,134,122,0.35);
+
   --calm:var(--blue);
   --calm-bg:var(--blue-bg);
   --calm-bdr:var(--blue-bdr);
+  --calm-text:var(--blue);
   --ok:var(--green);
   --ok-bg:var(--green-bg);
   --ok-bdr:var(--green-bdr);
+  --warn:var(--yellow);
   --warn-text:var(--yellow);
   --warn-bg:var(--yellow-bg);
   --warn-bdr:var(--yellow-bdr);
   --alert:var(--red);
+  --alert-text:var(--red);
   --alert-bg:var(--red-bg);
   --alert-bdr:var(--red-bdr);
+  --info:var(--blue);
   --info-text:var(--blue);
   --info-bg:var(--blue-bg);
   --info-bdr:var(--blue-bdr);
-  --warn:var(--yellow);
-  --alert-text:var(--red);
 }
 /* ── LAYOUT ── */
 .app{max-width:480px;margin:0 auto;padding:16px 14px 80px;min-height:100vh}
@@ -1772,7 +1772,7 @@ function buildHeatViz(lvl){
   else if(lvl<=7)color='var(--yellow)';
   else color='var(--red)';
   
-  var svg='<svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;border-radius:8px"><defs><linearGradient id="hSky" x1="0%" x2="0%" y1="0%" y2="100%"><stop offset="0%" stop-color="#1f242d"/><stop offset="100%" stop-color="#15171b"/></linearGradient><linearGradient id="hFar" x1="0%" x2="0%" y1="0%" y2="100%"><stop offset="0%" stop-color="#383e48"/><stop offset="100%" stop-color="#22262d"/></linearGradient><linearGradient id="hMid" x1="0%" x2="0%" y1="0%" y2="100%"><stop offset="0%" stop-color="#424853"/><stop offset="100%" stop-color="#282d36"/></linearGradient><linearGradient id="hFront" x1="0%" x2="0%" y1="0%" y2="100%"><stop offset="0%" stop-color="#4d5560"/><stop offset="100%" stop-color="#2d3239"/></linearGradient><linearGradient id="hSnow" x1="0%" x2="0%" y1="0%" y2="100%"><stop offset="0%" stop-color="#d4d7dc"/><stop offset="100%" stop-color="#9ca0a8"/></linearGradient><linearGradient id="hGrass" x1="0%" x2="0%" y1="0%" y2="100%"><stop offset="0%" stop-color="#4a6055"/><stop offset="100%" stop-color="#2c3830"/></linearGradient><filter id="hBall"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>';
+  var svg='<svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;border-radius:8px"><defs><linearGradient id="hSky" x1="0%" x2="0%" y1="0%" y2="100%"><stop offset="0%" stop-color="#2a2520"/><stop offset="100%" stop-color="#1c1814"/></linearGradient><linearGradient id="hFar" x1="0%" x2="0%" y1="0%" y2="100%"><stop offset="0%" stop-color="#403828"/><stop offset="100%" stop-color="#2a241c"/></linearGradient><linearGradient id="hMid" x1="0%" x2="0%" y1="0%" y2="100%"><stop offset="0%" stop-color="#4a4030"/><stop offset="100%" stop-color="#322a20"/></linearGradient><linearGradient id="hFront" x1="0%" x2="0%" y1="0%" y2="100%"><stop offset="0%" stop-color="#554a38"/><stop offset="100%" stop-color="#352d22"/></linearGradient><linearGradient id="hSnow" x1="0%" x2="0%" y1="0%" y2="100%"><stop offset="0%" stop-color="#e8e0c8"/><stop offset="100%" stop-color="#b0a890"/></linearGradient><linearGradient id="hGrass" x1="0%" x2="0%" y1="0%" y2="100%"><stop offset="0%" stop-color="#586850"/><stop offset="100%" stop-color="#384030"/></linearGradient><filter id="hBall"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>';
   svg+='<rect width="400" height="180" fill="url(#hSky)"/>';
   svg+='<circle cx="50" cy="20" r="0.6" fill="#ffffff" opacity="0.4"/><circle cx="150" cy="15" r="0.6" fill="#ffffff" opacity="0.3"/><circle cx="280" cy="22" r="0.6" fill="#ffffff" opacity="0.4"/><circle cx="340" cy="12" r="0.6" fill="#ffffff" opacity="0.3"/>';
   svg+='<path d="M 0 90 L 25 60 L 55 75 L 85 50 L 115 70 L 145 55 L 180 65 L 215 50 L 245 70 L 280 45 L 315 60 L 350 40 L 385 55 L 400 50 L 400 180 L 0 180 Z" fill="url(#hFar)" opacity="0.5"/>';
