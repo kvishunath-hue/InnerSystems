@@ -1359,16 +1359,18 @@ function togAff(el){var cb=el.querySelector('input');cb.checked=!cb.checked;el.c
 
 // Regulation items
 var REGI=[
-  {id:'witness',tx:'I can notice my thoughts as thoughts — I am aware that I am thinking',votes:{1:3,2:1},prod:false},
-  {id:'observer',tx:'My emotions feel slightly separate from me — I can watch them',votes:{2:3,1:1,3:1},prod:false},
-  {id:'choice',tx:'I can choose where to direct my attention — it feels free, not pulled',votes:{2:2,1:1,3:2},prod:false},
-  {id:'meta',tx:'I am aware of my state and can describe it',votes:{3:3,2:1,4:1},prod:false},
-  {id:'edge',tx:'My attention is engaged with task or person — close to the edge of capacity',votes:{5:3,4:2,6:1},prod:false},
-  {id:'narrow',tx:'My attention is narrowing — options collapsing into one direction',votes:{6:3,7:2,5:1},prod:false},
-  {id:'flood',tx:'I am flooded — thoughts faster than I can sort them',votes:{7:3,8:2,6:1},prod:false},
-  {id:'capture',tx:'I am captured — only one outcome feels possible right now',votes:{8:3,9:2,7:1},prod:false},
-  {id:'survival',tx:'My body is acting before my mind catches up',votes:{9:3,10:2,8:1},prod:false},
-  {id:'panic',tx:'I feel completely overwhelmed — body shaking, mind blanking, or feeling unreal',votes:{10:3,9:1,8:1},prod:false}
+  {id:'stillness',tx:'My mind feels quiet and spacious \u2014 no urgency present',votes:{1:3,2:2,3:1,4:1},prod:false},
+  {id:'meta',tx:'I can notice my thoughts as thoughts \u2014 I am aware that I am thinking',votes:{2:3,3:2,4:1},prod:false},
+  {id:'observer',tx:'My emotions feel slightly separate from me \u2014 I can watch them without becoming them',votes:{3:3,4:2,5:1},prod:false},
+  {id:'choice',tx:'I can choose where to direct my attention \u2014 it feels free, not pulled',votes:{4:3,5:2,3:1},prod:false},
+  {id:'grounded',tx:'I can act from here \u2014 calm, clear, no urgency driving me',votes:{5:3,4:2},prod:false},
+  {id:'emotion_me',tx:'I feel like I am the emotion \u2014 it has become my identity right now',votes:{6:3,7:1},prod:false},
+  {id:'story',tx:'My mind is building and rebuilding a story \u2014 assigning meaning, blame, or cause',votes:{7:3,6:1,8:1},prod:false},
+  {id:'spiritual',tx:'Things feel unusually charged or significant \u2014 ordinary events seem to carry special meaning',votes:{7:3,8:2,10:1},prod:true},
+  {id:'urgency',tx:'I feel I must act, decide, or communicate something important right now \u2014 it cannot wait',votes:{7:2,8:2,10:1},prod:true},
+  {id:'body',tx:'My body is pulling my attention \u2014 exhaustion, hunger, physical discomfort, or dehydration',votes:{8:3,6:1},prod:false},
+  {id:'compulsion',tx:'I am seeking reassurance or repeating the same thought loop \u2014 checking, scrolling, returning',votes:{8:2,9:3,7:1},prod:false},
+  {id:'panic',tx:'I feel completely overwhelmed \u2014 body shaking, mind blanking, or feeling unreal',votes:{10:3,9:1,8:1},prod:false}
 ];
 var RLB={1:'Silent awareness',2:'Meta-awareness',3:'Observing ego',4:'Integrated presence',5:'Engaged self',6:'Emotional identity',7:'Narrative ego',8:'Sensory immersion',9:'Flow / trance',10:'Raw survival'};
 var RST={
