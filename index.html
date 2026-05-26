@@ -2178,8 +2178,9 @@ function runQuit(){
 
 // ═══════════ BREATHING ═══════════
 var BREATHS=[
-  {nm:'Physiological sigh',sb:'9-second brake',ph:['Inhale','Inhale+','Exhale'],ti:[2,1,6],wh:'Sharp spike or seconds before you react.',de:'Double inhale then long exhale. Fastest physiological brake.'},
-  {nm:'Extended exhale',sb:'steady calm',ph:['Inhale','Exhale'],ti:[4,8],wh:'Tense but not flooded.',de:'Exhale twice as long as inhale. Vagus nerve activation.'}
+  {nm:'Physiological sigh',sb:'instant brake',ph:['Inhale','Inhale+','Exhale'],ti:[2,1,6],minDur:30,wh:'Sharp spike or seconds before you react.',de:'Double inhale then long exhale. Fastest physiological brake. Minimum 30s (~3 cycles).'},
+  {nm:'Extended exhale',sb:'steady calm',ph:['Inhale','Exhale'],ti:[4,8],minDur:60,wh:'Tense but not flooded.',de:'Exhale twice as long as inhale. Vagus nerve activation. Minimum 60s (~5 cycles).'},
+  {nm:'Box breathing',sb:'clear focus',ph:['Inhale','Hold','Exhale','Hold'],ti:[4,4,4,4],minDur:90,wh:'Before a hard conversation, decision, or task needing clarity.',de:'Equal sides, symmetrical rhythm. Used for focused calm, not acute panic. Minimum 90s (~5–6 cycles).'}
 ];
 var GRND_TECHS=[
   {id:'gcold',title:'Cold water',desc:'Splash cold water on your face or wrists. Dive reflex drops heart rate instantly.',simple:true},
@@ -2267,14 +2268,14 @@ function startBreathCard(bi){
   var running=false,cyc=0,phi=0,raf=null,ci=null,timerStart=null,timerRaf=null,ir=RMIN;
   var btn=document.getElementById('cb-'+bi);
   var stopBtn=document.getElementById('bs-'+bi);
-  function stop(){running=false;if(raf)cancelAnimationFrame(raf);if(ci)clearInterval(ci);if(timerRaf)cancelAnimationFrame(timerRaf);body.classList.remove('open');body.innerHTML='';card.querySelector('.grnd-btn').style.display='';activeBreathStop=null;}
+  function stop(){running=false;if(raf)cancelAnimationFrame(raf);if(ci)clearInterval(ci);if(timerRaf)cancelAnimationFrame(timerRaf);body.innerHTML='<div class="grnd-done-q">How do you feel now?</div><div class="grnd-done-btns"><button class="grnd-done-btn settled" onclick="brthSettled('+bi+')">More settled</button><button class="grnd-done-btn still" onclick="brthStill('+bi+')">Still activated</button></div><div class="grnd-still-msg" id="brth-still-'+bi+'"></div>';activeBreathStop=null;}
   stopBtn.onclick=stop;
   activeBreathStop=stop;
   btn.onclick=function(){
     if(running){stop();return;}
     running=true;cyc=0;phi=0;ir=RMIN;timerStart=performance.now();
     try{getAudioCtx();}catch(e){}
-    function tickT(){if(!running)return;var s=Math.floor((performance.now()-timerStart)/1000);var m=Math.floor(s/60);s=s%60;var e=document.getElementById('bt-'+bi);if(e)e.textContent=(m<10?'0'+m:m)+':'+(s<10?'0'+s:s);timerRaf=requestAnimationFrame(tickT);}
+    function tickT(){if(!running)return;var s=Math.floor((performance.now()-timerStart)/1000);var m=Math.floor(s/60);var ss=s%60;var e=document.getElementById('bt-'+bi);if(e){var t=(m<10?'0'+m:m)+':'+(ss<10?'0'+ss:ss);if(b.minDur){if(s>=b.minDur){t+=' &#9679; minimum reached';e.style.color='var(--green)';}else{t+=' &middot; min '+b.minDur+'s';e.style.color='var(--text3)';}}e.innerHTML=t;}timerRaf=requestAnimationFrame(tickT);}
     timerRaf=requestAnimationFrame(tickT);
     function runPhase(){
       if(!running)return;
@@ -2321,6 +2322,8 @@ function showDone(id){var body=document.getElementById('body-'+id);body.innerHTM
 function showDone2(id,body){body.innerHTML='<div class="grnd-done-q">How do you feel now?</div><div class="grnd-done-btns"><button class="grnd-done-btn settled" onclick="grndSettled(\''+id+'\')">More settled</button><button class="grnd-done-btn still" onclick="grndStill(\''+id+'\')">Still activated</button></div><div class="grnd-still-msg" id="still-'+id+'"></div>';}
 function grndSettled(id){document.getElementById('body-'+id).innerHTML='<div class="grnd-prompt" style="font-size:14px;padding:.5rem 0">\u2713 Good. Stay here for a moment.</div>';}
 function grndStill(id){var remaining=GRND_TECHS.filter(t=>t.id!==id).map(t=>t.title).concat(BREATHS.map(b=>b.nm)).join(', ');var el=document.getElementById('still-'+id);el.textContent='Try another technique: '+remaining;el.classList.add('show');}
+function brthSettled(bi){var body=document.getElementById('bbody-'+bi);if(!body)return;body.innerHTML='<div class="grnd-prompt" style="font-size:14px;padding:.5rem 0">\u2713 Good. Stay here for a moment.</div>';}
+function brthStill(bi){var b=BREATHS[bi];if(!b)return;var others=BREATHS.filter(function(_,i){return i!==bi;}).map(function(x){return x.nm;}).concat(GRND_TECHS.map(function(t){return t.title;})).join(', ');var el=document.getElementById('brth-still-'+bi);if(el){el.textContent='Try another technique: '+others;el.classList.add('show');}}
 
 
 function openGround(ctx){
