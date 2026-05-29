@@ -8,10 +8,9 @@
 <meta name="apple-mobile-web-app-title" content="Inner Systems">
 <title>Inner Systems</title>
 <style>
-html{font-size:16px;-webkit-text-size-adjust:100%;text-size-adjust:100%}
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700&display=swap');
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",sans-serif;font-size:0.875rem;line-height:1.5;margin:0;padding:0;overflow-x:hidden;-webkit-font-smoothing:antialiased;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",sans-serif;font-size:14px;line-height:1.5;margin:0;padding:0;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 :root{
   /* Option A — Soft sandstone */
   --bg:#1c1814;
@@ -73,19 +72,19 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 
 /* ── HEADER ── */
 .app-header{padding:1rem 1rem .6rem;text-align:center}
-.app-title{font-size:1.125rem;font-weight:700;color:var(--text);letter-spacing:-0.3px}
-.app-sub{font-size:0.75rem;color:var(--text3);margin-top:2px}
-.app-updated{font-size:0.625rem;color:var(--text3);margin-top:4px;font-style:italic}
-.reg-indicator{display:inline-block;font-size:0.6875rem;font-weight:600;padding:3px 10px;border-radius:20px;margin-top:6px;background:var(--bg2);color:var(--text3);border:1px solid var(--bdr)}
+.app-title{font-size:18px;font-weight:700;color:var(--text);letter-spacing:-0.3px}
+.app-sub{font-size:12px;color:var(--text3);margin-top:2px}
+.app-updated{font-size:10px;color:var(--text3);margin-top:4px;font-style:italic}
+.reg-indicator{display:inline-block;font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px;margin-top:6px;background:var(--bg2);color:var(--text3);border:1px solid var(--bdr)}
 
 /* ── ENTRY SCREEN ── */
 .entry-grid{display:flex;flex-direction:column;gap:8px;padding-top:.5rem}
 .entry-btn{display:flex;align-items:center;gap:12px;background:linear-gradient(145deg,#2a241c,#221d17);border:1px solid var(--bdr);border-radius:var(--rl);padding:15px 16px;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,0.3);-webkit-tap-highlight-color:transparent}
 .entry-btn:active{background:var(--bg2)}
-.entry-ico{font-size:1.375rem;flex-shrink:0;width:36px;text-align:center}
+.entry-ico{font-size:22px;flex-shrink:0;width:36px;text-align:center}
 .entry-info{flex:1}
-.entry-name{font-size:0.875rem;font-weight:600;color:var(--text)}
-.entry-desc{font-size:0.75rem;color:var(--text3);margin-top:2px;line-height:1.4}
+.entry-name{font-size:14px;font-weight:600;color:var(--text)}
+.entry-desc{font-size:12px;color:var(--text3);margin-top:2px;line-height:1.4}
 .entry-btn.urgent{border-color:var(--alert-bdr);background:var(--alert-bg)}
 .entry-btn.urgent .entry-name{color:var(--alert)}
 
@@ -98,13 +97,13 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
   padding:1rem 1.1rem;margin-bottom:8px;
 }
 .card-head{display:flex;align-items:baseline;gap:8px;margin-bottom:8px}
-.card-num{font-size:0.6875rem;color:var(--text3);font-weight:600;min-width:20px}
-.card-title{font-size:0.875rem;font-weight:600;color:var(--text)}
-.card-desc{font-size:0.75rem;color:var(--text3);margin-bottom:10px;line-height:1.5}
+.card-num{font-size:11px;color:var(--text3);font-weight:600;min-width:20px}
+.card-title{font-size:14px;font-weight:600;color:var(--text)}
+.card-desc{font-size:12px;color:var(--text3);margin-bottom:10px;line-height:1.5}
 
 /* ── CHECKLIST ── */
 .chk-row{
-  display:flex;align-items:flex-start;gap:10px;font-size:0.8125rem;line-height:1.5;
+  display:flex;align-items:flex-start;gap:10px;font-size:13px;line-height:1.5;
   cursor:pointer;padding:8px 0;border-bottom:1px solid var(--bdr);
   -webkit-tap-highlight-color:transparent;user-select:none;color:var(--text);
 }
@@ -124,20 +123,20 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 /* ── RESULTS ── */
 .result{
   margin-top:10px;padding:12px 14px;border-radius:var(--r);
-  background:var(--bg2);font-size:0.8125rem;line-height:1.6;
+  background:var(--bg2);font-size:13px;line-height:1.6;
   display:none;color:var(--text);
 }
 .result.show{display:block}
 .ri{margin-top:10px;padding-top:10px;border-top:1px solid var(--bdr)}
 .ri:first-child{margin-top:0;padding-top:0;border-top:none}
-.ri-name{font-weight:600;font-size:0.8125rem;color:var(--text);margin-bottom:2px}
-.ri-action{font-size:0.8125rem;margin-top:3px;line-height:1.5;color:var(--text)}
-.ri-why{font-size:0.75rem;color:var(--text3);margin-top:3px;line-height:1.4}
-.ri-psy{font-size:0.6875rem;color:var(--text3);margin-top:4px;font-style:italic}
+.ri-name{font-weight:600;font-size:13px;color:var(--text);margin-bottom:2px}
+.ri-action{font-size:13px;margin-top:3px;line-height:1.5;color:var(--text)}
+.ri-why{font-size:12px;color:var(--text3);margin-top:3px;line-height:1.4}
+.ri-psy{font-size:11px;color:var(--text3);margin-top:4px;font-style:italic}
 .ri-ok{color:var(--ok)}
 
 /* ── ALERTS ── */
-.al{padding:10px 12px;border-radius:var(--r);margin-top:8px;font-size:0.8125rem;line-height:1.6;border-left:3px solid}
+.al{padding:10px 12px;border-radius:var(--r);margin-top:8px;font-size:13px;line-height:1.6;border-left:3px solid}
 .al-ok{background:var(--ok-bg);color:var(--ok);border-color:var(--ok-bdr)}
 .al-warn{background:var(--warn-bg);color:var(--warn-text);border-color:var(--warn-bdr)}
 .al-alert{background:var(--alert-bg);color:var(--alert-text);border-color:var(--alert-bdr)}
@@ -146,37 +145,37 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 /* ── BUTTONS ── */
 .btn{
   width:100%;padding:11px;border-radius:var(--r);border:1px solid var(--bdr2);
-  background:transparent;color:var(--text2);font-size:0.8125rem;cursor:pointer;
+  background:transparent;color:var(--text2);font-size:13px;cursor:pointer;
   margin-top:4px;-webkit-tap-highlight-color:transparent;font-family:inherit;
 }
 .btn:active{opacity:.7}
 .btn-calm{background:var(--calm);color:#fff;border-color:var(--calm)}
 .btn-back{
-  background:none;border:none;color:var(--text3);font-size:0.8125rem;
+  background:none;border:none;color:var(--text3);font-size:13px;
   cursor:pointer;padding:8px 0;font-family:inherit;display:flex;align-items:center;gap:4px;
 }
 
 /* ── SECTION DIVIDER ── */
-.sdiv{font-size:0.6875rem;font-weight:600;color:var(--text3);letter-spacing:.4px;text-transform:uppercase;margin:14px 0 6px}
+.sdiv{font-size:11px;font-weight:600;color:var(--text3);letter-spacing:.4px;text-transform:uppercase;margin:14px 0 6px}
 
 /* ── PROMPT ── */
 .prompt{
   margin-top:8px;padding:10px 12px;border-radius:var(--r);
   border-left:3px solid var(--info-bdr);background:var(--info-bg);
-  font-size:0.8125rem;line-height:1.6;color:var(--info-text);
+  font-size:13px;line-height:1.6;color:var(--info-text);
 }
 
 /* ── REGULATION GRID ── */
 .reg-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:8px}
 .reg-cell{background:var(--bg);border:1px solid var(--bdr);border-radius:var(--r);padding:7px 9px}
-.reg-key{font-size:0.6875rem;color:var(--text3)}
-.reg-val{font-size:0.75rem;font-weight:600;margin-top:2px;color:var(--text)}
-.reg-psych{margin-top:8px;padding:0;border-radius:var(--r);border:1px solid var(--bdr);background:var(--bg);font-size:0.75rem;line-height:1.7;color:var(--text2);overflow:hidden}
+.reg-key{font-size:11px;color:var(--text3)}
+.reg-val{font-size:12px;font-weight:600;margin-top:2px;color:var(--text)}
+.reg-psych{margin-top:8px;padding:0;border-radius:var(--r);border:1px solid var(--bdr);background:var(--bg);font-size:12px;line-height:1.7;color:var(--text2);overflow:hidden}
 .reg-psych-desc{font-style:italic;color:var(--text2);padding:10px 12px;border-bottom:1px solid var(--bdr)}
 .reg-psych-row{display:flex;gap:6px;padding:10px 12px;line-height:1.5;border-bottom:1px solid var(--bdr)}
 .reg-psych-row:last-child{border-bottom:none}
-.reg-psych-lbl{font-size:0.6875rem;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.3px;flex-shrink:0;padding-top:1px;width:90px;border-right:1px solid var(--bdr);padding-right:8px;margin-right:4px}
-.reg-psych-val{font-size:0.75rem;color:var(--text2)}
+.reg-psych-lbl{font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.3px;flex-shrink:0;padding-top:1px;width:90px;border-right:1px solid var(--bdr);padding-right:8px;margin-right:4px}
+.reg-psych-val{font-size:12px;color:var(--text2)}
 
 /* ── BAND PILLS ── */
 
@@ -190,7 +189,7 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 .reg-items{display:flex;flex-direction:column;gap:4px;margin-bottom:12px}
 .reg-item{
   display:flex;align-items:flex-start;gap:10px;padding:9px 10px;border-radius:var(--r);
-  border:1px solid var(--bdr);cursor:pointer;font-size:0.8125rem;line-height:1.5;
+  border:1px solid var(--bdr);cursor:pointer;font-size:13px;line-height:1.5;
   -webkit-tap-highlight-color:transparent;user-select:none;color:var(--text);
 }
 .reg-item.sel{background:var(--bg2);border-color:var(--bdr2)}
@@ -212,7 +211,7 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
   background:var(--green);color:#1c1814;
   border:none;border-radius:100px;padding:13px 20px 13px 16px;
   display:flex;align-items:center;gap:8px;
-  font-size:0.875rem;font-weight:600;font-family:inherit;cursor:pointer;
+  font-size:14px;font-weight:600;font-family:inherit;cursor:pointer;
   letter-spacing:0.2px;
   box-shadow:0 4px 18px rgba(168,200,152,0.3),0 4px 12px rgba(0,0,0,0.4);
   -webkit-tap-highlight-color:transparent;
@@ -229,8 +228,8 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
   padding:1rem 1rem 2rem;position:relative;margin:0 auto;
 }
 .ground-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;padding-top:.3rem}
-.ground-title{font-size:1.0625rem;font-weight:700;color:var(--text)}
-.ground-close{background:none;border:none;font-size:1.625rem;cursor:pointer;color:var(--text3);line-height:1;padding:0}
+.ground-title{font-size:17px;font-weight:700;color:var(--text)}
+.ground-close{background:none;border:none;font-size:26px;cursor:pointer;color:var(--text3);line-height:1;padding:0}
 
 
 /* ── BREATHING ── */
@@ -240,10 +239,10 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 .csec{background:var(--bg);border:1px solid var(--bdr);border-radius:var(--rl);margin-bottom:6px;overflow:hidden}
 .csec-head{padding:11px 14px;cursor:pointer;display:flex;align-items:center;gap:12px;-webkit-tap-highlight-color:transparent}
 .csec-head:active{opacity:.7}
-.csec-ico{font-size:1rem;flex-shrink:0;width:28px;text-align:center;color:var(--text3)}
-.csec-nm{font-size:0.8125rem;font-weight:600;color:var(--text)}
-.csec-ds{font-size:0.6875rem;color:var(--text3);margin-top:2px}
-.csec-chv{margin-left:auto;font-size:0.625rem;color:var(--text3);transition:transform .2s}
+.csec-ico{font-size:16px;flex-shrink:0;width:28px;text-align:center;color:var(--text3)}
+.csec-nm{font-size:13px;font-weight:600;color:var(--text)}
+.csec-ds{font-size:11px;color:var(--text3);margin-top:2px}
+.csec-chv{margin-left:auto;font-size:10px;color:var(--text3);transition:transform .2s}
 .csec.open .csec-chv{transform:rotate(180deg)}
 .csec-body{display:none;padding:0 14px 12px}
 .csec.open>.csec-body{display:block}
@@ -251,55 +250,55 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 .cal{margin-bottom:12px}
 /* ── BREATHING IN GROUND ── */
 .arena{display:flex;flex-direction:column;align-items:center;padding:.5rem 0 1rem}
-.breath-timer{font-size:0.8125rem;color:var(--text3);margin-bottom:.5rem;font-variant-numeric:tabular-nums;min-height:20px}
+.breath-timer{font-size:13px;color:var(--text3);margin-bottom:.5rem;font-variant-numeric:tabular-nums;min-height:20px}
 .rw{position:relative;width:240px;height:240px;margin-bottom:1rem}
 .rw canvas{position:absolute;top:0;left:0}
 .cbtn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);border-radius:50%;border:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;-webkit-tap-highlight-color:transparent}
-.cph{font-size:0.8125rem;font-weight:600;color:#fff;pointer-events:none;text-align:center;padding:0 6px}
-.cpc{font-size:1.25rem;font-weight:600;color:#fff;pointer-events:none;min-height:26px;text-align:center}
+.cph{font-size:13px;font-weight:600;color:#fff;pointer-events:none;text-align:center;padding:0 6px}
+.cpc{font-size:20px;font-weight:600;color:#fff;pointer-events:none;min-height:26px;text-align:center}
 .prow{display:flex;gap:7px;flex-wrap:wrap;justify-content:center;margin-bottom:.7rem}
 .pchip{display:flex;flex-direction:column;align-items:center;padding:5px 9px;border-radius:var(--r);border:1px solid var(--bdr);min-width:52px}
 .pchip.cur{border-color:var(--calm);background:var(--calm-bg)}
-.pn{font-size:0.6875rem;color:var(--text2)}
-.ps{font-size:0.75rem;font-weight:600;margin-top:1px;color:var(--text)}
-.bcy{font-size:0.75rem;color:var(--text3);margin-bottom:.7rem;min-height:18px;text-align:center}
+.pn{font-size:11px;color:var(--text2)}
+.ps{font-size:12px;font-weight:600;margin-top:1px;color:var(--text)}
+.bcy{font-size:12px;color:var(--text3);margin-bottom:.7rem;min-height:18px;text-align:center}
 .bcr{display:flex;gap:8px;justify-content:center}
-.bct{padding:10px 24px;border-radius:var(--r);border:1px solid var(--bdr2);background:transparent;color:var(--text);font-size:0.8125rem;cursor:pointer;font-family:inherit}
+.bct{padding:10px 24px;border-radius:var(--r);border:1px solid var(--bdr2);background:transparent;color:var(--text);font-size:13px;cursor:pointer;font-family:inherit}
 
 /* ── GROUNDING TECHNIQUES ── */
 .grnd-techs{display:flex;flex-direction:column;gap:10px}
 .grnd-card{background:var(--bg2);border:1px solid var(--bdr);border-radius:var(--rl);padding:1.2rem 1.1rem}
-.grnd-title{font-size:0.9375rem;font-weight:600;color:var(--text);margin-bottom:6px}
-.grnd-desc{font-size:0.7812rem;color:var(--text2);line-height:1.6;margin-bottom:12px}
+.grnd-title{font-size:15px;font-weight:600;color:var(--text);margin-bottom:6px}
+.grnd-desc{font-size:12px;color:var(--text2);line-height:1.6;margin-bottom:12px}
 .grnd-body{display:none}
 .grnd-body.open{display:block}
-.grnd-prompt{font-size:0.9375rem;font-weight:600;color:var(--text);text-align:center;padding:1.2rem .5rem;line-height:1.5}
-.grnd-counter{font-size:2.125rem;font-weight:600;color:var(--calm);text-align:center;margin:.6rem 0}
-.grnd-sense{font-size:0.7812rem;color:var(--text3);text-align:center;margin-bottom:1rem}
-.grnd-btn{width:100%;padding:11px;border-radius:var(--r);border:1px solid var(--bdr2);background:transparent;color:var(--text2);font-size:0.8125rem;cursor:pointer;font-family:inherit;margin-top:4px}
+.grnd-prompt{font-size:15px;font-weight:600;color:var(--text);text-align:center;padding:1.2rem .5rem;line-height:1.5}
+.grnd-counter{font-size:34px;font-weight:600;color:var(--calm);text-align:center;margin:.6rem 0}
+.grnd-sense{font-size:12px;color:var(--text3);text-align:center;margin-bottom:1rem}
+.grnd-btn{width:100%;padding:11px;border-radius:var(--r);border:1px solid var(--bdr2);background:transparent;color:var(--text2);font-size:13px;cursor:pointer;font-family:inherit;margin-top:4px}
 .grnd-btn:active{opacity:.7}
 .grnd-timer-bar{height:6px;border-radius:3px;background:var(--bdr);overflow:hidden;margin:.5rem 0}
 .grnd-timer-fill{height:100%;border-radius:3px;background:var(--calm);transition:width .1s linear}
 .grnd-pulse{width:80px;height:80px;border-radius:50%;background:var(--calm-bg);margin:1rem auto;transition:transform .5s ease-in-out}
 .grnd-pulse.expand{transform:scale(1.3)}
-.grnd-done-q{font-size:0.875rem;color:var(--text2);text-align:center;margin-bottom:14px;padding-top:4px}
+.grnd-done-q{font-size:14px;color:var(--text2);text-align:center;margin-bottom:14px;padding-top:4px}
 .grnd-done-btns{display:flex;gap:8px}
-.grnd-done-btn{flex:1;padding:11px;border-radius:var(--r);font-size:0.8125rem;cursor:pointer;font-family:inherit;border:1px solid var(--bdr2);background:transparent;color:var(--text2)}
+.grnd-done-btn{flex:1;padding:11px;border-radius:var(--r);font-size:13px;cursor:pointer;font-family:inherit;border:1px solid var(--bdr2);background:transparent;color:var(--text2)}
 .grnd-done-btn.settled{background:var(--ok-bg);color:var(--ok);border-color:var(--ok-bdr)}
 .grnd-done-btn.still{background:var(--warn-bg);color:var(--warn-text);border-color:var(--warn-bdr)}
-.grnd-still-msg{font-size:0.8125rem;line-height:1.6;padding:10px 12px;border-radius:var(--r);border-left:3px solid var(--warn-bdr);background:var(--warn-bg);color:var(--warn-text);margin-top:8px;display:none}
+.grnd-still-msg{font-size:13px;line-height:1.6;padding:10px 12px;border-radius:var(--r);border-left:3px solid var(--warn-bdr);background:var(--warn-bg);color:var(--warn-text);margin-top:8px;display:none}
 .grnd-still-msg.show{display:block}
 
 /* ── DAILY CARE ── */
 .prayer-card{background:var(--bg);border:1px solid var(--bdr);border-radius:var(--rl);padding:1.1rem;margin-bottom:8px;text-align:center}
-.prayer-text{font-size:0.8125rem;line-height:2;color:var(--text2);font-style:italic}
-.prayer-text strong{font-style:normal;font-weight:600;color:var(--text);display:block;margin-bottom:6px;font-size:0.875rem}
+.prayer-text{font-size:13px;line-height:2;color:var(--text2);font-style:italic}
+.prayer-text strong{font-style:normal;font-weight:600;color:var(--text);display:block;margin-bottom:6px;font-size:14px}
 .isec{margin-bottom:12px}
-.ilbl{font-size:0.75rem;font-weight:600;color:var(--text2);margin-bottom:4px}
-.iprm{font-size:0.75rem;color:var(--text3);margin-bottom:7px;font-style:italic;line-height:1.5}
+.ilbl{font-size:12px;font-weight:600;color:var(--text2);margin-bottom:4px}
+.iprm{font-size:12px;color:var(--text3);margin-bottom:7px;font-style:italic;line-height:1.5}
 .itxt{
   width:100%;padding:10px 11px;border-radius:var(--r);border:1px solid var(--bdr2);
-  background:var(--bg2);color:var(--text);font-size:0.8125rem;font-family:inherit;
+  background:var(--bg2);color:var(--text);font-size:13px;font-family:inherit;
   resize:none;line-height:1.5;
 }
 .itxt:focus{outline:none;border-color:var(--text3)}
@@ -307,11 +306,11 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 /* ── YES/NO ROWS ── */
 .yn-row{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid var(--bdr)}
 .yn-row:last-child{border-bottom:none}
-.yn-text{flex:1;font-size:0.8125rem;line-height:1.5;color:var(--text)}
+.yn-text{flex:1;font-size:13px;line-height:1.5;color:var(--text)}
 .yn-btns{display:flex;gap:5px;flex-shrink:0}
 .yn-btn{
   padding:5px 13px;border-radius:var(--r);border:1px solid var(--bdr2);
-  background:transparent;font-size:0.75rem;cursor:pointer;color:var(--text2);font-family:inherit;
+  background:transparent;font-size:12px;cursor:pointer;color:var(--text2);font-family:inherit;
 }
 .yn-btn.yo{background:var(--ok-bg);color:var(--ok);border-color:var(--ok-bdr)}
 .yn-btn.no{background:var(--alert-bg);color:var(--alert);border-color:var(--alert-bdr)}
@@ -319,14 +318,14 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 /* ── GOALS ── */
 .goal-grid{display:flex;flex-direction:column;gap:6px;margin-bottom:12px}
 .goal-item{display:flex;align-items:center;gap:10px;padding:9px 11px;border-radius:var(--r);border:1px solid var(--bdr)}
-.goal-ico{font-size:1rem;flex-shrink:0;width:22px;text-align:center}
+.goal-ico{font-size:16px;flex-shrink:0;width:22px;text-align:center}
 .goal-info{flex:1;min-width:100px}
-.goal-name{font-size:0.8125rem;font-weight:600;color:var(--text)}
-.goal-sub{font-size:0.75rem;color:var(--text3);margin-top:1px}
+.goal-name{font-size:13px;font-weight:600;color:var(--text)}
+.goal-sub{font-size:12px;color:var(--text3);margin-top:1px}
 .goal-btns{display:flex;gap:5px;flex-shrink:0}
 .goal-btn{
   padding:5px 14px;border-radius:var(--r);border:1px solid var(--bdr2);
-  background:transparent;font-size:0.75rem;cursor:pointer;color:var(--text2);font-family:inherit;
+  background:transparent;font-size:12px;cursor:pointer;color:var(--text2);font-family:inherit;
 }
 .goal-btn.gy{background:var(--ok-bg);color:var(--ok);border-color:var(--ok-bdr)}
 .goal-btn.gn{background:var(--alert-bg);color:var(--alert);border-color:var(--alert-bdr)}
@@ -334,7 +333,7 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 /* ── TAPER ── */
 .taper-row{
   display:flex;align-items:flex-start;gap:10px;padding:9px 0;border-bottom:1px solid var(--bdr);
-  font-size:0.8125rem;line-height:1.5;cursor:pointer;user-select:none;color:var(--text);
+  font-size:13px;line-height:1.5;cursor:pointer;user-select:none;color:var(--text);
 }
 .taper-row:last-child{border-bottom:none}
 .taper-row input{
@@ -348,7 +347,7 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
   border:2px solid #fff;border-top:none;border-left:none;transform:rotate(45deg);
 }
 .taper-status{
-  padding:14px;border-radius:var(--rl);text-align:center;font-size:0.9375rem;
+  padding:14px;border-radius:var(--rl);text-align:center;font-size:15px;
   font-weight:600;margin-top:6px;display:none;line-height:1.5;
 }
 .tp-g{background:var(--ok-bg);color:var(--ok)}
@@ -358,26 +357,26 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 /* ── GAME BLOCKS ── */
 .game-block{margin-top:10px;padding:10px 12px;border-radius:var(--r);background:var(--bg2);border:1px solid var(--bdr)}
 .game-block+.game-block{margin-top:8px}
-.game-name{font-size:0.8125rem;font-weight:600;color:var(--text);margin-bottom:6px}
-.game-row{font-size:0.75rem;color:var(--text2);line-height:1.5;margin-bottom:3px}
-.game-row strong{color:var(--text3);font-size:0.6875rem;text-transform:uppercase;letter-spacing:.3px;margin-right:4px}
-.game-action{margin-top:8px;padding:8px 10px;border-radius:var(--r);border-left:3px solid var(--info-bdr);background:var(--info-bg);font-size:0.75rem;line-height:1.5;color:var(--info-text)}
+.game-name{font-size:13px;font-weight:600;color:var(--text);margin-bottom:6px}
+.game-row{font-size:12px;color:var(--text2);line-height:1.5;margin-bottom:3px}
+.game-row strong{color:var(--text3);font-size:11px;text-transform:uppercase;letter-spacing:.3px;margin-right:4px}
+.game-action{margin-top:8px;padding:8px 10px;border-radius:var(--r);border-left:3px solid var(--info-bdr);background:var(--info-bg);font-size:12px;line-height:1.5;color:var(--info-text)}
 
 /* ── HISTORY ── */
 .hist-day{
-  padding:8px 11px;border-radius:var(--r);border:1px solid var(--bdr);font-size:0.8125rem;
+  padding:8px 11px;border-radius:var(--r);border:1px solid var(--bdr);font-size:13px;
   cursor:pointer;color:var(--text2);margin-bottom:4px;display:flex;justify-content:space-between;align-items:center;
 }
-.hist-view{background:var(--bg2);border-radius:var(--r);padding:12px;font-size:0.8125rem;line-height:1.6;color:var(--text);display:none;margin-top:8px}
+.hist-view{background:var(--bg2);border-radius:var(--r);padding:12px;font-size:13px;line-height:1.6;color:var(--text);display:none;margin-top:8px}
 .hist-view.show{display:block}
-.hv-head{font-size:0.6875rem;color:var(--text3);font-weight:600;text-transform:uppercase;letter-spacing:.4px;margin:10px 0 4px}
+.hv-head{font-size:11px;color:var(--text3);font-weight:600;text-transform:uppercase;letter-spacing:.4px;margin:10px 0 4px}
 .hv-head:first-child{margin-top:0}
 
 /* ── AFFIRMATIONS ── */
 .aff{display:flex;flex-direction:column;gap:6px;margin-top:8px}
 .afi{
   display:flex;align-items:flex-start;gap:10px;padding:9px 11px;border-radius:var(--r);
-  border:1px solid var(--bdr);font-size:0.8125rem;line-height:1.5;cursor:pointer;
+  border:1px solid var(--bdr);font-size:13px;line-height:1.5;cursor:pointer;
   user-select:none;color:var(--text);
 }
 .afi input[type=checkbox]{
@@ -390,14 +389,14 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
   border:2px solid #fff;border-top:none;border-left:none;transform:rotate(45deg);
 }
 .afi.done{background:var(--ok-bg);border-color:var(--ok-bdr)}
-.afs{font-size:0.6875rem;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.4px;margin:10px 0 5px}
-.mantra{text-align:center;font-size:0.9375rem;color:var(--info-text);padding:1.2rem 0;font-style:italic;display:none}
+.afs{font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.4px;margin:10px 0 5px}
+.mantra{text-align:center;font-size:15px;color:var(--info-text);padding:1.2rem 0;font-style:italic;display:none}
 
 /* ── IDENTITY REFERENCE ── */
 .id-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:8px}
 .id-cell{background:var(--bg2);border-radius:var(--r);padding:7px 10px}
-.id-key{font-size:0.6875rem;color:var(--text3)}
-.id-val{font-size:0.8125rem;font-weight:600;margin-top:1px;color:var(--text)}
+.id-key{font-size:11px;color:var(--text3)}
+.id-val{font-size:13px;font-weight:600;margin-top:1px;color:var(--text)}
 
 /* ── WEEKLY RHYTHM ── */
 
@@ -423,8 +422,8 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
   cursor:pointer;margin-bottom:6px;
 }
 .sit-option:active{background:var(--bg2)}
-.sit-label{font-size:0.875rem;font-weight:600;color:var(--text)}
-.sit-desc{font-size:0.75rem;color:var(--text3);margin-top:2px}
+.sit-label{font-size:14px;font-weight:600;color:var(--text)}
+.sit-desc{font-size:12px;color:var(--text3);margin-top:2px}
 
 /* ── INTENSITY CHECK ── */
 .intensity-bar{
@@ -443,15 +442,15 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 .heat-bar .z-green{flex:3;background:var(--green)}
 .heat-bar .z-yellow{flex:2;background:var(--yellow)}
 .heat-bar .z-red{flex:3;background:var(--red)}
-.heat-nums{display:flex;justify-content:space-between;margin-top:6px;padding:0 8px;font-size:0.625rem;color:var(--text3)}
+.heat-nums{display:flex;justify-content:space-between;margin-top:6px;padding:0 8px;font-size:10px;color:var(--text3)}
 .heat-nums span{width:22px;text-align:center}
-.heat-labels{display:flex;margin-top:4px;padding:0 2px;font-size:0.5625rem;letter-spacing:0.6px}
+.heat-labels{display:flex;margin-top:4px;padding:0 2px;font-size:9px;letter-spacing:0.6px}
 .heat-labels>div{text-align:center}
 .heat-labels .l-blue{flex:2;color:var(--blue)}
 .heat-labels .l-green{flex:3;color:var(--green)}
 .heat-labels .l-yellow{flex:2;color:var(--yellow)}
 .heat-labels .l-red{flex:3;color:var(--red)}
-.heat-zone-msg{margin-top:10px;font-size:0.75rem;color:var(--text2);line-height:1.5;padding:8px 12px;background:var(--bg);border-radius:var(--r2);border:1px solid var(--bdr)}
+.heat-zone-msg{margin-top:10px;font-size:12px;color:var(--text2);line-height:1.5;padding:8px 12px;background:var(--bg);border-radius:var(--r2);border:1px solid var(--bdr)}
 .heat-zone-msg strong{color:var(--text)}
 
 /* Nicotine timer banner */
@@ -469,20 +468,20 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
   gap:12px;
 }
 .nb-label{
-  font-size:0.6875rem;
+  font-size:11px;
   letter-spacing:1px;
   text-transform:uppercase;
   color:var(--blue);
   font-weight:500;
 }
 .nb-time{
-  font-size:1rem;
+  font-size:16px;
   font-weight:500;
   color:var(--text);
   font-variant-numeric:tabular-nums;
 }
 .nb-quote{
-  font-size:0.6875rem;
+  font-size:11px;
   color:var(--text3);
   font-style:italic;
   text-align:center;
@@ -491,7 +490,7 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 }
 
 .cat-section{margin-bottom:18px}
-.cat-label{font-size:0.6875rem;letter-spacing:1.4px;text-transform:uppercase;color:var(--text3);margin:8px 4px 10px;font-weight:500}
+.cat-label{font-size:11px;letter-spacing:1.4px;text-transform:uppercase;color:var(--text3);margin:8px 4px 10px;font-weight:500}
 
 /* Persistent back button */
 #persistent-back{
@@ -520,12 +519,12 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 .grp-routine{border-left:3px solid var(--green)}
 .grp-now{border-left:3px solid var(--red)}
 .grp-soon{border-left:3px solid var(--gold)}
-.grp-ico{font-size:1.5rem;width:32px;text-align:center;opacity:0.85}
+.grp-ico{font-size:24px;width:32px;text-align:center;opacity:0.85}
 .grp-info{flex:1}
-.grp-name{font-size:1.0625rem;font-weight:500;color:var(--text)}
-.grp-desc{font-size:0.75rem;color:var(--text3);margin-top:3px}
-.grp-chv{font-size:1.375rem;color:var(--text3)}
-.grp-title{font-size:0.8125rem;letter-spacing:1.4px;text-transform:uppercase;color:var(--text3);margin:0 2px 14px;font-weight:500}
+.grp-name{font-size:17px;font-weight:500;color:var(--text)}
+.grp-desc{font-size:12px;color:var(--text3);margin-top:3px}
+.grp-chv{font-size:22px;color:var(--text3)}
+.grp-title{font-size:13px;letter-spacing:1.4px;text-transform:uppercase;color:var(--text3);margin:0 2px 14px;font-weight:500}
 
 /* Level 2 makeup */
 .entry-btn{position:relative}
@@ -538,8 +537,8 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 #streak-banners .nicotine-banner{margin-bottom:0}
 .nb-units{display:flex;gap:9px;flex-wrap:wrap;margin-top:6px;justify-content:center}
 .nb-unit{display:flex;flex-direction:column;align-items:center;min-width:36px}
-.nb-unit b{font-size:1.0625rem;font-weight:600;color:var(--text);font-variant-numeric:tabular-nums;line-height:1.05}
-.nb-unit span{font-size:0.5625rem;color:var(--text3);text-transform:uppercase;letter-spacing:0.4px;margin-top:2px}
+.nb-unit b{font-size:17px;font-weight:600;color:var(--text);font-variant-numeric:tabular-nums;line-height:1.05}
+.nb-unit span{font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:0.4px;margin-top:2px}
 
 /* SVG icons */
 .entry-ico,.grp-ico{display:flex;align-items:center;justify-content:center}
@@ -560,13 +559,13 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 /* Future Boost — journey timeline */
 .boost-card{background:linear-gradient(145deg,#2a241c,#221d17);border:1px solid var(--bdr);border-radius:var(--rl);padding:18px 18px 18px 16px;margin-top:18px;box-shadow:0 2px 10px rgba(0,0,0,0.3)}
 .boost-header{display:flex;align-items:center;justify-content:space-between;cursor:pointer;-webkit-tap-highlight-color:transparent}
-.boost-title{font-size:0.8125rem;letter-spacing:1.4px;text-transform:uppercase;color:var(--gold);font-weight:500}
-.boost-chv{font-size:0.75rem;color:var(--text3);transition:transform 0.2s}
+.boost-title{font-size:13px;letter-spacing:1.4px;text-transform:uppercase;color:var(--gold);font-weight:500}
+.boost-chv{font-size:12px;color:var(--text3);transition:transform 0.2s}
 .boost-chv.open{transform:rotate(180deg)}
 .boost-track{margin-top:16px}
 .boost-track{position:relative;padding-left:22px}
 .boost-track::before{content:"";position:absolute;left:5px;top:4px;bottom:4px;width:2px;background:linear-gradient(var(--green),var(--gold),var(--blue))}
-.boost-node{position:relative;padding:7px 0;font-size:0.875rem;color:var(--text)}
+.boost-node{position:relative;padding:7px 0;font-size:14px;color:var(--text)}
 .boost-node::before{content:"";position:absolute;left:-21px;top:11px;width:9px;height:9px;border-radius:50%;background:var(--gold);border:2px solid var(--bg)}
 .boost-apex{font-weight:600;color:var(--gold)}
 .boost-apex::before{width:11px;height:11px;left:-22px;background:var(--gold);box-shadow:0 0 8px rgba(212,176,106,0.6)}
@@ -576,35 +575,35 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 /* Setup / token screen */
 .setup-wrap{max-width:380px;margin:0 auto;padding:32px 0}
 .setup-hero{text-align:center;margin-bottom:28px}
-.setup-logo{font-size:1.375rem;font-weight:700;color:var(--text);letter-spacing:-0.3px}
-.setup-tagline{font-size:0.75rem;color:var(--text3);margin-top:6px;font-style:italic}
+.setup-logo{font-size:22px;font-weight:700;color:var(--text);letter-spacing:-0.3px}
+.setup-tagline{font-size:12px;color:var(--text3);margin-top:6px;font-style:italic}
 .setup-choice{background:linear-gradient(145deg,#2a241c,#221d17);border:1px solid var(--bdr);border-radius:var(--rl);padding:20px;margin-bottom:12px;box-shadow:0 2px 10px rgba(0,0,0,0.3)}
 .setup-choice-primary{border-left:3px solid var(--green);cursor:pointer}
 .setup-choice-primary:active{transform:scale(0.99)}
 .setup-choice-head{display:flex;align-items:center;gap:10px;margin-bottom:10px}
 .setup-choice-ico{display:flex;align-items:center;justify-content:center}
 .setup-choice-ico svg{width:22px;height:22px}
-.setup-choice-title{font-size:0.9375rem;font-weight:600;color:var(--text)}
-.setup-choice-desc{font-size:0.75rem;color:var(--text3);line-height:1.6;margin-bottom:14px}
-.setup-choice-cta{font-size:0.8125rem;font-weight:600;color:var(--green)}
-.setup-or{text-align:center;font-size:0.6875rem;letter-spacing:1px;text-transform:uppercase;color:var(--text4);margin:4px 0 12px}
-.setup-input{width:100%;padding:10px 12px;border-radius:var(--r);border:1px solid var(--bdr2);background:var(--bg2);color:var(--text);font-size:0.8125rem;font-family:monospace;box-sizing:border-box;margin-bottom:12px;outline:none}
+.setup-choice-title{font-size:15px;font-weight:600;color:var(--text)}
+.setup-choice-desc{font-size:12px;color:var(--text3);line-height:1.6;margin-bottom:14px}
+.setup-choice-cta{font-size:13px;font-weight:600;color:var(--green)}
+.setup-or{text-align:center;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--text4);margin:4px 0 12px}
+.setup-input{width:100%;padding:10px 12px;border-radius:var(--r);border:1px solid var(--bdr2);background:var(--bg2);color:var(--text);font-size:13px;font-family:monospace;box-sizing:border-box;margin-bottom:12px;outline:none}
 
 /* Rhythm modal */
 .rhythm-ov{display:none;position:fixed;top:0;left:0;right:0;bottom:0;z-index:200;background:rgba(0,0,0,0.5);overflow-y:auto}
 .rhythm-ov.open{display:flex;align-items:center;justify-content:center;padding:20px;-webkit-overflow-scrolling:touch}
 .rhythm-modal{width:100%;max-width:400px;margin:auto;background:linear-gradient(145deg,#2a241c,#1f1b15);border:1px solid var(--bdr2);border-radius:16px;padding:18px;box-shadow:0 12px 48px rgba(0,0,0,0.6)}
 .rhythm-modal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--bdr)}
-.rhythm-modal-title{font-size:1.0625rem;font-weight:700;color:var(--text);letter-spacing:-0.2px}
-.rhythm-btn{font-size:0.6875rem;font-weight:500;color:var(--blue);background:var(--blue-bg);border:1px solid var(--blue-bdr);border-radius:8px;padding:4px 10px;margin-left:auto;margin-right:10px;cursor:pointer;font-family:inherit;-webkit-tap-highlight-color:transparent}
+.rhythm-modal-title{font-size:17px;font-weight:700;color:var(--text);letter-spacing:-0.2px}
+.rhythm-btn{font-size:11px;font-weight:500;color:var(--blue);background:var(--blue-bg);border:1px solid var(--blue-bdr);border-radius:8px;padding:4px 10px;margin-left:auto;margin-right:10px;cursor:pointer;font-family:inherit;-webkit-tap-highlight-color:transparent}
 .rhythm-btn:active{transform:scale(0.95)}
 
 /* Rhythm modal content */
-.rsec-label{font-size:0.625rem;letter-spacing:1.2px;text-transform:uppercase;color:var(--blue);font-weight:600;margin-bottom:8px}
+.rsec-label{font-size:10px;letter-spacing:1.2px;text-transform:uppercase;color:var(--blue);font-weight:600;margin-bottom:8px}
 .rhythm-grid{display:flex;flex-direction:column;gap:4px}
-.rhythm-row{display:flex;align-items:center;gap:10px;font-size:0.75rem;padding:7px 11px;border:1px solid var(--bdr);border-radius:var(--r2);background:var(--bg2);line-height:1.3;color:var(--text)}
+.rhythm-row{display:flex;align-items:center;gap:10px;font-size:12px;padding:7px 11px;border:1px solid var(--bdr);border-radius:var(--r2);background:var(--bg2);line-height:1.3;color:var(--text)}
 .rhythm-row:last-child{border-bottom:1px solid var(--bdr)}
-.rhythm-day{font-weight:600;min-width:76px;color:var(--text2);font-size:0.75rem}
+.rhythm-day{font-weight:600;min-width:76px;color:var(--text2);font-size:12px}
 .rhythm-focus{color:var(--text)}
 .rhythm-row.today{border-color:var(--blue-bdr);background:linear-gradient(145deg,#23262e,#1b1d24);border-left:3px solid var(--blue)}
 .rhythm-row.today .rhythm-day{color:var(--blue)}
@@ -612,18 +611,25 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 .tt-list::before{content:"";position:absolute;left:9px;top:8px;bottom:8px;width:2px;background:linear-gradient(var(--blue),var(--bdr2))}
 .tt-item{display:flex;align-items:center;gap:11px;padding:5px 0;position:relative}
 .tt-dot{width:8px;height:8px;border-radius:50%;background:var(--blue);flex-shrink:0;z-index:1;margin-left:5px;box-shadow:0 0 0 3px var(--bg2)}
-.tt-time{font-weight:600;min-width:64px;color:var(--blue);font-size:0.8125rem;font-variant-numeric:tabular-nums}
-.tt-label{color:var(--text);font-size:0.8125rem}
+.tt-time{font-weight:600;min-width:64px;color:var(--blue);font-size:13px;font-variant-numeric:tabular-nums}
+.tt-label{color:var(--text);font-size:13px}
 
 /* Gratitude sentence completions */
 .grat-row{display:flex;align-items:baseline;gap:8px;margin-bottom:10px}
-.grat-prefix{font-size:0.8125rem;color:var(--text2);white-space:nowrap;flex-shrink:0}
+.grat-prefix{font-size:13px;color:var(--text2);white-space:nowrap;flex-shrink:0}
 .grat-input{flex:1;min-height:0;background:transparent;border:none;border-bottom:1px solid var(--bdr2);border-radius:0;padding:2px 0;resize:none;outline:none}
 .grat-input:focus{border-bottom-color:var(--blue)}
 
-/* Desktop: scale everything up via root font-size (consistent across Safari, Chrome, Firefox) */
+
+
+/* Desktop: scale the app up geometrically (identical in Safari, Chrome, Firefox) */
 @media (min-width: 900px){
-  html{font-size:18.25px}
+  body{ --app-scale:1.14; }
+  .app-scaler{
+    transform:scale(var(--app-scale));
+    transform-origin:top center;
+  }
+  .ground-fab{transform:scale(1.14);transform-origin:bottom right}
 }
 </style>
 </head>
@@ -634,7 +640,7 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 <div class="app-header" id="app-header">
   <div class="app-title">Inner Systems</div>
   <div class="app-sub">Nothing is good or bad. Just notice.</div>
-  <div class="app-updated">Last updated: 29 May 2026</div><div id="sync-status" style="font-size:0.625rem;color:var(--text3);margin-top:2px;cursor:pointer" onclick="showTokenPrompt()"></div>
+  <div class="app-updated">Last updated: 29 May 2026</div><div id="sync-status" style="font-size:10px;color:var(--text3);margin-top:2px;cursor:pointer" onclick="showTokenPrompt()"></div>
   <div class="reg-indicator" id="reg-pill">Not checked today</div>
 </div>
 <button id="persistent-back" onclick="goBack()" style="display:none"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
@@ -737,12 +743,12 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
         <div class="setup-choice-ico i-blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-9-9M21 3v6h-6"/></svg></div>
         <div class="setup-choice-title">Sync across devices</div>
       </div>
-      <div id="token-current" style="font-size:0.6875rem;color:var(--text3);margin-bottom:10px"></div>
+      <div id="token-current" style="font-size:11px;color:var(--text3);margin-bottom:10px"></div>
       <div class="setup-choice-desc">Connect a GitHub token (with <strong>gist</strong> scope, classic recommended) to sync across devices. Stays on this device &mdash; sent only to GitHub's API.</div>
       <input type="password" id="token-input" placeholder="ghp_xxxxxxxxxxxx" class="setup-input">
       <button class="btn" style="width:100%" onclick="saveNewToken()">Update token</button>
     </div>
-    <button style="width:100%;padding:12px;border-radius:var(--rl);border:1px solid var(--bdr);background:transparent;color:var(--text2);font-size:0.75rem;cursor:pointer;font-family:inherit;margin-top:4px" onclick="closeTokenScreen()">Cancel</button>
+    <button style="width:100%;padding:12px;border-radius:var(--rl);border:1px solid var(--bdr);background:transparent;color:var(--text2);font-size:12px;cursor:pointer;font-family:inherit;margin-top:4px" onclick="closeTokenScreen()">Cancel</button>
   </div>
 </div>
 
@@ -861,7 +867,7 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
       <div class="result" id="r-ennea-act"></div>
     </div></div>
   <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9678;</span><div><div class="csec-nm">Heat check</div><div class="csec-ds">Your worst moment yesterday or today — how activated were you?</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="card-desc">Select everything present. More than one is normal.</div>
-    <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9650;</span><div><div class="csec-nm">Intensity &amp; certainty</div><div class="csec-ds">How charged, and how sure am I really?</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="sdiv" style="margin-top:0">Intensity level right now</div><div class="intensity-bar" id="int-bar-act"></div><div style="display:flex;justify-content:space-between;font-size:0.625rem;color:var(--text3);margin-bottom:12px"><span>Low</span><span>High</span></div><div class="sdiv">Certainty level right now</div><div class="intensity-bar" id="cert-bar-act"></div><div style="display:flex;justify-content:space-between;font-size:0.625rem;color:var(--text3);margin-bottom:12px"><span>Uncertain</span><span>Certain</span></div><button class="btn" onclick="event.stopPropagation();doICheck('act','r-ic-act')">Check</button><div class="result" id="r-ic-act"></div></div></div><div class="reg-items" id="quick-reg-items"></div><button class="btn" onclick="event.stopPropagation();doQuickReg()">Notice</button><div class="result" id="r-quick-reg"></div></div></div>
+    <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9650;</span><div><div class="csec-nm">Intensity &amp; certainty</div><div class="csec-ds">How charged, and how sure am I really?</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="sdiv" style="margin-top:0">Intensity level right now</div><div class="intensity-bar" id="int-bar-act"></div><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-bottom:12px"><span>Low</span><span>High</span></div><div class="sdiv">Certainty level right now</div><div class="intensity-bar" id="cert-bar-act"></div><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-bottom:12px"><span>Uncertain</span><span>Certain</span></div><button class="btn" onclick="event.stopPropagation();doICheck('act','r-ic-act')">Check</button><div class="result" id="r-ic-act"></div></div></div><div class="reg-items" id="quick-reg-items"></div><button class="btn" onclick="event.stopPropagation();doQuickReg()">Notice</button><div class="result" id="r-quick-reg"></div></div></div>
   
 </div>
 
@@ -913,7 +919,7 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
   <div class="card">
     <div class="card-title">Noise check — family / known pattern</div>
     <div class="card-desc">Check what is present. The wound and the situation are two separate events.</div>
-    <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9650;</span><div><div class="csec-nm">Intensity &amp; certainty</div><div class="csec-ds">How charged, and how sure am I really?</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="sdiv" style="margin-top:0">Intensity level right now</div><div class="intensity-bar" id="int-bar-sit"></div><div style="display:flex;justify-content:space-between;font-size:0.625rem;color:var(--text3);margin-bottom:12px"><span>Low</span><span>High</span></div><div class="sdiv">Certainty level right now</div><div class="intensity-bar" id="cert-bar-sit"></div><div style="display:flex;justify-content:space-between;font-size:0.625rem;color:var(--text3);margin-bottom:12px"><span>Uncertain</span><span>Certain</span></div><button class="btn" onclick="event.stopPropagation();doICheck('sit','r-ic-sit')">Check</button><div class="result" id="r-ic-sit"></div></div></div>
+    <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9650;</span><div><div class="csec-nm">Intensity &amp; certainty</div><div class="csec-ds">How charged, and how sure am I really?</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="sdiv" style="margin-top:0">Intensity level right now</div><div class="intensity-bar" id="int-bar-sit"></div><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-bottom:12px"><span>Low</span><span>High</span></div><div class="sdiv">Certainty level right now</div><div class="intensity-bar" id="cert-bar-sit"></div><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-bottom:12px"><span>Uncertain</span><span>Certain</span></div><button class="btn" onclick="event.stopPropagation();doICheck('sit','r-ic-sit')">Check</button><div class="result" id="r-ic-sit"></div></div></div>
     <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9632;</span><div><div class="csec-nm">Wound or signal contamination</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="fam-noise-wound-list" class="chk-list"></div></div></div><div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9670;</span><div><div class="csec-nm">Manipulation or fawn triggers from others</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="fam-noise-manip-list" class="chk-list"></div></div></div><div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9678;</span><div><div class="csec-nm">Self-discounting or rationalising</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="fam-noise-self-list" class="chk-list"></div></div></div>
     <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9679;</span><div><div class="csec-nm">Relationship patterns</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="fam-rel-list" class="chk-list"></div></div></div>
     <button class="btn" onclick="doFamNoise()">Notice</button>
@@ -936,7 +942,7 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
   <div class="card">
     <div class="card-title">Noise check — outside your system</div>
     <div class="card-desc">Your system may be reading this person through a pattern they are not part of. Slow down.</div>
-    <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9650;</span><div><div class="csec-nm">Intensity &amp; certainty</div><div class="csec-ds">How charged, and how sure am I really?</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="sdiv" style="margin-top:0">Intensity level right now</div><div class="intensity-bar" id="int-bar-sitout"></div><div style="display:flex;justify-content:space-between;font-size:0.625rem;color:var(--text3);margin-bottom:12px"><span>Low</span><span>High</span></div><div class="sdiv">Certainty level right now</div><div class="intensity-bar" id="cert-bar-sitout"></div><div style="display:flex;justify-content:space-between;font-size:0.625rem;color:var(--text3);margin-bottom:12px"><span>Uncertain</span><span>Certain</span></div><button class="btn" onclick="event.stopPropagation();doICheck('sitout','r-ic-sitout')">Check</button><div class="result" id="r-ic-sitout"></div></div></div>
+    <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9650;</span><div><div class="csec-nm">Intensity &amp; certainty</div><div class="csec-ds">How charged, and how sure am I really?</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="sdiv" style="margin-top:0">Intensity level right now</div><div class="intensity-bar" id="int-bar-sitout"></div><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-bottom:12px"><span>Low</span><span>High</span></div><div class="sdiv">Certainty level right now</div><div class="intensity-bar" id="cert-bar-sitout"></div><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-bottom:12px"><span>Uncertain</span><span>Certain</span></div><button class="btn" onclick="event.stopPropagation();doICheck('sitout','r-ic-sitout')">Check</button><div class="result" id="r-ic-sitout"></div></div></div>
     <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9632;</span><div><div class="csec-nm">Outside-system patterns</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="out-noise-list" class="chk-list"></div></div></div>
     <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9670;</span><div><div class="csec-nm">Manipulation or fawn triggers from others</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="out-manip-list" class="chk-list"></div></div></div>
     <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9678;</span><div><div class="csec-nm">Self-discounting or rationalising</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="out-self-list" class="chk-list"></div></div></div>
@@ -960,11 +966,11 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
   <div class="card">
     <div class="card-title" style="color:var(--alert)">Craving active</div>
     <div class="card-desc">This craving will peak and pass in 3-5 minutes. You only need to get through this one.</div>
-    <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9650;</span><div><div class="csec-nm">Intensity &amp; certainty</div><div class="csec-ds">How charged, and how sure am I really?</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="sdiv" style="margin-top:0">Intensity level right now</div><div class="intensity-bar" id="int-bar-crav"></div><div style="display:flex;justify-content:space-between;font-size:0.625rem;color:var(--text3);margin-bottom:12px"><span>Low</span><span>High</span></div><div class="sdiv">Certainty level right now</div><div class="intensity-bar" id="cert-bar-crav"></div><div style="display:flex;justify-content:space-between;font-size:0.625rem;color:var(--text3);margin-bottom:12px"><span>Uncertain</span><span>Certain</span></div><button class="btn" onclick="event.stopPropagation();doICheck('crav','r-ic-crav')">Check</button><div class="result" id="r-ic-crav"></div></div></div>
+    <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9650;</span><div><div class="csec-nm">Intensity &amp; certainty</div><div class="csec-ds">How charged, and how sure am I really?</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="sdiv" style="margin-top:0">Intensity level right now</div><div class="intensity-bar" id="int-bar-crav"></div><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-bottom:12px"><span>Low</span><span>High</span></div><div class="sdiv">Certainty level right now</div><div class="intensity-bar" id="cert-bar-crav"></div><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-bottom:12px"><span>Uncertain</span><span>Certain</span></div><button class="btn" onclick="event.stopPropagation();doICheck('crav','r-ic-crav')">Check</button><div class="result" id="r-ic-crav"></div></div></div>
     <div class="al al-alert" style="margin:0 0 10px"><strong>The chain:</strong> Cigarettes &#8596; Pornography &#8594; Cannabis &#8594; Psychosis. Either entry point lowers the threshold for the next. Breaking any link protects the chain from completing.</div>
     <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9632;</span><div><div class="csec-nm">HALT check</div><div class="csec-ds">What is the real need?</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="halt-list" class="chk-list"></div><button class="btn" onclick="event.stopPropagation();doHALT()">Notice</button><div class="result" id="r-halt"></div></div></div>
-    <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9888;</span><div><div class="csec-nm">What you lose</div><div class="csec-ds">The cost of completing the chain</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div style="font-size:0.8125rem;line-height:1.8;color:var(--text2)"><div><strong style="color:var(--alert)">The 5th episode is the one you may not come back from intact.</strong></div><div>Warehousing. Career gone.</div><div>Every month of sobriety erased.</div><div>The exit plan dies.</div><div>They were right about you.</div><div>The craving is not about the substance. It is about regulation.</div><div style="margin-top:4px">Smoking to manage distress is using the thing that costs your autonomic system to regulate the autonomic system. Every cigarette: HRV drops, RHR rises, VO2max declines. The cost is not a future risk. It is happening now.</div><div style="margin-top:6px;color:var(--warn-text)">If you act on this craving: future pull activates. Tomorrow's craving arrives with false confidence — the certainty that you can handle one more. That certainty is the chain.</div></div></div></div>
-    <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9654;</span><div><div class="csec-nm">Do this now</div><div class="csec-ds">Delay, breathe, water, call, move</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div style="font-size:0.8125rem;line-height:1.8;color:var(--text2)"><div><strong style="color:var(--text)">Delay</strong> — 5 minutes.</div><div><strong style="color:var(--text)">Breathe</strong> — Tap Ground.</div><div><strong style="color:var(--text)">Drink water</strong> — Slowly.</div><div><strong style="color:var(--text)">Call your confidant</strong></div><div><strong style="color:var(--text)">Change the scene</strong></div></div></div></div>
+    <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9888;</span><div><div class="csec-nm">What you lose</div><div class="csec-ds">The cost of completing the chain</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div style="font-size:13px;line-height:1.8;color:var(--text2)"><div><strong style="color:var(--alert)">The 5th episode is the one you may not come back from intact.</strong></div><div>Warehousing. Career gone.</div><div>Every month of sobriety erased.</div><div>The exit plan dies.</div><div>They were right about you.</div><div>The craving is not about the substance. It is about regulation.</div><div style="margin-top:4px">Smoking to manage distress is using the thing that costs your autonomic system to regulate the autonomic system. Every cigarette: HRV drops, RHR rises, VO2max declines. The cost is not a future risk. It is happening now.</div><div style="margin-top:6px;color:var(--warn-text)">If you act on this craving: future pull activates. Tomorrow's craving arrives with false confidence — the certainty that you can handle one more. That certainty is the chain.</div></div></div></div>
+    <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9654;</span><div><div class="csec-nm">Do this now</div><div class="csec-ds">Delay, breathe, water, call, move</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div style="font-size:13px;line-height:1.8;color:var(--text2)"><div><strong style="color:var(--text)">Delay</strong> — 5 minutes.</div><div><strong style="color:var(--text)">Breathe</strong> — Tap Ground.</div><div><strong style="color:var(--text)">Drink water</strong> — Slowly.</div><div><strong style="color:var(--text)">Call your confidant</strong></div><div><strong style="color:var(--text)">Change the scene</strong></div></div></div></div>
     <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9733;</span><div><div class="csec-nm">Quit tools</div><div class="csec-ds">What am I using today</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="quit-tools"></div><button class="btn" onclick="event.stopPropagation();runQuit()">Check support status</button><div class="taper-status" id="qc-status"></div></div></div>
     
   
@@ -977,10 +983,10 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
   <div class="card">
     <div class="card-title">Active project</div>
     <div class="card-desc">The work is legitimate. Check whether the wound is running alongside it.</div>
-    <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9650;</span><div><div class="csec-nm">Intensity &amp; certainty</div><div class="csec-ds">How charged, and how sure am I really?</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="sdiv" style="margin-top:0">Intensity level right now</div><div class="intensity-bar" id="int-bar-proj"></div><div style="display:flex;justify-content:space-between;font-size:0.625rem;color:var(--text3);margin-bottom:12px"><span>Low</span><span>High</span></div><div class="sdiv">Certainty level right now</div><div class="intensity-bar" id="cert-bar-proj"></div><div style="display:flex;justify-content:space-between;font-size:0.625rem;color:var(--text3);margin-bottom:12px"><span>Uncertain</span><span>Certain</span></div><button class="btn" onclick="event.stopPropagation();doICheck('proj','r-ic-proj')">Check</button><div class="result" id="r-ic-proj"></div></div></div>
+    <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9650;</span><div><div class="csec-nm">Intensity &amp; certainty</div><div class="csec-ds">How charged, and how sure am I really?</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="sdiv" style="margin-top:0">Intensity level right now</div><div class="intensity-bar" id="int-bar-proj"></div><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-bottom:12px"><span>Low</span><span>High</span></div><div class="sdiv">Certainty level right now</div><div class="intensity-bar" id="cert-bar-proj"></div><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-bottom:12px"><span>Uncertain</span><span>Certain</span></div><button class="btn" onclick="event.stopPropagation();doICheck('proj','r-ic-proj')">Check</button><div class="result" id="r-ic-proj"></div></div></div>
     <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9679;</span><div><div class="csec-nm">Wound check</div><div class="csec-ds">Is the wound running alongside the work?</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="land-check-list" class="chk-list"></div><button class="btn" onclick="event.stopPropagation();doLandCheck()">Notice</button><div class="result" id="r-land"></div></div></div>
     <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9670;</span><div><div class="csec-nm">Which wound is running</div><div class="csec-ds">Select and get guidance</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="wound-pick-land" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px"></div><button class="btn" onclick="event.stopPropagation();doWoundPick()">Notice</button><div class="result" id="r-wound-pick"></div></div></div>
-    <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9654;</span><div><div class="csec-nm">Next actions</div><div class="csec-ds">Decoupled from emotion</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div style="font-size:0.75rem;line-height:1.7;color:var(--text2)"><div>1. SIC Second Appeal (RTI deemed refusal)</div><div>2. CCLA forensic audit request</div><div>3. Part-B correction (Bhu Bharati Act)</div><div>4. Lokayukta complaint</div><div>5. FIR under IT Act Sec 66C, 66D, 65</div><div>6. HC writ if all channels fail</div></div></div></div>
+    <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9654;</span><div><div class="csec-nm">Next actions</div><div class="csec-ds">Decoupled from emotion</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div style="font-size:12px;line-height:1.7;color:var(--text2)"><div>1. SIC Second Appeal (RTI deemed refusal)</div><div>2. CCLA forensic audit request</div><div>3. Part-B correction (Bhu Bharati Act)</div><div>4. Lokayukta complaint</div><div>5. FIR under IT Act Sec 66C, 66D, 65</div><div>6. HC writ if all channels fail</div></div></div></div>
   
   
 </div>
@@ -989,7 +995,7 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 
 <!-- DAILY CARE SCREEN -->
 <div class="screen" id="scr-care">
-  <div style="font-size:0.8125rem;color:var(--text2);margin-bottom:8px" id="dc-date"></div>
+  <div style="font-size:13px;color:var(--text2);margin-bottom:8px" id="dc-date"></div>
   <div class="card" id="dc-day-block" style="padding:12px 14px;margin-bottom:8px"></div>
   <div class="al al-alert" id="care-reg-banner" style="display:none;margin-bottom:8px">Regulation level is high today. Use Ground before goal work.</div>
 
@@ -1012,7 +1018,7 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
   </div></div>
 
   <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9678;</span><div><div class="csec-nm">Goal planning</div><div class="csec-ds">Auto-selected daily goals</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
-    <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px"><span style="font-size:0.75rem;color:var(--text3)" id="goal-intro"></span><button class="rhythm-btn" style="margin:0" onclick="event.stopPropagation();openRhythm()">Rhythm</button></div>
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px"><span style="font-size:12px;color:var(--text3)" id="goal-intro"></span><button class="rhythm-btn" style="margin:0" onclick="event.stopPropagation();openRhythm()">Rhythm</button></div>
     <div class="goal-grid" id="goal-grid"></div>
   </div></div>
 
@@ -1024,7 +1030,7 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
     <div class="yn-row"><span class="yn-text">Followed routine today</span><div class="yn-btns"><button class="yn-btn" id="t1a" onclick="event.stopPropagation();yn('t1a','t1b')">Yes</button><button class="yn-btn" id="t1b" onclick="event.stopPropagation();yn('t1b','t1a')">No</button></div></div>
     <div class="yn-row"><span class="yn-text">Chose stability over intensity today</span><div class="yn-btns"><button class="yn-btn" id="t2a" onclick="event.stopPropagation();yn('t2a','t2b')">Yes</button><button class="yn-btn" id="t2b" onclick="event.stopPropagation();yn('t2b','t2a')">No</button></div></div>
     <div class="yn-row"><span class="yn-text">Organised one area today — physical or digital</span><div class="yn-btns"><button class="yn-btn" id="m4a" onclick="event.stopPropagation();yn('m4a','m4b')">Yes</button><button class="yn-btn" id="m4b" onclick="event.stopPropagation();yn('m4b','m4a')">No</button></div></div>
-    <div style="font-size:0.6875rem;color:var(--text3);font-style:italic;margin:4px 0 10px">Showing up is half the battle. Movement, sleep, routine and order are regulation infrastructure.</div>
+    <div style="font-size:11px;color:var(--text3);font-style:italic;margin:4px 0 10px">Showing up is half the battle. Movement, sleep, routine and order are regulation infrastructure.</div>
     <div class="sdiv">Prodrome awareness</div>
     <div class="yn-row"><span class="yn-text">No unusual pattern recognition or heightened significance today</span><div class="yn-btns"><button class="yn-btn" id="p1a" onclick="event.stopPropagation();yn('p1a','p1b')">Yes</button><button class="yn-btn" id="p1b" onclick="event.stopPropagation();yn('p1b','p1a')">No</button></div></div>
     <div class="yn-row"><span class="yn-text">No urgency to communicate something important today</span><div class="yn-btns"><button class="yn-btn" id="p2a" onclick="event.stopPropagation();yn('p2a','p2b')">Yes</button><button class="yn-btn" id="p2b" onclick="event.stopPropagation();yn('p2b','p2a')">No</button></div></div>
@@ -1041,7 +1047,7 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
   </div></div>
 
   <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9679;</span><div><div class="csec-nm">Evening reflection</div><div class="csec-ds">What happened, where I showed up</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
-    <div class="isec" id="reflect-ctx-block" style="display:none"><div class="ilbl" style="color:var(--text3)">This morning you wrote</div><div id="reflect-ctx-text" style="font-size:0.8125rem;color:var(--text2);font-style:italic;padding:8px 11px;border-radius:var(--r);border:1px solid var(--bdr);line-height:1.5"></div></div>
+    <div class="isec" id="reflect-ctx-block" style="display:none"><div class="ilbl" style="color:var(--text3)">This morning you wrote</div><div id="reflect-ctx-text" style="font-size:13px;color:var(--text2);font-style:italic;padding:8px 11px;border-radius:var(--r);border:1px solid var(--bdr);line-height:1.5"></div></div>
     <div class="isec"><div class="ilbl">What actually happened</div><textarea class="itxt" id="reflect-what" rows="2" placeholder="Today..." oninput="persist('reflect-what',this.value)"></textarea></div>
     <div class="isec"><div class="ilbl">Where I showed up as myself</div><textarea class="itxt" id="reflect-good" rows="2" placeholder="I showed up when..." oninput="persist('reflect-good',this.value)"></textarea></div>
     <div class="isec"><div class="ilbl">What needs correction tomorrow</div><textarea class="itxt" id="reflect-next" rows="2" placeholder="Tomorrow I will..." oninput="persist('reflect-next',this.value)"></textarea></div>
@@ -1056,8 +1062,8 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
     <div class="card-title" style="margin-bottom:10px">Where I am</div>
     <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico" style="color:var(--calm)">&#9654;</span><div><div class="csec-nm">Phase 1 — Stabilisation</div><div class="csec-ds">Now → Nov 2026</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
     <div style="border-left:3px solid var(--calm);padding:8px 12px;margin-bottom:8px;border-radius:0 var(--r) var(--r) 0;background:var(--calm-bg)">
-      <div style="font-size:0.6875rem;font-weight:600;color:var(--calm);text-transform:uppercase;letter-spacing:.4px">Phase 1 &#8212; Stabilisation (now &#8594; Nov 2026)</div>
-      <div style="font-size:0.75rem;color:var(--text2);margin-top:4px;line-height:1.7">
+      <div style="font-size:11px;font-weight:600;color:var(--calm);text-transform:uppercase;letter-spacing:.4px">Phase 1 &#8212; Stabilisation (now &#8594; Nov 2026)</div>
+      <div style="font-size:12px;color:var(--text2);margin-top:4px;line-height:1.7">
         <strong style="color:var(--text)">This app:</strong> Self-administered STAIR Phase 1 + DBT distress tolerance (TIPP) + polyvagal self-regulation<br>
         <strong style="color:var(--text)">Body:</strong> Fitness as Se inferior development + vagal tone building. Walk 30 min daily — that IS your workout at VO2max 24. Progress intensity only when walking HR drops below 115 at the same pace. Consistency over intensity. No transformation protocol — recovery protocol.<br>
         <strong style="color:var(--text)">Mind:</strong> Emotion naming before pattern analysis. Structured short-form mindfulness only &#8212; no extended open awareness. Signal detection. Prodrome monitoring with external anchors.<br>
@@ -1068,8 +1074,8 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
     </div></div>
     <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico" style="color:var(--info-text)">&#9654;</span><div><div class="csec-nm">Phase 2 — Processing</div><div class="csec-ds">Post-exit, Month 1–6</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
     <div style="border-left:3px solid var(--info-bdr);padding:8px 12px;margin-bottom:8px;border-radius:0 var(--r) var(--r) 0">
-      <div style="font-size:0.6875rem;font-weight:600;color:var(--info-text);text-transform:uppercase;letter-spacing:.4px">Phase 2 &#8212; Processing (post-exit, Month 1&#8211;6)</div>
-      <div style="font-size:0.75rem;color:var(--text3);margin-top:4px;line-height:1.7">
+      <div style="font-size:11px;font-weight:600;color:var(--info-text);text-transform:uppercase;letter-spacing:.4px">Phase 2 &#8212; Processing (post-exit, Month 1&#8211;6)</div>
+      <div style="font-size:12px;color:var(--text3);margin-top:4px;line-height:1.7">
         <strong style="color:var(--text2)">Month 1&#8211;3:</strong> Independent therapist trained in STAIR/E-STAIR + somatic work. Formal emotion regulation + interpersonal skills (DEAR MAN). Body-based therapy &#8212; Somatic Experiencing or Sensorimotor Psychotherapy for what talk therapy cannot reach.<br>
         <strong style="color:var(--text2)">Month 3&#8211;6:</strong> IFS for parts integration (hero, shadow, wounded child) if stable. EMDR for specific trauma memories (rehab abuse, ECT, father&#8217;s death). Continue somatic work.<br>
         <strong style="color:var(--text2)">Not through this app.</strong> Needs co-regulation with a human, from safety.
@@ -1078,14 +1084,14 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
     </div></div>
     <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico" style="color:var(--ok)">&#9654;</span><div><div class="csec-nm">Phase 3 — Reconnection</div><div class="csec-ds">Mid-2027+</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
     <div style="border-left:3px solid var(--ok-bdr);padding:8px 12px;margin-bottom:8px;border-radius:0 var(--r) var(--r) 0">
-      <div style="font-size:0.6875rem;font-weight:600;color:var(--ok);text-transform:uppercase;letter-spacing:.4px">Phase 3 &#8212; Reconnection (mid-2027+)</div>
-      <div style="font-size:0.75rem;color:var(--text3);margin-top:4px;line-height:1.7">
+      <div style="font-size:11px;font-weight:600;color:var(--ok);text-transform:uppercase;letter-spacing:.4px">Phase 3 &#8212; Reconnection (mid-2027+)</div>
+      <div style="font-size:12px;color:var(--text3);margin-top:4px;line-height:1.7">
         Interpersonal effectiveness in real relationships. Trust calibration &#8212; extend trust based on demonstrated reliability, not words. Partner from safety, not from need. Community, tribe, professional network. Outside-person skills mature from defence to genuine connection. NoVisits at full capacity.
       </div>
     </div>
     </div></div>
     <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9678;</span><div><div class="csec-nm">Therapeutic layers</div><div class="csec-ds">5 layers across phases</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
-    <div style="font-size:0.75rem;color:var(--text2);line-height:1.7;margin-top:4px">
+    <div style="font-size:12px;color:var(--text2);line-height:1.7;margin-top:4px">
       <div><strong style="color:var(--text)">1. Body regulation:</strong> Polyvagal tools (breathing, self-contact, cold water). Somatic Experiencing or Sensorimotor Psychotherapy with therapist. Fitness as vagal tone + Se development.</div>
       <div><strong style="color:var(--text)">2. Emotion + interpersonal:</strong> STAIR/E-STAIR. DBT skills (distress tolerance, emotion regulation, interpersonal effectiveness, structured mindfulness).</div>
       <div><strong style="color:var(--text)">3. Parts work:</strong> IFS &#8212; hero drive as manager, persecutory shadow as firefighter, wounded child as exile. With therapist only.</div>
@@ -1094,37 +1100,37 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
     </div>
     </div></div>
     <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9654;</span><div><div class="csec-nm">NoVisits timeline</div><div class="csec-ds">Phase 3 — after complete healing</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
-    <div style="font-size:0.75rem;color:var(--text2);line-height:1.6;margin-top:4px">
+    <div style="font-size:12px;color:var(--text2);line-height:1.6;margin-top:4px">
       <div>NoVisits begins at <strong style="color:var(--text)">Phase 3</strong> — not before. Phases 1 and 2 are regulation, recovery, and full healing. Nothing is owed here until the foundation is solid.</div>
       <div style="margin-top:8px">It becomes the right project <strong style="color:var(--text)">only if I still feel called to it after complete healing</strong> — not from urgency, not from hero drive, not to prove anything.</div>
     </div>
-    <div style="font-size:0.6875rem;color:var(--text3);font-style:italic;margin-top:8px;line-height:1.5">Generational status and wealth. It unlocks the world. But only if chosen from a healed place, freely.</div>
+    <div style="font-size:11px;color:var(--text3);font-style:italic;margin-top:8px;line-height:1.5">Generational status and wealth. It unlocks the world. But only if chosen from a healed place, freely.</div>
   </div></div>
   </div>
 </div>
 
 <!-- DEEP REVIEW -->
 <div class="screen" id="scr-review">
-  <div style="margin-bottom:8px"><span class="card-title">Deep review</span><div style="font-size:0.75rem;color:var(--text3);margin-top:2px">Awareness is enough.</div></div>
+  <div style="margin-bottom:8px"><span class="card-title">Deep review</span><div style="font-size:12px;color:var(--text3);margin-top:2px">Awareness is enough.</div></div>
 
   <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9670;</span><div><div class="csec-nm">4w5 · INFJ · SX/SO · SP blind · →1 · ←2</div><div class="csec-ds">Cigarettes ↔ Pornography → Cannabis → Psychosis</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
-    <div style="font-size:0.6875rem;color:var(--text3);margin-bottom:6px">Ni-Fe-Ti-Se · High-gain · Wound → dysregulation → Ni volume too high → craving → chain completes</div>
-    <div style="font-size:0.75rem;color:var(--text2)">Core wounds: Hero drive (trap) · Not being seen · Betrayal · Manipulation · Truth denied · Helplessness · Being overridden · Being infantilised · Responsibility not shared · Rejection</div>
+    <div style="font-size:11px;color:var(--text3);margin-bottom:6px">Ni-Fe-Ti-Se · High-gain · Wound → dysregulation → Ni volume too high → craving → chain completes</div>
+    <div style="font-size:12px;color:var(--text2)">Core wounds: Hero drive (trap) · Not being seen · Betrayal · Manipulation · Truth denied · Helplessness · Being overridden · Being infantilised · Responsibility not shared · Rejection</div>
   </div></div>
-  <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico" style="font-size:0.75rem;font-weight:700">01</span><div><div class="csec-nm">Body signals</div><div class="csec-ds">Se inferior + SP blind &#8212; your weakest function. You will miss these until they are loud. Check deliberately.</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="b-list"></div><button class="btn" onclick="doBody()">Notice</button><div class="result" id="r-body"></div></div></div>
-  <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico" style="font-size:0.75rem;font-weight:700">02</span><div><div class="csec-nm">Heat level</div><div class="csec-ds">Your worst moment yesterday or today. What was present at its peak?</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="reg-items" id="reg-items"></div><button class="btn" onclick="doReg()">Notice</button><div class="result" id="r-reg"></div>
+  <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico" style="font-size:12px;font-weight:700">01</span><div><div class="csec-nm">Body signals</div><div class="csec-ds">Se inferior + SP blind &#8212; your weakest function. You will miss these until they are loud. Check deliberately.</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="b-list"></div><button class="btn" onclick="doBody()">Notice</button><div class="result" id="r-body"></div></div></div>
+  <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico" style="font-size:12px;font-weight:700">02</span><div><div class="csec-nm">Heat level</div><div class="csec-ds">Your worst moment yesterday or today. What was present at its peak?</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="reg-items" id="reg-items"></div><button class="btn" onclick="doReg()">Notice</button><div class="result" id="r-reg"></div>
     <div class="csec" style="margin-top:8px"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9711;</span><div><div class="csec-nm">Enneagram mode</div><div class="csec-ds">Which mode is firing?</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
       <div id="ennea-list-dr" class="chk-list"></div>
       <button class="btn" onclick="doEnneaDr()">Check mode</button>
       <div class="result" id="r-ennea-dr"></div>
     </div></div></div></div>
-  <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico" style="font-size:0.75rem;font-weight:700">03</span><div><div class="csec-nm">Noise check</div><div class="csec-ds">Is the signal real or is the wound running?</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9632;</span><div><div class="csec-nm">Wound or signal contamination</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="noise-wound-list"></div></div></div><div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9670;</span><div><div class="csec-nm">Manipulation or fawn triggers from others</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="noise-manip-list"></div></div></div><div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9678;</span><div><div class="csec-nm">Self-discounting or rationalising</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="noise-self-list"></div></div></div><div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9679;</span><div><div class="csec-nm">Relationship patterns</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="rel-list"></div></div></div><button class="btn" onclick="doNoise()">Notice</button><div class="result" id="r-noise"></div></div></div>
-  <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico" style="font-size:0.75rem;font-weight:700">04</span><div><div class="csec-nm">Distortion check</div><div class="csec-ds">Check what is active in your thinking.</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9632;</span><div><div class="csec-nm">Catastrophising</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="c-list"></div></div></div><div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9679;</span><div><div class="csec-nm">Cognitive filters</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="dist-list"></div></div></div><button class="btn" onclick="doDistort()">Notice</button><div class="result" id="r-distort"></div></div></div>
-  <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico" style="font-size:0.75rem;font-weight:700">05</span><div><div class="csec-nm">Interaction scan</div><div class="csec-ds">What is present in a recent or ongoing interaction.</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9632;</span><div><div class="csec-nm">Boundary pressure</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="bnd-list"></div></div></div><div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9679;</span><div><div class="csec-nm">Behavioural drift</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="soc-list"></div></div></div><button class="btn" onclick="doScan()">Notice</button><div class="result" id="r-scan"></div></div></div>
-  <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico" style="font-size:0.75rem;font-weight:700">06</span><div><div class="csec-nm">Game check</div><div class="csec-ds">Unconscious repetitive sequences &#8212; not malice, but structure.</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="game-list"></div><button class="btn" onclick="doGame()">Notice</button><div class="result" id="r-game"></div></div></div>
-  <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico" style="font-size:0.75rem;font-weight:700">07</span><div><div class="csec-nm">Authority dynamics</div><div class="csec-ds">What is active where authority is in play.</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9632;</span><div><div class="csec-nm">Patterns that undermine</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="auth-list"></div></div></div><div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9679;</span><div><div class="csec-nm">Holding your position</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="hold-list"></div></div></div><button class="btn" onclick="doAuthority()">Notice</button><div class="result" id="r-auth"></div></div></div>
-  <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico" style="font-size:0.75rem;font-weight:700">08</span><div><div class="csec-nm">Effort patterns</div><div class="csec-ds">Your system's default configuration under load.</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9632;</span><div><div class="csec-nm">Effort patterns</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="ep-list"></div></div></div><div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9679;</span><div><div class="csec-nm">Structural bias</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="sb-list"></div></div></div><div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9675;</span><div><div class="csec-nm">Procrastination signals</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="proc-list"></div></div></div><button class="btn" onclick="doEffort()">Notice</button><div class="result" id="r-effort"></div></div></div>
-  <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico" style="font-size:0.75rem;font-weight:700">09</span><div><div class="csec-nm">Integration — moving toward 1</div><div class="csec-ds">Discipline, principled action, structure</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="prompt" style="margin-top:0;margin-bottom:8px">Moving toward 1: stepping out of emotional intensity into disciplined, principled action. Using depth and authenticity as a foundation for structure, not a reason to stay in the feeling.</div>
+  <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico" style="font-size:12px;font-weight:700">03</span><div><div class="csec-nm">Noise check</div><div class="csec-ds">Is the signal real or is the wound running?</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9632;</span><div><div class="csec-nm">Wound or signal contamination</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="noise-wound-list"></div></div></div><div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9670;</span><div><div class="csec-nm">Manipulation or fawn triggers from others</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="noise-manip-list"></div></div></div><div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9678;</span><div><div class="csec-nm">Self-discounting or rationalising</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="noise-self-list"></div></div></div><div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9679;</span><div><div class="csec-nm">Relationship patterns</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="rel-list"></div></div></div><button class="btn" onclick="doNoise()">Notice</button><div class="result" id="r-noise"></div></div></div>
+  <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico" style="font-size:12px;font-weight:700">04</span><div><div class="csec-nm">Distortion check</div><div class="csec-ds">Check what is active in your thinking.</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9632;</span><div><div class="csec-nm">Catastrophising</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="c-list"></div></div></div><div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9679;</span><div><div class="csec-nm">Cognitive filters</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="dist-list"></div></div></div><button class="btn" onclick="doDistort()">Notice</button><div class="result" id="r-distort"></div></div></div>
+  <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico" style="font-size:12px;font-weight:700">05</span><div><div class="csec-nm">Interaction scan</div><div class="csec-ds">What is present in a recent or ongoing interaction.</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9632;</span><div><div class="csec-nm">Boundary pressure</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="bnd-list"></div></div></div><div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9679;</span><div><div class="csec-nm">Behavioural drift</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="soc-list"></div></div></div><button class="btn" onclick="doScan()">Notice</button><div class="result" id="r-scan"></div></div></div>
+  <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico" style="font-size:12px;font-weight:700">06</span><div><div class="csec-nm">Game check</div><div class="csec-ds">Unconscious repetitive sequences &#8212; not malice, but structure.</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="game-list"></div><button class="btn" onclick="doGame()">Notice</button><div class="result" id="r-game"></div></div></div>
+  <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico" style="font-size:12px;font-weight:700">07</span><div><div class="csec-nm">Authority dynamics</div><div class="csec-ds">What is active where authority is in play.</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9632;</span><div><div class="csec-nm">Patterns that undermine</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="auth-list"></div></div></div><div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9679;</span><div><div class="csec-nm">Holding your position</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="hold-list"></div></div></div><button class="btn" onclick="doAuthority()">Notice</button><div class="result" id="r-auth"></div></div></div>
+  <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico" style="font-size:12px;font-weight:700">08</span><div><div class="csec-nm">Effort patterns</div><div class="csec-ds">Your system's default configuration under load.</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9632;</span><div><div class="csec-nm">Effort patterns</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="ep-list"></div></div></div><div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9679;</span><div><div class="csec-nm">Structural bias</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="sb-list"></div></div></div><div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9675;</span><div><div class="csec-nm">Procrastination signals</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="proc-list"></div></div></div><button class="btn" onclick="doEffort()">Notice</button><div class="result" id="r-effort"></div></div></div>
+  <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico" style="font-size:12px;font-weight:700">09</span><div><div class="csec-nm">Integration — moving toward 1</div><div class="csec-ds">Discipline, principled action, structure</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="prompt" style="margin-top:0;margin-bottom:8px">Moving toward 1: stepping out of emotional intensity into disciplined, principled action. Using depth and authenticity as a foundation for structure, not a reason to stay in the feeling.</div>
     <div class="al al-warn" style="margin:0 0 8px">Watch for disintegration toward 2: over-giving, rescuing, earning love through sacrifice. The hero drive IS the disintegration &#8212; it feeds the psychosis loop directly.</div>
     <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9675;</span><div><div class="csec-nm">Release</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="aff">
       <div class="afi" onclick="togAff(this)"><input type="checkbox" id="afi-1"><span>I notice effort without measuring worth.</span></div>
@@ -1149,7 +1155,7 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
       <div class="afi" onclick="togAff(this)"><input type="checkbox" id="afi-15"><span>What I did today was enough.</span></div>
       <div class="afi" onclick="togAff(this)"><input type="checkbox" id="afi-16"><span>I am not behind. I am where the work brought me.</span></div>
     <div class="sdiv" style="margin-top:12px">Values</div>
-    <div style="font-size:0.6875rem;color:var(--text3);line-height:1.6;padding:8px 12px;background:var(--bg);border-radius:var(--r);border:1px solid var(--bdr);margin-bottom:8px">
+    <div style="font-size:11px;color:var(--text3);line-height:1.6;padding:8px 12px;background:var(--bg);border-radius:var(--r);border:1px solid var(--bdr);margin-bottom:8px">
       <strong style="color:var(--text2)">Clarity</strong> — seeing things as they are (not over-analysis or certainty-seeking)<br>
       <strong style="color:var(--text2)">Freedom</strong> — acting without distortion or compulsion (not absence of structure or responsibility)<br>
       <strong style="color:var(--text2)">Authenticity</strong> — expressing what is genuinely true (not emotional dumping or performance)<br>
@@ -1516,7 +1522,7 @@ function doPrep(){
     wList.forEach(function(w){h+='<div class="ri"><div class="ri-name">'+w.tx+'</div><div class="ri-action">'+(wPsy[w.id]||'')+'</div></div>';});
   }
   // Standing advice
-  h+='<div style="margin-top:12px;font-size:0.75rem;color:var(--text3);font-style:italic;line-height:1.6">Showing up is half the battle. State once, do not argue, leave on your exit cue.</div>';
+  h+='<div style="margin-top:12px;font-size:12px;color:var(--text3);font-style:italic;line-height:1.6">Showing up is half the battle. State once, do not argue, leave on your exit cue.</div>';
   show('r-prep',h);
 }
 
@@ -1563,7 +1569,7 @@ function doEnneaGeneric(listId,resId){
   var h='';
   if(nonNative.length)h+='<div class="al al-warn"><strong>Cognition leaning outside 4w5 baseline.</strong> '+nonNative.length+' non-native mode(s) active.</div>';
   else h+='<div class="ri" style="background:var(--ok-bg);border-color:var(--ok-bdr)"><div class="ri-name" style="color:var(--ok)">Within 4w5 baseline</div></div>';
-  keys.forEach(function(k){var m=modes[k];if(m)h+='<div class="ri"><div class="ri-name">'+m.n+'</div><div class="ri-action">'+m.t+'</div><div style="font-size:0.6875rem;color:var(--text3);font-style:italic;margin-top:4px">'+m.psy+'</div></div>';});
+  keys.forEach(function(k){var m=modes[k];if(m)h+='<div class="ri"><div class="ri-name">'+m.n+'</div><div class="ri-action">'+m.t+'</div><div style="font-size:11px;color:var(--text3);font-style:italic;margin-top:4px">'+m.psy+'</div></div>';});
   show(resId,h);
 }
 
@@ -1926,7 +1932,7 @@ function buildRegItems(containerId){
   var pfx=containerId==='quick-reg-items'?'qr-':'rr-';
   REGI.forEach(function(it){
     var d=document.createElement('div');d.className='reg-item'+(it.prod?' prod':'');
-    d.innerHTML='<input type="checkbox" id="'+pfx+it.id+'"><span>'+it.tx+(it.prod?' <span style="font-size:0.6875rem;color:var(--alert)">(prodrome)</span>':'')+'</span>';
+    d.innerHTML='<input type="checkbox" id="'+pfx+it.id+'"><span>'+it.tx+(it.prod?' <span style="font-size:11px;color:var(--alert)">(prodrome)</span>':'')+'</span>';
     d.onclick=function(){var cb=d.querySelector('input');cb.checked=!cb.checked;d.classList.toggle('sel',cb.checked);if(cb.id)persist(cb.id,cb.checked);};
     el.appendChild(d);
   });
@@ -2058,20 +2064,20 @@ function doQuickReg(){
   var h=buildHeatViz(lvl);
   h+='<div class="reg-grid"><div class="reg-cell"><div class="reg-key">Attention</div><div class="reg-val">'+st.a+'</div></div><div class="reg-cell"><div class="reg-key">Choice</div><div class="reg-val">'+st.c+'</div></div><div class="reg-cell"><div class="reg-key">Salience</div><div class="reg-val">'+st.s+'</div></div></div>';
   h+='<div class="reg-grid" style="grid-template-columns:1fr 2fr"><div class="reg-cell"><div class="reg-key">Brakes</div><div class="reg-val">'+st.b+'</div></div><div class="reg-cell"><div class="reg-key">Braking against</div><div class="reg-val">'+st.ba+'</div></div></div>';
-  h+='<div style="margin-top:8px;padding:10px 12px;border-radius:var(--r);border-left:3px solid var(--info-bdr);background:var(--info-bg);color:var(--info-text);font-size:0.8125rem;line-height:1.6">'+st.m+'</div>';
+  h+='<div style="margin-top:8px;padding:10px 12px;border-radius:var(--r);border-left:3px solid var(--info-bdr);background:var(--info-bg);color:var(--info-text);font-size:13px;line-height:1.6">'+st.m+'</div>';
   var ps=REG_PSYCH[lvl];
   if(ps){h+='<div class="reg-psych"><div class="reg-psych-desc">'+ps.desc+'</div><div class="reg-psych-row"><div class="reg-psych-lbl">Ego state</div><div class="reg-psych-val">'+ps.ego+'</div></div><div class="reg-psych-row"><div class="reg-psych-lbl">Self & object</div><div class="reg-psych-val">'+ps.self+'</div></div><div class="reg-psych-row"><div class="reg-psych-lbl">Defence</div><div class="reg-psych-val">'+ps.defence+'</div></div></div>';}
   var bandPsy={w:'Parasympathetic dominant \u2014 ventral vagal online',e:'Balanced autonomic tone \u2014 window of tolerance',i:'Sympathetic activation beginning \u2014 amygdala priming',c:'Sympathetic dominant \u2014 prefrontal offline',s:'Dorsal vagal or extreme sympathetic \u2014 survival physiology'};
-h+='<div style="font-size:0.6875rem;color:var(--text3);font-style:italic;margin-top:6px;margin-bottom:6px">'+(bandPsy[bd]||'')+'</div>';
+h+='<div style="font-size:11px;color:var(--text3);font-style:italic;margin-top:6px;margin-bottom:6px">'+(bandPsy[bd]||'')+'</div>';
   var noiseItems=REGI.filter(function(it){return sel.has(it.id)&&(it.votes[8]||it.votes[9]||it.votes[10]);}).length;
   var signalItems=sel.size-noiseItems;
   var snr=sel.size===0?'No data':noiseItems===0?'Clean \u2014 all signal':(noiseItems>=sel.size-1?'Almost all noise':'Signal: '+signalItems+' / Noise: '+noiseItems);
-  h+='<div style="margin-top:8px;padding:8px 12px;border-radius:var(--r);background:var(--bg);border:1px solid var(--bdr);font-size:0.75rem"><span style="color:var(--text3)">Signal-to-noise:</span> <strong style="color:'+(noiseItems>signalItems?'var(--alert)':'var(--ok)')+'">'+snr+'</strong></div>';
-  h+='<div style="font-size:0.6875rem;color:var(--text3);margin-top:4px">Signal = what is actually happening. Noise = wound, distortion, or activation amplifying it.</div>';
+  h+='<div style="margin-top:8px;padding:8px 12px;border-radius:var(--r);background:var(--bg);border:1px solid var(--bdr);font-size:12px"><span style="color:var(--text3)">Signal-to-noise:</span> <strong style="color:'+(noiseItems>signalItems?'var(--alert)':'var(--ok)')+'">'+snr+'</strong></div>';
+  h+='<div style="font-size:11px;color:var(--text3);margin-top:4px">Signal = what is actually happening. Noise = wound, distortion, or activation amplifying it.</div>';
 var pf=REGI.filter(function(it){return it.prod&&sel.has(it.id);}).length>0;
   if(pf)h+='<div class="al al-alert" style="margin-top:8px"><strong>Prodrome signals present.</strong> Name the signal. Do not act on any impulse connected to it today. Reduce stimulation, hydrate, use Ground.</div>';
   if(lvl>=6)h+='<div class="al al-warn" style="margin-top:8px"><strong>Regulation 6+. Hard brake active.</strong> No decisions, no communications, no responses for 2 hours. Use Ground. Hydrate. Move.</div>';
-  if(lvl>=7)h+='<div style="margin-top:8px;font-size:0.75rem;color:var(--text3)">Regulation is low. Your signal-to-noise ratio has collapsed. Use Ground before continuing.</div>';
+  if(lvl>=7)h+='<div style="margin-top:8px;font-size:12px;color:var(--text3)">Regulation is low. Your signal-to-noise ratio has collapsed. Use Ground before continuing.</div>';
   document.getElementById('reg-pill').textContent='Level '+lvl+' — '+RLB[lvl];
   document.getElementById('reg-pill').style.background=lvl<=3?'var(--info-bg)':lvl<=5?'var(--ok-bg)':lvl<=7?'var(--warn-bg)':'var(--alert-bg)';
   document.getElementById('reg-pill').style.color=lvl<=3?'var(--info-text)':lvl<=5?'var(--ok)':lvl<=7?'var(--warn-text)':'var(--alert)';
@@ -2097,22 +2103,22 @@ function doReg(){
   var h=buildHeatViz(lvl);
   h+='<div class="reg-grid"><div class="reg-cell"><div class="reg-key">Attention</div><div class="reg-val">'+st.a+'</div></div><div class="reg-cell"><div class="reg-key">Choice</div><div class="reg-val">'+st.c+'</div></div><div class="reg-cell"><div class="reg-key">Salience</div><div class="reg-val">'+st.s+'</div></div></div>';
   h+='<div class="reg-grid" style="grid-template-columns:1fr 2fr"><div class="reg-cell"><div class="reg-key">Brakes</div><div class="reg-val">'+st.b+'</div></div><div class="reg-cell"><div class="reg-key">Braking against</div><div class="reg-val">'+st.ba+'</div></div></div>';
-  h+='<div style="margin-top:8px;padding:8px 12px;border-radius:var(--r);background:var(--bg);border:1px solid var(--bdr);font-size:0.75rem"><span style="color:var(--text3)">Signal-to-noise:</span> <strong style="color:'+(noiseItems2>signalItems2?'var(--alert)':'var(--ok)')+'">'+(noiseItems2===0?'Clean \u2014 all signal':(noiseItems2>=signal2-1?'Almost all noise':'Signal: '+signalItems2+' / Noise: '+noiseItems2))+'</strong></div>';
-  h+='<div style="font-size:0.6875rem;color:var(--text3);margin-top:4px">Signal = what is actually happening. Noise = wound, distortion, or activation amplifying it.</div>';
-  h+='<div style="margin-top:8px;padding:10px 12px;border-radius:var(--r);border-left:3px solid var(--info-bdr);background:var(--info-bg);color:var(--info-text);font-size:0.8125rem;line-height:1.6">'+st.m+'</div>';
+  h+='<div style="margin-top:8px;padding:8px 12px;border-radius:var(--r);background:var(--bg);border:1px solid var(--bdr);font-size:12px"><span style="color:var(--text3)">Signal-to-noise:</span> <strong style="color:'+(noiseItems2>signalItems2?'var(--alert)':'var(--ok)')+'">'+(noiseItems2===0?'Clean \u2014 all signal':(noiseItems2>=signal2-1?'Almost all noise':'Signal: '+signalItems2+' / Noise: '+noiseItems2))+'</strong></div>';
+  h+='<div style="font-size:11px;color:var(--text3);margin-top:4px">Signal = what is actually happening. Noise = wound, distortion, or activation amplifying it.</div>';
+  h+='<div style="margin-top:8px;padding:10px 12px;border-radius:var(--r);border-left:3px solid var(--info-bdr);background:var(--info-bg);color:var(--info-text);font-size:13px;line-height:1.6">'+st.m+'</div>';
   if(ps){h+='<div class="reg-psych"><div class="reg-psych-desc">'+ps.desc+'</div><div class="reg-psych-row"><div class="reg-psych-lbl">Ego state</div><div class="reg-psych-val">'+ps.ego+'</div></div><div class="reg-psych-row"><div class="reg-psych-lbl">Self & object</div><div class="reg-psych-val">'+ps.self+'</div></div><div class="reg-psych-row"><div class="reg-psych-lbl">Defence</div><div class="reg-psych-val">'+ps.defence+'</div></div></div>';}
   if(pf)h+='<div class="al al-alert" style="margin-top:8px"><strong>Prodrome signals present.</strong> Name the signal. Do not act on any impulse connected to it today. Reduce stimulation, hydrate, use Ground, tell your confidant.</div>';
   var bandPsy={w:'Parasympathetic dominant \u2014 ventral vagal online',e:'Balanced autonomic tone \u2014 window of tolerance',i:'Sympathetic activation beginning \u2014 amygdala priming',c:'Sympathetic dominant \u2014 prefrontal offline',s:'Dorsal vagal or extreme sympathetic \u2014 survival physiology'};
-h+='<div style="font-size:0.6875rem;color:var(--text3);font-style:italic;margin-top:6px;margin-bottom:6px">'+(bandPsy[bd]||'')+'</div>';
+h+='<div style="font-size:11px;color:var(--text3);font-style:italic;margin-top:6px;margin-bottom:6px">'+(bandPsy[bd]||'')+'</div>';
 if(lvl>=6)h+='<div class="al al-warn" style="margin-top:8px"><strong>Regulation 6+. Hard brake.</strong> No decisions, no communications, no responses for 2 hours. Use Ground. Hydrate. Move.</div>';
-  if(lvl>=7)h+='<div style="margin-top:8px;font-size:0.75rem;color:var(--text3)">Regulation is low. Your signal-to-noise ratio has collapsed. Use Ground before continuing.</div>';
+  if(lvl>=7)h+='<div style="margin-top:8px;font-size:12px;color:var(--text3)">Regulation is low. Your signal-to-noise ratio has collapsed. Use Ground before continuing.</div>';
   // Shadow switch detection
   var heroActive=sel.has('heroexhaust');var punitiveActive=sel.has('punitive');
   if(heroActive&&punitiveActive)h+='<div class="al al-alert" style="margin-top:8px"><strong>Shadow switch risk.</strong> Hero exhaustion + punitive impulse = the collapse point. This is where the Facebook accusations, the emails, the acting out came from. Do not act on anything right now. Ground. Tell your confidant. No communications until tomorrow.</div>';
   else if(punitiveActive)h+='<div class="al al-warn" style="margin-top:8px"><strong>Punitive impulse detected.</strong> The urge to expose, punish, or force consequences is the persecutory shadow firing. It feels righteous. It is not. Document what you want to say. Read it tomorrow. Do not send anything today.</div>';
   else if(heroActive)h+='<div class="al al-info" style="margin-top:8px"><strong>4\u21922 disintegration active.</strong> Over-giving, rescuing, earning visibility through sacrifice. This is how a 4 tries to be seen \u2014 it does not work and it feeds the psychosis loop. Name what you can put down today. You are not the hero. You are a person building freedom.</div>';
   if(sel.has('thinking'))h+='<div class="al al-warn" style="margin-top:8px"><strong>Ni with volume too high.</strong> Pattern recognition running past convergence \u2014 everything connecting, everything significant. This feels like insight. It is not. It is your high-gain system amplifying Ni past the point where it can sort. Turn down the gain: physiological sigh, cold water, move your body. The body is the volume knob.</div>';
-  h+='<div style="font-size:0.6875rem;color:var(--text3);font-style:italic;margin-top:6px">Window of tolerance '+(lvl<=5?'open':lvl<=7?'narrowing':'closed')+'</div>';
+  h+='<div style="font-size:11px;color:var(--text3);font-style:italic;margin-top:6px">Window of tolerance '+(lvl<=5?'open':lvl<=7?'narrowing':'closed')+'</div>';
   document.getElementById('reg-pill').textContent='Level '+lvl+' — '+RLB[lvl];
   show('r-reg',h);
 }
@@ -2120,7 +2126,7 @@ if(lvl>=6)h+='<div class="al al-warn" style="margin-top:8px"><strong>Regulation 
 function doBody(){
   var checked=[...document.querySelectorAll('#b-list .chk-row')].filter(r=>r.querySelector('input').checked);
   if(!checked.length){show('r-body','<span class="ri-ok">No body signals present right now.</span>');return;}
-  var h='';checked.forEach(function(r){var k=r.querySelector('input').dataset.b;var t=BODY_TIPS[k];if(t)h+='<div class="ri"><div class="ri-name">'+t.n+'</div><div class="ri-action">'+t.t+'</div><div class="ri-why">'+t.w+'</div><div class="ri-psy" style="font-size:0.6875rem;color:var(--text3);font-style:italic;margin-top:4px">'+t.psy+'</div></div>';});
+  var h='';checked.forEach(function(r){var k=r.querySelector('input').dataset.b;var t=BODY_TIPS[k];if(t)h+='<div class="ri"><div class="ri-name">'+t.n+'</div><div class="ri-action">'+t.t+'</div><div class="ri-why">'+t.w+'</div><div class="ri-psy" style="font-size:11px;color:var(--text3);font-style:italic;margin-top:4px">'+t.psy+'</div></div>';});
   show('r-body',h);
 }
 
@@ -2134,7 +2140,7 @@ function doNoise(){
     var nm={ctx:'Missing context',old:'Older trigger',benefit:'Self-doubt serves someone',noev:'No evidence given',defend:'Urge to defend',seen:'Feeling unseen',rumi:'Rumination loop',truth:'Truth denied',reject:'Rejection wound',project:'Projection received',manip:'Selective information',mhelpless:'Performed helplessness',mdeny:'Plausible deniability',magreed:'Private agreement broken',mflat:'Cognitive instrumentalisation',mvictim:'Strategic victim stance',mguild:'Guilt placement',mnarr:'Narrative spreading',murgent:'Manufactured urgency',mtest:'Loyalty test',fawnpull:'Fawn trigger — performed agreement expected',fawnauth:'Authority used to shrink',fawndis:'Disagreement pathologised',trustgive:'Trust given without evidence',rational:'Rationalisation active',urgency:'False urgency',suspicion:'Suspicion beyond evidence',respshift:'Carrying what is not yours',discount:'Self-discounting',disqual:'Disqualifying the positive',compare:'Unfavourable comparison'};
     var psy={ctx:'Confirmation bias from partial data',old:'Trauma re-activation (amygdala hijack)',benefit:'Gaslighting internalisation',noev:'Competence schema threat',defend:'Ego syntonic defence activation',seen:'4 core wound: identity not reflected (Fe hunger)',rumi:'Default mode network perseveration',truth:'Reality testing under social pressure',reject:'Rejection sensitivity dysphoria',project:'Projective identification received',manip:'Covert control \u2014 curated reality',mhelpless:'Hero drive trigger \u2014 4\u21922 disintegration bait',mdeny:'Accountability evasion \u2014 unconfrontable by design',magreed:'Tactical agreement \u2014 consent to end pressure',mflat:'Depth used as processing tool for someone else',mvictim:'Real pain co-existing with tactical deployment',mguild:'Emotional steering \u2014 guilt as remote control',mnarr:'Reputation control outside your presence',murgent:'Time pressure to bypass judgment',mtest:'Unreasonable demand framed as proof of love',fawnpull:'Social dominance eliciting submission response',fawnauth:'Status-based power differential activating fawn',fawndis:'Dissent reframed as deficiency to enforce compliance',trustgive:'Attachment need overriding reality testing',rational:'Post-hoc justification \u2014 ego protecting a decision already made',urgency:'Sympathetic activation creating time pressure',suspicion:'Hypervigilance \u2014 wound-driven pattern detection',respshift:'Hero drive \u2014 4\u21922 disintegration',discount:'Competence denial \u2014 internalised infantilisation',disqual:'Cognitive distortion \u2014 filtering out evidence of capability',compare:'Social comparison bias \u2014 4 core wound activation'};
     var act={ctx:'Name what they do not know. Their reading is based on incomplete information. You do not need to correct them unless it serves you.',old:'Name the older event. Then name what happened today. Respond to today.',benefit:'Who benefits from you doubting yourself right now? If someone gains control when you question your perception, the doubt was placed in you. It is not yours.',noev:'An opinion without evidence is data about their limitations, not your competence. Ask for specifics. If none come, the conversation is over.',defend:'The urge is from the wound, not the situation. State your position once. Stop.',seen:'They cannot see you. Stop expecting it. What is the next action that does not require their recognition?',rumi:'Write down three facts. Close the document. Walk away for 20 minutes.',truth:'What happened is not negotiable. Write it down before the reframe settles in.',reject:'Name what actually happened \u2014 did they reject you, or is your system reading it as rejection? One breath before responding from this place.',project:'The judgement is about their framework. Do not absorb it. Let it land between you, not inside you.',manip:'Document what was said vs what was done. The gap is the manipulation. Do not confront \u2014 adjust access.',mhelpless:'Name the capacity they actually have. If they managed before you arrived, the helplessness is strategic. Do not rescue.',mdeny:'Write down exactly what happened. Their deniability works only when your memory is unsupported. Document.',magreed:'They agreed to end the pressure, not because they meant it. Stop making agreements without structural enforcement.',mflat:'Are they interested in your thinking, or in what your thinking produces for them? If the latter, pull back.',mvictim:'Both can be true. The pain is real AND it is being used. Compassion does not require compliance.',mguild:'Name the guilt. Then ask: whose behaviour caused this situation? If not yours, the guilt was placed in you. Return it.',mnarr:'You cannot defend against a narrative you are not present for. Let your behaviour be the counter-narrative.',murgent:'Name one real consequence of waiting 48 hours. If none, the urgency is designed to prevent clear thinking.',mtest:'Love does not require proof through self-harm. If the demand costs your regulation, it is a test, not a need.',fawnpull:'Notice the pull to perform. You do not owe admiration. Silence is a valid response.',fawnauth:'Their status does not make them right. Name your position internally even if you choose not to say it.',fawndis:'Your disagreement is not a symptom. If they cannot hold difference, that is their limitation, not your pathology.',trustgive:'Name what evidence supports trusting this person. If there is none, trust is the wound wanting connection, not judgment working.',rational:'Write down what you want to do and why. Read it as if someone else wrote it. The craving wearing a reasoning mask is still a craving.',urgency:'Name one real consequence of waiting 48 hours. If there is none, the urgency is activation, not reality.',suspicion:'Name the specific evidence. If it is a feeling without facts, the wound is connecting dots, not your judgment.',respshift:'Name what happens if you put this down. If the answer is discomfort but not harm, it is not yours.',discount:'Name one thing you did this week that required skill. The discounting is the wound, not the assessment.',disqual:'Write down the outcome. Read it without commentary. It happened. It counts.',compare:'Name what they have that you want. Then name what you have that they do not. The comparison was partial.'};
-    h+='<div class="ri"><div class="ri-name">'+(nm[k]||k)+'</div><div class="ri-action">'+(act[k]||'')+'</div>'+(psy[k]?'<div style="font-size:0.6875rem;color:var(--text3);font-style:italic;margin-top:4px">'+psy[k]+'</div>':'')+'</div>';
+    h+='<div class="ri"><div class="ri-name">'+(nm[k]||k)+'</div><div class="ri-action">'+(act[k]||'')+'</div>'+(psy[k]?'<div style="font-size:11px;color:var(--text3);font-style:italic;margin-top:4px">'+psy[k]+'</div>':'')+'</div>';
   });
   if(relChecked.length){
     h+='<div class="sdiv">Relationship patterns</div>';
@@ -2172,7 +2178,7 @@ function doFamNoise(){
   var nm={ctx:'Missing context',old:'Older trigger',benefit:'Self-doubt serves someone',noev:'No evidence given',defend:'Urge to defend',seen:'Feeling unseen',rumi:'Rumination loop',truth:'Truth denied',reject:'Rejection wound',project:'Projection received'};
   var psy={ctx:'Confirmation bias from partial data',old:'Trauma re-activation (amygdala hijack)',benefit:'Gaslighting internalisation',noev:'Competence schema threat',defend:'Ego syntonic defence activation',seen:'4 core wound: identity not reflected (Fe hunger)',rumi:'Default mode network perseveration',truth:'Reality testing under social pressure',reject:'Rejection sensitivity dysphoria',project:'Projective identification received'};
   var act={ctx:'Name what they do not know. Their reading is based on incomplete information.',old:'Name the older event. Then name what happened today. Respond to today.',benefit:'Who benefits from you doubting yourself right now?',noev:'An opinion without evidence is data about their limitations.',defend:'The urge is from the wound, not the situation. State your position once. Stop.',seen:'They cannot see you. Stop expecting it. What is the next action that does not require their recognition?',rumi:'Write down three facts. Close the document. Walk away for 20 minutes.',truth:'What happened is not negotiable. Write it down before the reframe settles in.',reject:'Name what actually happened \u2014 did they reject you, or is your system reading it as rejection?',project:'The judgement is about their framework. Do not absorb it.',manip:'Document what was said vs what was done. Adjust access.',mhelpless:'Name their actual capacity. Do not rescue.',mdeny:'Write down exactly what happened. Document.',magreed:'Stop making agreements without structural enforcement.',mflat:'Pull back. You are not a processing tool.',mvictim:'Compassion does not require compliance.',mguild:'Whose behaviour caused this? If not yours, return the guilt.',mnarr:'Let your behaviour be the counter-narrative.',murgent:'Name one real consequence of waiting 48 hours.',mtest:'The demand costs your regulation. It is a test, not a need.',fawnpull:'You do not owe admiration. Silence is valid.',fawnauth:'Their status does not make them right.',fawndis:'Your disagreement is not a symptom.',trustgive:'Name what evidence supports trusting them.',rational:'Read your justification as if someone else wrote it.',urgency:'The urgency is activation, not reality.',suspicion:'Name the specific evidence.',respshift:'If the answer is discomfort but not harm, it is not yours.',discount:'Name one thing you did this week that required skill. The discounting is the wound, not the assessment.',disqual:'Write down the outcome. Read it without commentary. It happened. It counts.',compare:'Name what they have that you want. Then name what you have that they do not. The comparison was partial.'};
-  checked.forEach(function(r){var k=r.querySelector('input').dataset.fn;h+='<div class="ri"><div class="ri-name">'+(nm[k]||k)+'</div><div class="ri-action">'+(act[k]||'')+'</div>'+(psy[k]?'<div style="font-size:0.6875rem;color:var(--text3);font-style:italic;margin-top:4px">'+psy[k]+'</div>':'')+'</div>';});
+  checked.forEach(function(r){var k=r.querySelector('input').dataset.fn;h+='<div class="ri"><div class="ri-name">'+(nm[k]||k)+'</div><div class="ri-action">'+(act[k]||'')+'</div>'+(psy[k]?'<div style="font-size:11px;color:var(--text3);font-style:italic;margin-top:4px">'+psy[k]+'</div>':'')+'</div>';});
   if(relChecked.length){h+='<div class="sdiv">Relationship patterns</div>';
     var relAct={norec:'Reduce without announcing.',fbign:'What boundary would make the next occurrence impossible?',careweap:'Name the lever: guilt, responsibility, or rescue.',realrew:'Write down what happened before the reframe settles.',bndpun:'The punishment is proof the boundary was necessary.',triang:'Direct contact only.',credit:'Name your contribution clearly, once, to yourself.',agency:'Name the decision being controlled. Reclaim it.'};
     var rnm={norec:'No reciprocity',fbign:'Feedback ignored',careweap:'Care weaponised',realrew:'Reality rewritten',bndpun:'Boundaries punished',triang:'Triangulation',credit:'Credit taken',agency:'Agency undermined'};
@@ -2222,7 +2228,7 @@ function doOutNoise(){
     var nm=onm[k]||manipNm[k]||selfNm[k]||k;
     var psy=opsy[k]||manipPsy[k]||selfPsy[k]||'';
     var act=oact[k]||manipAct[k]||selfAct[k]||'';
-    h+='<div class="ri"><div class="ri-name">'+nm+'</div><div class="ri-action">'+act+'</div>'+(psy?'<div style="font-size:0.6875rem;color:var(--text3);font-style:italic;margin-top:4px">'+psy+'</div>':'')+'</div>';
+    h+='<div class="ri"><div class="ri-name">'+nm+'</div><div class="ri-action">'+act+'</div>'+(psy?'<div style="font-size:11px;color:var(--text3);font-style:italic;margin-top:4px">'+psy+'</div>':'')+'</div>';
   });
   show('r-out-noise',h);
 }
@@ -2233,9 +2239,9 @@ function doDistort(){
   if(!crows.length&&!drows.length){show('r-distort','<span class="ri-ok">No distortion patterns present.</span>');return;}
   var h='';
   var cm={cat1:{n:'Treating possible as certain',t:'Name the most realistic outcome.',psy:'Probability neglect / catastrophic cognition'},cat2:{n:'Pre-emptive failure',t:'You have not failed yet. Name what has actually happened.',psy:'Anticipatory anxiety / learned helplessness'},cat3:{n:'Guilt after boundary',t:'What did you do wrong? If no clear answer, this is catastrophising as conscience.',psy:'Superego activation post-assertion'},cat4:{n:'Predicting permanent judgement',t:'Return to what is actually known now.'},cat5:{n:'Temporary feels permanent',t:'Name one thing that changed in the last month.',psy:'Permanence distortion'},cat6:{n:'Reading emotions as confirmation',t:'Their emotional state is not evidence of your fear.'},cat7:{n:'Urgency illusion',t:'What breaks if this does not happen in the next hour?'}};
-  crows.forEach(function(r){var k=r.querySelector('input').dataset.c;if(cm[k])h+='<div class="ri"><div class="ri-name">'+cm[k].n+'</div><div class="ri-action">'+cm[k].t+'</div>'+(cm[k].psy?'<div style="font-size:0.6875rem;color:var(--text3);font-style:italic;margin-top:4px">'+cm[k].psy+'</div>':'')+'</div>';});
+  crows.forEach(function(r){var k=r.querySelector('input').dataset.c;if(cm[k])h+='<div class="ri"><div class="ri-name">'+cm[k].n+'</div><div class="ri-action">'+cm[k].t+'</div>'+(cm[k].psy?'<div style="font-size:11px;color:var(--text3);font-style:italic;margin-top:4px">'+cm[k].psy+'</div>':'')+'</div>';});
   var dm={all:{n:'All-or-nothing',t:'Find one exception to the binary.',psy:'Splitting / dichotomous thinking'},emo:{n:'Feelings as evidence',t:'Name the feeling and the fact separately.',psy:'Emotional reasoning (Ni-Fe fusion under load)'},mind:{n:'Mind reading',t:'What do you actually know? What are you adding?',psy:'Theory of mind over-extension (Fe overreach)'},should:{n:'Rigid shoulds',t:'Replace should with prefer or choose.'},perfect:{n:'Perfection bias',t:'Name what is sufficient rather than ideal. Perfection delays completion.',psy:'Attention narrowing toward flaws'},personal:{n:'Personalisation',t:'List what is not yours to carry. Responsibility expands silently.',psy:'Responsibility expansion under sensitivity'},overgen:{n:'Overgeneralisation',t:'Ask how often this is actually true.',psy:'Isolated data feels universal under load'},pers:{n:'Carrying what is not mine',t:'Name what is yours and what belongs to the other person.',psy:'Hyper-responsibility (Fe + hero drive)'},mini:{n:'Minimising needs',t:'Name one thing you need today.'},ref:{n:'Reframing too quickly',t:'Let the discomfort be present for one breath.'},spot:{n:'Spotlight effect',t:'Others are attending to their own concerns.'},burden:{n:'Needs as burden',t:'Expressing a need is information, not imposition.'},conn:{n:'Adjusting to maintain connection',t:'Letting connection exist with less self-adjustment may feel lighter.',psy:'Fe accommodation / false self presentation'},neg:{n:'Negativity bias',t:'Name one thing that is working today.'},affect:{n:'Emotions feel unsafe',t:'The emotion is information. Stay with it for one breath.'},attrib:{n:'Character attribution',t:'Separate the person from the context.',psy:'Fundamental attribution error'}};
-  drows.forEach(function(r){var k=r.querySelector('input').dataset.d;if(dm[k])h+='<div class="ri"><div class="ri-name">'+dm[k].n+'</div><div class="ri-action">'+dm[k].t+'</div>'+(dm[k].psy?'<div style="font-size:0.6875rem;color:var(--text3);font-style:italic;margin-top:4px">'+dm[k].psy+'</div>':'')+'</div>';});
+  drows.forEach(function(r){var k=r.querySelector('input').dataset.d;if(dm[k])h+='<div class="ri"><div class="ri-name">'+dm[k].n+'</div><div class="ri-action">'+dm[k].t+'</div>'+(dm[k].psy?'<div style="font-size:11px;color:var(--text3);font-style:italic;margin-top:4px">'+dm[k].psy+'</div>':'')+'</div>';});
   h+='<div class="prompt">Is what you are experiencing a prediction or a fact?</div>';
   show('r-distort',h);
 }
@@ -2248,8 +2254,8 @@ function doScan(){
   var sm={wd:{n:'Excess withdrawal',t:'One small act of re-engagement.'},oe:{n:'Over-explaining',t:'Stop at the first complete sentence.'},fawn:{n:'False agreement',psy:'Fawn response \u2014 conflict avoidance through compliance',t:'Say nothing rather than agree with something false.'},give:{n:'Over-giving',t:'Name what is yours to give. Give that. Stop.'},resent:{n:'Resentment',t:'The resentment is the signal. Adjust the boundary.'},snap:{n:'Disproportionate force',t:'One breath before you respond.'},numb:{n:'Emotional flattening',t:'Name one emotion internally.'},scan:{n:'Tracking their read',t:'Return attention to what you actually feel.'},small:{n:'Becoming smaller',psy:'Self-diminishment under perceived threat',t:'Name one thing you actually think about this.'},authfawn:{n:'Authority fawning',t:'Their position does not make them right. What structure prevents this recurring?'},authund:{n:'Authority undermined',t:'You already took a position. Abandoning it without new evidence is capitulation.'},helpless:{n:'Helplessness about harm',t:'Name what is within your control. If nothing, this is not your task today.'},fawnagree:{n:'False agreement (fawn)',psy:'Fawn response \u2014 capitulating to manage other\'s emotional state',t:'Name what you actually think. You do not need to say it to them. But name it to yourself.'},fawnsoft:{n:'Position softened (fawn)',psy:'Conflict avoidance through self-erasure',t:'Your position was clear before their reaction. Their reaction is not new evidence. Restore your original position internally.'},fefuse:{n:'Fe fusion',psy:'Fe auxiliary merging with environmental affect instead of observing it',t:'Notice the feeling. Name it. Do not become it. Your regulation is the resource, not your absorption. You can care without carrying.'},fawnperf:{n:'Performed understanding (fawn)',psy:'False attunement \u2014 Fe mirroring without genuine resonance',t:'Stop nodding. Silence is more honest than performed agreement. You do not owe them the appearance of understanding.'},absorb:{n:'Fe absorption',psy:'Emotional contagion \u2014 Fe auxiliary absorbing unprocessed affect',t:'This is their emotional state, not yours. Name what you actually feel underneath what you absorbed. Ground before responding \u2014 you cannot regulate for both of you.'}};
   var h='';
   if(bb.length>=4)h+='<div class="al al-warn" style="margin-bottom:8px"><strong>High boundary pressure.</strong> Physiological sigh before responding. 9 seconds.</div>';
-  if(bb.length){h+='<div class="sdiv" style="margin-top:0">Boundary pressure</div>';bb.forEach(function(r){var k=r.querySelector('input').dataset.bv;if(bm[k])h+='<div class="ri"><div class="ri-name">'+bm[k].n+'</div><div class="ri-action">'+bm[k].t+'</div>'+(bm[k].psy?'<div style="font-size:0.6875rem;color:var(--text3);font-style:italic;margin-top:4px">'+bm[k].psy+'</div>':'')+'</div>';});}
-  if(sb.length){h+='<div class="sdiv">Behavioural drift</div>';sb.forEach(function(r){var k=r.querySelector('input').dataset.s;if(sm[k])h+='<div class="ri"><div class="ri-name">'+sm[k].n+'</div><div class="ri-action">'+sm[k].t+'</div>'+(sm[k].psy?'<div style="font-size:0.6875rem;color:var(--text3);font-style:italic;margin-top:4px">'+sm[k].psy+'</div>':'')+'</div>';});}
+  if(bb.length){h+='<div class="sdiv" style="margin-top:0">Boundary pressure</div>';bb.forEach(function(r){var k=r.querySelector('input').dataset.bv;if(bm[k])h+='<div class="ri"><div class="ri-name">'+bm[k].n+'</div><div class="ri-action">'+bm[k].t+'</div>'+(bm[k].psy?'<div style="font-size:11px;color:var(--text3);font-style:italic;margin-top:4px">'+bm[k].psy+'</div>':'')+'</div>';});}
+  if(sb.length){h+='<div class="sdiv">Behavioural drift</div>';sb.forEach(function(r){var k=r.querySelector('input').dataset.s;if(sm[k])h+='<div class="ri"><div class="ri-name">'+sm[k].n+'</div><div class="ri-action">'+sm[k].t+'</div>'+(sm[k].psy?'<div style="font-size:11px;color:var(--text3);font-style:italic;margin-top:4px">'+sm[k].psy+'</div>':'')+'</div>';});}
   show('r-scan',h);
 }
 
@@ -2257,7 +2263,7 @@ function doGame(){
   var checked=[...document.querySelectorAll('#game-list .chk-row')].filter(r=>r.querySelector('input').checked);
   if(!checked.length){show('r-game','<span class="ri-ok">No game patterns identified.</span>');return;}
   var gm={complaint:{name:'Why Don\'t You — Yes But',response:'Name the pattern. Do not offer another solution.'},deflect:{name:'Why Don\'t You — Yes But',response:'Stop offering solutions. What would a workable option look like to you?'},position:{name:'Now I\'ve Got You / Courtroom',response:'Do not defend. This is a trial, not a conversation. Not available for that.',psy:'Transactional Analysis. Ego state: Critical Parent prosecuting.'},perform:{name:'Wooden Leg / Stupid',response:'Do not rescue. Name what capacity is actually present.',self:'Check: are you performing competence to avoid asking for help? Or performing helplessness to avoid responsibility?'},third:{name:'Let\'s You and Him Fight',response:'Direct contact only. If there is something to say, say it directly.',self:'Check: are you managing a dynamic through a third person instead of addressing it directly?'},image:{name:'Look How Hard I\'ve Tried / Martyr',response:'Contribution does not require an audience.',self:'Check: are you tying your goodness to being seen? Purpose, not performance.'}};
-  var h='';checked.forEach(function(r){var k=r.querySelector('input').dataset.g;var g=gm[k];if(!g)return;h+='<div class="game-block"><div class="game-name">'+g.name+'</div><div class="game-action">'+g.response+'</div>'+(g.self?'<div style="font-size:0.6875rem;color:var(--warn-text);margin-top:6px">'+g.self+'</div>':'')+(g.psy?'<div style="font-size:0.6875rem;color:var(--text3);font-style:italic;margin-top:4px">'+g.psy+'</div>':'')+'</div>';});
+  var h='';checked.forEach(function(r){var k=r.querySelector('input').dataset.g;var g=gm[k];if(!g)return;h+='<div class="game-block"><div class="game-name">'+g.name+'</div><div class="game-action">'+g.response+'</div>'+(g.self?'<div style="font-size:11px;color:var(--warn-text);margin-top:6px">'+g.self+'</div>':'')+(g.psy?'<div style="font-size:11px;color:var(--text3);font-style:italic;margin-top:4px">'+g.psy+'</div>':'')+'</div>';});
   show('r-game',h);
 }
 
@@ -2268,8 +2274,8 @@ function doAuthority(){
   var am={diminish:{n:'Being diminished',psy:'Status threat \u2014 social rank devaluation',t:'Name it factually, once. If it recurs, escalate structurally.'},override:{n:'Decision reversed',t:'Name the decision. Ask what changed. If nothing, the override is the issue.'},condescend:{n:'Condescension',t:'Do not correct their perception. Demonstrate through action.'},exclude:{n:'Excluded from decisions',t:'Request inclusion for the next one in writing.'},defer:{n:'Deferring to position',t:'Their title does not make them right. Name what you actually think.'},freeze:{n:'Freezing in authority presence',psy:'Dorsal vagal freeze response',t:'The freeze is the wound. Name one thing you know about your competence right now.'}};
   var hm={stated:{n:'Position unclear',t:'Write it in one sentence. Say it once next time. If you cannot say it in one sentence, the position is not clear yet.',psy:'Assertiveness deficit — Fe over-accommodating'},silence:{n:'Over-explaining',t:'The urge to explain is the wound asking to be understood. They heard you. Repeating weakens the message.',psy:'Anxious attachment — filling silence to manage the other\'s response'},struct:{n:'No structure',t:'What system, document, or boundary would make this confrontation unnecessary? Build that instead of arguing.',psy:'Reactive engagement — no containment structure'},diplo:{n:'Delivery matched activation',t:'The content was right. The delivery undermined it. Next time, write it first, wait 30 minutes, then deliver.',psy:'Sympathetic hijack of communication — amygdala driving tone'},walk:{n:'Did not disengage',t:'Name the moment you knew it could not be won. That is your exit cue next time. Nothing said after that point helped.',psy:'Sunk cost in conversation — Fe investment preventing withdrawal'}};
   var h='';
-  if(ap.length){h+='<div class="sdiv" style="margin-top:0">Patterns present</div>';ap.forEach(function(r){var k=r.querySelector('input').dataset.a;if(am[k])h+='<div class="ri"><div class="ri-name">'+am[k].n+'</div><div class="ri-action">'+am[k].t+'</div>'+(am[k].psy?'<div style="font-size:0.6875rem;color:var(--text3);font-style:italic;margin-top:4px">'+am[k].psy+'</div>':'')+'</div>';});}
-  if(hp.length){h+='<div class="sdiv">Where you lost position</div>';hp.forEach(function(r){var k=r.querySelector('input').dataset.ah;if(hm[k])h+='<div class="ri"><div class="ri-name">'+hm[k].n+'</div><div class="ri-action">'+hm[k].t+'</div>'+(hm[k].psy?'<div style="font-size:0.6875rem;color:var(--text3);font-style:italic;margin-top:4px">'+hm[k].psy+'</div>':'')+'</div>';});}
+  if(ap.length){h+='<div class="sdiv" style="margin-top:0">Patterns present</div>';ap.forEach(function(r){var k=r.querySelector('input').dataset.a;if(am[k])h+='<div class="ri"><div class="ri-name">'+am[k].n+'</div><div class="ri-action">'+am[k].t+'</div>'+(am[k].psy?'<div style="font-size:11px;color:var(--text3);font-style:italic;margin-top:4px">'+am[k].psy+'</div>':'')+'</div>';});}
+  if(hp.length){h+='<div class="sdiv">Where you lost position</div>';hp.forEach(function(r){var k=r.querySelector('input').dataset.ah;if(hm[k])h+='<div class="ri"><div class="ri-name">'+hm[k].n+'</div><div class="ri-action">'+hm[k].t+'</div>'+(hm[k].psy?'<div style="font-size:11px;color:var(--text3);font-style:italic;margin-top:4px">'+hm[k].psy+'</div>':'')+'</div>';});}
   h+='<div class="prompt">What structure would make this conversation unnecessary next time?</div>';
   show('r-auth',h);
 }
@@ -2283,7 +2289,7 @@ function doEffort(){
   var sm={abstr:{n:'Abstraction as avoidance',t:'Name the concrete task. Do that first.'},iso:{n:'Isolation under pressure',t:'One brief contact today. Co-regulation is how you get back to steady.'},sov:{n:'Sovereignty as avoidance',t:'Asking for help does not compromise independence.'},perf:{n:'Over-optimisation',t:'Name what works well enough. Ship or move on.'},flaw:{n:'Attention narrowing to flaws',t:'Name one thing working today before continuing.'},worth:{n:'Contingent self-worth',t:'Your value is not produced by your output today.'},image:{n:'Performance emphasis',t:'Who am I doing this for right now?'}};
   var pm={switch:{n:'Task avoidance',t:'Return to the task you left. The friction marks the real work.'},depth:{n:'Depth without movement',t:'One concrete thing done imperfectly moves work forward more than analysis.'},ready:{n:'Readiness condition',t:'Clarity follows action, not the other way round. Smallest next step.'},restart:{n:'Restarting instead of continuing',t:'Open what you have. Continue from the last point. Do not start over.'},later:{n:'Deferring to better conditions',t:'Conditions will not be better later. They will be the same, plus the weight of postponing.'},large:{n:'Task too large',t:'Name one piece under 10 minutes. Do that.'},outcome:{n:'Outcome-loaded avoidance',t:'The first step is not a commitment to the final outcome.'}};
   var h='';
-  ep.forEach(function(r){var k=r.querySelector('input').dataset.e;if(em[k])h+='<div class="ri"><div class="ri-name">'+em[k].n+'</div><div class="ri-action">'+em[k].t+'</div>'+(em[k].psy?'<div style="font-size:0.6875rem;color:var(--text3);font-style:italic;margin-top:4px">'+em[k].psy+'</div>':'')+'</div>';});
+  ep.forEach(function(r){var k=r.querySelector('input').dataset.e;if(em[k])h+='<div class="ri"><div class="ri-name">'+em[k].n+'</div><div class="ri-action">'+em[k].t+'</div>'+(em[k].psy?'<div style="font-size:11px;color:var(--text3);font-style:italic;margin-top:4px">'+em[k].psy+'</div>':'')+'</div>';});
   if(sb.length){h+='<div class="sdiv">Structural bias</div>';sb.forEach(function(r){var k=r.querySelector('input').dataset.s2;if(sm[k])h+='<div class="ri"><div class="ri-name">'+sm[k].n+'</div><div class="ri-action">'+sm[k].t+'</div></div>';});}
   if(pp.length){h+='<div class="sdiv">Procrastination</div>';pp.forEach(function(r){var k=r.querySelector('input').dataset.p;if(pm[k])h+='<div class="ri"><div class="ri-name">'+pm[k].n+'</div><div class="ri-action">'+pm[k].t+'</div></div>';});}
   h+='<div class="prompt">What is the next concrete action — not the next thought about the action?</div>';
@@ -2325,7 +2331,7 @@ function doWoundPick(){
   var h='';
   sel.forEach(function(btn){
     var w=WOUND_DATA[btn.dataset.wid];
-    if(w)h+='<div class="ri"><div class="ri-name">'+w.nm+'</div><div style="font-size:0.6875rem;color:var(--text3);font-style:italic;margin-bottom:2px">'+w.psy+'</div><div class="ri-action">'+w.act+'</div></div>';
+    if(w)h+='<div class="ri"><div class="ri-name">'+w.nm+'</div><div style="font-size:11px;color:var(--text3);font-style:italic;margin-bottom:2px">'+w.psy+'</div><div class="ri-action">'+w.act+'</div></div>';
   });
   show('r-wound-pick',h);
 }
@@ -2350,7 +2356,7 @@ function doHALT(){
   }
   // Add advice based on what's checked
   if(checked.length){
-    h+='<div style="margin-top:10px;padding:10px;background:var(--bg);border:1px solid var(--bdr);border-radius:var(--r);font-size:0.75rem;color:var(--text2);line-height:1.6">';
+    h+='<div style="margin-top:10px;padding:10px;background:var(--bg);border:1px solid var(--bdr);border-radius:var(--r);font-size:12px;color:var(--text2);line-height:1.6">';
     h+='<strong>Right now:</strong> ';
     var advices=[];
     checked.forEach(function(r){
@@ -2365,7 +2371,7 @@ function doHALT(){
     h+=advices.join('. ')+'.';
     h+='</div>';
   }
-  h+='<div style="margin-top:10px;font-size:0.6875rem;color:var(--text3);font-style:italic">If you act on this craving: future pull activates. The next one will feel manageable. That false confidence is the chain\'s mechanism.</div>';
+  h+='<div style="margin-top:10px;font-size:11px;color:var(--text3);font-style:italic">If you act on this craving: future pull activates. The next one will feel manageable. That false confidence is the chain\'s mechanism.</div>';
   show('r-halt',h);
 }
 function doIntegration(){
@@ -2404,7 +2410,7 @@ function doGuard(){
   if(m2b&&m2b.classList.contains('no'))h+='<div class="ri"><div class="ri-name" style="color:var(--alert)">\u2717 Poor sleep</div><div class="ri-action">Executive function depleted. Defences are low. Be careful with decisions today.</div></div>';
   var m4b=document.getElementById('m4b');if(m4b&&m4b.classList.contains('no'))h+='<div class="ri"><div class="ri-name" style="color:var(--warn-text)">\u2717 No area organised</div><div class="ri-action">External order supports internal order. Tidy one small area today \u2014 a desk, a folder, a drawer.</div></div>';
   if(!broken.length&&!held.length&&!prodFlags.length&&!structFlags.length){h='<span class="ri-ok">No guardrails checked yet.</span>';}
-  if(!broken.length&&held.length&&!prodFlags.length){h+='<div style="margin-top:10px;font-size:0.75rem;color:var(--ok)">All guardrails held. The chain has no entry point right now.</div>';}
+  if(!broken.length&&held.length&&!prodFlags.length){h+='<div style="margin-top:10px;font-size:12px;color:var(--ok)">All guardrails held. The chain has no entry point right now.</div>';}
   show('r-guard',h);
 }
 function toggleBoost(){
@@ -2494,7 +2500,7 @@ function startBreathCard(bi){
   var total=b.ti.reduce(function(a,v){return a+v;},0);
   var fracs=[0];var acc=0;b.ti.forEach(function(v){acc+=v;fracs.push(acc/total);});
 
-  body.innerHTML='<div class="arena"><div class="breath-timer" id="bt-'+bi+'">00:00</div><div class="rw"><canvas id="bc-'+bi+'" width="240" height="240"></canvas><button class="cbtn" id="cb-'+bi+'" style="width:92px;height:92px;background:'+calmColor+';border-radius:50%;border:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)"><span class="cph">Tap to start</span><span class="cpc" id="cc-'+bi+'"></span></button></div><div class="prow" id="pr-'+bi+'"></div><div style="text-align:center;margin-bottom:.7rem"><div style="font-size:0.75rem;color:var(--text2);line-height:1.5">'+b.de+'</div></div><div class="bcy" id="cy-'+bi+'"></div><div class="bcr"><button class="bct" id="bs-'+bi+'">Stop</button></div></div>';
+  body.innerHTML='<div class="arena"><div class="breath-timer" id="bt-'+bi+'">00:00</div><div class="rw"><canvas id="bc-'+bi+'" width="240" height="240"></canvas><button class="cbtn" id="cb-'+bi+'" style="width:92px;height:92px;background:'+calmColor+';border-radius:50%;border:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)"><span class="cph">Tap to start</span><span class="cpc" id="cc-'+bi+'"></span></button></div><div class="prow" id="pr-'+bi+'"></div><div style="text-align:center;margin-bottom:.7rem"><div style="font-size:12px;color:var(--text2);line-height:1.5">'+b.de+'</div></div><div class="bcy" id="cy-'+bi+'"></div><div class="bcr"><button class="bct" id="bs-'+bi+'">Stop</button></div></div>';
   var pr=document.getElementById('pr-'+bi);b.ph.forEach(function(ph,i){var d=document.createElement('div');d.className='pchip';d.id='pc-'+bi+'-'+i;d.innerHTML='<span class="pn">'+ph+'</span><span class="ps">'+b.ti[i]+'s</span>';pr.appendChild(d);});
 
   // Draw ring function
@@ -2575,16 +2581,16 @@ function startGrounding(tech){
   else if(tech.id==='gcontact')runTimed(tech,body);
   else if(tech.id==='gletgo')runTimed(tech,body);
 }
-function runSimple(tech,body){body.innerHTML='<div class="grnd-prompt" style="font-size:0.875rem">Go splash cold water on your face or hold it on your wrists.</div><button class="grnd-btn" style="margin-top:12px" onclick="showDone(\''+tech.id+'\')">Done — I tried it</button>';}
+function runSimple(tech,body){body.innerHTML='<div class="grnd-prompt" style="font-size:14px">Go splash cold water on your face or hold it on your wrists.</div><button class="grnd-btn" style="margin-top:12px" onclick="showDone(\''+tech.id+'\')">Done — I tried it</button>';}
 function run54321(tech,body,si,tapped){var s=tech.senses[si];body.innerHTML='<div class="grnd-prompt">'+s.prompt+'</div><div class="grnd-sense">'+s.label+'</div><div class="grnd-counter">'+(s.count-tapped)+'</div><button class="grnd-btn" id="tap-btn">Tap each time you notice one</button>';document.getElementById('tap-btn').onclick=function(){beep();vibrate(60);tapped++;if(tapped>=s.count){if(si+1<tech.senses.length)run54321(tech,body,si+1,0);else showDone2(tech.id,body);}else body.querySelector('.grnd-counter').textContent=(s.count-tapped);};}
 
 function runTimed(tech,body){body.innerHTML='<div class="grnd-prompt">'+(tech.id==='gcontact'?'Place one hand on your chest. Feel the weight and warmth.':'Stop directing your attention. Let it rest wherever it naturally falls.')+'</div><button class="grnd-btn" id="ts">Start</button>';document.getElementById('ts').onclick=function(){this.style.display='none';beep();var mm0=Math.floor(tech.dur/60);var ss0=tech.dur%60;var initT=mm0>0?(mm0+':'+(ss0<10?'0':'')+ss0):tech.dur;body.innerHTML+='<div class="grnd-pulse" id="tp"></div><div class="grnd-counter" id="tc">'+initT+'</div>';var rem=tech.dur;var pulse=false;var piv=setInterval(function(){pulse=!pulse;var e=document.getElementById('tp');if(e)e.classList.toggle('expand',pulse);},tech.id==='gletgo'?2500:1500);var iv=setInterval(function(){rem--;var e=document.getElementById('tc');if(e){var mm=Math.floor(rem/60);var ss=rem%60;e.textContent=mm>0?(mm+':'+(ss<10?'0':'')+ss):rem;}if(rem<=0){clearInterval(iv);clearInterval(piv);beep();vibrate(200);showDone2(tech.id,body);}},1000);};}
 
 function showDone(id){var body=document.getElementById('body-'+id);body.innerHTML='<div class="grnd-done-q">How do you feel now?</div><div class="grnd-done-btns"><button class="grnd-done-btn settled" onclick="grndSettled(\''+id+'\')">More settled</button><button class="grnd-done-btn still" onclick="grndStill(\''+id+'\')">Still activated</button></div><div class="grnd-still-msg" id="still-'+id+'"></div>';}
 function showDone2(id,body){body.innerHTML='<div class="grnd-done-q">How do you feel now?</div><div class="grnd-done-btns"><button class="grnd-done-btn settled" onclick="grndSettled(\''+id+'\')">More settled</button><button class="grnd-done-btn still" onclick="grndStill(\''+id+'\')">Still activated</button></div><div class="grnd-still-msg" id="still-'+id+'"></div>';}
-function grndSettled(id){document.getElementById('body-'+id).innerHTML='<div class="grnd-prompt" style="font-size:0.875rem;padding:.5rem 0">\u2713 Good. Stay here for a moment.</div>';}
+function grndSettled(id){document.getElementById('body-'+id).innerHTML='<div class="grnd-prompt" style="font-size:14px;padding:.5rem 0">\u2713 Good. Stay here for a moment.</div>';}
 function grndStill(id){var remaining=GRND_TECHS.filter(t=>t.id!==id).map(t=>t.title).concat(BREATHS.map(b=>b.nm)).join(', ');var el=document.getElementById('still-'+id);el.textContent='Try another technique: '+remaining;el.classList.add('show');}
-function brthSettled(bi){var body=document.getElementById('bbody-'+bi);if(!body)return;body.innerHTML='<div class="grnd-prompt" style="font-size:0.875rem;padding:.5rem 0">\u2713 Good. Stay here for a moment.</div>';}
+function brthSettled(bi){var body=document.getElementById('bbody-'+bi);if(!body)return;body.innerHTML='<div class="grnd-prompt" style="font-size:14px;padding:.5rem 0">\u2713 Good. Stay here for a moment.</div>';}
 function brthStill(bi){var b=BREATHS[bi];if(!b)return;var others=BREATHS.filter(function(_,i){return i!==bi;}).map(function(x){return x.nm;}).concat(GRND_TECHS.map(function(t){return t.title;})).join(', ');var el=document.getElementById('brth-still-'+bi);if(el){el.textContent='Try another technique: '+others;el.classList.add('show');}}
 
 
@@ -2665,7 +2671,7 @@ function initCare(){
   var d=new Date();
   document.getElementById('dc-date').textContent=d.toLocaleDateString(undefined,{weekday:'long',year:'numeric',month:'long',day:'numeric'});
   var s=BY_DAY[d.getDay()];
-  document.getElementById('dc-day-block').innerHTML='<div style="font-size:0.6875rem;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.4px;margin-bottom:4px">Today</div><div style="font-size:1rem;font-weight:600;color:var(--text)">'+s.f+'</div><div style="font-size:0.75rem;color:var(--text2);margin-top:2px;font-style:italic">'+s.i+'</div>';
+  document.getElementById('dc-day-block').innerHTML='<div style="font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.4px;margin-bottom:4px">Today</div><div style="font-size:16px;font-weight:600;color:var(--text)">'+s.f+'</div><div style="font-size:12px;color:var(--text2);margin-top:2px;font-style:italic">'+s.i+'</div>';
   document.getElementById('goal-intro').textContent='Based on today\u2019s schedule. Adjust as needed.';
   var grid=document.getElementById('goal-grid');grid.innerHTML='';
   GOALS.forEach(function(g){
@@ -2717,7 +2723,7 @@ function buildEmoPicker(containerId){
   var el=document.getElementById(containerId);if(!el)return;
   EMOTIONS.forEach(function(emo){
     var btn=document.createElement('button');
-    btn.style.cssText='padding:6px 12px;border-radius:20px;border:1px solid var(--bdr2);background:transparent;color:var(--text2);font-size:0.75rem;cursor:pointer;font-family:inherit';
+    btn.style.cssText='padding:6px 12px;border-radius:20px;border:1px solid var(--bdr2);background:transparent;color:var(--text2);font-size:12px;cursor:pointer;font-family:inherit';
     btn.textContent=emo;
     btn.onclick=function(){
       var wasSel=btn.dataset.sel==='1';
@@ -2815,7 +2821,23 @@ initBoundary();
   refreshIntBars();
 }
 if(NEED_SETUP){document.getElementById("scr-home").classList.remove("on");document.getElementById("scr-setup").style.display="block";var _h=document.getElementById("app-header");if(_h)_h.style.display="none";}
+
+// Desktop scale height compensation (prevents clipping when .app is transform-scaled)
+function compensateScale(){
+  var app=document.querySelector('.app');
+  if(!app)return;
+  var scale=parseFloat(getComputedStyle(document.body).getPropertyValue('--app-scale'))||1;
+  if(scale===1){document.body.style.minHeight='';app.classList.remove('app-scaler');return;}
+  app.classList.add('app-scaler');
+  // After scaling from top center, the visual height = natural height * scale.
+  // Set body minHeight to that so the page can scroll to the bottom.
+  document.body.style.minHeight=(app.offsetHeight*scale)+'px';
+}
+window.addEventListener('resize',compensateScale);
+
 init();
+compensateScale();
+setInterval(compensateScale,1500);
 
 // Restore reg-pill from saved level
 var savedReg=recall('reg-level','');
@@ -2942,7 +2964,7 @@ var wpl=document.getElementById('wound-pick-land');
 if(wpl){Object.keys(WOUND_DATA).forEach(function(k){
     var w=WOUND_DATA[k];
     var btn=document.createElement('button');
-    btn.style.cssText='padding:6px 12px;border-radius:20px;border:1px solid var(--bdr2);background:transparent;color:var(--text2);font-size:0.75rem;cursor:pointer;font-family:inherit';
+    btn.style.cssText='padding:6px 12px;border-radius:20px;border:1px solid var(--bdr2);background:transparent;color:var(--text2);font-size:12px;cursor:pointer;font-family:inherit';
     btn.textContent=w.nm;btn.dataset.wid=k;
     btn.onclick=function(e){
       e.stopPropagation();
