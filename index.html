@@ -613,6 +613,11 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 .tt-dot{width:8px;height:8px;border-radius:50%;background:var(--blue);flex-shrink:0;z-index:1;margin-left:5px;box-shadow:0 0 0 3px var(--bg2)}
 .tt-time{font-weight:600;min-width:64px;color:var(--blue);font-size:13px;font-variant-numeric:tabular-nums}
 .tt-label{color:var(--text);font-size:13px}
+
+/* Gratitude sentence completions */
+.grat-row{display:flex;align-items:baseline;gap:8px;margin-bottom:10px}
+.grat-prefix{font-size:13px;color:var(--text2);white-space:nowrap;flex-shrink:0}
+.grat-input{flex:1;min-height:0}
 </style>
 </head>
 <body>
@@ -986,11 +991,11 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
   </div></div>
 
   <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9829;</span><div><div class="csec-nm">Gratitude</div><div class="csec-ds">Five things I am grateful for today</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
-    <div class="isec"><textarea class="itxt" id="grat-1" rows="1" placeholder="1. I am grateful for..." oninput="persist('grat-1',this.value)"></textarea></div>
-    <div class="isec"><textarea class="itxt" id="grat-2" rows="1" placeholder="2. I am grateful for..." oninput="persist('grat-2',this.value)"></textarea></div>
-    <div class="isec"><textarea class="itxt" id="grat-3" rows="1" placeholder="3. I am grateful for..." oninput="persist('grat-3',this.value)"></textarea></div>
-    <div class="isec"><textarea class="itxt" id="grat-4" rows="1" placeholder="4. I am grateful for..." oninput="persist('grat-4',this.value)"></textarea></div>
-    <div class="isec"><textarea class="itxt" id="grat-5" rows="1" placeholder="5. I am grateful for..." oninput="persist('grat-5',this.value)"></textarea></div>
+    <div class="grat-row"><span class="grat-prefix">I am grateful for</span><textarea class="itxt grat-input" id="grat-1" rows="1" placeholder="..." oninput="persist('grat-1',this.value)"></textarea></div>
+    <div class="grat-row"><span class="grat-prefix">I am grateful for</span><textarea class="itxt grat-input" id="grat-2" rows="1" placeholder="..." oninput="persist('grat-2',this.value)"></textarea></div>
+    <div class="grat-row"><span class="grat-prefix">I am grateful for</span><textarea class="itxt grat-input" id="grat-3" rows="1" placeholder="..." oninput="persist('grat-3',this.value)"></textarea></div>
+    <div class="grat-row"><span class="grat-prefix">I am grateful for</span><textarea class="itxt grat-input" id="grat-4" rows="1" placeholder="..." oninput="persist('grat-4',this.value)"></textarea></div>
+    <div class="grat-row"><span class="grat-prefix">I am grateful for</span><textarea class="itxt grat-input" id="grat-5" rows="1" placeholder="..." oninput="persist('grat-5',this.value)"></textarea></div>
   </div></div>
 
   <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9654;</span><div><div class="csec-nm">Morning intention</div><div class="csec-ds">One thing, one quality, one boundary</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
