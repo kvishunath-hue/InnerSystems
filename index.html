@@ -566,6 +566,8 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 .boost-node::before{content:"";position:absolute;left:-21px;top:11px;width:9px;height:9px;border-radius:50%;background:var(--gold);border:2px solid var(--bg)}
 .boost-apex{font-weight:600;color:var(--gold)}
 .boost-apex::before{width:11px;height:11px;left:-22px;background:var(--gold);box-shadow:0 0 8px rgba(212,176,106,0.6)}
+.boost-ultimate{font-weight:700;color:var(--blue);letter-spacing:0.2px}
+.boost-ultimate::before{width:12px;height:12px;left:-22px;background:var(--blue);box-shadow:0 0 12px rgba(149,181,216,0.7)}
 
 /* Setup / token screen */
 .setup-wrap{max-width:380px;margin:0 auto;padding:32px 0}
@@ -590,7 +592,7 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 <div class="app">
 
 <!-- HEADER -->
-<div class="app-header">
+<div class="app-header" id="app-header">
   <div class="app-title">Inner Systems</div>
   <div class="app-sub">Nothing is good or bad. Just notice.</div>
   <div class="app-updated">Last updated: 29 May 2026</div><div id="sync-status" style="font-size:10px;color:var(--text3);margin-top:2px;cursor:pointer" onclick="showTokenPrompt()"></div>
@@ -714,6 +716,7 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
       <div class="boost-node">New car</div>
       <div class="boost-node">Financial freedom</div>
       <div class="boost-node boost-apex">NoVisits — generational status &amp; wealth</div>
+      <div class="boost-node boost-ultimate">Work on the attention economy</div>
     </div>
   </div>
 </div>
@@ -1388,8 +1391,11 @@ function goBack(){
 }
 function updateBackBtn(id){
   var bb=document.getElementById('persistent-back');
+  // Hide app header on setup/token screens (they carry their own header)
+  var hdr=document.getElementById('app-header');
+  if(hdr)hdr.style.display=(id==='scr-setup'||id==='scr-token')?'none':'';
   if(!bb)return;
-  // Hide on home and setup/token screens
+  // Hide back button on home and setup/token screens
   if(id==='scr-home'||id==='scr-setup'||id==='scr-token'){bb.style.display='none';}
   else{bb.style.display='flex';}
 }
@@ -2758,7 +2764,7 @@ initBoundary();
   buildIntensityBars();
   refreshIntBars();
 }
-if(NEED_SETUP){document.getElementById("scr-home").classList.remove("on");document.getElementById("scr-setup").style.display="block";}
+if(NEED_SETUP){document.getElementById("scr-home").classList.remove("on");document.getElementById("scr-setup").style.display="block";var _h=document.getElementById("app-header");if(_h)_h.style.display="none";}
 init();
 
 // Restore reg-pill from saved level
