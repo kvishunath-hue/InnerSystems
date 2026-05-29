@@ -536,9 +536,9 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 #streak-banners{display:flex;flex-direction:column;gap:7px;margin-bottom:12px}
 #streak-banners .nicotine-banner{margin-bottom:0}
 .nb-units{display:flex;gap:9px;flex-wrap:wrap;margin-top:6px;justify-content:center}
-.nb-unit{display:flex;flex-direction:column;align-items:center;min-width:30px}
-.nb-unit b{font-size:14px;font-weight:600;color:var(--text);font-variant-numeric:tabular-nums;line-height:1.05}
-.nb-unit span{font-size:8px;color:var(--text3);text-transform:uppercase;letter-spacing:0.4px;margin-top:1px}
+.nb-unit{display:flex;flex-direction:column;align-items:center;min-width:36px}
+.nb-unit b{font-size:17px;font-weight:600;color:var(--text);font-variant-numeric:tabular-nums;line-height:1.05}
+.nb-unit span{font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:0.4px;margin-top:2px}
 
 /* SVG icons */
 .entry-ico,.grp-ico{display:flex;align-items:center;justify-content:center}
@@ -619,6 +619,14 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 .grat-prefix{font-size:13px;color:var(--text2);white-space:nowrap;flex-shrink:0}
 .grat-input{flex:1;min-height:0;background:transparent;border:none;border-bottom:1px solid var(--bdr2);border-radius:0;padding:2px 0;resize:none;outline:none}
 .grat-input:focus{border-bottom-color:var(--blue)}
+
+/* Desktop: enlarge the whole app proportionally (keeps mobile layout, just bigger) */
+@media (min-width: 900px){
+  body{zoom:1.35}
+}
+@media (min-width: 1400px){
+  body{zoom:1.6}
+}
 </style>
 </head>
 <body>
