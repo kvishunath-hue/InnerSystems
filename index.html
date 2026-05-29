@@ -66,12 +66,13 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 }
 /* ── LAYOUT ── */
 .app{max-width:480px;margin:0 auto;padding:16px 14px 80px;min-height:100vh}
-.screen{display:none;padding:48px 1rem 0}
+.screen{display:none;padding:0 1rem}
+.screen.has-back{padding-top:48px}
 .screen.on{display:block}
 
 
 /* ── HEADER ── */
-.app-header{padding:1.2rem 1rem .8rem;text-align:center}
+.app-header{padding:1rem 1rem .6rem;text-align:center}
 .app-title{font-size:18px;font-weight:700;color:var(--text);letter-spacing:-0.3px}
 .app-sub{font-size:12px;color:var(--text3);margin-top:2px}
 .app-updated{font-size:10px;color:var(--text3);margin-top:4px;font-style:italic}
@@ -323,7 +324,6 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 .goal-name{font-size:13px;font-weight:600;color:var(--text)}
 .goal-sub{font-size:12px;color:var(--text3);margin-top:1px}
 .goal-btns{display:flex;gap:5px;flex-shrink:0}
-.goal-mand{font-size:9px;letter-spacing:0.5px;text-transform:uppercase;color:var(--red);border:1px solid var(--red-bdr);background:var(--red-bg);border-radius:4px;padding:1px 5px;margin-left:6px;vertical-align:middle;font-weight:600}
 .goal-btn{
   padding:5px 14px;border-radius:var(--r);border:1px solid var(--bdr2);
   background:transparent;font-size:12px;cursor:pointer;color:var(--text2);font-family:inherit;
@@ -400,18 +400,18 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 .id-val{font-size:13px;font-weight:600;margin-top:1px;color:var(--text)}
 
 /* ── WEEKLY RHYTHM ── */
-.rhythm-grid{display:flex;flex-direction:column;gap:4px}
-.rhythm-row{display:flex;gap:8px;font-size:12px;padding:5px 0;border-bottom:1px solid var(--bdr);line-height:1.4;color:var(--text)}
-.rhythm-row:last-child{border-bottom:none}
-.rhythm-day{font-weight:600;min-width:80px}
-.rhythm-focus{color:var(--text2)}
-.rhythm-row.today .rhythm-day{color:var(--calm)}
-.rhythm-row.today{font-weight:600}
+
+
+
+
+
+.rhythm-row.today 
+
 
 /* ── TIMETABLE ── */
-.tt-row{display:flex;gap:10px;padding:7px 0;border-bottom:1px solid var(--bdr);font-size:13px;line-height:1.5;color:var(--text)}
-.tt-row:last-child{border-bottom:none}
-.tt-time{font-weight:600;min-width:55px;color:var(--text2)}
+
+
+
 
 /* ── QUIT TAB ── */
 .quit-card{background:var(--bg);border:1px solid var(--bdr);border-radius:var(--rl);padding:1rem 1.1rem;margin-bottom:8px}
@@ -459,7 +459,7 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
   background:var(--bg2);
   border:1px solid var(--green-bdr);
   border-radius:var(--r);
-  padding:14px 16px;
+  padding:9px 14px;
   margin-bottom:14px;
 }
 .nb-top{
@@ -486,7 +486,7 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
   color:var(--text3);
   font-style:italic;
   text-align:center;
-  margin-top:8px;
+  margin-top:5px;
   letter-spacing:0.3px;
 }
 
@@ -534,12 +534,12 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 .entry-btn.urgent{border-left:3px solid var(--red)!important}
 .card{background:linear-gradient(145deg,#2a241c,#221d17);box-shadow:0 2px 10px rgba(0,0,0,0.3)}
 .nicotine-banner{background:linear-gradient(145deg,#2a241c,#221d17);box-shadow:0 2px 10px rgba(0,0,0,0.3),0 0 16px rgba(149,181,216,0.07);border-left:3px solid var(--blue)}
-#streak-banners{display:flex;flex-direction:column;gap:10px;margin-bottom:14px}
+#streak-banners{display:flex;flex-direction:column;gap:7px;margin-bottom:12px}
 #streak-banners .nicotine-banner{margin-bottom:0}
-.nb-units{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;justify-content:center}
+.nb-units{display:flex;gap:9px;flex-wrap:wrap;margin-top:6px;justify-content:center}
 .nb-unit{display:flex;flex-direction:column;align-items:center;min-width:30px}
-.nb-unit b{font-size:16px;font-weight:600;color:var(--text);font-variant-numeric:tabular-nums;line-height:1.1}
-.nb-unit span{font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:0.4px;margin-top:2px}
+.nb-unit b{font-size:14px;font-weight:600;color:var(--text);font-variant-numeric:tabular-nums;line-height:1.05}
+.nb-unit span{font-size:8px;color:var(--text3);text-transform:uppercase;letter-spacing:0.4px;margin-top:1px}
 
 /* SVG icons */
 .entry-ico,.grp-ico{display:flex;align-items:center;justify-content:center}
@@ -559,7 +559,11 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 
 /* Future Boost — journey timeline */
 .boost-card{background:linear-gradient(145deg,#2a241c,#221d17);border:1px solid var(--bdr);border-radius:var(--rl);padding:18px 18px 18px 16px;margin-top:18px;box-shadow:0 2px 10px rgba(0,0,0,0.3)}
-.boost-title{font-size:13px;letter-spacing:1.4px;text-transform:uppercase;color:var(--gold);font-weight:500;margin-bottom:16px}
+.boost-header{display:flex;align-items:center;justify-content:space-between;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.boost-title{font-size:13px;letter-spacing:1.4px;text-transform:uppercase;color:var(--gold);font-weight:500}
+.boost-chv{font-size:12px;color:var(--text3);transition:transform 0.2s}
+.boost-chv.open{transform:rotate(180deg)}
+.boost-track{margin-top:16px}
 .boost-track{position:relative;padding-left:22px}
 .boost-track::before{content:"";position:absolute;left:5px;top:4px;bottom:4px;width:2px;background:linear-gradient(var(--green),var(--gold),var(--blue))}
 .boost-node{position:relative;padding:7px 0;font-size:14px;color:var(--text)}
@@ -585,6 +589,31 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 .setup-choice-cta{font-size:13px;font-weight:600;color:var(--green)}
 .setup-or{text-align:center;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--text4);margin:4px 0 12px}
 .setup-input{width:100%;padding:10px 12px;border-radius:var(--r);border:1px solid var(--bdr2);background:var(--bg2);color:var(--text);font-size:13px;font-family:monospace;box-sizing:border-box;margin-bottom:12px;outline:none}
+
+/* Rhythm modal */
+.rhythm-ov{display:none;position:fixed;top:0;left:0;right:0;bottom:0;z-index:200;background:rgba(0,0,0,0.5);overflow-y:auto}
+.rhythm-ov.open{display:flex;align-items:center;justify-content:center;padding:20px;-webkit-overflow-scrolling:touch}
+.rhythm-modal{width:100%;max-width:400px;margin:auto;background:linear-gradient(145deg,#2a241c,#1f1b15);border:1px solid var(--bdr2);border-radius:16px;padding:18px;box-shadow:0 12px 48px rgba(0,0,0,0.6)}
+.rhythm-modal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--bdr)}
+.rhythm-modal-title{font-size:17px;font-weight:700;color:var(--text);letter-spacing:-0.2px}
+.rhythm-btn{font-size:11px;font-weight:500;color:var(--blue);background:var(--blue-bg);border:1px solid var(--blue-bdr);border-radius:8px;padding:4px 10px;margin-left:auto;margin-right:10px;cursor:pointer;font-family:inherit;-webkit-tap-highlight-color:transparent}
+.rhythm-btn:active{transform:scale(0.95)}
+
+/* Rhythm modal content */
+.rsec-label{font-size:10px;letter-spacing:1.2px;text-transform:uppercase;color:var(--blue);font-weight:600;margin-bottom:8px}
+.rhythm-grid{display:flex;flex-direction:column;gap:4px}
+.rhythm-row{display:flex;align-items:center;gap:10px;font-size:12px;padding:7px 11px;border:1px solid var(--bdr);border-radius:var(--r2);background:var(--bg2);line-height:1.3;color:var(--text)}
+.rhythm-row:last-child{border-bottom:1px solid var(--bdr)}
+.rhythm-day{font-weight:600;min-width:76px;color:var(--text2);font-size:12px}
+.rhythm-focus{color:var(--text)}
+.rhythm-row.today{border-color:var(--blue-bdr);background:linear-gradient(145deg,#23262e,#1b1d24);border-left:3px solid var(--blue)}
+.rhythm-row.today .rhythm-day{color:var(--blue)}
+.tt-list{position:relative;padding-left:6px}
+.tt-list::before{content:"";position:absolute;left:9px;top:8px;bottom:8px;width:2px;background:linear-gradient(var(--blue),var(--bdr2))}
+.tt-item{display:flex;align-items:center;gap:11px;padding:5px 0;position:relative}
+.tt-dot{width:8px;height:8px;border-radius:50%;background:var(--blue);flex-shrink:0;z-index:1;margin-left:5px;box-shadow:0 0 0 3px var(--bg2)}
+.tt-time{font-weight:600;min-width:64px;color:var(--blue);font-size:13px;font-variant-numeric:tabular-nums}
+.tt-label{color:var(--text);font-size:13px}
 </style>
 </head>
 <body>
@@ -610,6 +639,30 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
       <button class="ground-close" onclick="closeGround()">&times;</button>
     </div>
     <div class="grnd-techs" id="ground-list"></div>
+  </div>
+</div>
+
+<!-- RHYTHM MODAL -->
+<div class="rhythm-ov" id="rhythm-overlay">
+  <div class="rhythm-modal">
+    <div class="rhythm-modal-head">
+      <span class="rhythm-modal-title">Rhythm &amp; timetable</span>
+      <button class="ground-close" onclick="closeRhythm()">&times;</button>
+    </div>
+    <div class="rhythm-modal-body">
+      <div class="rsec-label">Weekly rhythm</div>
+      <div class="rhythm-grid" id="dc-rhythm"></div>
+      <div class="rsec-label" style="margin-top:16px">Daily timetable</div>
+      <div class="tt-list">
+        <div class="tt-item"><div class="tt-dot"></div><div class="tt-time">6:00 AM</div><div class="tt-label">Wake up</div></div>
+        <div class="tt-item"><div class="tt-dot"></div><div class="tt-time">10:00 AM</div><div class="tt-label">Work block 1</div></div>
+        <div class="tt-item"><div class="tt-dot"></div><div class="tt-time">1:00 PM</div><div class="tt-label">Break</div></div>
+        <div class="tt-item"><div class="tt-dot"></div><div class="tt-time">3:00 PM</div><div class="tt-label">Work block 2</div></div>
+        <div class="tt-item"><div class="tt-dot"></div><div class="tt-time">6:00 PM</div><div class="tt-label">Done</div></div>
+        <div class="tt-item"><div class="tt-dot"></div><div class="tt-time">9:00 PM</div><div class="tt-label">Wind down</div></div>
+        <div class="tt-item"><div class="tt-dot"></div><div class="tt-time">10:00 PM</div><div class="tt-label">Sleep</div></div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -651,22 +704,34 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 
 <!-- TOKEN SETTINGS SCREEN -->
 <div class="screen" id="scr-token" style="display:none">
-  <div style="max-width:360px;margin:0 auto;padding:40px 0">
-    <div style="text-align:center;margin-bottom:24px">
-      <div style="font-size:18px;font-weight:700;color:var(--text);margin-bottom:6px">Sync Settings</div>
-      <div style="font-size:12px;color:var(--text3)">GitHub Gist sync</div>
+  <div class="setup-wrap">
+    <div class="setup-hero">
+      <div class="setup-logo">Sync Settings</div>
+      <div class="setup-tagline">Sync is optional. The app works fully without it.</div>
     </div>
-    <div style="background:var(--bg);border:1px solid var(--bdr);border-radius:var(--rl);padding:20px;margin-bottom:12px">
-      <div id="token-current" style="font-size:11px;color:var(--text3);margin-bottom:12px"></div>
-      <div style="font-size:12px;font-weight:600;color:var(--text);margin-bottom:8px">GitHub Personal Access Token</div>
-      <div style="font-size:11px;color:var(--text3);margin-bottom:12px;line-height:1.5">
-        Create at github.com/settings/tokens with <strong>gist</strong> scope. Classic token recommended.
+
+    <div class="setup-choice setup-choice-primary" onclick="removeToken()">
+      <div class="setup-choice-head">
+        <div class="setup-choice-ico i-green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></div>
+        <div class="setup-choice-title">Use without sync</div>
       </div>
-      <input type="password" id="token-input" placeholder="ghp_xxxxxxxxxxxx" style="width:100%;padding:10px 12px;border-radius:var(--r);border:1px solid var(--bdr2);background:var(--bg2);color:var(--text);font-size:13px;font-family:monospace;box-sizing:border-box;margin-bottom:12px;outline:none">
-      <button class="btn" style="width:100%;margin-bottom:8px" onclick="saveNewToken()">Update token</button>
-      <button style="width:100%;padding:10px;border-radius:var(--r);border:1px solid var(--bdr);background:transparent;color:var(--text3);font-size:12px;cursor:pointer;font-family:inherit;margin-bottom:8px" onclick="removeToken()">Remove token — local only</button>
+      <div class="setup-choice-desc">Keep everything on this device only. No token, no account. This is completely fine &mdash; nothing is lost, it just won't sync to other devices.</div>
+      <div class="setup-choice-cta">Stay local-only &#8250;</div>
     </div>
-    <button style="width:100%;padding:12px;border-radius:var(--rl);border:1px solid var(--bdr);background:transparent;color:var(--text2);font-size:12px;cursor:pointer;font-family:inherit" onclick="closeTokenScreen()">Cancel</button>
+
+    <div class="setup-or">or</div>
+
+    <div class="setup-choice">
+      <div class="setup-choice-head">
+        <div class="setup-choice-ico i-blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-9-9M21 3v6h-6"/></svg></div>
+        <div class="setup-choice-title">Sync across devices</div>
+      </div>
+      <div id="token-current" style="font-size:11px;color:var(--text3);margin-bottom:10px"></div>
+      <div class="setup-choice-desc">Connect a GitHub token (with <strong>gist</strong> scope, classic recommended) to sync across devices. Stays on this device &mdash; sent only to GitHub's API.</div>
+      <input type="password" id="token-input" placeholder="ghp_xxxxxxxxxxxx" class="setup-input">
+      <button class="btn" style="width:100%" onclick="saveNewToken()">Update token</button>
+    </div>
+    <button style="width:100%;padding:12px;border-radius:var(--rl);border:1px solid var(--bdr);background:transparent;color:var(--text2);font-size:12px;cursor:pointer;font-family:inherit;margin-top:4px" onclick="closeTokenScreen()">Cancel</button>
   </div>
 </div>
 
@@ -681,7 +746,7 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
     <div class="nicotine-banner" id="tmr-nicotine">
       <div class="nb-labelwrap"><div class="nb-icon i-green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5-2 8-6 8-12V5l-8-3-8 3v5c0 6 3 10 8 12z"/><path d="M9 12l2 2 4-4"/></svg></div><div class="nb-label">No nicotine</div></div>
       <div class="nb-units" id="nbt-nicotine"></div>
-      <div class="nb-quote">Ending the generational pattern, by choice</div>
+      <div class="nb-quote">Breaking the generational pattern, by choice</div>
     </div>
     <div class="nicotine-banner" id="tmr-porn">
       <div class="nb-labelwrap"><div class="nb-icon i-green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5-2 8-6 8-12V5l-8-3-8 3v5c0 6 3 10 8 12z"/><path d="M9 12l2 2 4-4"/></svg></div><div class="nb-label">No pornography</div></div>
@@ -707,14 +772,18 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
     </div>
   </div>
   <div class="boost-card">
-    <div class="boost-title">Future Boost</div>
-    <div class="boost-track">
+    <div class="boost-header" onclick="toggleBoost()">
+      <div class="boost-title">Future Boost</div>
+      <span class="boost-chv" id="boost-chv">&#9660;</span>
+    </div>
+    <div class="boost-track" id="boost-track" style="display:none">
       <div class="boost-node">Fit body</div>
       <div class="boost-node">Smart mind</div>
-      <div class="boost-node">Attractiveness</div>
-      <div class="boost-node">A partner</div>
-      <div class="boost-node">New car</div>
       <div class="boost-node">Financial freedom</div>
+      <div class="boost-node">Magnetic presence</div>
+      <div class="boost-node">Lots of gadgets</div>
+      <div class="boost-node">A good friend</div>
+      <div class="boost-node">A partner</div>
       <div class="boost-node boost-apex">NoVisits — generational status &amp; wealth</div>
       <div class="boost-node boost-ultimate">Work on the attention economy</div>
     </div>
@@ -917,9 +986,12 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
     <div class="prayer-card"><div class="prayer-text"><strong>Prakrti, my ally</strong><span style="display:block;margin-bottom:4px">Intelligence beyond my awareness.</span>I acknowledge what I do not control and do not know. I act courageously where choice is mine, and release what belongs to your process. May balance reassert itself. Om Shanti.</div></div>
   </div></div>
 
-  <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9678;</span><div><div class="csec-nm">Goal planning</div><div class="csec-ds">Auto-selected daily goals</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
-    <div style="font-size:12px;color:var(--text3);margin-bottom:12px" id="goal-intro"></div>
-    <div class="goal-grid" id="goal-grid"></div>
+  <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9829;</span><div><div class="csec-nm">Gratitude</div><div class="csec-ds">Five things I am grateful for today</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
+    <div class="isec"><textarea class="itxt" id="grat-1" rows="1" placeholder="1. I am grateful for..." oninput="persist('grat-1',this.value)"></textarea></div>
+    <div class="isec"><textarea class="itxt" id="grat-2" rows="1" placeholder="2. I am grateful for..." oninput="persist('grat-2',this.value)"></textarea></div>
+    <div class="isec"><textarea class="itxt" id="grat-3" rows="1" placeholder="3. I am grateful for..." oninput="persist('grat-3',this.value)"></textarea></div>
+    <div class="isec"><textarea class="itxt" id="grat-4" rows="1" placeholder="4. I am grateful for..." oninput="persist('grat-4',this.value)"></textarea></div>
+    <div class="isec"><textarea class="itxt" id="grat-5" rows="1" placeholder="5. I am grateful for..." oninput="persist('grat-5',this.value)"></textarea></div>
   </div></div>
 
   <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9654;</span><div><div class="csec-nm">Morning intention</div><div class="csec-ds">One thing, one quality, one boundary</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
@@ -928,23 +1000,24 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
     <div class="isec"><div class="ilbl">What am I avoiding today</div><textarea class="itxt" id="intent-protect" rows="2" placeholder="I might avoid..." oninput="persist('intent-protect',this.value);updReflCtx()"></textarea></div>
   </div></div>
 
-  <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9888;</span><div><div class="csec-nm">Guardrails</div><div class="csec-ds">Yesterday — substances, prodrome, maintenance</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
+  <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9678;</span><div><div class="csec-nm">Goal planning</div><div class="csec-ds">Auto-selected daily goals</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px"><span style="font-size:12px;color:var(--text3)" id="goal-intro"></span><button class="rhythm-btn" style="margin:0" onclick="event.stopPropagation();openRhythm()">Rhythm</button></div>
+    <div class="goal-grid" id="goal-grid"></div>
+  </div></div>
+
+  <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9888;</span><div><div class="csec-nm">Guardrails</div><div class="csec-ds">Today — prodrome, maintenance</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
     <div class="al al-alert" style="margin:0 0 10px"><strong>Hard boundaries.</strong> Cigarettes &#8596; Pornography &#8594; Cannabis &#8594; Psychosis. The craving is never about the substance.</div>
-    <div class="sdiv" style="margin-top:0">Substances</div>
-    <div class="yn-row"><span class="yn-text" id="gt-s2">No caffeine yesterday</span><div class="yn-btns"><button class="yn-btn" id="s2a" onclick="event.stopPropagation();yn('s2a','s2b')">Yes</button><button class="yn-btn" id="s2b" onclick="event.stopPropagation();yn('s2b','s2a')">No</button></div></div>
-    <div class="yn-row"><span class="yn-text" id="gt-s3">No nicotine yesterday</span><div class="yn-btns"><button class="yn-btn" id="s3a" onclick="event.stopPropagation();yn('s3a','s3b')">Yes</button><button class="yn-btn" id="s3b" onclick="event.stopPropagation();yn('s3b','s3a')">No</button></div></div>
-    <div class="yn-row"><span class="yn-text" id="gt-s4">No pornography yesterday</span><div class="yn-btns"><button class="yn-btn" id="s4a" onclick="event.stopPropagation();yn('s4a','s4b')">Yes</button><button class="yn-btn" id="s4b" onclick="event.stopPropagation();yn('s4b','s4a')">No</button></div></div>
     <div class="sdiv" style="margin-top:8px">Autonomic maintenance</div>
-    <div class="yn-row"><span class="yn-text">Moved body yesterday — walked or exercised</span><div class="yn-btns"><button class="yn-btn" id="m1a" onclick="event.stopPropagation();yn('m1a','m1b')">Yes</button><button class="yn-btn" id="m1b" onclick="event.stopPropagation();yn('m1b','m1a')">No</button></div></div>
+    <div class="yn-row"><span class="yn-text">Moved body today — walked or exercised</span><div class="yn-btns"><button class="yn-btn" id="m1a" onclick="event.stopPropagation();yn('m1a','m1b')">Yes</button><button class="yn-btn" id="m1b" onclick="event.stopPropagation();yn('m1b','m1a')">No</button></div></div>
     <div class="yn-row"><span class="yn-text">Slept 7+ hours last night</span><div class="yn-btns"><button class="yn-btn" id="m2a" onclick="event.stopPropagation();yn('m2a','m2b')">Yes</button><button class="yn-btn" id="m2b" onclick="event.stopPropagation();yn('m2b','m2a')">No</button></div></div>
-    <div class="yn-row"><span class="yn-text">Followed routine yesterday</span><div class="yn-btns"><button class="yn-btn" id="t1a" onclick="event.stopPropagation();yn('t1a','t1b')">Yes</button><button class="yn-btn" id="t1b" onclick="event.stopPropagation();yn('t1b','t1a')">No</button></div></div>
-    <div class="yn-row"><span class="yn-text">Chose stability over intensity yesterday</span><div class="yn-btns"><button class="yn-btn" id="t2a" onclick="event.stopPropagation();yn('t2a','t2b')">Yes</button><button class="yn-btn" id="t2b" onclick="event.stopPropagation();yn('t2b','t2a')">No</button></div></div>
-    <div class="yn-row"><span class="yn-text">Organised one area yesterday — physical or digital</span><div class="yn-btns"><button class="yn-btn" id="m4a" onclick="event.stopPropagation();yn('m4a','m4b')">Yes</button><button class="yn-btn" id="m4b" onclick="event.stopPropagation();yn('m4b','m4a')">No</button></div></div>
+    <div class="yn-row"><span class="yn-text">Followed routine today</span><div class="yn-btns"><button class="yn-btn" id="t1a" onclick="event.stopPropagation();yn('t1a','t1b')">Yes</button><button class="yn-btn" id="t1b" onclick="event.stopPropagation();yn('t1b','t1a')">No</button></div></div>
+    <div class="yn-row"><span class="yn-text">Chose stability over intensity today</span><div class="yn-btns"><button class="yn-btn" id="t2a" onclick="event.stopPropagation();yn('t2a','t2b')">Yes</button><button class="yn-btn" id="t2b" onclick="event.stopPropagation();yn('t2b','t2a')">No</button></div></div>
+    <div class="yn-row"><span class="yn-text">Organised one area today — physical or digital</span><div class="yn-btns"><button class="yn-btn" id="m4a" onclick="event.stopPropagation();yn('m4a','m4b')">Yes</button><button class="yn-btn" id="m4b" onclick="event.stopPropagation();yn('m4b','m4a')">No</button></div></div>
     <div style="font-size:11px;color:var(--text3);font-style:italic;margin:4px 0 10px">Showing up is half the battle. Movement, sleep, routine and order are regulation infrastructure.</div>
     <div class="sdiv">Prodrome awareness</div>
-    <div class="yn-row"><span class="yn-text">No unusual pattern recognition or heightened significance yesterday</span><div class="yn-btns"><button class="yn-btn" id="p1a" onclick="event.stopPropagation();yn('p1a','p1b')">Yes</button><button class="yn-btn" id="p1b" onclick="event.stopPropagation();yn('p1b','p1a')">No</button></div></div>
-    <div class="yn-row"><span class="yn-text">No urgency to communicate something important yesterday</span><div class="yn-btns"><button class="yn-btn" id="p2a" onclick="event.stopPropagation();yn('p2a','p2b')">Yes</button><button class="yn-btn" id="p2b" onclick="event.stopPropagation();yn('p2b','p2a')">No</button></div></div>
-    <div class="yn-row"><span class="yn-text">My insight yesterday was actually intact, not just feeling intact</span><div class="yn-btns"><button class="yn-btn" id="p3a" onclick="event.stopPropagation();yn('p3a','p3b')">Yes</button><button class="yn-btn" id="p3b" onclick="event.stopPropagation();yn('p3b','p3a')">No</button></div></div>
+    <div class="yn-row"><span class="yn-text">No unusual pattern recognition or heightened significance today</span><div class="yn-btns"><button class="yn-btn" id="p1a" onclick="event.stopPropagation();yn('p1a','p1b')">Yes</button><button class="yn-btn" id="p1b" onclick="event.stopPropagation();yn('p1b','p1a')">No</button></div></div>
+    <div class="yn-row"><span class="yn-text">No urgency to communicate something important today</span><div class="yn-btns"><button class="yn-btn" id="p2a" onclick="event.stopPropagation();yn('p2a','p2b')">Yes</button><button class="yn-btn" id="p2b" onclick="event.stopPropagation();yn('p2b','p2a')">No</button></div></div>
+    <div class="yn-row"><span class="yn-text">My insight today is actually intact, not just feeling intact</span><div class="yn-btns"><button class="yn-btn" id="p3a" onclick="event.stopPropagation();yn('p3a','p3b')">Yes</button><button class="yn-btn" id="p3b" onclick="event.stopPropagation();yn('p3b','p3a')">No</button></div></div>
     <button class="btn" onclick="event.stopPropagation();doGuard()">Check status</button>
     <div class="result" id="r-guard"></div>
   </div></div>
@@ -954,11 +1027,6 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
     <div id="taper-checks"></div>
     <button class="btn" onclick="event.stopPropagation();runTaper()">Check status</button>
     <div class="taper-status" id="tc-status"></div>
-    <div style="margin-top:10px;font-size:12px;line-height:1.8;color:var(--text3)">
-      <div>High pattern recognition without grounding is not insight. It is prodrome.</div>
-      <div>Insight was actually intact is not the same as insight feeling intact.</div>
-      <div>Fast thoughts + elevated mood = yellow or red, not inspiration.</div>
-    </div>
   </div></div>
 
   <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9679;</span><div><div class="csec-nm">Evening reflection</div><div class="csec-ds">What happened, where I showed up</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
@@ -968,18 +1036,7 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
     <div class="isec"><div class="ilbl">What needs correction tomorrow</div><textarea class="itxt" id="reflect-next" rows="2" placeholder="Tomorrow I will..." oninput="persist('reflect-next',this.value)"></textarea></div>
   </div></div>
 
-  <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9654;</span><div><div class="csec-nm">Rhythm + timetable</div><div class="csec-ds">Weekly rhythm and daily schedule</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
-    <div style="font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Weekly rhythm</div>
-    <div class="rhythm-grid" id="dc-rhythm"></div>
-    <div style="font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;margin:14px 0 6px">Timetable</div>
-    <div class="tt-row"><div class="tt-time">06:00</div><div>Wake up</div></div>
-    <div class="tt-row"><div class="tt-time">10:00</div><div>Work block 1</div></div>
-    <div class="tt-row"><div class="tt-time">13:00</div><div>Break</div></div>
-    <div class="tt-row"><div class="tt-time">15:00</div><div>Work block 2</div></div>
-    <div class="tt-row"><div class="tt-time">18:00</div><div>Done</div></div>
-    <div class="tt-row"><div class="tt-time">21:00</div><div>Wind down</div></div>
-    <div class="tt-row"><div class="tt-time">22:00</div><div>Sleep</div></div>
-  </div></div>
+  
 
   
 </div>
@@ -1128,12 +1185,12 @@ function addHistDate(d){var idx=getHistIndex();if(!idx.includes(d)){idx.push(d);
 function buildSaveData(){
   var data={date:TODAY,ts:Date.now()};
   // Care fields
-  ['intent-main','intent-value','intent-protect','reflect-what','reflect-good','reflect-next'].forEach(function(k){
+  ['intent-main','intent-value','intent-protect','grat-1','grat-2','grat-3','grat-4','grat-5','reflect-what','reflect-good','reflect-next'].forEach(function(k){
     var v=recall(k,'');var ts=parseInt(localStorage.getItem(SK+k+'_ts')||'0');
     data[k]={v:v,ts:ts||Date.now()};
   });
   // Guardrails
-  ['s2a','s2b','s3a','s3b','s4a','s4b','m1a','m1b','m2a','m2b','m4a','m4b','p1a','p1b','p2a','p2b','p3a','p3b','t1a','t1b','t2a','t2b'].forEach(function(k){
+  ['m1a','m1b','m2a','m2b','m4a','m4b','p1a','p1b','p2a','p2b','p3a','p3b','t1a','t1b','t2a','t2b'].forEach(function(k){
     var v=recall(k,'');var ts=parseInt(localStorage.getItem(SK+k+'_ts')||'0');
     data[k]={v:v,ts:ts||Date.now()};
   });
@@ -1144,7 +1201,7 @@ function buildSaveData(){
   // Regulation
   data.regLevel=recall('reg-level','');
   // Taper checks
-  ['s1','s2','ins','urg','sub','tspd','mood','ext','cessation'].forEach(function(k){
+  ['s1','mood','ext','cessation'].forEach(function(k){
     var el=document.getElementById('tc-'+k);if(el)data['tc-'+k]=el.checked;
   });
   // Quit tool checks
@@ -1175,8 +1232,9 @@ function saveToday(){
   // Don't save empty days
   var hasContent=dv2(data['intent-main'])||dv2(data['intent-value'])||dv2(data['intent-protect'])||
     dv2(data['reflect-what'])||dv2(data['reflect-good'])||dv2(data['reflect-next'])||
+    dv2(data['grat-1'])||dv2(data['grat-2'])||dv2(data['grat-3'])||dv2(data['grat-4'])||dv2(data['grat-5'])||
     data.regLevel||(data.goalBtns&&Object.keys(data.goalBtns).length)||(data.chks&&Object.keys(data.chks).length)||
-    dv2(data.s2a)||dv2(data.s2b)||dv2(data.s3a)||dv2(data.s3b)||dv2(data.s4a)||dv2(data.s4b)||dv2(data.m1a)||dv2(data.m1b)||dv2(data.m2a)||dv2(data.m2b);
+    dv2(data.m1a)||dv2(data.m1b)||dv2(data.m2a)||dv2(data.m2b);
   if(!hasContent)return;
   localStorage.setItem('vk_day_'+TODAY,JSON.stringify(data));
   addHistDate(TODAY);
@@ -1396,8 +1454,12 @@ function updateBackBtn(id){
   if(hdr)hdr.style.display=(id==='scr-setup'||id==='scr-token')?'none':'';
   if(!bb)return;
   // Hide back button on home and setup/token screens
-  if(id==='scr-home'||id==='scr-setup'||id==='scr-token'){bb.style.display='none';}
-  else{bb.style.display='flex';}
+  var hideBack=(id==='scr-home'||id==='scr-setup'||id==='scr-token');
+  bb.style.display=hideBack?'none':'flex';
+  // Add top room only on screens that show the back button
+  var cur=document.getElementById(id);
+  document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('has-back');});
+  if(!hideBack&&cur)cur.classList.add('has-back');
 }
 
 
@@ -1792,15 +1854,9 @@ var LAND_ITEMS=[
 // Taper items
 var TAPER_ITEMS=[
   {id:'s1',tx:'My sleep was stable and consistent yesterday'},
-  {id:'s2',tx:'Sleep felt restorative yesterday'},
-  {id:'ins',tx:'My thinking felt clear and insight was intact yesterday'},
-  {id:'urg',tx:'No unusual urgency or heightened significance yesterday'},
-  {id:'sub',tx:'No increase in substance use yesterday'},
-  {id:'tspd',tx:'My thought speed felt normal yesterday'},
   {id:'mood',tx:'My mood felt stable yesterday'},
   {id:'ext',tx:'Someone who sees me clearly would have agreed with my read of things yesterday'},
-  {id:'cessation',tx:'I did not stop any substance abruptly recently'},
-  {id:'pushst',tx:'I did not push past my stability structure yesterday \u2014 stayed within sleep, regulation, and routine limits'}
+  {id:'cessation',tx:'I did not stop any substance abruptly recently'}
 ];
 
 // Quit items
@@ -1821,9 +1877,9 @@ var QUIT_ITEMS=[
 // Schedule
 var BY_DAY={
   0:{f:'Recovery + rest',i:'No performance. Rest is the work.'},
-  1:{f:'NoVisits',i:'One focused session. Protect long blocks.'},
-  2:{f:'Fitness + NoVisits',i:'Body first, then work.'},
-  3:{f:'NoVisits + Learning',i:'Depth and growth.'},
+  1:{f:'Active project',i:'One focused session. Protect long blocks.'},
+  2:{f:'Fitness + Active project',i:'Body first, then work.'},
+  3:{f:'Active project + Learning',i:'Depth and growth.'},
   4:{f:'Fitness + Admin',i:'Body and systems.'},
   5:{f:'Land + Family',i:'Practical and grounded.'},
   6:{f:'Fitness + Connection',i:'Body then genuine connection.'}
@@ -2318,38 +2374,14 @@ function yn(onId,offId){
   var isY=onId.endsWith('a');var cls=isY?'yo':'no';var offCls=isY?'no':'yo';
   if(on.classList.contains(cls)){on.classList.remove(cls);persist(onId,'');}
   else{on.classList.add(cls);off.classList.remove(offCls);persist(onId,cls);persist(offId,'');}
-  // Flip substance guardrail text
-  var flipMap={'s2b':'Caffeine taken yesterday','s3b':'Nicotine taken yesterday','s4b':'Pornography used yesterday'};
-  var origMap={'s2a':'No caffeine yesterday','s3a':'No nicotine yesterday','s4a':'No pornography yesterday'};
-  var gtId=onId.replace('a','').replace('b','');
-  var gtEl=document.getElementById('gt-'+gtId);
-  if(gtEl&&flipMap[onId]&&on.classList.contains('no'))gtEl.textContent=flipMap[onId];
-  if(gtEl&&origMap[onId]&&on.classList.contains('yo'))gtEl.textContent=origMap[onId];
-  if(gtEl&&!on.classList.contains('yo')&&!on.classList.contains('no')){var orig=origMap[gtId+'a'];if(orig)gtEl.textContent=orig;}
 }
 
 function doGuard(){
   var h='';var broken=[];var held=[];var prodFlags=[];var structFlags=[];
-  var subs={s2:'Caffeine',s3:'Nicotine',s4:'Pornography'};
-  var subWarn={
-    s2:'Caffeine dysregulates sleep and amplifies anxiety. Both feed the chain.',
-    s3:'Nicotine is load in itself and a step toward cannabis in your pattern. The false confidence that you can handle one cigarette is the chain talking. Every cigarette reactivates the dopamine pathway.',
-    s4:'Pornography is a SPOF in your chain. It lowers the threshold for cannabis. The false confidence that it is harmless is the entry point the chain uses.'
-  };
-  var subHeld={
-    s2:'No caffeine. Sleep and anxiety baseline protected.',
-    s3:'No nicotine. Dopamine pathway not reactivated.',
-    s4:'No pornography. Chain entry point closed.'
-  };
-  ['s2','s3','s4'].forEach(function(s){
-    var a=document.getElementById(s+'a');var b=document.getElementById(s+'b');
-    if(b&&b.classList.contains('no'))broken.push({nm:subs[s],warn:subWarn[s]});
-    else if(a&&a.classList.contains('yo'))held.push({nm:subs[s],msg:subHeld[s]});
-  });
   ['p1','p2','p3'].forEach(function(p){var b=document.getElementById(p+'b');if(b&&b.classList.contains('no'))prodFlags.push(p);});
   ['t1','t2'].forEach(function(t){var b=document.getElementById(t+'b');if(b&&b.classList.contains('no'))structFlags.push(t);});
   if(broken.length){
-    h+='<div class="al al-alert" style="margin-bottom:10px"><strong>Guardrails broken yesterday.</strong> Future pull is now active. The next craving will arrive with false confidence. That feeling is the chain, not you.</div>';
+    h+='<div class="al al-alert" style="margin-bottom:10px"><strong>Guardrails broken today.</strong> Future pull is now active. The next craving will arrive with false confidence. That feeling is the chain, not you.</div>';
     broken.forEach(function(b){h+='<div class="ri"><div class="ri-name" style="color:var(--alert)">\u2717 '+b.nm+'</div><div class="ri-action">'+b.warn+'</div></div>';});
   }
   if(held.length){held.forEach(function(h2){h+='<div class="ri"><div class="ri-name" style="color:var(--ok)">\u2713 '+h2.nm+'</div><div class="ri-action">'+h2.msg+'</div></div>';});}
@@ -2364,14 +2396,22 @@ function doGuard(){
   if(!broken.length&&held.length&&!prodFlags.length){h+='<div style="margin-top:10px;font-size:12px;color:var(--ok)">All guardrails held. The chain has no entry point right now.</div>';}
   show('r-guard',h);
 }
+function toggleBoost(){
+  var t=document.getElementById('boost-track');
+  var c=document.getElementById('boost-chv');
+  if(!t)return;
+  var open=t.style.display!=='none';
+  t.style.display=open?'none':'block';
+  if(c)c.classList.toggle('open',!open);
+}
 function togGoal(btn){btn.classList.toggle('gy');persist(btn.id,btn.classList.contains('gy'));}
 
 // ═══════════ TAPER + QUIT ═══════════
 function runTaper(){
   var count=TAPER_ITEMS.filter(item=>document.getElementById('tc-'+item.id).checked).length;
   var cls,msg;
-  if(count>=6){cls='tp-g';msg='Green — stable, continue current phase.';}
-  else if(count>=3){cls='tp-y';msg='Yellow — hold current dose, do not reduce.';}
+  if(count>=4){cls='tp-g';msg='Green — stable, continue current phase.';}
+  else if(count>=2){cls='tp-y';msg='Yellow — hold current dose, do not reduce.';}
   else{cls='tp-r';msg='Red — fall back to previous stable dose. Use Ground. Tell your confidant.';}
   var el=document.getElementById('tc-status');el.style.display='block';el.className='taper-status '+cls;el.textContent=msg;
 }
@@ -2537,6 +2577,14 @@ function brthSettled(bi){var body=document.getElementById('bbody-'+bi);if(!body)
 function brthStill(bi){var b=BREATHS[bi];if(!b)return;var others=BREATHS.filter(function(_,i){return i!==bi;}).map(function(x){return x.nm;}).concat(GRND_TECHS.map(function(t){return t.title;})).join(', ');var el=document.getElementById('brth-still-'+bi);if(el){el.textContent='Try another technique: '+others;el.classList.add('show');}}
 
 
+
+function openRhythm(){document.getElementById('rhythm-overlay').classList.add('open');document.body.style.overflow='hidden';buildRhythm();}
+function closeRhythm(){document.getElementById('rhythm-overlay').classList.remove('open');document.body.style.overflow='';}
+function buildRhythm(){
+  var rhythm=document.getElementById('dc-rhythm');if(!rhythm)return;rhythm.innerHTML='';var today=new Date().getDay();
+  Object.entries(BY_DAY).forEach(function(e){var dn=e[0];var v=e[1];var it=Number(dn)===today;var row=document.createElement('div');row.className='rhythm-row'+(it?' today':'');row.innerHTML='<div class="rhythm-day">'+DAYS[Number(dn)]+'</div><div class="rhythm-focus">'+v.f+'</div>';rhythm.appendChild(row);});
+}
+
 function openGround(ctx){
   window._groundCtx=ctx||'general';
   document.getElementById('ground-overlay').classList.add('open');
@@ -2551,9 +2599,9 @@ function closeGround(){document.getElementById('ground-overlay').classList.remov
 // === Streak timers ===
 // To reset any timer, change its start date below (ISO format).
 var STREAK_TIMERS=[
-  {id:'cannabis',start:'2024-10-24T19:32:00'},
-  {id:'nicotine',start:'2026-05-29T13:47:00'},
-  {id:'porn',start:'2026-06-03T08:15:00'}
+  {id:'cannabis',start:'2024-10-24T19:32:17'},
+  {id:'nicotine',start:'2026-05-29T13:47:38'},
+  {id:'porn',start:'2026-06-03T08:15:52'}
 ];
 var streakInterval=null;
 
@@ -2611,34 +2659,25 @@ function initCare(){
   var grid=document.getElementById('goal-grid');grid.innerHTML='';
   GOALS.forEach(function(g){
     var row=document.createElement('div');row.className='goal-item';
-    var mandTag=g.mand?' <span class="goal-mand">must</span>':'';
-    row.innerHTML='<div class="goal-ico">'+g.ico+'</div><div class="goal-info"><div class="goal-name">'+g.nm+mandTag+'</div><div class="goal-sub">'+g.sb+'</div></div><div class="goal-btns"><button class="goal-btn" id="gb-'+g.id+'" onclick="togGoal(this)">Yes</button></div>';
+    row.innerHTML='<div class="goal-ico">'+g.ico+'</div><div class="goal-info"><div class="goal-name">'+g.nm+'</div><div class="goal-sub">'+g.sb+'</div></div><div class="goal-btns"><button class="goal-btn" id="gb-'+g.id+'" onclick="togGoal(this)">Yes</button></div>';
     grid.appendChild(row);
   });
-  // Auto-select goals based on day (if not already persisted)
-  // Mandatory goals are always pre-selected; day-specific extras added on top
-  var MAND_GOALS=GOALS.filter(function(g){return g.mand;}).map(function(g){return g.id;});
-  var dayExtras={
-    0:[],
-    1:['project'],
-    2:['project'],
-    3:['land'],
-    4:['land','project'],
-    5:['tribe'],
-    6:['family']
-  };
-  var todayGoals=MAND_GOALS.concat(dayExtras[d.getDay()]||[]);
-  todayGoals.forEach(function(gid){
-    var btn=document.getElementById('gb-'+gid);
-    if(btn&&!recall(btn.id,false)){btn.classList.add('gy');persist(btn.id,true);}
+  // Restore + auto-select goals
+  var dayExtras={0:[],1:['project'],2:['project'],3:['land'],4:['land','project'],5:['tribe'],6:['family']};
+  var todayExtras=dayExtras[d.getDay()]||[];
+  GOALS.forEach(function(g){
+    var btn=document.getElementById('gb-'+g.id);if(!btn)return;
+    var key='gb-'+g.id;
+    if(g.mand){btn.classList.add('gy');persist(key,true);return;} // mandatory always selected
+    var saved=recall(key,null);
+    if(saved===true){btn.classList.add('gy');}
+    else if(saved===null&&todayExtras.indexOf(g.id)>=0){btn.classList.add('gy');persist(key,true);}
   });
-  // Rhythm
-  var rhythm=document.getElementById('dc-rhythm');rhythm.innerHTML='';var today=d.getDay();
-  Object.entries(BY_DAY).forEach(function(e){var dn=e[0];var v=e[1];var it=Number(dn)===today;var row=document.createElement('div');row.className='rhythm-row'+(it?' today':'');row.innerHTML='<div class="rhythm-day">'+DAYS[Number(dn)]+'</div><div class="rhythm-focus">'+v.f+'</div>';rhythm.appendChild(row);});
+  // Rhythm now built on-demand in modal (buildRhythm)
   // Restore text fields
-  ['intent-main','intent-value','intent-protect','reflect-what','reflect-good','reflect-next'].forEach(function(id){var el=document.getElementById(id);if(el)el.value=recall(id,'');});
+  ['intent-main','intent-value','intent-protect','grat-1','grat-2','grat-3','grat-4','grat-5','reflect-what','reflect-good','reflect-next'].forEach(function(id){var el=document.getElementById(id);if(el)el.value=recall(id,'');});
   // Restore guardrails
-  ['s2a','s2b','s3a','s3b','s4a','s4b','m1a','m1b','m2a','m2b','m4a','m4b','p1a','p1b','p2a','p2b','p3a','p3b','t1a','t1b','t2a','t2b'].forEach(function(id){var v=recall(id,'');var btn=document.getElementById(id);if(btn&&v)btn.classList.add(v);});
+  ['m1a','m1b','m2a','m2b','m4a','m4b','p1a','p1b','p2a','p2b','p3a','p3b','t1a','t1b','t2a','t2b'].forEach(function(id){var v=recall(id,'');var btn=document.getElementById(id);if(btn&&v)btn.classList.add(v);});
   // Restore taper + quit
   TAPER_ITEMS.forEach(function(item){var el=document.getElementById('tc-'+item.id);if(el)el.checked=recall('tc-'+item.id,false);});
   QUIT_ITEMS.forEach(function(item){var el=document.getElementById('qc-'+item.id);if(el)el.checked=recall('qc-'+item.id,false);});
@@ -2791,7 +2830,7 @@ function restoreFromDayData(data){
   if(!data||data.date!==TODAY)return;
   _restoring=true;
   // Restore text fields — per-field timestamp wins
-  ['intent-main','intent-value','intent-protect','reflect-what','reflect-good','reflect-next'].forEach(function(k){
+  ['intent-main','intent-value','intent-protect','grat-1','grat-2','grat-3','grat-4','grat-5','reflect-what','reflect-good','reflect-next'].forEach(function(k){
     var remote=data[k];
     if(!remote)return;
     var rv=typeof remote==='object'?remote.v:remote;
@@ -2800,7 +2839,7 @@ function restoreFromDayData(data){
     if(rts>=lts&&rv){_hp(k,rv);localStorage.setItem(SK+k+'_ts',String(rts));var el=document.getElementById(k);if(el)el.value=rv;}
   });
   // Restore guardrails — per-field timestamp wins
-  ['s2a','s2b','s3a','s3b','s4a','s4b','m1a','m1b','m2a','m2b','m4a','m4b','p1a','p1b','p2a','p2b','p3a','p3b','t1a','t1b','t2a','t2b'].forEach(function(id){
+  ['m1a','m1b','m2a','m2b','m4a','m4b','p1a','p1b','p2a','p2b','p3a','p3b','t1a','t1b','t2a','t2b'].forEach(function(id){
     var remote=data[id];
     if(!remote)return;
     var rv=typeof remote==='object'?remote.v:remote;
