@@ -65,17 +65,17 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
   --info-bdr:var(--blue-bdr);
 }
 /* ── LAYOUT ── */
-.app{max-width:480px;margin:0 auto;padding:16px 14px 80px;min-height:100vh}
+.app{max-width:480px;margin:0 auto;padding:12px 14px 24px;min-height:100vh}
 .screen{display:none;padding:0 1rem}
 .screen.on{display:block}
 
 
 /* ── HEADER ── */
-.app-header{padding:1rem 1rem .6rem;text-align:center}
+.app-header{padding:.7rem 1rem .5rem;text-align:center}
 .app-title{font-size:18px;font-weight:700;color:var(--text);letter-spacing:-0.3px}
-.app-sub{font-size:12px;color:var(--text3);margin-top:2px}
+.app-sub{font-size:11px;color:var(--text3);margin-top:2px}
 .app-updated{font-size:10px;color:var(--text3);margin-top:4px;font-style:italic}
-.reg-indicator{display:inline-block;font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px;margin-top:6px;background:var(--bg2);color:var(--text3);border:1px solid var(--bdr)}
+.reg-indicator{display:inline-block;font-size:10px;font-weight:600;padding:2px 10px;border-radius:20px;margin-top:5px;background:var(--bg2);color:var(--text3);border:1px solid var(--bdr)}
 
 /* ── ENTRY SCREEN ── */
 .entry-grid{display:flex;flex-direction:column;gap:8px;padding-top:.5rem}
@@ -402,14 +402,10 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 
 
 
-
-
 .rhythm-row.today 
 
 
 /* ── TIMETABLE ── */
-
-
 
 
 /* ── QUIT TAB ── */
@@ -506,12 +502,12 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 #persistent-back:active{transform:scale(0.94)}
 
 /* Group landing buttons */
-.grp-grid{display:flex;flex-direction:column;gap:10px}
+.grp-grid{display:flex;flex-direction:column;gap:8px}
 .grp-btn{
   display:flex;align-items:center;gap:14px;
   background:linear-gradient(145deg,#2a241c,#221d17);
   border:1px solid var(--bdr);border-radius:var(--rl);
-  padding:20px 18px;cursor:pointer;
+  padding:14px 16px;cursor:pointer;
   box-shadow:0 2px 10px rgba(0,0,0,0.3);
   -webkit-tap-highlight-color:transparent;
 }
@@ -519,9 +515,9 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 .grp-routine{border-left:3px solid var(--green)}
 .grp-now{border-left:3px solid var(--red)}
 .grp-soon{border-left:3px solid var(--gold)}
-.grp-ico{font-size:24px;width:32px;text-align:center;opacity:0.85}
+.grp-ico{font-size:22px;width:30px;text-align:center;opacity:0.85}
 .grp-info{flex:1}
-.grp-name{font-size:17px;font-weight:500;color:var(--text)}
+.grp-name{font-size:16px;font-weight:500;color:var(--text)}
 .grp-desc{font-size:12px;color:var(--text3);margin-top:3px}
 .grp-chv{font-size:22px;color:var(--text3)}
 .grp-title{font-size:13px;letter-spacing:1.4px;text-transform:uppercase;color:var(--text3);margin:0 2px 14px;font-weight:500}
@@ -557,7 +553,7 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 .nicotine-banner .nb-icon{color:var(--blue)}
 
 /* Future Boost — journey timeline */
-.boost-card{background:linear-gradient(145deg,#2a241c,#221d17);border:1px solid var(--bdr);border-radius:var(--rl);padding:18px 18px 18px 16px;margin-top:18px;box-shadow:0 2px 10px rgba(0,0,0,0.3)}
+.boost-card{background:linear-gradient(145deg,#2a241c,#221d17);border:1px solid var(--bdr);border-radius:var(--rl);padding:14px 16px;margin-top:12px;box-shadow:0 2px 10px rgba(0,0,0,0.3)}
 .boost-header{display:flex;align-items:center;justify-content:space-between;cursor:pointer;-webkit-tap-highlight-color:transparent}
 .boost-title{font-size:13px;letter-spacing:1.4px;text-transform:uppercase;color:var(--gold);font-weight:500}
 .boost-chv{font-size:12px;color:var(--text3);transition:transform 0.2s}
@@ -620,17 +616,6 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 .grat-input{flex:1;min-height:0;background:transparent;border:none;border-bottom:1px solid var(--bdr2);border-radius:0;padding:2px 0;resize:none;outline:none}
 .grat-input:focus{border-bottom-color:var(--blue)}
 
-
-
-/* Desktop: scale the app up geometrically (identical in Safari, Chrome, Firefox) */
-@media (min-width: 900px){
-  body{ --app-scale:1.14; }
-  .app-scaler{
-    transform:scale(var(--app-scale));
-    transform-origin:top center;
-  }
-  .ground-fab{transform:scale(1.14);transform-origin:bottom right}
-}
 </style>
 </head>
 <body>
@@ -640,13 +625,11 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 <div class="app-header" id="app-header">
   <div class="app-title">Inner Systems</div>
   <div class="app-sub">Nothing is good or bad. Just notice.</div>
-  <div class="app-updated">Last updated: 29 May 2026</div><div id="sync-status" style="font-size:10px;color:var(--text3);margin-top:2px;cursor:pointer" onclick="showTokenPrompt()"></div>
+  <div id="sync-status" style="font-size:10px;color:var(--text3);margin-top:2px;cursor:pointer" onclick="showTokenPrompt()"></div>
+  <!-- Last updated: 29 May 2026 -->
   <div class="reg-indicator" id="reg-pill">Not checked today</div>
 </div>
 <button id="persistent-back" onclick="goBack()" style="display:none"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
-
-<!-- GROUND FAB -->
-<button class="ground-fab" onclick="openGround()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2.5"/><path d="M12 7.5V21M5 13a7 7 0 0 0 14 0M5 13H3m16 0h2"/></svg>Ground</button>
 
 <!-- GROUND OVERLAY -->
 <div class="ground-ov" id="ground-overlay">
@@ -1178,6 +1161,9 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
   
 </div>
 </div>
+
+<!-- GROUND FAB -->
+<button class="ground-fab" onclick="openGround()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2.5"/><path d="M12 7.5V21M5 13a7 7 0 0 0 14 0M5 13H3m16 0h2"/></svg>Ground</button>
 <script>
 // ═══════════ CONFIG ═══════════
 const GIST_ID='92ea8a47f979c421b8d9264935e86700';
@@ -2593,8 +2579,6 @@ function grndStill(id){var remaining=GRND_TECHS.filter(t=>t.id!==id).map(t=>t.ti
 function brthSettled(bi){var body=document.getElementById('bbody-'+bi);if(!body)return;body.innerHTML='<div class="grnd-prompt" style="font-size:14px;padding:.5rem 0">\u2713 Good. Stay here for a moment.</div>';}
 function brthStill(bi){var b=BREATHS[bi];if(!b)return;var others=BREATHS.filter(function(_,i){return i!==bi;}).map(function(x){return x.nm;}).concat(GRND_TECHS.map(function(t){return t.title;})).join(', ');var el=document.getElementById('brth-still-'+bi);if(el){el.textContent='Try another technique: '+others;el.classList.add('show');}}
 
-
-
 function openRhythm(){document.getElementById('rhythm-overlay').classList.add('open');document.body.style.overflow='hidden';buildRhythm();}
 function closeRhythm(){document.getElementById('rhythm-overlay').classList.remove('open');document.body.style.overflow='';}
 function buildRhythm(){
@@ -2822,22 +2806,7 @@ initBoundary();
 }
 if(NEED_SETUP){document.getElementById("scr-home").classList.remove("on");document.getElementById("scr-setup").style.display="block";var _h=document.getElementById("app-header");if(_h)_h.style.display="none";}
 
-// Desktop scale height compensation (prevents clipping when .app is transform-scaled)
-function compensateScale(){
-  var app=document.querySelector('.app');
-  if(!app)return;
-  var scale=parseFloat(getComputedStyle(document.body).getPropertyValue('--app-scale'))||1;
-  if(scale===1){document.body.style.minHeight='';app.classList.remove('app-scaler');return;}
-  app.classList.add('app-scaler');
-  // After scaling from top center, the visual height = natural height * scale.
-  // Set body minHeight to that so the page can scroll to the bottom.
-  document.body.style.minHeight=(app.offsetHeight*scale)+'px';
-}
-window.addEventListener('resize',compensateScale);
-
 init();
-compensateScale();
-setInterval(compensateScale,1500);
 
 // Restore reg-pill from saved level
 var savedReg=recall('reg-level','');
