@@ -41,6 +41,8 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
   --red:#d8867a;
   --red-bg:rgba(216,134,122,0.12);
   --red-bdr:rgba(216,134,122,0.35);
+  --gold:#d4b06a;
+  --gold-bdr:rgba(212,176,106,0.35);
 
   --calm:var(--blue);
   --calm-bg:var(--blue-bg);
@@ -321,6 +323,7 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 .goal-name{font-size:13px;font-weight:600;color:var(--text)}
 .goal-sub{font-size:12px;color:var(--text3);margin-top:1px}
 .goal-btns{display:flex;gap:5px;flex-shrink:0}
+.goal-mand{font-size:9px;letter-spacing:0.5px;text-transform:uppercase;color:var(--red);border:1px solid var(--red-bdr);background:var(--red-bg);border-radius:4px;padding:1px 5px;margin-left:6px;vertical-align:middle;font-weight:600}
 .goal-btn{
   padding:5px 14px;border-radius:var(--r);border:1px solid var(--bdr2);
   background:transparent;font-size:12px;cursor:pointer;color:var(--text2);font-family:inherit;
@@ -469,7 +472,7 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
   font-size:11px;
   letter-spacing:1px;
   text-transform:uppercase;
-  color:var(--green);
+  color:var(--blue);
   font-weight:500;
 }
 .nb-time{
@@ -516,7 +519,7 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 .grp-btn:active{transform:scale(0.99)}
 .grp-routine{border-left:3px solid var(--green)}
 .grp-now{border-left:3px solid var(--red)}
-.grp-soon{border-left:3px solid var(--blue)}
+.grp-soon{border-left:3px solid var(--gold)}
 .grp-ico{font-size:24px;width:32px;text-align:center;opacity:0.85}
 .grp-info{flex:1}
 .grp-name{font-size:17px;font-weight:500;color:var(--text)}
@@ -530,7 +533,13 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 .cat-section .entry-btn,.entry-grid .entry-btn{border-left:3px solid var(--bdr2)}
 .entry-btn.urgent{border-left:3px solid var(--red)!important}
 .card{background:linear-gradient(145deg,#2a241c,#221d17);box-shadow:0 2px 10px rgba(0,0,0,0.3)}
-.nicotine-banner{background:linear-gradient(145deg,#2a241c,#221d17);box-shadow:0 2px 10px rgba(0,0,0,0.3),0 0 16px rgba(168,200,152,0.06);border-left:3px solid var(--green)}
+.nicotine-banner{background:linear-gradient(145deg,#2a241c,#221d17);box-shadow:0 2px 10px rgba(0,0,0,0.3),0 0 16px rgba(149,181,216,0.07);border-left:3px solid var(--blue)}
+#streak-banners{display:flex;flex-direction:column;gap:10px;margin-bottom:14px}
+#streak-banners .nicotine-banner{margin-bottom:0}
+.nb-units{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;justify-content:center}
+.nb-unit{display:flex;flex-direction:column;align-items:center;min-width:30px}
+.nb-unit b{font-size:16px;font-weight:600;color:var(--text);font-variant-numeric:tabular-nums;line-height:1.1}
+.nb-unit span{font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:0.4px;margin-top:2px}
 
 /* SVG icons */
 .entry-ico,.grp-ico{display:flex;align-items:center;justify-content:center}
@@ -540,11 +549,40 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 .i-red{color:var(--red)}
 .i-blue{color:var(--blue)}
 .i-yellow{color:var(--yellow)}
+.i-gold{color:var(--gold)}
 .i-neutral{color:var(--text2)}
 #persistent-back svg{width:18px;height:18px}
 .nb-icon{display:inline-flex;vertical-align:middle;margin-right:6px}
 .nb-icon svg{width:16px;height:16px}
-.nb-labelwrap{display:flex;align-items:center}
+.nb-labelwrap{display:flex;align-items:center;gap:6px}
+.nicotine-banner .nb-icon{color:var(--blue)}
+
+/* Future Boost — journey timeline */
+.boost-card{background:linear-gradient(145deg,#2a241c,#221d17);border:1px solid var(--bdr);border-radius:var(--rl);padding:18px 18px 18px 16px;margin-top:18px;box-shadow:0 2px 10px rgba(0,0,0,0.3)}
+.boost-title{font-size:13px;letter-spacing:1.4px;text-transform:uppercase;color:var(--gold);font-weight:500;margin-bottom:16px}
+.boost-track{position:relative;padding-left:22px}
+.boost-track::before{content:"";position:absolute;left:5px;top:4px;bottom:4px;width:2px;background:linear-gradient(var(--green),var(--gold),var(--blue))}
+.boost-node{position:relative;padding:7px 0;font-size:14px;color:var(--text)}
+.boost-node::before{content:"";position:absolute;left:-21px;top:11px;width:9px;height:9px;border-radius:50%;background:var(--gold);border:2px solid var(--bg)}
+.boost-apex{font-weight:600;color:var(--gold)}
+.boost-apex::before{width:11px;height:11px;left:-22px;background:var(--gold);box-shadow:0 0 8px rgba(212,176,106,0.6)}
+
+/* Setup / token screen */
+.setup-wrap{max-width:380px;margin:0 auto;padding:32px 0}
+.setup-hero{text-align:center;margin-bottom:28px}
+.setup-logo{font-size:22px;font-weight:700;color:var(--text);letter-spacing:-0.3px}
+.setup-tagline{font-size:12px;color:var(--text3);margin-top:6px;font-style:italic}
+.setup-choice{background:linear-gradient(145deg,#2a241c,#221d17);border:1px solid var(--bdr);border-radius:var(--rl);padding:20px;margin-bottom:12px;box-shadow:0 2px 10px rgba(0,0,0,0.3)}
+.setup-choice-primary{border-left:3px solid var(--green);cursor:pointer}
+.setup-choice-primary:active{transform:scale(0.99)}
+.setup-choice-head{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.setup-choice-ico{display:flex;align-items:center;justify-content:center}
+.setup-choice-ico svg{width:22px;height:22px}
+.setup-choice-title{font-size:15px;font-weight:600;color:var(--text)}
+.setup-choice-desc{font-size:12px;color:var(--text3);line-height:1.6;margin-bottom:14px}
+.setup-choice-cta{font-size:13px;font-weight:600;color:var(--green)}
+.setup-or{text-align:center;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--text4);margin:4px 0 12px}
+.setup-input{width:100%;padding:10px 12px;border-radius:var(--r);border:1px solid var(--bdr2);background:var(--bg2);color:var(--text);font-size:13px;font-family:monospace;box-sizing:border-box;margin-bottom:12px;outline:none}
 </style>
 </head>
 <body>
@@ -554,8 +592,8 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 <!-- HEADER -->
 <div class="app-header">
   <div class="app-title">Inner Systems</div>
-  <div class="app-sub">Nothing is bad or good. Just notice.</div>
-  <div class="app-updated">Last updated: 24 May 2026</div><div id="sync-status" style="font-size:10px;color:var(--text3);margin-top:2px;cursor:pointer" onclick="showTokenPrompt()"></div>
+  <div class="app-sub">Nothing is good or bad. Just notice.</div>
+  <div class="app-updated">Last updated: 29 May 2026</div><div id="sync-status" style="font-size:10px;color:var(--text3);margin-top:2px;cursor:pointer" onclick="showTokenPrompt()"></div>
   <div class="reg-indicator" id="reg-pill">Not checked today</div>
 </div>
 
@@ -579,20 +617,32 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 
 <!-- SETUP SCREEN -->
 <div class="screen" id="scr-setup" style="display:none">
-  <div style="max-width:360px;margin:0 auto;padding:40px 0">
-    <div style="text-align:center;margin-bottom:32px">
-      <div style="font-size:20px;font-weight:700;color:var(--text);margin-bottom:6px">Inner Systems</div>
-      <div style="font-size:12px;color:var(--text3)">Sync your data across devices with GitHub Gist</div>
+  <div class="setup-wrap">
+    <div class="setup-hero">
+      <div class="setup-logo">Inner Systems</div>
+      <div class="setup-tagline">Nothing is good or bad. Just notice.</div>
     </div>
-    <div style="background:var(--bg);border:1px solid var(--bdr);border-radius:var(--rl);padding:20px;margin-bottom:12px">
-      <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:10px">GitHub Personal Access Token</div>
-      <div style="font-size:11px;color:var(--text3);margin-bottom:12px;line-height:1.5">
-        Create a token at github.com/settings/tokens with <strong>gist</strong> scope only. Your token stays on this device — it is never sent anywhere except GitHub's API.
+
+    <div class="setup-choice setup-choice-primary" onclick="skipSetup()">
+      <div class="setup-choice-head">
+        <div class="setup-choice-ico i-green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></div>
+        <div class="setup-choice-title">Start now &mdash; no account needed</div>
       </div>
-      <input type="password" id="setup-token" placeholder="ghp_xxxxxxxxxxxx" style="width:100%;padding:10px 12px;border-radius:var(--r);border:1px solid var(--bdr2);background:var(--bg2);color:var(--text);font-size:13px;font-family:monospace;box-sizing:border-box;margin-bottom:12px;outline:none">
-      <button class="btn" style="width:100%" onclick="doSetup()">Connect</button>
+      <div class="setup-choice-desc">Jump straight in. Everything saves on this device. No sign-up, no token, nothing to set up. You can always add sync later.</div>
+      <div class="setup-choice-cta">Continue without sync &#8250;</div>
     </div>
-    <button style="width:100%;padding:12px;border-radius:var(--rl);border:1px solid var(--bdr);background:transparent;color:var(--text3);font-size:12px;cursor:pointer;font-family:inherit" onclick="skipSetup()">Use without sync — data stays on this device only</button>
+
+    <div class="setup-or">or</div>
+
+    <div class="setup-choice">
+      <div class="setup-choice-head">
+        <div class="setup-choice-ico i-blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-9-9M21 3v6h-6"/></svg></div>
+        <div class="setup-choice-title">Sync across devices</div>
+      </div>
+      <div class="setup-choice-desc">Optional. Connect a GitHub token (with <strong>gist</strong> scope) to sync your data across devices. Your token stays on this device &mdash; sent only to GitHub's API.</div>
+      <input type="password" id="setup-token" placeholder="ghp_xxxxxxxxxxxx" class="setup-input">
+      <button class="btn" style="width:100%" onclick="doSetup()">Connect &amp; sync</button>
+    </div>
   </div>
 </div>
 
@@ -620,12 +670,22 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 
 <!-- HOME / ENTRY -->
 <div class="screen on" id="scr-home">
-  <div id="nicotine-timer" class="nicotine-banner">
-    <div class="nb-top">
-      <div class="nb-labelwrap"><div class="nb-icon i-green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5-2 8-6 8-12V5l-8-3-8 3v5c0 6 3 10 8 12z"/><path d="M9 12l2 2 4-4"/></svg></div><div class="nb-label">No nicotine</div></div>
-      <div class="nb-time" id="nb-time">&mdash;</div>
+    <div id="streak-banners">
+    <div class="nicotine-banner" id="tmr-cannabis">
+      <div class="nb-labelwrap"><div class="nb-icon i-green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5-2 8-6 8-12V5l-8-3-8 3v5c0 6 3 10 8 12z"/><path d="M9 12l2 2 4-4"/></svg></div><div class="nb-label">No cannabis</div></div>
+      <div class="nb-units" id="nbt-cannabis"></div>
+      <div class="nb-quote">SPOF removed &mdash; Kaalashtami, 24 Oct 2024</div>
     </div>
-    <div class="nb-quote">Dad's 12 year death anniversary tribute</div>
+    <div class="nicotine-banner" id="tmr-nicotine">
+      <div class="nb-labelwrap"><div class="nb-icon i-green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5-2 8-6 8-12V5l-8-3-8 3v5c0 6 3 10 8 12z"/><path d="M9 12l2 2 4-4"/></svg></div><div class="nb-label">No nicotine</div></div>
+      <div class="nb-units" id="nbt-nicotine"></div>
+      <div class="nb-quote">Ending the generational pattern, by choice</div>
+    </div>
+    <div class="nicotine-banner" id="tmr-porn">
+      <div class="nb-labelwrap"><div class="nb-icon i-green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5-2 8-6 8-12V5l-8-3-8 3v5c0 6 3 10 8 12z"/><path d="M9 12l2 2 4-4"/></svg></div><div class="nb-label">No pornography</div></div>
+      <div class="nb-units" id="nbt-porn"></div>
+      <div class="nb-quote">Keeping it real &mdash; crash after the peak is not worth it</div>
+    </div>
   </div>
   <div class="grp-grid">
     <div class="grp-btn grp-routine" onclick="showScreen('scr-grp-routine')">
@@ -639,9 +699,21 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
       <div class="grp-chv">&#8250;</div>
     </div>
     <div class="grp-btn grp-soon" onclick="showScreen('scr-grp-soon')">
-      <div class="grp-ico i-blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4M12 13v3l2 1"/></svg></div>
+      <div class="grp-ico i-gold"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4M12 13v3l2 1"/></svg></div>
       <div class="grp-info"><div class="grp-name">Coming up</div><div class="grp-desc">Prepare for an activating event</div></div>
       <div class="grp-chv">&#8250;</div>
+    </div>
+  </div>
+  <div class="boost-card">
+    <div class="boost-title">Future Boost</div>
+    <div class="boost-track">
+      <div class="boost-node">Fit body</div>
+      <div class="boost-node">Smart mind</div>
+      <div class="boost-node">Attractiveness</div>
+      <div class="boost-node">A partner</div>
+      <div class="boost-node">New car</div>
+      <div class="boost-node">Financial freedom</div>
+      <div class="boost-node boost-apex">NoVisits — generational status &amp; wealth</div>
     </div>
   </div>
 </div>
@@ -853,26 +925,23 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
     <div class="isec"><div class="ilbl">What am I avoiding today</div><textarea class="itxt" id="intent-protect" rows="2" placeholder="I might avoid..." oninput="persist('intent-protect',this.value);updReflCtx()"></textarea></div>
   </div></div>
 
-  <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9888;</span><div><div class="csec-nm">Guardrails</div><div class="csec-ds">Yesterday — intoxicants, prodrome, structure</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
+  <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9888;</span><div><div class="csec-nm">Guardrails</div><div class="csec-ds">Yesterday — substances, prodrome, maintenance</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
     <div class="al al-alert" style="margin:0 0 10px"><strong>Hard boundaries.</strong> Cigarettes &#8596; Pornography &#8594; Cannabis &#8594; Psychosis. The craving is never about the substance.</div>
-    <div class="sdiv" style="margin-top:0">Intoxicants</div>
-    <div class="yn-row"><span class="yn-text" id="gt-s1">No intoxicants yesterday</span><div class="yn-btns"><button class="yn-btn" id="s1a" onclick="event.stopPropagation();yn('s1a','s1b')">Yes</button><button class="yn-btn" id="s1b" onclick="event.stopPropagation();yn('s1b','s1a')">No</button></div></div>
+    <div class="sdiv" style="margin-top:0">Substances</div>
     <div class="yn-row"><span class="yn-text" id="gt-s2">No caffeine yesterday</span><div class="yn-btns"><button class="yn-btn" id="s2a" onclick="event.stopPropagation();yn('s2a','s2b')">Yes</button><button class="yn-btn" id="s2b" onclick="event.stopPropagation();yn('s2b','s2a')">No</button></div></div>
     <div class="yn-row"><span class="yn-text" id="gt-s3">No nicotine yesterday</span><div class="yn-btns"><button class="yn-btn" id="s3a" onclick="event.stopPropagation();yn('s3a','s3b')">Yes</button><button class="yn-btn" id="s3b" onclick="event.stopPropagation();yn('s3b','s3a')">No</button></div></div>
     <div class="yn-row"><span class="yn-text" id="gt-s4">No pornography yesterday</span><div class="yn-btns"><button class="yn-btn" id="s4a" onclick="event.stopPropagation();yn('s4a','s4b')">Yes</button><button class="yn-btn" id="s4b" onclick="event.stopPropagation();yn('s4b','s4a')">No</button></div></div>
-    <div class="sdiv">Stability structure</div>
-    <div class="yn-row"><span class="yn-text">Stayed within stability structure yesterday — did not push past sleep, regulation, or routine limits</span><div class="yn-btns"><button class="yn-btn" id="m3a" onclick="event.stopPropagation();yn('m3a','m3b')">Yes</button><button class="yn-btn" id="m3b" onclick="event.stopPropagation();yn('m3b','m3a')">No</button></div></div>
     <div class="sdiv" style="margin-top:8px">Autonomic maintenance</div>
     <div class="yn-row"><span class="yn-text">Moved body yesterday — walked or exercised</span><div class="yn-btns"><button class="yn-btn" id="m1a" onclick="event.stopPropagation();yn('m1a','m1b')">Yes</button><button class="yn-btn" id="m1b" onclick="event.stopPropagation();yn('m1b','m1a')">No</button></div></div>
     <div class="yn-row"><span class="yn-text">Slept 7+ hours last night</span><div class="yn-btns"><button class="yn-btn" id="m2a" onclick="event.stopPropagation();yn('m2a','m2b')">Yes</button><button class="yn-btn" id="m2b" onclick="event.stopPropagation();yn('m2b','m2a')">No</button></div></div>
-    <div style="font-size:11px;color:var(--text3);font-style:italic;margin:4px 0 10px">Showing up is half the battle. Movement and sleep are regulation infrastructure.</div>
+    <div class="yn-row"><span class="yn-text">Followed routine yesterday</span><div class="yn-btns"><button class="yn-btn" id="t1a" onclick="event.stopPropagation();yn('t1a','t1b')">Yes</button><button class="yn-btn" id="t1b" onclick="event.stopPropagation();yn('t1b','t1a')">No</button></div></div>
+    <div class="yn-row"><span class="yn-text">Chose stability over intensity yesterday</span><div class="yn-btns"><button class="yn-btn" id="t2a" onclick="event.stopPropagation();yn('t2a','t2b')">Yes</button><button class="yn-btn" id="t2b" onclick="event.stopPropagation();yn('t2b','t2a')">No</button></div></div>
+    <div class="yn-row"><span class="yn-text">Organised one area yesterday — physical or digital</span><div class="yn-btns"><button class="yn-btn" id="m4a" onclick="event.stopPropagation();yn('m4a','m4b')">Yes</button><button class="yn-btn" id="m4b" onclick="event.stopPropagation();yn('m4b','m4a')">No</button></div></div>
+    <div style="font-size:11px;color:var(--text3);font-style:italic;margin:4px 0 10px">Showing up is half the battle. Movement, sleep, routine and order are regulation infrastructure.</div>
     <div class="sdiv">Prodrome awareness</div>
     <div class="yn-row"><span class="yn-text">No unusual pattern recognition or heightened significance yesterday</span><div class="yn-btns"><button class="yn-btn" id="p1a" onclick="event.stopPropagation();yn('p1a','p1b')">Yes</button><button class="yn-btn" id="p1b" onclick="event.stopPropagation();yn('p1b','p1a')">No</button></div></div>
     <div class="yn-row"><span class="yn-text">No urgency to communicate something important yesterday</span><div class="yn-btns"><button class="yn-btn" id="p2a" onclick="event.stopPropagation();yn('p2a','p2b')">Yes</button><button class="yn-btn" id="p2b" onclick="event.stopPropagation();yn('p2b','p2a')">No</button></div></div>
     <div class="yn-row"><span class="yn-text">My insight yesterday was actually intact, not just feeling intact</span><div class="yn-btns"><button class="yn-btn" id="p3a" onclick="event.stopPropagation();yn('p3a','p3b')">Yes</button><button class="yn-btn" id="p3b" onclick="event.stopPropagation();yn('p3b','p3a')">No</button></div></div>
-    <div class="sdiv">Structure</div>
-    <div class="yn-row"><span class="yn-text">Followed routines yesterday</span><div class="yn-btns"><button class="yn-btn" id="t1a" onclick="event.stopPropagation();yn('t1a','t1b')">Yes</button><button class="yn-btn" id="t1b" onclick="event.stopPropagation();yn('t1b','t1a')">No</button></div></div>
-    <div class="yn-row"><span class="yn-text">Chose stability over intensity yesterday</span><div class="yn-btns"><button class="yn-btn" id="t2a" onclick="event.stopPropagation();yn('t2a','t2b')">Yes</button><button class="yn-btn" id="t2b" onclick="event.stopPropagation();yn('t2b','t2a')">No</button></div></div>
     <button class="btn" onclick="event.stopPropagation();doGuard()">Check status</button>
     <div class="result" id="r-guard"></div>
   </div></div>
@@ -953,19 +1022,12 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
       <div><strong style="color:var(--text)">5. Autonomic flexibility:</strong> Ongoing. HRV building through fitness + breathing. Vagal tone as the foundation everything else rests on.</div>
     </div>
     </div></div>
-    <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9675;</span><div><div class="csec-nm">Medication</div><div class="csec-ds">Aripiprazole 1.25mg</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
-    <div style="font-size:12px;color:var(--text2);line-height:1.7;margin-top:4px;margin-bottom:10px">
-      <div>Aripiprazole 1.25mg — the right medication at the right dose. Best cardiovascular and metabolic profile among antipsychotics. Best evidence for CIP relapse prevention. Do not change what is working.</div>
-      <div>Any additions — check CYP2D6 interaction (bupropion increases aripiprazole blood levels up to 5x). Any cessation — psychotic symptoms appeared within 3-5 days in your history.</div>
-    </div>
-    </div></div>
-    <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9654;</span><div><div class="csec-nm">NoVisits timeline</div><div class="csec-ds">Phase 0 → Full commitment</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
+    <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9654;</span><div><div class="csec-nm">NoVisits timeline</div><div class="csec-ds">Phase 3 — after complete healing</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
     <div style="font-size:12px;color:var(--text2);line-height:1.6;margin-top:4px">
-      <div><strong style="color:var(--text)">Now &#8594; Jun:</strong> Phase 0. Research, planning, architecture. No launches, no deadlines.</div>
-      <div><strong style="color:var(--text)">Jul &#8594; Oct:</strong> Phase 1. Small contained work blocks. One action per day. If it feels urgent &#8212; check intensity.</div>
-      <div><strong style="color:var(--text)">Nov 2026+:</strong> Full commitment from outside the house.</div>
+      <div>NoVisits begins at <strong style="color:var(--text)">Phase 3</strong> — not before. Phases 1 and 2 are regulation, recovery, and full healing. Nothing is owed here until the foundation is solid.</div>
+      <div style="margin-top:8px">It becomes the right project <strong style="color:var(--text)">only if I still feel called to it after complete healing</strong> — not from urgency, not from hero drive, not to prove anything.</div>
     </div>
-    <div style="font-size:11px;color:var(--text3);font-style:italic;margin-top:8px;line-height:1.5">NoVisits does not need to succeed before exit. It needs to survive until after exit.</div>
+    <div style="font-size:11px;color:var(--text3);font-style:italic;margin-top:8px;line-height:1.5">Generational status and wealth. It unlocks the world. But only if chosen from a healed place, freely.</div>
   </div></div>
   </div>
 </div>
@@ -1068,7 +1130,7 @@ function buildSaveData(){
     data[k]={v:v,ts:ts||Date.now()};
   });
   // Guardrails
-  ['s1a','s1b','s2a','s2b','s3a','s3b','s4a','s4b','m1a','m1b','m2a','m2b','m3a','m3b','p1a','p1b','p2a','p2b','p3a','p3b','t1a','t1b','t2a','t2b'].forEach(function(k){
+  ['s2a','s2b','s3a','s3b','s4a','s4b','m1a','m1b','m2a','m2b','m4a','m4b','p1a','p1b','p2a','p2b','p3a','p3b','t1a','t1b','t2a','t2b'].forEach(function(k){
     var v=recall(k,'');var ts=parseInt(localStorage.getItem(SK+k+'_ts')||'0');
     data[k]={v:v,ts:ts||Date.now()};
   });
@@ -1111,7 +1173,7 @@ function saveToday(){
   var hasContent=dv2(data['intent-main'])||dv2(data['intent-value'])||dv2(data['intent-protect'])||
     dv2(data['reflect-what'])||dv2(data['reflect-good'])||dv2(data['reflect-next'])||
     data.regLevel||(data.goalBtns&&Object.keys(data.goalBtns).length)||(data.chks&&Object.keys(data.chks).length)||
-    dv2(data.s1a)||dv2(data.s1b)||dv2(data.s3a)||dv2(data.s3b)||dv2(data.s4a)||dv2(data.s4b)||dv2(data.m1a)||dv2(data.m1b)||dv2(data.m2a)||dv2(data.m2b);
+    dv2(data.s2a)||dv2(data.s2b)||dv2(data.s3a)||dv2(data.s3b)||dv2(data.s4a)||dv2(data.s4b)||dv2(data.m1a)||dv2(data.m1b)||dv2(data.m2a)||dv2(data.m2b);
   if(!hasContent)return;
   localStorage.setItem('vk_day_'+TODAY,JSON.stringify(data));
   addHistDate(TODAY);
@@ -1764,14 +1826,14 @@ var DAYS=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'
 
 // Goals
 var GOALS=[
-  {id:'regulation',ico:'&#9889;',nm:'Regulation + recovery',sb:'Daily baseline'},
-  {id:'fitness',ico:'&#128170;',nm:'Physical fitness',sb:'Movement, body care'},
-  {id:'admin',ico:'&#128194;',nm:'Admin',sb:'Organisation'},
-  {id:'novisits',ico:'&#128506;',nm:'NoVisits',sb:'One concrete action'},
+  {id:'regulation',ico:'&#9889;',nm:'Regulation + recovery',sb:'Daily baseline',mand:true},
+  {id:'fitness',ico:'&#128170;',nm:'Physical fitness',sb:'Movement, body care',mand:true},
+  {id:'admin',ico:'&#128194;',nm:'Admin',sb:'Organisation',mand:true},
   {id:'land',ico:'&#127807;',nm:'Land',sb:'One concrete step'},
+  {id:'project',ico:'&#128221;',nm:'Active project',sb:'One concrete action'},
+  {id:'family',ico:'&#127968;',nm:'Family',sb:'As needed'},
   {id:'tribe',ico:'&#128301;',nm:'Finding my tribe',sb:'One connection'},
-  {id:'partner',ico:'&#129309;',nm:'Partner',sb:'Presence, openness'},
-  {id:'family',ico:'&#127968;',nm:'Family',sb:'As needed'}
+  {id:'partner',ico:'&#129309;',nm:'Partner',sb:'Presence, openness'}
 ];
 
 // ═══════════ BUILD CHECKLISTS ═══════════
@@ -2251,8 +2313,8 @@ function yn(onId,offId){
   if(on.classList.contains(cls)){on.classList.remove(cls);persist(onId,'');}
   else{on.classList.add(cls);off.classList.remove(offCls);persist(onId,cls);persist(offId,'');}
   // Flip substance guardrail text
-  var flipMap={'s1b':'Intoxicants taken yesterday','s2b':'Caffeine taken yesterday','s3b':'Nicotine taken yesterday','s4b':'Pornography used yesterday'};
-  var origMap={'s1a':'No intoxicants yesterday','s2a':'No caffeine yesterday','s3a':'No nicotine yesterday','s4a':'No pornography yesterday'};
+  var flipMap={'s2b':'Caffeine taken yesterday','s3b':'Nicotine taken yesterday','s4b':'Pornography used yesterday'};
+  var origMap={'s2a':'No caffeine yesterday','s3a':'No nicotine yesterday','s4a':'No pornography yesterday'};
   var gtId=onId.replace('a','').replace('b','');
   var gtEl=document.getElementById('gt-'+gtId);
   if(gtEl&&flipMap[onId]&&on.classList.contains('no'))gtEl.textContent=flipMap[onId];
@@ -2262,20 +2324,18 @@ function yn(onId,offId){
 
 function doGuard(){
   var h='';var broken=[];var held=[];var prodFlags=[];var structFlags=[];
-  var subs={s1:'Intoxicants',s2:'Caffeine',s3:'Nicotine',s4:'Pornography'};
+  var subs={s2:'Caffeine',s3:'Nicotine',s4:'Pornography'};
   var subWarn={
-    s1:'Intoxicants lower impulse control. The next craving will arrive with less resistance. Future pull is now active.',
     s2:'Caffeine dysregulates sleep and amplifies anxiety. Both feed the chain.',
     s3:'Nicotine is load in itself and a step toward cannabis in your pattern. The false confidence that you can handle one cigarette is the chain talking. Every cigarette reactivates the dopamine pathway.',
     s4:'Pornography is a SPOF in your chain. It lowers the threshold for cannabis. The false confidence that it is harmless is the entry point the chain uses.'
   };
   var subHeld={
-    s1:'No intoxicants. Impulse control intact.',
     s2:'No caffeine. Sleep and anxiety baseline protected.',
     s3:'No nicotine. Dopamine pathway not reactivated.',
     s4:'No pornography. Chain entry point closed.'
   };
-  ['s1','s2','s3','s4'].forEach(function(s){
+  ['s2','s3','s4'].forEach(function(s){
     var a=document.getElementById(s+'a');var b=document.getElementById(s+'b');
     if(b&&b.classList.contains('no'))broken.push({nm:subs[s],warn:subWarn[s]});
     else if(a&&a.classList.contains('yo'))held.push({nm:subs[s],msg:subHeld[s]});
@@ -2291,9 +2351,9 @@ function doGuard(){
   if(structFlags.length){h+='<div class="ri" style="margin-top:10px"><div class="ri-name" style="color:var(--warn-text)">\u2717 Structure down</div><div class="ri-action">Without routine, the craving finds the gap. Rebuild one routine.</div></div>';}
   // Movement + sleep
   var m1b=document.getElementById('m1b');var m2b=document.getElementById('m2b');
-  var m3b=document.getElementById('m3b');if(m3b&&m3b.classList.contains('no'))h+='<div class="ri"><div class="ri-name" style="color:var(--alert)">\u2717 Pushed past stability structure</div><div class="ri-action">Going beyond sleep, regulation, or routine limits creates a delayed crash. The capacity used yesterday is borrowed, not earned.</div></div>';
   if(m1b&&m1b.classList.contains('no'))h+='<div class="ri"><div class="ri-name" style="color:var(--alert)">\u2717 No movement yesterday</div><div class="ri-action">Every skipped walk costs autonomic capacity. HRV drops, craving threshold lowers. Walk today.</div></div>';
   if(m2b&&m2b.classList.contains('no'))h+='<div class="ri"><div class="ri-name" style="color:var(--alert)">\u2717 Poor sleep</div><div class="ri-action">Executive function depleted. Defences are low. Be careful with decisions today.</div></div>';
+  var m4b=document.getElementById('m4b');if(m4b&&m4b.classList.contains('no'))h+='<div class="ri"><div class="ri-name" style="color:var(--warn-text)">\u2717 No area organised</div><div class="ri-action">External order supports internal order. Tidy one small area today \u2014 a desk, a folder, a drawer.</div></div>';
   if(!broken.length&&!held.length&&!prodFlags.length&&!structFlags.length){h='<span class="ri-ok">No guardrails checked yet.</span>';}
   if(!broken.length&&held.length&&!prodFlags.length){h+='<div style="margin-top:10px;font-size:12px;color:var(--ok)">All guardrails held. The chain has no entry point right now.</div>';}
   show('r-guard',h);
@@ -2336,7 +2396,7 @@ var GRND_TECHS=[
 function buildGroundList(ctx){
   var wrap=document.getElementById('ground-list');wrap.innerHTML='';
   // Build ordered items: breathing first, then body techniques
-  var bOrder=ctx==='land'?[1,0]:[0,1]; // land: exhale first (steady), others: sigh first (brake)
+  var bOrder=ctx==='land'?[1,0,2]:[0,1,2]; // include all breaths; box breathing last
   var gOrder;
   if(ctx==='activated')gOrder=['gcold','g54321','gcontact','gletgo'];
   else if(ctx==='craving')gOrder=['gcold','g54321','gcontact'];
@@ -2482,34 +2542,58 @@ function closeGround(){document.getElementById('ground-overlay').classList.remov
 
 // ═══════════ DAILY CARE INIT ═══════════
 
-// === Nicotine timer — fixed start: 1 June 2026 ===
-// To reset, change NICOTINE_START_TS to a new ISO date below
-var NICOTINE_START_TS=new Date('2026-06-01T00:00:00').getTime();
-var nicotineInterval=null;
+// === Streak timers ===
+// To reset any timer, change its start date below (ISO format).
+var STREAK_TIMERS=[
+  {id:'cannabis',start:'2024-10-24T19:32:00'},
+  {id:'nicotine',start:'2026-05-29T13:47:00'},
+  {id:'porn',start:'2026-06-03T08:15:00'}
+];
+var streakInterval=null;
 
-function fmtNicotineDuration(ms){
-  if(ms<0)return null;
-  var totalMin=Math.floor(ms/60000);
-  var days=Math.floor(totalMin/(60*24));
-  var hours=Math.floor((totalMin%(60*24))/60);
-  var mins=totalMin%60;
-  return days+'d '+hours+'h '+mins+'m';
+function streakBreakdown(start,now){
+  // Calendar-accurate years, then days/hours/minutes/seconds from the remainder
+  var y=now.getFullYear()-start.getFullYear();
+  var anniv=new Date(start);anniv.setFullYear(start.getFullYear()+y);
+  if(anniv>now){y--;anniv.setFullYear(start.getFullYear()+y);}
+  var totalSec=Math.floor((now-anniv)/1000);
+  var days=Math.floor(totalSec/86400);
+  var hours=Math.floor((totalSec%86400)/3600);
+  var minutes=Math.floor((totalSec%3600)/60);
+  var seconds=totalSec%60;
+  return {years:y,days:days,hours:hours,minutes:minutes,seconds:seconds};
 }
 
-function updateNicotineTimer(){
-  var banner=document.getElementById('nicotine-timer');
-  if(!banner)return;
-  var ms=Date.now()-NICOTINE_START_TS;
-  if(ms<0){banner.style.display='none';return;}
-  banner.style.display='block';
-  var el=document.getElementById('nb-time');
-  if(el)el.textContent=fmtNicotineDuration(ms);
+function renderStreakUnits(b){
+  var units=[['years','yr'],['days','day'],['hours','hr'],['minutes','min'],['seconds','sec']];
+  // Drop leading zero units, but always keep from first non-zero down to seconds
+  var started=false,html='';
+  units.forEach(function(u){
+    var val=b[u[0]];
+    if(val>0)started=true;
+    if(started){html+='<div class="nb-unit"><b>'+val+'</b><span>'+u[1]+'</span></div>';}
+  });
+  if(!started)html='<div class="nb-unit"><b>0</b><span>sec</span></div>';
+  return html;
+}
+
+function updateStreakTimers(){
+  var now=new Date();
+  STREAK_TIMERS.forEach(function(t){
+    var banner=document.getElementById('tmr-'+t.id);
+    if(!banner)return;
+    var start=new Date(t.start);
+    if(now.getTime()-start.getTime()<0){banner.style.display='none';return;}
+    banner.style.display='block';
+    var el=document.getElementById('nbt-'+t.id);
+    if(el)el.innerHTML=renderStreakUnits(streakBreakdown(start,now));
+  });
 }
 
 function startNicotineTimerInterval(){
-  if(nicotineInterval)clearInterval(nicotineInterval);
-  updateNicotineTimer();
-  nicotineInterval=setInterval(updateNicotineTimer,30000);
+  if(streakInterval)clearInterval(streakInterval);
+  updateStreakTimers();
+  streakInterval=setInterval(updateStreakTimers,1000);
 }
 
 function initCare(){
@@ -2521,20 +2605,23 @@ function initCare(){
   var grid=document.getElementById('goal-grid');grid.innerHTML='';
   GOALS.forEach(function(g){
     var row=document.createElement('div');row.className='goal-item';
-    row.innerHTML='<div class="goal-ico">'+g.ico+'</div><div class="goal-info"><div class="goal-name">'+g.nm+'</div><div class="goal-sub">'+g.sb+'</div></div><div class="goal-btns"><button class="goal-btn" id="gb-'+g.id+'" onclick="togGoal(this)">Yes</button></div>';
+    var mandTag=g.mand?' <span class="goal-mand">must</span>':'';
+    row.innerHTML='<div class="goal-ico">'+g.ico+'</div><div class="goal-info"><div class="goal-name">'+g.nm+mandTag+'</div><div class="goal-sub">'+g.sb+'</div></div><div class="goal-btns"><button class="goal-btn" id="gb-'+g.id+'" onclick="togGoal(this)">Yes</button></div>';
     grid.appendChild(row);
   });
   // Auto-select goals based on day (if not already persisted)
-  var dayGoals={
-    0:['regulation'],
-    1:['regulation','novisits'],
-    2:['regulation','fitness','novisits'],
-    3:['regulation','novisits','admin'],
-    4:['regulation','novisits','land'],
-    5:['regulation','fitness','tribe'],
-    6:['regulation','family']
+  // Mandatory goals are always pre-selected; day-specific extras added on top
+  var MAND_GOALS=GOALS.filter(function(g){return g.mand;}).map(function(g){return g.id;});
+  var dayExtras={
+    0:[],
+    1:['project'],
+    2:['project'],
+    3:['land'],
+    4:['land','project'],
+    5:['tribe'],
+    6:['family']
   };
-  var todayGoals=dayGoals[d.getDay()]||['regulation'];
+  var todayGoals=MAND_GOALS.concat(dayExtras[d.getDay()]||[]);
   todayGoals.forEach(function(gid){
     var btn=document.getElementById('gb-'+gid);
     if(btn&&!recall(btn.id,false)){btn.classList.add('gy');persist(btn.id,true);}
@@ -2545,7 +2632,7 @@ function initCare(){
   // Restore text fields
   ['intent-main','intent-value','intent-protect','reflect-what','reflect-good','reflect-next'].forEach(function(id){var el=document.getElementById(id);if(el)el.value=recall(id,'');});
   // Restore guardrails
-  ['s1a','s1b','s2a','s2b','s3a','s3b','s4a','s4b','m1a','m1b','m2a','m2b','m3a','m3b','p1a','p1b','p2a','p2b','p3a','p3b','t1a','t1b','t2a','t2b'].forEach(function(id){var v=recall(id,'');var btn=document.getElementById(id);if(btn&&v)btn.classList.add(v);});
+  ['s2a','s2b','s3a','s3b','s4a','s4b','m1a','m1b','m2a','m2b','m4a','m4b','p1a','p1b','p2a','p2b','p3a','p3b','t1a','t1b','t2a','t2b'].forEach(function(id){var v=recall(id,'');var btn=document.getElementById(id);if(btn&&v)btn.classList.add(v);});
   // Restore taper + quit
   TAPER_ITEMS.forEach(function(item){var el=document.getElementById('tc-'+item.id);if(el)el.checked=recall('tc-'+item.id,false);});
   QUIT_ITEMS.forEach(function(item){var el=document.getElementById('qc-'+item.id);if(el)el.checked=recall('qc-'+item.id,false);});
@@ -2707,7 +2794,7 @@ function restoreFromDayData(data){
     if(rts>=lts&&rv){_hp(k,rv);localStorage.setItem(SK+k+'_ts',String(rts));var el=document.getElementById(k);if(el)el.value=rv;}
   });
   // Restore guardrails — per-field timestamp wins
-  ['s1a','s1b','s2a','s2b','s3a','s3b','s4a','s4b','m1a','m1b','m2a','m2b','m3a','m3b','p1a','p1b','p2a','p2b','p3a','p3b','t1a','t1b','t2a','t2b'].forEach(function(id){
+  ['s2a','s2b','s3a','s3b','s4a','s4b','m1a','m1b','m2a','m2b','m4a','m4b','p1a','p1b','p2a','p2b','p3a','p3b','t1a','t1b','t2a','t2b'].forEach(function(id){
     var remote=data[id];
     if(!remote)return;
     var rv=typeof remote==='object'?remote.v:remote;
