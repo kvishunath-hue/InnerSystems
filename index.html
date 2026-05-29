@@ -617,7 +617,8 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 /* Gratitude sentence completions */
 .grat-row{display:flex;align-items:baseline;gap:8px;margin-bottom:10px}
 .grat-prefix{font-size:13px;color:var(--text2);white-space:nowrap;flex-shrink:0}
-.grat-input{flex:1;min-height:0}
+.grat-input{flex:1;min-height:0;background:transparent;border:none;border-bottom:1px solid var(--bdr2);border-radius:0;padding:2px 0;resize:none;outline:none}
+.grat-input:focus{border-bottom-color:var(--blue)}
 </style>
 </head>
 <body>
