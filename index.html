@@ -618,7 +618,6 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 .grat-input:focus{border-bottom-color:var(--blue)}
 
 
-.attn-select{width:100%;padding:11px 12px;border-radius:var(--r2);border:1px solid var(--bdr2);background:var(--bg2);color:var(--text);font-size:13px;font-family:inherit;margin-bottom:4px;cursor:pointer;-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none' stroke='%23c4b89c' stroke-width='2'%3E%3Cpath d='M1 1l5 5 5-5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center}
 .attn-select:focus{outline:none;border-color:var(--blue)}
 </style>
 </head>
@@ -854,18 +853,15 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
       <div class="result" id="r-ennea-act"></div>
     </div></div>
   <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9678;</span><div><div class="csec-nm">Heat check</div><div class="csec-ds">Where your system is right now &#8212; how activated are you?</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="card-desc">Select everything present. More than one is normal.</div>
-    <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9650;</span><div><div class="csec-nm">Intensity &amp; certainty</div><div class="csec-ds">How charged, and how sure am I really?</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="sdiv" style="margin-top:0">Intensity level right now</div><div class="intensity-bar" id="int-bar-act"></div><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-bottom:12px"><span>Low</span><span>High</span></div><div class="sdiv">Certainty level right now</div><div class="intensity-bar" id="cert-bar-act"></div><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-bottom:12px"><span>Uncertain</span><span>Certain</span></div><button class="btn" onclick="event.stopPropagation();doICheck('act','r-ic-act')">Check</button><div class="result" id="r-ic-act"></div></div></div>
+    <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9650;</span><div><div class="csec-nm">Intensity &amp; certainty</div><div class="csec-ds">How charged, and how sure am I really?</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="sdiv" style="margin-top:0">Intensity level right now</div><div class="intensity-bar" id="int-bar-act"></div><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-bottom:12px"><span>Low</span><span>High</span></div><div class="sdiv">Certainty level right now</div><div class="intensity-bar" id="cert-bar-act"></div><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-bottom:12px"><span>Uncertain</span><span>Certain</span></div><div class="sdiv">Urgency level right now</div><div class="intensity-bar" id="urg-bar-act"></div><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-bottom:4px"><span>Can wait</span><span>Must act now</span></div><div style="font-size:11px;color:var(--text3);font-style:italic">Folds into the heat reading below.</div></div></div>
     <div class="sdiv">What is present</div>
     <div class="reg-items" id="quick-reg-items"></div>
     <div class="sdiv" style="margin-top:14px">How attention is behaving</div>
     <div style="font-size:11px;color:var(--text3);margin-bottom:8px">The shape of attention is the clearest readout of where you are. Pick the closest.</div>
-    <select id="attn-quality-act" class="attn-select">
-      <option value="">&#8212; select &#8212;</option>
-      <option value="open">Open &#8212; wide, spacious, taking in the whole field without grabbing</option>
-      <option value="diffuse">Diffuse &#8212; soft and broad, but drifting or unfocused</option>
-      <option value="narrow">Narrow &#8212; clamped onto one thing, the rest shut out</option>
-      <option value="grasping">Grasping &#8212; seizing, gripping, pattern-locked, cannot let go</option>
-    </select>
+    <div style="font-size:11px;color:var(--text3);margin-bottom:6px">Width &#8212; how wide the field is</div>
+    <div class="attn-pick" data-ctx="act" data-axis="width" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px"></div>
+    <div style="font-size:11px;color:var(--text3);margin-bottom:6px">Grip &#8212; how tightly it is holding on</div>
+    <div class="attn-pick" data-ctx="act" data-axis="grip" style="display:flex;flex-wrap:wrap;gap:6px"></div>
     <div class="sdiv" style="margin-top:14px">What is carrying it <span style="font-weight:400;color:var(--text3);text-transform:none;letter-spacing:0">(the wound that released the brake)</span></div>
     <div style="font-size:11px;color:var(--text3);margin-bottom:8px">A wound-cue is what pushes the ball up the mountain. Select any that are live.</div>
     <div id="wound-pick-act" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px"></div>
@@ -921,7 +917,7 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
   <div class="card">
     <div class="card-title">Noise check — family / known pattern</div>
     <div class="card-desc">Check what is present. The wound and the situation are two separate events.</div>
-    <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9650;</span><div><div class="csec-nm">Intensity &amp; certainty</div><div class="csec-ds">How charged, and how sure am I really?</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="sdiv" style="margin-top:0">Intensity level right now</div><div class="intensity-bar" id="int-bar-sit"></div><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-bottom:12px"><span>Low</span><span>High</span></div><div class="sdiv">Certainty level right now</div><div class="intensity-bar" id="cert-bar-sit"></div><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-bottom:12px"><span>Uncertain</span><span>Certain</span></div><button class="btn" onclick="event.stopPropagation();doICheck('sit','r-ic-sit')">Check</button><div class="result" id="r-ic-sit"></div></div></div>
+    <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9650;</span><div><div class="csec-nm">Intensity &amp; certainty</div><div class="csec-ds">How charged, and how sure am I really?</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="sdiv" style="margin-top:0">Intensity level right now</div><div class="intensity-bar" id="int-bar-sit"></div><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-bottom:12px"><span>Low</span><span>High</span></div><div class="sdiv">Certainty level right now</div><div class="intensity-bar" id="cert-bar-sit"></div><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-bottom:12px"><span>Uncertain</span><span>Certain</span></div><div class="sdiv">Urgency level right now</div><div class="intensity-bar" id="urg-bar-sit"></div><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-bottom:12px"><span>Can wait</span><span>Must act now</span></div><button class="btn" onclick="event.stopPropagation();doICheck('sit','r-ic-sit')">Check</button><div class="result" id="r-ic-sit"></div></div></div>
     <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9632;</span><div><div class="csec-nm">Wound or signal contamination</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="fam-noise-wound-list" class="chk-list"></div></div></div><div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9670;</span><div><div class="csec-nm">Manipulation or fawn triggers from others</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="fam-noise-manip-list" class="chk-list"></div></div></div><div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9678;</span><div><div class="csec-nm">Self-discounting or rationalising</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="fam-noise-self-list" class="chk-list"></div></div></div>
     <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9679;</span><div><div class="csec-nm">Relationship patterns</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="fam-rel-list" class="chk-list"></div></div></div>
     <button class="btn" onclick="doFamNoise()">Notice</button>
@@ -944,7 +940,7 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
   <div class="card">
     <div class="card-title">Noise check — outside your system</div>
     <div class="card-desc">Your system may be reading this person through a pattern they are not part of. Slow down.</div>
-    <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9650;</span><div><div class="csec-nm">Intensity &amp; certainty</div><div class="csec-ds">How charged, and how sure am I really?</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="sdiv" style="margin-top:0">Intensity level right now</div><div class="intensity-bar" id="int-bar-sitout"></div><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-bottom:12px"><span>Low</span><span>High</span></div><div class="sdiv">Certainty level right now</div><div class="intensity-bar" id="cert-bar-sitout"></div><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-bottom:12px"><span>Uncertain</span><span>Certain</span></div><button class="btn" onclick="event.stopPropagation();doICheck('sitout','r-ic-sitout')">Check</button><div class="result" id="r-ic-sitout"></div></div></div>
+    <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9650;</span><div><div class="csec-nm">Intensity &amp; certainty</div><div class="csec-ds">How charged, and how sure am I really?</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="sdiv" style="margin-top:0">Intensity level right now</div><div class="intensity-bar" id="int-bar-sitout"></div><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-bottom:12px"><span>Low</span><span>High</span></div><div class="sdiv">Certainty level right now</div><div class="intensity-bar" id="cert-bar-sitout"></div><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-bottom:12px"><span>Uncertain</span><span>Certain</span></div><div class="sdiv">Urgency level right now</div><div class="intensity-bar" id="urg-bar-sitout"></div><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-bottom:12px"><span>Can wait</span><span>Must act now</span></div><button class="btn" onclick="event.stopPropagation();doICheck('sitout','r-ic-sitout')">Check</button><div class="result" id="r-ic-sitout"></div></div></div>
     <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9632;</span><div><div class="csec-nm">Outside-system patterns</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="out-noise-list" class="chk-list"></div></div></div>
     <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9670;</span><div><div class="csec-nm">Manipulation or fawn triggers from others</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="out-manip-list" class="chk-list"></div></div></div>
     <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9678;</span><div><div class="csec-nm">Self-discounting or rationalising</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="out-self-list" class="chk-list"></div></div></div>
@@ -968,7 +964,7 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
   <div class="card">
     <div class="card-title" style="color:var(--alert)">Craving active</div>
     <div class="card-desc">This craving will peak and pass in 3-5 minutes. You only need to get through this one.</div>
-    <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9650;</span><div><div class="csec-nm">Intensity &amp; certainty</div><div class="csec-ds">How charged, and how sure am I really?</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="sdiv" style="margin-top:0">Intensity level right now</div><div class="intensity-bar" id="int-bar-crav"></div><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-bottom:12px"><span>Low</span><span>High</span></div><div class="sdiv">Certainty level right now</div><div class="intensity-bar" id="cert-bar-crav"></div><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-bottom:12px"><span>Uncertain</span><span>Certain</span></div><button class="btn" onclick="event.stopPropagation();doICheck('crav','r-ic-crav')">Check</button><div class="result" id="r-ic-crav"></div></div></div>
+    <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9650;</span><div><div class="csec-nm">Intensity &amp; certainty</div><div class="csec-ds">How charged, and how sure am I really?</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="sdiv" style="margin-top:0">Intensity level right now</div><div class="intensity-bar" id="int-bar-crav"></div><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-bottom:12px"><span>Low</span><span>High</span></div><div class="sdiv">Certainty level right now</div><div class="intensity-bar" id="cert-bar-crav"></div><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-bottom:12px"><span>Uncertain</span><span>Certain</span></div><div class="sdiv">Urgency level right now</div><div class="intensity-bar" id="urg-bar-crav"></div><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-bottom:12px"><span>Can wait</span><span>Must act now</span></div><button class="btn" onclick="event.stopPropagation();doICheck('crav','r-ic-crav')">Check</button><div class="result" id="r-ic-crav"></div></div></div>
     <div class="al al-alert" style="margin:0 0 10px"><strong>The chain:</strong> Cigarettes &#8596; Pornography &#8594; Cannabis &#8594; Psychosis. Either entry point lowers the threshold for the next. Breaking any link protects the chain from completing.</div>
     <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9632;</span><div><div class="csec-nm">HALT check</div><div class="csec-ds">What is the real need?</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="halt-list" class="chk-list"></div><button class="btn" onclick="event.stopPropagation();doHALT()">Notice</button><div class="result" id="r-halt"></div></div></div>
     <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9888;</span><div><div class="csec-nm">What you lose</div><div class="csec-ds">The cost of completing the chain</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div style="font-size:13px;line-height:1.8;color:var(--text2)"><div><strong style="color:var(--alert)">The 5th episode is the one you may not come back from intact.</strong></div><div>Warehousing. Career gone.</div><div>Every month of sobriety erased.</div><div>The exit plan dies.</div><div>They were right about you.</div><div>The craving is not about the substance. It is about regulation.</div><div style="margin-top:4px">Smoking to manage distress is using the thing that costs your autonomic system to regulate the autonomic system. Every cigarette: HRV drops, RHR rises, VO2max declines. The cost is not a future risk. It is happening now.</div><div style="margin-top:6px;color:var(--warn-text)">If you act on this craving: future pull activates. Tomorrow's craving arrives with false confidence — the certainty that you can handle one more. That certainty is the chain.</div></div></div></div>
@@ -985,7 +981,7 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
   <div class="card">
     <div class="card-title">Active project</div>
     <div class="card-desc">The work is legitimate. Check whether the wound is running alongside it.</div>
-    <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9650;</span><div><div class="csec-nm">Intensity &amp; certainty</div><div class="csec-ds">How charged, and how sure am I really?</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="sdiv" style="margin-top:0">Intensity level right now</div><div class="intensity-bar" id="int-bar-proj"></div><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-bottom:12px"><span>Low</span><span>High</span></div><div class="sdiv">Certainty level right now</div><div class="intensity-bar" id="cert-bar-proj"></div><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-bottom:12px"><span>Uncertain</span><span>Certain</span></div><button class="btn" onclick="event.stopPropagation();doICheck('proj','r-ic-proj')">Check</button><div class="result" id="r-ic-proj"></div></div></div>
+    <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9650;</span><div><div class="csec-nm">Intensity &amp; certainty</div><div class="csec-ds">How charged, and how sure am I really?</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="sdiv" style="margin-top:0">Intensity level right now</div><div class="intensity-bar" id="int-bar-proj"></div><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-bottom:12px"><span>Low</span><span>High</span></div><div class="sdiv">Certainty level right now</div><div class="intensity-bar" id="cert-bar-proj"></div><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-bottom:12px"><span>Uncertain</span><span>Certain</span></div><div class="sdiv">Urgency level right now</div><div class="intensity-bar" id="urg-bar-proj"></div><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-bottom:12px"><span>Can wait</span><span>Must act now</span></div><button class="btn" onclick="event.stopPropagation();doICheck('proj','r-ic-proj')">Check</button><div class="result" id="r-ic-proj"></div></div></div>
     <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9679;</span><div><div class="csec-nm">Wound check</div><div class="csec-ds">Is the wound running alongside the work?</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="land-check-list" class="chk-list"></div><button class="btn" onclick="event.stopPropagation();doLandCheck()">Notice</button><div class="result" id="r-land"></div></div></div>
     <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9670;</span><div><div class="csec-nm">Which wound is running</div><div class="csec-ds">Select and get guidance</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="wound-pick-land" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px"></div><button class="btn" onclick="event.stopPropagation();doWoundPick()">Notice</button><div class="result" id="r-wound-pick"></div></div></div>
     <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9654;</span><div><div class="csec-nm">Next actions</div><div class="csec-ds">Decoupled from emotion</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div style="font-size:12px;line-height:1.7;color:var(--text2)"><div>1. SIC Second Appeal (RTI deemed refusal)</div><div>2. CCLA forensic audit request</div><div>3. Part-B correction (Bhu Bharati Act)</div><div>4. Lokayukta complaint</div><div>5. FIR under IT Act Sec 66C, 66D, 65</div><div>6. HC writ if all channels fail</div></div></div></div>
@@ -1140,18 +1136,15 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
   </div></div>
   <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico" style="font-size:12px;font-weight:700">01</span><div><div class="csec-nm">Body signals</div><div class="csec-ds">Se inferior + SP blind &#8212; your weakest function. You will miss these until they are loud. Check deliberately.</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="b-list"></div><button class="btn" onclick="doBody()">Notice</button><div class="result" id="r-body"></div></div></div>
   <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico" style="font-size:12px;font-weight:700">02</span><div><div class="csec-nm">Heat check</div><div class="csec-ds">A retrospective read &#8212; where your system reached and what carried it there.</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
-    <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9650;</span><div><div class="csec-nm">Intensity &amp; certainty</div><div class="csec-ds">How charged, and how sure was I really?</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="sdiv" style="margin-top:0">Intensity level at its peak</div><div class="intensity-bar" id="int-bar-dr"></div><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-bottom:12px"><span>Low</span><span>High</span></div><div class="sdiv">Certainty level at its peak</div><div class="intensity-bar" id="cert-bar-dr"></div><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-bottom:12px"><span>Uncertain</span><span>Certain</span></div><button class="btn" onclick="event.stopPropagation();doICheck('dr','r-ic-dr')">Check</button><div class="result" id="r-ic-dr"></div></div></div>
+    <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9650;</span><div><div class="csec-nm">Intensity &amp; certainty</div><div class="csec-ds">How charged, and how sure was I really?</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="sdiv" style="margin-top:0">Intensity level at its peak</div><div class="intensity-bar" id="int-bar-dr"></div><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-bottom:12px"><span>Low</span><span>High</span></div><div class="sdiv">Certainty level at its peak</div><div class="intensity-bar" id="cert-bar-dr"></div><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-bottom:12px"><span>Uncertain</span><span>Certain</span></div><div class="sdiv">Urgency at its peak</div><div class="intensity-bar" id="urg-bar-dr"></div><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-bottom:4px"><span>Could wait</span><span>Had to act now</span></div><div style="font-size:11px;color:var(--text3);font-style:italic">Folds into the heat reading below.</div></div></div>
     <div class="sdiv" style="margin-top:14px">What was present</div>
     <div class="reg-items" id="reg-items"></div>
     <div class="sdiv" style="margin-top:14px">How attention was behaving</div>
     <div style="font-size:11px;color:var(--text3);margin-bottom:8px">The shape of attention is the clearest readout of where you were. Pick the closest.</div>
-    <select id="attn-quality" class="attn-select">
-      <option value="">&#8212; select &#8212;</option>
-      <option value="open">Open &#8212; wide, spacious, taking in the whole field without grabbing</option>
-      <option value="diffuse">Diffuse &#8212; soft and broad, but drifting or unfocused</option>
-      <option value="narrow">Narrow &#8212; clamped onto one thing, the rest shut out</option>
-      <option value="grasping">Grasping &#8212; seizing, gripping, pattern-locked, cannot let go</option>
-    </select>
+    <div style="font-size:11px;color:var(--text3);margin-bottom:6px">Width &#8212; how wide the field was</div>
+    <div class="attn-pick" data-ctx="dr" data-axis="width" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px"></div>
+    <div style="font-size:11px;color:var(--text3);margin-bottom:6px">Grip &#8212; how tightly it held on</div>
+    <div class="attn-pick" data-ctx="dr" data-axis="grip" style="display:flex;flex-wrap:wrap;gap:6px"></div>
     <div class="sdiv" style="margin-top:14px">What carried it there <span style="font-weight:400;color:var(--text3);text-transform:none;letter-spacing:0">(the wound that released the brake)</span></div>
     <div style="font-size:11px;color:var(--text3);margin-bottom:8px">A wound-cue is what pushes the ball up the mountain. Select any that were live.</div>
     <div id="wound-pick-heat" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px"></div>
@@ -1285,12 +1278,10 @@ function buildSaveData(){
   var wp=document.getElementById('wound-pick-land');
   if(wp){var wounds=[];wp.querySelectorAll('button[data-sel]').forEach(function(b){wounds.push(b.textContent);});if(wounds.length)data.wounds=wounds;}
   // Heat: attention quality + wound drivers
-  var aq=document.getElementById('attn-quality');
-  if(aq&&aq.value)data.attnQuality=aq.value;
+  var adr=readAttn('dr');if(adr.width)data.attnWidthDr=adr.width;if(adr.grip)data.attnGripDr=adr.grip;
   var wph=document.getElementById('wound-pick-heat');
   if(wph){var hw=[];wph.querySelectorAll('button[data-sel]').forEach(function(b){hw.push(b.dataset.wid);});if(hw.length)data.heatWounds=hw;}
-  var aqa=document.getElementById('attn-quality-act');
-  if(aqa&&aqa.value)data.attnQualityAct=aqa.value;
+  var aac=readAttn('act');if(aac.width)data.attnWidthAct=aac.width;if(aac.grip)data.attnGripAct=aac.grip;
   var wpa=document.getElementById('wound-pick-act');
   if(wpa){var aw=[];wpa.querySelectorAll('button[data-sel]').forEach(function(b){aw.push(b.dataset.wid);});if(aw.length)data.actWounds=aw;}
   return data;
@@ -1654,7 +1645,6 @@ var REGI=[
   {id:'emotion_me',tx:'I feel like I am the emotion \u2014 it has become my identity right now',votes:{6:3,7:1},prod:false},
   {id:'story',tx:'My mind is building and rebuilding a story \u2014 assigning meaning, blame, or cause',votes:{7:3,6:1,8:1},prod:false},
   {id:'spiritual',tx:'Things feel unusually charged or significant \u2014 ordinary events seem to carry special meaning',votes:{7:3,8:2,10:1},prod:true},
-  {id:'urgency',tx:'I feel I must act, decide, or communicate something important right now \u2014 it cannot wait',votes:{7:2,8:2,10:1},prod:true},
   {id:'body',tx:'My body is pulling my attention \u2014 exhaustion, hunger, physical discomfort, or dehydration',votes:{8:3,6:1},prod:false},
   {id:'compulsion',tx:'I am seeking reassurance or repeating the same thought loop \u2014 checking, scrolling, returning',votes:{8:2,9:3,7:1},prod:false},
   {id:'panic',tx:'I feel completely overwhelmed \u2014 body shaking, mind blanking, or feeling unreal',votes:{10:3,9:1,8:1},prod:false}
@@ -2013,12 +2003,13 @@ function buildQuitList(){
 
 // ═══════════ INTENSITY BARS ═══════════
 // Context-aware intensity/certainty state
-var icState={act:{i:0,c:0},crav:{i:0,c:0},sit:{i:0,c:0},sitout:{i:0,c:0},proj:{i:0,c:0}};
+var icState={act:{i:0,c:0,u:0},crav:{i:0,c:0,u:0},sit:{i:0,c:0,u:0},sitout:{i:0,c:0,u:0},proj:{i:0,c:0,u:0}};
 function refreshIntBars(){
   Object.keys(icState).forEach(function(ctx){
     var st=icState[ctx];
     if(st.i)setIntBar('int-bar-'+ctx,st.i);
     if(st.c)setIntBar('cert-bar-'+ctx,st.c);
+    if(st.u)setIntBar('urg-bar-'+ctx,st.u);
   });
 }
 function buildIntensityBars(){
@@ -2043,23 +2034,30 @@ function setIntBar(barId,level){
       else s.classList.add('on-high');
     }
   });
-  // Parse barId: {int|cert}-bar-{ctx}
-  var m=barId.match(/^(int|cert)-bar-(\w+)$/);
+  // Parse barId: {int|cert|urg}-bar-{ctx}
+  var m=barId.match(/^(int|cert|urg)-bar-(\w+)$/);
   if(m){
     var kind=m[1],ctx=m[2];
-    if(!icState[ctx])icState[ctx]={i:0,c:0};
-    if(kind==='int')icState[ctx].i=level;else icState[ctx].c=level;
+    if(!icState[ctx])icState[ctx]={i:0,c:0,u:0};
+    if(kind==='int')icState[ctx].i=level;else if(kind==='cert')icState[ctx].c=level;else icState[ctx].u=level;
   }
   persist(barId+'-level',level);
 }
 function doICheck(ctx,resId){
-  var st=icState[ctx]||{i:0,c:0};
-  var h='';
-  if(st.i>=7&&st.c>=7)h+='<div class="al al-alert" style="margin-bottom:8px"><strong>Both intensity and certainty are high.</strong> This is the zone where the association engine runs faster than evidence. Step away. Check heat level. No major actions until both drop below 6.</div>';
-  else if(st.i>=7)h+='<div class="al al-warn" style="margin-bottom:8px"><strong>Intensity is high.</strong> The feeling is real. Check whether the wound is amplifying it before the next action.</div>';
-  else if(st.c>=7)h+='<div class="al al-warn" style="margin-bottom:8px"><strong>Certainty is high.</strong> Certainty beyond evidence is the prodrome boundary. What specifically are you certain about that you cannot document?</div>';
-  else if(st.i>0||st.c>0)h+='<span class="ri-ok">Intensity and certainty are manageable. Proceed with awareness.</span>';
-  else h+='<span class="ri-ok">Set both levels to check.</span>';
+  var st=icState[ctx]||{i:0,c:0,u:0};
+  if(!st.i&&!st.c&&!st.u){show(resId,'<span class="ri-ok">Set the levels to check.</span>');return;}
+  var hi=[st.i,st.c,st.u].filter(function(v){return v>=7;}).length;
+  var mid=[st.i,st.c,st.u].filter(function(v){return v>=4;}).length;
+  var lines=[];
+  lines.push('<strong>Intensity '+st.i+'/10.</strong> '+(st.i>=7?'The charge is loud. The feeling is real \u2014 but loud is not the same as accurate.':st.i>=4?'A moderate charge. Noticeable, not yet driving.':'The charge is low.'));
+  lines.push('<strong>Certainty '+st.c+'/10.</strong> '+(st.c>=7?'Conviction is running ahead of evidence. Certainty beyond what you can document is the prodrome boundary \u2014 the number that matters most.':st.c>=4?'Some conviction, still open to being wrong.':'Low certainty \u2014 holding it lightly. Good.'));
+  lines.push('<strong>Urgency '+st.u+'/10.</strong> '+(st.u>=7?'The pull to act, decide, or communicate now is loud. Urgency is what turns a charged, certain state into action before the brakes are back. Let it wait.':st.u>=4?'Some pull to act soon. Notice it \u2014 it does not have to be obeyed.':'No real pressure to act now. Good.'));
+  var verdict='',vtone='var(--ok)';
+  if(hi>=3){verdict='All three are high \u2014 intensity, certainty, and urgency together. This is the exact signature where the association engine runs faster than evidence. Do not act, decide, or send anything. Step away until they drop below 6.';vtone='var(--alert)';}
+  else if(hi===2){verdict='Two of the three are high. Close to the zone where conviction outruns evidence. Hold \u2014 no major moves until they ease.';vtone='var(--warn-text)';}
+  else if(hi===1){verdict='One dimension is running high. Notice it before the next move.';vtone='var(--warn-text)';}
+  else if(mid>=1){verdict='Manageable. Proceed with awareness.';vtone='var(--text2)';}
+  var h='<div style="padding:10px 12px;border-radius:var(--r);background:var(--bg2);border:1px solid var(--bdr);font-size:13px;line-height:1.6;color:var(--text2)">'+lines.join('<br>')+(verdict?'<div style="margin-top:8px;padding-top:8px;border-top:1px solid var(--bdr);color:'+vtone+'">'+verdict+'</div>':'')+'</div>';
   show(resId,h);
 }
 
@@ -2110,12 +2108,16 @@ function buildHeatViz(lvl){
 
 function doQuickReg(){
   var sel=new Set([...document.querySelectorAll('#quick-reg-items input:checked')].map(c=>c.id.replace('qr-','')));
-  var attnKey=document.getElementById('attn-quality-act')?document.getElementById('attn-quality-act').value:'';
-  if(!sel.size&&!attnKey){show('r-quick-reg','<span class="ri-ok">Select what is present, or how attention is behaving.</span>');return;}
-  var attnAnchor={open:2,diffuse:4,narrow:7,grasping:9};
+  var attn=readAttn('act');var attnLvl=attnAnchorLevel(attn.width,attn.grip);var attnSet=!!(attn.width||attn.grip);
+  var ic0=icState['act']||{i:0,c:0,u:0};
+  if(!sel.size&&!attnSet&&!ic0.i&&!ic0.c&&!ic0.u){show('r-quick-reg','<span class="ri-ok">Set intensity/certainty/urgency, select what is present, or how attention is behaving.</span>');return;}
   var lvl;
-  if(sel.size){lvl=calcRegLevel(sel);if(attnKey){lvl=Math.round((lvl*2+attnAnchor[attnKey])/3);if(lvl<1)lvl=1;if(lvl>10)lvl=10;}}
-  else{lvl=attnAnchor[attnKey];}
+  if(sel.size){lvl=calcRegLevel(sel);if(attnLvl!=null){lvl=Math.round((lvl*2+attnLvl)/3);if(lvl<1)lvl=1;if(lvl>10)lvl=10;}}
+  else if(attnLvl!=null){lvl=attnLvl;}
+  else{lvl=5;}
+  var icNudge=0;var icHiN=[ic0.i,ic0.c,ic0.u].filter(function(v){return v>=7;}).length;var icMidN=[ic0.i,ic0.c,ic0.u].filter(function(v){return v>=4;}).length;
+  if(icHiN>=3)icNudge=3;else if(icHiN===2)icNudge=2;else if(icHiN===1)icNudge=1;else if(icMidN>=2)icNudge=0.5;
+  if(icNudge){lvl=Math.round(lvl+icNudge);if(lvl>10)lvl=10;}
   var st=RST[lvl];var bd=lvl<=3?'w':lvl<=5?'e':lvl<=7?'i':lvl<=9?'c':'s';
   var bdl={w:'Witness band',e:'Equilibrium',i:'Identity band',c:'Capture band',s:'Survival'};
   persist('reg-level',String(lvl));
@@ -2130,9 +2132,10 @@ function doQuickReg(){
   var snr=sel.size===0?'No checklist data':noiseItems===0?'Clean \u2014 all signal':(noiseItems>=sel.size-1?'Almost all noise':'Signal: '+signalItems+' / Noise: '+noiseItems);
   h+='<div style="margin-top:8px;padding:8px 12px;border-radius:var(--r);background:var(--bg);border:1px solid var(--bdr);font-size:12px"><span style="color:var(--text3)">Signal-to-noise:</span> <strong style="color:'+(noiseItems>signalItems?'var(--alert)':'var(--ok)')+'">'+snr+'</strong></div>';
   h+='<div style="font-size:11px;color:var(--text3);margin-top:4px">Signal = what is actually happening. Noise = wound, distortion, or activation amplifying it.</div>';
-  h+='<div class="sdiv" style="margin-top:14px">Attention quality</div>';h+=buildAttnDial(lvl,attnKey);if(attnKey){h+='<div style="font-size:12px;color:var(--text2);margin-top:4px;line-height:1.5">'+ATTN_DATA[attnKey].q+'.</div>';}
+  var ard=attnRead(attn.width,attn.grip,true);h+='<div class="sdiv" style="margin-top:14px">Attention quality</div>';h+=buildAttnDial(lvl,attn.width,attn.grip,ic0);if(ard){h+='<div style="font-size:12px;color:var(--text2);margin-top:4px;line-height:1.5"><strong style="color:var(--text)">'+ard.label+'</strong> \u2014 '+ard.desc+'.</div>';}
+  if(ic0.i||ic0.c||ic0.u){var icHiN=[ic0.i,ic0.c,ic0.u].filter(function(v){return v>=7;}).length;var icTone=icHiN>=2?'var(--alert)':(icHiN===1)?'var(--warn-text)':'var(--text2)';var lines=[];lines.push('<strong>Intensity '+ic0.i+'/10.</strong> '+(ic0.i>=7?'The charge is loud. The feeling is real \u2014 but loud is not the same as accurate.':ic0.i>=4?'A moderate charge. Noticeable, not yet driving.':'The charge is low.'));lines.push('<strong>Certainty '+ic0.c+'/10.</strong> '+(ic0.c>=7?'Conviction is running ahead of evidence. Certainty beyond what you can document is the prodrome boundary \u2014 the number that matters most.':ic0.c>=4?'Some conviction, still open to being wrong.':'Low certainty \u2014 holding it lightly. Good.'));lines.push('<strong>Urgency '+ic0.u+'/10.</strong> '+(ic0.u>=7?'The pull to act, decide, or communicate now is loud \u2014 it is what turns a charged, certain state into action before the brakes are back. Let it wait.':ic0.u>=4?'Some pull to act soon. Notice it \u2014 it does not have to be obeyed.':'No real pressure to act now. Good.'));var combo='';if(icHiN>=3)combo='All three are high \u2014 intensity, certainty, and urgency together. This is the exact signature where the association engine runs faster than evidence. Do not act, decide, or send anything. Step away until they drop below 6.';else if(icHiN===2)combo='Two of the three are high \u2014 close to the zone where conviction outruns evidence. Hold. No major moves until they ease.';else if(icHiN===1)combo='One dimension is running high. Notice it before the next move.';h+='<div class="sdiv" style="margin-top:14px">Intensity, certainty &amp; urgency</div><div style="padding:9px 12px;border-radius:var(--r);background:var(--bg);border:1px solid var(--bdr);font-size:12px;line-height:1.6;color:var(--text2)">'+lines.join('<br>')+(combo?'<div style="margin-top:6px;padding-top:6px;border-top:1px solid var(--bdr);color:'+icTone+'">'+combo+'</div>':'')+'</div>';}
   if(heatWounds.length){h+='<div class="sdiv" style="margin-top:14px">What is carrying it</div><div style="font-size:11px;color:var(--text3);margin-bottom:6px;font-style:italic">A wound-cue releases the vagal brake \u2014 attention narrows, the ball climbs.</div>';heatWounds.forEach(function(wid){var w=WOUND_DATA[wid];if(w)h+='<div class="ri"><div class="ri-name">'+w.nm+'</div><div style="font-size:11px;color:var(--text3);font-style:italic;margin-bottom:2px">'+w.psy+'</div><div class="ri-action">'+w.act+'</div></div>';});}
-  h+='<div style="margin-top:8px;padding:10px 12px;border-radius:var(--r);border-left:3px solid var(--info-bdr);background:var(--info-bg);color:var(--info-text);font-size:13px;line-height:1.6"><strong>What brings it down:</strong> '+(attnKey?ATTN_DATA[attnKey].lever+' ':'')+st.m+'</div>';
+  h+='<div style="margin-top:8px;padding:10px 12px;border-radius:var(--r);border-left:3px solid var(--info-bdr);background:var(--info-bg);color:var(--info-text);font-size:13px;line-height:1.6"><strong>What brings it down:</strong> '+(ard?ard.lever+' ':'')+st.m+'</div>';
   var ps=REG_PSYCH[lvl];
   if(ps){h+='<div class="reg-psych"><div class="reg-psych-desc">'+ps.desc+'</div><div class="reg-psych-row"><div class="reg-psych-lbl">Ego state</div><div class="reg-psych-val">'+ps.ego+'</div></div><div class="reg-psych-row"><div class="reg-psych-lbl">Self & object</div><div class="reg-psych-val">'+ps.self+'</div></div><div class="reg-psych-row"><div class="reg-psych-lbl">Defence</div><div class="reg-psych-val">'+ps.defence+'</div></div></div>';}
   var bandPsy={w:'Parasympathetic dominant \u2014 ventral vagal online',e:'Balanced autonomic tone \u2014 window of tolerance',i:'Sympathetic activation beginning \u2014 amygdala priming',c:'Sympathetic dominant \u2014 prefrontal offline',s:'Dorsal vagal or extreme sympathetic \u2014 survival physiology'};
@@ -2153,24 +2156,95 @@ function calcRegLevel(sel){
   return sorted[0][0];
 }
 
-var ATTN_DATA={
-  open:{nm:'Open',q:'Wide, spacious \u2014 taking in the whole field without grabbing',nx:0.82,ny:0.78,zone:'witness',lever:'You were already near the valley. The work was to stay: low novelty, steady rhythm, nothing to fix.'},
-  diffuse:{nm:'Diffuse',q:'Soft and broad, but drifting or unfocused',nx:0.7,ny:0.6,zone:'equilibrium',lever:'Attention was open but unanchored. A single gentle point of contact \u2014 breath, feet, one task \u2014 would have steadied it without narrowing hard.'},
-  narrow:{nm:'Narrow',q:'Clamped onto one thing, the rest shut out',nx:0.25,ny:0.5,zone:'capture',lever:'Attention had clamped. The lever was widening: name three things in the room, soften the gaze, let the edges back in. Diffusing releases the sympathetic grip.'},
-  grasping:{nm:'Grasping',q:'Seizing, gripping, pattern-locked, cannot let go',nx:0.18,ny:0.2,zone:'survival',lever:'Attention was gripping \u2014 Ni volume too high, pattern-seizing that felt like insight. The body is the volume knob: physiological sigh, cold water, movement. Widen before doing anything else.'}
+// Attention as two independent axes: width (narrow<->diffuse) and grip (open<->grasping).
+var ATTN_AXES={
+  width:[
+    {val:'narrow',nm:'Narrow',d:'clamped onto one thing, the rest shut out'},
+    {val:'diffuse',nm:'Diffuse',d:'soft and broad, taking in the whole field'}
+  ],
+  grip:[
+    {val:'open',nm:'Open',d:'held lightly, not grabbing'},
+    {val:'grasping',nm:'Grasping',d:'gripping, pattern-locked, cannot let go'}
+  ]
 };
-function buildAttnDial(lvl,key){
-  // Position derived from the final level: low level = open/diffuse (bottom-right), high = grasping/narrow (top-left).
-  // Level 1..10 -> t 0..1
+function buildAttnPick(){
+  document.querySelectorAll('.attn-pick').forEach(function(grp){
+    grp.innerHTML='';
+    var axis=grp.dataset.axis;
+    ATTN_AXES[axis].forEach(function(o){
+      var btn=document.createElement('button');
+      btn.style.cssText='padding:6px 12px;border-radius:20px;border:1px solid var(--bdr2);background:transparent;color:var(--text2);font-size:12px;cursor:pointer;font-family:inherit;text-align:left';
+      btn.innerHTML='<strong>'+o.nm+'</strong> \u2014 '+o.d;
+      btn.dataset.val=o.val;
+      btn.onclick=function(e){
+        e.stopPropagation();
+        var wasSel=btn.dataset.sel==='1';
+        grp.querySelectorAll('button').forEach(function(b){b.style.background='transparent';b.style.color='var(--text2)';b.style.borderColor='var(--bdr2)';delete b.dataset.sel;});
+        if(!wasSel){btn.style.background='var(--calm-bg)';btn.style.color='var(--calm)';btn.style.borderColor='var(--calm-bdr)';btn.dataset.sel='1';}
+        persist('attn-'+grp.dataset.ctx+'-'+axis, wasSel?'':btn.dataset.val);
+      };
+      grp.appendChild(btn);
+    });
+  });
+}
+function readAttn(ctx){
+  var w='',g='';
+  var ww=document.querySelector('.attn-pick[data-ctx="'+ctx+'"][data-axis="width"] button[data-sel]');
+  if(ww)w=ww.dataset.val;
+  var gg=document.querySelector('.attn-pick[data-ctx="'+ctx+'"][data-axis="grip"] button[data-sel]');
+  if(gg)g=gg.dataset.val;
+  return {width:w,grip:g};
+}
+function setAttnPick(ctx,axis,val){
+  var grp=document.querySelector('.attn-pick[data-ctx="'+ctx+'"][data-axis="'+axis+'"]');
+  if(!grp)return;
+  grp.querySelectorAll('button').forEach(function(b){
+    if(b.dataset.val===val){b.style.background='var(--calm-bg)';b.style.color='var(--calm)';b.style.borderColor='var(--calm-bdr)';b.dataset.sel='1';}
+    else{b.style.background='transparent';b.style.color='var(--text2)';b.style.borderColor='var(--bdr2)';delete b.dataset.sel;}
+  });
+}
+// Level anchor from the two axes.
+function attnAnchorLevel(width,grip){
+  var wa={narrow:7,diffuse:4}[width];
+  var ga={open:2,grasping:9}[grip];
+  if(wa!=null&&ga!=null)return Math.round((wa+ga)/2);
+  if(wa!=null)return wa;
+  if(ga!=null)return ga;
+  return null;
+}
+// Read = label, description, and corrective lever from the two axes.
+function attnRead(width,grip,past){
+  if(!width&&!grip)return null;
+  var parts=[];
+  if(grip)parts.push(grip.charAt(0).toUpperCase()+grip.slice(1));
+  if(width)parts.push(width);
+  var label=parts.join(' + ');
+  var bits=[];
+  if(width==='narrow')bits.push('clamped onto one thing, the rest shut out');
+  if(width==='diffuse')bits.push('soft and broad, taking in the whole field');
+  if(grip==='open')bits.push('held lightly, not grabbing');
+  if(grip==='grasping')bits.push('gripping, pattern-locked, unable to let go');
+  var desc=bits.join('; ');
+  var lever;
+  if(grip==='grasping')lever=(past?'Attention was gripping \u2014 ':'Attention is gripping \u2014 ')+'pattern-seizing that can feel like insight. The body is the volume knob: a long slow exhale, cold water, movement. Release the grip before doing anything else.';
+  else if(width==='narrow')lever=(past?'Attention had clamped narrow. ':'Attention has clamped narrow. ')+'Widen the aperture: name three things in the room, soften the gaze, let the edges back in. Diffusing releases the sympathetic grip.';
+  else if(grip==='open'&&width==='diffuse')lever='Open and wide \u2014 near the valley. The work '+(past?'was':'is')+' to stay: low novelty, steady rhythm, nothing to fix.';
+  else if(grip==='open')lever='Held lightly \u2014 a steady place. If it tips toward gripping, widen the field before acting.';
+  else if(width==='diffuse')lever='Broad but unanchored. A single gentle point of contact \u2014 breath, feet, one task \u2014 '+(past?'would have steadied':'steadies')+' it without narrowing hard.';
+  else lever='Notice the shape of attention; let it soften and widen.';
+  return {label:label,desc:desc,lever:lever};
+}
+function buildAttnDial(lvl,width,grip,ic){
+  // 2x2 quadrant. nx: narrow(0)..diffuse(1). ny: grasping(0)..open(1).
   var t=(lvl-1)/9;
-  // ny: openness (1=open at bottom, 0=grasping at top). High level => low openness.
-  var ny=1-t;
-  // nx: narrow(0)<->diffuse(1). Regulated tends diffuse, dysregulated tends narrow.
-  var nx=1-t;
-  // Dropdown nudges toward its own corner if set.
-  if(key){
-    var anchor={open:{nx:0.82,ny:0.78},diffuse:{nx:0.78,ny:0.6},narrow:{nx:0.22,ny:0.5},grasping:{nx:0.18,ny:0.2}}[key];
-    if(anchor){nx=(nx+anchor.nx*2)/3;ny=(ny+anchor.ny*2)/3;}
+  var nx=1-t, ny=1-t; // base from level
+  // Explicit axis picks dominate (weighted 2:1 over level-derived base), per axis.
+  if(width){var wt={narrow:0.18,diffuse:0.82}[width];nx=(nx+wt*2)/3;}
+  if(grip){var gt={grasping:0.2,open:0.82}[grip];ny=(ny+gt*2)/3;}
+  // Intensity, certainty & urgency pull toward the grasping corner.
+  if(ic&&(ic.i||ic.c||ic.u)){
+    var icAvg=(ic.i+ic.c+ic.u)/3;
+    if(icAvg>=5){var pull=Math.min(1,(icAvg-5)/5)*0.55;nx=nx*(1-pull)+0.18*pull;ny=ny*(1-pull)+0.2*pull;}
   }
   if(nx<0.04)nx=0.04;if(nx>0.96)nx=0.96;if(ny<0.04)ny=0.04;if(ny>0.96)ny=0.96;
   var bx=44+nx*212;var by=28+(1-ny)*184;
@@ -2195,17 +2269,22 @@ function buildAttnDial(lvl,key){
 }
 function doReg(){
   var sel=new Set([...document.querySelectorAll('#reg-items input:checked')].map(c=>c.id.replace('rr-','')));
-  var attnKey=document.getElementById('attn-quality')?document.getElementById('attn-quality').value:'';
-  if(!sel.size&&!attnKey){show('r-reg','<span class="ri-ok">Select what was present, or how attention was behaving.</span>');return;}
-  // Attention quality anchors a baseline level for its zone; the checklist refines it.
-  var attnAnchor={open:2,diffuse:4,narrow:7,grasping:9};
+  var attn=readAttn('dr');var attnLvl=attnAnchorLevel(attn.width,attn.grip);var attnSet=!!(attn.width||attn.grip);
+  var ic0=icState['dr']||{i:0,c:0,u:0};
+  if(!sel.size&&!attnSet&&!ic0.i&&!ic0.c&&!ic0.u){show('r-reg','<span class="ri-ok">Set intensity/certainty/urgency, select what was present, or how attention was behaving.</span>');return;}
   var lvl;
   if(sel.size){
     lvl=calcRegLevel(sel);
-    if(attnKey){lvl=Math.round((lvl*2+attnAnchor[attnKey])/3);if(lvl<1)lvl=1;if(lvl>10)lvl=10;}
+    if(attnLvl!=null){lvl=Math.round((lvl*2+attnLvl)/3);if(lvl<1)lvl=1;if(lvl>10)lvl=10;}
+  }else if(attnLvl!=null){
+    lvl=attnLvl;
   }else{
-    lvl=attnAnchor[attnKey];
+    lvl=5; // intensity/certainty/urgency only — start mid, nudge below
   }
+  // Intensity, certainty & urgency nudge the level: charge + conviction + pull-to-act push the system up.
+  var icNudge=0;var icHiN=[ic0.i,ic0.c,ic0.u].filter(function(v){return v>=7;}).length;var icMidN=[ic0.i,ic0.c,ic0.u].filter(function(v){return v>=4;}).length;
+  if(icHiN>=3)icNudge=3;else if(icHiN===2)icNudge=2;else if(icHiN===1)icNudge=1;else if(icMidN>=2)icNudge=0.5;
+  if(icNudge){lvl=Math.round(lvl+icNudge);if(lvl>10)lvl=10;}
   persist('reg-level',String(lvl));
   var signal2=sel.size;var noiseItems2=REGI.filter(function(it){return sel.has(it.id)&&(it.votes[8]||it.votes[9]||it.votes[10]);}).length;var signalItems2=signal2-noiseItems2;
   var bd=lvl<=3?'w':lvl<=5?'e':lvl<=7?'i':lvl<=9?'c':'s';
@@ -2220,9 +2299,10 @@ function doReg(){
   h+='<div class="reg-grid" style="grid-template-columns:1fr 2fr"><div class="reg-cell"><div class="reg-key">Brakes</div><div class="reg-val">'+st.b+'</div></div><div class="reg-cell"><div class="reg-key">Braking against</div><div class="reg-val">'+st.ba+'</div></div></div>';
   h+='<div style="margin-top:8px;padding:8px 12px;border-radius:var(--r);background:var(--bg);border:1px solid var(--bdr);font-size:12px"><span style="color:var(--text3)">Signal-to-noise:</span> <strong style="color:'+(noiseItems2>signalItems2?'var(--alert)':'var(--ok)')+'">'+(noiseItems2===0?'Clean \u2014 all signal':(noiseItems2>=signal2-1?'Almost all noise':'Signal: '+signalItems2+' / Noise: '+noiseItems2))+'</strong></div>';
   h+='<div style="font-size:11px;color:var(--text3);margin-top:4px">Signal = what is actually happening. Noise = wound, distortion, or activation amplifying it.</div>';
-  h+='<div class="sdiv" style="margin-top:14px">Attention quality</div>';h+=buildAttnDial(lvl,attnKey);if(attnKey){h+='<div style="font-size:12px;color:var(--text2);margin-top:4px;line-height:1.5">'+ATTN_DATA[attnKey].q+'.</div>';}
+  var ard=attnRead(attn.width,attn.grip,true);h+='<div class="sdiv" style="margin-top:14px">Attention quality</div>';h+=buildAttnDial(lvl,attn.width,attn.grip,ic0);if(ard){h+='<div style="font-size:12px;color:var(--text2);margin-top:4px;line-height:1.5"><strong style="color:var(--text)">'+ard.label+'</strong> \u2014 '+ard.desc+'.</div>';}
+  if(ic0.i||ic0.c||ic0.u){var icHiN=[ic0.i,ic0.c,ic0.u].filter(function(v){return v>=7;}).length;var icTone=icHiN>=2?'var(--alert)':(icHiN===1)?'var(--warn-text)':'var(--text2)';var lines=[];lines.push('<strong>Intensity '+ic0.i+'/10.</strong> '+(ic0.i>=7?'The charge was loud and raised the level. Loud felt true, but loud is not the same as accurate.':ic0.i>=4?'A moderate charge, lightly reflected in the level.':'The charge was low.'));lines.push('<strong>Certainty '+ic0.c+'/10.</strong> '+(ic0.c>=7?'Conviction ran ahead of evidence \u2014 certainty beyond what could be documented is the prodrome boundary, the most telling number here.':ic0.c>=4?'Some conviction, still open to being wrong.':'Low certainty \u2014 it was held lightly.'));lines.push('<strong>Urgency '+ic0.u+'/10.</strong> '+(ic0.u>=7?'The pull to act or communicate now was loud \u2014 it is what turns a charged, certain state into action before the brakes return.':ic0.u>=4?'Some pull to act soon, lightly reflected in the level.':'No real pressure to act now.'));var combo='';if(icHiN>=3)combo='All three ran high \u2014 intensity, certainty, urgency. That is the exact signature where the association engine outruns evidence; it pushed the level up.';else if(icHiN===2)combo='Two of the three were high \u2014 close to the zone where conviction outruns evidence; it pushed the level up.';else if(icHiN===1)combo='One dimension ran high \u2014 worth noticing in the read.';h+='<div class="sdiv" style="margin-top:14px">Intensity, certainty &amp; urgency</div><div style="padding:9px 12px;border-radius:var(--r);background:var(--bg);border:1px solid var(--bdr);font-size:12px;line-height:1.6;color:var(--text2)">'+lines.join('<br>')+(combo?'<div style="margin-top:6px;padding-top:6px;border-top:1px solid var(--bdr);color:'+icTone+'">'+combo+'</div>':'')+'</div>';}
   if(heatWounds.length){h+='<div class="sdiv" style="margin-top:14px">What carried it there</div><div style="font-size:11px;color:var(--text3);margin-bottom:6px;font-style:italic">A wound-cue releases the vagal brake \u2014 attention narrows, the ball climbs.</div>';heatWounds.forEach(function(wid){var w=WOUND_DATA[wid];if(w)h+='<div class="ri"><div class="ri-name">'+w.nm+'</div><div style="font-size:11px;color:var(--text3);font-style:italic;margin-bottom:2px">'+w.psy+'</div><div class="ri-action">'+w.act+'</div></div>';});}
-  h+='<div style="margin-top:8px;padding:10px 12px;border-radius:var(--r);border-left:3px solid var(--info-bdr);background:var(--info-bg);color:var(--info-text);font-size:13px;line-height:1.6"><strong>What would have brought it down:</strong> '+(attnKey?ATTN_DATA[attnKey].lever+' ':'')+st.m+'</div>';
+  h+='<div style="margin-top:8px;padding:10px 12px;border-radius:var(--r);border-left:3px solid var(--info-bdr);background:var(--info-bg);color:var(--info-text);font-size:13px;line-height:1.6"><strong>What would have brought it down:</strong> '+(ard?ard.lever+' ':'')+st.m+'</div>';
   if(ps){h+='<div class="reg-psych"><div class="reg-psych-desc">'+ps.desc+'</div><div class="reg-psych-row"><div class="reg-psych-lbl">Ego state</div><div class="reg-psych-val">'+ps.ego+'</div></div><div class="reg-psych-row"><div class="reg-psych-lbl">Self & object</div><div class="reg-psych-val">'+ps.self+'</div></div><div class="reg-psych-row"><div class="reg-psych-lbl">Defence</div><div class="reg-psych-val">'+ps.defence+'</div></div></div>';}
   if(pf)h+='<div class="al al-alert" style="margin-top:8px"><strong>Prodrome signals present.</strong> Name the signal. Do not act on any impulse connected to it today. Reduce stimulation, hydrate, use Ground, tell your confidant.</div>';
   var bandPsy={w:'Parasympathetic dominant \u2014 ventral vagal online',e:'Balanced autonomic tone \u2014 window of tolerance',i:'Sympathetic activation beginning \u2014 amygdala priming',c:'Sympathetic dominant \u2014 prefrontal offline',s:'Dorsal vagal or extreme sympathetic \u2014 survival physiology'};
@@ -3032,6 +3112,7 @@ function restoreFromDayData(data){
       var st=icState[ctx];
       if(st.i)setIntBar('int-bar-'+ctx,st.i);
       if(st.c)setIntBar('cert-bar-'+ctx,st.c);
+      if(st.u)setIntBar('urg-bar-'+ctx,st.u);
     });
   }
   // Restore wound picker
@@ -3042,14 +3123,16 @@ function restoreFromDayData(data){
     });}
   }
   // Restore heat attention quality + wound drivers
-  if(data.attnQuality){var aq=document.getElementById('attn-quality');if(aq)aq.value=data.attnQuality;}
+  if(data.attnWidthDr)setAttnPick('dr','width',data.attnWidthDr);
+  if(data.attnGripDr)setAttnPick('dr','grip',data.attnGripDr);
   if(data.heatWounds&&data.heatWounds.length){
     var wph=document.getElementById('wound-pick-heat');
     if(wph){wph.querySelectorAll('button').forEach(function(b){
       if(data.heatWounds.includes(b.dataset.wid)){b.style.background='var(--calm-bg)';b.style.color='var(--calm)';b.style.borderColor='var(--calm-bdr)';b.dataset.sel='1';}
     });}
   }
-  if(data.attnQualityAct){var aqa=document.getElementById('attn-quality-act');if(aqa)aqa.value=data.attnQualityAct;}
+  if(data.attnWidthAct)setAttnPick('act','width',data.attnWidthAct);
+  if(data.attnGripAct)setAttnPick('act','grip',data.attnGripAct);
   if(data.actWounds&&data.actWounds.length){
     var wpa=document.getElementById('wound-pick-act');
     if(wpa){wpa.querySelectorAll('button').forEach(function(b){
@@ -3107,6 +3190,7 @@ function buildWoundPicker(containerId,persistPrefix){
 buildWoundPicker('wound-pick-land','wound-');
 buildWoundPicker('wound-pick-heat','heatwound-');
 buildWoundPicker('wound-pick-act','actwound-');
+buildAttnPick();
 
 </script>
 </body>
