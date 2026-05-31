@@ -12,37 +12,37 @@
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",sans-serif;font-size:14px;line-height:1.5;margin:0;padding:0;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 :root{
-  /* Option A — Soft sandstone */
-  --bg:#1c1814;
-  --bg2:#25201a;
-  --bg3:#2d281e;
-  --bdr:#3d3528;
-  --bdr2:#4d4530;
-  --text:#f0ebde;
-  --text2:#c8c0a8;
-  --text3:#a89e88;
-  --text4:#7c7460;
+  /* Option 1 — High-contrast warm */
+  --bg:#161210;
+  --bg2:#221c16;
+  --bg3:#2d251b;
+  --bdr:#4a4030;
+  --bdr2:#6a5e44;
+  --text:#fdfaf2;
+  --text2:#e8e0cc;
+  --text3:#c4b89c;
+  --text4:#948a70;
   --r:14px;
   --r2:10px;
   --rl:16px;
 
-  --blue:#95b5d8;
-  --blue-bg:rgba(149,181,216,0.12);
-  --blue-bdr:rgba(149,181,216,0.35);
+  --blue:#8cc8f0;
+  --blue-bg:rgba(140,200,240,0.14);
+  --blue-bdr:rgba(140,200,240,0.45);
 
-  --green:#a8c898;
-  --green-bg:rgba(168,200,152,0.15);
-  --green-bdr:rgba(168,200,152,0.45);
+  --green:#b8e088;
+  --green-bg:rgba(184,224,136,0.16);
+  --green-bdr:rgba(184,224,136,0.5);
 
-  --yellow:#e0c478;
-  --yellow-bg:rgba(224,196,120,0.12);
-  --yellow-bdr:rgba(224,196,120,0.35);
+  --yellow:#e8cc6a;
+  --yellow-bg:rgba(232,204,106,0.15);
+  --yellow-bdr:rgba(232,204,106,0.45);
 
-  --red:#d8867a;
-  --red-bg:rgba(216,134,122,0.12);
-  --red-bdr:rgba(216,134,122,0.35);
-  --gold:#d4b06a;
-  --gold-bdr:rgba(212,176,106,0.35);
+  --red:#e89484;
+  --red-bg:rgba(232,148,132,0.15);
+  --red-bdr:rgba(232,148,132,0.45);
+  --gold:#e0c478;
+  --gold-bdr:rgba(224,196,120,0.45);
 
   --calm:var(--blue);
   --calm-bg:var(--blue-bg);
@@ -79,7 +79,7 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 
 /* ── ENTRY SCREEN ── */
 .entry-grid{display:flex;flex-direction:column;gap:8px;padding-top:.5rem}
-.entry-btn{display:flex;align-items:center;gap:12px;background:linear-gradient(145deg,#2a241c,#221d17);border:1px solid var(--bdr);border-radius:var(--rl);padding:15px 16px;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,0.3);-webkit-tap-highlight-color:transparent}
+.entry-btn{display:flex;align-items:center;gap:12px;background:linear-gradient(145deg,#26201a,#1d1813);border:1px solid var(--bdr);border-radius:var(--rl);padding:15px 16px;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,0.3);-webkit-tap-highlight-color:transparent}
 .entry-btn:active{background:var(--bg2)}
 .entry-ico{font-size:22px;flex-shrink:0;width:36px;text-align:center}
 .entry-info{flex:1}
@@ -166,8 +166,8 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 }
 
 /* ── REGULATION GRID ── */
-.reg-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:8px}
-.reg-cell{background:var(--bg);border:1px solid var(--bdr);border-radius:var(--r);padding:7px 9px}
+.reg-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:8px;align-items:stretch}
+.reg-cell{background:var(--bg);border:1px solid var(--bdr);border-radius:var(--r);padding:8px 10px;display:flex;flex-direction:column;gap:3px;min-height:100%}
 .reg-key{font-size:11px;color:var(--text3)}
 .reg-val{font-size:12px;font-weight:600;margin-top:2px;color:var(--text)}
 .reg-psych{margin-top:8px;padding:0;border-radius:var(--r);border:1px solid var(--bdr);background:var(--bg);font-size:12px;line-height:1.7;color:var(--text2);overflow:hidden}
@@ -304,8 +304,8 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 .itxt:focus{outline:none;border-color:var(--text3)}
 
 /* ── YES/NO ROWS ── */
-.yn-row{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid var(--bdr)}
-.yn-row:last-child{border-bottom:none}
+.yn-row{display:flex;align-items:center;gap:10px;padding:9px 11px;margin-bottom:6px;border-radius:var(--r);border:1px solid var(--bdr)}
+.yn-row:last-child{margin-bottom:0}
 .yn-text{flex:1;font-size:13px;line-height:1.5;color:var(--text)}
 .yn-btns{display:flex;gap:5px;flex-shrink:0}
 .yn-btn{
@@ -332,12 +332,12 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 
 /* ── TAPER ── */
 .taper-row{
-  display:flex;align-items:flex-start;gap:10px;padding:9px 0;border-bottom:1px solid var(--bdr);
-  font-size:13px;line-height:1.5;cursor:pointer;user-select:none;color:var(--text);
+  display:flex;align-items:center;gap:10px;padding:9px 11px;margin-bottom:6px;border-radius:var(--r);border:1px solid var(--bdr);
+  font-size:13px;line-height:1.4;cursor:pointer;user-select:none;color:var(--text);
 }
-.taper-row:last-child{border-bottom:none}
+.taper-row:last-child{margin-bottom:0}
 .taper-row input{
-  margin-top:2px;flex-shrink:0;width:16px;height:16px;pointer-events:none;
+  flex-shrink:0;width:16px;height:16px;pointer-events:none;
   appearance:none;-webkit-appearance:none;border:2px solid var(--bdr2);
   border-radius:4px;background:var(--bg);position:relative;
 }
@@ -433,6 +433,7 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 .int-seg.on-high{background:var(--alert)}
 
 /* Heat level visual */
+.heat-viz-wrap{display:block;width:100%;overflow:hidden;margin-bottom:4px}
 .heat-bar{display:flex;height:6px;margin-top:8px;border-radius:3px;overflow:hidden}
 .heat-bar .z-blue{flex:2;background:var(--blue)}
 .heat-bar .z-green{flex:3;background:var(--green)}
@@ -493,7 +494,7 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
   display:none;align-items:center;justify-content:center;
   position:sticky;top:8px;z-index:50;
   width:38px;height:38px;border-radius:50%;
-  background:linear-gradient(145deg,#2a241c,#221d17);
+  background:linear-gradient(145deg,#26201a,#1d1813);
   color:var(--text2);border:1px solid var(--bdr2);
   margin:0 0 8px;cursor:pointer;
   box-shadow:0 2px 8px rgba(0,0,0,0.35);
@@ -505,7 +506,7 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 .grp-grid{display:flex;flex-direction:column;gap:8px}
 .grp-btn{
   display:flex;align-items:center;gap:14px;
-  background:linear-gradient(145deg,#2a241c,#221d17);
+  background:linear-gradient(145deg,#26201a,#1d1813);
   border:1px solid var(--bdr);border-radius:var(--rl);
   padding:14px 16px;cursor:pointer;
   box-shadow:0 2px 10px rgba(0,0,0,0.3);
@@ -527,8 +528,8 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 .entry-btn.urgent{border-left:3px solid var(--red)}
 .cat-section .entry-btn,.entry-grid .entry-btn{border-left:3px solid var(--bdr2)}
 .entry-btn.urgent{border-left:3px solid var(--red)!important}
-.card{background:linear-gradient(145deg,#2a241c,#221d17);box-shadow:0 2px 10px rgba(0,0,0,0.3)}
-.nicotine-banner{background:linear-gradient(145deg,#2a241c,#221d17);box-shadow:0 2px 10px rgba(0,0,0,0.3),0 0 16px rgba(149,181,216,0.07);border-left:3px solid var(--blue)}
+.card{background:linear-gradient(145deg,#26201a,#1d1813);box-shadow:0 2px 10px rgba(0,0,0,0.3)}
+.nicotine-banner{background:linear-gradient(145deg,#26201a,#1d1813);box-shadow:0 2px 10px rgba(0,0,0,0.3),0 0 16px rgba(149,181,216,0.07);border-left:3px solid var(--blue)}
 #streak-banners{display:flex;flex-direction:column;gap:7px;margin-bottom:12px}
 #streak-banners .nicotine-banner{margin-bottom:0}
 .nb-units{display:flex;gap:9px;flex-wrap:wrap;margin-top:6px;justify-content:center}
@@ -553,7 +554,7 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 .nicotine-banner .nb-icon{color:var(--blue)}
 
 /* Future Boost — journey timeline */
-.boost-card{background:linear-gradient(145deg,#2a241c,#221d17);border:1px solid var(--bdr);border-radius:var(--rl);padding:14px 16px;margin-top:12px;box-shadow:0 2px 10px rgba(0,0,0,0.3)}
+.boost-card{background:linear-gradient(145deg,#26201a,#1d1813);border:1px solid var(--bdr);border-radius:var(--rl);padding:14px 16px;margin-top:12px;box-shadow:0 2px 10px rgba(0,0,0,0.3)}
 .boost-header{display:flex;align-items:center;justify-content:space-between;cursor:pointer;-webkit-tap-highlight-color:transparent}
 .boost-title{font-size:13px;letter-spacing:1.4px;text-transform:uppercase;color:var(--gold);font-weight:500}
 .boost-chv{font-size:12px;color:var(--text3);transition:transform 0.2s}
@@ -573,7 +574,7 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 .setup-hero{text-align:center;margin-bottom:28px}
 .setup-logo{font-size:22px;font-weight:700;color:var(--text);letter-spacing:-0.3px}
 .setup-tagline{font-size:12px;color:var(--text3);margin-top:6px;font-style:italic}
-.setup-choice{background:linear-gradient(145deg,#2a241c,#221d17);border:1px solid var(--bdr);border-radius:var(--rl);padding:20px;margin-bottom:12px;box-shadow:0 2px 10px rgba(0,0,0,0.3)}
+.setup-choice{background:linear-gradient(145deg,#26201a,#1d1813);border:1px solid var(--bdr);border-radius:var(--rl);padding:20px;margin-bottom:12px;box-shadow:0 2px 10px rgba(0,0,0,0.3)}
 .setup-choice-primary{border-left:3px solid var(--green);cursor:pointer}
 .setup-choice-primary:active{transform:scale(0.99)}
 .setup-choice-head{display:flex;align-items:center;gap:10px;margin-bottom:10px}
@@ -588,7 +589,7 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 /* Rhythm modal */
 .rhythm-ov{display:none;position:fixed;top:0;left:0;right:0;bottom:0;z-index:200;background:rgba(0,0,0,0.5);overflow-y:auto}
 .rhythm-ov.open{display:flex;align-items:center;justify-content:center;padding:20px;-webkit-overflow-scrolling:touch}
-.rhythm-modal{width:100%;max-width:400px;margin:auto;background:linear-gradient(145deg,#2a241c,#1f1b15);border:1px solid var(--bdr2);border-radius:16px;padding:18px;box-shadow:0 12px 48px rgba(0,0,0,0.6)}
+.rhythm-modal{width:100%;max-width:400px;margin:auto;background:linear-gradient(145deg,#26201a,#1b1611);border:1px solid var(--bdr2);border-radius:16px;padding:18px;box-shadow:0 12px 48px rgba(0,0,0,0.6)}
 .rhythm-modal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--bdr)}
 .rhythm-modal-title{font-size:17px;font-weight:700;color:var(--text);letter-spacing:-0.2px}
 .rhythm-btn{font-size:11px;font-weight:500;color:var(--blue);background:var(--blue-bg);border:1px solid var(--blue-bdr);border-radius:8px;padding:4px 10px;margin-left:auto;margin-right:10px;cursor:pointer;font-family:inherit;-webkit-tap-highlight-color:transparent}
@@ -601,7 +602,7 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 .rhythm-row:last-child{border-bottom:1px solid var(--bdr)}
 .rhythm-day{font-weight:600;min-width:76px;color:var(--text2);font-size:12px}
 .rhythm-focus{color:var(--text)}
-.rhythm-row.today{border-color:var(--blue-bdr);background:linear-gradient(145deg,#23262e,#1b1d24);border-left:3px solid var(--blue)}
+.rhythm-row.today{border-color:var(--blue-bdr);background:linear-gradient(145deg,#2d251b,#221c16);border-left:3px solid var(--blue)}
 .rhythm-row.today .rhythm-day{color:var(--blue)}
 .tt-list{position:relative;padding-left:6px}
 .tt-list::before{content:"";position:absolute;left:9px;top:8px;bottom:8px;width:2px;background:linear-gradient(var(--blue),var(--bdr2))}
@@ -616,6 +617,9 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 .grat-input{flex:1;min-height:0;background:transparent;border:none;border-bottom:1px solid var(--bdr2);border-radius:0;padding:2px 0;resize:none;outline:none}
 .grat-input:focus{border-bottom-color:var(--blue)}
 
+
+.attn-select{width:100%;padding:11px 12px;border-radius:var(--r2);border:1px solid var(--bdr2);background:var(--bg2);color:var(--text);font-size:13px;font-family:inherit;margin-bottom:4px;cursor:pointer;-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none' stroke='%23c4b89c' stroke-width='2'%3E%3Cpath d='M1 1l5 5 5-5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center}
+.attn-select:focus{outline:none;border-color:var(--blue)}
 </style>
 </head>
 <body>
@@ -849,8 +853,23 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
       <button class="btn" onclick="doEnneaAct()">Check mode</button>
       <div class="result" id="r-ennea-act"></div>
     </div></div>
-  <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9678;</span><div><div class="csec-nm">Heat check</div><div class="csec-ds">Your worst moment yesterday or today — how activated were you?</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="card-desc">Select everything present. More than one is normal.</div>
-    <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9650;</span><div><div class="csec-nm">Intensity &amp; certainty</div><div class="csec-ds">How charged, and how sure am I really?</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="sdiv" style="margin-top:0">Intensity level right now</div><div class="intensity-bar" id="int-bar-act"></div><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-bottom:12px"><span>Low</span><span>High</span></div><div class="sdiv">Certainty level right now</div><div class="intensity-bar" id="cert-bar-act"></div><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-bottom:12px"><span>Uncertain</span><span>Certain</span></div><button class="btn" onclick="event.stopPropagation();doICheck('act','r-ic-act')">Check</button><div class="result" id="r-ic-act"></div></div></div><div class="reg-items" id="quick-reg-items"></div><button class="btn" onclick="event.stopPropagation();doQuickReg()">Notice</button><div class="result" id="r-quick-reg"></div></div></div>
+  <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9678;</span><div><div class="csec-nm">Heat check</div><div class="csec-ds">Where your system is right now &#8212; how activated are you?</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="card-desc">Select everything present. More than one is normal.</div>
+    <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9650;</span><div><div class="csec-nm">Intensity &amp; certainty</div><div class="csec-ds">How charged, and how sure am I really?</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="sdiv" style="margin-top:0">Intensity level right now</div><div class="intensity-bar" id="int-bar-act"></div><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-bottom:12px"><span>Low</span><span>High</span></div><div class="sdiv">Certainty level right now</div><div class="intensity-bar" id="cert-bar-act"></div><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-bottom:12px"><span>Uncertain</span><span>Certain</span></div><button class="btn" onclick="event.stopPropagation();doICheck('act','r-ic-act')">Check</button><div class="result" id="r-ic-act"></div></div></div>
+    <div class="sdiv">What is present</div>
+    <div class="reg-items" id="quick-reg-items"></div>
+    <div class="sdiv" style="margin-top:14px">How attention is behaving</div>
+    <div style="font-size:11px;color:var(--text3);margin-bottom:8px">The shape of attention is the clearest readout of where you are. Pick the closest.</div>
+    <select id="attn-quality-act" class="attn-select">
+      <option value="">&#8212; select &#8212;</option>
+      <option value="open">Open &#8212; wide, spacious, taking in the whole field without grabbing</option>
+      <option value="diffuse">Diffuse &#8212; soft and broad, but drifting or unfocused</option>
+      <option value="narrow">Narrow &#8212; clamped onto one thing, the rest shut out</option>
+      <option value="grasping">Grasping &#8212; seizing, gripping, pattern-locked, cannot let go</option>
+    </select>
+    <div class="sdiv" style="margin-top:14px">What is carrying it <span style="font-weight:400;color:var(--text3);text-transform:none;letter-spacing:0">(the wound that released the brake)</span></div>
+    <div style="font-size:11px;color:var(--text3);margin-bottom:8px">A wound-cue is what pushes the ball up the mountain. Select any that are live.</div>
+    <div id="wound-pick-act" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px"></div>
+    <button class="btn" onclick="event.stopPropagation();doQuickReg()">Notice</button><div class="result" id="r-quick-reg"></div></div></div>
   
 </div>
 
@@ -989,8 +1008,8 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
   <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9737;</span><div><div class="csec-nm">Who I am</div><div class="csec-ds">Type, wiring, and values</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
     <div class="sdiv" style="margin-top:0">Type &amp; wiring</div>
     <div style="font-size:11px;color:var(--text3);line-height:1.6;padding:8px 12px;background:var(--bg);border-radius:var(--r);border:1px solid var(--bdr);margin-bottom:8px">
-      <strong style="color:var(--text2)">4w5 &middot; INFJ &middot; SX/SO &middot; SP-blind</strong><br>
-      Enneagram Four with a Five wing: identity built around depth, authenticity, and a sense of something missing, balanced by the Five&rsquo;s pull toward understanding and withdrawal. INFJ (Ni-Fe-Ti-Se): leading with intuition &mdash; pattern, meaning, where things are heading &mdash; paired with attunement to others&rsquo; emotional states. SX/SO stacking means intensity and one-to-one connection come first, social awareness second. <strong style="color:var(--text2)">SP-blind</strong> is the key one: self-preservation (shelter, money, physical security, routine) is the blind spot &mdash; genuinely under-weighted, not by choice &mdash; so practical anchoring matters most when in intensity-driven decision modes.
+      <strong style="color:var(--text2)">5w4 &middot; INFJ &middot; SX/SO &middot; SP-blind</strong><br>
+      Enneagram Five with a Four wing: core built around competence, understanding, and conserving against depletion, with the Four wing adding depth, identity-hunger, and emotional intensity. INFJ (Ni-Fe-Ti-Se): leading with intuition &mdash; pattern, meaning, where things are heading &mdash; paired with attunement to others&rsquo; emotional states. SX/SO stacking means intensity and one-to-one connection come first, social awareness second. <strong style="color:var(--text2)">SP-blind</strong> is the key one: self-preservation (shelter, money, physical security, routine) is the blind spot &mdash; genuinely under-weighted, not by choice &mdash; so practical anchoring matters most when in intensity-driven decision modes.
     </div>
     <div class="sdiv" style="margin-top:12px">Values</div>
     <div style="font-size:11px;color:var(--text3);line-height:1.6;padding:8px 12px;background:var(--bg);border-radius:var(--r);border:1px solid var(--bdr);margin-bottom:8px">
@@ -1022,6 +1041,7 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 
   <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9888;</span><div><div class="csec-nm">Guardrails</div><div class="csec-ds">Today — prodrome, maintenance</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
     <div class="al al-alert" style="margin:0 0 10px"><strong>Hard boundaries.</strong> Cigarettes &#8596; Pornography &#8594; Cannabis &#8594; Psychosis. The craving is never about the substance.</div>
+    <div class="al al-warn" style="margin:0 0 10px">Nicotine is load in itself and a step toward cannabis in your pattern. Note it. Do not take the next step. Reduce tomorrow.</div>
     <div class="sdiv" style="margin-top:8px">Autonomic maintenance</div>
     <div class="yn-row"><span class="yn-text">Moved body today — walked or exercised</span><div class="yn-btns"><button class="yn-btn" id="m1a" onclick="event.stopPropagation();yn('m1a','m1b')">Yes</button><button class="yn-btn" id="m1b" onclick="event.stopPropagation();yn('m1b','m1a')">No</button></div></div>
     <div class="yn-row"><span class="yn-text">Slept 7+ hours last night</span><div class="yn-btns"><button class="yn-btn" id="m2a" onclick="event.stopPropagation();yn('m2a','m2b')">Yes</button><button class="yn-btn" id="m2b" onclick="event.stopPropagation();yn('m2b','m2a')">No</button></div></div>
@@ -1111,33 +1131,32 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 <div class="screen" id="scr-review">
   <div style="margin-bottom:8px"><span class="card-title">Deep review</span><div style="font-size:12px;color:var(--text3);margin-top:2px">Awareness is enough.</div></div>
 
-  <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9670;</span><div><div class="csec-nm">Who I am</div><div class="csec-ds">Type, wiring, wounds, and values</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
-    <div class="sdiv" style="margin-top:0">Type &amp; wiring</div>
+  <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9670;</span><div><div class="csec-nm">At a glance</div><div class="csec-ds">Baseline &mdash; the lens to review through</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
     <div style="font-size:11px;color:var(--text3);line-height:1.6;padding:8px 12px;background:var(--bg);border-radius:var(--r);border:1px solid var(--bdr);margin-bottom:8px">
-      <strong style="color:var(--text2)">4w5 &middot; INFJ &middot; SX/SO &middot; SP-blind</strong><br>
-      Enneagram Four with a Five wing: identity built around depth, authenticity, and a sense of something missing, balanced by the Five&rsquo;s pull toward understanding and withdrawal. INFJ (Ni-Fe-Ti-Se): leading with intuition &mdash; pattern, meaning, where things are heading &mdash; paired with attunement to others&rsquo; emotional states. SX/SO stacking means intensity and one-to-one connection come first, social awareness second. <strong style="color:var(--text2)">SP-blind</strong> is the key one: self-preservation (shelter, money, physical security, routine) is the blind spot &mdash; genuinely under-weighted, not by choice &mdash; so practical anchoring matters most when in intensity-driven decision modes.
-    </div>
-    <div class="sdiv" style="margin-top:12px">At a glance</div>
-    <div style="font-size:11px;color:var(--text3);line-height:1.6;padding:8px 12px;background:var(--bg);border-radius:var(--r);border:1px solid var(--bdr);margin-bottom:8px">
-      <strong style="color:var(--text2)">4w5 · INFJ · SX/SO · SP blind · →1 · ←2</strong><br>
+      <strong style="color:var(--text2)">5w4 · INFJ · SX/SO · SP blind · →8 · ←7  (wing: →1 · ←2)</strong><br>
       Ni-Fe-Ti-Se · High-gain · Wound → dysregulation → Ni volume too high → craving → chain completes<br>
       <span style="display:block;margin-top:4px">Core wounds: Hero drive (trap) · Not being seen · Betrayal · Manipulation · Truth denied · Helplessness · Being overridden · Being infantilised · Responsibility not shared · Rejection</span>
     </div>
-    <div class="sdiv" style="margin-top:12px">Values</div>
-    <div style="font-size:11px;color:var(--text3);line-height:1.6;padding:8px 12px;background:var(--bg);border-radius:var(--r);border:1px solid var(--bdr);margin-bottom:8px">
-      <strong style="color:var(--text2)">Clarity</strong> &mdash; seeing things as they are (not over-analysis or certainty-seeking)<br>
-      <strong style="color:var(--text2)">Freedom</strong> &mdash; acting without distortion or compulsion (not absence of structure or responsibility)<br>
-      <strong style="color:var(--text2)">Authenticity</strong> &mdash; expressing what is genuinely true (not emotional dumping or performance)<br>
-      <strong style="color:var(--text2)">Compassion</strong> &mdash; responding from recognition of shared reality (not self-sacrifice or carrying others&rsquo; regulation)
-    </div>
   </div></div>
   <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico" style="font-size:12px;font-weight:700">01</span><div><div class="csec-nm">Body signals</div><div class="csec-ds">Se inferior + SP blind &#8212; your weakest function. You will miss these until they are loud. Check deliberately.</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="b-list"></div><button class="btn" onclick="doBody()">Notice</button><div class="result" id="r-body"></div></div></div>
-  <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico" style="font-size:12px;font-weight:700">02</span><div><div class="csec-nm">Heat level</div><div class="csec-ds">Your worst moment yesterday or today. What was present at its peak?</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="reg-items" id="reg-items"></div><button class="btn" onclick="doReg()">Notice</button><div class="result" id="r-reg"></div>
-    <div class="csec" style="margin-top:8px"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9711;</span><div><div class="csec-nm">Enneagram mode</div><div class="csec-ds">Which mode is firing?</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
-      <div id="ennea-list-dr" class="chk-list"></div>
-      <button class="btn" onclick="doEnneaDr()">Check mode</button>
-      <div class="result" id="r-ennea-dr"></div>
-    </div></div></div></div>
+  <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico" style="font-size:12px;font-weight:700">02</span><div><div class="csec-nm">Heat check</div><div class="csec-ds">A retrospective read &#8212; where your system reached and what carried it there.</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
+    <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9650;</span><div><div class="csec-nm">Intensity &amp; certainty</div><div class="csec-ds">How charged, and how sure was I really?</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="sdiv" style="margin-top:0">Intensity level at its peak</div><div class="intensity-bar" id="int-bar-dr"></div><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-bottom:12px"><span>Low</span><span>High</span></div><div class="sdiv">Certainty level at its peak</div><div class="intensity-bar" id="cert-bar-dr"></div><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-bottom:12px"><span>Uncertain</span><span>Certain</span></div><button class="btn" onclick="event.stopPropagation();doICheck('dr','r-ic-dr')">Check</button><div class="result" id="r-ic-dr"></div></div></div>
+    <div class="sdiv" style="margin-top:14px">What was present</div>
+    <div class="reg-items" id="reg-items"></div>
+    <div class="sdiv" style="margin-top:14px">How attention was behaving</div>
+    <div style="font-size:11px;color:var(--text3);margin-bottom:8px">The shape of attention is the clearest readout of where you were. Pick the closest.</div>
+    <select id="attn-quality" class="attn-select">
+      <option value="">&#8212; select &#8212;</option>
+      <option value="open">Open &#8212; wide, spacious, taking in the whole field without grabbing</option>
+      <option value="diffuse">Diffuse &#8212; soft and broad, but drifting or unfocused</option>
+      <option value="narrow">Narrow &#8212; clamped onto one thing, the rest shut out</option>
+      <option value="grasping">Grasping &#8212; seizing, gripping, pattern-locked, cannot let go</option>
+    </select>
+    <div class="sdiv" style="margin-top:14px">What carried it there <span style="font-weight:400;color:var(--text3);text-transform:none;letter-spacing:0">(the wound that released the brake)</span></div>
+    <div style="font-size:11px;color:var(--text3);margin-bottom:8px">A wound-cue is what pushes the ball up the mountain. Select any that were live.</div>
+    <div id="wound-pick-heat" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px"></div>
+    <button class="btn" onclick="doReg()">Notice</button><div class="result" id="r-reg"></div>
+  </div></div>
   <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico" style="font-size:12px;font-weight:700">03</span><div><div class="csec-nm">Noise check</div><div class="csec-ds">Is the signal real or is the wound running?</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9632;</span><div><div class="csec-nm">Wound or signal contamination</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="noise-wound-list"></div></div></div><div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9670;</span><div><div class="csec-nm">Manipulation or fawn triggers from others</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="noise-manip-list"></div></div></div><div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9678;</span><div><div class="csec-nm">Self-discounting or rationalising</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="noise-self-list"></div></div></div><div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9679;</span><div><div class="csec-nm">Relationship patterns</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="rel-list"></div></div></div><button class="btn" onclick="doNoise()">Notice</button><div class="result" id="r-noise"></div></div></div>
   <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico" style="font-size:12px;font-weight:700">04</span><div><div class="csec-nm">Distortion check</div><div class="csec-ds">Check what is active in your thinking.</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9632;</span><div><div class="csec-nm">Catastrophising</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="c-list"></div></div></div><div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9679;</span><div><div class="csec-nm">Cognitive filters</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="dist-list"></div></div></div><button class="btn" onclick="doDistort()">Notice</button><div class="result" id="r-distort"></div></div></div>
   <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico" style="font-size:12px;font-weight:700">05</span><div><div class="csec-nm">Interaction scan</div><div class="csec-ds">What is present in a recent or ongoing interaction.</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9632;</span><div><div class="csec-nm">Boundary pressure</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="bnd-list"></div></div></div><div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9679;</span><div><div class="csec-nm">Behavioural drift</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="soc-list"></div></div></div><button class="btn" onclick="doScan()">Notice</button><div class="result" id="r-scan"></div></div></div>
@@ -1176,6 +1195,20 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
     <div class="afi" onclick="togAff(this)"><input type="checkbox" id="afi-20"><span>I read or write something that builds the structure I am moving toward.</span></div>
     <div class="afi" onclick="togAff(this)"><input type="checkbox" id="afi-21"><span>I make contact with a new friend or professional contact today.</span></div>
     </div></div></div>
+    <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9737;</span><div><div class="csec-nm">Who I am</div><div class="csec-ds">Type, wiring, and values &mdash; full reference</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
+      <div class="sdiv" style="margin-top:0">Type &amp; wiring</div>
+      <div style="font-size:11px;color:var(--text3);line-height:1.6;padding:8px 12px;background:var(--bg);border-radius:var(--r);border:1px solid var(--bdr);margin-bottom:8px">
+        <strong style="color:var(--text2)">5w4 &middot; INFJ &middot; SX/SO &middot; SP-blind</strong><br>
+        Enneagram Five with a Four wing: core built around competence, understanding, and conserving against depletion, with the Four wing adding depth, identity-hunger, and emotional intensity. INFJ (Ni-Fe-Ti-Se): leading with intuition &mdash; pattern, meaning, where things are heading &mdash; paired with attunement to others&rsquo; emotional states. SX/SO stacking means intensity and one-to-one connection come first, social awareness second. <strong style="color:var(--text2)">SP-blind</strong> is the key one: self-preservation (shelter, money, physical security, routine) is the blind spot &mdash; genuinely under-weighted, not by choice &mdash; so practical anchoring matters most when in intensity-driven decision modes.
+      </div>
+      <div class="sdiv" style="margin-top:12px">Values</div>
+      <div style="font-size:11px;color:var(--text3);line-height:1.6;padding:8px 12px;background:var(--bg);border-radius:var(--r);border:1px solid var(--bdr);margin-bottom:8px">
+        <strong style="color:var(--text2)">Clarity</strong> &mdash; seeing things as they are (not over-analysis or certainty-seeking)<br>
+        <strong style="color:var(--text2)">Freedom</strong> &mdash; acting without distortion or compulsion (not absence of structure or responsibility)<br>
+        <strong style="color:var(--text2)">Authenticity</strong> &mdash; expressing what is genuinely true (not emotional dumping or performance)<br>
+        <strong style="color:var(--text2)">Compassion</strong> &mdash; responding from recognition of shared reality (not self-sacrifice or carrying others&rsquo; regulation)
+      </div>
+    </div></div>
     <button class="btn" style="margin-top:14px" onclick="doIntegration()">Complete review</button>
     <div class="mantra" id="mantra">
       <span id="m1" style="opacity:0;transition:opacity 1s">&#8220;Awareness</span>
@@ -1251,6 +1284,15 @@ function buildSaveData(){
   // Wound picker
   var wp=document.getElementById('wound-pick-land');
   if(wp){var wounds=[];wp.querySelectorAll('button[data-sel]').forEach(function(b){wounds.push(b.textContent);});if(wounds.length)data.wounds=wounds;}
+  // Heat: attention quality + wound drivers
+  var aq=document.getElementById('attn-quality');
+  if(aq&&aq.value)data.attnQuality=aq.value;
+  var wph=document.getElementById('wound-pick-heat');
+  if(wph){var hw=[];wph.querySelectorAll('button[data-sel]').forEach(function(b){hw.push(b.dataset.wid);});if(hw.length)data.heatWounds=hw;}
+  var aqa=document.getElementById('attn-quality-act');
+  if(aqa&&aqa.value)data.attnQualityAct=aqa.value;
+  var wpa=document.getElementById('wound-pick-act');
+  if(wpa){var aw=[];wpa.querySelectorAll('button[data-sel]').forEach(function(b){aw.push(b.dataset.wid);});if(aw.length)data.actWounds=aw;}
   return data;
 }
 
@@ -1556,30 +1598,30 @@ var ENNEA_MODES=[
 ];
 
 
-function initEnnea(){buildChkList('ennea-list-act',ENNEA_MODES,'ennea-act');buildChkList('ennea-list-fam',ENNEA_MODES,'ennea-fam');buildChkList('ennea-list-out',ENNEA_MODES,'ennea-out');buildChkList('ennea-list-dr',ENNEA_MODES,'ennea-dr');}
+function initEnnea(){buildChkList('ennea-list-act',ENNEA_MODES,'ennea-act');buildChkList('ennea-list-fam',ENNEA_MODES,'ennea-fam');buildChkList('ennea-list-out',ENNEA_MODES,'ennea-out');}
 function doEnneaAct(){doEnneaGeneric('ennea-list-act','r-ennea-act');}
 function doEnneaFam(){doEnneaGeneric('ennea-list-fam','r-ennea-fam');}
 function doEnneaOut(){doEnneaGeneric('ennea-list-out','r-ennea-out');}
-function doEnneaDr(){doEnneaGeneric('ennea-list-dr','r-ennea-dr');}
 
 function doEnneaGeneric(listId,resId){
   var checked=[...document.querySelectorAll('#'+listId+' .chk-row')].filter(function(r){return r.querySelector('input').checked;});
-  if(!checked.length){show(resId,'<span class="ri-ok">No mode shift detected. Likely within 4w5 baseline.</span>');return;}
+  if(!checked.length){show(resId,'<span class="ri-ok">No mode shift detected. Likely within 5w4 baseline.</span>');return;}
   var native=['e4','e5'];
-  var keys=checked.map(function(r){var i=r.querySelector('input');return i.dataset.ennea||i.dataset.enneaSit||i.dataset.enneaFam||i.dataset.enneaOut||i.dataset.enneaDr||'';});
-  var nonNative=keys.filter(function(k){return native.indexOf(k)<0;});
-  var modes={e1:{n:'1 \u2014 Reformer',t:'Correction mode active. Easing standards may reduce strain.',psy:'Disintegration to 1 hero drive \u2014 discipline becoming standard for others'},
-    e2:{n:'2 \u2014 Helper',t:'Over-helping active. Pausing helping and restoring boundaries.',psy:'4\u21922 disintegration \u2014 hero drive firing'},
+  var growth=['e8'];
+  var keys=checked.map(function(r){var i=r.querySelector('input');return i.dataset.ennea||i.dataset.enneaSit||i.dataset.enneaFam||i.dataset.enneaOut||'';});
+  var nonNative=keys.filter(function(k){return native.indexOf(k)<0&&growth.indexOf(k)<0;});
+  var modes={e1:{n:'1 \u2014 Reformer',t:'Correction mode active. Easing standards may reduce strain.',psy:'Wing-4 integration line (\u21921) \u2014 standards / correction'},
+    e2:{n:'2 \u2014 Helper',t:'Over-helping active. Pausing helping and restoring boundaries.',psy:'Wing-4 disintegration (\u21922) \u2014 hero drive; fires in clean periods when the 7 route is closed'},
     e3:{n:'3 \u2014 Achiever',t:'Performance pressure. Loosen the link between worth and output.',psy:'Image fixation \u2014 Fe-aux performing acceptability'},
-    e4:{n:'4 \u2014 Individualist (native)',t:'Within baseline. Lower emotional intensity if amplified.',psy:'Core type \u2014 natural territory'},
-    e5:{n:'5 \u2014 Investigator (native)',t:'Within baseline. Light re-engagement if too withdrawn.',psy:'Wing 5 \u2014 depth and conservation'},
+    e4:{n:'4 \u2014 Individualist (wing)',t:'Within baseline. Lower emotional intensity if amplified.',psy:'Wing 4 \u2014 identity, depth, emotional intensity'},
+    e5:{n:'5 \u2014 Investigator (core)',t:'Within baseline. Light re-engagement if too withdrawn.',psy:'Core type \u2014 competence, conservation, natural territory'},
     e6:{n:'6 \u2014 Loyalist',t:'Reduce reassurance-seeking. Write facts only.',psy:'Anxiety scanning \u2014 Ti seeking certainty'},
-    e7:{n:'7 \u2014 Enthusiast',t:'Reduce stimulation. Stay with one task.',psy:'Distraction defence \u2014 bypassing discomfort'},
-    e8:{n:'8 \u2014 Challenger',t:'Lower force. Delay action. Soften tone.',psy:'Counter-narrative active \u2014 Charge 2 pole'},
+    e7:{n:'7 \u2014 Enthusiast',t:'Reduce stimulation. Stay with one task.',psy:'5\u21927 disintegration \u2014 escape into stimulation/addiction (core stress direction)'},
+    e8:{n:'8 \u2014 Challenger',t:'Decisive strength is available. Use it cleanly \u2014 act, do not dominate.',psy:'5\u21928 integration \u2014 decisive strength (growth direction, not a warning)'},
     e9:{n:'9 \u2014 Peacemaker',t:'Gentle activation. Name one priority.',psy:'Numbing defence \u2014 Ni-Fe shutdown'}};
   var h='';
-  if(nonNative.length)h+='<div class="al al-warn"><strong>Cognition leaning outside 4w5 baseline.</strong> '+nonNative.length+' non-native mode(s) active.</div>';
-  else h+='<div class="ri" style="background:var(--ok-bg);border-color:var(--ok-bdr)"><div class="ri-name" style="color:var(--ok)">Within 4w5 baseline</div></div>';
+  if(nonNative.length)h+='<div class="al al-warn"><strong>Cognition leaning outside 5w4 baseline.</strong> '+nonNative.length+' non-native mode(s) active.</div>';
+  else h+='<div class="ri" style="background:var(--ok-bg);border-color:var(--ok-bdr)"><div class="ri-name" style="color:var(--ok)">Within 5w4 baseline</div></div>';
   keys.forEach(function(k){var m=modes[k];if(m)h+='<div class="ri"><div class="ri-name">'+m.n+'</div><div class="ri-action">'+m.t+'</div><div style="font-size:11px;color:var(--text3);font-style:italic;margin-top:4px">'+m.psy+'</div></div>';});
   show(resId,h);
 }
@@ -1668,7 +1710,7 @@ var NOISE_WOUND=[
   {id:'defend',tx:'The urge to defend or explain is high'},
   {id:'seen',tx:'I feel unseen \u2014 they are responding to who they think I am'},
   {id:'rumi',tx:'I am replaying this in my head'},
-  {id:'truth',tx:'What actually happened is being denied or reframed'},
+  {id:'truth',tx:'Someone who should know better is distorting reality or refusing to acknowledge what is true'},
   {id:'reject',tx:'This is reading as rejection or abandonment'},
   {id:'project',tx:'I am being treated as though something is wrong with me \u2014 the judgement is about them'}
 ];
@@ -2023,7 +2065,9 @@ function doICheck(ctx,resId){
 
 // ═══════════ CORE FUNCTIONS ═══════════
 
+var _hvCount=0;
 function buildHeatViz(lvl){
+  var U="_"+(++_hvCount);
   // Map level 1-10 to x coordinate on terrain
   // Terrain path: M 0 130 L 25 105 L 50 120 L 80 130 L 110 150 L 145 158 L 175 160 L 200 158 L 230 145 L 260 125 L 290 100 L 320 75 L 350 50 L 380 30 L 400 22
   // 10 levels evenly across width 0-400: spacing 40px each
@@ -2038,17 +2082,17 @@ function buildHeatViz(lvl){
   else if(lvl<=7)color='var(--yellow)';
   else color='var(--red)';
   
-  var svg='<svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;border-radius:8px"><defs><linearGradient id="hSky" x1="0%" x2="0%" y1="0%" y2="100%"><stop offset="0%" stop-color="#2a2520"/><stop offset="100%" stop-color="#1c1814"/></linearGradient><linearGradient id="hFar" x1="0%" x2="0%" y1="0%" y2="100%"><stop offset="0%" stop-color="#403828"/><stop offset="100%" stop-color="#2a241c"/></linearGradient><linearGradient id="hMid" x1="0%" x2="0%" y1="0%" y2="100%"><stop offset="0%" stop-color="#4a4030"/><stop offset="100%" stop-color="#322a20"/></linearGradient><linearGradient id="hFront" x1="0%" x2="0%" y1="0%" y2="100%"><stop offset="0%" stop-color="#554a38"/><stop offset="100%" stop-color="#352d22"/></linearGradient><linearGradient id="hSnow" x1="0%" x2="0%" y1="0%" y2="100%"><stop offset="0%" stop-color="#e8e0c8"/><stop offset="100%" stop-color="#b0a890"/></linearGradient><linearGradient id="hGrass" x1="0%" x2="0%" y1="0%" y2="100%"><stop offset="0%" stop-color="#586850"/><stop offset="100%" stop-color="#384030"/></linearGradient><filter id="hBall"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>';
-  svg+='<rect width="400" height="180" fill="url(#hSky)"/>';
+  var svg='<div class="heat-viz-wrap"><svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;border-radius:8px"><defs><linearGradient id="hSky'+U+'" x1="0%" x2="0%" y1="0%" y2="100%"><stop offset="0%" stop-color="#2a2520"/><stop offset="100%" stop-color="#1c1814"/></linearGradient><linearGradient id="hFar'+U+'" x1="0%" x2="0%" y1="0%" y2="100%"><stop offset="0%" stop-color="#403828"/><stop offset="100%" stop-color="#2a241c"/></linearGradient><linearGradient id="hMid'+U+'" x1="0%" x2="0%" y1="0%" y2="100%"><stop offset="0%" stop-color="#4a4030"/><stop offset="100%" stop-color="#322a20"/></linearGradient><linearGradient id="hFront'+U+'" x1="0%" x2="0%" y1="0%" y2="100%"><stop offset="0%" stop-color="#554a38"/><stop offset="100%" stop-color="#352d22"/></linearGradient><linearGradient id="hSnow'+U+'" x1="0%" x2="0%" y1="0%" y2="100%"><stop offset="0%" stop-color="#e8e0c8"/><stop offset="100%" stop-color="#b0a890"/></linearGradient><linearGradient id="hGrass'+U+'" x1="0%" x2="0%" y1="0%" y2="100%"><stop offset="0%" stop-color="#586850"/><stop offset="100%" stop-color="#384030"/></linearGradient><filter id="hBall'+U+'" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>';
+  svg+='<rect width="400" height="180" fill="url(#hSky'+U+')"/>';
   svg+='<circle cx="50" cy="20" r="0.6" fill="#ffffff" opacity="0.4"/><circle cx="150" cy="15" r="0.6" fill="#ffffff" opacity="0.3"/><circle cx="280" cy="22" r="0.6" fill="#ffffff" opacity="0.4"/><circle cx="340" cy="12" r="0.6" fill="#ffffff" opacity="0.3"/>';
-  svg+='<path d="M 0 90 L 25 60 L 55 75 L 85 50 L 115 70 L 145 55 L 180 65 L 215 50 L 245 70 L 280 45 L 315 60 L 350 40 L 385 55 L 400 50 L 400 180 L 0 180 Z" fill="url(#hFar)" opacity="0.5"/>';
-  svg+='<path d="M 80 53 L 85 50 L 90 53 L 86 56 Z" fill="url(#hSnow)" opacity="0.4"/><path d="M 275 48 L 280 45 L 285 48 L 281 51 Z" fill="url(#hSnow)" opacity="0.4"/><path d="M 345 43 L 350 40 L 355 43 L 351 46 Z" fill="url(#hSnow)" opacity="0.4"/>';
-  svg+='<path d="M 0 110 L 40 85 L 75 95 L 110 80 L 145 100 L 190 105 L 235 90 L 275 75 L 310 60 L 345 45 L 380 35 L 400 30 L 400 180 L 0 180 Z" fill="url(#hMid)" opacity="0.75"/>';
-  svg+='<path d="M 305 65 L 310 60 L 315 65 L 311 68 Z" fill="url(#hSnow)" opacity="0.55"/><path d="M 340 50 L 345 45 L 350 50 L 346 53 Z" fill="url(#hSnow)" opacity="0.55"/><path d="M 375 40 L 380 35 L 385 40 L 381 43 Z" fill="url(#hSnow)" opacity="0.55"/>';
-  svg+='<path d="M 0 130 L 25 105 L 50 120 L 80 130 L 110 150 L 145 158 L 175 160 L 200 158 L 230 145 L 260 125 L 290 100 L 320 75 L 350 50 L 380 30 L 400 22 L 400 180 L 0 180 Z" fill="url(#hFront)"/>';
-  svg+='<path d="M 80 130 L 110 150 L 145 158 L 175 160 L 200 158 L 200 175 L 80 175 Z" fill="url(#hGrass)" opacity="0.85"/>';
-  svg+='<path d="M 375 33 L 380 30 L 385 33 L 381 37 Z" fill="url(#hSnow)"/><path d="M 345 53 L 350 50 L 355 53 L 351 57 Z" fill="url(#hSnow)" opacity="0.7"/><path d="M 315 78 L 320 75 L 325 78 L 321 81 Z" fill="url(#hSnow)" opacity="0.55"/>';
-  svg+='<circle cx="'+bx+'" cy="'+by+'" r="8" fill="'+color+'" filter="url(#hBall)"/><circle cx="'+bx+'" cy="'+by+'" r="8" fill="none" stroke="#ffffff" stroke-width="1.5" opacity="0.5"/><ellipse cx="'+(bx-3)+'" cy="'+(by-3)+'" rx="3" ry="2" fill="#ffffff" opacity="0.35"/>';
+  svg+='<path d="M 0 90 L 25 60 L 55 75 L 85 50 L 115 70 L 145 55 L 180 65 L 215 50 L 245 70 L 280 45 L 315 60 L 350 40 L 385 55 L 400 50 L 400 180 L 0 180 Z" fill="url(#hFar'+U+')" opacity="0.5"/>';
+  svg+='<path d="M 80 53 L 85 50 L 90 53 L 86 56 Z" fill="url(#hSnow'+U+')" opacity="0.4"/><path d="M 275 48 L 280 45 L 285 48 L 281 51 Z" fill="url(#hSnow'+U+')" opacity="0.4"/><path d="M 345 43 L 350 40 L 355 43 L 351 46 Z" fill="url(#hSnow'+U+')" opacity="0.4"/>';
+  svg+='<path d="M 0 110 L 40 85 L 75 95 L 110 80 L 145 100 L 190 105 L 235 90 L 275 75 L 310 60 L 345 45 L 380 35 L 400 30 L 400 180 L 0 180 Z" fill="url(#hMid'+U+')" opacity="0.75"/>';
+  svg+='<path d="M 305 65 L 310 60 L 315 65 L 311 68 Z" fill="url(#hSnow'+U+')" opacity="0.55"/><path d="M 340 50 L 345 45 L 350 50 L 346 53 Z" fill="url(#hSnow'+U+')" opacity="0.55"/><path d="M 375 40 L 380 35 L 385 40 L 381 43 Z" fill="url(#hSnow'+U+')" opacity="0.55"/>';
+  svg+='<path d="M 0 130 L 25 105 L 50 120 L 80 130 L 110 150 L 145 158 L 175 160 L 200 158 L 230 145 L 260 125 L 290 100 L 320 75 L 350 50 L 380 30 L 400 22 L 400 180 L 0 180 Z" fill="url(#hFront'+U+')"/>';
+  svg+='<path d="M 80 130 L 110 150 L 145 158 L 175 160 L 200 158 L 200 175 L 80 175 Z" fill="url(#hGrass'+U+')" opacity="0.85"/>';
+  svg+='<path d="M 375 33 L 380 30 L 385 33 L 381 37 Z" fill="url(#hSnow'+U+')"/><path d="M 345 53 L 350 50 L 355 53 L 351 57 Z" fill="url(#hSnow'+U+')" opacity="0.7"/><path d="M 315 78 L 320 75 L 325 78 L 321 81 Z" fill="url(#hSnow'+U+')" opacity="0.55"/>';
+  svg+='<circle cx="'+bx+'" cy="'+by+'" r="8" fill="'+color+'" filter="url(#hBall'+U+')"/><circle cx="'+bx+'" cy="'+by+'" r="8" fill="none" stroke="#ffffff" stroke-width="1.5" opacity="0.5"/><ellipse cx="'+(bx-3)+'" cy="'+(by-3)+'" rx="3" ry="2" fill="#ffffff" opacity="0.35"/>';
   svg+='</svg>';
   svg+='<div class="heat-bar"><div class="z-blue"></div><div class="z-green"></div><div class="z-yellow"></div><div class="z-red"></div></div>';
   svg+='<div class="heat-nums"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span></div>';
@@ -2060,41 +2104,48 @@ function buildHeatViz(lvl){
   else if(lvl<=7)zoneMsg='<strong>The ball is climbing.</strong> System narrowing. Roll back down: ground, hydrate, no decisions for two hours.';
   else zoneMsg='<strong>The ball is on the peak.</strong> Hard brake. No decisions, no communications, no responses. Use Ground immediately.';
   svg+='<div class="heat-zone-msg">'+zoneMsg+'</div>';
-  
+  svg+='</div>';
   return svg;
 }
 
 function doQuickReg(){
   var sel=new Set([...document.querySelectorAll('#quick-reg-items input:checked')].map(c=>c.id.replace('qr-','')));
-  if(!sel.size){show('r-quick-reg','<span class="ri-ok">No signals selected.</span>');return;}
-  var lvl=calcRegLevel(sel);
+  var attnKey=document.getElementById('attn-quality-act')?document.getElementById('attn-quality-act').value:'';
+  if(!sel.size&&!attnKey){show('r-quick-reg','<span class="ri-ok">Select what is present, or how attention is behaving.</span>');return;}
+  var attnAnchor={open:2,diffuse:4,narrow:7,grasping:9};
+  var lvl;
+  if(sel.size){lvl=calcRegLevel(sel);if(attnKey){lvl=Math.round((lvl*2+attnAnchor[attnKey])/3);if(lvl<1)lvl=1;if(lvl>10)lvl=10;}}
+  else{lvl=attnAnchor[attnKey];}
   var st=RST[lvl];var bd=lvl<=3?'w':lvl<=5?'e':lvl<=7?'i':lvl<=9?'c':'s';
   var bdl={w:'Witness band',e:'Equilibrium',i:'Identity band',c:'Capture band',s:'Survival'};
   persist('reg-level',String(lvl));
-
-  var h=buildHeatViz(lvl);
+  var heatWounds=[...document.querySelectorAll('#wound-pick-act button[data-sel]')].map(function(b){return b.dataset.wid;});
+  var zoneColor=lvl<=3?'var(--blue)':lvl<=5?'var(--green)':lvl<=7?'var(--yellow)':'var(--red)';
+  var h='<div style="text-align:center;margin-bottom:10px"><div style="font-size:26px;font-weight:700;color:'+zoneColor+';line-height:1">'+lvl+'</div><div style="font-size:14px;font-weight:600;color:var(--text);margin-top:2px">'+RLB[lvl]+'</div><div style="font-size:11px;color:var(--text3);font-style:italic">'+bdl[bd]+' &middot; right now</div></div>';
+  h+=buildHeatViz(lvl);
   h+='<div class="reg-grid"><div class="reg-cell"><div class="reg-key">Attention</div><div class="reg-val">'+st.a+'</div></div><div class="reg-cell"><div class="reg-key">Choice</div><div class="reg-val">'+st.c+'</div></div><div class="reg-cell"><div class="reg-key">Salience</div><div class="reg-val">'+st.s+'</div></div></div>';
   h+='<div class="reg-grid" style="grid-template-columns:1fr 2fr"><div class="reg-cell"><div class="reg-key">Brakes</div><div class="reg-val">'+st.b+'</div></div><div class="reg-cell"><div class="reg-key">Braking against</div><div class="reg-val">'+st.ba+'</div></div></div>';
-  h+='<div style="margin-top:8px;padding:10px 12px;border-radius:var(--r);border-left:3px solid var(--info-bdr);background:var(--info-bg);color:var(--info-text);font-size:13px;line-height:1.6">'+st.m+'</div>';
+  var noiseItems=REGI.filter(function(it){return sel.has(it.id)&&(it.votes[8]||it.votes[9]||it.votes[10]);}).length;
+  var signalItems=sel.size-noiseItems;
+  var snr=sel.size===0?'No checklist data':noiseItems===0?'Clean \u2014 all signal':(noiseItems>=sel.size-1?'Almost all noise':'Signal: '+signalItems+' / Noise: '+noiseItems);
+  h+='<div style="margin-top:8px;padding:8px 12px;border-radius:var(--r);background:var(--bg);border:1px solid var(--bdr);font-size:12px"><span style="color:var(--text3)">Signal-to-noise:</span> <strong style="color:'+(noiseItems>signalItems?'var(--alert)':'var(--ok)')+'">'+snr+'</strong></div>';
+  h+='<div style="font-size:11px;color:var(--text3);margin-top:4px">Signal = what is actually happening. Noise = wound, distortion, or activation amplifying it.</div>';
+  h+='<div class="sdiv" style="margin-top:14px">Attention quality</div>';h+=buildAttnDial(lvl,attnKey);if(attnKey){h+='<div style="font-size:12px;color:var(--text2);margin-top:4px;line-height:1.5">'+ATTN_DATA[attnKey].q+'.</div>';}
+  if(heatWounds.length){h+='<div class="sdiv" style="margin-top:14px">What is carrying it</div><div style="font-size:11px;color:var(--text3);margin-bottom:6px;font-style:italic">A wound-cue releases the vagal brake \u2014 attention narrows, the ball climbs.</div>';heatWounds.forEach(function(wid){var w=WOUND_DATA[wid];if(w)h+='<div class="ri"><div class="ri-name">'+w.nm+'</div><div style="font-size:11px;color:var(--text3);font-style:italic;margin-bottom:2px">'+w.psy+'</div><div class="ri-action">'+w.act+'</div></div>';});}
+  h+='<div style="margin-top:8px;padding:10px 12px;border-radius:var(--r);border-left:3px solid var(--info-bdr);background:var(--info-bg);color:var(--info-text);font-size:13px;line-height:1.6"><strong>What brings it down:</strong> '+(attnKey?ATTN_DATA[attnKey].lever+' ':'')+st.m+'</div>';
   var ps=REG_PSYCH[lvl];
   if(ps){h+='<div class="reg-psych"><div class="reg-psych-desc">'+ps.desc+'</div><div class="reg-psych-row"><div class="reg-psych-lbl">Ego state</div><div class="reg-psych-val">'+ps.ego+'</div></div><div class="reg-psych-row"><div class="reg-psych-lbl">Self & object</div><div class="reg-psych-val">'+ps.self+'</div></div><div class="reg-psych-row"><div class="reg-psych-lbl">Defence</div><div class="reg-psych-val">'+ps.defence+'</div></div></div>';}
   var bandPsy={w:'Parasympathetic dominant \u2014 ventral vagal online',e:'Balanced autonomic tone \u2014 window of tolerance',i:'Sympathetic activation beginning \u2014 amygdala priming',c:'Sympathetic dominant \u2014 prefrontal offline',s:'Dorsal vagal or extreme sympathetic \u2014 survival physiology'};
-h+='<div style="font-size:11px;color:var(--text3);font-style:italic;margin-top:6px;margin-bottom:6px">'+(bandPsy[bd]||'')+'</div>';
-  var noiseItems=REGI.filter(function(it){return sel.has(it.id)&&(it.votes[8]||it.votes[9]||it.votes[10]);}).length;
-  var signalItems=sel.size-noiseItems;
-  var snr=sel.size===0?'No data':noiseItems===0?'Clean \u2014 all signal':(noiseItems>=sel.size-1?'Almost all noise':'Signal: '+signalItems+' / Noise: '+noiseItems);
-  h+='<div style="margin-top:8px;padding:8px 12px;border-radius:var(--r);background:var(--bg);border:1px solid var(--bdr);font-size:12px"><span style="color:var(--text3)">Signal-to-noise:</span> <strong style="color:'+(noiseItems>signalItems?'var(--alert)':'var(--ok)')+'">'+snr+'</strong></div>';
-  h+='<div style="font-size:11px;color:var(--text3);margin-top:4px">Signal = what is actually happening. Noise = wound, distortion, or activation amplifying it.</div>';
-var pf=REGI.filter(function(it){return it.prod&&sel.has(it.id);}).length>0;
+  h+='<div style="font-size:11px;color:var(--text3);font-style:italic;margin-top:6px;margin-bottom:6px">'+(bandPsy[bd]||'')+'</div>';
+  var pf=REGI.filter(function(it){return it.prod&&sel.has(it.id);}).length>0;
   if(pf)h+='<div class="al al-alert" style="margin-top:8px"><strong>Prodrome signals present.</strong> Name the signal. Do not act on any impulse connected to it today. Reduce stimulation, hydrate, use Ground.</div>';
   if(lvl>=6)h+='<div class="al al-warn" style="margin-top:8px"><strong>Regulation 6+. Hard brake active.</strong> No decisions, no communications, no responses for 2 hours. Use Ground. Hydrate. Move.</div>';
   if(lvl>=7)h+='<div style="margin-top:8px;font-size:12px;color:var(--text3)">Regulation is low. Your signal-to-noise ratio has collapsed. Use Ground before continuing.</div>';
-  document.getElementById('reg-pill').textContent='Level '+lvl+' — '+RLB[lvl];
+  document.getElementById('reg-pill').textContent='Level '+lvl+' \u2014 '+RLB[lvl];
   document.getElementById('reg-pill').style.background=lvl<=3?'var(--info-bg)':lvl<=5?'var(--ok-bg)':lvl<=7?'var(--warn-bg)':'var(--alert-bg)';
   document.getElementById('reg-pill').style.color=lvl<=3?'var(--info-text)':lvl<=5?'var(--ok)':lvl<=7?'var(--warn-text)':'var(--alert)';
   show('r-quick-reg',h);
 }
-
 function calcRegLevel(sel){
   var scores={};for(var i=1;i<=10;i++)scores[i]=0;scores[4]+=0.5;scores[5]+=0.5;
   REGI.forEach(function(it){if(!sel.has(it.id))return;Object.entries(it.votes).forEach(function(e){scores[Number(e[0])]+=e[1];});});
@@ -2102,21 +2153,76 @@ function calcRegLevel(sel){
   return sorted[0][0];
 }
 
+var ATTN_DATA={
+  open:{nm:'Open',q:'Wide, spacious \u2014 taking in the whole field without grabbing',nx:0.82,ny:0.78,zone:'witness',lever:'You were already near the valley. The work was to stay: low novelty, steady rhythm, nothing to fix.'},
+  diffuse:{nm:'Diffuse',q:'Soft and broad, but drifting or unfocused',nx:0.7,ny:0.6,zone:'equilibrium',lever:'Attention was open but unanchored. A single gentle point of contact \u2014 breath, feet, one task \u2014 would have steadied it without narrowing hard.'},
+  narrow:{nm:'Narrow',q:'Clamped onto one thing, the rest shut out',nx:0.25,ny:0.5,zone:'capture',lever:'Attention had clamped. The lever was widening: name three things in the room, soften the gaze, let the edges back in. Diffusing releases the sympathetic grip.'},
+  grasping:{nm:'Grasping',q:'Seizing, gripping, pattern-locked, cannot let go',nx:0.18,ny:0.2,zone:'survival',lever:'Attention was gripping \u2014 Ni volume too high, pattern-seizing that felt like insight. The body is the volume knob: physiological sigh, cold water, movement. Widen before doing anything else.'}
+};
+function buildAttnDial(lvl,key){
+  // Position derived from the final level: low level = open/diffuse (bottom-right), high = grasping/narrow (top-left).
+  // Level 1..10 -> t 0..1
+  var t=(lvl-1)/9;
+  // ny: openness (1=open at bottom, 0=grasping at top). High level => low openness.
+  var ny=1-t;
+  // nx: narrow(0)<->diffuse(1). Regulated tends diffuse, dysregulated tends narrow.
+  var nx=1-t;
+  // Dropdown nudges toward its own corner if set.
+  if(key){
+    var anchor={open:{nx:0.82,ny:0.78},diffuse:{nx:0.78,ny:0.6},narrow:{nx:0.22,ny:0.5},grasping:{nx:0.18,ny:0.2}}[key];
+    if(anchor){nx=(nx+anchor.nx*2)/3;ny=(ny+anchor.ny*2)/3;}
+  }
+  if(nx<0.04)nx=0.04;if(nx>0.96)nx=0.96;if(ny<0.04)ny=0.04;if(ny>0.96)ny=0.96;
+  var bx=44+nx*212;var by=28+(1-ny)*184;
+  var dotColor=ny>0.6?'var(--green)':ny>0.4?'var(--yellow)':'var(--red)';
+  var qWord=ny>0.65?'open':ny>0.45?(nx>0.5?'diffuse':'narrowing'):nx<0.4?'grasping':'narrow';
+  var s='<svg viewBox="0 0 300 244" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;margin-top:8px">';
+  s+='<text x="150" y="16" text-anchor="middle" fill="var(--red)" style="font-size:10px;font-weight:600;letter-spacing:0.8px;text-transform:uppercase">Grasping</text>';
+  s+='<text x="150" y="232" text-anchor="middle" fill="var(--green)" style="font-size:10px;font-weight:600;letter-spacing:0.8px;text-transform:uppercase">Open</text>';
+  s+='<text x="16" y="120" text-anchor="middle" transform="rotate(-90 16 120)" fill="var(--text3)" style="font-size:10px;font-weight:600;letter-spacing:0.8px;text-transform:uppercase">Narrow</text>';
+  s+='<text x="284" y="120" text-anchor="middle" transform="rotate(90 284 120)" fill="var(--text3)" style="font-size:10px;font-weight:600;letter-spacing:0.8px;text-transform:uppercase">Diffuse</text>';
+  s+='<rect x="44" y="28" width="212" height="184" rx="10" fill="var(--bg)" stroke="var(--bdr)"/>';
+  s+='<rect x="44" y="28" width="106" height="92" fill="var(--red)" opacity="0.08"/>';
+  s+='<rect x="150" y="28" width="106" height="92" fill="var(--yellow)" opacity="0.06"/>';
+  s+='<rect x="44" y="120" width="106" height="92" fill="var(--yellow)" opacity="0.06"/>';
+  s+='<rect x="150" y="120" width="106" height="92" fill="var(--green)" opacity="0.09"/>';
+  s+='<line x1="150" y1="28" x2="150" y2="212" stroke="var(--bdr2)" stroke-width="1"/>';
+  s+='<line x1="44" y1="120" x2="256" y2="120" stroke="var(--bdr2)" stroke-width="1"/>';
+  s+='<circle cx="'+bx.toFixed(0)+'" cy="'+by.toFixed(0)+'" r="10" fill="'+dotColor+'"/><circle cx="'+bx.toFixed(0)+'" cy="'+by.toFixed(0)+'" r="10" fill="none" stroke="#fff" stroke-width="1.5" opacity="0.55"/>';
+  s+='</svg>';
+  s+='<div style="text-align:center;font-size:12px;color:var(--text2);margin-top:2px">Attention: <strong style="color:var(--text)">'+qWord+'</strong></div>';
+  return s;
+}
 function doReg(){
   var sel=new Set([...document.querySelectorAll('#reg-items input:checked')].map(c=>c.id.replace('rr-','')));
-  if(!sel.size){show('r-reg','<span class="ri-ok">No signals selected.</span>');return;}
-  var lvl=calcRegLevel(sel);persist('reg-level',String(lvl));
+  var attnKey=document.getElementById('attn-quality')?document.getElementById('attn-quality').value:'';
+  if(!sel.size&&!attnKey){show('r-reg','<span class="ri-ok">Select what was present, or how attention was behaving.</span>');return;}
+  // Attention quality anchors a baseline level for its zone; the checklist refines it.
+  var attnAnchor={open:2,diffuse:4,narrow:7,grasping:9};
+  var lvl;
+  if(sel.size){
+    lvl=calcRegLevel(sel);
+    if(attnKey){lvl=Math.round((lvl*2+attnAnchor[attnKey])/3);if(lvl<1)lvl=1;if(lvl>10)lvl=10;}
+  }else{
+    lvl=attnAnchor[attnKey];
+  }
+  persist('reg-level',String(lvl));
   var signal2=sel.size;var noiseItems2=REGI.filter(function(it){return sel.has(it.id)&&(it.votes[8]||it.votes[9]||it.votes[10]);}).length;var signalItems2=signal2-noiseItems2;
   var bd=lvl<=3?'w':lvl<=5?'e':lvl<=7?'i':lvl<=9?'c':'s';
   var bdl={w:'Witness band',e:'Equilibrium',i:'Identity band',c:'Capture band',s:'Survival'};
   var st=RST[lvl];var ps=REG_PSYCH[lvl];
   var pf=REGI.filter(it=>it.prod&&sel.has(it.id)).length>0;
-  var h=buildHeatViz(lvl);
+  var heatWounds=[...document.querySelectorAll('#wound-pick-heat button[data-sel]')].map(function(b){return b.dataset.wid;});
+  var zoneColor=lvl<=3?'var(--blue)':lvl<=5?'var(--green)':lvl<=7?'var(--yellow)':'var(--red)';
+  var h='<div style="text-align:center;margin-bottom:10px"><div style="font-size:26px;font-weight:700;color:'+zoneColor+';line-height:1">'+lvl+'</div><div style="font-size:14px;font-weight:600;color:var(--text);margin-top:2px">'+RLB[lvl]+'</div><div style="font-size:11px;color:var(--text3);font-style:italic">'+bdl[bd]+' &middot; retrospective</div></div>';
+  h+=buildHeatViz(lvl);
   h+='<div class="reg-grid"><div class="reg-cell"><div class="reg-key">Attention</div><div class="reg-val">'+st.a+'</div></div><div class="reg-cell"><div class="reg-key">Choice</div><div class="reg-val">'+st.c+'</div></div><div class="reg-cell"><div class="reg-key">Salience</div><div class="reg-val">'+st.s+'</div></div></div>';
   h+='<div class="reg-grid" style="grid-template-columns:1fr 2fr"><div class="reg-cell"><div class="reg-key">Brakes</div><div class="reg-val">'+st.b+'</div></div><div class="reg-cell"><div class="reg-key">Braking against</div><div class="reg-val">'+st.ba+'</div></div></div>';
   h+='<div style="margin-top:8px;padding:8px 12px;border-radius:var(--r);background:var(--bg);border:1px solid var(--bdr);font-size:12px"><span style="color:var(--text3)">Signal-to-noise:</span> <strong style="color:'+(noiseItems2>signalItems2?'var(--alert)':'var(--ok)')+'">'+(noiseItems2===0?'Clean \u2014 all signal':(noiseItems2>=signal2-1?'Almost all noise':'Signal: '+signalItems2+' / Noise: '+noiseItems2))+'</strong></div>';
   h+='<div style="font-size:11px;color:var(--text3);margin-top:4px">Signal = what is actually happening. Noise = wound, distortion, or activation amplifying it.</div>';
-  h+='<div style="margin-top:8px;padding:10px 12px;border-radius:var(--r);border-left:3px solid var(--info-bdr);background:var(--info-bg);color:var(--info-text);font-size:13px;line-height:1.6">'+st.m+'</div>';
+  h+='<div class="sdiv" style="margin-top:14px">Attention quality</div>';h+=buildAttnDial(lvl,attnKey);if(attnKey){h+='<div style="font-size:12px;color:var(--text2);margin-top:4px;line-height:1.5">'+ATTN_DATA[attnKey].q+'.</div>';}
+  if(heatWounds.length){h+='<div class="sdiv" style="margin-top:14px">What carried it there</div><div style="font-size:11px;color:var(--text3);margin-bottom:6px;font-style:italic">A wound-cue releases the vagal brake \u2014 attention narrows, the ball climbs.</div>';heatWounds.forEach(function(wid){var w=WOUND_DATA[wid];if(w)h+='<div class="ri"><div class="ri-name">'+w.nm+'</div><div style="font-size:11px;color:var(--text3);font-style:italic;margin-bottom:2px">'+w.psy+'</div><div class="ri-action">'+w.act+'</div></div>';});}
+  h+='<div style="margin-top:8px;padding:10px 12px;border-radius:var(--r);border-left:3px solid var(--info-bdr);background:var(--info-bg);color:var(--info-text);font-size:13px;line-height:1.6"><strong>What would have brought it down:</strong> '+(attnKey?ATTN_DATA[attnKey].lever+' ':'')+st.m+'</div>';
   if(ps){h+='<div class="reg-psych"><div class="reg-psych-desc">'+ps.desc+'</div><div class="reg-psych-row"><div class="reg-psych-lbl">Ego state</div><div class="reg-psych-val">'+ps.ego+'</div></div><div class="reg-psych-row"><div class="reg-psych-lbl">Self & object</div><div class="reg-psych-val">'+ps.self+'</div></div><div class="reg-psych-row"><div class="reg-psych-lbl">Defence</div><div class="reg-psych-val">'+ps.defence+'</div></div></div>';}
   if(pf)h+='<div class="al al-alert" style="margin-top:8px"><strong>Prodrome signals present.</strong> Name the signal. Do not act on any impulse connected to it today. Reduce stimulation, hydrate, use Ground, tell your confidant.</div>';
   var bandPsy={w:'Parasympathetic dominant \u2014 ventral vagal online',e:'Balanced autonomic tone \u2014 window of tolerance',i:'Sympathetic activation beginning \u2014 amygdala priming',c:'Sympathetic dominant \u2014 prefrontal offline',s:'Dorsal vagal or extreme sympathetic \u2014 survival physiology'};
@@ -2127,7 +2233,7 @@ if(lvl>=6)h+='<div class="al al-warn" style="margin-top:8px"><strong>Regulation 
   var heroActive=sel.has('heroexhaust');var punitiveActive=sel.has('punitive');
   if(heroActive&&punitiveActive)h+='<div class="al al-alert" style="margin-top:8px"><strong>Shadow switch risk.</strong> Hero exhaustion + punitive impulse = the collapse point. This is where the Facebook accusations, the emails, the acting out came from. Do not act on anything right now. Ground. Tell your confidant. No communications until tomorrow.</div>';
   else if(punitiveActive)h+='<div class="al al-warn" style="margin-top:8px"><strong>Punitive impulse detected.</strong> The urge to expose, punish, or force consequences is the persecutory shadow firing. It feels righteous. It is not. Document what you want to say. Read it tomorrow. Do not send anything today.</div>';
-  else if(heroActive)h+='<div class="al al-info" style="margin-top:8px"><strong>4\u21922 disintegration active.</strong> Over-giving, rescuing, earning visibility through sacrifice. This is how a 4 tries to be seen \u2014 it does not work and it feeds the psychosis loop. Name what you can put down today. You are not the hero. You are a person building freedom.</div>';
+  else if(heroActive)h+='<div class="al al-info" style="margin-top:8px"><strong>Wing-4 disintegration (\u21922) active.</strong> Over-giving, rescuing, earning visibility through sacrifice. This is how the 4-wing tries to be seen \u2014 it does not work and it feeds the psychosis loop. Name what you can put down today. You are not the hero. You are a person building freedom.</div>';
   if(sel.has('thinking'))h+='<div class="al al-warn" style="margin-top:8px"><strong>Ni with volume too high.</strong> Pattern recognition running past convergence \u2014 everything connecting, everything significant. This feels like insight. It is not. It is your high-gain system amplifying Ni past the point where it can sort. Turn down the gain: physiological sigh, cold water, move your body. The body is the volume knob.</div>';
   h+='<div style="font-size:11px;color:var(--text3);font-style:italic;margin-top:6px">Window of tolerance '+(lvl<=5?'open':lvl<=7?'narrowing':'closed')+'</div>';
   document.getElementById('reg-pill').textContent='Level '+lvl+' — '+RLB[lvl];
@@ -2149,7 +2255,7 @@ function doNoise(){
   if(keys.some(k=>['old','seen','benefit','reject'].includes(k)))h+='<div class="al al-info"><strong>Core wound activated.</strong> The wound and the situation are two separate events. Name the wound. Then name what actually happened. Respond to today, not to then.</div>';
   checked.forEach(function(r){var k=r.querySelector('input').dataset.n;
     var nm={ctx:'Missing context',old:'Older trigger',benefit:'Self-doubt serves someone',noev:'No evidence given',defend:'Urge to defend',seen:'Feeling unseen',rumi:'Rumination loop',truth:'Truth denied',reject:'Rejection wound',project:'Projection received',manip:'Selective information',mhelpless:'Performed helplessness',mdeny:'Plausible deniability',magreed:'Private agreement broken',mflat:'Cognitive instrumentalisation',mvictim:'Strategic victim stance',mguild:'Guilt placement',mnarr:'Narrative spreading',murgent:'Manufactured urgency',mtest:'Loyalty test',fawnpull:'Fawn trigger — performed agreement expected',fawnauth:'Authority used to shrink',fawndis:'Disagreement pathologised',trustgive:'Trust given without evidence',rational:'Rationalisation active',urgency:'False urgency',suspicion:'Suspicion beyond evidence',respshift:'Carrying what is not yours',discount:'Self-discounting',disqual:'Disqualifying the positive',compare:'Unfavourable comparison'};
-    var psy={ctx:'Confirmation bias from partial data',old:'Trauma re-activation (amygdala hijack)',benefit:'Gaslighting internalisation',noev:'Competence schema threat',defend:'Ego syntonic defence activation',seen:'4 core wound: identity not reflected (Fe hunger)',rumi:'Default mode network perseveration',truth:'Reality testing under social pressure',reject:'Rejection sensitivity dysphoria',project:'Projective identification received',manip:'Covert control \u2014 curated reality',mhelpless:'Hero drive trigger \u2014 4\u21922 disintegration bait',mdeny:'Accountability evasion \u2014 unconfrontable by design',magreed:'Tactical agreement \u2014 consent to end pressure',mflat:'Depth used as processing tool for someone else',mvictim:'Real pain co-existing with tactical deployment',mguild:'Emotional steering \u2014 guilt as remote control',mnarr:'Reputation control outside your presence',murgent:'Time pressure to bypass judgment',mtest:'Unreasonable demand framed as proof of love',fawnpull:'Social dominance eliciting submission response',fawnauth:'Status-based power differential activating fawn',fawndis:'Dissent reframed as deficiency to enforce compliance',trustgive:'Attachment need overriding reality testing',rational:'Post-hoc justification \u2014 ego protecting a decision already made',urgency:'Sympathetic activation creating time pressure',suspicion:'Hypervigilance \u2014 wound-driven pattern detection',respshift:'Hero drive \u2014 4\u21922 disintegration',discount:'Competence denial \u2014 internalised infantilisation',disqual:'Cognitive distortion \u2014 filtering out evidence of capability',compare:'Social comparison bias \u2014 4 core wound activation'};
+    var psy={ctx:'Confirmation bias from partial data',old:'Trauma re-activation (amygdala hijack)',benefit:'Gaslighting internalisation',noev:'Competence schema threat',defend:'Ego syntonic defence activation',seen:'Wing-4 wound: identity not reflected (Fe hunger)',rumi:'Default mode network perseveration',truth:'Reality testing under social pressure',reject:'Rejection sensitivity dysphoria',project:'Projective identification received',manip:'Covert control \u2014 curated reality',mhelpless:'Hero drive trigger \u2014 wing-4 disintegration (\u21922) bait',mdeny:'Accountability evasion \u2014 unconfrontable by design',magreed:'Tactical agreement \u2014 consent to end pressure',mflat:'Depth used as processing tool for someone else',mvictim:'Real pain co-existing with tactical deployment',mguild:'Emotional steering \u2014 guilt as remote control',mnarr:'Reputation control outside your presence',murgent:'Time pressure to bypass judgment',mtest:'Unreasonable demand framed as proof of love',fawnpull:'Social dominance eliciting submission response',fawnauth:'Status-based power differential activating fawn',fawndis:'Dissent reframed as deficiency to enforce compliance',trustgive:'Attachment need overriding reality testing',rational:'Post-hoc justification \u2014 ego protecting a decision already made',urgency:'Sympathetic activation creating time pressure',suspicion:'Hypervigilance \u2014 wound-driven pattern detection',respshift:'Hero drive \u2014 wing-4 disintegration (\u21922)',discount:'Competence denial \u2014 internalised infantilisation',disqual:'Cognitive distortion \u2014 filtering out evidence of capability',compare:'Social comparison bias \u2014 wing-4 activation'};
     var act={ctx:'Name what they do not know. Their reading is based on incomplete information. You do not need to correct them unless it serves you.',old:'Name the older event. Then name what happened today. Respond to today.',benefit:'Who benefits from you doubting yourself right now? If someone gains control when you question your perception, the doubt was placed in you. It is not yours.',noev:'An opinion without evidence is data about their limitations, not your competence. Ask for specifics. If none come, the conversation is over.',defend:'The urge is from the wound, not the situation. State your position once. Stop.',seen:'They cannot see you. Stop expecting it. What is the next action that does not require their recognition?',rumi:'Write down three facts. Close the document. Walk away for 20 minutes.',truth:'What happened is not negotiable. Write it down before the reframe settles in.',reject:'Name what actually happened \u2014 did they reject you, or is your system reading it as rejection? One breath before responding from this place.',project:'The judgement is about their framework. Do not absorb it. Let it land between you, not inside you.',manip:'Document what was said vs what was done. The gap is the manipulation. Do not confront \u2014 adjust access.',mhelpless:'Name the capacity they actually have. If they managed before you arrived, the helplessness is strategic. Do not rescue.',mdeny:'Write down exactly what happened. Their deniability works only when your memory is unsupported. Document.',magreed:'They agreed to end the pressure, not because they meant it. Stop making agreements without structural enforcement.',mflat:'Are they interested in your thinking, or in what your thinking produces for them? If the latter, pull back.',mvictim:'Both can be true. The pain is real AND it is being used. Compassion does not require compliance.',mguild:'Name the guilt. Then ask: whose behaviour caused this situation? If not yours, the guilt was placed in you. Return it.',mnarr:'You cannot defend against a narrative you are not present for. Let your behaviour be the counter-narrative.',murgent:'Name one real consequence of waiting 48 hours. If none, the urgency is designed to prevent clear thinking.',mtest:'Love does not require proof through self-harm. If the demand costs your regulation, it is a test, not a need.',fawnpull:'Notice the pull to perform. You do not owe admiration. Silence is a valid response.',fawnauth:'Their status does not make them right. Name your position internally even if you choose not to say it.',fawndis:'Your disagreement is not a symptom. If they cannot hold difference, that is their limitation, not your pathology.',trustgive:'Name what evidence supports trusting this person. If there is none, trust is the wound wanting connection, not judgment working.',rational:'Write down what you want to do and why. Read it as if someone else wrote it. The craving wearing a reasoning mask is still a craving.',urgency:'Name one real consequence of waiting 48 hours. If there is none, the urgency is activation, not reality.',suspicion:'Name the specific evidence. If it is a feeling without facts, the wound is connecting dots, not your judgment.',respshift:'Name what happens if you put this down. If the answer is discomfort but not harm, it is not yours.',discount:'Name one thing you did this week that required skill. The discounting is the wound, not the assessment.',disqual:'Write down the outcome. Read it without commentary. It happened. It counts.',compare:'Name what they have that you want. Then name what you have that they do not. The comparison was partial.'};
     h+='<div class="ri"><div class="ri-name">'+(nm[k]||k)+'</div><div class="ri-action">'+(act[k]||'')+'</div>'+(psy[k]?'<div style="font-size:11px;color:var(--text3);font-style:italic;margin-top:4px">'+psy[k]+'</div>':'')+'</div>';
   });
@@ -2187,7 +2293,7 @@ function doFamNoise(){
   var keys=checked.map(r=>r.querySelector('input').dataset.fn);var h='';
   if(keys.some(k=>['old','seen','benefit','reject'].includes(k)))h+='<div class="al al-info"><strong>Core wound activated.</strong> Name the wound. Then name what actually happened. They are not the same.</div>';
   var nm={ctx:'Missing context',old:'Older trigger',benefit:'Self-doubt serves someone',noev:'No evidence given',defend:'Urge to defend',seen:'Feeling unseen',rumi:'Rumination loop',truth:'Truth denied',reject:'Rejection wound',project:'Projection received'};
-  var psy={ctx:'Confirmation bias from partial data',old:'Trauma re-activation (amygdala hijack)',benefit:'Gaslighting internalisation',noev:'Competence schema threat',defend:'Ego syntonic defence activation',seen:'4 core wound: identity not reflected (Fe hunger)',rumi:'Default mode network perseveration',truth:'Reality testing under social pressure',reject:'Rejection sensitivity dysphoria',project:'Projective identification received'};
+  var psy={ctx:'Confirmation bias from partial data',old:'Trauma re-activation (amygdala hijack)',benefit:'Gaslighting internalisation',noev:'Competence schema threat',defend:'Ego syntonic defence activation',seen:'Wing-4 wound: identity not reflected (Fe hunger)',rumi:'Default mode network perseveration',truth:'Reality testing under social pressure',reject:'Rejection sensitivity dysphoria',project:'Projective identification received'};
   var act={ctx:'Name what they do not know. Their reading is based on incomplete information.',old:'Name the older event. Then name what happened today. Respond to today.',benefit:'Who benefits from you doubting yourself right now?',noev:'An opinion without evidence is data about their limitations.',defend:'The urge is from the wound, not the situation. State your position once. Stop.',seen:'They cannot see you. Stop expecting it. What is the next action that does not require their recognition?',rumi:'Write down three facts. Close the document. Walk away for 20 minutes.',truth:'What happened is not negotiable. Write it down before the reframe settles in.',reject:'Name what actually happened \u2014 did they reject you, or is your system reading it as rejection?',project:'The judgement is about their framework. Do not absorb it.',manip:'Document what was said vs what was done. Adjust access.',mhelpless:'Name their actual capacity. Do not rescue.',mdeny:'Write down exactly what happened. Document.',magreed:'Stop making agreements without structural enforcement.',mflat:'Pull back. You are not a processing tool.',mvictim:'Compassion does not require compliance.',mguild:'Whose behaviour caused this? If not yours, return the guilt.',mnarr:'Let your behaviour be the counter-narrative.',murgent:'Name one real consequence of waiting 48 hours.',mtest:'The demand costs your regulation. It is a test, not a need.',fawnpull:'You do not owe admiration. Silence is valid.',fawnauth:'Their status does not make them right.',fawndis:'Your disagreement is not a symptom.',trustgive:'Name what evidence supports trusting them.',rational:'Read your justification as if someone else wrote it.',urgency:'The urgency is activation, not reality.',suspicion:'Name the specific evidence.',respshift:'If the answer is discomfort but not harm, it is not yours.',discount:'Name one thing you did this week that required skill. The discounting is the wound, not the assessment.',disqual:'Write down the outcome. Read it without commentary. It happened. It counts.',compare:'Name what they have that you want. Then name what you have that they do not. The comparison was partial.'};
   checked.forEach(function(r){var k=r.querySelector('input').dataset.fn;h+='<div class="ri"><div class="ri-name">'+(nm[k]||k)+'</div><div class="ri-action">'+(act[k]||'')+'</div>'+(psy[k]?'<div style="font-size:11px;color:var(--text3);font-style:italic;margin-top:4px">'+psy[k]+'</div>':'')+'</div>';});
   if(relChecked.length){h+='<div class="sdiv">Relationship patterns</div>';
@@ -2225,7 +2331,7 @@ function doOutNoise(){
   if(keys.includes('mapping'))h+='<div class="al al-info"><strong>Pattern mapping active.</strong> The pattern you are seeing is from home, not from this person. They have not earned this read.</div>';
   // Outside-specific items
   var onm={mapping:'Pattern mapping',intensity:'Intensity mismatch',motives:'Unverified motives',withdraw:'Withdrawal from safety',perform:'Performing competence',test:'Hidden standards',idealise:'Over-investment',resonance:'Cognitive activation',substprox:'Substance proximity',shy:'Performance anxiety'};
-  var opsy={mapping:'Schema-driven perception \u2014 home dynamics being projected outward',intensity:'Sympathetic activation calibrated for past threat, not present',motives:'Theory of mind error \u2014 attribution without evidence',withdraw:'Avoidant attachment defence',perform:'Imposter posture \u2014 Fe performing acceptability',test:'Implicit relational standards \u2014 4 core wound testing',idealise:'Idealisation \u2014 splitting in attachment',resonance:'Cognitive instrumentalisation vulnerability \u2014 Ni activation overriding Ti',substprox:'Environmental relapse risk \u2014 dopamine chain proximity',shy:'Performance anxiety \u2014 SX instinct under critic activation'};
+  var opsy={mapping:'Schema-driven perception \u2014 home dynamics being projected outward',intensity:'Sympathetic activation calibrated for past threat, not present',motives:'Theory of mind error \u2014 attribution without evidence',withdraw:'Avoidant attachment defence',perform:'Imposter posture \u2014 Fe performing acceptability',test:'Implicit relational standards \u2014 wing-4 wound testing',idealise:'Idealisation \u2014 splitting in attachment',resonance:'Cognitive instrumentalisation vulnerability \u2014 Ni activation overriding Ti',substprox:'Environmental relapse risk \u2014 dopamine chain proximity',shy:'Performance anxiety \u2014 SX instinct under critic activation'};
   var oact={mapping:'Name the pattern. Name who it actually belongs to. This person is not them.',intensity:'Your intensity is real but it belongs to an older event. Respond to what is actually here.',motives:'Ask them. Or hold the question. Do not act on a motive you have not verified.',withdraw:'Name what is making you withdraw. If it is unfamiliarity rather than threat, sit with the discomfort.',perform:'Stop performing. Let your competence land without packaging it.',test:'They cannot pass a test they do not know about. State your standards or release the test.',idealise:'Name three things you actually know about them. Idealisation needs information to dissolve.',resonance:'If your thinking is being activated to serve them, pull back. You are not a processing tool.',substprox:'This person is environmental risk. Reduce contact. Do not explain.',shy:'The shyness is real but it is not data about your worth. Bring presence, not performance. Silence is fine.'};
   // Add NOISE_MANIP and NOISE_SELF maps
   var manipNm={manip:'Selective information',mhelpless:'Performed helplessness',mdeny:'Plausible deniability',magreed:'Private agreement broken',mflat:'Cognitive instrumentalisation',mvictim:'Strategic victim stance',mguild:'Guilt placement',mnarr:'Narrative spreading',murgent:'Manufactured urgency',mtest:'Loyalty test',fawnpull:'Fawn trigger',fawnauth:'Authority used to shrink',fawndis:'Disagreement pathologised'};
@@ -2324,8 +2430,8 @@ function doLandCheck(){
 
 
 var WOUND_DATA={
-  hero:{nm:'Hero drive',psy:'4\u21922 disintegration \u2014 earning love through unsustainable service',act:'The land issue is real. The compulsion to solve it alone is the wound. Delegate where possible. Help only where it serves the plan.'},
-  unseen:{nm:'Not being seen',psy:'4 core wound \u2014 Fe hunger for external reflection of internal truth',act:'Your effort is real. Their inability to see it is about their capacity, not your worth. Document for yourself.'},
+  hero:{nm:'Hero drive',psy:'Wing-4 disintegration (\u21922) \u2014 earning love through unsustainable service',act:'The land issue is real. The compulsion to solve it alone is the wound. Delegate where possible. Help only where it serves the plan.'},
+  unseen:{nm:'Not being seen',psy:'Wing-4 wound \u2014 Fe hunger for external reflection of internal truth',act:'Your effort is real. Their inability to see it is about their capacity, not your worth. Document for yourself.'},
   betrayal:{nm:'Betrayal',psy:'Trust schema violation \u2014 attachment disruption',act:'Protect information. Their behaviour is data about reliability. Adjust access, not your compass.'},
   manipulation:{nm:'Manipulation',psy:'Orientation attack \u2014 gaslighting targets psychosis vulnerability',act:'Documentation is the anchor. Write what happened factually. Protect your orientation.'},
   truth:{nm:'Truth denied',psy:'Reality testing under social pressure',act:'You do not need their agreement. Write it down. Let them be wrong. Keep the truth in yours.'},
@@ -2333,7 +2439,7 @@ var WOUND_DATA={
   override:{nm:'Being overridden',psy:'Autonomy violation \u2014 decision erasure',act:'Stop fighting each override. Structural fix is ownership and exit. Note it. Keep moving.'},
   infant:{nm:'Being infantilised',psy:'Competence denial \u2014 history weaponised against present clarity',act:'Do not argue harder. Execute from competence. Let outcomes speak.'},
   unshared:{nm:'Responsibility not shared',psy:'Parentification \u2014 carrying beyond capacity since age 23',act:'This family will not share it. Grieve that. The grief is the release.'},
-  reject:{nm:'Rejection',psy:'Rejection sensitivity \u2014 4w5 reads as unseeable',act:'Their rejection is about their capacity, not your worth. The right people will not need convincing.'}
+  reject:{nm:'Rejection',psy:'Rejection sensitivity \u2014 5w4 reads as unseeable',act:'Their rejection is about their capacity, not your worth. The right people will not need convincing.'}
 };
 
 function doWoundPick(){
@@ -2477,6 +2583,17 @@ function buildGroundList(ctx){
   else if(ctx==='land')gOrder=['g54321','gletgo','gcold','gcontact'];
   else gOrder=['gcold','g54321','gcontact','gletgo'];
   
+  // Lead with 5-4-3-2-1 (first item, above breathing)
+  function addGroundCard(tech){
+    var card=document.createElement('div');card.className='grnd-card';card.id='grnd-'+tech.id;
+    card.innerHTML='<div class="grnd-title">'+tech.title+'</div><div class="grnd-desc">'+tech.desc+'</div><div class="grnd-body" id="body-'+tech.id+'"></div>';
+    var startBtn=document.createElement('button');startBtn.className='grnd-btn';startBtn.textContent='Start';
+    startBtn.onclick=function(){startGrounding(tech);};
+    card.appendChild(startBtn);wrap.appendChild(card);
+  }
+  var lead=GRND_TECHS.filter(function(t){return t.id==='g54321';})[0];
+  if(lead)addGroundCard(lead);
+
   // Add breathing cards
   bOrder.forEach(function(bi){
     var b=BREATHS[bi];
@@ -2487,8 +2604,8 @@ function buildGroundList(ctx){
     card.appendChild(startBtn);wrap.appendChild(card);
   });
   
-  // Add grounding cards
-  var techs=GRND_TECHS.filter(function(t){return gOrder.indexOf(t.id)>=0;});
+  // Add remaining grounding cards (g54321 already shown above)
+  var techs=GRND_TECHS.filter(function(t){return gOrder.indexOf(t.id)>=0&&t.id!=='g54321';});
   techs.sort(function(a,b){return gOrder.indexOf(a.id)-gOrder.indexOf(b.id);});
   techs.forEach(function(tech){
     var card=document.createElement('div');card.className='grnd-card';card.id='grnd-'+tech.id;
@@ -2924,6 +3041,21 @@ function restoreFromDayData(data){
       if(data.wounds.includes(b.textContent)){b.style.background='var(--calm-bg)';b.style.color='var(--calm)';b.style.borderColor='var(--calm-bdr)';b.dataset.sel='1';}
     });}
   }
+  // Restore heat attention quality + wound drivers
+  if(data.attnQuality){var aq=document.getElementById('attn-quality');if(aq)aq.value=data.attnQuality;}
+  if(data.heatWounds&&data.heatWounds.length){
+    var wph=document.getElementById('wound-pick-heat');
+    if(wph){wph.querySelectorAll('button').forEach(function(b){
+      if(data.heatWounds.includes(b.dataset.wid)){b.style.background='var(--calm-bg)';b.style.color='var(--calm)';b.style.borderColor='var(--calm-bdr)';b.dataset.sel='1';}
+    });}
+  }
+  if(data.attnQualityAct){var aqa=document.getElementById('attn-quality-act');if(aqa)aqa.value=data.attnQualityAct;}
+  if(data.actWounds&&data.actWounds.length){
+    var wpa=document.getElementById('wound-pick-act');
+    if(wpa){wpa.querySelectorAll('button').forEach(function(b){
+      if(data.actWounds.includes(b.dataset.wid)){b.style.background='var(--calm-bg)';b.style.color='var(--calm)';b.style.borderColor='var(--calm-bdr)';b.dataset.sel='1';}
+    });}
+  }
   // Restore rhythm
   if(data.rhythm){
     Object.keys(data.rhythm).forEach(function(k){
@@ -2954,8 +3086,10 @@ function restoreFromDayData(data){
 
 
 // Build wound picker for land
-var wpl=document.getElementById('wound-pick-land');
-if(wpl){Object.keys(WOUND_DATA).forEach(function(k){
+function buildWoundPicker(containerId,persistPrefix){
+  var wpl=document.getElementById(containerId);
+  if(!wpl)return;
+  Object.keys(WOUND_DATA).forEach(function(k){
     var w=WOUND_DATA[k];
     var btn=document.createElement('button');
     btn.style.cssText='padding:6px 12px;border-radius:20px;border:1px solid var(--bdr2);background:transparent;color:var(--text2);font-size:12px;cursor:pointer;font-family:inherit';
@@ -2965,10 +3099,14 @@ if(wpl){Object.keys(WOUND_DATA).forEach(function(k){
       var isSel=btn.dataset.sel==='1';
       if(isSel){btn.style.background='transparent';btn.style.color='var(--text2)';btn.style.borderColor='var(--bdr2)';delete btn.dataset.sel;}
       else{btn.style.background='var(--calm-bg)';btn.style.color='var(--calm)';btn.style.borderColor='var(--calm-bdr)';btn.dataset.sel='1';}
-      persist('wound-'+k,!isSel);
+      persist(persistPrefix+k,!isSel);
     };
     wpl.appendChild(btn);
-  });}
+  });
+}
+buildWoundPicker('wound-pick-land','wound-');
+buildWoundPicker('wound-pick-heat','heatwound-');
+buildWoundPicker('wound-pick-act','actwound-');
 
 </script>
 </body>
