@@ -65,7 +65,8 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
   --info-bdr:var(--blue-bdr);
 }
 /* ── LAYOUT ── */
-.app{max-width:480px;margin:0 auto;padding:12px 14px 24px;min-height:100vh}
+.app{max-width:600px;margin:0 auto;padding:12px 10px 24px;min-height:100vh}
+@media (min-width:620px){.app{padding:12px 16px 24px}}
 .screen{display:none;padding:0 1rem}
 .screen.on{display:block}
 
@@ -209,14 +210,13 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 .ground-fab{
   position:fixed;bottom:24px;right:16px;z-index:100;
   background:var(--green);color:#1c1814;
-  border:none;border-radius:100px;padding:13px 20px 13px 16px;
-  display:flex;align-items:center;gap:8px;
-  font-size:14px;font-weight:600;font-family:inherit;cursor:pointer;
-  letter-spacing:0.2px;
+  border:none;border-radius:50%;width:52px;height:52px;padding:0;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;
   box-shadow:0 4px 18px rgba(168,200,152,0.3),0 4px 12px rgba(0,0,0,0.4);
   -webkit-tap-highlight-color:transparent;
 }
-.ground-fab svg{width:20px;height:20px}
+.ground-fab svg{width:24px;height:24px}
 .ground-fab:active{transform:scale(0.96)}
 .ground-ov{
   display:none;position:fixed;top:0;left:0;right:0;bottom:0;z-index:200;
@@ -434,6 +434,13 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 
 /* Heat level visual */
 .heat-viz-wrap{display:block;width:100%;overflow:hidden;margin-bottom:4px}
+.attn-pick{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
+.attn-opt{padding:10px 12px;border-radius:var(--r);border:1px solid var(--bdr2);background:var(--bg3);color:var(--text2);text-align:left;font-family:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.attn-opt strong{display:block;font-size:13px;margin-bottom:3px;color:var(--text)}
+.attn-opt span{display:block;font-size:11px;color:var(--text3);line-height:1.35}
+.attn-opt.on{background:var(--calm-bg);border-color:var(--calm-bdr)}
+.attn-opt.on strong{color:var(--calm)}
+.attn-opt.on span{color:var(--calm)}
 .heat-bar{display:flex;height:6px;margin-top:8px;border-radius:3px;overflow:hidden}
 .heat-bar .z-blue{flex:2;background:var(--blue)}
 .heat-bar .z-green{flex:3;background:var(--green)}
@@ -859,9 +866,9 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
     <div class="sdiv" style="margin-top:14px">How attention is behaving</div>
     <div style="font-size:11px;color:var(--text3);margin-bottom:8px">The shape of attention is the clearest readout of where you are. Pick the closest.</div>
     <div style="font-size:11px;color:var(--text3);margin-bottom:6px">Width &#8212; how wide the field is</div>
-    <div class="attn-pick" data-ctx="act" data-axis="width" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px"></div>
+    <div class="attn-pick" data-ctx="act" data-axis="width"></div>
     <div style="font-size:11px;color:var(--text3);margin-bottom:6px">Grip &#8212; how tightly it is holding on</div>
-    <div class="attn-pick" data-ctx="act" data-axis="grip" style="display:flex;flex-wrap:wrap;gap:6px"></div>
+    <div class="attn-pick" data-ctx="act" data-axis="grip"></div>
     <div class="sdiv" style="margin-top:14px">What is carrying it <span style="font-weight:400;color:var(--text3);text-transform:none;letter-spacing:0">(the wound that released the brake)</span></div>
     <div style="font-size:11px;color:var(--text3);margin-bottom:8px">A wound-cue is what pushes the ball up the mountain. Select any that are live.</div>
     <div id="wound-pick-act" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px"></div>
@@ -1142,9 +1149,9 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
     <div class="sdiv" style="margin-top:14px">How attention was behaving</div>
     <div style="font-size:11px;color:var(--text3);margin-bottom:8px">The shape of attention is the clearest readout of where you were. Pick the closest.</div>
     <div style="font-size:11px;color:var(--text3);margin-bottom:6px">Width &#8212; how wide the field was</div>
-    <div class="attn-pick" data-ctx="dr" data-axis="width" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px"></div>
+    <div class="attn-pick" data-ctx="dr" data-axis="width"></div>
     <div style="font-size:11px;color:var(--text3);margin-bottom:6px">Grip &#8212; how tightly it held on</div>
-    <div class="attn-pick" data-ctx="dr" data-axis="grip" style="display:flex;flex-wrap:wrap;gap:6px"></div>
+    <div class="attn-pick" data-ctx="dr" data-axis="grip"></div>
     <div class="sdiv" style="margin-top:14px">What carried it there <span style="font-weight:400;color:var(--text3);text-transform:none;letter-spacing:0">(the wound that released the brake)</span></div>
     <div style="font-size:11px;color:var(--text3);margin-bottom:8px">A wound-cue is what pushes the ball up the mountain. Select any that were live.</div>
     <div id="wound-pick-heat" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px"></div>
@@ -1214,7 +1221,7 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 </div>
 
 <!-- GROUND FAB -->
-<button class="ground-fab" onclick="openGround()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2.5"/><path d="M12 7.5V21M5 13a7 7 0 0 0 14 0M5 13H3m16 0h2"/></svg>Ground</button>
+<button class="ground-fab" onclick="openGround()" aria-label="Ground" title="Ground"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2.5"/><path d="M12 7.5V21M5 13a7 7 0 0 0 14 0M5 13H3m16 0h2"/></svg></button>
 <script>
 // ═══════════ CONFIG ═══════════
 const GIST_ID='92ea8a47f979c421b8d9264935e86700';
@@ -2132,7 +2139,7 @@ function doQuickReg(){
   var snr=sel.size===0?'No checklist data':noiseItems===0?'Clean \u2014 all signal':(noiseItems>=sel.size-1?'Almost all noise':'Signal: '+signalItems+' / Noise: '+noiseItems);
   h+='<div style="margin-top:8px;padding:8px 12px;border-radius:var(--r);background:var(--bg);border:1px solid var(--bdr);font-size:12px"><span style="color:var(--text3)">Signal-to-noise:</span> <strong style="color:'+(noiseItems>signalItems?'var(--alert)':'var(--ok)')+'">'+snr+'</strong></div>';
   h+='<div style="font-size:11px;color:var(--text3);margin-top:4px">Signal = what is actually happening. Noise = wound, distortion, or activation amplifying it.</div>';
-  var ard=attnRead(attn.width,attn.grip,true);h+='<div class="sdiv" style="margin-top:14px">Attention quality</div>';h+=buildAttnDial(lvl,attn.width,attn.grip,ic0);if(ard){h+='<div style="font-size:12px;color:var(--text2);margin-top:4px;line-height:1.5"><strong style="color:var(--text)">'+ard.label+'</strong> \u2014 '+ard.desc+'.</div>';}
+  var apos=attnDotPos(lvl,attn.width,attn.grip,ic0);var ard=(attn.width||attn.grip||sel.size)?attnReadFromPos(apos.nx,apos.ny,true):null;h+='<div class="sdiv" style="margin-top:14px">Attention quality</div>';h+=buildAttnDial(lvl,attn.width,attn.grip,ic0);if(ard){h+='<div style="font-size:12px;color:var(--text2);margin-top:4px;line-height:1.5"><strong style="color:var(--text)">'+ard.label+'</strong> \u2014 '+ard.desc+'.</div>';}
   if(ic0.i||ic0.c||ic0.u){var icHiN=[ic0.i,ic0.c,ic0.u].filter(function(v){return v>=7;}).length;var icTone=icHiN>=2?'var(--alert)':(icHiN===1)?'var(--warn-text)':'var(--text2)';var lines=[];lines.push('<strong>Intensity '+ic0.i+'/10.</strong> '+(ic0.i>=7?'The charge is loud. The feeling is real \u2014 but loud is not the same as accurate.':ic0.i>=4?'A moderate charge. Noticeable, not yet driving.':'The charge is low.'));lines.push('<strong>Certainty '+ic0.c+'/10.</strong> '+(ic0.c>=7?'Conviction is running ahead of evidence. Certainty beyond what you can document is the prodrome boundary \u2014 the number that matters most.':ic0.c>=4?'Some conviction, still open to being wrong.':'Low certainty \u2014 holding it lightly. Good.'));lines.push('<strong>Urgency '+ic0.u+'/10.</strong> '+(ic0.u>=7?'The pull to act, decide, or communicate now is loud \u2014 it is what turns a charged, certain state into action before the brakes are back. Let it wait.':ic0.u>=4?'Some pull to act soon. Notice it \u2014 it does not have to be obeyed.':'No real pressure to act now. Good.'));var combo='';if(icHiN>=3)combo='All three are high \u2014 intensity, certainty, and urgency together. This is the exact signature where the association engine runs faster than evidence. Do not act, decide, or send anything. Step away until they drop below 6.';else if(icHiN===2)combo='Two of the three are high \u2014 close to the zone where conviction outruns evidence. Hold. No major moves until they ease.';else if(icHiN===1)combo='One dimension is running high. Notice it before the next move.';h+='<div class="sdiv" style="margin-top:14px">Intensity, certainty &amp; urgency</div><div style="padding:9px 12px;border-radius:var(--r);background:var(--bg);border:1px solid var(--bdr);font-size:12px;line-height:1.6;color:var(--text2)">'+lines.join('<br>')+(combo?'<div style="margin-top:6px;padding-top:6px;border-top:1px solid var(--bdr);color:'+icTone+'">'+combo+'</div>':'')+'</div>';}
   if(heatWounds.length){h+='<div class="sdiv" style="margin-top:14px">What is carrying it</div><div style="font-size:11px;color:var(--text3);margin-bottom:6px;font-style:italic">A wound-cue releases the vagal brake \u2014 attention narrows, the ball climbs.</div>';heatWounds.forEach(function(wid){var w=WOUND_DATA[wid];if(w)h+='<div class="ri"><div class="ri-name">'+w.nm+'</div><div style="font-size:11px;color:var(--text3);font-style:italic;margin-bottom:2px">'+w.psy+'</div><div class="ri-action">'+w.act+'</div></div>';});}
   h+='<div style="margin-top:8px;padding:10px 12px;border-radius:var(--r);border-left:3px solid var(--info-bdr);background:var(--info-bg);color:var(--info-text);font-size:13px;line-height:1.6"><strong>What brings it down:</strong> '+(ard?ard.lever+' ':'')+st.m+'</div>';
@@ -2173,14 +2180,14 @@ function buildAttnPick(){
     var axis=grp.dataset.axis;
     ATTN_AXES[axis].forEach(function(o){
       var btn=document.createElement('button');
-      btn.style.cssText='padding:6px 12px;border-radius:20px;border:1px solid var(--bdr2);background:transparent;color:var(--text2);font-size:12px;cursor:pointer;font-family:inherit;text-align:left';
-      btn.innerHTML='<strong>'+o.nm+'</strong> \u2014 '+o.d;
+      btn.className='attn-opt';
+      btn.innerHTML='<strong>'+o.nm+'</strong><span>'+o.d+'</span>';
       btn.dataset.val=o.val;
       btn.onclick=function(e){
         e.stopPropagation();
         var wasSel=btn.dataset.sel==='1';
-        grp.querySelectorAll('button').forEach(function(b){b.style.background='transparent';b.style.color='var(--text2)';b.style.borderColor='var(--bdr2)';delete b.dataset.sel;});
-        if(!wasSel){btn.style.background='var(--calm-bg)';btn.style.color='var(--calm)';btn.style.borderColor='var(--calm-bdr)';btn.dataset.sel='1';}
+        grp.querySelectorAll('button').forEach(function(b){b.classList.remove('on');delete b.dataset.sel;});
+        if(!wasSel){btn.classList.add('on');btn.dataset.sel='1';}
         persist('attn-'+grp.dataset.ctx+'-'+axis, wasSel?'':btn.dataset.val);
       };
       grp.appendChild(btn);
@@ -2199,8 +2206,8 @@ function setAttnPick(ctx,axis,val){
   var grp=document.querySelector('.attn-pick[data-ctx="'+ctx+'"][data-axis="'+axis+'"]');
   if(!grp)return;
   grp.querySelectorAll('button').forEach(function(b){
-    if(b.dataset.val===val){b.style.background='var(--calm-bg)';b.style.color='var(--calm)';b.style.borderColor='var(--calm-bdr)';b.dataset.sel='1';}
-    else{b.style.background='transparent';b.style.color='var(--text2)';b.style.borderColor='var(--bdr2)';delete b.dataset.sel;}
+    if(b.dataset.val===val){b.classList.add('on');b.dataset.sel='1';}
+    else{b.classList.remove('on');delete b.dataset.sel;}
   });
 }
 // Level anchor from the two axes.
@@ -2213,40 +2220,47 @@ function attnAnchorLevel(width,grip){
   return null;
 }
 // Read = label, description, and corrective lever from the two axes.
-function attnRead(width,grip,past){
-  if(!width&&!grip)return null;
-  var parts=[];
-  if(grip)parts.push(grip.charAt(0).toUpperCase()+grip.slice(1));
-  if(width)parts.push(width);
-  var label=parts.join(' + ');
-  var bits=[];
-  if(width==='narrow')bits.push('clamped onto one thing, the rest shut out');
-  if(width==='diffuse')bits.push('soft and broad, taking in the whole field');
-  if(grip==='open')bits.push('held lightly, not grabbing');
-  if(grip==='grasping')bits.push('gripping, pattern-locked, unable to let go');
-  var desc=bits.join('; ');
-  var lever;
-  if(grip==='grasping')lever=(past?'Attention was gripping \u2014 ':'Attention is gripping \u2014 ')+'pattern-seizing that can feel like insight. The body is the volume knob: a long slow exhale, cold water, movement. Release the grip before doing anything else.';
-  else if(width==='narrow')lever=(past?'Attention had clamped narrow. ':'Attention has clamped narrow. ')+'Widen the aperture: name three things in the room, soften the gaze, let the edges back in. Diffusing releases the sympathetic grip.';
-  else if(grip==='open'&&width==='diffuse')lever='Open and wide \u2014 near the valley. The work '+(past?'was':'is')+' to stay: low novelty, steady rhythm, nothing to fix.';
-  else if(grip==='open')lever='Held lightly \u2014 a steady place. If it tips toward gripping, widen the field before acting.';
-  else if(width==='diffuse')lever='Broad but unanchored. A single gentle point of contact \u2014 breath, feet, one task \u2014 '+(past?'would have steadied':'steadies')+' it without narrowing hard.';
-  else lever='Notice the shape of attention; let it soften and widen.';
-  return {label:label,desc:desc,lever:lever};
-}
-function buildAttnDial(lvl,width,grip,ic){
-  // 2x2 quadrant. nx: narrow(0)..diffuse(1). ny: grasping(0)..open(1).
+// Compute the dot position on the attention quadrant from level + axis picks + intensity/certainty/urgency.
+// nx: narrow(0)..diffuse(1). ny: grasping(0)..open(1). Returns clamped 0.04-0.96.
+function attnDotPos(lvl,width,grip,ic){
   var t=(lvl-1)/9;
   var nx=1-t, ny=1-t; // base from level
-  // Explicit axis picks dominate (weighted 2:1 over level-derived base), per axis.
   if(width){var wt={narrow:0.18,diffuse:0.82}[width];nx=(nx+wt*2)/3;}
   if(grip){var gt={grasping:0.2,open:0.82}[grip];ny=(ny+gt*2)/3;}
-  // Intensity, certainty & urgency pull toward the grasping corner.
   if(ic&&(ic.i||ic.c||ic.u)){
     var icAvg=(ic.i+ic.c+ic.u)/3;
     if(icAvg>=5){var pull=Math.min(1,(icAvg-5)/5)*0.55;nx=nx*(1-pull)+0.18*pull;ny=ny*(1-pull)+0.2*pull;}
   }
   if(nx<0.04)nx=0.04;if(nx>0.96)nx=0.96;if(ny<0.04)ny=0.04;if(ny>0.96)ny=0.96;
+  return {nx:nx,ny:ny};
+}
+// Read attention label/description/lever FROM the dot position — so the words always match the graph.
+function attnReadFromPos(nx,ny,past){
+  // ny: 1=open(bottom) .. 0=grasping(top).  nx: 1=diffuse .. 0=narrow.
+  var gripWord = ny>=0.66?'Open' : ny>=0.4?'Holding' : 'Grasping';
+  var widthWord = nx>=0.66?'diffuse' : nx>=0.4?'mid-width' : 'narrow';
+  var label = gripWord+' + '+widthWord;
+  // description from quadrant
+  var gd = ny>=0.66?'held lightly, not grabbing' : ny>=0.4?'beginning to tighten' : 'gripping, pattern-locked, hard to release';
+  var wd = nx>=0.66?'wide and taking in the field' : nx>=0.4?'moderately focused' : 'clamped onto one thing, edges shut out';
+  var desc = gd+'; '+wd;
+  // corrective lever — most urgent axis first
+  var lever;
+  if(ny<0.4){ // grasping dominant
+    lever=(past?'Attention was gripping \u2014 ':'Attention is gripping \u2014 ')+'pattern-seizing that can feel like insight. The body is the volume knob: a long slow exhale, cold water, movement. Release the grip before doing anything else.';
+  } else if(nx<0.4){ // narrow but not grasping
+    lever=(past?'Attention had clamped narrow. ':'Attention has clamped narrow. ')+'Widen the aperture: name three things in the room, soften the gaze, let the edges back in. Diffusing releases the sympathetic grip.';
+  } else if(ny>=0.66 && nx>=0.66){ // open + wide
+    lever='Open and wide \u2014 near the valley. The work '+(past?'was':'is')+' to stay: low novelty, steady rhythm, nothing to fix.';
+  } else if(ny>=0.66){ // open, mid/narrow width
+    lever='Held lightly \u2014 a steady place. If it tips toward gripping or clamps narrower, widen the field before acting.';
+  } else { // holding / tightening zone
+    lever=(past?'Attention was starting to tighten. ':'Attention is starting to tighten. ')+'Catch it early: one slow breath, soften the gaze, widen before it grips.';
+  }
+  return {label:label,desc:desc,lever:lever,gripWord:gripWord.toLowerCase(),widthWord:widthWord};
+}
+function buildAttnDial(lvl,width,grip,ic){
+  var _p=attnDotPos(lvl,width,grip,ic);var nx=_p.nx,ny=_p.ny;
   var bx=44+nx*212;var by=28+(1-ny)*184;
   var dotColor=ny>0.6?'var(--green)':ny>0.4?'var(--yellow)':'var(--red)';
   var qWord=ny>0.65?'open':ny>0.45?(nx>0.5?'diffuse':'narrowing'):nx<0.4?'grasping':'narrow';
@@ -2299,7 +2313,7 @@ function doReg(){
   h+='<div class="reg-grid" style="grid-template-columns:1fr 2fr"><div class="reg-cell"><div class="reg-key">Brakes</div><div class="reg-val">'+st.b+'</div></div><div class="reg-cell"><div class="reg-key">Braking against</div><div class="reg-val">'+st.ba+'</div></div></div>';
   h+='<div style="margin-top:8px;padding:8px 12px;border-radius:var(--r);background:var(--bg);border:1px solid var(--bdr);font-size:12px"><span style="color:var(--text3)">Signal-to-noise:</span> <strong style="color:'+(noiseItems2>signalItems2?'var(--alert)':'var(--ok)')+'">'+(noiseItems2===0?'Clean \u2014 all signal':(noiseItems2>=signal2-1?'Almost all noise':'Signal: '+signalItems2+' / Noise: '+noiseItems2))+'</strong></div>';
   h+='<div style="font-size:11px;color:var(--text3);margin-top:4px">Signal = what is actually happening. Noise = wound, distortion, or activation amplifying it.</div>';
-  var ard=attnRead(attn.width,attn.grip,true);h+='<div class="sdiv" style="margin-top:14px">Attention quality</div>';h+=buildAttnDial(lvl,attn.width,attn.grip,ic0);if(ard){h+='<div style="font-size:12px;color:var(--text2);margin-top:4px;line-height:1.5"><strong style="color:var(--text)">'+ard.label+'</strong> \u2014 '+ard.desc+'.</div>';}
+  var apos=attnDotPos(lvl,attn.width,attn.grip,ic0);var ard=(attn.width||attn.grip||sel.size)?attnReadFromPos(apos.nx,apos.ny,false):null;h+='<div class="sdiv" style="margin-top:14px">Attention quality</div>';h+=buildAttnDial(lvl,attn.width,attn.grip,ic0);if(ard){h+='<div style="font-size:12px;color:var(--text2);margin-top:4px;line-height:1.5"><strong style="color:var(--text)">'+ard.label+'</strong> \u2014 '+ard.desc+'.</div>';}
   if(ic0.i||ic0.c||ic0.u){var icHiN=[ic0.i,ic0.c,ic0.u].filter(function(v){return v>=7;}).length;var icTone=icHiN>=2?'var(--alert)':(icHiN===1)?'var(--warn-text)':'var(--text2)';var lines=[];lines.push('<strong>Intensity '+ic0.i+'/10.</strong> '+(ic0.i>=7?'The charge was loud and raised the level. Loud felt true, but loud is not the same as accurate.':ic0.i>=4?'A moderate charge, lightly reflected in the level.':'The charge was low.'));lines.push('<strong>Certainty '+ic0.c+'/10.</strong> '+(ic0.c>=7?'Conviction ran ahead of evidence \u2014 certainty beyond what could be documented is the prodrome boundary, the most telling number here.':ic0.c>=4?'Some conviction, still open to being wrong.':'Low certainty \u2014 it was held lightly.'));lines.push('<strong>Urgency '+ic0.u+'/10.</strong> '+(ic0.u>=7?'The pull to act or communicate now was loud \u2014 it is what turns a charged, certain state into action before the brakes return.':ic0.u>=4?'Some pull to act soon, lightly reflected in the level.':'No real pressure to act now.'));var combo='';if(icHiN>=3)combo='All three ran high \u2014 intensity, certainty, urgency. That is the exact signature where the association engine outruns evidence; it pushed the level up.';else if(icHiN===2)combo='Two of the three were high \u2014 close to the zone where conviction outruns evidence; it pushed the level up.';else if(icHiN===1)combo='One dimension ran high \u2014 worth noticing in the read.';h+='<div class="sdiv" style="margin-top:14px">Intensity, certainty &amp; urgency</div><div style="padding:9px 12px;border-radius:var(--r);background:var(--bg);border:1px solid var(--bdr);font-size:12px;line-height:1.6;color:var(--text2)">'+lines.join('<br>')+(combo?'<div style="margin-top:6px;padding-top:6px;border-top:1px solid var(--bdr);color:'+icTone+'">'+combo+'</div>':'')+'</div>';}
   if(heatWounds.length){h+='<div class="sdiv" style="margin-top:14px">What carried it there</div><div style="font-size:11px;color:var(--text3);margin-bottom:6px;font-style:italic">A wound-cue releases the vagal brake \u2014 attention narrows, the ball climbs.</div>';heatWounds.forEach(function(wid){var w=WOUND_DATA[wid];if(w)h+='<div class="ri"><div class="ri-name">'+w.nm+'</div><div style="font-size:11px;color:var(--text3);font-style:italic;margin-bottom:2px">'+w.psy+'</div><div class="ri-action">'+w.act+'</div></div>';});}
   h+='<div style="margin-top:8px;padding:10px 12px;border-radius:var(--r);border-left:3px solid var(--info-bdr);background:var(--info-bg);color:var(--info-text);font-size:13px;line-height:1.6"><strong>What would have brought it down:</strong> '+(ard?ard.lever+' ':'')+st.m+'</div>';
