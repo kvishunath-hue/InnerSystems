@@ -1636,6 +1636,17 @@ function goSitOutside(){showScreen('scr-sit-outside');}
 var _audioCtx=null;
 function getAudioCtx(){if(!_audioCtx)_audioCtx=new(window.AudioContext||window.webkitAudioContext)();if(_audioCtx.state==='suspended')_audioCtx.resume();return _audioCtx;}
 function beep(){try{var ctx=getAudioCtx();var o=ctx.createOscillator();var g=ctx.createGain();o.type='sine';o.frequency.setValueAtTime(660,ctx.currentTime);g.gain.setValueAtTime(0.0001,ctx.currentTime);g.gain.exponentialRampToValueAtTime(0.15,ctx.currentTime+0.01);g.gain.exponentialRampToValueAtTime(0.0001,ctx.currentTime+0.4);o.connect(g);g.connect(ctx.destination);o.start(ctx.currentTime);o.stop(ctx.currentTime+0.45);}catch(e){}}
+// Soft single bell for timer ends — gentle, longer decay, lower than the tap beep.
+function softBell(){try{var ctx=getAudioCtx();var t=ctx.currentTime;[528,792].forEach(function(f,i){var o=ctx.createOscillator();var g=ctx.createGain();o.type='sine';o.frequency.setValueAtTime(f,t);var peak=i===0?0.22:0.07;g.gain.setValueAtTime(0.0001,t);g.gain.exponentialRampToValueAtTime(peak,t+0.04);g.gain.exponentialRampToValueAtTime(0.0001,t+2.6);o.connect(g);g.connect(ctx.destination);o.start(t);o.stop(t+2.7);});}catch(e){}}
+// Screen Wake Lock — keep the screen awake while a grounding/breath timer runs.
+var _wakeLock=null;
+function acquireWakeLock(){try{if('wakeLock'in navigator&&navigator.wakeLock.request){navigator.wakeLock.request('screen').then(function(wl){_wakeLock=wl;wl.addEventListener('release',function(){});}).catch(function(){});}}catch(e){}}
+function releaseWakeLock(){try{if(_wakeLock){_wakeLock.release().catch(function(){});_wakeLock=null;}}catch(e){}}
+// Re-acquire if the user tabs away and back while a timer is still running.
+document.addEventListener('visibilitychange',function(){if(document.visibilityState==='visible'&&_wakeLockWanted)acquireWakeLock();});
+var _wakeLockWanted=false;
+function wakeOn(){_wakeLockWanted=true;acquireWakeLock();}
+function wakeOff(){_wakeLockWanted=false;releaseWakeLock();}
 function vibrate(ms){try{if(navigator.vibrate)navigator.vibrate(ms||80);}catch(e){}}
 function show(id,html){var el=document.getElementById(id);if(!el)return;el.innerHTML=html;el.classList.add('show');}
 function togSec(ev,el){ev.stopPropagation();el.classList.toggle("open");}
@@ -2765,12 +2776,12 @@ function startBreathCard(bi){
   var running=false,cyc=0,phi=0,raf=null,ci=null,timerStart=null,timerRaf=null,ir=RMIN;
   var btn=document.getElementById('cb-'+bi);
   var stopBtn=document.getElementById('bs-'+bi);
-  function stop(){running=false;if(raf)cancelAnimationFrame(raf);if(ci)clearInterval(ci);if(timerRaf)cancelAnimationFrame(timerRaf);body.innerHTML='<div class="grnd-done-q">How do you feel now?</div><div class="grnd-done-btns"><button class="grnd-done-btn settled" onclick="brthSettled('+bi+')">More settled</button><button class="grnd-done-btn still" onclick="brthStill('+bi+')">Still activated</button></div><div class="grnd-still-msg" id="brth-still-'+bi+'"></div>';activeBreathStop=null;}
+  function stop(){running=false;wakeOff();if(raf)cancelAnimationFrame(raf);if(ci)clearInterval(ci);if(timerRaf)cancelAnimationFrame(timerRaf);body.innerHTML='<div class="grnd-done-q">How do you feel now?</div><div class="grnd-done-btns"><button class="grnd-done-btn settled" onclick="brthSettled('+bi+')">More settled</button><button class="grnd-done-btn still" onclick="brthStill('+bi+')">Still activated</button></div><div class="grnd-still-msg" id="brth-still-'+bi+'"></div>';activeBreathStop=null;}
   stopBtn.onclick=stop;
   activeBreathStop=stop;
   btn.onclick=function(){
     if(running){stop();return;}
-    running=true;cyc=0;phi=0;ir=RMIN;timerStart=performance.now();
+    running=true;cyc=0;phi=0;ir=RMIN;timerStart=performance.now();wakeOn();
     try{getAudioCtx();}catch(e){}
     function tickT(){if(!running)return;var s=Math.floor((performance.now()-timerStart)/1000);var m=Math.floor(s/60);var ss=s%60;var e=document.getElementById('bt-'+bi);if(e){var t=(m<10?'0'+m:m)+':'+(ss<10?'0'+ss:ss);if(b.minDur){if(s>=b.minDur){t+=' &#9679; minimum reached';e.style.color='var(--green)';}else{t+=' &middot; min '+b.minDur+'s';e.style.color='var(--text3)';}}e.innerHTML=t;}timerRaf=requestAnimationFrame(tickT);}
     timerRaf=requestAnimationFrame(tickT);
@@ -2815,7 +2826,7 @@ function runWalk(tech,body){body.innerHTML='<div class="grnd-prompt" style="font
 function runSimple(tech,body){body.innerHTML='<div class="grnd-prompt" style="font-size:14px">Go splash cold water on your face or hold it on your wrists.</div><button class="grnd-btn" style="margin-top:12px" onclick="showDone(\''+tech.id+'\')">Done — I tried it</button>';}
 function run54321(tech,body,si,tapped){var s=tech.senses[si];body.innerHTML='<div class="grnd-prompt">'+s.prompt+'</div><div class="grnd-sense">'+s.label+'</div><div class="grnd-counter">'+(s.count-tapped)+'</div><button class="grnd-btn" id="tap-btn">Tap each time you notice one</button>';document.getElementById('tap-btn').onclick=function(){beep();vibrate(60);tapped++;if(tapped>=s.count){if(si+1<tech.senses.length)run54321(tech,body,si+1,0);else showDone2(tech.id,body);}else body.querySelector('.grnd-counter').textContent=(s.count-tapped);};}
 
-function runTimed(tech,body){body.innerHTML='<div class="grnd-prompt">'+(tech.id==='gcontact'?'Place one hand on your chest. Feel the weight and warmth.':'Stop directing your attention. Let it rest wherever it naturally falls.')+'</div><button class="grnd-btn" id="ts">Start</button>';document.getElementById('ts').onclick=function(){this.style.display='none';beep();var mm0=Math.floor(tech.dur/60);var ss0=tech.dur%60;var initT=mm0>0?(mm0+':'+(ss0<10?'0':'')+ss0):tech.dur;body.innerHTML+='<div class="grnd-pulse" id="tp"></div><div class="grnd-counter" id="tc">'+initT+'</div>';var rem=tech.dur;var pulse=false;var piv=setInterval(function(){pulse=!pulse;var e=document.getElementById('tp');if(e)e.classList.toggle('expand',pulse);},tech.id==='gletgo'?2500:1500);var iv=setInterval(function(){rem--;var e=document.getElementById('tc');if(e){var mm=Math.floor(rem/60);var ss=rem%60;e.textContent=mm>0?(mm+':'+(ss<10?'0':'')+ss):rem;}if(rem<=0){clearInterval(iv);clearInterval(piv);beep();vibrate(200);showDone2(tech.id,body);}},1000);};}
+function runTimed(tech,body){body.innerHTML='<div class="grnd-prompt">'+(tech.id==='gcontact'?'Place one hand on your chest. Feel the weight and warmth.':'Stop directing your attention. Let it rest wherever it naturally falls.')+'</div><button class="grnd-btn" id="ts">Start</button>';document.getElementById('ts').onclick=function(){this.style.display='none';beep();wakeOn();var mm0=Math.floor(tech.dur/60);var ss0=tech.dur%60;var initT=mm0>0?(mm0+':'+(ss0<10?'0':'')+ss0):tech.dur;body.innerHTML+='<div class="grnd-pulse" id="tp"></div><div class="grnd-counter" id="tc">'+initT+'</div>';var rem=tech.dur;var pulse=false;var piv=setInterval(function(){pulse=!pulse;var e=document.getElementById('tp');if(e)e.classList.toggle('expand',pulse);},tech.id==='gletgo'?2500:1500);var iv=setInterval(function(){rem--;var e=document.getElementById('tc');if(e){var mm=Math.floor(rem/60);var ss=rem%60;e.textContent=mm>0?(mm+':'+(ss<10?'0':'')+ss):rem;}if(rem<=0){clearInterval(iv);clearInterval(piv);wakeOff();softBell();vibrate(200);showDone2(tech.id,body);}},1000);};}
 
 function showDone(id){var body=document.getElementById('body-'+id);body.innerHTML='<div class="grnd-done-q">How do you feel now?</div><div class="grnd-done-btns"><button class="grnd-done-btn settled" onclick="grndSettled(\''+id+'\')">More settled</button><button class="grnd-done-btn still" onclick="grndStill(\''+id+'\')">Still activated</button></div><div class="grnd-still-msg" id="still-'+id+'"></div>';}
 function showDone2(id,body){body.innerHTML='<div class="grnd-done-q">How do you feel now?</div><div class="grnd-done-btns"><button class="grnd-done-btn settled" onclick="grndSettled(\''+id+'\')">More settled</button><button class="grnd-done-btn still" onclick="grndStill(\''+id+'\')">Still activated</button></div><div class="grnd-still-msg" id="still-'+id+'"></div>';}
@@ -2837,7 +2848,7 @@ function openGround(ctx){
   document.body.style.overflow='hidden';
   buildGroundList(ctx||'general');
 }
-function closeGround(){document.getElementById('ground-overlay').classList.remove('open');document.body.style.overflow='';}
+function closeGround(){wakeOff();document.getElementById('ground-overlay').classList.remove('open');document.body.style.overflow='';}
 
 
 // ═══════════ DAILY CARE INIT ═══════════
