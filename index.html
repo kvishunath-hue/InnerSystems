@@ -65,8 +65,9 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
   --info-bdr:var(--blue-bdr);
 }
 /* ── LAYOUT ── */
-.app{max-width:600px;margin:0 auto;padding:6px 4px 12px;min-height:100vh}
-@media (min-width:620px){.app{padding:12px 16px 24px}}
+.app{max-width:600px;margin:0 auto;padding:6px 4px 12px;min-height:100vh;min-height:100dvh}
+@media (min-width:620px){.app{padding:16px 24px 28px;max-width:680px}}
+@media (min-width:900px){.app{padding:20px 40px 32px}}
 .screen{display:none;padding:0 3px}
 @media (min-width:620px){.screen{padding:0 1rem}}
 .screen.on{display:block}
@@ -209,7 +210,7 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 
 /* ── GROUND OVERLAY ── */
 .ground-fab{
-  position:fixed;bottom:4px;right:4px;z-index:100;
+  position:fixed;bottom:16px;right:16px;z-index:100;
   background:var(--green);color:#1c1814;
   border:none;border-radius:50%;width:52px;height:52px;padding:0;
   display:flex;align-items:center;justify-content:center;
