@@ -755,6 +755,19 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
       <input type="password" id="token-input" placeholder="ghp_xxxxxxxxxxxx" class="setup-input">
       <button class="btn" style="width:100%" onclick="saveNewToken()">Update token</button>
     </div>
+
+    <div class="setup-or">notifications</div>
+
+    <div class="setup-choice">
+      <div class="setup-choice-head">
+        <div class="setup-choice-ico i-blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9M13.7 21a2 2 0 0 1-3.4 0"/></svg></div>
+        <div class="setup-choice-title">Timer notifications</div>
+      </div>
+      <div id="notif-current" style="font-size:11px;color:var(--text3);margin-bottom:10px"></div>
+      <div class="setup-choice-desc">Get a notification when a grounding or breathing timer ends. Works when this tab is in the background; a locked screen may delay or miss it &mdash; the screen is kept awake during timers for that reason.</div>
+      <button class="btn" id="notif-btn" style="width:100%" onclick="toggleNotifs()">Enable notifications</button>
+    </div>
+
     <button style="width:100%;padding:12px;border-radius:var(--rl);border:1px solid var(--bdr);background:transparent;color:var(--text2);font-size:12px;cursor:pointer;font-family:inherit;margin-top:4px" onclick="closeTokenScreen()">Cancel</button>
   </div>
 </div>
@@ -1488,6 +1501,7 @@ function showTokenPrompt(){
   prevScreen=document.querySelector('.screen.on');
   document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('on');});
   document.getElementById('scr-token').style.display='block';
+  updateNotifUI();
 }
 function saveNewToken(){
   var tok=document.getElementById('token-input').value.trim();
@@ -1647,6 +1661,29 @@ document.addEventListener('visibilitychange',function(){if(document.visibilitySt
 var _wakeLockWanted=false;
 function wakeOn(){_wakeLockWanted=true;acquireWakeLock();}
 function wakeOff(){_wakeLockWanted=false;releaseWakeLock();}
+// Notifications (best-effort; opt-in, stored locally)
+function notifsEnabled(){return localStorage.getItem('vk_notifs')==='1'&&typeof Notification!=='undefined'&&Notification.permission==='granted';}
+function toggleNotifs(){
+  if(typeof Notification==='undefined'){updateNotifUI('This browser does not support notifications.');return;}
+  if(localStorage.getItem('vk_notifs')==='1'&&Notification.permission==='granted'){
+    localStorage.removeItem('vk_notifs');updateNotifUI();return;
+  }
+  Notification.requestPermission().then(function(p){
+    if(p==='granted'){localStorage.setItem('vk_notifs','1');}
+    else{localStorage.removeItem('vk_notifs');}
+    updateNotifUI(p==='denied'?'Notifications were blocked in the browser. Enable them in site settings to use this.':'');
+  }).catch(function(){updateNotifUI();});
+}
+function updateNotifUI(msg){
+  var btn=document.getElementById('notif-btn');var cur=document.getElementById('notif-current');
+  if(!btn)return;
+  var on=notifsEnabled();
+  btn.textContent=on?'Disable notifications':'Enable notifications';
+  if(cur)cur.textContent=msg||(on?'On \u2014 you will be alerted when a timer ends.':(typeof Notification!=='undefined'&&Notification.permission==='denied'?'Blocked in browser settings.':'Off.'));
+}
+function notify(title,bodyText){
+  try{if(notifsEnabled()&&document.visibilityState!=='visible'){new Notification(title,{body:bodyText,silent:false});}}catch(e){}
+}
 function vibrate(ms){try{if(navigator.vibrate)navigator.vibrate(ms||80);}catch(e){}}
 function show(id,html){var el=document.getElementById(id);if(!el)return;el.innerHTML=html;el.classList.add('show');}
 function togSec(ev,el){ev.stopPropagation();el.classList.toggle("open");}
@@ -2826,7 +2863,7 @@ function runWalk(tech,body){body.innerHTML='<div class="grnd-prompt" style="font
 function runSimple(tech,body){body.innerHTML='<div class="grnd-prompt" style="font-size:14px">Go splash cold water on your face or hold it on your wrists.</div><button class="grnd-btn" style="margin-top:12px" onclick="showDone(\''+tech.id+'\')">Done — I tried it</button>';}
 function run54321(tech,body,si,tapped){var s=tech.senses[si];body.innerHTML='<div class="grnd-prompt">'+s.prompt+'</div><div class="grnd-sense">'+s.label+'</div><div class="grnd-counter">'+(s.count-tapped)+'</div><button class="grnd-btn" id="tap-btn">Tap each time you notice one</button>';document.getElementById('tap-btn').onclick=function(){beep();vibrate(60);tapped++;if(tapped>=s.count){if(si+1<tech.senses.length)run54321(tech,body,si+1,0);else showDone2(tech.id,body);}else body.querySelector('.grnd-counter').textContent=(s.count-tapped);};}
 
-function runTimed(tech,body){body.innerHTML='<div class="grnd-prompt">'+(tech.id==='gcontact'?'Place one hand on your chest. Feel the weight and warmth.':'Stop directing your attention. Let it rest wherever it naturally falls.')+'</div><button class="grnd-btn" id="ts">Start</button>';document.getElementById('ts').onclick=function(){this.style.display='none';beep();wakeOn();var mm0=Math.floor(tech.dur/60);var ss0=tech.dur%60;var initT=mm0>0?(mm0+':'+(ss0<10?'0':'')+ss0):tech.dur;body.innerHTML+='<div class="grnd-pulse" id="tp"></div><div class="grnd-counter" id="tc">'+initT+'</div>';var rem=tech.dur;var pulse=false;var piv=setInterval(function(){pulse=!pulse;var e=document.getElementById('tp');if(e)e.classList.toggle('expand',pulse);},tech.id==='gletgo'?2500:1500);var iv=setInterval(function(){rem--;var e=document.getElementById('tc');if(e){var mm=Math.floor(rem/60);var ss=rem%60;e.textContent=mm>0?(mm+':'+(ss<10?'0':'')+ss):rem;}if(rem<=0){clearInterval(iv);clearInterval(piv);wakeOff();softBell();vibrate(200);showDone2(tech.id,body);}},1000);};}
+function runTimed(tech,body){body.innerHTML='<div class="grnd-prompt">'+(tech.id==='gcontact'?'Place one hand on your chest. Feel the weight and warmth.':'Stop directing your attention. Let it rest wherever it naturally falls.')+'</div><button class="grnd-btn" id="ts">Start</button>';document.getElementById('ts').onclick=function(){this.style.display='none';beep();wakeOn();var mm0=Math.floor(tech.dur/60);var ss0=tech.dur%60;var initT=mm0>0?(mm0+':'+(ss0<10?'0':'')+ss0):tech.dur;body.innerHTML+='<div class="grnd-pulse" id="tp"></div><div class="grnd-counter" id="tc">'+initT+'</div><button class="grnd-btn" id="tstop" style="margin-top:12px">Stop</button>';var rem=tech.dur;var pulse=false;var done=false;var piv=setInterval(function(){pulse=!pulse;var e=document.getElementById('tp');if(e)e.classList.toggle('expand',pulse);},tech.id==='gletgo'?2500:1500);var iv=setInterval(function(){rem--;var e=document.getElementById('tc');if(e){var mm=Math.floor(rem/60);var ss=rem%60;e.textContent=mm>0?(mm+':'+(ss<10?'0':'')+ss):rem;}if(rem<=0){done=true;clearInterval(iv);clearInterval(piv);wakeOff();softBell();vibrate(200);notify('Grounding complete',tech.title+' \u2014 timer finished.');showDone2(tech.id,body);}},1000);var sb=document.getElementById('tstop');if(sb)sb.onclick=function(){if(done)return;done=true;clearInterval(iv);clearInterval(piv);wakeOff();showDone2(tech.id,body);};};}
 
 function showDone(id){var body=document.getElementById('body-'+id);body.innerHTML='<div class="grnd-done-q">How do you feel now?</div><div class="grnd-done-btns"><button class="grnd-done-btn settled" onclick="grndSettled(\''+id+'\')">More settled</button><button class="grnd-done-btn still" onclick="grndStill(\''+id+'\')">Still activated</button></div><div class="grnd-still-msg" id="still-'+id+'"></div>';}
 function showDone2(id,body){body.innerHTML='<div class="grnd-done-q">How do you feel now?</div><div class="grnd-done-btns"><button class="grnd-done-btn settled" onclick="grndSettled(\''+id+'\')">More settled</button><button class="grnd-done-btn still" onclick="grndStill(\''+id+'\')">Still activated</button></div><div class="grnd-still-msg" id="still-'+id+'"></div>';}
