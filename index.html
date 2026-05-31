@@ -219,6 +219,12 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 }
 .ground-fab svg{width:24px;height:24px}
 .ground-fab:active{transform:scale(0.96)}
+.ground-fab .gf-label{display:none}
+@media (min-width:620px){
+  .ground-fab{bottom:24px;right:16px;border-radius:100px;width:auto;height:auto;padding:13px 20px 13px 16px;gap:8px;font-size:14px;font-weight:600;font-family:inherit;letter-spacing:0.2px}
+  .ground-fab svg{width:20px;height:20px}
+  .ground-fab .gf-label{display:inline}
+}
 .ground-ov{
   display:none;position:fixed;top:0;left:0;right:0;bottom:0;z-index:200;
   background:rgba(0,0,0,0.5);overflow-y:auto;
@@ -1222,7 +1228,7 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 </div>
 
 <!-- GROUND FAB -->
-<button class="ground-fab" onclick="openGround()" aria-label="Ground" title="Ground"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2.5"/><path d="M12 7.5V21M5 13a7 7 0 0 0 14 0M5 13H3m16 0h2"/></svg></button>
+<button class="ground-fab" onclick="openGround()" aria-label="Ground" title="Ground"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2.5"/><path d="M12 7.5V21M5 13a7 7 0 0 0 14 0M5 13H3m16 0h2"/></svg><span class="gf-label">Ground</span></button>
 <script>
 // ═══════════ CONFIG ═══════════
 const GIST_ID='92ea8a47f979c421b8d9264935e86700';
