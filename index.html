@@ -522,8 +522,8 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
   -webkit-tap-highlight-color:transparent;
 }
 #persistent-back:active{transform:scale(0.94)}
-/* Desktop: hug the card column instead of the viewport edge */
-@media (min-width:620px){#persistent-back{left:max(4px,calc(50% - 300px))}}
+/* Desktop: drop the button down beside the content and hug the card column */
+@media (min-width:620px){#persistent-back{top:92px;left:max(4px,calc(50% - 300px))}}
 @media (min-width:900px){#persistent-back{left:max(4px,calc(50% - 284px))}}
 
 /* Group landing buttons */
