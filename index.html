@@ -513,7 +513,7 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 /* Persistent back button */
 #persistent-back{
   display:none;align-items:center;justify-content:center;
-  position:fixed;top:4px;left:4px;z-index:100;
+  position:fixed;top:4px;left:max(4px,calc(50% - 340px));z-index:100;
   width:38px;height:38px;border-radius:50%;
   background:linear-gradient(145deg,#26201a,#1d1813);
   color:var(--text2);border:1px solid var(--bdr2);
@@ -522,6 +522,9 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
   -webkit-tap-highlight-color:transparent;
 }
 #persistent-back:active{transform:scale(0.94)}
+/* Desktop: hug the card column instead of the viewport edge */
+@media (min-width:620px){#persistent-back{left:max(4px,calc(50% - 300px))}}
+@media (min-width:900px){#persistent-back{left:max(4px,calc(50% - 284px))}}
 
 /* Group landing buttons */
 .grp-grid{display:flex;flex-direction:column;gap:6px}
@@ -862,10 +865,6 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
       <div class="entry-ico i-blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4a3 3 0 1 0 0 6 3 3 0 0 0 0-6zM3 20a6 6 0 0 1 12 0"/><path d="M17 5a2.5 2.5 0 0 1 0 5M19 20a5 5 0 0 0-3-4.6"/></svg></div>
       <div class="entry-info"><div class="entry-name">I&#39;m in a situation</div><div class="entry-desc">Family or outside &mdash; read the dynamic</div></div>
     </div>
-    <div class="entry-btn" onclick="showScreen('scr-project')">
-      <div class="entry-ico i-green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></div>
-      <div class="entry-info"><div class="entry-name">Active project</div><div class="entry-desc">Project work with wound check</div></div>
-    </div>
   </div>
 </div>
 
@@ -996,7 +995,7 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
     <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9650;</span><div><div class="csec-nm">Intensity &amp; certainty</div><div class="csec-ds">How charged, and how sure am I really?</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="sdiv" style="margin-top:0">Intensity level right now</div><div class="intensity-bar" id="int-bar-crav"></div><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-bottom:12px"><span>Low</span><span>High</span></div><div class="sdiv">Certainty level right now</div><div class="intensity-bar" id="cert-bar-crav"></div><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-bottom:12px"><span>Uncertain</span><span>Certain</span></div><div class="sdiv">Urgency level right now</div><div class="intensity-bar" id="urg-bar-crav"></div><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-bottom:12px"><span>Can wait</span><span>Must act now</span></div><button class="btn" onclick="event.stopPropagation();doICheck('crav','r-ic-crav')">Check</button><div class="result" id="r-ic-crav"></div></div></div>
     <div class="al al-alert" style="margin:0 0 10px"><strong>The chain:</strong> Cigarettes &#8596; Pornography &#8594; Cannabis &#8594; Psychosis. Either entry point lowers the threshold for the next. Breaking any link protects the chain from completing.</div>
     <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9632;</span><div><div class="csec-nm">HALT check</div><div class="csec-ds">What is the real need?</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="halt-list" class="chk-list"></div><button class="btn" onclick="event.stopPropagation();doHALT()">Notice</button><div class="result" id="r-halt"></div></div></div>
-    <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9888;</span><div><div class="csec-nm">What you lose</div><div class="csec-ds">The cost of completing the chain</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div style="font-size:13px;line-height:1.8;color:var(--text2)"><div><strong style="color:var(--alert)">The 5th episode is the one you may not come back from intact.</strong></div><div>Warehousing. Career gone.</div><div>Every month of sobriety erased.</div><div>The exit plan dies.</div><div>They were right about you.</div><div>The craving is not about the substance. It is about regulation.</div><div style="margin-top:4px">Smoking to manage distress is using the thing that costs your autonomic system to regulate the autonomic system. Every cigarette: HRV drops, RHR rises, VO2max declines. The cost is not a future risk. It is happening now.</div><div style="margin-top:6px;color:var(--warn-text)">If you act on this craving: future pull activates. Tomorrow's craving arrives with false confidence — the certainty that you can handle one more. That certainty is the chain.</div></div></div></div>
+    <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9888;</span><div><div class="csec-nm">What you lose</div><div class="csec-ds">The cost of completing the chain</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div style="font-size:13px;line-height:1.8;color:var(--text2)"><div><strong style="color:var(--alert)">The 5th episode is the one you may not come back from intact.</strong></div><div>Warehousing. Career gone.</div><div>Every month of sobriety erased.</div><div>The exit plan dies.</div><div>A good partner, gone.</div><div>They were right about you.</div><div>The craving is not about the substance. It is about regulation.</div><div style="margin-top:4px">Smoking to manage distress is using the thing that costs your autonomic system to regulate the autonomic system. Every cigarette: HRV drops, RHR rises, VO2max declines. The cost is not a future risk. It is happening now.</div><div style="margin-top:6px;color:var(--warn-text)">If you act on this craving: future pull activates. Tomorrow's craving arrives with false confidence — the certainty that you can handle one more. That certainty is the chain.</div></div></div></div>
     <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9654;</span><div><div class="csec-nm">Do this now</div><div class="csec-ds">Delay, breathe, water, call, move</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div style="font-size:13px;line-height:1.8;color:var(--text2)"><div><strong style="color:var(--text)">Delay</strong> — 5 minutes.</div><div><strong style="color:var(--text)">Breathe</strong> — Tap Ground.</div><div><strong style="color:var(--text)">Drink water</strong> — Slowly.</div><div><strong style="color:var(--text)">Call your confidant</strong></div><div><strong style="color:var(--text)">Change the scene</strong></div></div></div></div>
     <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9733;</span><div><div class="csec-nm">Quit tools</div><div class="csec-ds">What am I using today</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="quit-tools"></div><button class="btn" onclick="event.stopPropagation();runQuit()">Check support status</button><div class="taper-status" id="qc-status"></div></div></div>
     
@@ -1026,8 +1025,8 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
   <div class="card" id="dc-day-block" style="padding:12px 14px;margin-bottom:8px"></div>
   <div class="al al-alert" id="care-reg-banner" style="display:none;margin-bottom:8px">Regulation level is high today. Use Ground before goal work.</div>
 
-  <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9733;</span><div><div class="csec-nm">Prayer</div><div class="csec-ds">Reality</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
-    <div class="prayer-card"><div class="prayer-text"><strong>Reality, my ally</strong><span style="display:block;margin-bottom:4px">Intelligence beyond my awareness.</span>I acknowledge what I do not control and do not know. I act courageously where choice is mine, and release what belongs to your process. See you at the rendezvous point. Attention is the compass.</div></div>
+  <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9733;</span><div><div class="csec-nm">Prayer</div><div class="csec-ds">Prakrati</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
+    <div class="prayer-card"><div class="prayer-text"><strong>Prakrati, my ally</strong><span style="display:block;margin-bottom:4px">Intelligence beyond my awareness.</span>I acknowledge what I do not control and do not know. I act courageously where choice is mine, and release what belongs to your process. See you at the rendezvous point. Attention is the compass.</div></div>
   </div></div>
 
   <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9737;</span><div><div class="csec-nm">Who I am</div><div class="csec-ds">Type, wiring, and values</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
@@ -2916,8 +2915,8 @@ function closeGround(){wakeOff();document.getElementById('ground-overlay').class
 // To reset any timer, change its start date below (ISO format).
 var STREAK_TIMERS=[
   {id:'cannabis',start:'2024-10-24T19:32:17'},
-  {id:'nicotine',start:'2026-05-29T13:47:38'},
-  {id:'porn',start:'2026-06-03T08:15:52'}
+  {id:'nicotine',start:'2026-06-20T07:42:13'},
+  {id:'porn',start:'2026-06-20T15:09:46'}
 ];
 var streakInterval=null;
 
