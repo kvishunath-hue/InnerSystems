@@ -2365,10 +2365,6 @@ function doBndGeneric(listId,resId,prefix){
   var checked=[...document.querySelectorAll('#'+listId+' .chk-row')].filter(function(r){return r.querySelector('input').checked;});
   if(!checked.length){show(resId,'<span class="ri-ok">No boundary identified. If you are unsure, name the one thing you will not do today.</span>');return;}
   var h='<div class="al al-info" style="margin-bottom:8px"><strong>Locked in.</strong> These are non-negotiable for this interaction. State once if asked. Do not argue. Do not justify beyond a sentence.</div>';
-  checked.forEach(function(r){
-    var tx=r.querySelector('span').textContent;
-    h+='<div class="ri"><div class="ri-name">'+tx+'</div></div>';
-  });
   show(resId,h);
 }
 
