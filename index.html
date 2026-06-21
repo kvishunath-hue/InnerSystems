@@ -433,16 +433,6 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 .sit-desc{font-size:12px;color:var(--text3);margin-top:2px}
 
 /* ── INTENSITY CHECK ── */
-.intensity-bar{
-  display:flex;gap:4px;margin:12px 0;
-}
-.int-seg{
-  flex:1;height:8px;border-radius:4px;background:var(--bdr);cursor:pointer;transition:background .15s;
-}
-.int-seg.on-low{background:var(--ok)}
-.int-seg.on-mid{background:var(--warn)}
-.int-seg.on-high{background:var(--alert)}
-
 /* Heat level visual */
 .heat-viz-wrap{display:block;width:100%;overflow:hidden;margin-bottom:4px}
 .attn-pick{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
@@ -881,7 +871,6 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 <div class="screen" id="scr-activated">
   <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9679;</span><div><div class="csec-nm">What am I feeling</div><div class="csec-ds">Name the emotion before analysing</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div style="display:flex;flex-wrap:wrap;gap:6px" id="emo-pick"></div></div></div>
   <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9678;</span><div><div class="csec-nm">Heat check</div><div class="csec-ds">Where your system is right now &#8212; how activated are you?</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="card-desc">Select everything present. More than one is normal.</div>
-    <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9650;</span><div><div class="csec-nm">Intensity &amp; certainty</div><div class="csec-ds">How charged, and how sure am I really?</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="sdiv" style="margin-top:0">Intensity level right now</div><div class="intensity-bar" id="int-bar-act"></div><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-bottom:12px"><span>Low</span><span>High</span></div><div class="sdiv">Certainty level right now</div><div class="intensity-bar" id="cert-bar-act"></div><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-bottom:12px"><span>Uncertain</span><span>Certain</span></div><div class="sdiv">Urgency level right now</div><div class="intensity-bar" id="urg-bar-act"></div><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-bottom:4px"><span>Can wait</span><span>Must act now</span></div><div style="font-size:11px;color:var(--text3);font-style:italic">Folds into the heat reading below.</div></div></div>
     <div class="sdiv">What is present</div>
     <div class="reg-items" id="quick-reg-items"></div>
     <div class="sdiv" style="margin-top:14px">How attention is behaving</div>
@@ -945,7 +934,6 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
   <div class="card">
     <div class="card-title">Noise check — family / known pattern</div>
     <div class="card-desc">Check what is present. The wound and the situation are two separate events.</div>
-    <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9650;</span><div><div class="csec-nm">Intensity &amp; certainty</div><div class="csec-ds">How charged, and how sure am I really?</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="sdiv" style="margin-top:0">Intensity level right now</div><div class="intensity-bar" id="int-bar-sit"></div><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-bottom:12px"><span>Low</span><span>High</span></div><div class="sdiv">Certainty level right now</div><div class="intensity-bar" id="cert-bar-sit"></div><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-bottom:12px"><span>Uncertain</span><span>Certain</span></div><div class="sdiv">Urgency level right now</div><div class="intensity-bar" id="urg-bar-sit"></div><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-bottom:12px"><span>Can wait</span><span>Must act now</span></div><button class="btn" onclick="event.stopPropagation();doICheck('sit','r-ic-sit')">Check</button><div class="result" id="r-ic-sit"></div></div></div>
     <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9711;</span><div><div class="csec-nm">Their Enneagram mode</div><div class="csec-ds">What pattern is the other person showing?</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
       <div id="ennea-list-fam" class="chk-list"></div>
       <button class="btn" onclick="doEnneaFam()">Check mode</button>
@@ -968,7 +956,6 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
   <div class="card">
     <div class="card-title">Noise check — outside your system</div>
     <div class="card-desc">Your system may be reading this person through a pattern they are not part of. Slow down.</div>
-    <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9650;</span><div><div class="csec-nm">Intensity &amp; certainty</div><div class="csec-ds">How charged, and how sure am I really?</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="sdiv" style="margin-top:0">Intensity level right now</div><div class="intensity-bar" id="int-bar-sitout"></div><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-bottom:12px"><span>Low</span><span>High</span></div><div class="sdiv">Certainty level right now</div><div class="intensity-bar" id="cert-bar-sitout"></div><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-bottom:12px"><span>Uncertain</span><span>Certain</span></div><div class="sdiv">Urgency level right now</div><div class="intensity-bar" id="urg-bar-sitout"></div><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-bottom:12px"><span>Can wait</span><span>Must act now</span></div><button class="btn" onclick="event.stopPropagation();doICheck('sitout','r-ic-sitout')">Check</button><div class="result" id="r-ic-sitout"></div></div></div>
     <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9711;</span><div><div class="csec-nm">Their Enneagram mode</div><div class="csec-ds">What pattern is the other person showing?</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
       <div id="ennea-list-out" class="chk-list"></div>
       <button class="btn" onclick="doEnneaOut()">Check mode</button>
@@ -992,7 +979,6 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
   <div class="card">
     <div class="card-title" style="color:var(--alert)">Craving active</div>
     <div class="card-desc">This craving will peak and pass in 3-5 minutes. You only need to get through this one.</div>
-    <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9650;</span><div><div class="csec-nm">Intensity &amp; certainty</div><div class="csec-ds">How charged, and how sure am I really?</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="sdiv" style="margin-top:0">Intensity level right now</div><div class="intensity-bar" id="int-bar-crav"></div><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-bottom:12px"><span>Low</span><span>High</span></div><div class="sdiv">Certainty level right now</div><div class="intensity-bar" id="cert-bar-crav"></div><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-bottom:12px"><span>Uncertain</span><span>Certain</span></div><div class="sdiv">Urgency level right now</div><div class="intensity-bar" id="urg-bar-crav"></div><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-bottom:12px"><span>Can wait</span><span>Must act now</span></div><button class="btn" onclick="event.stopPropagation();doICheck('crav','r-ic-crav')">Check</button><div class="result" id="r-ic-crav"></div></div></div>
     <div class="al al-alert" style="margin:0 0 10px"><strong>The chain:</strong> Cigarettes &#8596; Pornography &#8594; Cannabis &#8594; Psychosis. Either entry point lowers the threshold for the next. Breaking any link protects the chain from completing.</div>
     <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9632;</span><div><div class="csec-nm">HALT check</div><div class="csec-ds">What is the real need?</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="halt-list" class="chk-list"></div><button class="btn" onclick="event.stopPropagation();doHALT()">Notice</button><div class="result" id="r-halt"></div></div></div>
     <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9888;</span><div><div class="csec-nm">What you lose</div><div class="csec-ds">The cost of completing the chain</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div style="font-size:13px;line-height:1.8;color:var(--text2)"><div><strong style="color:var(--alert)">The 5th episode is the one you may not come back from intact.</strong></div><div>Warehousing. Career gone.</div><div>Every month of sobriety erased.</div><div>The exit plan dies.</div><div>A good partner, gone.</div><div>They were right about you.</div><div>The craving is not about the substance. It is about regulation.</div><div style="margin-top:4px">Smoking to manage distress is using the thing that costs your autonomic system to regulate the autonomic system. Every cigarette: HRV drops, RHR rises, VO2max declines. The cost is not a future risk. It is happening now.</div><div style="margin-top:6px;color:var(--warn-text)">If you act on this craving: future pull activates. Tomorrow's craving arrives with false confidence — the certainty that you can handle one more. That certainty is the chain.</div></div></div></div>
@@ -1009,7 +995,6 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
   <div class="card">
     <div class="card-title">Active project</div>
     <div class="card-desc">The work is legitimate. Check whether the wound is running alongside it.</div>
-    <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9650;</span><div><div class="csec-nm">Intensity &amp; certainty</div><div class="csec-ds">How charged, and how sure am I really?</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="sdiv" style="margin-top:0">Intensity level right now</div><div class="intensity-bar" id="int-bar-proj"></div><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-bottom:12px"><span>Low</span><span>High</span></div><div class="sdiv">Certainty level right now</div><div class="intensity-bar" id="cert-bar-proj"></div><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-bottom:12px"><span>Uncertain</span><span>Certain</span></div><div class="sdiv">Urgency level right now</div><div class="intensity-bar" id="urg-bar-proj"></div><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-bottom:12px"><span>Can wait</span><span>Must act now</span></div><button class="btn" onclick="event.stopPropagation();doICheck('proj','r-ic-proj')">Check</button><div class="result" id="r-ic-proj"></div></div></div>
     <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9679;</span><div><div class="csec-nm">Wound check</div><div class="csec-ds">Is the wound running alongside the work?</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="land-check-list" class="chk-list"></div><button class="btn" onclick="event.stopPropagation();doLandCheck()">Notice</button><div class="result" id="r-land"></div></div></div>
     <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9670;</span><div><div class="csec-nm">Which wound is running</div><div class="csec-ds">Select and get guidance</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="wound-pick-land" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px"></div><button class="btn" onclick="event.stopPropagation();doWoundPick()">Notice</button><div class="result" id="r-wound-pick"></div></div></div>
     <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9654;</span><div><div class="csec-nm">Next actions</div><div class="csec-ds">Decoupled from emotion</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div style="font-size:12px;line-height:1.7;color:var(--text2)"><div>1. SIC Second Appeal (RTI deemed refusal)</div><div>2. CCLA forensic audit request</div><div>3. Part-B correction (Bhu Bharati Act)</div><div>4. Lokayukta complaint</div><div>5. FIR under IT Act Sec 66C, 66D, 65</div><div>6. HC writ if all channels fail</div></div></div></div>
@@ -1026,7 +1011,7 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
   <div class="al al-alert" id="care-reg-banner" style="display:none;margin-bottom:8px">Regulation level is high today. Use Ground before goal work.</div>
 
   <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9733;</span><div><div class="csec-nm">Prayer</div><div class="csec-ds">Prakrati</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
-    <div class="prayer-card"><div class="prayer-text"><strong>Prakrati, my ally</strong><span style="display:block;margin-bottom:4px">Intelligence beyond my awareness.</span>I acknowledge what I do not control and do not know. I act courageously where choice is mine, and release what belongs to your process. See you at the rendezvous point. Attention is the compass.</div></div>
+    <div class="prayer-card"><div class="prayer-text"><strong>Prakrati</strong><span style="display:block;margin-bottom:4px">Intelligence beyond my awareness.</span>I acknowledge what I do not control and do not know. I act courageously where choice is mine, and release what belongs to the process. See you at the rendezvous point. Attention is the compass.</div></div>
   </div></div>
 
   <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9737;</span><div><div class="csec-nm">Who I am</div><div class="csec-ds">Type, wiring, and values</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
@@ -1164,7 +1149,6 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
   </div></div>
   <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico" style="font-size:12px;font-weight:700">01</span><div><div class="csec-nm">Body signals</div><div class="csec-ds">Se inferior + SP blind &#8212; your weakest function. You will miss these until they are loud. Check deliberately.</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div id="b-list"></div><button class="btn" onclick="doBody()">Notice</button><div class="result" id="r-body"></div></div></div>
   <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico" style="font-size:12px;font-weight:700">02</span><div><div class="csec-nm">Heat check</div><div class="csec-ds">A retrospective read &#8212; where your system reached and what carried it there.</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body">
-    <div class="csec"><div class="csec-head" onclick="togSec(event,this.parentElement)"><span class="csec-ico">&#9650;</span><div><div class="csec-nm">Intensity &amp; certainty</div><div class="csec-ds">How charged, and how sure was I really?</div></div><span class="csec-chv">&#9660;</span></div><div class="csec-body"><div class="sdiv" style="margin-top:0">Intensity level at its peak</div><div class="intensity-bar" id="int-bar-dr"></div><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-bottom:12px"><span>Low</span><span>High</span></div><div class="sdiv">Certainty level at its peak</div><div class="intensity-bar" id="cert-bar-dr"></div><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-bottom:12px"><span>Uncertain</span><span>Certain</span></div><div class="sdiv">Urgency at its peak</div><div class="intensity-bar" id="urg-bar-dr"></div><div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-bottom:4px"><span>Could wait</span><span>Had to act now</span></div><div style="font-size:11px;color:var(--text3);font-style:italic">Folds into the heat reading below.</div></div></div>
     <div class="sdiv" style="margin-top:14px">What was present</div>
     <div class="reg-items" id="reg-items"></div>
     <div class="sdiv" style="margin-top:14px">How attention was behaving</div>
@@ -1300,7 +1284,6 @@ function buildSaveData(){
   if(emoPickSit){var selEmo2=emoPickSit.querySelector('button[data-sel]');if(selEmo2)data.emotionSit=selEmo2.textContent;}
   // Checkboxes from review
   var chks={};document.querySelectorAll('.chk-row input[type=checkbox], .taper-row input[type=checkbox], .reg-item input[type=checkbox], .afi input[type=checkbox]').forEach(function(cb){if(cb.checked&&cb.id){var span=cb.parentElement.querySelector('span');chks[cb.id]={v:span?span.textContent.substring(0,80):'checked',ts:Date.now()};}});
-  data.icState=JSON.stringify(icState);
   data.chks=chks;
   // Wound picker
   var wp=document.getElementById('wound-pick-land');
@@ -2057,66 +2040,6 @@ function buildQuitList(){
   });
 }
 
-// ═══════════ INTENSITY BARS ═══════════
-// Context-aware intensity/certainty state
-var icState={act:{i:0,c:0,u:0},crav:{i:0,c:0,u:0},sit:{i:0,c:0,u:0},sitout:{i:0,c:0,u:0},proj:{i:0,c:0,u:0}};
-function refreshIntBars(){
-  Object.keys(icState).forEach(function(ctx){
-    var st=icState[ctx];
-    if(st.i)setIntBar('int-bar-'+ctx,st.i);
-    if(st.c)setIntBar('cert-bar-'+ctx,st.c);
-    if(st.u)setIntBar('urg-bar-'+ctx,st.u);
-  });
-}
-function buildIntensityBars(){
-  // Build all context bars that exist in the DOM
-  document.querySelectorAll('.intensity-bar').forEach(function(el){
-    el.innerHTML='';
-    var barId=el.id; // e.g. int-bar-act, cert-bar-sit
-    for(var i=1;i<=10;i++){
-      var seg=document.createElement('div');seg.className='int-seg';seg.dataset.level=i;seg.dataset.bar=barId;
-      seg.onclick=function(){setIntBar(this.dataset.bar,Number(this.dataset.level));};
-      el.appendChild(seg);
-    }
-  });
-}
-function setIntBar(barId,level){
-  var el=document.getElementById(barId);if(!el)return;
-  el.querySelectorAll('.int-seg').forEach(function(s,i){
-    s.className='int-seg';
-    if(i<level){
-      if(level<=3)s.classList.add('on-low');
-      else if(level<=6)s.classList.add('on-mid');
-      else s.classList.add('on-high');
-    }
-  });
-  // Parse barId: {int|cert|urg}-bar-{ctx}
-  var m=barId.match(/^(int|cert|urg)-bar-(\w+)$/);
-  if(m){
-    var kind=m[1],ctx=m[2];
-    if(!icState[ctx])icState[ctx]={i:0,c:0,u:0};
-    if(kind==='int')icState[ctx].i=level;else if(kind==='cert')icState[ctx].c=level;else icState[ctx].u=level;
-  }
-  persist(barId+'-level',level);
-}
-function doICheck(ctx,resId){
-  var st=icState[ctx]||{i:0,c:0,u:0};
-  if(!st.i&&!st.c&&!st.u){show(resId,'<span class="ri-ok">Set the levels to check.</span>');return;}
-  var hi=[st.i,st.c,st.u].filter(function(v){return v>=7;}).length;
-  var mid=[st.i,st.c,st.u].filter(function(v){return v>=4;}).length;
-  var lines=[];
-  lines.push('<strong>Intensity '+st.i+'/10.</strong> '+(st.i>=7?'The charge is loud. The feeling is real \u2014 but loud is not the same as accurate.':st.i>=4?'A moderate charge. Noticeable, not yet driving.':'The charge is low.'));
-  lines.push('<strong>Certainty '+st.c+'/10.</strong> '+(st.c>=7?'Conviction is running ahead of evidence. Certainty beyond what you can document is the prodrome boundary \u2014 the number that matters most.':st.c>=4?'Some conviction, still open to being wrong.':'Low certainty \u2014 holding it lightly. Good.'));
-  lines.push('<strong>Urgency '+st.u+'/10.</strong> '+(st.u>=7?'The pull to act, decide, or communicate now is loud. Urgency is what turns a charged, certain state into action before the brakes are back. Let it wait.':st.u>=4?'Some pull to act soon. Notice it \u2014 it does not have to be obeyed.':'No real pressure to act now. Good.'));
-  var verdict='',vtone='var(--ok)';
-  if(hi>=3){verdict='All three are high \u2014 intensity, certainty, and urgency together. This is the exact signature where the association engine runs faster than evidence. Do not act, decide, or send anything. Step away until they drop below 6.';vtone='var(--alert)';}
-  else if(hi===2){verdict='Two of the three are high. Close to the zone where conviction outruns evidence. Hold \u2014 no major moves until they ease.';vtone='var(--warn-text)';}
-  else if(hi===1){verdict='One dimension is running high. Notice it before the next move.';vtone='var(--warn-text)';}
-  else if(mid>=1){verdict='Manageable. Proceed with awareness.';vtone='var(--text2)';}
-  var h='<div style="padding:10px 12px;border-radius:var(--r);background:var(--bg2);border:1px solid var(--bdr);font-size:13px;line-height:1.6;color:var(--text2)">'+lines.join('<br>')+(verdict?'<div style="margin-top:8px;padding-top:8px;border-top:1px solid var(--bdr);color:'+vtone+'">'+verdict+'</div>':'')+'</div>';
-  show(resId,h);
-}
-
 // ═══════════ CORE FUNCTIONS ═══════════
 
 var _hvCount=0;
@@ -2165,15 +2088,11 @@ function buildHeatViz(lvl){
 function doQuickReg(){
   var sel=new Set([...document.querySelectorAll('#quick-reg-items input:checked')].map(c=>c.id.replace('qr-','')));
   var attn=readAttn('act');var attnLvl=attnAnchorLevel(attn.width,attn.grip);var attnSet=!!(attn.width||attn.grip);
-  var ic0=icState['act']||{i:0,c:0,u:0};
-  if(!sel.size&&!attnSet&&!ic0.i&&!ic0.c&&!ic0.u){show('r-quick-reg','<span class="ri-ok">Set intensity/certainty/urgency, select what is present, or how attention is behaving.</span>');return;}
+  if(!sel.size&&!attnSet){show('r-quick-reg','<span class="ri-ok">Select what is present, or how attention is behaving.</span>');return;}
   var lvl;
   if(sel.size){lvl=calcRegLevel(sel);if(attnLvl!=null){lvl=Math.round((lvl*2+attnLvl)/3);if(lvl<1)lvl=1;if(lvl>10)lvl=10;}}
   else if(attnLvl!=null){lvl=attnLvl;}
   else{lvl=5;}
-  var icNudge=0;var icHiN=[ic0.i,ic0.c,ic0.u].filter(function(v){return v>=7;}).length;var icMidN=[ic0.i,ic0.c,ic0.u].filter(function(v){return v>=4;}).length;
-  if(icHiN>=3)icNudge=3;else if(icHiN===2)icNudge=2;else if(icHiN===1)icNudge=1;else if(icMidN>=2)icNudge=0.5;
-  if(icNudge){lvl=Math.round(lvl+icNudge);if(lvl>10)lvl=10;}
   var st=RST[lvl];var bd=lvl<=3?'w':lvl<=5?'e':lvl<=7?'i':lvl<=9?'c':'s';
   var bdl={w:'Witness band',e:'Equilibrium',i:'Identity band',c:'Capture band',s:'Survival'};
   persist('reg-level',String(lvl));
@@ -2188,8 +2107,7 @@ function doQuickReg(){
   var snr=sel.size===0?'No checklist data':noiseItems===0?'Clean \u2014 all signal':(noiseItems>=sel.size-1?'Almost all noise':'Signal: '+signalItems+' / Noise: '+noiseItems);
   h+='<div style="margin-top:8px;padding:8px 12px;border-radius:var(--r);background:var(--bg);border:1px solid var(--bdr);font-size:12px"><span style="color:var(--text3)">Signal-to-noise:</span> <strong style="color:'+(noiseItems>signalItems?'var(--alert)':'var(--ok)')+'">'+snr+'</strong></div>';
   h+='<div style="font-size:11px;color:var(--text3);margin-top:4px">Signal = what is actually happening. Noise = wound, distortion, or activation amplifying it.</div>';
-  var apos=attnDotPos(lvl,attn.width,attn.grip,ic0);var ard=(attn.width||attn.grip||sel.size)?attnReadFromPos(apos.nx,apos.ny,true):null;h+='<div class="sdiv" style="margin-top:14px">Attention quality</div>';h+=buildAttnDial(lvl,attn.width,attn.grip,ic0);if(ard){h+='<div style="font-size:12px;color:var(--text2);margin-top:4px;line-height:1.5"><strong style="color:var(--text)">'+ard.label+'</strong> \u2014 '+ard.desc+'.</div>';}
-  if(ic0.i||ic0.c||ic0.u){var icHiN=[ic0.i,ic0.c,ic0.u].filter(function(v){return v>=7;}).length;var icTone=icHiN>=2?'var(--alert)':(icHiN===1)?'var(--warn-text)':'var(--text2)';var lines=[];lines.push('<strong>Intensity '+ic0.i+'/10.</strong> '+(ic0.i>=7?'The charge is loud. The feeling is real \u2014 but loud is not the same as accurate.':ic0.i>=4?'A moderate charge. Noticeable, not yet driving.':'The charge is low.'));lines.push('<strong>Certainty '+ic0.c+'/10.</strong> '+(ic0.c>=7?'Conviction is running ahead of evidence. Certainty beyond what you can document is the prodrome boundary \u2014 the number that matters most.':ic0.c>=4?'Some conviction, still open to being wrong.':'Low certainty \u2014 holding it lightly. Good.'));lines.push('<strong>Urgency '+ic0.u+'/10.</strong> '+(ic0.u>=7?'The pull to act, decide, or communicate now is loud \u2014 it is what turns a charged, certain state into action before the brakes are back. Let it wait.':ic0.u>=4?'Some pull to act soon. Notice it \u2014 it does not have to be obeyed.':'No real pressure to act now. Good.'));var combo='';if(icHiN>=3)combo='All three are high \u2014 intensity, certainty, and urgency together. This is the exact signature where the association engine runs faster than evidence. Do not act, decide, or send anything. Step away until they drop below 6.';else if(icHiN===2)combo='Two of the three are high \u2014 close to the zone where conviction outruns evidence. Hold. No major moves until they ease.';else if(icHiN===1)combo='One dimension is running high. Notice it before the next move.';h+='<div class="sdiv" style="margin-top:14px">Intensity, certainty &amp; urgency</div><div style="padding:9px 12px;border-radius:var(--r);background:var(--bg);border:1px solid var(--bdr);font-size:12px;line-height:1.6;color:var(--text2)">'+lines.join('<br>')+(combo?'<div style="margin-top:6px;padding-top:6px;border-top:1px solid var(--bdr);color:'+icTone+'">'+combo+'</div>':'')+'</div>';}
+  var apos=attnDotPos(lvl,attn.width,attn.grip);var ard=(attn.width||attn.grip||sel.size)?attnReadFromPos(apos.nx,apos.ny,true):null;h+='<div class="sdiv" style="margin-top:14px">Attention quality</div>';h+=buildAttnDial(lvl,attn.width,attn.grip);if(ard){h+='<div style="font-size:12px;color:var(--text2);margin-top:4px;line-height:1.5"><strong style="color:var(--text)">'+ard.label+'</strong> \u2014 '+ard.desc+'.</div>';}
   if(heatWounds.length){h+='<div class="sdiv" style="margin-top:14px">What is carrying it</div><div style="font-size:11px;color:var(--text3);margin-bottom:6px;font-style:italic">A wound-cue releases the vagal brake \u2014 attention narrows, the rock climbs.</div>';heatWounds.forEach(function(wid){var w=WOUND_DATA[wid];if(w)h+='<div class="ri"><div class="ri-name">'+w.nm+'</div><div style="font-size:11px;color:var(--text3);font-style:italic;margin-bottom:2px">'+w.psy+'</div><div class="ri-action">'+w.act+'</div></div>';});}
   h+='<div style="margin-top:8px;padding:10px 12px;border-radius:var(--r);border-left:3px solid var(--info-bdr);background:var(--info-bg);color:var(--info-text);font-size:13px;line-height:1.6"><strong>What brings it down:</strong> '+(ard?ard.lever+' ':'')+st.m+'</div>';
   var ps=REG_PSYCH[lvl];
@@ -2271,15 +2189,11 @@ function attnAnchorLevel(width,grip){
 // Read = label, description, and corrective lever from the two axes.
 // Compute the dot position on the attention quadrant from level + axis picks + intensity/certainty/urgency.
 // nx: narrow(0)..diffuse(1). ny: grasping(0)..open(1). Returns clamped 0.04-0.96.
-function attnDotPos(lvl,width,grip,ic){
+function attnDotPos(lvl,width,grip){
   var t=(lvl-1)/9;
   var nx=1-t, ny=1-t; // base from level
   if(width){var wt={narrow:0.18,diffuse:0.82}[width];nx=(nx+wt*2)/3;}
   if(grip){var gt={grasping:0.2,open:0.82}[grip];ny=(ny+gt*2)/3;}
-  if(ic&&(ic.i||ic.c||ic.u)){
-    var icAvg=(ic.i+ic.c+ic.u)/3;
-    if(icAvg>=5){var pull=Math.min(1,(icAvg-5)/5)*0.55;nx=nx*(1-pull)+0.18*pull;ny=ny*(1-pull)+0.2*pull;}
-  }
   if(nx<0.04)nx=0.04;if(nx>0.96)nx=0.96;if(ny<0.04)ny=0.04;if(ny>0.96)ny=0.96;
   return {nx:nx,ny:ny};
 }
@@ -2308,8 +2222,8 @@ function attnReadFromPos(nx,ny,past){
   }
   return {label:label,desc:desc,lever:lever,gripWord:gripWord.toLowerCase(),widthWord:widthWord};
 }
-function buildAttnDial(lvl,width,grip,ic){
-  var _p=attnDotPos(lvl,width,grip,ic);var nx=_p.nx,ny=_p.ny;
+function buildAttnDial(lvl,width,grip){
+  var _p=attnDotPos(lvl,width,grip);var nx=_p.nx,ny=_p.ny;
   // Horizontal = grip: open(ny=1) left, grasping(ny=0) right.
   var bx=44+(1-ny)*212;
   // Vertical = width: narrow(nx=0) top, diffuse(nx=1) bottom.
@@ -2337,8 +2251,7 @@ function buildAttnDial(lvl,width,grip,ic){
 function doReg(){
   var sel=new Set([...document.querySelectorAll('#reg-items input:checked')].map(c=>c.id.replace('rr-','')));
   var attn=readAttn('dr');var attnLvl=attnAnchorLevel(attn.width,attn.grip);var attnSet=!!(attn.width||attn.grip);
-  var ic0=icState['dr']||{i:0,c:0,u:0};
-  if(!sel.size&&!attnSet&&!ic0.i&&!ic0.c&&!ic0.u){show('r-reg','<span class="ri-ok">Set intensity/certainty/urgency, select what was present, or how attention was behaving.</span>');return;}
+  if(!sel.size&&!attnSet){show('r-reg','<span class="ri-ok">Select what was present, or how attention was behaving.</span>');return;}
   var lvl;
   if(sel.size){
     lvl=calcRegLevel(sel);
@@ -2346,12 +2259,8 @@ function doReg(){
   }else if(attnLvl!=null){
     lvl=attnLvl;
   }else{
-    lvl=5; // intensity/certainty/urgency only — start mid, nudge below
+    lvl=5;
   }
-  // Intensity, certainty & urgency nudge the level: charge + conviction + pull-to-act push the system up.
-  var icNudge=0;var icHiN=[ic0.i,ic0.c,ic0.u].filter(function(v){return v>=7;}).length;var icMidN=[ic0.i,ic0.c,ic0.u].filter(function(v){return v>=4;}).length;
-  if(icHiN>=3)icNudge=3;else if(icHiN===2)icNudge=2;else if(icHiN===1)icNudge=1;else if(icMidN>=2)icNudge=0.5;
-  if(icNudge){lvl=Math.round(lvl+icNudge);if(lvl>10)lvl=10;}
   persist('reg-level',String(lvl));
   var signal2=sel.size;var noiseItems2=REGI.filter(function(it){return sel.has(it.id)&&(it.votes[8]||it.votes[9]||it.votes[10]);}).length;var signalItems2=signal2-noiseItems2;
   var bd=lvl<=3?'w':lvl<=5?'e':lvl<=7?'i':lvl<=9?'c':'s';
@@ -2366,8 +2275,7 @@ function doReg(){
   h+='<div class="reg-grid" style="grid-template-columns:1fr 2fr"><div class="reg-cell"><div class="reg-key">Brakes</div><div class="reg-val">'+st.b+'</div></div><div class="reg-cell"><div class="reg-key">Braking against</div><div class="reg-val">'+st.ba+'</div></div></div>';
   h+='<div style="margin-top:8px;padding:8px 12px;border-radius:var(--r);background:var(--bg);border:1px solid var(--bdr);font-size:12px"><span style="color:var(--text3)">Signal-to-noise:</span> <strong style="color:'+(noiseItems2>signalItems2?'var(--alert)':'var(--ok)')+'">'+(noiseItems2===0?'Clean \u2014 all signal':(noiseItems2>=signal2-1?'Almost all noise':'Signal: '+signalItems2+' / Noise: '+noiseItems2))+'</strong></div>';
   h+='<div style="font-size:11px;color:var(--text3);margin-top:4px">Signal = what is actually happening. Noise = wound, distortion, or activation amplifying it.</div>';
-  var apos=attnDotPos(lvl,attn.width,attn.grip,ic0);var ard=(attn.width||attn.grip||sel.size)?attnReadFromPos(apos.nx,apos.ny,false):null;h+='<div class="sdiv" style="margin-top:14px">Attention quality</div>';h+=buildAttnDial(lvl,attn.width,attn.grip,ic0);if(ard){h+='<div style="font-size:12px;color:var(--text2);margin-top:4px;line-height:1.5"><strong style="color:var(--text)">'+ard.label+'</strong> \u2014 '+ard.desc+'.</div>';}
-  if(ic0.i||ic0.c||ic0.u){var icHiN=[ic0.i,ic0.c,ic0.u].filter(function(v){return v>=7;}).length;var icTone=icHiN>=2?'var(--alert)':(icHiN===1)?'var(--warn-text)':'var(--text2)';var lines=[];lines.push('<strong>Intensity '+ic0.i+'/10.</strong> '+(ic0.i>=7?'The charge was loud and raised the level. Loud felt true, but loud is not the same as accurate.':ic0.i>=4?'A moderate charge, lightly reflected in the level.':'The charge was low.'));lines.push('<strong>Certainty '+ic0.c+'/10.</strong> '+(ic0.c>=7?'Conviction ran ahead of evidence \u2014 certainty beyond what could be documented is the prodrome boundary, the most telling number here.':ic0.c>=4?'Some conviction, still open to being wrong.':'Low certainty \u2014 it was held lightly.'));lines.push('<strong>Urgency '+ic0.u+'/10.</strong> '+(ic0.u>=7?'The pull to act or communicate now was loud \u2014 it is what turns a charged, certain state into action before the brakes return.':ic0.u>=4?'Some pull to act soon, lightly reflected in the level.':'No real pressure to act now.'));var combo='';if(icHiN>=3)combo='All three ran high \u2014 intensity, certainty, urgency. That is the exact signature where the association engine outruns evidence; it pushed the level up.';else if(icHiN===2)combo='Two of the three were high \u2014 close to the zone where conviction outruns evidence; it pushed the level up.';else if(icHiN===1)combo='One dimension ran high \u2014 worth noticing in the read.';h+='<div class="sdiv" style="margin-top:14px">Intensity, certainty &amp; urgency</div><div style="padding:9px 12px;border-radius:var(--r);background:var(--bg);border:1px solid var(--bdr);font-size:12px;line-height:1.6;color:var(--text2)">'+lines.join('<br>')+(combo?'<div style="margin-top:6px;padding-top:6px;border-top:1px solid var(--bdr);color:'+icTone+'">'+combo+'</div>':'')+'</div>';}
+  var apos=attnDotPos(lvl,attn.width,attn.grip);var ard=(attn.width||attn.grip||sel.size)?attnReadFromPos(apos.nx,apos.ny,false):null;h+='<div class="sdiv" style="margin-top:14px">Attention quality</div>';h+=buildAttnDial(lvl,attn.width,attn.grip);if(ard){h+='<div style="font-size:12px;color:var(--text2);margin-top:4px;line-height:1.5"><strong style="color:var(--text)">'+ard.label+'</strong> \u2014 '+ard.desc+'.</div>';}
   if(heatWounds.length){h+='<div class="sdiv" style="margin-top:14px">What carried it there</div><div style="font-size:11px;color:var(--text3);margin-bottom:6px;font-style:italic">A wound-cue releases the vagal brake \u2014 attention narrows, the rock climbs.</div>';heatWounds.forEach(function(wid){var w=WOUND_DATA[wid];if(w)h+='<div class="ri"><div class="ri-name">'+w.nm+'</div><div style="font-size:11px;color:var(--text3);font-style:italic;margin-bottom:2px">'+w.psy+'</div><div class="ri-action">'+w.act+'</div></div>';});}
   h+='<div style="margin-top:8px;padding:10px 12px;border-radius:var(--r);border-left:3px solid var(--info-bdr);background:var(--info-bg);color:var(--info-text);font-size:13px;line-height:1.6"><strong>What would have brought it down:</strong> '+(ard?ard.lever+' ':'')+st.m+'</div>';
   if(ps){h+='<div class="reg-psych"><div class="reg-psych-desc">'+ps.desc+'</div><div class="reg-psych-row"><div class="reg-psych-lbl">Ego state</div><div class="reg-psych-val">'+ps.ego+'</div></div><div class="reg-psych-row"><div class="reg-psych-lbl">Self & object</div><div class="reg-psych-val">'+ps.self+'</div></div><div class="reg-psych-row"><div class="reg-psych-lbl">Defence</div><div class="reg-psych-val">'+ps.defence+'</div></div></div>';}
@@ -2562,16 +2470,12 @@ function doEffort(){
 
 function doLandCheck(){
   var checked=[...document.querySelectorAll('#land-check-list .chk-row')].filter(r=>r.querySelector('input').checked);
-  var li=icState.proj?icState.proj.i:0,lc=icState.proj?icState.proj.c:0;
   var h='';
-  if(li>=7&&lc>=7)h+='<div class="al al-alert" style="margin-bottom:8px"><strong>Both intensity and certainty are high.</strong> This is the zone where the association engine runs faster than evidence. Step away. Check heat level. No actions until both drop below 6.</div>';
-  else if(li>=7)h+='<div class="al al-warn" style="margin-bottom:8px"><strong>Intensity is high.</strong> The work is real. Check whether the wound is amplifying it before the next action.</div>';
-  else if(lc>=7&&checked.length)h+='<div class="al al-warn" style="margin-bottom:8px"><strong>Certainty is high.</strong> Your evidence is strong. But certainty beyond evidence is the prodrome boundary. What specifically are you certain about that you cannot document?</div>';
   if(checked.length){
     var lm={wound:'Core wound activated alongside legitimate frustration. Separate them.',connect:'Hyper-associative thinking may be connecting dots that are not there. What can you verify?',suspicion:'Suspicion beyond evidence is the zone to watch. What is documented vs what is felt?',urgency:'The legal channels have their own timeline. Nothing breaks if you wait 48 hours.',certainty:'Name what you are certain about. If you cannot point to a document, the certainty is the system talking.'};
     checked.forEach(function(r){var k=r.querySelector('input').dataset.l;if(lm[k])h+='<div class="ri"><div class="ri-name">'+r.querySelector('span').textContent.substring(0,70)+'</div><div class="ri-action">'+lm[k]+'</div></div>';});
   }
-  if(!h)h='<span class="ri-ok">Intensity manageable. Continue with next legal step.</span>';
+  if(!h)h='<span class="ri-ok">Nothing flagged. Continue with the next legal step.</span>';
   show('r-land',h);
 }
 
@@ -3115,8 +3019,6 @@ initBoundary();
   buildEmoPicker('emo-pick-sit');
   initCare();
   startNicotineTimerInterval();
-  buildIntensityBars();
-  refreshIntBars();
 }
 if(NEED_SETUP){document.getElementById("scr-home").classList.remove("on");document.getElementById("scr-setup").style.display="block";var _h=document.getElementById("app-header");if(_h)_h.style.display="none";}
 
@@ -3196,16 +3098,6 @@ function restoreFromDayData(data){
     if(eps){eps.querySelectorAll('button').forEach(function(b){
       if(b.textContent===data.emotionSit){b.style.background='var(--calm-bg)';b.style.color='var(--calm)';b.style.borderColor='var(--calm-bdr)';b.dataset.sel='1';}
     });}
-  }
-  // Restore intensity bars (context-aware)
-  if(data.icState){
-    try{icState=JSON.parse(data.icState);}catch(e){}
-    Object.keys(icState).forEach(function(ctx){
-      var st=icState[ctx];
-      if(st.i)setIntBar('int-bar-'+ctx,st.i);
-      if(st.c)setIntBar('cert-bar-'+ctx,st.c);
-      if(st.u)setIntBar('urg-bar-'+ctx,st.u);
-    });
   }
   // Restore wound picker
   if(data.wounds&&data.wounds.length){
