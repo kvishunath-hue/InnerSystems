@@ -1229,7 +1229,7 @@ body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSy
 <button class="ground-fab" onclick="openGround()" aria-label="Ground" title="Ground"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2.5"/><path d="M12 7.5V21M5 13a7 7 0 0 0 14 0M5 13H3m16 0h2"/></svg><span class="gf-label">Ground</span></button>
 <script>
 // ═══════════ CONFIG ═══════════
-const GIST_ID='92ea8a47f979c421b8d9264935e86700';
+const GIST_ID=(localStorage.getItem('vk_gist_id')||'');
 function getToken(){return localStorage.getItem('vk_gist_token')||'';}
 function setToken(t){localStorage.setItem('vk_gist_token',t.trim());}
 var NO_TOKEN=localStorage.getItem('vk_no_token')==='1';
